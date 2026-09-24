@@ -1,4 +1,4 @@
-# Full-Stack Notes — JavaScript · TypeScript · React · Node.js · Python · FastAPI
+# Full-Stack Notes — JavaScript · TypeScript · React · Node.js · Python · FastAPI · DSA
 
 Complete notes from absolute basics to production and interviews. Every topic has an explanation, 2–3 examples, best practices, and interview questions. Many code examples were executed/type-checked while writing; bugs those checks caught are collected in the **Gotchas Hall of Fame**.
 
@@ -10,10 +10,11 @@ Complete notes from absolute basics to production and interviews. Every topic ha
 | [TypeScript](typescript.md) | Types from basics to advanced type-level programming, TS with React/Node, end-to-end type safety | 43 | 3,779 |
 | [React](react.md) | Components & hooks → patterns & performance → state/data → Next.js → testing → production & machine coding | 56 | 7,709 |
 | [Node.js](nodejs.md) | Runtime & event loop → Express & APIs → auth & security → databases → queues, observability, system design | 65 | 8,524 |
-| [Python](python.md) | Absolute basics → OOP & functional features → stdlib, scripting, databases → concurrency → production, DSA | 47 | 5,423 |
+| [Python](python.md) | Absolute basics → OOP & functional features → stdlib, scripting, databases → concurrency → production, DSA | 47 | 5,425 |
 | [FastAPI](fastapi.md) | Routing & Pydantic → DI, databases, auth → queues, integrations → testing, observability, security, deployment | 43 | 3,832 |
+| [DSA in Python](dsa-python.md) | Data structures & algorithms from basics: a diagram, theory, tested Python and verified practice problems per topic | 29 | 1,924 |
 | [Best Practices](best-practices.md) | Every good practice combined across the stack, the Gotchas Hall of Fame, and checklists | 32 | 1,733 |
-| **Total** | | **344** | **42,017** |
+| **Total** | | **373** | **43,943** |
 
 ## How every file is organized
 
@@ -30,6 +31,10 @@ Conventions: ❌ = wrong/risky, ✅ = recommended · *(caught in these notes)* =
 
 - **JavaScript:** [Getting Started: What is JavaScript & Your First Program](javascript.md#1-getting-started-what-is-javascript--your-first-program) · [var, let, const](javascript.md#2-var-let-const) · [Data Types](javascript.md#3-data-types) · [Operators, Control Flow & Loops](javascript.md#4-operators-control-flow--loops) · [Functions (all types)](javascript.md#6-functions) · [Arrays & Array Methods (+ polyfills)](javascript.md#20-arrays--array-methods) · [Strings](javascript.md#21-strings) · [Objects in Depth](javascript.md#14-objects-in-depth)
 - **Python:** [Getting Started: What is Python & Your First Program](python.md#1-getting-started-what-is-python--your-first-program) · [Variables](python.md#2-variables) · [Data Types & Type Conversion](python.md#3-data-types--type-conversion) · [Control Flow & match-case](python.md#10-control-flow--match-case) · [Loops, range, enumerate, zip](python.md#11-loops-range-enumerate-zip) · [Functions & Arguments](python.md#13-functions--arguments) · [Lists](python.md#6-lists) · [Dictionaries](python.md#9-dictionaries)
+
+### DSA track — study alongside the other phases
+
+- **DSA in Python:** [How to Study DSA](dsa-python.md#1-how-to-study-dsa) · [Big-O: Time and Space Complexity](dsa-python.md#2-big-o-time-and-space-complexity) · [Arrays and Python Lists](dsa-python.md#4-arrays-and-python-lists) · [Hash Tables: dict and set](dsa-python.md#6-hash-tables-dict-and-set) · [Two Pointers](dsa-python.md#11-two-pointers) · [Sliding Window](dsa-python.md#12-sliding-window) · [Binary Search](dsa-python.md#14-binary-search) · [Binary Trees and Traversals](dsa-python.md#16-binary-trees-and-traversals) · [Graphs: Representation, BFS and DFS](dsa-python.md#20-graphs-representation-bfs-and-dfs) · [Dynamic Programming](dsa-python.md#26-dynamic-programming)
 
 ### Phase 2 — How JavaScript really works
 
@@ -100,6 +105,7 @@ Go through these in order in the last week before an interview; for each topic, 
 - **JavaScript:** [Data Structures & Algorithms in JavaScript](javascript.md#56-data-structures--algorithms-in-javascript)
 - **Node.js:** [SQL Deep Dive: Joins, Window Functions, Query Plans & Locking](nodejs.md#33-sql-deep-dive-joins-window-functions-query-plans--locking)
 - **Python:** [Data Structures & Algorithms in Python](python.md#44-data-structures--algorithms-in-python) · [Coding Questions (with solutions)](python.md#45-coding-questions)
+- **DSA in Python:** [Pattern Cheat Sheet: Which Technique When?](dsa-python.md#28-pattern-cheat-sheet-which-technique-when) · [Most Asked DSA Theory Questions](dsa-python.md#29-most-asked-dsa-theory-questions)
 - **React:** [Machine Coding Questions (with solutions)](react.md#53-machine-coding-questions) · [Machine Coding II (Carousel, Kanban, Data Table, Wizard, Toasts, Comments)](react.md#54-machine-coding-ii-carousel-kanban-data-table-wizard-toasts-comments)
 - **TypeScript:** [Type Challenges](typescript.md#42-type-challenges)
 
@@ -464,6 +470,41 @@ Go through these in order in the last week before an interview; for each topic, 
 41. [Production Checklist & Best Practices](fastapi.md#41-production-checklist)
 42. [FastAPI vs Flask vs Django vs Express](fastapi.md#42-fastapi-vs-flask-vs-django-vs-express)
 43. [Most Asked Interview Questions](fastapi.md#43-most-asked-interview-questions)
+
+</details>
+
+<details>
+<summary><b>DSA in Python</b> — 29 sections</summary>
+
+1. [How to Study DSA](dsa-python.md#1-how-to-study-dsa)
+2. [Big-O: Time and Space Complexity](dsa-python.md#2-big-o-time-and-space-complexity)
+3. [Python's Cost Model](dsa-python.md#3-pythons-cost-model)
+4. [Arrays and Python Lists](dsa-python.md#4-arrays-and-python-lists)
+5. [Strings](dsa-python.md#5-strings)
+6. [Hash Tables: dict and set](dsa-python.md#6-hash-tables-dict-and-set)
+7. [Linked Lists](dsa-python.md#7-linked-lists)
+8. [Stacks](dsa-python.md#8-stacks)
+9. [Queues and Deques](dsa-python.md#9-queues-and-deques)
+10. [Recursion](dsa-python.md#10-recursion)
+11. [Two Pointers](dsa-python.md#11-two-pointers)
+12. [Sliding Window](dsa-python.md#12-sliding-window)
+13. [Prefix Sums](dsa-python.md#13-prefix-sums)
+14. [Binary Search](dsa-python.md#14-binary-search)
+15. [Sorting](dsa-python.md#15-sorting)
+16. [Binary Trees and Traversals](dsa-python.md#16-binary-trees-and-traversals)
+17. [Binary Search Trees](dsa-python.md#17-binary-search-trees)
+18. [Heaps and Priority Queues](dsa-python.md#18-heaps-and-priority-queues)
+19. [Tries (Prefix Trees)](dsa-python.md#19-tries-prefix-trees)
+20. [Graphs: Representation, BFS and DFS](dsa-python.md#20-graphs-representation-bfs-and-dfs)
+21. [Shortest Paths: Dijkstra](dsa-python.md#21-shortest-paths-dijkstra)
+22. [Topological Sort](dsa-python.md#22-topological-sort)
+23. [Union-Find (Disjoint Set Union)](dsa-python.md#23-union-find-disjoint-set-union)
+24. [Backtracking](dsa-python.md#24-backtracking)
+25. [Greedy Algorithms](dsa-python.md#25-greedy-algorithms)
+26. [Dynamic Programming](dsa-python.md#26-dynamic-programming)
+27. [Bit Manipulation](dsa-python.md#27-bit-manipulation)
+28. [Pattern Cheat Sheet: Which Technique When?](dsa-python.md#28-pattern-cheat-sheet-which-technique-when)
+29. [Most Asked DSA Theory Questions](dsa-python.md#29-most-asked-dsa-theory-questions)
 
 </details>
 

@@ -4553,6 +4553,8 @@ Register the publisher once on PyPI (project → Publishing: owner, repository, 
 
 ## 44. Data Structures & Algorithms in Python
 
+For the theory behind each structure and technique, with diagrams, tested examples and verified practice problems, see `dsa-python.md` → "DSA in Python: Theory, Pictures, Code & Practice".
+
 Python is the most popular language for coding interviews because its standard library gives you most data structures for free. This section covers **complexities of built-ins**, the **Python tools** for each pattern, and tested implementations. (The same patterns explained in JS: `javascript.md` → Data Structures & Algorithms.)
 
 ### 1. Big-O of Python built-ins
