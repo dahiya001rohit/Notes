@@ -1,6 +1,6 @@
 # DSA in Python: From Absolute Basics to Interviews
 
-Data structures and algorithms explained from zero, in Python only. The notes climb like school years, from **primary school** (loops and pattern printing) through **middle school** (maths for programmers) and **high school** (arrays, strings, sorting, searching, hashing) to **college** (linked lists, trees, graphs, dynamic programming). **Each part uses only what earlier parts taught**, so read in order.
+Data structures and algorithms explained from zero, in Python only, in **five levels**: **Basic** (Python, loops, pattern printing, maths for programmers) → **Easy** (Big-O, recursion, arrays, strings, sorting, searching, hashing) → **Moderate** (problem-solving techniques, linked lists, stacks, queues, trees) → **Advanced** (graphs, dynamic programming, specialised topics) → **Interview Prep**. **Each part uses only what earlier parts taught**, so read in order. Together the parts cover the topics that top product companies ask in coding interviews (Section [54](#54-interview-topic-checklist-what-top-companies-ask) maps each topic to its must-do problems).
 
 Every section has the same shape:
 
@@ -13,7 +13,7 @@ Each part ends with a ✅ **checkpoint**. Interview coding questions and output 
 
 ## Table of Contents
 
-**[Part 1 — Primary School: Programming Basics](#part-1--primary-school-programming-basics)**
+**[Part 1 — Basic: Programming Fundamentals](#part-1--basic-programming-fundamentals)**
 
 1. [How to Use These Notes](#1-how-to-use-these-notes)
 2. [Python Basics: Values, Variables, Decisions and Functions](#2-python-basics-values-variables-decisions-and-functions)
@@ -22,7 +22,7 @@ Each part ends with a ✅ **checkpoint**. Interview coding questions and output 
 5. [Pattern Printing II: Pyramids, Diamonds and Hollow Shapes](#5-pattern-printing-ii-pyramids-diamonds-and-hollow-shapes)
 6. [Pattern Printing III: Number and Letter Patterns](#6-pattern-printing-iii-number-and-letter-patterns)
 
-**[Part 2 — Middle School: Maths for Programmers](#part-2--middle-school-maths-for-programmers)**
+**[Part 2 — Basic: Maths for Programmers](#part-2--basic-maths-for-programmers)**
 
 7. [Working with Digits](#7-working-with-digits)
 8. [Divisors and Prime Numbers](#8-divisors-and-prime-numbers)
@@ -31,7 +31,7 @@ Each part ends with a ✅ **checkpoint**. Interview coding questions and output 
 11. [Maths Toolbox: Series, Factorials, Fibonacci, Powers and Modulo](#11-maths-toolbox-series-factorials-fibonacci-powers-and-modulo)
 12. [Number Systems: Decimal and Binary](#12-number-systems-decimal-and-binary)
 
-**[Part 3 — High School: First Data Structures and Algorithms](#part-3--high-school-first-data-structures-and-algorithms)**
+**[Part 3 — Easy: Core Data Structures and Algorithms](#part-3--easy-core-data-structures-and-algorithms)**
 
 13. [Big-O: How Fast Is My Code?](#13-big-o-how-fast-is-my-code)
 14. [Recursion Basics](#14-recursion-basics)
@@ -42,51 +42,66 @@ Each part ends with a ✅ **checkpoint**. Interview coding questions and output 
 19. [Hashing: Dictionaries and Sets](#19-hashing-dictionaries-and-sets)
 20. [Python's Cost Model: What Each Operation Costs](#20-pythons-cost-model-what-each-operation-costs)
 
-**[Part 4 — Senior Secondary: Problem-Solving Techniques](#part-4--senior-secondary-problem-solving-techniques)**
+**[Part 4 — Moderate: Problem-Solving Techniques](#part-4--moderate-problem-solving-techniques)**
 
 21. [How to Attack a New Problem](#21-how-to-attack-a-new-problem)
 22. [Two Pointers](#22-two-pointers)
 23. [Sliding Window](#23-sliding-window)
 24. [Prefix Sums](#24-prefix-sums)
-25. [Binary Search on the Answer](#25-binary-search-on-the-answer)
-26. [Merge Sort and Quick Sort](#26-merge-sort-and-quick-sort)
+25. [Classic Array Algorithms: Kadane, Majority Vote, Dutch Flag and More](#25-classic-array-algorithms-kadane-majority-vote-dutch-flag-and-more)
+26. [Matrices: 2D Array Problems](#26-matrices-2d-array-problems)
+27. [Intervals: Merge, Insert and Overlap](#27-intervals-merge-insert-and-overlap)
+28. [Binary Search on the Answer](#28-binary-search-on-the-answer)
+29. [Merge Sort and Quick Sort](#29-merge-sort-and-quick-sort)
 
-**[Part 5 — College, Year 1: Building Your Own Data Structures](#part-5--college-year-1-building-your-own-data-structures)**
+**[Part 5 — Moderate: Linked Lists, Stacks, Queues and Design](#part-5--moderate-linked-lists-stacks-queues-and-design)**
 
-27. [Classes, Objects and Nodes](#27-classes-objects-and-nodes)
-28. [Linked Lists](#28-linked-lists)
-29. [Stacks](#29-stacks)
-30. [Queues and Deques](#30-queues-and-deques)
+30. [Classes, Objects and Nodes](#30-classes-objects-and-nodes)
+31. [Linked Lists](#31-linked-lists)
+32. [Linked List Interview Problems](#32-linked-list-interview-problems)
+33. [Stacks](#33-stacks)
+34. [Queues and Deques](#34-queues-and-deques)
+35. [Design Problems: Min Stack, Queue from Stacks, LRU Cache](#35-design-problems-min-stack-queue-from-stacks-lru-cache)
 
-**[Part 6 — College, Year 2: Trees](#part-6--college-year-2-trees)**
+**[Part 6 — Moderate: Trees and Heaps](#part-6--moderate-trees-and-heaps)**
 
-31. [Binary Trees and Traversals](#31-binary-trees-and-traversals)
-32. [Binary Search Trees](#32-binary-search-trees)
-33. [Heaps and Priority Queues](#33-heaps-and-priority-queues)
-34. [Tries (Prefix Trees)](#34-tries-prefix-trees)
+36. [Binary Trees and Traversals](#36-binary-trees-and-traversals)
+37. [Binary Tree Interview Problems](#37-binary-tree-interview-problems)
+38. [Binary Search Trees](#38-binary-search-trees)
+39. [Heaps and Priority Queues](#39-heaps-and-priority-queues)
+40. [Tries (Prefix Trees)](#40-tries-prefix-trees)
 
-**[Part 7 — College, Year 3: Graphs](#part-7--college-year-3-graphs)**
+**[Part 7 — Advanced: Graphs](#part-7--advanced-graphs)**
 
-35. [Graphs: Representation, BFS and DFS](#35-graphs-representation-bfs-and-dfs)
-36. [Shortest Paths: Dijkstra](#36-shortest-paths-dijkstra)
-37. [Topological Sort](#37-topological-sort)
-38. [Union-Find (Disjoint Set Union)](#38-union-find-disjoint-set-union)
+41. [Graphs: Representation, BFS and DFS](#41-graphs-representation-bfs-and-dfs)
+42. [Graph Problems: Cycles, Bipartite Graphs and Multi-Source BFS](#42-graph-problems-cycles-bipartite-graphs-and-multi-source-bfs)
+43. [Shortest Paths: Dijkstra](#43-shortest-paths-dijkstra)
+44. [Topological Sort](#44-topological-sort)
+45. [Union-Find (Disjoint Set Union)](#45-union-find-disjoint-set-union)
+46. [Minimum Spanning Trees, Bellman-Ford and Floyd-Warshall](#46-minimum-spanning-trees-bellman-ford-and-floyd-warshall)
 
-**[Part 8 — Final Year: Algorithm Design Strategies](#part-8--final-year-algorithm-design-strategies)**
+**[Part 8 — Advanced: Algorithm Design](#part-8--advanced-algorithm-design)**
 
-39. [Backtracking](#39-backtracking)
-40. [Greedy Algorithms](#40-greedy-algorithms)
-41. [Dynamic Programming](#41-dynamic-programming)
-42. [Bit Manipulation](#42-bit-manipulation)
+47. [Backtracking](#47-backtracking)
+48. [Greedy Algorithms](#48-greedy-algorithms)
+49. [Dynamic Programming](#49-dynamic-programming)
+50. [Dynamic Programming II: Knapsack, Subsequences, Strings and Intervals](#50-dynamic-programming-ii-knapsack-subsequences-strings-and-intervals)
+51. [Bit Manipulation](#51-bit-manipulation)
 
-**[Part 9 — Placement Prep: Revision](#part-9--placement-prep-revision)**
+**[Part 9 — Advanced: Specialised Topics](#part-9--advanced-specialised-topics)**
 
-43. [Pattern Cheat Sheet: Which Technique When?](#43-pattern-cheat-sheet-which-technique-when)
-44. [Most Asked DSA Theory Questions](#44-most-asked-dsa-theory-questions)
+52. [String Algorithms: Palindromes, KMP and Rabin-Karp](#52-string-algorithms-palindromes-kmp-and-rabin-karp)
+53. [Range Queries with Updates: Fenwick Trees and Segment Trees](#53-range-queries-with-updates-fenwick-trees-and-segment-trees)
+
+**[Part 10 — Interview Prep: Revision](#part-10--interview-prep-revision)**
+
+54. [Interview Topic Checklist: What Top Companies Ask](#54-interview-topic-checklist-what-top-companies-ask)
+55. [Pattern Cheat Sheet: Which Technique When?](#55-pattern-cheat-sheet-which-technique-when)
+56. [Most Asked DSA Theory Questions](#56-most-asked-dsa-theory-questions)
 
 ---
 
-# Part 1 — Primary School: Programming Basics
+# Part 1 — Basic: Programming Fundamentals
 
 > **Goal:** Write small programs and trace them by hand. Everything later is built from what this part teaches: variables, decisions, loops and functions.  
 > **You need:** Nothing. Start here even if you've programmed a little: the dry-run and pattern skills matter later.
@@ -104,19 +119,20 @@ Each part ends with a ✅ **checkpoint**. Interview coding questions and output 
 - A **data structure** is a way of storing data so that the jobs you need to do with it are quick. A phone's contact list (sorted by name, so you find people fast), a stack of plates (you take from the top) and a queue at a ticket counter (first come, first served) are all data structures from real life.
 - An **algorithm** is an exact list of steps that solves a problem. A recipe is an algorithm for a cake; "look up the middle page of the dictionary, then go left or right" is an algorithm for finding a word.
 
-**These notes climb like school years.** Each part uses only what the parts before it taught, so read them in order. If a section ever uses a word or a tool that wasn't explained earlier, treat it as a mistake in the notes.
+**These notes climb level by level: Basic → Easy → Moderate → Advanced → Interview Prep.** Each part uses only what the parts before it taught, so read them in order. If a section ever uses a word or a tool that wasn't explained earlier, treat it as a mistake in the notes.
 
 | Part | Level | What you learn | Afterwards you can… |
 |---|---|---|---|
-| 1 | Primary school | Python basics, loops, dry runs, pattern printing | Write small programs and trace them by hand |
-| 2 | Middle school | Maths for programmers: digits, divisors, primes, GCD, modulo, binary | Solve number problems quickly and correctly |
-| 3 | High school | Big-O, recursion, arrays, strings, basic sorting, searching, hashing | Solve most Easy array and string problems |
-| 4 | Senior secondary | Techniques: two pointers, sliding window, prefix sums, binary search on the answer, merge sort and quick sort | Solve Easy and many Medium problems |
-| 5 | College, year 1 | Classes and nodes, linked lists, stacks, queues | Build your own data structures |
-| 6 | College, year 2 | Binary trees, binary search trees, heaps, tries | Work with data arranged as a hierarchy |
-| 7 | College, year 3 | Graphs: BFS, DFS, shortest paths, topological sort, union-find | Model maps, networks and dependencies |
-| 8 | College, final year | Backtracking, greedy, dynamic programming, bit manipulation | Take on Medium and Hard interview problems |
-| 9 | Placement prep | A cheat sheet and the most asked theory questions | Revise quickly before an interview |
+| 1 | Basic | Python basics, loops, dry runs, pattern printing | Write small programs and trace them by hand |
+| 2 | Basic | Maths for programmers: digits, divisors, primes, GCD, modulo, binary | Solve number problems quickly and correctly |
+| 3 | Easy | Big-O, recursion, arrays, strings, basic sorting, searching, hashing | Solve most Easy array and string problems |
+| 4 | Moderate | Techniques: two pointers, sliding window, prefix sums, classic array algorithms, matrices, intervals, binary search on the answer, merge sort, quick sort and quickselect | Solve Easy and many Medium problems |
+| 5 | Moderate | Classes and nodes, linked lists, stacks, queues, design problems (LRU cache) | Build and combine your own data structures |
+| 6 | Moderate | Binary trees and their classic problems, binary search trees, heaps, tries | Work with data arranged as a hierarchy |
+| 7 | Advanced | Graphs: BFS, DFS, cycles, bipartite graphs, shortest paths, topological sort, union-find, spanning trees | Model maps, networks and dependencies |
+| 8 | Advanced | Backtracking, greedy, dynamic programming (two sections), bit manipulation | Take on Medium and Hard interview problems |
+| 9 | Advanced | String matching (KMP, Rabin-Karp), segment trees and Fenwick trees | Handle the harder rounds |
+| 10 | Interview Prep | What top companies ask (a topic checklist), a cheat sheet, theory questions | Check your coverage and revise quickly |
 
 **Every section has the same four parts:**
 
@@ -1199,7 +1215,7 @@ If yes, move on to Part 2. If not, redo this part's practice first: Part 2 assum
 
 ---
 
-# Part 2 — Middle School: Maths for Programmers
+# Part 2 — Basic: Maths for Programmers
 
 > **Goal:** The number theory behind many problems (digits, divisors, primes, GCD, modulo, binary), and your first taste of fast vs slow methods.  
 > **You need:** Part 1: loops, functions, and the `//` and `%` operators.
@@ -2045,7 +2061,7 @@ Repeat until n is 0, then read the remainders **backwards** (the first remainder
 - Powers of two are a 1 followed by zeros in binary: 8 = 1000, 16 = 10000.
 - Python's built-ins: `bin(13)` is `"0b1101"`, `int("1101", 2)` is 13, and `hex(255)` is `"0xff"`.
 
-Section [42](#42-bit-manipulation) builds on this with **bitwise operators**, which work on all the bits of a number at once.
+Section [51](#51-bit-manipulation) builds on this with **bitwise operators**, which work on all the bits of a number at once.
 
 ### Python
 
@@ -2183,7 +2199,7 @@ You've now seen that the **same answer** can take n steps, √n steps, log n ste
 
 ---
 
-# Part 3 — High School: First Data Structures and Algorithms
+# Part 3 — Easy: Core Data Structures and Algorithms
 
 > **Goal:** Measure speed with Big-O, think recursively, and master Python's four built-in structures (list, str, dict, set) with sorting and searching.  
 > **You need:** Parts 1 and 2.
@@ -2216,7 +2232,7 @@ We compare algorithms by **how the number of steps grows as the input grows**, n
 | `while d * d <= n` | About √n | O(√n) | Square root |
 | One loop over n items | n | O(n) | Linear |
 | A loop inside a loop, both over n (the square pattern) | n × n | O(n²) | Quadratic |
-| Trying every subset of n items (Section [39](#39-backtracking)) | 2ⁿ | O(2ⁿ) | Exponential |
+| Trying every subset of n items (Section [47](#47-backtracking)) | 2ⁿ | O(2ⁿ) | Exponential |
 
 What **log n** means in practice: the number of times you can halve n before reaching 1. It grows incredibly slowly: log₂ of a thousand is about 10, of a million about 20, of a billion about 30.
 
@@ -2356,7 +2372,7 @@ Code written **before** the recursive call runs on the way down; code written **
 
 - Every waiting call uses memory, so recursion depth d costs O(d) space. Python stops at about 1,000 levels with a `RecursionError`. For deep problems, use a loop.
 - **Time** = (number of calls) × (work per call). `factorial(n)` makes n calls: O(n).
-- A function that calls itself **twice**, like the naive Fibonacci below, makes about 2ⁿ calls, and most of them repeat work already done. Section [41](#41-dynamic-programming) (dynamic programming) fixes that by remembering answers.
+- A function that calls itself **twice**, like the naive Fibonacci below, makes about 2ⁿ calls, and most of them repeat work already done. Section [49](#49-dynamic-programming) (dynamic programming) fixes that by remembering answers.
 - Anything recursive can be written with a loop, and the other way round. Recursion shines when a problem **branches** into several smaller problems of the same kind, which you'll meet with merge sort, trees and graphs later.
 
 ### Python
@@ -2880,7 +2896,7 @@ The three basic sorts are all O(n²), too slow for big inputs, but they're the b
 - `reverse=True` sorts from largest to smallest.
 - `key=` gives a function that picks **what to sort by**. `key=len` sorts words by length. For something custom, write a **lambda**, a tiny one-line function without a name: `lambda p: p[1]` means "given p, return p[1]".
 
-How O(n log n) is possible at all is the subject of Section [26](#26-merge-sort-and-quick-sort) (merge sort and quick sort), which needs recursion plus some techniques from Part 4.
+How O(n log n) is possible at all is the subject of Section [29](#29-merge-sort-and-quick-sort) (merge sort and quick sort), which needs recursion plus some techniques from Part 4.
 
 ### Python
 
@@ -2976,7 +2992,7 @@ sorted(people, key=lambda p: (-p[1], p[0]))    # → [("Asha", 31), ("Meera", 31
 | 3 | [977. Squares of a Sorted Array](https://leetcode.com/problems/squares-of-a-sorted-array/) | 🟢 Easy |
 | 4 | [88. Merge Sorted Array](https://leetcode.com/problems/merge-sorted-array/) | 🟢 Easy |
 | 5 | [75. Sort Colors](https://leetcode.com/problems/sort-colors/) | 🟡 Medium |
-| 6 | [912. Sort an Array](https://leetcode.com/problems/sort-an-array/) (O(n²) sorts time out here; come back after Section [26](#26-merge-sort-and-quick-sort)) | 🟡 Medium |
+| 6 | [912. Sort an Array](https://leetcode.com/problems/sort-an-array/) (O(n²) sorts time out here; come back after Section [29](#29-merge-sort-and-quick-sort)) | 🟡 Medium |
 
 **Learn & visualise:** [VisuAlgo: Sorting (animated)](https://visualgo.net/en/sorting) · [GeeksforGeeks: Sorting](https://www.geeksforgeeks.org/dsa/sorting-algorithms/)
 
@@ -3009,7 +3025,7 @@ Every step halves the range, so it's **O(log n)**: at most about 20 steps for a 
 
 **The classic bugs:** an off-by-one in `lo`/`hi` updates, a loop that never ends because the range doesn't shrink (`lo = mid` instead of `lo = mid + 1`), and searching an unsorted list. Pick **one** template, learn it by heart, and always test it on a list of 1 and 2 items.
 
-Section [25](#25-binary-search-on-the-answer) shows binary search's most powerful use: searching for an **answer**, not an item.
+Section [28](#28-binary-search-on-the-answer) shows binary search's most powerful use: searching for an **answer**, not an item.
 
 ### Python
 
@@ -3265,7 +3281,7 @@ You now know four Python structures: `list`, `str`, `dict` and `set`. The same j
 **The most common Python performance bugs:**
 
 - `if x in some_list` inside a loop → O(n²). Convert the list to a `set` once, before the loop.
-- `nums.pop(0)` or `nums.insert(0, x)` in a loop → O(n) each. Section [30](#30-queues-and-deques) introduces `deque`, which does both in O(1).
+- `nums.pop(0)` or `nums.insert(0, x)` in a loop → O(n) each. Section [34](#34-queues-and-deques) introduces `deque`, which does both in O(1).
 - `s += piece` in a loop → can be O(n²). Collect pieces in a list and `"".join()` them once.
 - Slicing inside recursion (`solve(nums[1:])`) copies the list on every call. Pass an index instead (`solve(nums, i + 1)`), as in Section [14](#14-recursion-basics).
 - `sorted()` or `max()` inside a loop over the same data. Do it once, outside the loop.
@@ -3326,9 +3342,9 @@ Part 4 combines these tools into **techniques**, the reusable ideas behind most 
 
 ---
 
-# Part 4 — Senior Secondary: Problem-Solving Techniques
+# Part 4 — Moderate: Problem-Solving Techniques
 
-> **Goal:** The reusable ideas behind most Easy and Medium interview problems.  
+> **Goal:** The reusable ideas behind most Easy and Medium interview problems on arrays, strings and matrices.  
 > **You need:** Part 3 (lists, strings, dicts, sets, sorting, binary search, recursion, Big-O).
 
 ---
@@ -3348,7 +3364,7 @@ From here on, problems won't tell you which tool to use. This method works for a
    - Checking every pair? A **dict/set** can remember what you've seen (Section [19](#19-hashing-dictionaries-and-sets)).
    - The data is **sorted**, or could be? Think **binary search** (Section [18](#18-searching-linear-search-and-binary-search)) or **two pointers** (Section [22](#22-two-pointers)).
    - Re-adding the same range again and again? **Sliding window** or **prefix sums** (Sections [23](#23-sliding-window) and [24](#24-prefix-sums)).
-   - Recomputing the same smaller answers? Remember them: that's dynamic programming (Section [41](#41-dynamic-programming)).
+   - Recomputing the same smaller answers? Remember them: that's dynamic programming (Section [49](#49-dynamic-programming)).
 5. **Code** it cleanly, with good names, then **test**: dry-run your examples through the code (Section [3](#3-loops-and-dry-runs)) and check the edge cases.
 
 **The input size tells you how fast your solution must be.** Python manages roughly 10⁷ simple steps per second, and most judges allow 1–2 seconds:
@@ -3360,7 +3376,7 @@ From here on, problems won't tell you which tool to use. This method works for a
 | n ≤ 10⁵ – 10⁶ | O(n log n) or O(n) | Sorting, hashing, one or two passes |
 | n up to 10⁹ or more | O(log n), O(√n) or O(1) | Binary search, maths (Part 2) |
 
-Section [43](#43-pattern-cheat-sheet-which-technique-when) has the full version of this table, once every technique has been covered.
+Section [55](#55-pattern-cheat-sheet-which-technique-when) has the full version of this table, once every technique has been covered.
 
 ### Python
 
@@ -3479,7 +3495,7 @@ A **sliding window** is a two-pointer technique: `left` and `right` mark a range
 
 - **Fixed size k:** add `nums[right]`, remove `nums[right - k]`.
 - **Variable size:** expand `right` every step; **shrink `left` while the window is invalid** (too big a sum, a repeated character…). Record the answer when the window is valid.
-- The window state is usually a running sum, or a dict (or `Counter`) of the characters inside the window. (For the maximum of each window, Section [30](#30-queues-and-deques) adds a special queue.)
+- The window state is usually a running sum, or a dict (or `Counter`) of the characters inside the window. (For the maximum of each window, Section [34](#34-queues-and-deques) adds a special queue.)
 
 `float("inf")` (infinity) is a handy starting value for a "smallest so far" variable: any real number is smaller.
 
@@ -3550,7 +3566,7 @@ A **prefix sum** array stores running totals: `P[0] = 0`, `P[i] = nums[0] + … 
 - Build in O(n), answer each range query in O(1). Ideal when there are many queries on data that doesn't change.
 - **Prefix sum + a dict (hash map)** counts subarrays with sum k in O(n). A subarray ending at `j` sums to k when some earlier prefix equals `P[j+1] − k`. This works with negative numbers, where a sliding window fails.
 - **2D prefix sums** give any rectangle's sum in O(1) (image processing, grid queries).
-- The same idea works with products (careful with zeros), counts, and XOR (Section [42](#42-bit-manipulation)).
+- The same idea works with products (careful with zeros), counts, and XOR (Section [51](#51-bit-manipulation)).
 - Shortcut: `itertools.accumulate(nums)` produces the running totals for you.
 
 ### Python
@@ -3597,7 +3613,380 @@ count_subarrays_with_sum([1, 2, 3, -2, 2], 3)  # → 4
 
 ---
 
-## 25. Binary Search on the Answer
+## 25. Classic Array Algorithms: Kadane, Majority Vote, Dutch Flag and More
+
+![Kadane's algorithm finds the best subarray in one pass](images/dsa/p4-kadane.svg)
+
+### Theory
+
+A handful of array problems come up in interviews so often that each has a well-known one-pass solution. Learn the **idea** behind each one, not just the code.
+
+**1. Maximum subarray sum (Kadane's algorithm).** Find the unbroken piece of the array with the largest sum. Brute force tries every subarray: O(n²). Kadane's insight: walk left to right keeping `best_here`, the best sum of a subarray that **ends at the current item**. For each new item x there are only two choices:
+
+- extend the previous subarray: `best_here + x`, or
+- start fresh at x, which is better whenever `best_here` was negative (a negative past only drags x down).
+
+So `best_here = max(x, best_here + x)`, and the answer is the largest `best_here` ever seen. One pass: O(n) time, O(1) space.
+
+**2. Best time to buy and sell a stock (one trade).** Walk through the prices, remembering the **lowest price so far**. Selling today earns `price - lowest`; keep the best. If you may trade many times, add up every rise from one day to the next.
+
+**3. Majority element (Boyer–Moore voting).** A value that fills **more than half** the array survives if you cancel pairs of different values. Keep a `candidate` and a `count`: the same value adds 1, a different value subtracts 1, and at 0 the next item becomes the candidate. O(n) time, O(1) space. If a majority isn't guaranteed, check the candidate with a second pass.
+
+**4. Sort 0s, 1s and 2s in one pass (Dutch national flag).** Three pointers split the array into four zones: `[0, low)` holds 0s, `[low, mid)` holds 1s, `[mid, high]` is unchecked, and `(high, end]` holds 2s. Look at `nums[mid]`: a 0 is swapped to `low`, a 1 stays, and a 2 is swapped to `high`. It's O(n), in place, and the idea behind quick sort's three-way partition.
+
+**5. Next permutation.** Find the next arrangement in dictionary order (1 2 3 → 1 3 2 → 2 1 3 …):
+
+1. From the right, find the first `i` with `nums[i] < nums[i + 1]`. Everything after `i` is decreasing, so it can't grow any more.
+2. From the right, find the first `j` with `nums[j] > nums[i]`, and swap them.
+3. Reverse the part after `i`, making it as small as possible.
+
+If there's no such `i`, the array is the last permutation, so reversing it all wraps around to the first.
+
+**6. Missing number in 0 … n.** The expected total is n(n + 1)/2 (Section [11](#11-maths-toolbox-series-factorials-fibonacci-powers-and-modulo)); subtract the actual sum.
+
+### Python
+
+```python
+def max_subarray(nums):
+    """Kadane: returns (best sum, start, end) of the best subarray."""
+    best_here, best = nums[0], nums[0]
+    start = best_start = best_end = 0
+    for i in range(1, len(nums)):
+        if best_here < 0:                         # a negative past only hurts: start fresh
+            best_here, start = nums[i], i
+        else:
+            best_here += nums[i]                  # extend the current subarray
+        if best_here > best:
+            best, best_start, best_end = best_here, start, i
+    return best, best_start, best_end
+
+def max_profit(prices):                           # one buy, one sell
+    lowest, best = prices[0], 0
+    for p in prices:
+        lowest = min(lowest, p)
+        best = max(best, p - lowest)
+    return best
+
+def max_profit_many(prices):                      # any number of trades
+    return sum(max(0, prices[i] - prices[i - 1]) for i in range(1, len(prices)))
+
+max_subarray([-2, 1, -3, 4, -1, 2, 1, -5, 4])     # → (6, 3, 6)
+max_subarray([-3, -1, -2])                        # → (-1, 1, 1)
+max_profit([7, 1, 5, 3, 6, 4]), max_profit_many([7, 1, 5, 3, 6, 4])   # → (5, 7)
+```
+
+`sum(... for i in ...)` adds up the values of a comprehension without building a list first.
+
+```python
+def majority(nums):
+    candidate, count = None, 0
+    for x in nums:
+        if count == 0:
+            candidate = x                         # start a new candidate
+        count += 1 if x == candidate else -1      # different values cancel out
+    return candidate
+
+def sort_colors(nums):                            # Dutch national flag: one pass, in place
+    low, mid, high = 0, 0, len(nums) - 1
+    while mid <= high:
+        if nums[mid] == 0:
+            nums[low], nums[mid] = nums[mid], nums[low]
+            low, mid = low + 1, mid + 1
+        elif nums[mid] == 1:
+            mid += 1
+        else:
+            nums[mid], nums[high] = nums[high], nums[mid]
+            high -= 1                             # don't move mid: the swapped-in value is unchecked
+    return nums
+
+def next_permutation(nums):
+    i = len(nums) - 2
+    while i >= 0 and nums[i] >= nums[i + 1]:
+        i -= 1                                    # 1. first dip from the right
+    if i >= 0:
+        j = len(nums) - 1
+        while nums[j] <= nums[i]:
+            j -= 1                                # 2. first bigger value from the right
+        nums[i], nums[j] = nums[j], nums[i]
+    nums[i + 1:] = nums[i + 1:][::-1]             # 3. reverse the tail
+    return nums
+
+def missing_number(nums):
+    n = len(nums)
+    return n * (n + 1) // 2 - sum(nums)
+
+majority([2, 2, 1, 1, 1, 2, 2])                   # → 2
+sort_colors([2, 0, 2, 1, 1, 0])                   # → [0, 0, 1, 1, 2, 2]
+next_permutation([1, 2, 3]), next_permutation([1, 3, 2]), next_permutation([3, 2, 1])   # → ([1, 3, 2], [2, 1, 3], [1, 2, 3])
+missing_number([3, 0, 1])                         # → 2
+```
+
+**Common mistakes:**
+
+- ❌ Starting Kadane with `best = 0`: an all-negative array would wrongly return 0. Start from the first item.
+- ❌ Advancing `mid` after swapping a 2 to the end in the Dutch flag. The value that came back from `high` hasn't been checked yet.
+- ❌ Trusting Boyer–Moore's candidate when a majority isn't guaranteed. Count it in a second pass.
+
+### Practice
+
+| # | LeetCode problem | Difficulty |
+|---|---|---|
+| 1 | [121. Best Time to Buy and Sell Stock](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/) | 🟢 Easy |
+| 2 | [169. Majority Element](https://leetcode.com/problems/majority-element/) | 🟢 Easy |
+| 3 | [268. Missing Number](https://leetcode.com/problems/missing-number/) | 🟢 Easy |
+| 4 | [53. Maximum Subarray](https://leetcode.com/problems/maximum-subarray/) | 🟡 Medium |
+| 5 | [122. Best Time to Buy and Sell Stock II](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/) | 🟡 Medium |
+| 6 | [75. Sort Colors](https://leetcode.com/problems/sort-colors/) | 🟡 Medium |
+| 7 | [31. Next Permutation](https://leetcode.com/problems/next-permutation/) | 🟡 Medium |
+| 8 | [152. Maximum Product Subarray](https://leetcode.com/problems/maximum-product-subarray/) | 🟡 Medium |
+| 9 | [229. Majority Element II](https://leetcode.com/problems/majority-element-ii/) | 🟡 Medium |
+
+**Learn & visualise:** [GeeksforGeeks: Kadane's algorithm](https://www.geeksforgeeks.org/dsa/largest-sum-contiguous-subarray/) · [GeeksforGeeks: Boyer–Moore majority voting](https://www.geeksforgeeks.org/dsa/boyer-moore-majority-voting-algorithm/)
+
+---
+
+## 26. Matrices: 2D Array Problems
+
+![Spiral order walks the four borders, then shrinks them](images/dsa/p4-matrix.svg)
+
+### Theory
+
+A **matrix** (grid) is a list of rows: `grid[r][c]` is row `r`, column `c`, with `rows = len(grid)` and `cols = len(grid[0])` (Section [15](#15-arrays-and-python-lists) showed how to create one safely). Grids appear everywhere: images, game boards, maps, spreadsheets. Most grid problems reuse a few ideas.
+
+**1. Moving around a grid.** The 4 neighbours of `(r, c)` are up, down, left and right. Keep them in a **directions list** and check the bounds before using a neighbour:
+
+```text
+for dr, dc in [(-1, 0), (1, 0), (0, -1), (0, 1)]:
+    nr, nc = r + dr, c + dc
+    if 0 <= nr < rows and 0 <= nc < cols: ...
+```
+
+Add `(-1, -1), (-1, 1), (1, -1), (1, 1)` for 8 directions (diagonals). Section [41](#41-graphs-representation-bfs-and-dfs) uses exactly this to explore grids.
+
+**2. Diagonals.** On the main diagonal `r == c`; on the anti-diagonal `r + c == n - 1`. All cells with the same `r - c` lie on one diagonal line.
+
+**3. Rotate 90° clockwise in place = transpose, then reverse each row.** Transposing swaps `grid[r][c]` with `grid[c][r]` (rows become columns); reversing the rows then flips it left-right. (Counter-clockwise: transpose, then reverse the order of the rows.)
+
+**4. Spiral order.** Keep four borders, `top`, `bottom`, `left` and `right`. Walk along the top row, down the right column, back along the bottom row and up the left column, moving each border inwards after walking it, until the borders cross.
+
+**5. Set matrix zeroes.** If a cell is 0, its whole row and column become 0. First **record** which rows and columns contain a 0 (two sets), then clear them in a second pass. Clearing while you scan would spread zeros that weren't in the original.
+
+**6. Searching a sorted matrix.**
+
+- **Every row sorted, and each row starts after the previous one ends:** it's really one sorted list of `rows × cols` items. Binary-search index `i` from 0 to `rows × cols − 1`, and turn it into a cell with `r = i // cols`, `c = i % cols` (the `//` and `%` from Section [2](#2-python-basics-values-variables-decisions-and-functions)). O(log(rows × cols)).
+- **Rows sorted and columns sorted separately:** start at the **top-right** corner. If the value is too big, move left (everything below is even bigger); if it's too small, move down. Each step removes a row or a column: O(rows + cols).
+
+### Python
+
+```python
+def spiral_order(grid):
+    out = []
+    top, bottom, left, right = 0, len(grid) - 1, 0, len(grid[0]) - 1
+    while top <= bottom and left <= right:
+        for c in range(left, right + 1):              # → along the top row
+            out.append(grid[top][c])
+        top += 1
+        for r in range(top, bottom + 1):              # ↓ down the right column
+            out.append(grid[r][right])
+        right -= 1
+        if top <= bottom:
+            for c in range(right, left - 1, -1):      # ← back along the bottom row
+                out.append(grid[bottom][c])
+            bottom -= 1
+        if left <= right:
+            for r in range(bottom, top - 1, -1):      # ↑ up the left column
+                out.append(grid[r][left])
+            left += 1
+    return out
+
+def rotate_clockwise(grid):                           # in place: transpose, then reverse rows
+    n = len(grid)
+    for r in range(n):
+        for c in range(r + 1, n):
+            grid[r][c], grid[c][r] = grid[c][r], grid[r][c]
+    for row in grid:
+        row.reverse()                                 # list method: reverse in place
+    return grid
+
+def set_zeroes(grid):
+    zero_rows, zero_cols = set(), set()
+    for r in range(len(grid)):
+        for c in range(len(grid[0])):
+            if grid[r][c] == 0:
+                zero_rows.add(r)
+                zero_cols.add(c)
+    for r in range(len(grid)):
+        for c in range(len(grid[0])):
+            if r in zero_rows or c in zero_cols:
+                grid[r][c] = 0
+    return grid
+
+m = [[1, 2, 3, 4],
+     [5, 6, 7, 8],
+     [9, 10, 11, 12]]
+spiral_order(m)                                       # → [1, 2, 3, 4, 8, 12, 11, 10, 9, 5, 6, 7]
+rotate_clockwise([[1, 2, 3], [4, 5, 6], [7, 8, 9]])   # → [[7, 4, 1], [8, 5, 2], [9, 6, 3]]
+set_zeroes([[1, 1, 1], [1, 0, 1], [1, 1, 1]])         # → [[1, 0, 1], [0, 0, 0], [1, 0, 1]]
+```
+
+```python
+def search_flat(grid, target):                        # rows continue one another
+    rows, cols = len(grid), len(grid[0])
+    lo, hi = 0, rows * cols - 1
+    while lo <= hi:
+        mid = (lo + hi) // 2
+        value = grid[mid // cols][mid % cols]         # index → (row, column)
+        if value == target:
+            return True
+        if value < target:
+            lo = mid + 1
+        else:
+            hi = mid - 1
+    return False
+
+def search_staircase(grid, target):                   # rows and columns sorted separately
+    r, c = 0, len(grid[0]) - 1                         # start top-right
+    while r < len(grid) and c >= 0:
+        if grid[r][c] == target:
+            return True
+        if grid[r][c] > target:
+            c -= 1                                    # too big: this column is out
+        else:
+            r += 1                                    # too small: this row is out
+    return False
+
+search_flat([[1, 3, 5, 7], [10, 11, 16, 20], [23, 30, 34, 60]], 16)   # → True
+g = [[1, 4, 7, 11], [2, 5, 8, 12], [3, 6, 9, 16], [10, 13, 14, 17]]
+search_staircase(g, 5), search_staircase(g, 15)                        # → (True, False)
+```
+
+**Common mistakes:**
+
+- ❌ Mixing up `grid[r][c]` and `grid[c][r]`, or rows and columns in `range`. Name them `r` and `c`, never `i` and `j`.
+- ❌ Forgetting the bounds check before reading a neighbour (`IndexError`, or worse, `grid[-1]` silently reading the last row).
+- ❌ In spiral order, forgetting the `if top <= bottom` / `if left <= right` checks, which repeats items on a single remaining row or column.
+
+### Practice
+
+| # | LeetCode problem | Difficulty |
+|---|---|---|
+| 1 | [1572. Matrix Diagonal Sum](https://leetcode.com/problems/matrix-diagonal-sum/) | 🟢 Easy |
+| 2 | [54. Spiral Matrix](https://leetcode.com/problems/spiral-matrix/) | 🟡 Medium |
+| 3 | [48. Rotate Image](https://leetcode.com/problems/rotate-image/) | 🟡 Medium |
+| 4 | [73. Set Matrix Zeroes](https://leetcode.com/problems/set-matrix-zeroes/) | 🟡 Medium |
+| 5 | [74. Search a 2D Matrix](https://leetcode.com/problems/search-a-2d-matrix/) | 🟡 Medium |
+| 6 | [240. Search a 2D Matrix II](https://leetcode.com/problems/search-a-2d-matrix-ii/) | 🟡 Medium |
+| 7 | [36. Valid Sudoku](https://leetcode.com/problems/valid-sudoku/) | 🟡 Medium |
+
+**Learn & visualise:** [GeeksforGeeks: Matrix data structure](https://www.geeksforgeeks.org/dsa/matrix/)
+
+---
+
+## 27. Intervals: Merge, Insert and Overlap
+
+![Merging overlapping intervals after sorting by start](images/dsa/p4-intervals.svg)
+
+### Theory
+
+An **interval** is a range `[start, end]`: a meeting from 9 to 11, a booking, a section of a road. Interval problems ask which ranges overlap, how to combine them, or how many overlap at once.
+
+**When do two intervals overlap?** `[a, b]` and `[c, d]` overlap exactly when **`a <= d and c <= b`** (each starts before the other ends). Read the problem carefully: are touching intervals like `[1, 3]` and `[3, 5]` overlapping? Usually yes for merging, and usually no for meetings (one ends as the next begins).
+
+**Almost every interval problem starts by sorting.** After sorting by start (Section [17](#17-basic-sorting-selection-bubble-and-insertion-sort)), any interval can only overlap the ones right next to it, so a single left-to-right sweep is enough:
+
+- **Merge:** keep the last merged interval. If the next one starts before (or when) it ends, extend its end with `max`; otherwise start a new merged interval. O(n log n) for the sort + O(n) for the sweep.
+- **Insert into a sorted, non-overlapping list:** copy everything that ends before the new one starts, merge everything that overlaps it, then copy the rest. O(n), no sort needed.
+- **Maximum overlap at any moment** (the minimum number of meeting rooms): sort the **starts** and the **ends** separately and sweep them with two pointers (Section [22](#22-two-pointers)). A start before the next end means one more meeting is running; otherwise one has finished. The largest running count is the answer.
+- **Intersection of two sorted lists of intervals:** two pointers. The overlap of two intervals is `[max(starts), min(ends)]` when that's non-empty; then move past whichever interval ends first.
+
+Choosing the most non-overlapping intervals is a greedy problem (sort by **end**), covered in Section [48](#48-greedy-algorithms).
+
+### Python
+
+```python
+def merge(intervals):
+    intervals = sorted(intervals)                   # by start (then end)
+    merged = [intervals[0][:]]                     # a copy, so the input isn't changed
+    for start, end in intervals[1:]:
+        if start <= merged[-1][1]:                  # overlaps the last merged one
+            merged[-1][1] = max(merged[-1][1], end)
+        else:
+            merged.append([start, end])
+    return merged
+
+def insert(intervals, new):
+    out, i, n = [], 0, len(intervals)
+    while i < n and intervals[i][1] < new[0]:       # ends before new starts
+        out.append(intervals[i]); i += 1
+    start, end = new
+    while i < n and intervals[i][0] <= end:         # overlaps: absorb it
+        start, end = min(start, intervals[i][0]), max(end, intervals[i][1])
+        i += 1
+    out.append([start, end])
+    out.extend(intervals[i:])                       # everything after
+    return out
+
+merge([[1, 3], [8, 10], [2, 6], [15, 18]])          # → [[1, 6], [8, 10], [15, 18]]
+merge([[1, 4], [4, 5]])                             # → [[1, 5]]
+insert([[1, 2], [3, 5], [6, 7], [8, 10], [12, 16]], [4, 8])   # → [[1, 2], [3, 10], [12, 16]]
+```
+
+`out.extend(other_list)` appends every item of another list.
+
+```python
+def min_meeting_rooms(meetings):
+    starts = sorted(s for s, e in meetings)
+    ends = sorted(e for s, e in meetings)
+    rooms = best = 0
+    j = 0
+    for s in starts:
+        while ends[j] <= s:                         # meetings that finished free a room
+            rooms -= 1
+            j += 1
+        rooms += 1
+        best = max(best, rooms)
+    return best
+
+def interval_intersection(a, b):
+    i = j = 0
+    out = []
+    while i < len(a) and j < len(b):
+        lo, hi = max(a[i][0], b[j][0]), min(a[i][1], b[j][1])
+        if lo <= hi:
+            out.append([lo, hi])
+        if a[i][1] < b[j][1]:                       # move past whichever ends first
+            i += 1
+        else:
+            j += 1
+    return out
+
+min_meeting_rooms([[0, 30], [5, 10], [15, 20]])     # → 2
+min_meeting_rooms([[1, 5], [5, 8], [8, 9]])         # → 1
+interval_intersection([[0, 2], [5, 10], [13, 23], [24, 25]], [[1, 5], [8, 12], [15, 24], [25, 26]])   # → [[1, 2], [5, 5], [8, 10], [15, 23], [24, 24], [25, 25]]
+```
+
+**Common mistakes:**
+
+- ❌ Forgetting to sort first (merging only works on sorted intervals).
+- ❌ Setting the merged end to the new interval's end instead of `max(...)`: `[1, 10]` merged with `[2, 3]` must stay `[1, 10]`.
+- ❌ Getting touching intervals wrong. Decide `<` vs `<=` from the problem statement, and test `[1, 4], [4, 5]`.
+
+### Practice
+
+| # | LeetCode problem | Difficulty |
+|---|---|---|
+| 1 | [56. Merge Intervals](https://leetcode.com/problems/merge-intervals/) | 🟡 Medium |
+| 2 | [57. Insert Interval](https://leetcode.com/problems/insert-interval/) | 🟡 Medium |
+| 3 | [986. Interval List Intersections](https://leetcode.com/problems/interval-list-intersections/) | 🟡 Medium |
+| 4 | [2406. Divide Intervals Into Minimum Number of Groups](https://leetcode.com/problems/divide-intervals-into-minimum-number-of-groups/) (meeting rooms) | 🟡 Medium |
+| 5 | [1288. Remove Covered Intervals](https://leetcode.com/problems/remove-covered-intervals/) | 🟡 Medium |
+| 6 | [452. Minimum Number of Arrows to Burst Balloons](https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/) | 🟡 Medium |
+
+**Learn & visualise:** [GeeksforGeeks: Merge overlapping intervals](https://www.geeksforgeeks.org/dsa/merging-intervals/)
+
+---
+
+## 28. Binary Search on the Answer
 
 ![Binary search on a yes/no answer line](images/dsa/p4-search-answer.svg)
 
@@ -3678,7 +4067,7 @@ min_eating_speed([3, 6, 7, 11], 8)                         # → 4
 
 ---
 
-## 26. Merge Sort and Quick Sort
+## 29. Merge Sort and Quick Sort
 
 ![Merge sort](images/dsa/14-merge-sort.svg)
 
@@ -3694,6 +4083,10 @@ The basic sorts from Section [17](#17-basic-sorting-selection-bubble-and-inserti
 
 **Quick sort** picks a **pivot** item and splits the list into items smaller than it, equal to it and bigger than it, then sorts the smaller and bigger parts recursively. With a pivot near the middle value, each split roughly halves the list: O(n log n). With a terrible pivot every time (for example, always the smallest item), each split removes only one item: O(n²). Picking the pivot at random makes that practically impossible.
 
+**Partitioning in place.** Real quick sorts don't build new lists. They **partition** the list in place: move every item smaller than the pivot to the left part, then put the pivot right after them. The pivot is now in its **final sorted position**.
+
+**Quickselect** uses that fact to find the **k-th smallest** item without sorting everything. After one partition, the pivot's position tells you which side holds the k-th item, so you recurse (or loop) into **one** side only. On average the work is n + n/2 + n/4 + … ≈ 2n, so **O(n) average** (O(n²) worst case, made unlikely by a random pivot). It's the standard answer to "k-th largest element" when O(n log n) sorting is considered too slow.
+
 | Algorithm | Best | Average | Worst | Extra space | Stable | Notes |
 |---|---|---|---|---|---|---|
 | Bubble / insertion | O(n) | O(n²) | O(n²) | O(1) | Yes | Insertion sort is fast on small or nearly-sorted data |
@@ -3703,7 +4096,7 @@ The basic sorts from Section [17](#17-basic-sorting-selection-bubble-and-inserti
 | Counting / radix | O(n + k) | O(n + k) | O(n + k) | O(n + k) | Yes | k = range of values; small integer ranges only |
 
 - **Sorts that only compare items can't beat O(n log n)** in the worst case (a mathematical lower bound). Counting sort beats it by not comparing: it counts each value, like the counting list in Section [19](#19-hashing-dictionaries-and-sets), so it only works for small integer ranges.
-- Heap sort, another O(n log n) sort, appears with heaps in Section [33](#33-heaps-and-priority-queues).
+- Heap sort, another O(n log n) sort, appears with heaps in Section [39](#39-heaps-and-priority-queues).
 - **Python's `sorted()` / `list.sort()` use Timsort** (a merge/insertion hybrid). It's stable, O(n log n) worst case, and O(n) on already-sorted runs. In real code, always use it with `key=`; implement sorts yourself only to learn or when an interview asks.
 
 ### Python
@@ -3736,6 +4129,51 @@ merge_sort([("b", 2), ("a", 1), ("c", 2)])             # → [("a", 1), ("b", 2)
 
 Tuples compare item by item, so the last line sorts by letter first. Merge sort's `<=` in the merge step is what makes it **stable** (Section [17](#17-basic-sorting-selection-bubble-and-insertion-sort)): on a tie it takes from the left half first.
 
+```python
+import random
+
+def partition(a, lo, hi):
+    """Lomuto partition of a[lo..hi] around a random pivot; returns the pivot's final index."""
+    r = random.randint(lo, hi)                   # random index in lo..hi (both included)
+    a[r], a[hi] = a[hi], a[r]                    # move the pivot to the end
+    pivot, store = a[hi], lo
+    for i in range(lo, hi):
+        if a[i] < pivot:
+            a[i], a[store] = a[store], a[i]      # grow the "smaller than pivot" part
+            store += 1
+    a[store], a[hi] = a[hi], a[store]            # pivot goes right after the smaller items
+    return store
+
+def quick_sort_in_place(a, lo=0, hi=None):
+    if hi is None:
+        hi = len(a) - 1
+    if lo < hi:
+        p = partition(a, lo, hi)
+        quick_sort_in_place(a, lo, p - 1)
+        quick_sort_in_place(a, p + 1, hi)
+    return a
+
+def quickselect(a, k):
+    """k-th smallest (k = 1 is the minimum), average O(n)."""
+    a = a[:]                                     # work on a copy
+    lo, hi, target = 0, len(a) - 1, k - 1
+    while True:
+        p = partition(a, lo, hi)
+        if p == target:
+            return a[p]
+        if p < target:
+            lo = p + 1                           # the answer is on the right
+        else:
+            hi = p - 1                           # the answer is on the left
+
+quick_sort_in_place([9, 3, 7, 3, 1, 8])                 # → [1, 3, 3, 7, 8, 9]
+quickselect([3, 2, 1, 5, 6, 4], 2)                      # → 2
+nums = [3, 2, 3, 1, 2, 4, 5, 5, 6]
+quickselect(nums, len(nums) - 4 + 1)                    # → 4   (the 4th largest)
+```
+
+`random.randint(lo, hi)` (from the `random` module) picks a random whole number between `lo` and `hi`, both included. The pivot is random, but the results are always the same.
+
 ### Practice
 
 | # | LeetCode problem | Difficulty |
@@ -3756,23 +4194,25 @@ Without looking, can you:
 
 - [ ] Follow the five-step method on a new problem, starting with a brute force and its Big-O?
 - [ ] Solve "pair with a given sum in a sorted array" with two pointers, and say why it's correct?
-- [ ] Write a fixed-size and a variable-size sliding window?
-- [ ] Answer range-sum questions in O(1) with prefix sums?
+- [ ] Write a fixed-size and a variable-size sliding window, and answer range sums with prefix sums?
+- [ ] Write Kadane's algorithm, the Dutch national flag partition and next permutation?
+- [ ] Print a matrix in spiral order, rotate it in place, and search a sorted matrix?
+- [ ] Merge and insert intervals, and count the most overlapping meetings?
 - [ ] Recognise a monotonic yes/no question and binary-search the answer?
-- [ ] Write merge sort, and explain why it's O(n log n) and why quick sort can be O(n²)?
+- [ ] Write merge sort and quickselect, and explain their complexities?
 
 So far every structure has been built into Python. Part 5 shows how to **build your own**.
 
 ---
 
-# Part 5 — College, Year 1: Building Your Own Data Structures
+# Part 5 — Moderate: Linked Lists, Stacks, Queues and Design
 
-> **Goal:** Build structures Python doesn't have, out of objects linked together: nodes, linked lists, stacks and queues.  
+> **Goal:** Build structures Python doesn't have, out of objects linked together, and combine structures to design classes.  
 > **You need:** Parts 1–4.
 
 ---
 
-## 27. Classes, Objects and Nodes
+## 30. Classes, Objects and Nodes
 
 ![Variables are arrows to objects; nodes link to other nodes](images/dsa/p5-nodes.svg)
 
@@ -3796,9 +4236,9 @@ Python gives you lists, strings, dicts and sets. The rest of DSA (linked lists, 
 
 | Links per node | Structure | Where |
 |---|---|---|
-| 1 (`next`) | Linked list: a chain | Section [28](#28-linked-lists) |
-| 2 (`left`, `right`) | Binary tree: a family tree | Section [31](#31-binary-trees-and-traversals) |
-| Any number (a list of neighbours) | Graph: a network | Section [35](#35-graphs-representation-bfs-and-dfs) |
+| 1 (`next`) | Linked list: a chain | Section [31](#31-linked-lists) |
+| 2 (`left`, `right`) | Binary tree: a family tree | Section [36](#36-binary-trees-and-traversals) |
+| Any number (a list of neighbours) | Graph: a network | Section [41](#41-graphs-representation-bfs-and-dfs) |
 
 **Walking a chain** is the most important loop in Part 5: start at the first node, and move with `current = current.next` until `current` is `None`.
 
@@ -3913,13 +4353,13 @@ print(r.area(), r.perimeter(), walk(head), count_nodes(head))
 
 ---
 
-## 28. Linked Lists
+## 31. Linked Lists
 
 ![Linked list](images/dsa/06-linked-list.svg)
 
 ### Theory
 
-A **linked list** is the chain of nodes from Section [27](#27-classes-objects-and-nodes): each node holds a value and a reference to the **next** node, and the last node's `next` is `None`. The list is known by its first node, the **head**. (In a **doubly** linked list, each node also points back to the **previous** node.)
+A **linked list** is the chain of nodes from Section [30](#30-classes-objects-and-nodes): each node holds a value and a reference to the **next** node, and the last node's `next` is `None`. The list is known by its first node, the **head**. (In a **doubly** linked list, each node also points back to the **previous** node.)
 
 **Linked list vs array (Python list):**
 
@@ -4066,7 +4506,175 @@ to_list(merge_sorted(build([1, 4, 6]), build([2, 3, 7])))   # → [1, 2, 3, 4, 6
 
 ---
 
-## 29. Stacks
+## 32. Linked List Interview Problems
+
+![Removing the n-th node from the end with two pointers n apart](images/dsa/p5-ll-gap.svg)
+
+### Theory
+
+Almost every linked list interview question combines four tools from Section [31](#31-linked-lists):
+
+| Tool | What it gives you |
+|---|---|
+| **Dummy head** | No special case when the head itself changes |
+| **Fast and slow pointers** | The middle; cycles |
+| **Two pointers a fixed gap apart** | The n-th node from the end in one pass |
+| **In-place reversal** | Reversing all, half, or groups of the list |
+
+**The classic problems and their ideas:**
+
+1. **Remove the n-th node from the end.** Move `fast` n steps ahead, then move `fast` and `slow` together until `fast` reaches the last node. `slow` is then just before the node to delete (see the picture). One pass, O(1) space.
+2. **Palindrome linked list.** Find the middle (fast/slow), reverse the second half, then compare the two halves node by node. O(n) time, O(1) space.
+3. **Intersection of two lists.** Walk pointer `a` along list A then list B, and pointer `b` along B then A. Both walk the same total distance, so they meet at the shared node, or both reach `None` together if there isn't one.
+4. **Add two numbers** stored as digit lists (least significant digit first): add digit by digit with a **carry**, exactly like the digit arithmetic of Section [7](#7-working-with-digits): `digit = total % 10`, `carry = total // 10`.
+5. **Reverse in groups of k.** Check that k nodes remain, reverse those k with the usual three-pointer loop, then connect the reversed group to the previous part and continue. Leftover nodes (fewer than k) stay as they are.
+6. **Copy a list with random pointers.** Each node has a `next` and a `random` arrow. Make a dict from every old node to its new copy (first pass), then set `next` and `random` on the copies using the dict (second pass).
+
+### Python
+
+```python
+class ListNode:
+    def __init__(self, val, next=None):
+        self.val, self.next = val, next
+
+def build(values):
+    dummy = tail = ListNode(0)
+    for v in values:
+        tail.next = ListNode(v)
+        tail = tail.next
+    return dummy.next
+
+def to_list(head):
+    out = []
+    while head:
+        out.append(head.val)
+        head = head.next
+    return out
+
+def remove_nth_from_end(head, n):
+    dummy = ListNode(0, head)
+    fast = slow = dummy
+    for _ in range(n):
+        fast = fast.next                        # open a gap of n nodes
+    while fast.next:
+        fast, slow = fast.next, slow.next       # move together
+    slow.next = slow.next.next                  # slow is just before the target
+    return dummy.next
+
+def is_palindrome(head):
+    slow = fast = head
+    while fast and fast.next:                   # 1. find the middle
+        slow, fast = slow.next, fast.next.next
+    prev = None
+    while slow:                                 # 2. reverse the second half
+        slow.next, prev, slow = prev, slow, slow.next
+    left, right = head, prev
+    while right:                                # 3. compare the halves
+        if left.val != right.val:
+            return False
+        left, right = left.next, right.next
+    return True
+
+def intersection(a_head, b_head):
+    a, b = a_head, b_head
+    while a is not b:
+        a = a.next if a else b_head             # switch to the other list at the end
+        b = b.next if b else a_head
+    return a                                    # the shared node, or None
+
+to_list(remove_nth_from_end(build([1, 2, 3, 4, 5]), 2))   # → [1, 2, 3, 5]
+to_list(remove_nth_from_end(build([1]), 1))               # → []
+is_palindrome(build([1, 2, 2, 1])), is_palindrome(build([1, 2, 3]))   # → (True, False)
+shared = build([8, 4, 5])
+a = ListNode(4, ListNode(1, shared))
+b = ListNode(5, ListNode(6, ListNode(1, shared)))
+intersection(a, b).val, intersection(build([1]), build([2]))   # → (8, None)
+```
+
+`slow.next, prev, slow = prev, slow, slow.next` does the three reversal steps in one line: Python evaluates the whole right side first, then assigns left to right.
+
+```python
+def add_two_numbers(l1, l2):
+    dummy = tail = ListNode(0)
+    carry = 0
+    while l1 or l2 or carry:
+        total = carry + (l1.val if l1 else 0) + (l2.val if l2 else 0)
+        tail.next = ListNode(total % 10)        # this digit
+        carry = total // 10                     # carry to the next digit
+        tail = tail.next
+        l1 = l1.next if l1 else None
+        l2 = l2.next if l2 else None
+    return dummy.next
+
+def reverse_k_group(head, k):
+    dummy = ListNode(0, head)
+    group_prev = dummy
+    while True:
+        kth = group_prev
+        for _ in range(k):                      # are there k nodes left?
+            kth = kth.next
+            if kth is None:
+                return dummy.next
+        group_next = kth.next
+        prev, curr = group_next, group_prev.next
+        while curr is not group_next:           # reverse this group of k
+            curr.next, prev, curr = prev, curr, curr.next
+        first = group_prev.next                 # becomes the group's last node
+        group_prev.next = kth
+        group_prev = first
+
+class RandomNode:
+    def __init__(self, val, next=None, random=None):
+        self.val, self.next, self.random = val, next, random
+
+def copy_random_list(head):
+    copy = {None: None}
+    node = head
+    while node:                                 # pass 1: a copy of every node
+        copy[node] = RandomNode(node.val)
+        node = node.next
+    node = head
+    while node:                                 # pass 2: wire up the copies
+        copy[node].next = copy[node.next]
+        copy[node].random = copy[node.random]
+        node = node.next
+    return copy[head]
+
+to_list(add_two_numbers(build([2, 4, 3]), build([5, 6, 4])))   # → [7, 0, 8]   (342 + 465 = 807)
+to_list(reverse_k_group(build([1, 2, 3, 4, 5]), 2))            # → [2, 1, 4, 3, 5]
+x, y = RandomNode(7), RandomNode(13)
+x.next, y.random, x.random = y, x, None
+c = copy_random_list(x)
+c.val, c.next.val, c.next.random.val, c is x, c.next.random is c   # → (7, 13, 7, False, True)
+```
+
+Nodes can be dict keys: each object is hashable by its identity.
+
+**Common mistakes:**
+
+- ❌ Forgetting the dummy head in "remove n-th from end", which breaks when the head itself is removed.
+- ❌ Losing the rest of the list in a reversal: always save `next` before changing it.
+- ❌ In "add two numbers", forgetting the final carry (99 + 1 needs a new node).
+
+### Practice
+
+| # | LeetCode problem | Difficulty |
+|---|---|---|
+| 1 | [234. Palindrome Linked List](https://leetcode.com/problems/palindrome-linked-list/) | 🟢 Easy |
+| 2 | [160. Intersection of Two Linked Lists](https://leetcode.com/problems/intersection-of-two-linked-lists/) | 🟢 Easy |
+| 3 | [19. Remove Nth Node From End of List](https://leetcode.com/problems/remove-nth-node-from-end-of-list/) | 🟡 Medium |
+| 4 | [2. Add Two Numbers](https://leetcode.com/problems/add-two-numbers/) | 🟡 Medium |
+| 5 | [143. Reorder List](https://leetcode.com/problems/reorder-list/) | 🟡 Medium |
+| 6 | [138. Copy List with Random Pointer](https://leetcode.com/problems/copy-list-with-random-pointer/) | 🟡 Medium |
+| 7 | [148. Sort List](https://leetcode.com/problems/sort-list/) (merge sort on a linked list) | 🟡 Medium |
+| 8 | [142. Linked List Cycle II](https://leetcode.com/problems/linked-list-cycle-ii/) | 🟡 Medium |
+| 9 | [25. Reverse Nodes in k-Group](https://leetcode.com/problems/reverse-nodes-in-k-group/) | 🔴 Hard |
+
+**Learn & visualise:** [VisuAlgo: Linked List](https://visualgo.net/en/list) · [Python Tutor](https://pythontutor.com/visualize.html) (step through a reversal)
+
+---
+
+## 33. Stacks
 
 ![Stack](images/dsa/07-stack.svg)
 
@@ -4080,7 +4688,7 @@ A **stack** is **Last In, First Out** (LIFO), like a pile of plates: you add to 
 - **Evaluating expressions:** postfix notation like `3 4 + 2 *` (push numbers; an operator pops two, computes, and pushes the result).
 - **Monotonic stack:** keep the items in the stack in increasing (or decreasing) order to answer "what's the next greater/smaller element?" for every item in O(n) total. Each item is pushed and popped at most once. In the code below, the stack holds the positions still **waiting** for a bigger number; each new number pops (and answers) every smaller number waiting on top.
 - **Undo and back buttons:** each action is pushed; undo pops the latest one.
-- **Recursion** itself: the call stack from Section [14](#14-recursion-basics) is a stack, so any recursive algorithm can be rewritten with an explicit stack. Section [35](#35-graphs-representation-bfs-and-dfs) does this for depth-first search.
+- **Recursion** itself: the call stack from Section [14](#14-recursion-basics) is a stack, so any recursive algorithm can be rewritten with an explicit stack. Section [41](#41-graphs-representation-bfs-and-dfs) does this for depth-first search.
 
 ### Python
 
@@ -4130,7 +4738,7 @@ next_greater([2, 1, 5, 3, 6])                        # → [5, 5, 6, 6, -1]
 
 ---
 
-## 30. Queues and Deques
+## 34. Queues and Deques
 
 ![Queue and deque](images/dsa/08-queue.svg)
 
@@ -4140,8 +4748,8 @@ A **queue** is **First In, First Out** (FIFO): add at the back, remove from the 
 
 - Use `collections.deque` (`from collections import deque`): `append` and `popleft` are both O(1). **Never** use `list.pop(0)` as a queue: it shifts every element (Section [20](#20-pythons-cost-model-what-each-operation-costs)).
 - A deque also has `appendleft` and `pop`, so it works as a stack too. It can't be indexed quickly in the middle (O(n)); use a list for that.
-- Queues power task scheduling, printer queues, rate limiters and buffers, and later **breadth-first search** (level-by-level exploration of trees and graphs, Sections [31](#31-binary-trees-and-traversals) and [35](#35-graphs-representation-bfs-and-dfs)).
-- A **monotonic deque** is the queue version of Section [29](#29-stacks)'s monotonic stack: it keeps a sliding window's (Section [23](#23-sliding-window)) maximum at the front, giving O(n) for "max of every window".
+- Queues power task scheduling, printer queues, rate limiters and buffers, and later **breadth-first search** (level-by-level exploration of trees and graphs, Sections [36](#36-binary-trees-and-traversals) and [41](#41-graphs-representation-bfs-and-dfs)).
+- A **monotonic deque** is the queue version of Section [33](#33-stacks)'s monotonic stack: it keeps a sliding window's (Section [23](#23-sliding-window)) maximum at the front, giving O(n) for "max of every window".
 - `queue.Queue` is the thread-safe version for producer/consumer code, not for algorithms.
 
 ### Python
@@ -4195,35 +4803,228 @@ window_max([1, 3, -1, -3, 5, 3, 6, 7], 3)    # → [3, 3, 5, 5, 6, 7]
 
 ---
 
+## 35. Design Problems: Min Stack, Queue from Stacks, LRU Cache
+
+![An LRU cache: a dict finds nodes, a doubly linked list keeps them in order of use](images/dsa/p5-lru.svg)
+
+### Theory
+
+In a **design** question you're asked to build a class with certain operations, each within a target cost: "design a cache where `get` and `put` are O(1)". No single structure does everything, so you **combine** structures, each covering the operation it's good at.
+
+**The method:**
+
+1. List the operations and the cost each must have.
+2. For each operation, name the structure that makes it cheap (dict: find by key; linked list: insert/remove in the middle; stack: latest item; heap: smallest item; list: random index).
+3. Combine them, and keep them **in sync**: every operation must update all of them.
+
+**Four classics:**
+
+- **Min stack** (push, pop, top and `get_min` all O(1)): store each item together with **the minimum at the moment it was pushed**. Popping restores the old minimum for free.
+- **Queue from two stacks:** push onto an `in` stack; to pop, if the `out` stack is empty, pour everything from `in` into `out` (which reverses the order), then pop from `out`. Each item moves at most once, so it's **amortised O(1)**.
+- **LRU cache** (Least Recently Used): a fixed-size cache that, when full, throws out the item used longest ago. `get` and `put` must be O(1):
+  - a **dict** maps each key to its node, for O(1) lookup;
+  - a **doubly linked list** keeps the nodes in order of use, most recent at the front. Any node can be unlinked and moved to the front in O(1), because it knows both neighbours. The least recently used node is always at the back.
+  - Python's `collections.OrderedDict` is exactly this combination built in: `move_to_end(key)` marks a key as recent, and `popitem(last=False)` removes the oldest.
+- **Insert, delete and get-random, all O(1):** keep the values in a **list** (so a random index is O(1)) and a **dict** from value to its index. To delete, move the **last** value into the deleted slot, update its index, and pop the end. Removing from the middle of a list would be O(n).
+
+### Python
+
+```python
+class MinStack:
+    def __init__(self):
+        self.items = []                              # (value, min at that time)
+
+    def push(self, x):
+        current_min = min(x, self.items[-1][1]) if self.items else x
+        self.items.append((x, current_min))
+
+    def pop(self):
+        return self.items.pop()[0]
+
+    def top(self):
+        return self.items[-1][0]
+
+    def get_min(self):
+        return self.items[-1][1]
+
+class QueueFromStacks:
+    def __init__(self):
+        self.inbox, self.outbox = [], []
+
+    def push(self, x):
+        self.inbox.append(x)
+
+    def pop(self):
+        if not self.outbox:
+            while self.inbox:
+                self.outbox.append(self.inbox.pop())   # reverses the order once
+        return self.outbox.pop()
+
+s = MinStack()
+for x in [5, 3, 7, 2]:
+    s.push(x)
+s.get_min(), s.pop(), s.get_min(), s.top()          # → (2, 2, 3, 7)
+
+q = QueueFromStacks()
+for x in [1, 2, 3]:
+    q.push(x)
+q.pop(), q.pop()                                     # → (1, 2)
+q.push(4)
+q.pop(), q.pop()                                     # → (3, 4)
+```
+
+```python
+class Node:
+    def __init__(self, key=0, val=0):
+        self.key, self.val = key, val
+        self.prev = self.next = None
+
+class LRUCache:
+    def __init__(self, capacity):
+        self.capacity = capacity
+        self.map = {}                                # key → node
+        self.head, self.tail = Node(), Node()        # dummies: head.next is the most recent
+        self.head.next, self.tail.prev = self.tail, self.head
+
+    def _remove(self, node):                         # unlink: O(1)
+        node.prev.next, node.next.prev = node.next, node.prev
+
+    def _add_front(self, node):                      # link right after head: O(1)
+        node.prev, node.next = self.head, self.head.next
+        self.head.next.prev = node
+        self.head.next = node
+
+    def get(self, key):
+        if key not in self.map:
+            return -1
+        node = self.map[key]
+        self._remove(node)
+        self._add_front(node)                        # now the most recently used
+        return node.val
+
+    def put(self, key, val):
+        if key in self.map:
+            self._remove(self.map[key])
+        node = Node(key, val)
+        self.map[key] = node
+        self._add_front(node)
+        if len(self.map) > self.capacity:
+            lru = self.tail.prev                     # least recently used
+            self._remove(lru)
+            del self.map[lru.key]
+
+cache = LRUCache(2)
+cache.put(1, "one"); cache.put(2, "two")
+cache.get(1)                                         # → "one"   (1 is now the most recent)
+cache.put(3, "three")                                # full: evicts 2, the least recently used
+cache.get(2), cache.get(3), cache.get(1)             # → (-1, "three", "one")
+```
+
+A method whose name starts with `_` is a helper meant for use inside the class only (a Python convention).
+
+```python
+from collections import OrderedDict
+import random
+
+class LRUCacheShort:
+    def __init__(self, capacity):
+        self.capacity, self.data = capacity, OrderedDict()
+
+    def get(self, key):
+        if key not in self.data:
+            return -1
+        self.data.move_to_end(key)                   # mark as most recent
+        return self.data[key]
+
+    def put(self, key, val):
+        self.data[key] = val
+        self.data.move_to_end(key)
+        if len(self.data) > self.capacity:
+            self.data.popitem(last=False)            # drop the oldest
+
+class RandomizedSet:
+    def __init__(self):
+        self.values, self.index = [], {}             # list for random picks, dict for positions
+
+    def insert(self, x):
+        if x in self.index:
+            return False
+        self.index[x] = len(self.values)
+        self.values.append(x)
+        return True
+
+    def remove(self, x):
+        if x not in self.index:
+            return False
+        i, last = self.index[x], self.values[-1]
+        self.values[i], self.index[last] = last, i   # move the last value into x's slot
+        self.values.pop()
+        del self.index[x]
+        return True
+
+    def get_random(self):
+        return random.choice(self.values)            # O(1): a random list index
+
+c2 = LRUCacheShort(2)
+c2.put("a", 1); c2.put("b", 2); c2.get("a"); c2.put("c", 3)
+list(c2.data)                                        # → ["a", "c"]
+rs = RandomizedSet()
+rs.insert(1), rs.insert(2), rs.insert(1), rs.remove(1), rs.values   # → (True, True, False, True, [2])
+rs.get_random() in {2}                               # → True
+```
+
+**Common mistakes:**
+
+- ❌ An LRU cache built on a plain list: finding and moving an item is O(n).
+- ❌ Forgetting to update **both** structures (for example, removing the node but leaving its key in the dict).
+- ❌ Forgetting to mark a key as recently used on `get`, not only on `put`.
+
+### Practice
+
+| # | LeetCode problem | Difficulty |
+|---|---|---|
+| 1 | [232. Implement Queue using Stacks](https://leetcode.com/problems/implement-queue-using-stacks/) | 🟢 Easy |
+| 2 | [225. Implement Stack using Queues](https://leetcode.com/problems/implement-stack-using-queues/) | 🟢 Easy |
+| 3 | [706. Design HashMap](https://leetcode.com/problems/design-hashmap/) | 🟢 Easy |
+| 4 | [155. Min Stack](https://leetcode.com/problems/min-stack/) | 🟡 Medium |
+| 5 | [146. LRU Cache](https://leetcode.com/problems/lru-cache/) | 🟡 Medium |
+| 6 | [380. Insert Delete GetRandom O(1)](https://leetcode.com/problems/insert-delete-getrandom-o1/) | 🟡 Medium |
+| 7 | [460. LFU Cache](https://leetcode.com/problems/lfu-cache/) | 🔴 Hard |
+
+**Learn & visualise:** [Wikipedia: Cache replacement policies](https://en.wikipedia.org/wiki/Cache_replacement_policies) · [Python docs: OrderedDict](https://docs.python.org/3/library/collections.html#collections.OrderedDict)
+
+---
+
 ### ✅ Part 5 checkpoint
 
 Without looking, can you:
 
 - [ ] Write a small class with `__init__`, attributes and a method, and explain `self`?
 - [ ] Explain why `b = a` doesn't copy a list, and what `None` means at the end of a chain?
-- [ ] Build a linked list, insert at the head and end, delete a value, and reverse it in place?
-- [ ] Find the middle of a linked list and detect a cycle with fast and slow pointers?
+- [ ] Build a linked list, insert and delete nodes, and reverse it in place?
+- [ ] Find the middle, detect a cycle, and remove the n-th node from the end with two pointers?
 - [ ] Check balanced brackets with a stack, and use a monotonic stack for "next greater element"?
 - [ ] Use `deque` as a queue, and say why `list.pop(0)` is slow?
+- [ ] Design a min stack and an LRU cache with O(1) operations?
 
 Part 6 gives nodes **two** links instead of one, which turns a chain into a tree.
 
 ---
 
-# Part 6 — College, Year 2: Trees
+# Part 6 — Moderate: Trees and Heaps
 
-> **Goal:** Nodes with two links: binary trees, binary search trees, heaps and tries.  
+> **Goal:** Nodes with two links: binary trees and their classic interview problems, binary search trees, heaps and tries.  
 > **You need:** Part 5 (nodes and references, stacks, queues) and recursion from Part 3.
 
 ---
 
-## 31. Binary Trees and Traversals
+## 36. Binary Trees and Traversals
 
 ![Binary tree](images/dsa/15-binary-tree.svg)
 
 ### Theory
 
-A **tree** is a hierarchy of nodes, like a family tree or the folders on your computer. It's built from the nodes of Section [27](#27-classes-objects-and-nodes), but each node can point to **several** children, and there are no loops. In a **binary tree** each node has at most **two** children, `left` and `right` (either can be `None`).
+A **tree** is a hierarchy of nodes, like a family tree or the folders on your computer. It's built from the nodes of Section [30](#30-classes-objects-and-nodes), but each node can point to **several** children, and there are no loops. In a **binary tree** each node has at most **two** children, `left` and `right` (either can be `None`).
 
 - **Terms:** root, parent/child, leaf (no children), **depth** (edges from the root), **height** (longest path down to a leaf), subtree.
 - A tree with n nodes has n − 1 edges. A **balanced** tree has height O(log n); a skewed one has height O(n).
@@ -4232,7 +5033,7 @@ A **tree** is a hierarchy of nodes, like a family tree or the folders on your co
   - **pre-order** (node, left, right): copying a tree, serialising it;
   - **in-order** (left, node, right): sorted order in a BST;
   - **post-order** (left, right, node): deleting a tree, computing heights and sizes bottom-up.
-- **Breadth-first (BFS) / level order** visits the tree level by level with a queue (Section [30](#30-queues-and-deques)): level averages, the right-side view, the closest node to the root.
+- **Breadth-first (BFS) / level order** visits the tree level by level with a queue (Section [34](#34-queues-and-deques)): level averages, the right-side view, the closest node to the root.
 - Most tree problems are "solve for the left subtree, solve for the right, combine": O(n) time, O(h) stack space.
 
 ### Python
@@ -4303,7 +5104,228 @@ height(root)                                      # → 3
 
 ---
 
-## 32. Binary Search Trees
+## 37. Binary Tree Interview Problems
+
+![Top-down passes information down; bottom-up returns answers up](images/dsa/p6-tree-problems.svg)
+
+### Theory
+
+Tree questions are among the most asked at top companies, and almost all of them are solved by one of **two recursive templates**:
+
+| Template | Information flows | Write it as | Examples |
+|---|---|---|---|
+| **Top-down** | From parent **to** children, as extra parameters | `dfs(node, info_so_far)` | Depth of each node, path sums, "is it a valid BST?" (allowed range) |
+| **Bottom-up** | From children **back** to the parent, as return values | `left = dfs(node.left)`, `right = dfs(node.right)`, combine | Height, diameter, balanced check, LCA, max path sum |
+
+**Bottom-up with a global answer.** Sometimes what you **return** to the parent differs from what you **record**. For the **diameter** (the longest path between any two nodes), each node returns its height, but records `left_height + right_height` (the longest path that bends at this node) in a variable outside the recursion. Inside a nested function, `nonlocal best` lets you update that outer variable.
+
+**The classic problems:**
+
+- **Same tree / symmetric tree:** compare two trees node by node (for symmetry, compare the left subtree with the mirror of the right).
+- **Balanced:** at every node, the heights of the two subtrees differ by at most 1. Return −1 upwards as soon as any part is unbalanced, to stay O(n).
+- **Lowest common ancestor (LCA)** of p and q: the deepest node that has both below it. Bottom-up: if p and q are found in **different** subtrees, the current node is the LCA; otherwise pass up whichever side found something.
+- **Right side view / zigzag:** level-order traversal (Section [36](#36-binary-trees-and-traversals)), taking the last node of each level, or reversing every other level.
+- **Build a tree from preorder + inorder traversals:** the first preorder value is the root; its position in the inorder list splits the left and right subtrees. A dict of value → inorder index makes each lookup O(1).
+- **Serialize / deserialize:** write a pre-order traversal with a marker (`#`) for empty children; reading the values back in the same order rebuilds the same tree.
+
+**Test input format.** LeetCode writes trees as a level-order list with `None` for missing children: `[3, 9, 20, None, None, 15, 7]`. The `build_tree` helper below turns that into nodes, so you can test your solutions locally.
+
+### Python
+
+```python
+from collections import deque
+
+class TreeNode:
+    def __init__(self, val, left=None, right=None):
+        self.val, self.left, self.right = val, left, right
+
+def build_tree(values):
+    """LeetCode's level-order list (None = no child) → tree."""
+    if not values or values[0] is None:
+        return None
+    root = TreeNode(values[0])
+    q, i = deque([root]), 1
+    while q and i < len(values):
+        node = q.popleft()
+        for side in ("left", "right"):
+            if i < len(values) and values[i] is not None:
+                child = TreeNode(values[i])
+                setattr(node, side, child)          # node.left = child, or node.right = child
+                q.append(child)
+            i += 1
+    return root
+
+def is_same(a, b):
+    if a is None or b is None:
+        return a is b                               # both empty → same
+    return a.val == b.val and is_same(a.left, b.left) and is_same(a.right, b.right)
+
+def is_symmetric(root):
+    def mirror(a, b):
+        if a is None or b is None:
+            return a is b
+        return a.val == b.val and mirror(a.left, b.right) and mirror(a.right, b.left)
+    return mirror(root.left, root.right) if root else True
+
+def diameter(root):
+    best = 0
+    def height(node):
+        nonlocal best                               # update the outer variable
+        if node is None:
+            return 0
+        l, r = height(node.left), height(node.right)
+        best = max(best, l + r)                     # longest path bending here
+        return 1 + max(l, r)                        # what the parent needs
+    height(root)
+    return best
+
+def is_balanced(root):
+    def check(node):                                # height, or -1 if unbalanced
+        if node is None:
+            return 0
+        l, r = check(node.left), check(node.right)
+        if l == -1 or r == -1 or abs(l - r) > 1:
+            return -1
+        return 1 + max(l, r)
+    return check(root) != -1
+
+t = build_tree([3, 9, 20, None, None, 15, 7])
+is_same(t, build_tree([3, 9, 20, None, None, 15, 7])), is_symmetric(build_tree([1, 2, 2, 3, 4, 4, 3]))   # → (True, True)
+diameter(build_tree([1, 2, 3, 4, 5])), is_balanced(t), is_balanced(build_tree([1, 2, None, 3]))          # → (3, True, False)
+```
+
+`setattr(node, "left", child)` is the same as `node.left = child`, with the attribute name given as a string.
+
+```python
+def lowest_common_ancestor(root, p, q):
+    if root is None or root.val in (p, q):
+        return root
+    left = lowest_common_ancestor(root.left, p, q)
+    right = lowest_common_ancestor(root.right, p, q)
+    if left and right:
+        return root                                 # p and q are on different sides
+    return left or right
+
+def right_side_view(root):
+    view, q = [], deque([root] if root else [])
+    while q:
+        for i in range(len(q)):
+            node = q.popleft()
+            if i == 0:
+                view.append(node.val)               # first popped = rightmost (right child queued first)
+            for child in (node.right, node.left):
+                if child:
+                    q.append(child)
+    return view
+
+def has_path_sum(root, target):                     # top-down: pass the remaining sum down
+    if root is None:
+        return False
+    if root.left is None and root.right is None:
+        return root.val == target
+    return has_path_sum(root.left, target - root.val) or has_path_sum(root.right, target - root.val)
+
+def max_path_sum(root):
+    best = float("-inf")
+    def gain(node):                                 # best downward path starting at node
+        nonlocal best
+        if node is None:
+            return 0
+        l, r = max(gain(node.left), 0), max(gain(node.right), 0)   # skip negative branches
+        best = max(best, node.val + l + r)
+        return node.val + max(l, r)
+    gain(root)
+    return best
+
+tree = build_tree([3, 5, 1, 6, 2, 0, 8, None, None, 7, 4])
+lowest_common_ancestor(tree, 5, 1).val, lowest_common_ancestor(tree, 6, 4).val   # → (3, 5)
+right_side_view(build_tree([1, 2, 3, None, 5, None, 4]))                         # → [1, 3, 4]
+has_path_sum(build_tree([5, 4, 8, 11, None, 13, 4, 7, 2]), 22)                   # → True
+max_path_sum(build_tree([-10, 9, 20, None, None, 15, 7]))                        # → 42
+```
+
+```python
+def build_from_pre_in(preorder, inorder):
+    where = {v: i for i, v in enumerate(inorder)}   # value → inorder position
+    it = iter(preorder)                             # hands out preorder values one at a time
+    def build(lo, hi):                              # the subtree made of inorder[lo..hi]
+        if lo > hi:
+            return None
+        val = next(it)
+        node = TreeNode(val)
+        node.left = build(lo, where[val] - 1)
+        node.right = build(where[val] + 1, hi)
+        return node
+    return build(0, len(inorder) - 1)
+
+def serialize(root):
+    out = []
+    def pre(node):
+        if node is None:
+            out.append("#")
+            return
+        out.append(str(node.val))
+        pre(node.left)
+        pre(node.right)
+    pre(root)
+    return ",".join(out)
+
+def deserialize(data):
+    it = iter(data.split(","))
+    def build():
+        val = next(it)
+        if val == "#":
+            return None
+        return TreeNode(int(val), build(), build())
+    return build()
+
+def level_values(root):                             # level order, for checking results
+    out, q = [], deque([root])
+    while q:
+        node = q.popleft()
+        out.append(node.val if node else None)
+        if node:
+            q.extend([node.left, node.right])
+    while out and out[-1] is None:
+        out.pop()
+    return out
+
+r = build_from_pre_in([3, 9, 20, 15, 7], [9, 3, 15, 20, 7])
+level_values(r)                                     # → [3, 9, 20, None, None, 15, 7]
+s = serialize(r)
+s, level_values(deserialize(s))                     # → ("3,9,#,#,20,15,#,#,7,#,#", [3, 9, 20, None, None, 15, 7])
+```
+
+`{v: i for i, v in enumerate(inorder)}` is a **dict comprehension** (like a list comprehension, building a dict). `iter(...)` makes an iterator, and each `next(it)` returns its next value.
+
+**Common mistakes:**
+
+- ❌ Recomputing heights inside a loop over all nodes (O(n²)). Return the height and the answer from the same recursion.
+- ❌ Treating "leaf" wrongly in path-sum problems: a leaf has **no** children, not just one.
+- ❌ Forgetting `nonlocal` when updating an outer variable from a nested function (Python then treats it as a new local variable).
+
+### Practice
+
+| # | LeetCode problem | Difficulty |
+|---|---|---|
+| 1 | [100. Same Tree](https://leetcode.com/problems/same-tree/) | 🟢 Easy |
+| 2 | [101. Symmetric Tree](https://leetcode.com/problems/symmetric-tree/) | 🟢 Easy |
+| 3 | [110. Balanced Binary Tree](https://leetcode.com/problems/balanced-binary-tree/) | 🟢 Easy |
+| 4 | [112. Path Sum](https://leetcode.com/problems/path-sum/) | 🟢 Easy |
+| 5 | [572. Subtree of Another Tree](https://leetcode.com/problems/subtree-of-another-tree/) | 🟢 Easy |
+| 6 | [199. Binary Tree Right Side View](https://leetcode.com/problems/binary-tree-right-side-view/) | 🟡 Medium |
+| 7 | [103. Binary Tree Zigzag Level Order Traversal](https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/) | 🟡 Medium |
+| 8 | [236. Lowest Common Ancestor of a Binary Tree](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/) | 🟡 Medium |
+| 9 | [105. Construct Binary Tree from Preorder and Inorder Traversal](https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/) | 🟡 Medium |
+| 10 | [1448. Count Good Nodes in Binary Tree](https://leetcode.com/problems/count-good-nodes-in-binary-tree/) | 🟡 Medium |
+| 11 | [124. Binary Tree Maximum Path Sum](https://leetcode.com/problems/binary-tree-maximum-path-sum/) | 🔴 Hard |
+| 12 | [297. Serialize and Deserialize Binary Tree](https://leetcode.com/problems/serialize-and-deserialize-binary-tree/) | 🔴 Hard |
+
+**Learn & visualise:** [VisuAlgo: Binary trees](https://visualgo.net/en/bst) · [GeeksforGeeks: Binary tree problems](https://www.geeksforgeeks.org/dsa/binary-tree-data-structure/)
+
+---
+
+## 38. Binary Search Trees
 
 ![Binary search tree](images/dsa/16-bst.svg)
 
@@ -4379,7 +5401,7 @@ is_valid(bad)                                   # → False
 
 ---
 
-## 33. Heaps and Priority Queues
+## 39. Heaps and Priority Queues
 
 ![Heap](images/dsa/17-heap.svg)
 
@@ -4397,8 +5419,8 @@ The usual way to build one is a **binary heap**: a binary tree that is **complet
 
 - Python's `heapq` module (`import heapq`) turns a plain list into a **min-heap**: `heapq.heappush(h, x)`, `heapq.heappop(h)` (removes and returns the smallest), `heapq.heapify(lst)` (rearranges a list into a heap in O(n)), and `h[0]` to peek. For a max-heap, push negated values (`-x`) or tuples like `(-priority, item)`.
 - **Top-k pattern:** keep a heap of size k. The k largest of n items cost O(n log k), better than sorting when k ≪ n.
-- **Heap sort:** heapify, then pop n times: O(n log n), in place, not stable (it completes the table in Section [26](#26-merge-sort-and-quick-sort)).
-- **Merge k sorted lists**, the **running median** (two heaps) and schedulers are heap problems, and Section [36](#36-shortest-paths-dijkstra) uses a heap for shortest paths.
+- **Heap sort:** heapify, then pop n times: O(n log n), in place, not stable (it completes the table in Section [29](#29-merge-sort-and-quick-sort)).
+- **Merge k sorted lists**, the **running median** (two heaps) and schedulers are heap problems, and Section [43](#43-shortest-paths-dijkstra) uses a heap for shortest paths.
 - Tuples compare element by element. Add a tie-breaker counter so items that aren't comparable never get compared: `(priority, counter, item)`.
 
 ### Python
@@ -4437,6 +5459,32 @@ merge_sorted([[1, 4, 7], [2, 5], [3, 6, 9]])  # → [1, 2, 3, 4, 5, 6, 7, 9]
 -heapq.heappop(max_heap)                    # → 7
 ```
 
+**Two heaps: the running median.** Keep the smaller half of the numbers in a **max-heap** (`low`, stored negated) and the larger half in a **min-heap** (`high`), with sizes equal or `low` one bigger. The median is then at the top of the heaps: O(log n) per new number, O(1) to read the median. It's a favourite hard question at top companies.
+
+```python
+class MedianFinder:
+    def __init__(self):
+        self.low, self.high = [], []              # max-heap (negated) and min-heap
+
+    def add(self, x):
+        heapq.heappush(self.low, -x)
+        heapq.heappush(self.high, -heapq.heappop(self.low))   # move low's largest to high
+        if len(self.high) > len(self.low):
+            heapq.heappush(self.low, -heapq.heappop(self.high))   # rebalance
+
+    def median(self):
+        if len(self.low) > len(self.high):
+            return -self.low[0]
+        return (-self.low[0] + self.high[0]) / 2
+
+mf = MedianFinder()
+medians = []
+for x in [5, 15, 1, 3, 8]:
+    mf.add(x)
+    medians.append(mf.median())
+medians                                         # → [5, 10.0, 5, 4.0, 5]
+```
+
 ### Practice
 
 | # | LeetCode problem | Difficulty |
@@ -4452,7 +5500,7 @@ merge_sorted([[1, 4, 7], [2, 5], [3, 6, 9]])  # → [1, 2, 3, 4, 5, 6, 7, 9]
 
 ---
 
-## 34. Tries (Prefix Trees)
+## 40. Tries (Prefix Trees)
 
 ![Trie](images/dsa/18-trie.svg)
 
@@ -4530,23 +5578,24 @@ t.words_with_prefix("ca")                              # → ["car", "cart", "ca
 Without looking, can you:
 
 - [ ] Write pre-order, in-order and post-order traversals recursively, and level order with a queue?
-- [ ] Compute a tree's height, and say why most tree functions are O(n) time and O(h) space?
+- [ ] Choose between top-down and bottom-up recursion, and solve diameter, LCA and max path sum?
+- [ ] Build a tree from preorder + inorder, and serialize/deserialize one?
 - [ ] Insert into and search a BST, and explain why in-order traversal of a BST is sorted?
-- [ ] Use `heapq` for "k-th largest" in O(n log k), and explain how a heap is stored in a list?
+- [ ] Use `heapq` for "k-th largest" in O(n log k), and keep a running median with two heaps?
 - [ ] Implement a trie with `insert`, `search` and `starts_with`?
 
 Part 7 removes the last restriction: nodes can link to **any** other nodes, even in loops.
 
 ---
 
-# Part 7 — College, Year 3: Graphs
+# Part 7 — Advanced: Graphs
 
-> **Goal:** Nodes with any number of links: exploring networks, shortest paths, dependencies and groups.  
+> **Goal:** Nodes with any number of links: exploring networks, cycles, shortest paths, dependencies, groups and spanning trees.  
 > **You need:** Parts 5 and 6 (queues, stacks, heaps, tree traversals).
 
 ---
 
-## 35. Graphs: Representation, BFS and DFS
+## 41. Graphs: Representation, BFS and DFS
 
 ![Graph and adjacency list](images/dsa/19-graph.svg)
 
@@ -4563,7 +5612,7 @@ A **graph** is the most general node structure: a set of **vertices** (nodes) co
 V is the number of vertices and E the number of edges. **Traversals** visit every reachable node once, in O(V + E), with a **visited** set so cycles don't cause infinite loops:
 
 - **BFS** (a queue) explores level by level, so it finds the **shortest path in unweighted graphs** (and grids).
-- **DFS** (recursion or a stack) goes deep first. Use it for connectivity, counting separate groups ("islands"), cycle detection and topological sort (Section [37](#37-topological-sort)). It's the recursion from Section [14](#14-recursion-basics); with an explicit stack (Section [29](#29-stacks)) it avoids Python's recursion limit.
+- **DFS** (recursion or a stack) goes deep first. Use it for connectivity, counting separate groups ("islands"), cycle detection and topological sort (Section [44](#44-topological-sort)). It's the recursion from Section [14](#14-recursion-basics); with an explicit stack (Section [33](#33-stacks)) it avoids Python's recursion limit.
 - **Grid problems:** neighbours are the 4 directions `(±1, 0), (0, ±1)`; mark cells visited as you go.
 
 ### Python
@@ -4636,7 +5685,142 @@ count_islands(["11000", "11000", "00100", "00011"])   # → 3
 
 ---
 
-## 36. Shortest Paths: Dijkstra
+## 42. Graph Problems: Cycles, Bipartite Graphs and Multi-Source BFS
+
+![Two-colouring a bipartite graph, and a cycle found through a node still on the path](images/dsa/p7-graph-problems.svg)
+
+### Theory
+
+With BFS and DFS from Section [41](#41-graphs-representation-bfs-and-dfs) you can already answer most graph questions. These patterns come up again and again:
+
+**1. Cycle in an undirected graph.** During DFS, reaching an already-visited node that **isn't the node you just came from** (the parent) means there's a cycle. (Union-find, coming in Section [45](#45-union-find-disjoint-set-union), is another way.)
+
+**2. Cycle in a directed graph: three colours.** In a directed graph, reaching a visited node isn't enough: two separate paths may lead to the same node without any loop. Give each node a state:
+
+- **white** (0): not visited yet;
+- **grey** (1): on the **current** DFS path (we're still exploring below it);
+- **black** (2): completely finished.
+
+Reaching a **grey** node means you've come back to a node on your own path: a cycle. That's how "can all courses be finished?" is answered with DFS (Kahn's algorithm, coming in Section [44](#44-topological-sort), is the BFS way).
+
+**3. Bipartite graphs (two-colouring).** Can the nodes be split into two groups so that every edge goes **between** the groups? (For example, splitting people into two teams with no two rivals in the same team.) BFS from each uncoloured node, giving each neighbour the **opposite** colour; if an edge ever joins two nodes of the same colour, it's impossible. A graph is bipartite exactly when it has no cycle of odd length.
+
+**4. Multi-source BFS.** When the question is "how far is each cell from the **nearest** source" (rotting oranges, the nearest 0, the nearest exit), put **all** the sources in the queue at the start, at distance 0. BFS then expands from all of them at once, so each cell is reached first by its nearest source. That's O(cells) in total, instead of one BFS per source.
+
+**5. Connected components.** Count how many times you have to start a new DFS/BFS from an unvisited node. Grids work the same way, with the 4 directions of Section [26](#26-matrices-2d-array-problems) as the edges.
+
+### Python
+
+```python
+from collections import deque
+
+def has_cycle_undirected(n, edges):
+    graph = [[] for _ in range(n)]
+    for a, b in edges:
+        graph[a].append(b)
+        graph[b].append(a)
+    seen = set()
+    def dfs(node, parent):
+        seen.add(node)
+        for nxt in graph[node]:
+            if nxt not in seen:
+                if dfs(nxt, node):
+                    return True
+            elif nxt != parent:
+                return True                        # visited, and not where we came from
+        return False
+    return any(dfs(v, -1) for v in range(n) if v not in seen)
+
+def has_cycle_directed(n, edges):
+    graph = [[] for _ in range(n)]
+    for a, b in edges:
+        graph[a].append(b)
+    state = [0] * n                                # 0 white, 1 grey (on path), 2 black (done)
+    def dfs(node):
+        state[node] = 1
+        for nxt in graph[node]:
+            if state[nxt] == 1:
+                return True                        # back to a node on the current path
+            if state[nxt] == 0 and dfs(nxt):
+                return True
+        state[node] = 2
+        return False
+    return any(state[v] == 0 and dfs(v) for v in range(n))
+
+has_cycle_undirected(4, [(0, 1), (1, 2), (2, 3)]), has_cycle_undirected(3, [(0, 1), (1, 2), (2, 0)])   # → (False, True)
+has_cycle_directed(3, [(0, 1), (0, 2), (1, 2)]), has_cycle_directed(3, [(0, 1), (1, 2), (2, 0)])       # → (False, True)
+```
+
+`any(...)` returns `True` as soon as one value is true (and stops early).
+
+```python
+def is_bipartite(graph):                           # graph: list of neighbour lists
+    color = {}
+    for start in range(len(graph)):
+        if start in color:
+            continue
+        color[start] = 0
+        q = deque([start])
+        while q:
+            node = q.popleft()
+            for nxt in graph[node]:
+                if nxt not in color:
+                    color[nxt] = 1 - color[node]   # the opposite colour
+                    q.append(nxt)
+                elif color[nxt] == color[node]:
+                    return False                   # an edge inside one group
+    return True
+
+def rotting_oranges(grid):
+    """0 empty, 1 fresh, 2 rotten. Minutes until no fresh orange is left (-1 if impossible)."""
+    rows, cols = len(grid), len(grid[0])
+    q, fresh = deque(), 0
+    for r in range(rows):
+        for c in range(cols):
+            if grid[r][c] == 2:
+                q.append((r, c, 0))                # every rotten orange is a source
+            elif grid[r][c] == 1:
+                fresh += 1
+    minutes = 0
+    while q:
+        r, c, t = q.popleft()
+        minutes = max(minutes, t)
+        for dr, dc in ((1, 0), (-1, 0), (0, 1), (0, -1)):
+            nr, nc = r + dr, c + dc
+            if 0 <= nr < rows and 0 <= nc < cols and grid[nr][nc] == 1:
+                grid[nr][nc] = 2
+                fresh -= 1
+                q.append((nr, nc, t + 1))
+    return minutes if fresh == 0 else -1
+
+is_bipartite([[1, 3], [0, 2], [1, 3], [0, 2]]), is_bipartite([[1, 2, 3], [0, 2], [0, 1, 3], [0, 2]])   # → (True, False)
+rotting_oranges([[2, 1, 1], [1, 1, 0], [0, 1, 1]]), rotting_oranges([[2, 1, 1], [0, 1, 1], [1, 0, 1]])  # → (4, -1)
+```
+
+**Common mistakes:**
+
+- ❌ Using the undirected cycle test (visited = cycle) on a directed graph. Use the grey/black states.
+- ❌ Checking only the component of node 0. Graphs can be disconnected: loop over every node as a possible start.
+- ❌ Running a separate BFS from every source. Put all sources in the queue once.
+
+### Practice
+
+| # | LeetCode problem | Difficulty |
+|---|---|---|
+| 1 | [695. Max Area of Island](https://leetcode.com/problems/max-area-of-island/) | 🟡 Medium |
+| 2 | [785. Is Graph Bipartite?](https://leetcode.com/problems/is-graph-bipartite/) | 🟡 Medium |
+| 3 | [886. Possible Bipartition](https://leetcode.com/problems/possible-bipartition/) | 🟡 Medium |
+| 4 | [994. Rotting Oranges](https://leetcode.com/problems/rotting-oranges/) | 🟡 Medium |
+| 5 | [542. 01 Matrix](https://leetcode.com/problems/01-matrix/) | 🟡 Medium |
+| 6 | [130. Surrounded Regions](https://leetcode.com/problems/surrounded-regions/) | 🟡 Medium |
+| 7 | [207. Course Schedule](https://leetcode.com/problems/course-schedule/) (directed cycle) | 🟡 Medium |
+| 8 | [684. Redundant Connection](https://leetcode.com/problems/redundant-connection/) (undirected cycle) | 🟡 Medium |
+
+**Learn & visualise:** [VisuAlgo: DFS & BFS (cycle detection, bipartite check)](https://visualgo.net/en/dfsbfs)
+
+---
+
+## 43. Shortest Paths: Dijkstra
 
 ![Dijkstra](images/dsa/20-dijkstra.svg)
 
@@ -4649,12 +5833,12 @@ In a **weighted** graph each edge has a cost (a distance, a price, a time), and 
 | Unweighted | **BFS** | O(V + E) |
 | Weights 0 or 1 | 0-1 BFS (a deque) | O(V + E) |
 | Non-negative weights | **Dijkstra** (a min-heap) | O((V + E) log V) |
-| Negative weights (no negative cycle) | Bellman-Ford (not covered here) | O(V · E) |
-| All pairs, small V | Floyd-Warshall (not covered here) | O(V³) |
+| Negative weights (no negative cycle) | Bellman-Ford (Section [46](#46-minimum-spanning-trees-bellman-ford-and-floyd-warshall)) | O(V · E) |
+| All pairs, small V | Floyd-Warshall (Section [46](#46-minimum-spanning-trees-bellman-ford-and-floyd-warshall)) | O(V³) |
 
 **Dijkstra's idea:** repeatedly take the unfinished node with the **smallest known distance**. With non-negative weights, that distance can't improve later, so it's final. Then **relax** its edges (`dist[v] = min(dist[v], dist[u] + w)`).
 
-- Use a heap (Section [33](#33-heaps-and-priority-queues)) of `(distance, node)` pairs, so the closest unfinished node is always on top. Skip stale entries whose distance is larger than the recorded best (the "lazy deletion" trick).
+- Use a heap (Section [39](#39-heaps-and-priority-queues)) of `(distance, node)` pairs, so the closest unfinished node is always on top. Skip stale entries whose distance is larger than the recorded best (the "lazy deletion" trick).
 - **A negative edge breaks it**: a node marked final could later be reached more cheaply.
 - To rebuild the actual path, store `parent[v] = u` whenever you improve `dist[v]`.
 
@@ -4697,7 +5881,7 @@ dict(sorted(dijkstra(graph, "A").items()))   # → {"A": 0, "B": 3, "C": 1, "D":
 
 ---
 
-## 37. Topological Sort
+## 44. Topological Sort
 
 ![Topological sort](images/dsa/21-topological-sort.svg)
 
@@ -4752,7 +5936,7 @@ topo_sort(2, [(0, 1), (1, 0)])                                   # → []
 
 ---
 
-## 38. Union-Find (Disjoint Set Union)
+## 45. Union-Find (Disjoint Set Union)
 
 ![Union-find](images/dsa/22-union-find.svg)
 
@@ -4811,35 +5995,153 @@ d.union(2, 4), d.groups                        # → (False, 2)
 
 ---
 
+## 46. Minimum Spanning Trees, Bellman-Ford and Floyd-Warshall
+
+![Kruskal's algorithm adds the cheapest edges that don't form a cycle](images/dsa/p7-mst.svg)
+
+### Theory
+
+**Minimum spanning tree (MST).** Given towns and the cost of building each possible road, connect **every** town using the cheapest total set of roads. The answer is always a tree: V − 1 edges and no cycles (any cycle has a removable edge). Two **greedy** algorithms find it: each step takes the cheapest safe choice and never undoes it (Section [48](#48-greedy-algorithms) covers greedy thinking in general):
+
+- **Kruskal:** sort all edges by weight; go through them cheapest first, and keep an edge if it joins two **different** groups. Union-find (Section [45](#45-union-find-disjoint-set-union)) answers "different groups?" in near O(1). Stop at V − 1 edges. Cost: O(E log E) for the sort.
+- **Prim:** grow one tree from any start node. A heap (Section [39](#39-heaps-and-priority-queues)) holds the edges leaving the tree; repeatedly add the cheapest edge that reaches a new node. Cost: O(E log V). It's the better choice on dense graphs, or when the edges aren't given as a list (for example "connect all points", where every pair is an edge).
+
+**Bellman-Ford: shortest paths with negative edges.** Dijkstra (Section [43](#43-shortest-paths-dijkstra)) breaks with negative weights. Bellman-Ford simply **relaxes every edge, V − 1 times** (`dist[v] = min(dist[v], dist[u] + w)`). A shortest path has at most V − 1 edges, so after V − 1 rounds all distances are final. If a V-th round still improves something, there's a **negative cycle** (a loop that keeps lowering the cost forever). Cost: O(V × E). Stopping after k + 1 rounds gives the cheapest path using **at most k + 1 edges**, which solves "cheapest flight with at most k stops".
+
+**Floyd-Warshall: all pairs at once.** `dist[i][j]` starts as the direct edge weight (∞ if none, 0 on the diagonal). Then for each node k in turn, allow paths to pass **through** k: `dist[i][j] = min(dist[i][j], dist[i][k] + dist[k][j])`. Three nested loops: O(V³), fine for V up to a few hundred. It's an early example of dynamic programming (coming in Section [49](#49-dynamic-programming)): each round reuses the answers from the round before.
+
+| Problem | Algorithm | Time |
+|---|---|---|
+| Connect everything as cheaply as possible | Kruskal / Prim | O(E log E) / O(E log V) |
+| Shortest paths from one source, weights ≥ 0 | Dijkstra | O((V + E) log V) |
+| From one source, negative weights, or "at most k edges" | Bellman-Ford | O(V · E) |
+| Between **all** pairs, small V | Floyd-Warshall | O(V³) |
+
+### Python
+
+```python
+import heapq
+
+def kruskal(n, edges):                              # edges: (weight, u, v)
+    parent = list(range(n))
+    def find(x):
+        while parent[x] != x:
+            parent[x] = parent[parent[x]]
+            x = parent[x]
+        return x
+    total, used = 0, []
+    for w, u, v in sorted(edges):                   # cheapest first
+        ru, rv = find(u), find(v)
+        if ru != rv:                                # different groups: no cycle
+            parent[ru] = rv
+            total += w
+            used.append((u, v))
+    return total, used
+
+def prim(n, adj):                                   # adj[u] = list of (weight, v)
+    seen, total = set(), 0
+    heap = [(0, 0)]                                 # (cost to reach, node); start at node 0
+    while heap and len(seen) < n:
+        w, u = heapq.heappop(heap)
+        if u in seen:
+            continue
+        seen.add(u)
+        total += w
+        for edge in adj[u]:
+            if edge[1] not in seen:
+                heapq.heappush(heap, edge)
+    return total
+
+edges = [(4, 0, 1), (1, 1, 2), (3, 0, 2), (2, 2, 3), (5, 1, 3), (7, 3, 4), (6, 2, 4)]
+kruskal(5, edges)                                   # → (12, [(1, 2), (2, 3), (0, 2), (2, 4)])
+adj = [[] for _ in range(5)]
+for w, u, v in edges:
+    adj[u].append((w, v))
+    adj[v].append((w, u))
+prim(5, adj)                                        # → 12
+```
+
+```python
+INF = float("inf")
+
+def bellman_ford(n, edges, source):                 # edges: (u, v, w), directed
+    dist = [INF] * n
+    dist[source] = 0
+    for _ in range(n - 1):                          # V - 1 rounds of relaxing every edge
+        for u, v, w in edges:
+            if dist[u] + w < dist[v]:
+                dist[v] = dist[u] + w
+    for u, v, w in edges:                           # one more round: still improving?
+        if dist[u] + w < dist[v]:
+            return None                             # negative cycle
+    return dist
+
+def floyd_warshall(n, edges):
+    dist = [[0 if i == j else INF for j in range(n)] for i in range(n)]
+    for u, v, w in edges:
+        dist[u][v] = min(dist[u][v], w)
+    for k in range(n):                              # allow paths through k
+        for i in range(n):
+            for j in range(n):
+                if dist[i][k] + dist[k][j] < dist[i][j]:
+                    dist[i][j] = dist[i][k] + dist[k][j]
+    return dist
+
+bellman_ford(4, [(0, 1, 4), (0, 2, 5), (1, 2, -3), (2, 3, 2)], 0)   # → [0, 4, 1, 3]
+bellman_ford(3, [(0, 1, 1), (1, 2, -2), (2, 1, 1)], 0)             # → None
+floyd_warshall(3, [(0, 1, 4), (1, 2, 1), (0, 2, 7)])               # → [[0, 4, 5], [inf, 0, 1], [inf, inf, 0]]
+```
+
+**Common mistakes:**
+
+- ❌ Using Dijkstra on graphs with negative edges; use Bellman-Ford.
+- ❌ In Kruskal, forgetting to check that both ends are in different groups, which lets a cycle in.
+- ❌ In Floyd-Warshall, putting the `k` loop inside the others: `k` **must** be the outermost loop.
+
+### Practice
+
+| # | LeetCode problem | Difficulty |
+|---|---|---|
+| 1 | [1584. Min Cost to Connect All Points](https://leetcode.com/problems/min-cost-to-connect-all-points/) (Prim) | 🟡 Medium |
+| 2 | [787. Cheapest Flights Within K Stops](https://leetcode.com/problems/cheapest-flights-within-k-stops/) (Bellman-Ford) | 🟡 Medium |
+| 3 | [743. Network Delay Time](https://leetcode.com/problems/network-delay-time/) (try all three) | 🟡 Medium |
+| 4 | [1334. Find the City With the Smallest Number of Neighbors at a Threshold Distance](https://leetcode.com/problems/find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance/) (Floyd-Warshall) | 🟡 Medium |
+| 5 | [1489. Find Critical and Pseudo-Critical Edges in Minimum Spanning Tree](https://leetcode.com/problems/find-critical-and-pseudo-critical-edges-in-minimum-spanning-tree/) | 🔴 Hard |
+
+**Learn & visualise:** [VisuAlgo: Minimum spanning tree](https://visualgo.net/en/mst) · [VisuAlgo: Shortest paths (Bellman-Ford, Dijkstra)](https://visualgo.net/en/sssp)
+
+---
+
 ### ✅ Part 7 checkpoint
 
 Without looking, can you:
 
 - [ ] Build an adjacency list from a list of edges, for directed and undirected graphs?
-- [ ] Write BFS and DFS with a `visited` set, and say which one finds shortest paths in unweighted graphs?
-- [ ] Count islands in a grid?
-- [ ] Explain Dijkstra's idea, why it needs a heap, and why negative edges break it?
-- [ ] Produce a topological order with Kahn's algorithm, and detect a cycle with it?
-- [ ] Write union-find with path compression and union by size?
+- [ ] Write BFS and DFS with a `visited` set, and count islands in a grid?
+- [ ] Detect cycles in undirected and directed graphs, and check whether a graph is bipartite?
+- [ ] Use multi-source BFS for "distance to the nearest …" problems?
+- [ ] Explain Dijkstra, Bellman-Ford and Floyd-Warshall, and when each one applies?
+- [ ] Produce a topological order with Kahn's algorithm?
+- [ ] Write union-find, and use it in Kruskal's minimum spanning tree?
 
 Part 8 moves from structures to **strategies** for designing algorithms.
 
 ---
 
-# Part 8 — Final Year: Algorithm Design Strategies
+# Part 8 — Advanced: Algorithm Design
 
 > **Goal:** General strategies for hard problems: trying every choice smartly, choosing greedily, and remembering answers.  
 > **You need:** Everything before, especially recursion (Part 3) and DFS (Part 7).
 
 ---
 
-## 39. Backtracking
+## 47. Backtracking
 
 ![Backtracking decision tree](images/dsa/23-backtracking.svg)
 
 ### Theory
 
-**Backtracking** builds a solution one choice at a time and **undoes** the last choice (backtracks) to try the next option. It explores a **decision tree** depth-first: the DFS from Section [35](#35-graphs-representation-bfs-and-dfs), on a tree of choices that is never built in memory, only walked.
+**Backtracking** builds a solution one choice at a time and **undoes** the last choice (backtracks) to try the next option. It explores a **decision tree** depth-first: the DFS from Section [41](#41-graphs-representation-bfs-and-dfs), on a tree of choices that is never built in memory, only walked.
 
 The template has three parts: **choose → explore → un-choose**.
 
@@ -4907,6 +6209,45 @@ len(permutations([1, 2, 3, 4]))       # → 24
 combination_sum([2, 3, 6, 7], 7)      # → [[2, 2, 3], [7]]
 ```
 
+Two more interview favourites: searching a grid (backtracking on the 4 directions from Section [26](#26-matrices-2d-array-problems)) and N-Queens (pruning with sets of attacked columns and diagonals).
+
+```python
+def word_search(board, word):
+    rows, cols = len(board), len(board[0])
+    def backtrack(r, c, i):
+        if i == len(word):
+            return True
+        if not (0 <= r < rows and 0 <= c < cols) or board[r][c] != word[i]:
+            return False
+        board[r][c] = "#"                        # choose: mark as used on this path
+        found = any(backtrack(r + dr, c + dc, i + 1) for dr, dc in ((1, 0), (-1, 0), (0, 1), (0, -1)))
+        board[r][c] = word[i]                    # un-choose: restore the letter
+        return found
+    return any(backtrack(r, c, 0) for r in range(rows) for c in range(cols))
+
+def n_queens(n):
+    """Number of ways to place n queens so that none attack each other."""
+    cols, diag, anti = set(), set(), set()
+    def place(r):
+        if r == n:
+            return 1
+        count = 0
+        for c in range(n):
+            if c in cols or r - c in diag or r + c in anti:
+                continue                         # prune: this square is attacked
+            cols.add(c); diag.add(r - c); anti.add(r + c)
+            count += place(r + 1)
+            cols.remove(c); diag.remove(r - c); anti.remove(r + c)
+        return count
+    return place(0)
+
+grid = [list("ABCE"), list("SFCS"), list("ADEE")]
+word_search(grid, "ABCCED"), word_search(grid, "SEE"), word_search(grid, "ABCB")   # → (True, True, False)
+n_queens(4), n_queens(8)                         # → (2, 92)
+```
+
+Cells on the same diagonal share `r - c`, and cells on the same anti-diagonal share `r + c`, so three sets detect every attack in O(1).
+
 ### Practice
 
 | # | LeetCode problem | Difficulty |
@@ -4916,13 +6257,16 @@ combination_sum([2, 3, 6, 7], 7)      # → [[2, 2, 3], [7]]
 | 3 | [39. Combination Sum](https://leetcode.com/problems/combination-sum/) | 🟡 Medium |
 | 4 | [17. Letter Combinations of a Phone Number](https://leetcode.com/problems/letter-combinations-of-a-phone-number/) | 🟡 Medium |
 | 5 | [79. Word Search](https://leetcode.com/problems/word-search/) | 🟡 Medium |
-| 6 | [51. N-Queens](https://leetcode.com/problems/n-queens/) | 🔴 Hard |
+| 6 | [22. Generate Parentheses](https://leetcode.com/problems/generate-parentheses/) | 🟡 Medium |
+| 7 | [131. Palindrome Partitioning](https://leetcode.com/problems/palindrome-partitioning/) | 🟡 Medium |
+| 8 | [51. N-Queens](https://leetcode.com/problems/n-queens/) | 🔴 Hard |
+| 9 | [37. Sudoku Solver](https://leetcode.com/problems/sudoku-solver/) | 🔴 Hard |
 
 **Learn & visualise:** [GeeksforGeeks: Backtracking](https://www.geeksforgeeks.org/dsa/backtracking-algorithms/)
 
 ---
 
-## 40. Greedy Algorithms
+## 48. Greedy Algorithms
 
 ![Greedy interval scheduling](images/dsa/24-greedy.svg)
 
@@ -4931,7 +6275,7 @@ combination_sum([2, 3, 6, 7], 7)      # → [[2, 2, 3], [7]]
 A **greedy** algorithm makes the **locally best** choice at each step and never reconsiders it. When it works, it's simple and fast, often just "sort, then one pass". The catch is that it **only works when you can prove** the local choice is always safe:
 
 - **Exchange argument:** any optimal solution can be changed to include the greedy choice without getting worse.
-- Greedy works for interval scheduling (earliest **end** first), Dijkstra (Section [36](#36-shortest-paths-dijkstra)), Kruskal's spanning tree, jump game, gas station, and making change with standard coin systems.
+- Greedy works for interval scheduling (earliest **end** first), Dijkstra (Section [43](#43-shortest-paths-dijkstra)), Kruskal's spanning tree, jump game, gas station, and making change with standard coin systems.
 - Greedy **fails** for 0/1 knapsack and for coin change with unusual coins: coins [1, 3, 4] for amount 6 greedily gives 4+1+1 (3 coins), but 3+3 needs 2. Those need DP.
 - If you can't find a proof or a counterexample quickly, test greedy against a brute force on small inputs.
 
@@ -4968,7 +6312,7 @@ can_jump([2, 3, 1, 1, 4]), can_jump([3, 2, 1, 0, 4])                      # → 
 greedy_coins([1, 3, 4], 6)                                                 # → 3
 ```
 
-The last line is the **counterexample**: greedy uses 3 coins (4+1+1), but the optimum is 2 (3+3). Section [41](#41-dynamic-programming) solves it correctly with DP.
+The last line is the **counterexample**: greedy uses 3 coins (4+1+1), but the optimum is 2 (3+3). Section [49](#49-dynamic-programming) solves it correctly with DP.
 
 ### Practice
 
@@ -4984,7 +6328,7 @@ The last line is the **counterexample**: greedy uses 3 coins (4+1+1), but the op
 
 ---
 
-## 41. Dynamic Programming
+## 49. Dynamic Programming
 
 ![Dynamic programming](images/dsa/25-dynamic-programming.svg)
 
@@ -5081,7 +6425,167 @@ rob([2, 7, 9, 3, 1])                   # → 12
 
 ---
 
-## 42. Bit Manipulation
+## 50. Dynamic Programming II: Knapsack, Subsequences, Strings and Intervals
+
+![0/1 knapsack table: each cell is the best value using the first items within a capacity](images/dsa/p8-knapsack.svg)
+
+### Theory
+
+Section [49](#49-dynamic-programming) gave the recipe: **state → transition → base case → order → answer**. Interview DP problems fall into a few **families**. Recognise the family and the state is usually standard:
+
+| Family | State | Transition (idea) | Classic problems |
+|---|---|---|---|
+| **0/1 knapsack** (each item used at most once) | `dp[c]` = best value with capacity c | Skip item, or take it: `dp[c - w] + v`. Loop c **downwards** so an item isn't reused | Knapsack, partition equal subset sum, target sum |
+| **Unbounded knapsack** (reuse allowed) | `dp[a]` = ways / fewest coins for amount a | Loop a **upwards**, so an item can be used again | Coin change, coin change II (count ways) |
+| **Subsequences** of one list | `dp[i]` = best answer **ending at** i | Look back at every j < i | Longest increasing subsequence (LIS) |
+| **Two strings** | `dp[i][j]` = answer for the first i chars of a and first j of b | Match the last characters, or drop one | LCS, edit distance |
+| **Prefix of a string** | `dp[i]` = can the first i chars be solved? | Try every last piece `s[j:i]` | Word break, decode ways |
+| **Intervals** | `dp[i][j]` = answer for the range i … j | Try every split point k inside it | Burst balloons, matrix-chain multiplication, palindrome partitioning |
+| **States / "state machine"** | `dp[i][state]`: holding a stock or not, resting or not | Move between states each day | Stock problems with cooldown or fees |
+
+**Key details:**
+
+- **0/1 vs unbounded is just the loop direction** when you use one row. Going downwards reads values from *before* this item was considered (each item once); going upwards reads values that may already include it (reuse).
+- **Counting ways vs finding the best:** replace `max`/`min` with `+`. For coin change II, loop over **coins outside** and amounts inside, so each combination is counted once (not once per order).
+- **LIS in O(n log n):** keep `tails[k]` = the smallest possible last value of an increasing subsequence of length k + 1. For each x, binary-search (Section [18](#18-searching-linear-search-and-binary-search)) the first tail ≥ x and replace it, or append x if it's bigger than all of them. The length of `tails` is the answer.
+- **Edit distance:** if the last characters match, `dp[i][j] = dp[i-1][j-1]`; otherwise 1 + the best of insert (`dp[i][j-1]`), delete (`dp[i-1][j]`) and replace (`dp[i-1][j-1]`).
+- **Interval DP:** fill by **increasing length**, because a range depends on shorter ranges inside it. For burst balloons, choose which balloon `k` bursts **last** in the range (i, j): its neighbours at that moment are the fixed ends i and j.
+
+### Python
+
+```python
+def knapsack(weights, values, capacity):            # 0/1: each item at most once
+    dp = [0] * (capacity + 1)
+    for w, v in zip(weights, values):
+        for c in range(capacity, w - 1, -1):         # downwards: don't reuse this item
+            dp[c] = max(dp[c], dp[c - w] + v)
+    return dp[capacity]
+
+def can_partition(nums):                             # split into two equal-sum halves?
+    total = sum(nums)
+    if total % 2:
+        return False
+    target = total // 2
+    reachable = [True] + [False] * target            # reachable[s]: some subset sums to s
+    for x in nums:
+        for s in range(target, x - 1, -1):
+            reachable[s] = reachable[s] or reachable[s - x]
+    return reachable[target]
+
+def coin_change_ways(coins, amount):                 # unbounded: count combinations
+    ways = [1] + [0] * amount
+    for c in coins:                                  # coins outside: combinations, not orders
+        for a in range(c, amount + 1):               # upwards: coin c can be reused
+            ways[a] += ways[a - c]
+    return ways[amount]
+
+knapsack([1, 3, 4, 5], [1, 4, 5, 7], 7)             # → 9
+can_partition([1, 5, 11, 5]), can_partition([1, 2, 3, 5])   # → (True, False)
+coin_change_ways([1, 2, 5], 5)                       # → 4
+```
+
+`zip(a, b)` pairs up two lists item by item: `zip([1, 3], [1, 4])` gives `(1, 1)`, then `(3, 4)`.
+
+```python
+from bisect import bisect_left
+
+def lis_quadratic(nums):                             # dp[i] = LIS ending at i: O(n²)
+    dp = [1] * len(nums)
+    for i in range(len(nums)):
+        for j in range(i):
+            if nums[j] < nums[i]:
+                dp[i] = max(dp[i], dp[j] + 1)
+    return max(dp)
+
+def lis_fast(nums):                                  # O(n log n) with binary search
+    tails = []
+    for x in nums:
+        i = bisect_left(tails, x)
+        if i == len(tails):
+            tails.append(x)                          # x extends the longest subsequence
+        else:
+            tails[i] = x                             # x is a smaller tail for length i + 1
+    return len(tails)
+
+def edit_distance(a, b):
+    dp = [[0] * (len(b) + 1) for _ in range(len(a) + 1)]
+    for i in range(len(a) + 1):
+        dp[i][0] = i                                 # delete all i characters
+    for j in range(len(b) + 1):
+        dp[0][j] = j                                 # insert all j characters
+    for i in range(1, len(a) + 1):
+        for j in range(1, len(b) + 1):
+            if a[i - 1] == b[j - 1]:
+                dp[i][j] = dp[i - 1][j - 1]
+            else:
+                dp[i][j] = 1 + min(dp[i - 1][j], dp[i][j - 1], dp[i - 1][j - 1])
+    return dp[-1][-1]
+
+def word_break(s, words):
+    words = set(words)
+    ok = [True] + [False] * len(s)                   # ok[i]: s[:i] can be split into words
+    for i in range(1, len(s) + 1):
+        for j in range(i):
+            if ok[j] and s[j:i] in words:
+                ok[i] = True
+                break
+    return ok[len(s)]
+
+nums = [10, 9, 2, 5, 3, 7, 101, 18]
+lis_quadratic(nums), lis_fast(nums)                  # → (4, 4)
+edit_distance("horse", "ros"), edit_distance("intention", "execution")   # → (3, 5)
+word_break("leetcode", ["leet", "code"]), word_break("catsandog", ["cats", "dog", "sand", "and", "cat"])   # → (True, False)
+```
+
+```python
+def burst_balloons(nums):                            # interval DP
+    vals = [1] + nums + [1]
+    n = len(vals)
+    dp = [[0] * n for _ in range(n)]                 # dp[i][j]: best for balloons strictly between i and j
+    for length in range(2, n):                       # shorter ranges first
+        for i in range(n - length):
+            j = i + length
+            for k in range(i + 1, j):                # k bursts LAST between i and j
+                dp[i][j] = max(dp[i][j], dp[i][k] + vals[i] * vals[k] * vals[j] + dp[k][j])
+    return dp[0][n - 1]
+
+def max_profit_cooldown(prices):                     # state machine DP
+    hold, sold, rest = float("-inf"), 0, 0           # best profit in each state
+    for p in prices:
+        hold, sold, rest = max(hold, rest - p), hold + p, max(rest, sold)
+    return max(sold, rest)
+
+burst_balloons([3, 1, 5, 8])                         # → 167
+max_profit_cooldown([1, 2, 3, 0, 2])                 # → 3
+```
+
+**Common mistakes:**
+
+- ❌ Looping capacity upwards in 0/1 knapsack, which silently allows reusing items.
+- ❌ In coin change II, putting amounts outside and coins inside: that counts orders (1+2 and 2+1) separately.
+- ❌ Filling an interval DP by `i` and `j` in plain order instead of by **length**, so a range is read before its inner ranges are computed.
+
+### Practice
+
+| # | LeetCode problem | Difficulty |
+|---|---|---|
+| 1 | [416. Partition Equal Subset Sum](https://leetcode.com/problems/partition-equal-subset-sum/) | 🟡 Medium |
+| 2 | [494. Target Sum](https://leetcode.com/problems/target-sum/) | 🟡 Medium |
+| 3 | [518. Coin Change II](https://leetcode.com/problems/coin-change-ii/) | 🟡 Medium |
+| 4 | [300. Longest Increasing Subsequence](https://leetcode.com/problems/longest-increasing-subsequence/) | 🟡 Medium |
+| 5 | [139. Word Break](https://leetcode.com/problems/word-break/) | 🟡 Medium |
+| 6 | [91. Decode Ways](https://leetcode.com/problems/decode-ways/) | 🟡 Medium |
+| 7 | [516. Longest Palindromic Subsequence](https://leetcode.com/problems/longest-palindromic-subsequence/) | 🟡 Medium |
+| 8 | [309. Best Time to Buy and Sell Stock with Cooldown](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/) | 🟡 Medium |
+| 9 | [72. Edit Distance](https://leetcode.com/problems/edit-distance/) | 🟡 Medium |
+| 10 | [312. Burst Balloons](https://leetcode.com/problems/burst-balloons/) | 🔴 Hard |
+| 11 | [10. Regular Expression Matching](https://leetcode.com/problems/regular-expression-matching/) | 🔴 Hard |
+
+**Learn & visualise:** [GeeksforGeeks: 0/1 knapsack](https://www.geeksforgeeks.org/dsa/0-1-knapsack-problem-dp-10/) · [VisuAlgo: Recursion tree → DP](https://visualgo.net/en/recursion)
+
+---
+
+## 51. Bit Manipulation
 
 ![Bits](images/dsa/27-bits.svg)
 
@@ -5153,44 +6657,371 @@ subsets_by_mask(["a", "b", "c"])                 # → [[], ["a"], ["b"], ["a", 
 
 Without looking, can you:
 
-- [ ] Write the choose → explore → un-choose template, and generate subsets and permutations?
+- [ ] Write the choose → explore → un-choose template for subsets, permutations, word search and N-Queens?
 - [ ] Explain when greedy is safe, and give a counterexample where it fails?
 - [ ] Solve a DP problem by stating the state, transition, base case and order, top-down and bottom-up?
+- [ ] Recognise the DP families: knapsack (0/1 and unbounded), LIS, two strings, word break, intervals?
 - [ ] Use `x & (x - 1)`, XOR cancelling, and bitmasks for subsets?
 
-Part 9 is for revision: a cheat sheet and the theory questions interviewers ask most.
+Part 9 covers specialised topics that harder interviews add on top.
 
 ---
 
-# Part 9 — Placement Prep: Revision
+# Part 9 — Advanced: Specialised Topics
 
-> **Goal:** Quick revision before interviews.  
-> **You need:** Parts 1–8.
+> **Goal:** Topics that harder interview rounds add: string matching and range queries with updates.  
+> **You need:** Parts 3–8, especially hashing, modulo, trees and bits.
 
 ---
 
-## 43. Pattern Cheat Sheet: Which Technique When?
+## 52. String Algorithms: Palindromes, KMP and Rabin-Karp
+
+![The KMP failure table tells the search how far it can safely jump](images/dsa/p9-kmp.svg)
+
+### Theory
+
+**1. Palindromic substrings: expand around the centre.** Every palindrome has a centre: one character (odd length, "aba") or the gap between two characters (even length, "abba"). There are 2n − 1 centres. From each one, expand outwards while the two ends match. That finds the **longest palindromic substring**, or **counts** all palindromic substrings, in O(n²) time and O(1) space. (Manacher's algorithm does it in O(n), but it's rarely expected.)
+
+**2. Pattern matching: find `pattern` (length m) inside `text` (length n).**
+
+- **Naive:** try every start position and compare: O(n × m) in the worst case (text `"aaaa…ab"`, pattern `"aaab"`). Python's `text.find(pattern)` is fast in practice, but interviews ask you to explain a guaranteed method.
+- **KMP (Knuth–Morris–Pratt):** O(n + m). When a mismatch happens after matching some characters, the naive method restarts almost from scratch. KMP instead uses a precomputed **failure table** (also called LPS, "longest proper prefix that is also a suffix"): `lps[i]` is the length of the longest proper prefix of `pattern[:i + 1]` that is also its suffix. After a mismatch, the pattern jumps so that this prefix lines up with the text it already matched, and the text pointer **never moves backwards**.
+- **Rabin-Karp:** O(n + m) on average. Give each length-m window of the text a number (a **hash**) and compare hashes instead of strings. A **rolling hash** updates the window's hash in O(1) when it slides one step: remove the leftmost character's contribution, shift, add the new character, all `% mod` (Section [11](#11-maths-toolbox-series-factorials-fibonacci-powers-and-modulo)). Equal hashes are double-checked character by character, because different strings can occasionally share a hash. Rolling hashes also find **repeated substrings** quickly.
+
+**Where each is used:**
+
+| Need | Use |
+|---|---|
+| Longest / count palindromic substrings | Expand around the centre |
+| Find a pattern, guaranteed linear time | KMP |
+| Many patterns, or repeated substrings of a fixed length | Rabin-Karp rolling hash |
+| "Is s made of a repeated block?", "longest prefix that is also a suffix" | KMP's failure table directly |
+
+### Python
+
+```python
+def longest_palindrome(s):
+    best_lo, best_len = 0, 0
+    for centre in range(2 * len(s) - 1):
+        lo = centre // 2
+        hi = lo + centre % 2                     # odd centres: lo == hi; even: the gap
+        while lo >= 0 and hi < len(s) and s[lo] == s[hi]:
+            lo, hi = lo - 1, hi + 1              # expand while the ends match
+        if hi - lo - 1 > best_len:
+            best_lo, best_len = lo + 1, hi - lo - 1
+    return s[best_lo:best_lo + best_len]
+
+def count_palindromes(s):
+    count = 0
+    for centre in range(2 * len(s) - 1):
+        lo, hi = centre // 2, centre // 2 + centre % 2
+        while lo >= 0 and hi < len(s) and s[lo] == s[hi]:
+            count += 1
+            lo, hi = lo - 1, hi + 1
+    return count
+
+longest_palindrome("babad"), longest_palindrome("cbbd"), count_palindromes("aaa")   # → ("bab", "bb", 6)
+```
+
+```python
+def build_lps(pattern):
+    lps = [0] * len(pattern)
+    length = 0                                   # length of the current matching prefix
+    for i in range(1, len(pattern)):
+        while length and pattern[i] != pattern[length]:
+            length = lps[length - 1]             # fall back to a shorter prefix
+        if pattern[i] == pattern[length]:
+            length += 1
+        lps[i] = length
+    return lps
+
+def kmp_search(text, pattern):
+    """All start indexes of pattern in text, O(n + m)."""
+    lps, out, j = build_lps(pattern), [], 0      # j = characters of pattern matched so far
+    for i, ch in enumerate(text):
+        while j and ch != pattern[j]:
+            j = lps[j - 1]                       # jump; i never moves back
+        if ch == pattern[j]:
+            j += 1
+        if j == len(pattern):
+            out.append(i - j + 1)
+            j = lps[j - 1]                       # keep going for overlapping matches
+    return out
+
+def rabin_karp(text, pattern, base=256, mod=1_000_000_007):
+    n, m = len(text), len(pattern)
+    if m > n:
+        return []
+    high = pow(base, m - 1, mod)                 # weight of the leftmost character
+    p_hash = t_hash = 0
+    for k in range(m):
+        p_hash = (p_hash * base + ord(pattern[k])) % mod
+        t_hash = (t_hash * base + ord(text[k])) % mod
+    out = []
+    for i in range(n - m + 1):
+        if t_hash == p_hash and text[i:i + m] == pattern:   # confirm: hashes can collide
+            out.append(i)
+        if i + m < n:                            # roll: drop text[i], add text[i + m]
+            t_hash = ((t_hash - ord(text[i]) * high) * base + ord(text[i + m])) % mod
+    return out
+
+build_lps("ababaca"), build_lps("aabaaab")       # → ([0, 0, 1, 2, 3, 0, 1], [0, 1, 0, 1, 2, 2, 3])
+kmp_search("abababcabab", "abab")                # → [0, 2, 7]
+rabin_karp("abababcabab", "abab")                # → [0, 2, 7]
+```
+
+**Common mistakes:**
+
+- ❌ Checking only odd-length palindromes (forgetting the even centres between characters).
+- ❌ In KMP, moving the text pointer backwards after a mismatch. Only `j` falls back.
+- ❌ Trusting equal hashes in Rabin-Karp without comparing the actual strings.
+
+### Practice
+
+| # | LeetCode problem | Difficulty |
+|---|---|---|
+| 1 | [28. Find the Index of the First Occurrence in a String](https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/) | 🟢 Easy |
+| 2 | [459. Repeated Substring Pattern](https://leetcode.com/problems/repeated-substring-pattern/) | 🟢 Easy |
+| 3 | [5. Longest Palindromic Substring](https://leetcode.com/problems/longest-palindromic-substring/) | 🟡 Medium |
+| 4 | [647. Palindromic Substrings](https://leetcode.com/problems/palindromic-substrings/) | 🟡 Medium |
+| 5 | [187. Repeated DNA Sequences](https://leetcode.com/problems/repeated-dna-sequences/) | 🟡 Medium |
+| 6 | [1392. Longest Happy Prefix](https://leetcode.com/problems/longest-happy-prefix/) | 🔴 Hard |
+| 7 | [214. Shortest Palindrome](https://leetcode.com/problems/shortest-palindrome/) | 🔴 Hard |
+
+**Learn & visualise:** [GeeksforGeeks: KMP algorithm](https://www.geeksforgeeks.org/dsa/kmp-algorithm-for-pattern-searching/) · [GeeksforGeeks: Rabin-Karp](https://www.geeksforgeeks.org/dsa/rabin-karp-algorithm-for-pattern-searching/)
+
+---
+
+## 53. Range Queries with Updates: Fenwick Trees and Segment Trees
+
+![A segment tree: every node stores the sum of its range](images/dsa/p9-segment-tree.svg)
+
+### Theory
+
+Prefix sums (Section [24](#24-prefix-sums)) answer "sum of `nums[i..j]`?" in O(1), but only while the array **never changes**: after one update, O(n) prefix values are wrong. When updates and queries are **mixed** (a live leaderboard, stock prices changing all day), you need both operations fast:
+
+| Structure | Update one value | Range query | Code size | Handles |
+|---|---|---|---|---|
+| Plain list | O(1) | O(n) | Tiny | — |
+| Prefix sums | O(n) | O(1) | Tiny | Sums, no updates |
+| **Fenwick tree** (binary indexed tree) | O(log n) | O(log n) | ~10 lines | Sums (anything with an "undo", like + and −) |
+| **Segment tree** | O(log n) | O(log n) | ~25 lines | Sums, min, max, GCD, … (any combinable operation) |
+
+**Segment tree.** A binary tree (Section [36](#36-binary-trees-and-traversals)) where each **leaf** is one array value and each **inner node** stores the combined value (sum, min, …) of its range (see the picture). Stored in a list of size 2n, like a heap (Section [39](#39-heaps-and-priority-queues)): leaves at indexes n … 2n − 1, and node i's children at 2i and 2i + 1.
+
+- **Update:** change the leaf, then walk up to the root, recomputing each parent: O(log n).
+- **Query `[l, r)`:** start with `l` and `r` at the leaves and move both up level by level. Whenever a boundary node's range lies fully inside the query, add it to the answer. At most about 2 log n nodes are used.
+- **Lazy propagation** (for "add x to every value in a range" updates) delays updates to children until they're needed. It's the advanced version to know about.
+
+**Fenwick tree.** A clever list where position i stores the sum of a block of values ending at i, whose size is **i's lowest set bit** (`i & -i`, Section [51](#51-bit-manipulation)). Moving to the next responsible position is `i += i & -i` (for updates) or `i -= i & -i` (for prefix sums), so each takes O(log n) steps. A range sum is `prefix(r) − prefix(l − 1)`. It uses 1-based indexes.
+
+**Clues in a problem:** "update one element and query a range, many times", "count of smaller numbers after self", "reverse pairs", "number of inversions". The last three insert values one at a time and ask "how many so far are smaller?" with a Fenwick tree indexed by value.
+
+### Python
+
+```python
+class SegmentTree:
+    """Range sums with point updates; swap + for min/max to answer other queries."""
+    def __init__(self, nums):
+        self.n = len(nums)
+        self.tree = [0] * self.n + list(nums)          # leaves at n .. 2n-1
+        for i in range(self.n - 1, 0, -1):
+            self.tree[i] = self.tree[2 * i] + self.tree[2 * i + 1]
+
+    def update(self, i, value):
+        i += self.n
+        self.tree[i] = value
+        while i > 1:                                   # recompute the ancestors
+            i //= 2
+            self.tree[i] = self.tree[2 * i] + self.tree[2 * i + 1]
+
+    def query(self, l, r):                             # sum of nums[l:r]
+        total, l, r = 0, l + self.n, r + self.n
+        while l < r:
+            if l % 2 == 1:                             # l is a right child: take it, move right
+                total += self.tree[l]
+                l += 1
+            if r % 2 == 1:                             # node r - 1 lies inside the range: take it
+                r -= 1
+                total += self.tree[r]
+            l //= 2
+            r //= 2
+        return total
+
+st = SegmentTree([5, 8, 6, 3, 2, 7, 2, 6])
+st.query(0, 8), st.query(2, 6)                         # → (39, 18)
+st.update(3, 10)
+st.query(2, 6), st.query(3, 4)                         # → (25, 10)
+```
+
+```python
+class Fenwick:
+    def __init__(self, n):
+        self.tree = [0] * (n + 1)                      # 1-based
+
+    def add(self, i, delta):                           # nums[i] += delta (i is 1-based)
+        while i < len(self.tree):
+            self.tree[i] += delta
+            i += i & -i                                # next block that covers i
+
+    def prefix(self, i):                               # nums[1] + ... + nums[i]
+        total = 0
+        while i > 0:
+            total += self.tree[i]
+            i -= i & -i                                # drop the lowest set bit
+        return total
+
+    def range_sum(self, l, r):                         # inclusive, 1-based
+        return self.prefix(r) - self.prefix(l - 1)
+
+def count_smaller_after(nums):
+    """For each item, how many items to its right are smaller (values ranked 1..k first)."""
+    rank = {v: i + 1 for i, v in enumerate(sorted(set(nums)))}
+    fw, out = Fenwick(len(rank)), []
+    for x in reversed(nums):                           # scan right to left
+        out.append(fw.prefix(rank[x] - 1))             # how many smaller values already seen
+        fw.add(rank[x], 1)
+    return out[::-1]
+
+fw = Fenwick(8)
+for i, v in enumerate([5, 8, 6, 3, 2, 7, 2, 6], start=1):
+    fw.add(i, v)
+fw.range_sum(3, 6), fw.prefix(8)                       # → (18, 39)
+count_smaller_after([5, 2, 6, 1])                      # → [2, 1, 1, 0]
+```
+
+`enumerate(items, start=1)` numbers the items from 1 instead of 0.
+
+**Common mistakes:**
+
+- ❌ Mixing 0-based and 1-based indexes in a Fenwick tree (index 0 makes `i & -i` equal 0, so the loop never ends).
+- ❌ Rebuilding prefix sums after every update (O(n) each). That's exactly what these trees avoid.
+- ❌ Reaching for a segment tree when the data never changes: prefix sums are simpler and faster.
+
+### Practice
+
+| # | LeetCode problem | Difficulty |
+|---|---|---|
+| 1 | [307. Range Sum Query - Mutable](https://leetcode.com/problems/range-sum-query-mutable/) | 🟡 Medium |
+| 2 | [315. Count of Smaller Numbers After Self](https://leetcode.com/problems/count-of-smaller-numbers-after-self/) | 🔴 Hard |
+| 3 | [493. Reverse Pairs](https://leetcode.com/problems/reverse-pairs/) | 🔴 Hard |
+| 4 | [1649. Create Sorted Array through Instructions](https://leetcode.com/problems/create-sorted-array-through-instructions/) | 🔴 Hard |
+| 5 | [218. The Skyline Problem](https://leetcode.com/problems/the-skyline-problem/) | 🔴 Hard |
+
+**Learn & visualise:** [VisuAlgo: Segment tree](https://visualgo.net/en/segmenttree) · [VisuAlgo: Fenwick tree](https://visualgo.net/en/fenwicktree) · [CP-Algorithms: Fenwick tree](https://cp-algorithms.com/data_structures/fenwick.html)
+
+---
+
+### ✅ Part 9 checkpoint
+
+Without looking, can you:
+
+- [ ] Find the longest palindromic substring by expanding around centres?
+- [ ] Build KMP's failure table and use it to search in O(n + m)?
+- [ ] Explain a rolling hash, and why equal hashes must be double-checked?
+- [ ] Write a Fenwick tree and a segment tree, and say when prefix sums are no longer enough?
+
+Part 10 is for revision: a topic checklist, a cheat sheet and the theory questions interviewers ask most.
+
+---
+
+# Part 10 — Interview Prep: Revision
+
+> **Goal:** Check your coverage against what top companies ask, and revise quickly before interviews.  
+> **You need:** Parts 1–9.
+
+---
+
+## 54. Interview Topic Checklist: What Top Companies Ask
+
+### Theory
+
+Coding rounds at large product companies (Google, Amazon, Microsoft, Meta, Apple, and the many companies that interview the same way) draw on the same core set of topics. The widely shared prep lists (**Blind 75**, **NeetCode 150**, **LeetCode Top Interview 150**, **Striver's A2Z sheet**) all cover roughly the list below. Use this table as a **coverage check**: for each topic, study the linked sections, then solve the must-do problems without hints.
+
+**How to read the priority column:** ⭐⭐⭐ appears in almost every interview loop; ⭐⭐ is common; ⭐ is occasional, but separates strong candidates (it shows up more at companies with harder rounds).
+
+| Topic | Priority | Study | Must-do problems (LeetCode) |
+|---|---|---|---|
+| Arrays & hashing | ⭐⭐⭐ | [15](#15-arrays-and-python-lists), [19](#19-hashing-dictionaries-and-sets) | [1. Two Sum](https://leetcode.com/problems/two-sum/) · [217. Contains Duplicate](https://leetcode.com/problems/contains-duplicate/) · [49. Group Anagrams](https://leetcode.com/problems/group-anagrams/) · [347. Top K Frequent Elements](https://leetcode.com/problems/top-k-frequent-elements/) · [238. Product of Array Except Self](https://leetcode.com/problems/product-of-array-except-self/) · [128. Longest Consecutive Sequence](https://leetcode.com/problems/longest-consecutive-sequence/) |
+| Classic array algorithms | ⭐⭐⭐ | [25](#25-classic-array-algorithms-kadane-majority-vote-dutch-flag-and-more) | [53. Maximum Subarray](https://leetcode.com/problems/maximum-subarray/) · [121. Best Time to Buy and Sell Stock](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/) · [75. Sort Colors](https://leetcode.com/problems/sort-colors/) · [169. Majority Element](https://leetcode.com/problems/majority-element/) · [31. Next Permutation](https://leetcode.com/problems/next-permutation/) |
+| Two pointers | ⭐⭐⭐ | [22](#22-two-pointers) | [125. Valid Palindrome](https://leetcode.com/problems/valid-palindrome/) · [15. 3Sum](https://leetcode.com/problems/3sum/) · [11. Container With Most Water](https://leetcode.com/problems/container-with-most-water/) · [42. Trapping Rain Water](https://leetcode.com/problems/trapping-rain-water/) |
+| Sliding window | ⭐⭐⭐ | [23](#23-sliding-window) | [3. Longest Substring Without Repeating Characters](https://leetcode.com/problems/longest-substring-without-repeating-characters/) · [424. Longest Repeating Character Replacement](https://leetcode.com/problems/longest-repeating-character-replacement/) · [567. Permutation in String](https://leetcode.com/problems/permutation-in-string/) · [76. Minimum Window Substring](https://leetcode.com/problems/minimum-window-substring/) |
+| Prefix sums | ⭐⭐ | [24](#24-prefix-sums) | [560. Subarray Sum Equals K](https://leetcode.com/problems/subarray-sum-equals-k/) · [724. Find Pivot Index](https://leetcode.com/problems/find-pivot-index/) |
+| Binary search | ⭐⭐⭐ | [18](#18-searching-linear-search-and-binary-search), [28](#28-binary-search-on-the-answer) | [704. Binary Search](https://leetcode.com/problems/binary-search/) · [33. Search in Rotated Sorted Array](https://leetcode.com/problems/search-in-rotated-sorted-array/) · [153. Find Minimum in Rotated Sorted Array](https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/) · [875. Koko Eating Bananas](https://leetcode.com/problems/koko-eating-bananas/) · [4. Median of Two Sorted Arrays](https://leetcode.com/problems/median-of-two-sorted-arrays/) |
+| Matrices | ⭐⭐ | [26](#26-matrices-2d-array-problems) | [54. Spiral Matrix](https://leetcode.com/problems/spiral-matrix/) · [48. Rotate Image](https://leetcode.com/problems/rotate-image/) · [73. Set Matrix Zeroes](https://leetcode.com/problems/set-matrix-zeroes/) · [74. Search a 2D Matrix](https://leetcode.com/problems/search-a-2d-matrix/) |
+| Intervals | ⭐⭐ | [27](#27-intervals-merge-insert-and-overlap), [48](#48-greedy-algorithms) | [56. Merge Intervals](https://leetcode.com/problems/merge-intervals/) · [57. Insert Interval](https://leetcode.com/problems/insert-interval/) · [435. Non-overlapping Intervals](https://leetcode.com/problems/non-overlapping-intervals/) |
+| Sorting & quickselect | ⭐⭐ | [17](#17-basic-sorting-selection-bubble-and-insertion-sort), [29](#29-merge-sort-and-quick-sort) | [912. Sort an Array](https://leetcode.com/problems/sort-an-array/) · [215. Kth Largest Element in an Array](https://leetcode.com/problems/kth-largest-element-in-an-array/) |
+| Stacks (incl. monotonic) | ⭐⭐⭐ | [33](#33-stacks) | [20. Valid Parentheses](https://leetcode.com/problems/valid-parentheses/) · [150. Evaluate Reverse Polish Notation](https://leetcode.com/problems/evaluate-reverse-polish-notation/) · [739. Daily Temperatures](https://leetcode.com/problems/daily-temperatures/) · [84. Largest Rectangle in Histogram](https://leetcode.com/problems/largest-rectangle-in-histogram/) |
+| Linked lists | ⭐⭐⭐ | [31](#31-linked-lists), [32](#32-linked-list-interview-problems) | [206. Reverse Linked List](https://leetcode.com/problems/reverse-linked-list/) · [21. Merge Two Sorted Lists](https://leetcode.com/problems/merge-two-sorted-lists/) · [141. Linked List Cycle](https://leetcode.com/problems/linked-list-cycle/) · [19. Remove Nth Node From End of List](https://leetcode.com/problems/remove-nth-node-from-end-of-list/) · [143. Reorder List](https://leetcode.com/problems/reorder-list/) · [25. Reverse Nodes in k-Group](https://leetcode.com/problems/reverse-nodes-in-k-group/) |
+| Design | ⭐⭐ | [35](#35-design-problems-min-stack-queue-from-stacks-lru-cache) | [155. Min Stack](https://leetcode.com/problems/min-stack/) · [146. LRU Cache](https://leetcode.com/problems/lru-cache/) · [380. Insert Delete GetRandom O(1)](https://leetcode.com/problems/insert-delete-getrandom-o1/) |
+| Binary trees | ⭐⭐⭐ | [36](#36-binary-trees-and-traversals), [37](#37-binary-tree-interview-problems) | [226. Invert Binary Tree](https://leetcode.com/problems/invert-binary-tree/) · [104. Maximum Depth of Binary Tree](https://leetcode.com/problems/maximum-depth-of-binary-tree/) · [102. Binary Tree Level Order Traversal](https://leetcode.com/problems/binary-tree-level-order-traversal/) · [236. Lowest Common Ancestor of a Binary Tree](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/) · [105. Construct Binary Tree from Preorder and Inorder Traversal](https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/) · [124. Binary Tree Maximum Path Sum](https://leetcode.com/problems/binary-tree-maximum-path-sum/) · [297. Serialize and Deserialize Binary Tree](https://leetcode.com/problems/serialize-and-deserialize-binary-tree/) |
+| Binary search trees | ⭐⭐ | [38](#38-binary-search-trees) | [98. Validate Binary Search Tree](https://leetcode.com/problems/validate-binary-search-tree/) · [230. Kth Smallest Element in a BST](https://leetcode.com/problems/kth-smallest-element-in-a-bst/) · [235. Lowest Common Ancestor of a Binary Search Tree](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/) |
+| Heaps | ⭐⭐ | [39](#39-heaps-and-priority-queues) | [703. Kth Largest Element in a Stream](https://leetcode.com/problems/kth-largest-element-in-a-stream/) · [973. K Closest Points to Origin](https://leetcode.com/problems/k-closest-points-to-origin/) · [621. Task Scheduler](https://leetcode.com/problems/task-scheduler/) · [23. Merge k Sorted Lists](https://leetcode.com/problems/merge-k-sorted-lists/) · [295. Find Median from Data Stream](https://leetcode.com/problems/find-median-from-data-stream/) |
+| Tries | ⭐⭐ | [40](#40-tries-prefix-trees) | [208. Implement Trie (Prefix Tree)](https://leetcode.com/problems/implement-trie-prefix-tree/) · [211. Design Add and Search Words Data Structure](https://leetcode.com/problems/design-add-and-search-words-data-structure/) · [212. Word Search II](https://leetcode.com/problems/word-search-ii/) |
+| Backtracking | ⭐⭐ | [47](#47-backtracking) | [78. Subsets](https://leetcode.com/problems/subsets/) · [39. Combination Sum](https://leetcode.com/problems/combination-sum/) · [46. Permutations](https://leetcode.com/problems/permutations/) · [79. Word Search](https://leetcode.com/problems/word-search/) · [131. Palindrome Partitioning](https://leetcode.com/problems/palindrome-partitioning/) · [51. N-Queens](https://leetcode.com/problems/n-queens/) |
+| Graphs: BFS / DFS | ⭐⭐⭐ | [41](#41-graphs-representation-bfs-and-dfs), [42](#42-graph-problems-cycles-bipartite-graphs-and-multi-source-bfs) | [200. Number of Islands](https://leetcode.com/problems/number-of-islands/) · [133. Clone Graph](https://leetcode.com/problems/clone-graph/) · [994. Rotting Oranges](https://leetcode.com/problems/rotting-oranges/) · [417. Pacific Atlantic Water Flow](https://leetcode.com/problems/pacific-atlantic-water-flow/) · [785. Is Graph Bipartite?](https://leetcode.com/problems/is-graph-bipartite/) · [127. Word Ladder](https://leetcode.com/problems/word-ladder/) |
+| Topological sort | ⭐⭐ | [44](#44-topological-sort) | [207. Course Schedule](https://leetcode.com/problems/course-schedule/) · [210. Course Schedule II](https://leetcode.com/problems/course-schedule-ii/) |
+| Weighted graphs & MST | ⭐⭐ | [43](#43-shortest-paths-dijkstra), [46](#46-minimum-spanning-trees-bellman-ford-and-floyd-warshall) | [743. Network Delay Time](https://leetcode.com/problems/network-delay-time/) · [787. Cheapest Flights Within K Stops](https://leetcode.com/problems/cheapest-flights-within-k-stops/) · [1584. Min Cost to Connect All Points](https://leetcode.com/problems/min-cost-to-connect-all-points/) · [778. Swim in Rising Water](https://leetcode.com/problems/swim-in-rising-water/) |
+| Union-find | ⭐⭐ | [45](#45-union-find-disjoint-set-union) | [547. Number of Provinces](https://leetcode.com/problems/number-of-provinces/) · [684. Redundant Connection](https://leetcode.com/problems/redundant-connection/) · [721. Accounts Merge](https://leetcode.com/problems/accounts-merge/) |
+| 1D dynamic programming | ⭐⭐⭐ | [49](#49-dynamic-programming), [50](#50-dynamic-programming-ii-knapsack-subsequences-strings-and-intervals) | [70. Climbing Stairs](https://leetcode.com/problems/climbing-stairs/) · [198. House Robber](https://leetcode.com/problems/house-robber/) · [322. Coin Change](https://leetcode.com/problems/coin-change/) · [300. Longest Increasing Subsequence](https://leetcode.com/problems/longest-increasing-subsequence/) · [139. Word Break](https://leetcode.com/problems/word-break/) · [416. Partition Equal Subset Sum](https://leetcode.com/problems/partition-equal-subset-sum/) |
+| 2D dynamic programming | ⭐⭐ | [49](#49-dynamic-programming), [50](#50-dynamic-programming-ii-knapsack-subsequences-strings-and-intervals) | [62. Unique Paths](https://leetcode.com/problems/unique-paths/) · [1143. Longest Common Subsequence](https://leetcode.com/problems/longest-common-subsequence/) · [72. Edit Distance](https://leetcode.com/problems/edit-distance/) · [518. Coin Change II](https://leetcode.com/problems/coin-change-ii/) · [312. Burst Balloons](https://leetcode.com/problems/burst-balloons/) |
+| Greedy | ⭐⭐ | [48](#48-greedy-algorithms) | [55. Jump Game](https://leetcode.com/problems/jump-game/) · [45. Jump Game II](https://leetcode.com/problems/jump-game-ii/) · [134. Gas Station](https://leetcode.com/problems/gas-station/) · [763. Partition Labels](https://leetcode.com/problems/partition-labels/) |
+| Bit manipulation | ⭐ | [12](#12-number-systems-decimal-and-binary), [51](#51-bit-manipulation) | [136. Single Number](https://leetcode.com/problems/single-number/) · [191. Number of 1 Bits](https://leetcode.com/problems/number-of-1-bits/) · [338. Counting Bits](https://leetcode.com/problems/counting-bits/) · [371. Sum of Two Integers](https://leetcode.com/problems/sum-of-two-integers/) |
+| Maths | ⭐ | Part 2 ([7](#7-working-with-digits)–[12](#12-number-systems-decimal-and-binary)) | [9. Palindrome Number](https://leetcode.com/problems/palindrome-number/) · [50. Pow(x, n)](https://leetcode.com/problems/powx-n/) · [204. Count Primes](https://leetcode.com/problems/count-primes/) · [202. Happy Number](https://leetcode.com/problems/happy-number/) |
+| String algorithms | ⭐ | [16](#16-strings), [52](#52-string-algorithms-palindromes-kmp-and-rabin-karp) | [5. Longest Palindromic Substring](https://leetcode.com/problems/longest-palindromic-substring/) · [647. Palindromic Substrings](https://leetcode.com/problems/palindromic-substrings/) · [28. Find the Index of the First Occurrence in a String](https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/) |
+| Segment / Fenwick trees | ⭐ | [53](#53-range-queries-with-updates-fenwick-trees-and-segment-trees) | [307. Range Sum Query - Mutable](https://leetcode.com/problems/range-sum-query-mutable/) · [315. Count of Smaller Numbers After Self](https://leetcode.com/problems/count-of-smaller-numbers-after-self/) |
+
+**Beyond the problem list, interviewers check that you can:**
+
+1. **Talk while you solve:** restate the problem, ask about constraints and edge cases, and say the brute force before optimising (Section [21](#21-how-to-attack-a-new-problem)).
+2. **State the time and space complexity** of your solution without being asked (Section [13](#13-big-o-how-fast-is-my-code)).
+3. **Dry-run your code** on a small example and fix bugs yourself (Section [3](#3-loops-and-dry-runs)).
+4. **Write clean code:** clear names, small helper functions, no copy-pasted blocks.
+5. **Handle follow-ups:** "what if the input doesn't fit in memory?", "can you do it in O(1) space?", "what if it's a stream?".
+
+**Not covered by this file:** system design (see `nodejs.md` → system design sections) and behavioural questions. Most companies interview for those separately from DSA.
+
+**A practice plan:** finish Parts 1–3 first. Then, for each row above, solve the must-do problems in order (115 problems in total), timing yourself at 25–45 minutes per problem. Finish with mixed, random problems, because a real interview doesn't tell you the topic.
+
+---
+
+## 55. Pattern Cheat Sheet: Which Technique When?
 
 Read the problem for **clues**, then match them to a technique:
 
 | Clue in the problem | Try |
 |---|---|
 | Digits, divisors, primes, "divisible by", "modulo 10⁹ + 7" | Maths from Part 2 (`%`, `//`, √n loops, sieve, GCD, fast power) |
-
 | "Sorted array", "find a pair/triplet" | Two pointers, binary search |
-| "Contiguous subarray/substring", "longest/shortest … such that" | Sliding window (positives) or prefix sums + hash map (negatives) |
-| "How many times…", "have we seen…", "group by…" | Hash map / set / `Counter` |
+| "Contiguous subarray/substring", "longest/shortest … such that" | Sliding window (positives) or prefix sums + dict (negatives) |
+| "Maximum subarray sum", "best day to buy and sell" | Kadane / running minimum |
+| "Appears more than n/2 times" | Boyer–Moore voting |
+| "Sort 0s, 1s and 2s", "partition around a value" | Dutch national flag (three pointers) |
+| Grid: rotate, spiral, search a sorted matrix | Matrix techniques (transpose + reverse, four borders, staircase search) |
+| Meetings, bookings, "overlapping ranges" | Sort by start, then sweep; min rooms = sweep starts and ends |
+| "How many times…", "have we seen…", "group by…" | Dict / set / `Counter` |
 | "Minimum X that works", "maximise the minimum" | Binary search on the answer |
+| "k-th smallest/largest" (one query) | Quickselect (average O(n)) or a heap of size k |
 | "Next greater/smaller", "matching brackets" | Stack / monotonic stack |
-| "Top k", "k-th largest", "merge k sorted", "running median" | Heap |
-| "Shortest path", "minimum steps" (unweighted, grid) | BFS |
-| Weighted shortest path | Dijkstra |
-| "All combinations/permutations/subsets", "place N queens" | Backtracking |
-| "Order with dependencies", "can all tasks finish" | Topological sort |
-| "Connected groups", "merge accounts", edges arriving over time | Union-Find (or BFS/DFS) |
+| Linked list: "middle", "cycle", "n-th from the end" | Fast/slow pointers, two pointers a gap apart |
+| "Design a class with O(1) get/put", "least recently used" | Dict + doubly linked list (or `OrderedDict`) |
+| Tree: "height", "diameter", "ancestor", "path sum" | Recursion: top-down parameters or bottom-up return values |
+| "Top k", "merge k sorted", "running median" | Heap (two heaps for the median) |
 | "Prefix", "autocomplete", "words from a dictionary" | Trie |
+| "Shortest path", "minimum steps" (unweighted, grid) | BFS (multi-source BFS for "nearest") |
+| Weighted shortest path, non-negative weights | Dijkstra |
+| Negative weights, "at most k stops" / all pairs | Bellman-Ford / Floyd-Warshall |
+| "Split into two groups with no conflicts" | Bipartite check (two-colouring) |
+| "Order with dependencies", "can all tasks finish" | Topological sort (or directed cycle detection) |
+| "Connected groups", "merge accounts", edges arriving over time | Union-Find (or BFS/DFS) |
+| "Connect everything at minimum cost" | Minimum spanning tree (Kruskal / Prim) |
+| "All combinations/permutations/subsets", "place N queens" | Backtracking |
 | "Number of ways", "min/max cost", choices that overlap | Dynamic programming |
+| "Pick items within a capacity/target sum" | Knapsack DP (0/1: loop down; unbounded: loop up) |
+| "Transform one string into another", "common subsequence" | Two-string DP (edit distance, LCS) |
 | "Pick the best locally" + a provable exchange argument | Greedy |
+| "Palindromic substring", "find a pattern in text" | Expand around centre / KMP / rolling hash |
+| "Update a value and query a range", many times | Fenwick tree / segment tree |
 | "Appears once while others appear twice", subsets of ≤ 20 | Bit manipulation |
 
 **Input size → target complexity** (roughly 10⁷ simple steps per second in Python):
@@ -5214,6 +7045,7 @@ Read the problem for **clues**, then match them to a technique:
 | Stack / queue / deque | top/ends O(1) | O(n) | O(1) | O(1) | |
 | Balanced BST | O(log n) | O(log n) | O(log n) | O(log n) | Ordered iteration |
 | Binary heap | min O(1) | O(n) | O(log n) | pop O(log n) | |
+| Segment / Fenwick tree | O(log n) range query | — | O(log n) update | — | |
 | Trie | — | O(L) | O(L) | O(L) | L = word length |
 
 **A study plan that works:**
@@ -5236,7 +7068,7 @@ Read the problem for **clues**, then match them to a technique:
 
 ---
 
-## 44. Most Asked DSA Theory Questions
+## 56. Most Asked DSA Theory Questions
 
 1. **`print` vs `return`?** → `print` shows a value on the screen; `return` hands it back to the caller so the program can use it. A function without `return` gives back `None`.
 2. **What do `//` and `%` do, and why are they everywhere in DSA?** → Floor division and remainder. `n % 10` / `n // 10` peel digits, `n % 2` tests parity, `a % b == 0` tests divisibility, and `% m` keeps huge answers small.
@@ -5263,5 +7095,10 @@ Read the problem for **clues**, then match them to a technique:
 23. **What's a trie good for that a hash set isn't?** → Prefix queries (autocomplete, `starts_with`) in O(length of prefix).
 24. **How do you choose a data structure for a problem?** → List the operations the problem needs most often (lookup, min, order, prefix…) and pick the structure that makes those cheapest.
 25. **Space complexity of a recursive DFS on a tree?** → O(h), the height: O(log n) if balanced, O(n) if skewed.
+26. **How does Kadane's algorithm work?** → Keep the best sum of a subarray ending at the current index: `max(x, best_here + x)`. A negative running sum is dropped, because it can only make what follows smaller. O(n) time, O(1) space.
+27. **How would you build an LRU cache with O(1) `get` and `put`?** → A dict from key to node for lookup, plus a doubly linked list ordered by recency: move a node to the front on every use, and evict from the back when full.
+28. **Minimum spanning tree vs shortest path tree?** → An MST minimises the **total** weight needed to connect all nodes; a shortest-path tree minimises the distance from **one source** to each node. They're usually different trees.
+29. **Why is KMP linear?** → The text pointer never moves backwards; after a mismatch, the failure table says how much of the pattern is already matched. Each character is compared O(1) times amortised, so O(n + m).
+30. **When do you need a segment tree or Fenwick tree instead of prefix sums?** → When values change between range queries. Prefix sums need O(n) per update; the trees do both updates and queries in O(log n).
 
 ---
