@@ -1,4 +1,4 @@
-# Full-Stack Notes — JavaScript · TypeScript · React · Node.js · Python · FastAPI · DSA
+# Full-Stack Notes — JavaScript · TypeScript · React · Node.js · Python · FastAPI · DSA · SQL
 
 Complete notes from absolute basics to production and interviews. Every topic has an explanation, 2–3 examples, best practices, and interview questions. Many code examples were executed/type-checked while writing; bugs those checks caught are collected in the **Gotchas Hall of Fame**.
 
@@ -13,8 +13,9 @@ Complete notes from absolute basics to production and interviews. Every topic ha
 | [Python](python.md) | Absolute basics → OOP & functional features → stdlib, scripting, databases → concurrency → production, DSA | 47 | 5,425 |
 | [FastAPI](fastapi.md) | Routing & Pydantic → DI, databases, auth → queues, integrations → testing, observability, security, deployment | 43 | 3,832 |
 | [DSA in Python](dsa-python.md) | Data structures & algorithms from absolute zero in five levels (Basic → Easy → Moderate → Advanced → Interview Prep): Python basics, pattern printing and number theory first, then arrays, hashing, techniques, linked lists, trees, graphs, DP, string algorithms, segment trees, max flow, the algorithms inside real systems (Bloom filters, consistent hashing, B-trees, vector search) and recent breakthroughs, plus a checklist of what top companies ask. Every topic: simple explanation, diagram, tested Python, practice | 60 | 8,364 |
+| [SQL & PostgreSQL](sql-postgresql.md) | SQL from zero in five levels (Basic → Easy → Moderate → Advanced → Interview Prep): tables and queries, joins, CTEs, design and normalisation, window functions, transactions and MVCC, indexes and query plans, JSONB, full-text search, pgvector for AI, security, Python (psycopg, SQLAlchemy), backups, replication, scaling, PostgreSQL 17/18, and classic interview problems. Every query run on PostgreSQL with real output | 34 | 5,291 |
 | [Best Practices](best-practices.md) | Every good practice combined across the stack, the Gotchas Hall of Fame, and checklists | 32 | 1,733 |
-| **Total** | | **404** | **50,383** |
+| **Total** | | **438** | **55,674** |
 
 ## How every file is organized
 
@@ -35,6 +36,10 @@ Conventions: ❌ = wrong/risky, ✅ = recommended · *(caught in these notes)* =
 ### DSA track — study alongside the other phases
 
 - **DSA in Python** (Basic → Easy → Moderate → Advanced → Interview Prep; go in order, each part ends with a checkpoint): [How to Use These Notes](dsa-python.md#1-how-to-use-these-notes) · [Loops and Dry Runs](dsa-python.md#3-loops-and-dry-runs) · [Pattern Printing I: Squares and Triangles](dsa-python.md#4-pattern-printing-i-squares-and-triangles) · [Working with Digits](dsa-python.md#7-working-with-digits) · [Divisors and Prime Numbers](dsa-python.md#8-divisors-and-prime-numbers) · [Big-O: How Fast Is My Code?](dsa-python.md#13-big-o-how-fast-is-my-code) · [Recursion Basics](dsa-python.md#14-recursion-basics) · [Arrays and Python Lists](dsa-python.md#15-arrays-and-python-lists) · [Hashing: Dictionaries and Sets](dsa-python.md#19-hashing-dictionaries-and-sets) · [Two Pointers](dsa-python.md#22-two-pointers) · [Sliding Window](dsa-python.md#23-sliding-window) · [Classic Array Algorithms: Kadane, Majority Vote, Dutch Flag and More](dsa-python.md#25-classic-array-algorithms-kadane-majority-vote-dutch-flag-and-more) · [Linked Lists](dsa-python.md#31-linked-lists) · [Binary Tree Interview Problems](dsa-python.md#37-binary-tree-interview-problems) · [Graphs: Representation, BFS and DFS](dsa-python.md#41-graphs-representation-bfs-and-dfs) · [Dynamic Programming](dsa-python.md#49-dynamic-programming) · [Algorithms Behind Real Systems: Consistent Hashing, Rate Limiters, B-Trees, LSM Trees and Vector Search](dsa-python.md#56-algorithms-behind-real-systems-consistent-hashing-rate-limiters-b-trees-lsm-trees-and-vector-search) · [Interview Topic Checklist: What Top Companies Ask](dsa-python.md#58-interview-topic-checklist-what-top-companies-ask)
+
+### Databases track — SQL & PostgreSQL (start after Phase 1)
+
+- **SQL & PostgreSQL** (go in order; every query shows real psql output): [What Is a Database? Tables, Rows, Columns and Keys](sql-postgresql.md#2-what-is-a-database-tables-rows-columns-and-keys) · [SELECT in Depth: Filtering, Sorting and Limiting](sql-postgresql.md#5-select-in-depth-filtering-sorting-and-limiting) · [Aggregation: COUNT, SUM, GROUP BY and HAVING](sql-postgresql.md#8-aggregation-count-sum-group-by-and-having) · [Joins: Combining Tables](sql-postgresql.md#9-joins-combining-tables) · [Subqueries and CTEs (WITH), Including Recursive Queries](sql-postgresql.md#10-subqueries-and-ctes-with-including-recursive-queries) · [Designing Tables: Relationships and Normalisation](sql-postgresql.md#13-designing-tables-relationships-and-normalisation) · [Window Functions: Rankings, Running Totals and Comparing Rows](sql-postgresql.md#16-window-functions-rankings-running-totals-and-comparing-rows) · [Transactions, ACID and Concurrency](sql-postgresql.md#17-transactions-acid-and-concurrency) · [Indexes: Making Lookups Fast](sql-postgresql.md#18-indexes-making-lookups-fast) · [Reading Query Plans with EXPLAIN](sql-postgresql.md#19-reading-query-plans-with-explain) · [pgvector: Vector Search for AI Applications](sql-postgresql.md#26-pgvector-vector-search-for-ai-applications)
 
 ### Phase 2 — How JavaScript really works
 
@@ -108,6 +113,7 @@ Go through these in order in the last week before an interview; for each topic, 
 - **DSA in Python:** [Interview Topic Checklist: What Top Companies Ask](dsa-python.md#58-interview-topic-checklist-what-top-companies-ask) · [Pattern Cheat Sheet: Which Technique When?](dsa-python.md#59-pattern-cheat-sheet-which-technique-when) · [Most Asked DSA Theory Questions](dsa-python.md#60-most-asked-dsa-theory-questions)
 - **React:** [Machine Coding Questions (with solutions)](react.md#53-machine-coding-questions) · [Machine Coding II (Carousel, Kanban, Data Table, Wizard, Toasts, Comments)](react.md#54-machine-coding-ii-carousel-kanban-data-table-wizard-toasts-comments)
 - **TypeScript:** [Type Challenges](typescript.md#42-type-challenges)
+- **SQL & PostgreSQL:** [Classic SQL Interview Problems (with Solutions)](sql-postgresql.md#32-classic-sql-interview-problems-with-solutions) · [SQL and PostgreSQL Cheat Sheet](sql-postgresql.md#33-sql-and-postgresql-cheat-sheet) · [Most Asked SQL and Database Theory Questions](sql-postgresql.md#34-most-asked-sql-and-database-theory-questions)
 
 ### System design & production
 
@@ -568,6 +574,67 @@ Go through these in order in the last week before an interview; for each topic, 
 58. [Interview Topic Checklist: What Top Companies Ask](dsa-python.md#58-interview-topic-checklist-what-top-companies-ask)
 59. [Pattern Cheat Sheet: Which Technique When?](dsa-python.md#59-pattern-cheat-sheet-which-technique-when)
 60. [Most Asked DSA Theory Questions](dsa-python.md#60-most-asked-dsa-theory-questions)
+
+</details>
+
+<details>
+<summary><b>SQL & PostgreSQL</b> — 34 sections in 7 parts</summary>
+
+
+**Part 1 — Basic: Databases and Your First Queries**
+
+1. [How to Use These Notes (and Set Up PostgreSQL)](sql-postgresql.md#1-how-to-use-these-notes-and-set-up-postgresql)
+2. [What Is a Database? Tables, Rows, Columns and Keys](sql-postgresql.md#2-what-is-a-database-tables-rows-columns-and-keys)
+3. [Your First Table: CREATE TABLE, INSERT and SELECT](sql-postgresql.md#3-your-first-table-create-table-insert-and-select)
+4. [Data Types and NULL](sql-postgresql.md#4-data-types-and-null)
+5. [SELECT in Depth: Filtering, Sorting and Limiting](sql-postgresql.md#5-select-in-depth-filtering-sorting-and-limiting)
+6. [Changing Data: UPDATE, DELETE and RETURNING](sql-postgresql.md#6-changing-data-update-delete-and-returning)
+
+**Part 2 — Easy: Asking Bigger Questions**
+
+7. [Functions and Expressions: Text, Numbers, Dates and CASE](sql-postgresql.md#7-functions-and-expressions-text-numbers-dates-and-case)
+8. [Aggregation: COUNT, SUM, GROUP BY and HAVING](sql-postgresql.md#8-aggregation-count-sum-group-by-and-having)
+9. [Joins: Combining Tables](sql-postgresql.md#9-joins-combining-tables)
+10. [Subqueries and CTEs (WITH), Including Recursive Queries](sql-postgresql.md#10-subqueries-and-ctes-with-including-recursive-queries)
+11. [Set Operations: UNION, INTERSECT and EXCEPT](sql-postgresql.md#11-set-operations-union-intersect-and-except)
+
+**Part 3 — Moderate: Designing Databases**
+
+12. [Keys and Constraints: Letting the Database Protect Your Data](sql-postgresql.md#12-keys-and-constraints-letting-the-database-protect-your-data)
+13. [Designing Tables: Relationships and Normalisation](sql-postgresql.md#13-designing-tables-relationships-and-normalisation)
+14. [Changing the Schema: ALTER TABLE and Migrations](sql-postgresql.md#14-changing-the-schema-alter-table-and-migrations)
+15. [Views and Materialized Views](sql-postgresql.md#15-views-and-materialized-views)
+16. [Window Functions: Rankings, Running Totals and Comparing Rows](sql-postgresql.md#16-window-functions-rankings-running-totals-and-comparing-rows)
+
+**Part 4 — Moderate: Transactions and Performance**
+
+17. [Transactions, ACID and Concurrency](sql-postgresql.md#17-transactions-acid-and-concurrency)
+18. [Indexes: Making Lookups Fast](sql-postgresql.md#18-indexes-making-lookups-fast)
+19. [Reading Query Plans with EXPLAIN](sql-postgresql.md#19-reading-query-plans-with-explain)
+20. [Making Queries Fast: Common Performance Patterns](sql-postgresql.md#20-making-queries-fast-common-performance-patterns)
+
+**Part 5 — Advanced: PostgreSQL Power Features**
+
+21. [JSON and JSONB: Documents Inside PostgreSQL](sql-postgresql.md#21-json-and-jsonb-documents-inside-postgresql)
+22. [Arrays, Enums, Ranges and Generated Columns](sql-postgresql.md#22-arrays-enums-ranges-and-generated-columns)
+23. [Full-Text Search](sql-postgresql.md#23-full-text-search)
+24. [Functions, Procedures and Triggers](sql-postgresql.md#24-functions-procedures-and-triggers)
+25. [Upserts, MERGE and Bulk Loading](sql-postgresql.md#25-upserts-merge-and-bulk-loading)
+26. [pgvector: Vector Search for AI Applications](sql-postgresql.md#26-pgvector-vector-search-for-ai-applications)
+
+**Part 6 — Advanced: PostgreSQL in Production**
+
+27. [Security: Roles, Permissions, Row-Level Security and SQL Injection](sql-postgresql.md#27-security-roles-permissions-row-level-security-and-sql-injection)
+28. [Using PostgreSQL from Python: psycopg, Pooling and SQLAlchemy](sql-postgresql.md#28-using-postgresql-from-python-psycopg-pooling-and-sqlalchemy)
+29. [Running PostgreSQL: Backups, Replication, VACUUM, Partitioning and Monitoring](sql-postgresql.md#29-running-postgresql-backups-replication-vacuum-partitioning-and-monitoring)
+30. [Scaling PostgreSQL, and What's New in PostgreSQL 17 and 18](sql-postgresql.md#30-scaling-postgresql-and-whats-new-in-postgresql-17-and-18)
+31. [PostgreSQL vs MySQL vs SQLite vs SQL Server: Dialect Differences](sql-postgresql.md#31-postgresql-vs-mysql-vs-sqlite-vs-sql-server-dialect-differences)
+
+**Part 7 — Interview Prep: Revision**
+
+32. [Classic SQL Interview Problems (with Solutions)](sql-postgresql.md#32-classic-sql-interview-problems-with-solutions)
+33. [SQL and PostgreSQL Cheat Sheet](sql-postgresql.md#33-sql-and-postgresql-cheat-sheet)
+34. [Most Asked SQL and Database Theory Questions](sql-postgresql.md#34-most-asked-sql-and-database-theory-questions)
 
 </details>
 
