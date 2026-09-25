@@ -18,8 +18,9 @@ Complete notes from absolute basics to production and interviews. Every topic ha
 | [Machine Learning](machine-learning.md) | Machine learning from zero to production in five levels (Basic → Easy → Moderate → Advanced → Interview Prep): the maths explained simply (vectors, gradient descent, loss functions), linear and logistic regression, honest evaluation and metrics, scikit-learn pipelines, cross-validation and tuning (Optuna), regularisation, trees, random forests, XGBoost and LightGBM, SVMs, clustering, PCA/t-SNE, anomalies, forecasting, recommenders, text classification, SHAP, leakage and fairness, serving (ONNX, FastAPI), MLflow, drift monitoring and ML system design. Every example run with real output and charts | 32 | 4,538 |
 | [Deep Learning](deep-learning.md) | Deep learning from zero in five levels (Basic → Easy → Moderate → Advanced → Interview Prep): neurons and backpropagation built from scratch in NumPy, PyTorch tensors, autograd and the training loop, training recipes (AdamW, schedules, normalisation, dropout), CNNs, embeddings and RNNs, attention and transformers, a tiny GPT built from scratch, Hugging Face, fine-tuning with Trainer, LoRA/QLoRA with PEFT, autoencoders and diffusion, mixed precision, FSDP, quantisation, distillation, mixture of experts and scaling laws. Every example run on CPU with real output | 20 | 3,009 |
 | [LLM Engineering](llm-engineering.md) | Building applications with large language models, from zero, in five levels (Basic → Easy → Moderate → Advanced → Interview Prep): how LLMs work and are trained, tokens and cost, the Claude API from Python (messages, streaming, errors, refusals), prompt engineering, structured outputs, tool use, embeddings and vector search, prompt caching and batching, images and PDFs, evaluation and LLM-as-judge, hallucinations and prompt injection, fine-tuning (SFT, DPO, LoRA), reasoning models, open-weight models and vLLM, LLMOps and LLM system design. Local examples run with real output; API code checked against the official SDK | 21 | 3,167 |
+| [RAG and AI Agents](rag-and-agents.md) | Retrieval-augmented generation and agentic AI, from zero, in five levels (Basic → Easy → Moderate → Advanced → Interview Prep): RAG from scratch, loading and chunking, BM25 and vector search, hybrid search, reranking and query rewriting, RAG evaluation, vectorless RAG (full-text, text-to-SQL, tree navigation, agentic search, long context), contextual retrieval, parent documents and GraphRAG, production RAG (freshness, permissions, injection), LangChain, LangGraph, the agent loop, tools, memory and context engineering, agents with LangGraph, multi-agent systems, MCP, agent evaluation and security, and system design. Examples run locally with real output; API code checked against the official SDKs | 21 | 3,936 |
 | [Best Practices](best-practices.md) | Every good practice combined across the stack, the Gotchas Hall of Fame, and checklists | 32 | 1,733 |
-| **Total** | | **538** | **70,143** |
+| **Total** | | **559** | **74,079** |
 
 ## How every file is organized
 
@@ -60,6 +61,10 @@ Conventions: ❌ = wrong/risky, ✅ = recommended · *(caught in these notes)* =
 ### AI/ML track — 4. LLM engineering (after deep learning)
 
 - **LLM Engineering** (APIs → prompts → tools → evals → production; API code checked against the SDK): [How LLMs Work: Next-Token Prediction, Pre-Training and Post-Training](llm-engineering.md#2-how-llms-work-next-token-prediction-pre-training-and-post-training) · [Tokens, Context Windows and Cost](llm-engineering.md#3-tokens-context-windows-and-cost) · [Your First LLM API Call: Messages, System Prompts and Conversations](llm-engineering.md#4-your-first-llm-api-call-messages-system-prompts-and-conversations) · [Prompt Engineering: Clear Instructions, Examples, Structure and Chaining](llm-engineering.md#6-prompt-engineering-clear-instructions-examples-structure-and-chaining) · [Structured Outputs: Getting Reliable JSON with Schemas](llm-engineering.md#7-structured-outputs-getting-reliable-json-with-schemas) · [Tool Use (Function Calling): Letting the Model Call Your Code](llm-engineering.md#8-tool-use-function-calling-letting-the-model-call-your-code) · [Embeddings and Semantic Search](llm-engineering.md#9-embeddings-and-semantic-search) · [Evaluating LLM Applications: Test Sets, Metrics and LLM-as-Judge](llm-engineering.md#12-evaluating-llm-applications-test-sets-metrics-and-llm-as-judge) · [Hallucinations, Prompt Injection and Guardrails](llm-engineering.md#13-hallucinations-prompt-injection-and-guardrails) · [LLM System Design: A Framework and a Worked Example](llm-engineering.md#18-llm-system-design-a-framework-and-a-worked-example)
+
+### AI/ML track — 5. RAG and agents (after LLM engineering)
+
+- **RAG and AI Agents** (retrieval → vectorless → LangChain/LangGraph → agents → MCP): [What Is RAG? Retrieval-Augmented Generation from Scratch](rag-and-agents.md#2-what-is-rag-retrieval-augmented-generation-from-scratch) · [Loading and Chunking Documents](rag-and-agents.md#3-loading-and-chunking-documents) · [Hybrid Search, Reranking and Query Rewriting](rag-and-agents.md#5-hybrid-search-reranking-and-query-rewriting) · [Evaluating RAG: Retrieval Metrics, Faithfulness and Failure Modes](rag-and-agents.md#6-evaluating-rag-retrieval-metrics-faithfulness-and-failure-modes) · [Vectorless RAG: Retrieval Without Embeddings](rag-and-agents.md#7-vectorless-rag-retrieval-without-embeddings) · [LangGraph: Stateful Workflows as Graphs](rag-and-agents.md#11-langgraph-stateful-workflows-as-graphs) · [AI Agents: Workflows vs Agents and the Agent Loop](rag-and-agents.md#12-ai-agents-workflows-vs-agents-and-the-agent-loop) · [Building Agents with LangChain and LangGraph](rag-and-agents.md#14-building-agents-with-langchain-and-langgraph) · [Model Context Protocol (MCP): Connecting Agents to Tools and Data](rag-and-agents.md#16-model-context-protocol-mcp-connecting-agents-to-tools-and-data) · [RAG and Agent System Design: A Worked Example](rag-and-agents.md#18-rag-and-agent-system-design-a-worked-example)
 
 ### Phase 2 — How JavaScript really works
 
@@ -138,6 +143,7 @@ Go through these in order in the last week before an interview; for each topic, 
 - **Machine Learning:** [Interview Coding: ML Algorithms from Scratch in NumPy](machine-learning.md#30-interview-coding-ml-algorithms-from-scratch-in-numpy) · [Machine Learning Cheat Sheet](machine-learning.md#31-machine-learning-cheat-sheet) · [Most Asked Machine Learning Theory Questions](machine-learning.md#32-most-asked-machine-learning-theory-questions)
 - **Deep Learning:** [Interview Coding: Deep-Learning Building Blocks](deep-learning.md#18-interview-coding-deep-learning-building-blocks) · [Deep Learning Cheat Sheet](deep-learning.md#19-deep-learning-cheat-sheet) · [Most Asked Deep Learning Theory Questions](deep-learning.md#20-most-asked-deep-learning-theory-questions)
 - **LLM Engineering:** [Interview Coding: LLM Engineering Problems](llm-engineering.md#19-interview-coding-llm-engineering-problems) · [LLM Engineering Cheat Sheet](llm-engineering.md#20-llm-engineering-cheat-sheet) · [Most Asked LLM Engineering Theory Questions](llm-engineering.md#21-most-asked-llm-engineering-theory-questions)
+- **RAG and AI Agents:** [Interview Coding: RAG and Agent Problems](rag-and-agents.md#19-interview-coding-rag-and-agent-problems) · [RAG and Agents Cheat Sheet](rag-and-agents.md#20-rag-and-agents-cheat-sheet) · [Most Asked RAG and Agent Theory Questions](rag-and-agents.md#21-most-asked-rag-and-agent-theory-questions)
 
 ### System design & production
 
@@ -858,6 +864,54 @@ Go through these in order in the last week before an interview; for each topic, 
 19. [Interview Coding: LLM Engineering Problems](llm-engineering.md#19-interview-coding-llm-engineering-problems)
 20. [LLM Engineering Cheat Sheet](llm-engineering.md#20-llm-engineering-cheat-sheet)
 21. [Most Asked LLM Engineering Theory Questions](llm-engineering.md#21-most-asked-llm-engineering-theory-questions)
+
+</details>
+
+<details>
+<summary><b>RAG and AI Agents</b> — 21 sections in 7 parts</summary>
+
+
+**Part 1 — Basic: RAG Foundations**
+
+1. [How to Use These Notes (and What You Will Build)](rag-and-agents.md#1-how-to-use-these-notes-and-what-you-will-build)
+2. [What Is RAG? Retrieval-Augmented Generation from Scratch](rag-and-agents.md#2-what-is-rag-retrieval-augmented-generation-from-scratch)
+3. [Loading and Chunking Documents](rag-and-agents.md#3-loading-and-chunking-documents)
+
+**Part 2 — Easy: Retrieval Quality**
+
+4. [Keyword Search (BM25) and Vector Search](rag-and-agents.md#4-keyword-search-bm25-and-vector-search)
+5. [Hybrid Search, Reranking and Query Rewriting](rag-and-agents.md#5-hybrid-search-reranking-and-query-rewriting)
+6. [Evaluating RAG: Retrieval Metrics, Faithfulness and Failure Modes](rag-and-agents.md#6-evaluating-rag-retrieval-metrics-faithfulness-and-failure-modes)
+
+**Part 3 — Moderate: Beyond Basic RAG**
+
+7. [Vectorless RAG: Retrieval Without Embeddings](rag-and-agents.md#7-vectorless-rag-retrieval-without-embeddings)
+8. [Advanced RAG: Contextual Retrieval, Parent Documents, GraphRAG and Multi-Hop](rag-and-agents.md#8-advanced-rag-contextual-retrieval-parent-documents-graphrag-and-multi-hop)
+9. [Production RAG: Ingestion, Freshness, Permissions, Security and Cost](rag-and-agents.md#9-production-rag-ingestion-freshness-permissions-security-and-cost)
+
+**Part 4 — Moderate: LangChain and LangGraph**
+
+10. [LangChain: Models, Prompts, Chains and Retrievers](rag-and-agents.md#10-langchain-models-prompts-chains-and-retrievers)
+11. [LangGraph: Stateful Workflows as Graphs](rag-and-agents.md#11-langgraph-stateful-workflows-as-graphs)
+
+**Part 5 — Advanced: AI Agents**
+
+12. [AI Agents: Workflows vs Agents and the Agent Loop](rag-and-agents.md#12-ai-agents-workflows-vs-agents-and-the-agent-loop)
+13. [Designing Agents: Tools, Memory, Planning and Context Engineering](rag-and-agents.md#13-designing-agents-tools-memory-planning-and-context-engineering)
+14. [Building Agents with LangChain and LangGraph](rag-and-agents.md#14-building-agents-with-langchain-and-langgraph)
+15. [Multi-Agent Systems: Supervisors, Handoffs and Parallel Sub-Agents](rag-and-agents.md#15-multi-agent-systems-supervisors-handoffs-and-parallel-sub-agents)
+
+**Part 6 — Advanced: MCP, Agent Safety and System Design**
+
+16. [Model Context Protocol (MCP): Connecting Agents to Tools and Data](rag-and-agents.md#16-model-context-protocol-mcp-connecting-agents-to-tools-and-data)
+17. [Evaluating, Securing and Running Agents in Production](rag-and-agents.md#17-evaluating-securing-and-running-agents-in-production)
+18. [RAG and Agent System Design: A Worked Example](rag-and-agents.md#18-rag-and-agent-system-design-a-worked-example)
+
+**Part 7 — Interview Prep: Revision**
+
+19. [Interview Coding: RAG and Agent Problems](rag-and-agents.md#19-interview-coding-rag-and-agent-problems)
+20. [RAG and Agents Cheat Sheet](rag-and-agents.md#20-rag-and-agents-cheat-sheet)
+21. [Most Asked RAG and Agent Theory Questions](rag-and-agents.md#21-most-asked-rag-and-agent-theory-questions)
 
 </details>
 
