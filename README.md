@@ -1,4 +1,4 @@
-# Full-Stack Notes — JavaScript · TypeScript · React · Node.js · Python · FastAPI · DSA · SQL
+# Full-Stack & AI Notes — JavaScript · TypeScript · React · Node.js · Python · FastAPI · DSA · SQL · Data Science
 
 Complete notes from absolute basics to production and interviews. Every topic has an explanation, 2–3 examples, best practices, and interview questions. Many code examples were executed/type-checked while writing; bugs those checks caught are collected in the **Gotchas Hall of Fame**.
 
@@ -14,8 +14,9 @@ Complete notes from absolute basics to production and interviews. Every topic ha
 | [FastAPI](fastapi.md) | Routing & Pydantic → DI, databases, auth → queues, integrations → testing, observability, security, deployment | 43 | 3,832 |
 | [DSA in Python](dsa-python.md) | Data structures & algorithms from absolute zero in five levels (Basic → Easy → Moderate → Advanced → Interview Prep): Python basics, pattern printing and number theory first, then arrays, hashing, techniques, linked lists, trees, graphs, DP, string algorithms, segment trees, max flow, the algorithms inside real systems (Bloom filters, consistent hashing, B-trees, vector search) and recent breakthroughs, plus a checklist of what top companies ask. Every topic: simple explanation, diagram, tested Python, practice | 60 | 8,364 |
 | [SQL & PostgreSQL](sql-postgresql.md) | SQL from zero in five levels (Basic → Easy → Moderate → Advanced → Interview Prep): tables and queries, joins, CTEs, design and normalisation, window functions, transactions and MVCC, indexes and query plans, JSONB, full-text search, pgvector for AI, security, Python (psycopg, SQLAlchemy), backups, replication, scaling, PostgreSQL 17/18, and classic interview problems. Every query run on PostgreSQL with real output | 34 | 5,291 |
+| [Data Science](data-science.md) | The Python data toolkit from zero in five levels (Basic → Easy → Moderate → Advanced → Interview Prep): NumPy arrays and broadcasting, pandas 3 (loading, selecting, cleaning, groupby, merge, pivot, time series), Arrow, Polars and DuckDB for bigger data, Matplotlib and Seaborn charts, statistics (distributions, confidence intervals, hypothesis tests, A/B testing), a full EDA and feature preparation for ML, plus pandas interview problems. Every example run with real output and real chart images | 27 | 3,755 |
 | [Best Practices](best-practices.md) | Every good practice combined across the stack, the Gotchas Hall of Fame, and checklists | 32 | 1,733 |
-| **Total** | | **438** | **55,674** |
+| **Total** | | **465** | **59,429** |
 
 ## How every file is organized
 
@@ -40,6 +41,10 @@ Conventions: ❌ = wrong/risky, ✅ = recommended · *(caught in these notes)* =
 ### Databases track — SQL & PostgreSQL (start after Phase 1)
 
 - **SQL & PostgreSQL** (go in order; every query shows real psql output): [What Is a Database? Tables, Rows, Columns and Keys](sql-postgresql.md#2-what-is-a-database-tables-rows-columns-and-keys) · [SELECT in Depth: Filtering, Sorting and Limiting](sql-postgresql.md#5-select-in-depth-filtering-sorting-and-limiting) · [Aggregation: COUNT, SUM, GROUP BY and HAVING](sql-postgresql.md#8-aggregation-count-sum-group-by-and-having) · [Joins: Combining Tables](sql-postgresql.md#9-joins-combining-tables) · [Subqueries and CTEs (WITH), Including Recursive Queries](sql-postgresql.md#10-subqueries-and-ctes-with-including-recursive-queries) · [Designing Tables: Relationships and Normalisation](sql-postgresql.md#13-designing-tables-relationships-and-normalisation) · [Window Functions: Rankings, Running Totals and Comparing Rows](sql-postgresql.md#16-window-functions-rankings-running-totals-and-comparing-rows) · [Transactions, ACID and Concurrency](sql-postgresql.md#17-transactions-acid-and-concurrency) · [Indexes: Making Lookups Fast](sql-postgresql.md#18-indexes-making-lookups-fast) · [Reading Query Plans with EXPLAIN](sql-postgresql.md#19-reading-query-plans-with-explain) · [pgvector: Vector Search for AI Applications](sql-postgresql.md#26-pgvector-vector-search-for-ai-applications)
+
+### AI/ML track — 1. Data science (start after Phase 1)
+
+- **Data Science** (NumPy → pandas → charts → statistics; every example runs): [NumPy Arrays: Creating and Inspecting](data-science.md#2-numpy-arrays-creating-and-inspecting) · [pandas Series and DataFrames](data-science.md#6-pandas-series-and-dataframes) · [Cleaning Data: Missing Values, Duplicates, Types and Text](data-science.md#9-cleaning-data-missing-values-duplicates-types-and-text) · [Grouping and Summarising: groupby and agg](data-science.md#11-grouping-and-summarising-groupby-and-agg) · [Combining Tables: merge, join and concat](data-science.md#12-combining-tables-merge-join-and-concat) · [Your First Charts with Matplotlib](data-science.md#16-your-first-charts-with-matplotlib) · [Statistical Charts with Seaborn](data-science.md#18-statistical-charts-with-seaborn) · [Describing Data: Averages, Spread, Outliers and Correlation](data-science.md#20-describing-data-averages-spread-outliers-and-correlation) · [Hypothesis Tests and A/B Testing](data-science.md#22-hypothesis-tests-and-ab-testing) · [A Complete Exploratory Data Analysis (EDA)](data-science.md#23-a-complete-exploratory-data-analysis-eda) · [Preparing Data for Machine Learning: Feature Engineering Basics](data-science.md#24-preparing-data-for-machine-learning-feature-engineering-basics)
 
 ### Phase 2 — How JavaScript really works
 
@@ -114,6 +119,7 @@ Go through these in order in the last week before an interview; for each topic, 
 - **React:** [Machine Coding Questions (with solutions)](react.md#53-machine-coding-questions) · [Machine Coding II (Carousel, Kanban, Data Table, Wizard, Toasts, Comments)](react.md#54-machine-coding-ii-carousel-kanban-data-table-wizard-toasts-comments)
 - **TypeScript:** [Type Challenges](typescript.md#42-type-challenges)
 - **SQL & PostgreSQL:** [Classic SQL Interview Problems (with Solutions)](sql-postgresql.md#32-classic-sql-interview-problems-with-solutions) · [SQL and PostgreSQL Cheat Sheet](sql-postgresql.md#33-sql-and-postgresql-cheat-sheet) · [Most Asked SQL and Database Theory Questions](sql-postgresql.md#34-most-asked-sql-and-database-theory-questions)
+- **Data Science:** [Interview Problems: pandas and NumPy](data-science.md#25-interview-problems-pandas-and-numpy) · [Data Science Cheat Sheet](data-science.md#26-data-science-cheat-sheet) · [Most Asked Data Science Theory Questions](data-science.md#27-most-asked-data-science-theory-questions)
 
 ### System design & production
 
@@ -635,6 +641,57 @@ Go through these in order in the last week before an interview; for each topic, 
 32. [Classic SQL Interview Problems (with Solutions)](sql-postgresql.md#32-classic-sql-interview-problems-with-solutions)
 33. [SQL and PostgreSQL Cheat Sheet](sql-postgresql.md#33-sql-and-postgresql-cheat-sheet)
 34. [Most Asked SQL and Database Theory Questions](sql-postgresql.md#34-most-asked-sql-and-database-theory-questions)
+
+</details>
+
+<details>
+<summary><b>Data Science</b> — 27 sections in 6 parts</summary>
+
+
+**Part 1 — Basic: NumPy, Fast Arrays of Numbers**
+
+1. [How to Use These Notes (and Set Up Your Data Toolkit)](data-science.md#1-how-to-use-these-notes-and-set-up-your-data-toolkit)
+2. [NumPy Arrays: Creating and Inspecting](data-science.md#2-numpy-arrays-creating-and-inspecting)
+3. [NumPy Indexing, Slicing and Boolean Masks](data-science.md#3-numpy-indexing-slicing-and-boolean-masks)
+4. [Vectorised Maths, Aggregations and Broadcasting](data-science.md#4-vectorised-maths-aggregations-and-broadcasting)
+5. [Reshaping, Stacking and Linear Algebra Basics](data-science.md#5-reshaping-stacking-and-linear-algebra-basics)
+
+**Part 2 — Easy: pandas, Working with Tables**
+
+6. [pandas Series and DataFrames](data-science.md#6-pandas-series-and-dataframes)
+7. [Reading and Writing Data: CSV, Excel, JSON, Parquet and SQL](data-science.md#7-reading-and-writing-data-csv-excel-json-parquet-and-sql)
+8. [Selecting and Filtering: [], loc, iloc and query](data-science.md#8-selecting-and-filtering--loc-iloc-and-query)
+9. [Cleaning Data: Missing Values, Duplicates, Types and Text](data-science.md#9-cleaning-data-missing-values-duplicates-types-and-text)
+10. [Transforming Data: New Columns, apply, map, binning and assign](data-science.md#10-transforming-data-new-columns-apply-map-binning-and-assign)
+
+**Part 3 — Moderate: Analysing Data with pandas**
+
+11. [Grouping and Summarising: groupby and agg](data-science.md#11-grouping-and-summarising-groupby-and-agg)
+12. [Combining Tables: merge, join and concat](data-science.md#12-combining-tables-merge-join-and-concat)
+13. [Reshaping: pivot_table, melt, crosstab and explode](data-science.md#13-reshaping-pivot_table-melt-crosstab-and-explode)
+14. [Dates and Time Series: resample, rolling and shift](data-science.md#14-dates-and-time-series-resample-rolling-and-shift)
+15. [Bigger and Faster: Memory, Arrow, Polars and DuckDB](data-science.md#15-bigger-and-faster-memory-arrow-polars-and-duckdb)
+
+**Part 4 — Moderate: Charts with Matplotlib and Seaborn**
+
+16. [Your First Charts with Matplotlib](data-science.md#16-your-first-charts-with-matplotlib)
+17. [Matplotlib in Depth: Layouts, Styling and Annotations](data-science.md#17-matplotlib-in-depth-layouts-styling-and-annotations)
+18. [Statistical Charts with Seaborn](data-science.md#18-statistical-charts-with-seaborn)
+19. [Choosing the Right Chart (and Not Misleading)](data-science.md#19-choosing-the-right-chart-and-not-misleading)
+
+**Part 5 — Advanced: Statistics and Getting Data Ready for ML**
+
+20. [Describing Data: Averages, Spread, Outliers and Correlation](data-science.md#20-describing-data-averages-spread-outliers-and-correlation)
+21. [Probability, Distributions, Sampling and Confidence Intervals](data-science.md#21-probability-distributions-sampling-and-confidence-intervals)
+22. [Hypothesis Tests and A/B Testing](data-science.md#22-hypothesis-tests-and-ab-testing)
+23. [A Complete Exploratory Data Analysis (EDA)](data-science.md#23-a-complete-exploratory-data-analysis-eda)
+24. [Preparing Data for Machine Learning: Feature Engineering Basics](data-science.md#24-preparing-data-for-machine-learning-feature-engineering-basics)
+
+**Part 6 — Interview Prep: Revision**
+
+25. [Interview Problems: pandas and NumPy](data-science.md#25-interview-problems-pandas-and-numpy)
+26. [Data Science Cheat Sheet](data-science.md#26-data-science-cheat-sheet)
+27. [Most Asked Data Science Theory Questions](data-science.md#27-most-asked-data-science-theory-questions)
 
 </details>
 
