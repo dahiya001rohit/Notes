@@ -12,9 +12,9 @@ Complete notes from absolute basics to production and interviews. Every topic ha
 | [Node.js](nodejs.md) | Runtime & event loop → Express & APIs → auth & security → databases → queues, observability, system design | 65 | 8,524 |
 | [Python](python.md) | Absolute basics → OOP & functional features → stdlib, scripting, databases → concurrency → production, DSA | 47 | 5,425 |
 | [FastAPI](fastapi.md) | Routing & Pydantic → DI, databases, auth → queues, integrations → testing, observability, security, deployment | 43 | 3,832 |
-| [DSA in Python](dsa-python.md) | Data structures & algorithms from absolute zero in five levels (Basic → Easy → Moderate → Advanced → Interview Prep): Python basics, pattern printing and number theory first, then arrays, hashing, techniques, linked lists, trees, graphs, DP, string algorithms and segment trees, plus a checklist of what top companies ask. A diagram, theory, tested Python and practice per topic | 56 | 7,104 |
+| [DSA in Python](dsa-python.md) | Data structures & algorithms from absolute zero in five levels (Basic → Easy → Moderate → Advanced → Interview Prep): Python basics, pattern printing and number theory first, then arrays, hashing, techniques, linked lists, trees, graphs, DP, string algorithms, segment trees, max flow, the algorithms inside real systems (Bloom filters, consistent hashing, B-trees, vector search) and recent breakthroughs, plus a checklist of what top companies ask. Every topic: simple explanation, diagram, tested Python, practice | 60 | 8,364 |
 | [Best Practices](best-practices.md) | Every good practice combined across the stack, the Gotchas Hall of Fame, and checklists | 32 | 1,733 |
-| **Total** | | **400** | **49,123** |
+| **Total** | | **404** | **50,383** |
 
 ## How every file is organized
 
@@ -34,7 +34,7 @@ Conventions: ❌ = wrong/risky, ✅ = recommended · *(caught in these notes)* =
 
 ### DSA track — study alongside the other phases
 
-- **DSA in Python** (Basic → Easy → Moderate → Advanced → Interview Prep; go in order, each part ends with a checkpoint): [How to Use These Notes](dsa-python.md#1-how-to-use-these-notes) · [Loops and Dry Runs](dsa-python.md#3-loops-and-dry-runs) · [Pattern Printing I: Squares and Triangles](dsa-python.md#4-pattern-printing-i-squares-and-triangles) · [Working with Digits](dsa-python.md#7-working-with-digits) · [Divisors and Prime Numbers](dsa-python.md#8-divisors-and-prime-numbers) · [Big-O: How Fast Is My Code?](dsa-python.md#13-big-o-how-fast-is-my-code) · [Recursion Basics](dsa-python.md#14-recursion-basics) · [Arrays and Python Lists](dsa-python.md#15-arrays-and-python-lists) · [Hashing: Dictionaries and Sets](dsa-python.md#19-hashing-dictionaries-and-sets) · [Two Pointers](dsa-python.md#22-two-pointers) · [Sliding Window](dsa-python.md#23-sliding-window) · [Classic Array Algorithms: Kadane, Majority Vote, Dutch Flag and More](dsa-python.md#25-classic-array-algorithms-kadane-majority-vote-dutch-flag-and-more) · [Linked Lists](dsa-python.md#31-linked-lists) · [Binary Tree Interview Problems](dsa-python.md#37-binary-tree-interview-problems) · [Graphs: Representation, BFS and DFS](dsa-python.md#41-graphs-representation-bfs-and-dfs) · [Dynamic Programming](dsa-python.md#49-dynamic-programming) · [Interview Topic Checklist: What Top Companies Ask](dsa-python.md#54-interview-topic-checklist-what-top-companies-ask)
+- **DSA in Python** (Basic → Easy → Moderate → Advanced → Interview Prep; go in order, each part ends with a checkpoint): [How to Use These Notes](dsa-python.md#1-how-to-use-these-notes) · [Loops and Dry Runs](dsa-python.md#3-loops-and-dry-runs) · [Pattern Printing I: Squares and Triangles](dsa-python.md#4-pattern-printing-i-squares-and-triangles) · [Working with Digits](dsa-python.md#7-working-with-digits) · [Divisors and Prime Numbers](dsa-python.md#8-divisors-and-prime-numbers) · [Big-O: How Fast Is My Code?](dsa-python.md#13-big-o-how-fast-is-my-code) · [Recursion Basics](dsa-python.md#14-recursion-basics) · [Arrays and Python Lists](dsa-python.md#15-arrays-and-python-lists) · [Hashing: Dictionaries and Sets](dsa-python.md#19-hashing-dictionaries-and-sets) · [Two Pointers](dsa-python.md#22-two-pointers) · [Sliding Window](dsa-python.md#23-sliding-window) · [Classic Array Algorithms: Kadane, Majority Vote, Dutch Flag and More](dsa-python.md#25-classic-array-algorithms-kadane-majority-vote-dutch-flag-and-more) · [Linked Lists](dsa-python.md#31-linked-lists) · [Binary Tree Interview Problems](dsa-python.md#37-binary-tree-interview-problems) · [Graphs: Representation, BFS and DFS](dsa-python.md#41-graphs-representation-bfs-and-dfs) · [Dynamic Programming](dsa-python.md#49-dynamic-programming) · [Algorithms Behind Real Systems: Consistent Hashing, Rate Limiters, B-Trees, LSM Trees and Vector Search](dsa-python.md#56-algorithms-behind-real-systems-consistent-hashing-rate-limiters-b-trees-lsm-trees-and-vector-search) · [Interview Topic Checklist: What Top Companies Ask](dsa-python.md#58-interview-topic-checklist-what-top-companies-ask)
 
 ### Phase 2 — How JavaScript really works
 
@@ -105,7 +105,7 @@ Go through these in order in the last week before an interview; for each topic, 
 - **JavaScript:** [Data Structures & Algorithms in JavaScript](javascript.md#56-data-structures--algorithms-in-javascript)
 - **Node.js:** [SQL Deep Dive: Joins, Window Functions, Query Plans & Locking](nodejs.md#33-sql-deep-dive-joins-window-functions-query-plans--locking)
 - **Python:** [Data Structures & Algorithms in Python](python.md#44-data-structures--algorithms-in-python) · [Coding Questions (with solutions)](python.md#45-coding-questions)
-- **DSA in Python:** [Interview Topic Checklist: What Top Companies Ask](dsa-python.md#54-interview-topic-checklist-what-top-companies-ask) · [Pattern Cheat Sheet: Which Technique When?](dsa-python.md#55-pattern-cheat-sheet-which-technique-when) · [Most Asked DSA Theory Questions](dsa-python.md#56-most-asked-dsa-theory-questions)
+- **DSA in Python:** [Interview Topic Checklist: What Top Companies Ask](dsa-python.md#58-interview-topic-checklist-what-top-companies-ask) · [Pattern Cheat Sheet: Which Technique When?](dsa-python.md#59-pattern-cheat-sheet-which-technique-when) · [Most Asked DSA Theory Questions](dsa-python.md#60-most-asked-dsa-theory-questions)
 - **React:** [Machine Coding Questions (with solutions)](react.md#53-machine-coding-questions) · [Machine Coding II (Carousel, Kanban, Data Table, Wizard, Toasts, Comments)](react.md#54-machine-coding-ii-carousel-kanban-data-table-wizard-toasts-comments)
 - **TypeScript:** [Type Challenges](typescript.md#42-type-challenges)
 
@@ -474,7 +474,7 @@ Go through these in order in the last week before an interview; for each topic, 
 </details>
 
 <details>
-<summary><b>DSA in Python</b> — 56 sections in 10 parts</summary>
+<summary><b>DSA in Python</b> — 60 sections in 11 parts</summary>
 
 **Part 1 — Basic: Programming Fundamentals**
 
@@ -555,12 +555,19 @@ Go through these in order in the last week before an interview; for each topic, 
 
 52. [String Algorithms: Palindromes, KMP and Rabin-Karp](dsa-python.md#52-string-algorithms-palindromes-kmp-and-rabin-karp)
 53. [Range Queries with Updates: Fenwick Trees and Segment Trees](dsa-python.md#53-range-queries-with-updates-fenwick-trees-and-segment-trees)
+54. [Advanced Graphs: Bridges, Strongly Connected Components and Max Flow](dsa-python.md#54-advanced-graphs-bridges-strongly-connected-components-and-max-flow)
 
-**Part 10 — Interview Prep: Revision**
+**Part 10 — Advanced: Algorithms in the Real World (2026)**
 
-54. [Interview Topic Checklist: What Top Companies Ask](dsa-python.md#54-interview-topic-checklist-what-top-companies-ask)
-55. [Pattern Cheat Sheet: Which Technique When?](dsa-python.md#55-pattern-cheat-sheet-which-technique-when)
-56. [Most Asked DSA Theory Questions](dsa-python.md#56-most-asked-dsa-theory-questions)
+55. [Randomised and Streaming Algorithms: Shuffling, Sampling, Bloom Filters and Sketches](dsa-python.md#55-randomised-and-streaming-algorithms-shuffling-sampling-bloom-filters-and-sketches)
+56. [Algorithms Behind Real Systems: Consistent Hashing, Rate Limiters, B-Trees, LSM Trees and Vector Search](dsa-python.md#56-algorithms-behind-real-systems-consistent-hashing-rate-limiters-b-trees-lsm-trees-and-vector-search)
+57. [What's New: Recent Breakthroughs and Modern Practice (2022–2026)](dsa-python.md#57-whats-new-recent-breakthroughs-and-modern-practice-20222026)
+
+**Part 11 — Interview Prep: Revision**
+
+58. [Interview Topic Checklist: What Top Companies Ask](dsa-python.md#58-interview-topic-checklist-what-top-companies-ask)
+59. [Pattern Cheat Sheet: Which Technique When?](dsa-python.md#59-pattern-cheat-sheet-which-technique-when)
+60. [Most Asked DSA Theory Questions](dsa-python.md#60-most-asked-dsa-theory-questions)
 
 </details>
 

@@ -1,6 +1,6 @@
 # DSA in Python: From Absolute Basics to Interviews
 
-Data structures and algorithms explained from zero, in Python only, in **five levels**: **Basic** (Python, loops, pattern printing, maths for programmers) → **Easy** (Big-O, recursion, arrays, strings, sorting, searching, hashing) → **Moderate** (problem-solving techniques, linked lists, stacks, queues, trees) → **Advanced** (graphs, dynamic programming, specialised topics) → **Interview Prep**. **Each part uses only what earlier parts taught**, so read in order. Together the parts cover the topics that top product companies ask in coding interviews (Section [54](#54-interview-topic-checklist-what-top-companies-ask) maps each topic to its must-do problems).
+Data structures and algorithms explained from zero, in Python only, in **five levels**: **Basic** (Python, loops, pattern printing, maths for programmers) → **Easy** (Big-O, recursion, arrays, strings, sorting, searching, hashing) → **Moderate** (problem-solving techniques, linked lists, stacks, queues, trees) → **Advanced** (graphs, dynamic programming, specialised topics, and the algorithms inside real systems in 2026) → **Interview Prep**. **Each part uses only what earlier parts taught**, so read in order. Together the parts cover the topics that top product companies ask in coding interviews (Section [58](#58-interview-topic-checklist-what-top-companies-ask) maps each topic to its must-do problems).
 
 Every section has the same shape:
 
@@ -92,12 +92,19 @@ Each part ends with a ✅ **checkpoint**. Interview coding questions and output 
 
 52. [String Algorithms: Palindromes, KMP and Rabin-Karp](#52-string-algorithms-palindromes-kmp-and-rabin-karp)
 53. [Range Queries with Updates: Fenwick Trees and Segment Trees](#53-range-queries-with-updates-fenwick-trees-and-segment-trees)
+54. [Advanced Graphs: Bridges, Strongly Connected Components and Max Flow](#54-advanced-graphs-bridges-strongly-connected-components-and-max-flow)
 
-**[Part 10 — Interview Prep: Revision](#part-10--interview-prep-revision)**
+**[Part 10 — Advanced: Algorithms in the Real World (2026)](#part-10--advanced-algorithms-in-the-real-world-2026)**
 
-54. [Interview Topic Checklist: What Top Companies Ask](#54-interview-topic-checklist-what-top-companies-ask)
-55. [Pattern Cheat Sheet: Which Technique When?](#55-pattern-cheat-sheet-which-technique-when)
-56. [Most Asked DSA Theory Questions](#56-most-asked-dsa-theory-questions)
+55. [Randomised and Streaming Algorithms: Shuffling, Sampling, Bloom Filters and Sketches](#55-randomised-and-streaming-algorithms-shuffling-sampling-bloom-filters-and-sketches)
+56. [Algorithms Behind Real Systems: Consistent Hashing, Rate Limiters, B-Trees, LSM Trees and Vector Search](#56-algorithms-behind-real-systems-consistent-hashing-rate-limiters-b-trees-lsm-trees-and-vector-search)
+57. [What's New: Recent Breakthroughs and Modern Practice (2022–2026)](#57-whats-new-recent-breakthroughs-and-modern-practice-20222026)
+
+**[Part 11 — Interview Prep: Revision](#part-11--interview-prep-revision)**
+
+58. [Interview Topic Checklist: What Top Companies Ask](#58-interview-topic-checklist-what-top-companies-ask)
+59. [Pattern Cheat Sheet: Which Technique When?](#59-pattern-cheat-sheet-which-technique-when)
+60. [Most Asked DSA Theory Questions](#60-most-asked-dsa-theory-questions)
 
 ---
 
@@ -131,8 +138,9 @@ Each part ends with a ✅ **checkpoint**. Interview coding questions and output 
 | 6 | Moderate | Binary trees and their classic problems, binary search trees, heaps, tries | Work with data arranged as a hierarchy |
 | 7 | Advanced | Graphs: BFS, DFS, cycles, bipartite graphs, shortest paths, topological sort, union-find, spanning trees | Model maps, networks and dependencies |
 | 8 | Advanced | Backtracking, greedy, dynamic programming (two sections), bit manipulation | Take on Medium and Hard interview problems |
-| 9 | Advanced | String matching (KMP, Rabin-Karp), segment trees and Fenwick trees | Handle the harder rounds |
-| 10 | Interview Prep | What top companies ask (a topic checklist), a cheat sheet, theory questions | Check your coverage and revise quickly |
+| 9 | Advanced | String matching (KMP, Rabin-Karp), segment trees and Fenwick trees, bridges, strongly connected components, max flow | Handle the harder rounds |
+| 10 | Advanced | Randomised and streaming algorithms, consistent hashing, rate limiters, B-trees and LSM trees, vector search, recent breakthroughs | Connect DSA to real systems and current practice |
+| 11 | Interview Prep | What top companies ask (a topic checklist), a cheat sheet, theory questions | Check your coverage and revise quickly |
 
 **Every section has the same four parts:**
 
@@ -163,6 +171,8 @@ Get set up before Section 2:
 ![Variables and the two division operators](images/dsa/p1-variables.svg)
 
 ### Theory
+
+> **In simple words:** a program is a recipe. Python follows your instructions one line at a time, top to bottom. **Variables** are labelled boxes that hold values, `if` makes choices, and **functions** are small recipes you can reuse by name.
 
 A **program** is a list of instructions that Python runs **from top to bottom, one line at a time**. This section covers the few building blocks every later section uses.
 
@@ -377,6 +387,8 @@ True False
 
 ### Theory
 
+> **In simple words:** a loop says "do this again": once for every item (`for`), or until something becomes true (`while`). Almost every algorithm in this file is a loop, or loops inside loops.
+
 A **loop** repeats a block of code. Almost every algorithm is a loop, or loops inside loops.
 
 **The `for` loop** repeats once for each value in a sequence:
@@ -409,6 +421,8 @@ A **loop** repeats a block of code. Almost every algorithm is a loop, or loops i
 **Printing on one line:** `print` normally ends with a new line. `print(x, end=" ")` ends with a space instead, and an empty `print()` just moves to the next line.
 
 **Dry runs.** A **dry run** means running the code **by hand, on paper**, writing down every variable after every step in a **trace table** (see the picture). It's how you find bugs without a computer, and interviewers often ask you to "walk through your code with this example". Do a dry run for every new loop until tracing feels easy.
+
+**Used in real software:** every program that processes a list of anything (orders, messages, pixels, rows in a database) is a loop at heart. Debuggers, like the one in VS Code, let you step through a loop line by line: a dry run done by the computer.
 
 ### Python
 
@@ -580,6 +594,8 @@ print(count_multiples(20, 3), smallest([8, 3, 9, -2, 5]))
 ![Rows and columns of a right triangle](images/dsa/p1-pattern-grid.svg)
 
 ### Theory
+
+> **In simple words:** printing a shape is like colouring squares on graph paper, one row at a time. The **outer loop** moves down the rows, and the **inner loop** moves across one row.
 
 Pattern printing means drawing shapes with characters. It looks like a game, but it's the best practice there is for **nested loops**: the skill of turning "what I see" into "what the loops must do". Every later topic, from sorting to dynamic programming tables, needs that skill.
 
@@ -790,6 +806,8 @@ inverted_row_numbers(4)
 ![Spaces and stars in each row of a pyramid](images/dsa/p1-pattern-pyramid.svg)
 
 ### Theory
+
+> **In simple words:** a pyramid row is "some spaces, then some stars". Work out **how many of each** for row i, and the shape draws itself.
 
 These shapes add one new idea: **spaces before the stars**, which push each row to the right. A row now has two parts, so it needs **two inner loops** (or two counts): first the spaces, then the stars.
 
@@ -1005,6 +1023,8 @@ sandglass(4)
 ![Floyd's triangle and Pascal's triangle](images/dsa/p1-pattern-numbers.svg)
 
 ### Theory
+
+> **In simple words:** the shape stays simple; the question is **which number or letter** goes in each spot. It's either the row number, the column number, a counter that keeps growing, or a small formula.
 
 The shapes stay simple; now the question is **which value goes in each position**. There are four common answers:
 
@@ -1228,6 +1248,8 @@ If yes, move on to Part 2. If not, redo this part's practice first: Part 2 assum
 
 ### Theory
 
+> **In simple words:** `% 10` snips off the **last digit** of a number, and `// 10` throws it away. Repeat both and you read the digits from right to left, one at a time.
+
 Many beginner problems ask about the **digits** of a number: count them, add them, reverse them. Two operators do all the work:
 
 | Operation | Gives | Example with 1234 |
@@ -1254,6 +1276,8 @@ Repeat both in a `while n > 0` loop and you visit every digit from **right to le
 - **Palindrome number:** it reads the same backwards (121, 1331). Compare the number with its reverse.
 - **Armstrong number:** equal to the sum of its digits, each raised to the power of the number of digits: 153 = 1³ + 5³ + 3³.
 - **Digital root:** keep adding the digits until one digit remains: 9875 → 29 → 11 → 2.
+
+**Used in real software:** **check digits.** Credit-card numbers end with a digit chosen by the **Luhn algorithm** (shown in the code below), so a typing mistake is caught before any payment is attempted. ISBNs on books and Aadhaar-style ID numbers use similar check digits.
 
 ### Python
 
@@ -1293,6 +1317,31 @@ print(reverse_number(1234), reverse_number(1200))
 4 1 3
 10 18
 4321 21
+```
+
+**A real use: the Luhn check digit.** Starting from the rightmost digit, double every **second** digit; if doubling gives more than 9, subtract 9. Add everything up: the number is valid when the total ends in 0. A single mistyped digit always breaks the rule.
+
+```python
+def luhn_valid(n):
+    total, position = 0, 0
+    while n > 0:
+        d = n % 10                    # rightmost digit first
+        if position % 2 == 1:         # every second digit from the right
+            d *= 2
+            if d > 9:
+                d -= 9
+        total += d
+        n //= 10
+        position += 1
+    return total % 10 == 0
+
+print(luhn_valid(79927398713), luhn_valid(79927398710))
+```
+
+**Output:**
+
+```text
+True False
 ```
 
 ```python
@@ -1403,6 +1452,8 @@ print(product_of_digits(234), count_even_digits(123456), largest_digit(38192))
 
 ### Theory
 
+> **In simple words:** a **divisor** divides a number with nothing left over. A **prime** can only be divided evenly by 1 and itself: you can't arrange that many sweets into a rectangle of equal rows (except one long row).
+
 **d is a divisor of n** when d divides n with nothing left over: `n % d == 0`. The divisors of 12 are 1, 2, 3, 4, 6 and 12.
 
 **The slow way** checks every number from 1 to n: n loop rounds. That's fine for n = 1,000, but for n = 10¹² it would take hours.
@@ -1423,6 +1474,8 @@ That's about √n rounds instead of n: for n = 10¹², a million rounds instead 
 
 - **Proper divisors** are all divisors except n itself. A **perfect number** equals the sum of its proper divisors: 6 = 1 + 2 + 3, and 28 = 1 + 2 + 4 + 7 + 14.
 - `reversed(some_list)` walks a list from the end to the start; the code uses it to put the big partners in increasing order.
+
+**Used in real software:** **cryptography.** RSA encryption, used for decades to secure websites, relies on the fact that multiplying two huge primes is easy but splitting the product back into them is extremely hard. Because future quantum computers could break RSA, in 2024 the US standards body NIST published new "post-quantum" standards (such as ML-KEM) based on different mathematics, and companies are migrating to them. Primes also pick good sizes for hash tables.
 
 ### Python
 
@@ -1574,6 +1627,8 @@ print()
 
 ### Theory
 
+> **In simple words:** the GCD is the **biggest tile** that exactly covers an a × b floor with no cutting. The LCM is the first time two repeating things line up again.
+
 - The **GCD** (greatest common divisor, also called HCF) of two numbers is the largest number that divides both. GCD(12, 18) = 6.
 - The **LCM** (least common multiple) is the smallest number that both divide into. LCM(4, 6) = 12.
 
@@ -1598,6 +1653,8 @@ Replace the pair (a, b) with (b, a % b) until the second number becomes 0; the f
 **More than two numbers:** GCD(a, b, c) = GCD(GCD(a, b), c). Go through the list keeping a running answer, just like a running total.
 
 **Python's built-ins:** `math.gcd(a, b)` and `math.lcm(a, b)` (Python 3.9+). Use them in real code; write Euclid yourself in interviews. `import math` at the top of a program gives access to Python's `math` module (a ready-made collection of maths functions).
+
+**Used in real software:** screen **aspect ratios** (1920 × 1080: the GCD is 120, so it's 16 : 9), Python's `fractions.Fraction` (it divides by the GCD to keep fractions simplified), and RSA key generation, which uses an extended version of Euclid's algorithm to compute modular inverses.
 
 ### Python
 
@@ -1711,6 +1768,8 @@ print(lcm(12, 18), lcm_of_list([2, 3, 4, 5]), are_coprime(8, 15), are_coprime(8,
 
 ### Theory
 
+> **In simple words:** instead of testing every number one by one, **cross out the multiples** of each prime. Whatever is never crossed out must be prime.
+
 **Problem: find all the primes up to n.** Testing each number with `is_prime` costs up to √n rounds per number. For n = 10 million that's billions of rounds. The **Sieve of Eratosthenes** does it far faster by **crossing out** instead of testing:
 
 1. Write down all numbers from 2 to n, all marked "maybe prime". In code that's a list of booleans: `is_prime = [True] * (n + 1)` makes n + 1 boxes that all hold `True` (multiplying a list repeats it, just like `"*" * 3` repeats a string). Box `x` answers "is x prime?"; boxes 0 and 1 are set to `False`.
@@ -1732,6 +1791,8 @@ print(lcm(12, 18), lcm_of_list([2, 3, 4, 5]), are_coprime(8, 15), are_coprime(8,
 That takes about √n rounds.
 
 **What the factorisation gives you:** if n = p^a × q^b × …, then n has (a + 1) × (b + 1) × … divisors. For 360 = 2³ × 3² × 5¹: (3 + 1) × (2 + 1) × (1 + 1) = 24 divisors.
+
+**Used in real software:** sieves are used whenever you need **all** primes in a range (number theory research, precomputed tables in competitive programming). To test one **huge** number (hundreds of digits, for cryptographic keys), real libraries use fast probabilistic tests like Miller–Rabin instead, because a sieve that big wouldn't fit in memory.
 
 ### Python
 
@@ -1859,6 +1920,8 @@ print(distinct_prime_factors(360), largest_prime_factor(13195))
 
 ### Theory
 
+> **In simple words:** a few formulas and tricks that replace long loops with a handful of steps: add 1 … n in one line, compute giant powers by repeated squaring, and keep huge answers small with `%`.
+
 **1. Sums with a formula instead of a loop.** The young Gauss famously added 1 + 2 + … + 100 by pairing the ends: 1 + 100, 2 + 99, … gives 50 pairs of 101, so 5,050.
 
 | Sum | Formula | Example |
@@ -1892,6 +1955,12 @@ So you can take `% m` after **every** step and the numbers stay small. Division 
 Python's `pow(x, n, m)` computes xⁿ % m using fast power, and `math.factorial(n)` computes n!.
 
 **6. A classic puzzle: trailing zeros of n!** Each trailing zero comes from a factor 10 = 2 × 5, and there are always more 2s than 5s. So count the 5s: n // 5 + n // 25 + n // 125 + … For 100!, that's 20 + 4 = 24 zeros.
+
+**7. Counting: combinations (nCr).** "In how many ways can I choose r items from n, when order doesn't matter?" The answer is nCr = n! / (r! × (n − r)!). Choosing 2 of 4 friends: 4! / (2! × 2!) = 6. These are exactly the numbers in Pascal's triangle (Section [6](#6-pattern-printing-iii-number-and-letter-patterns)): row n, position r. Python has `math.comb(n, r)`.
+
+**Dividing under a modulo.** When a problem asks for nCr % (10⁹ + 7), you can't just divide, because `%` doesn't mix with `/`. Instead, multiply by the **modular inverse**: the number that "undoes" multiplication mod m. For a prime m, the inverse of a is a^(m−2) % m (this follows from Fermat's little theorem), and Python 3.8+ computes it directly with `pow(a, -1, m)`. So nCr % p = n! × inverse(r!) × inverse((n − r)!) % p, with the factorials precomputed once.
+
+**Used in real software:** **modular arithmetic** is everywhere: hash tables pick a slot with `hash % size`, round-robin load balancers send request i to server `i % n`, circular buffers wrap around with `%`, and cryptography does almost everything "mod m" with fast power (Python's `pow(x, e, m)`).
 
 ### Python
 
@@ -1932,6 +2001,30 @@ print(fibs)
 5050 5050 500000000500000000
 1 120 2432902008176640000
 [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
+```
+
+```python
+import math
+
+MOD = 1_000_000_007
+
+def ncr_mod(n, r, p=MOD):
+    fact = [1] * (n + 1)
+    for i in range(2, n + 1):
+        fact[i] = fact[i - 1] * i % p
+    return fact[n] * pow(fact[r], -1, p) % p * pow(fact[n - r], -1, p) % p   # multiply by inverses
+
+print(math.comb(4, 2), math.comb(52, 5), ncr_mod(52, 5))
+print(pow(3, -1, 7), 3 * pow(3, -1, 7) % 7)            # 5 is 3's inverse mod 7: 3 × 5 = 15 = 2 × 7 + 1
+print(ncr_mod(100_000, 50_000))
+```
+
+**Output:**
+
+```text
+6 2598960 2598960
+5 1
+149033233
 ```
 
 ```python
@@ -2040,6 +2133,8 @@ print(count_numbers_divisible(10, 30, 7), nth_tribonacci(6))
 
 ### Theory
 
+> **In simple words:** binary is counting with only two digits, 0 and 1. Each place is worth double the place to its right (1, 2, 4, 8, …), just as each decimal place is worth ten times more.
+
 **Decimal** (base 10) uses the digits 0–9, and each place is worth 10 times the place to its right: 507 = 5 × 100 + 0 × 10 + 7 × 1.
 
 **Binary** (base 2) uses only 0 and 1, and each place is worth **2 times** the place to its right: 1, 2, 4, 8, 16, 32, … So 1101 in binary is 1 × 8 + 1 × 4 + 0 × 2 + 1 × 1 = 13. Computers store everything in binary because a circuit is either off (0) or on (1). One binary digit is a **bit**, and 8 bits make a **byte** (values 0 to 255).
@@ -2062,6 +2157,8 @@ Repeat until n is 0, then read the remainders **backwards** (the first remainder
 - Python's built-ins: `bin(13)` is `"0b1101"`, `int("1101", 2)` is 13, and `hex(255)` is `"0xff"`.
 
 Section [51](#51-bit-manipulation) builds on this with **bitwise operators**, which work on all the bits of a number at once.
+
+**Used in real software:** IP addresses and **subnet masks** (`255.255.255.0` is 24 ones followed by 8 zeros), web **colours** in hexadecimal (`#FF8800`), Unix **file permissions** (`chmod 755` is the bits rwx r-x r-x), and every file, image and message on a computer, which is ultimately stored as bits.
 
 ### Python
 
@@ -2212,6 +2309,8 @@ You've now seen that the **same answer** can take n steps, √n steps, log n ste
 
 ### Theory
 
+> **In simple words:** Big-O answers one question: **if the input gets 10 times bigger, how much slower does my code get?** Not at all (O(1)), a little (O(log n)), 10 times (O(n)), or 100 times (O(n²))?
+
 In Part 2 you solved the same problem in very different amounts of work:
 
 | Problem | Slow method | Fast method |
@@ -2257,6 +2356,8 @@ That's why interview problems state the input size: with n up to 10⁵ or more, 
 **Space complexity** counts **extra memory** in the same way. A few variables are O(1); building a list of n items is O(n); the sieve's list of n + 1 booleans is O(n).
 
 **Best, worst and average case.** Searching a list for a value might find it at the first position (1 step) or the last (n steps). Big-O usually means the **worst case** unless you say otherwise.
+
+**Used in real software:** engineers use Big-O to predict whether a feature will survive growth: code that's fine with 1,000 users can collapse at 1,000,000 if it's O(n²). Real code also cares about **constant factors and memory access**: two O(n) solutions can differ 10× in speed because one reads memory in order (cache-friendly) and the other jumps around. So measure with a profiler (`python -m cProfile`) before optimising.
 
 ### Python
 
@@ -2348,6 +2449,8 @@ d)  total = n * (n + 1) // 2    e)  for i in range(n):          f)  d = 2
 
 ### Theory
 
+> **In simple words:** a recursive function solves a big problem by asking **itself** to solve a smaller copy of the same problem, until the problem is so small the answer is obvious.
+
 A **recursive** function is a function that **calls itself** on a **smaller version** of the same problem.
 
 **An everyday example:** you're in a long queue and want to know your position. You ask the person in front, "What's your position?" They ask the person in front of them, and so on, until the person at the very front says "1" because nobody is ahead of them. Then each answer travels back: "2", "3", …, and you add 1 to the answer you receive. That's recursion:
@@ -2374,6 +2477,8 @@ Code written **before** the recursive call runs on the way down; code written **
 - **Time** = (number of calls) × (work per call). `factorial(n)` makes n calls: O(n).
 - A function that calls itself **twice**, like the naive Fibonacci below, makes about 2ⁿ calls, and most of them repeat work already done. Section [49](#49-dynamic-programming) (dynamic programming) fixes that by remembering answers.
 - Anything recursive can be written with a loop, and the other way round. Recursion shines when a problem **branches** into several smaller problems of the same kind, which you'll meet with merge sort, trees and graphs later.
+
+**Used in real software:** anything **nested** is naturally recursive: folders inside folders (walking a file system), JSON and HTML documents (objects inside objects), comments with replies to replies, and the parsers inside compilers and browsers.
 
 ### Python
 
@@ -2542,6 +2647,8 @@ Asha
 
 ### Theory
 
+> **In simple words:** an array is a row of numbered lockers, side by side. Because they're side by side, you can walk straight to locker number i without opening the others.
+
 An **array** is the simplest data structure: a row of boxes **side by side in memory**, numbered from 0. Python's version is the **list**, which you've used since Section [2](#2-python-basics-values-variables-decisions-and-functions).
 
 **Why reading `a[i]` is instant (O(1)).** Because the boxes sit next to each other, the computer finds box i with one calculation, *start address + i × box size*, instead of walking along the row. That's the defining strength of arrays.
@@ -2582,6 +2689,8 @@ Read `[x * x for x in range(5)]` as "x × x, for each x in range(5)". An `if` at
 4. **Reverse parts of the list** to rotate it in place.
 
 Section [22](#22-two-pointers) turns techniques 2 and 3 into a general method.
+
+**Used in real software:** **NumPy** arrays and the tensors in machine-learning libraries are contiguous arrays (which is why they're so fast), images are 2D arrays of pixels, audio is a 1D array of samples, and CPU caches load neighbouring memory together, so looping through an array in order is far faster than jumping around (for example, following linked-list pointers).
 
 ### Python
 
@@ -2726,6 +2835,8 @@ The last line is the **transpose**: rows become columns.
 
 ### Theory
 
+> **In simple words:** a string is a row of characters, like a list you can read but not change. Every "change" builds a new string.
+
 A **string** (`str`) is a sequence of characters. Indexing, negative indexes, slicing, `len` and `for ch in s` all work exactly like lists (Section [15](#15-arrays-and-python-lists)): `"python"[0]` is `"p"`, `"python"[-1]` is `"n"`, and `"python"[1:4]` is `"yth"`.
 
 **The big difference: strings are immutable** (they can't be changed). `s[0] = "P"` is an error. Every "change" builds a **new** string instead: `s = "P" + s[1:]`.
@@ -2764,6 +2875,8 @@ A **string** (`str`) is a sequence of characters. Indexing, negative indexes, sl
 - **Counting** for anagrams and "which character appears most".
 - **Scanning runs** of equal characters, with a `while` loop that skips ahead.
 - **Shifting letters with `%`**: a Caesar cipher moves each letter k places and wraps z → a using `% 26`, exactly like the clock in Section [11](#11-maths-toolbox-series-factorials-fibonacci-powers-and-modulo).
+
+**Used in real software:** search boxes, text editors, log processing, and every web page. **Unicode** matters in modern apps: a Python `str` stores Unicode characters, so `len("naïve")` is 5 and emojis work; when text is saved or sent over a network it's encoded to bytes, almost always as **UTF-8** (`"é".encode()` gives 2 bytes).
 
 ### Python
 
@@ -2869,6 +2982,8 @@ caesar(caesar("hello", 3), -3)               # → "hello"
 
 ### Theory
 
+> **In simple words:** each basic sort grows a **sorted part** one item at a time: selection sort picks the smallest remaining item, bubble sort swaps neighbours, and insertion sort slides each new item into place, like sorting playing cards in your hand.
+
 **Sorting** puts items in order. It's one of the most useful steps in all of DSA, because sorted data is easier to work with:
 
 - You can **search** it in O(log n) with binary search (Section [18](#18-searching-linear-search-and-binary-search)).
@@ -2897,6 +3012,8 @@ The three basic sorts are all O(n²), too slow for big inputs, but they're the b
 - `key=` gives a function that picks **what to sort by**. `key=len` sorts words by length. For something custom, write a **lambda**, a tiny one-line function without a name: `lambda p: p[1]` means "given p, return p[1]".
 
 How O(n log n) is possible at all is the subject of Section [29](#29-merge-sort-and-quick-sort) (merge sort and quick sort), which needs recursion plus some techniques from Part 4.
+
+**Used in real software:** insertion sort is still used **inside** the fastest real sorts: Python's `sorted`, Java's object sort and Rust's sorts switch to insertion sort for short pieces (roughly under 32–64 items), where its simplicity beats fancier methods. Section [29](#29-merge-sort-and-quick-sort) covers what languages use in 2026.
 
 ### Python
 
@@ -3004,6 +3121,8 @@ sorted(people, key=lambda p: (-p[1], p[0]))    # → [("Asha", 31), ("Meera", 31
 
 ### Theory
 
+> **In simple words:** linear search checks items one by one. Binary search, on **sorted** data, checks the middle and throws away half every time, like finding a word in a dictionary by opening it in the middle.
+
 **Linear search** checks the items one by one until it finds the target: O(n). It works on **any** list, sorted or not, and it's what `x in a` and `a.index(x)` do.
 
 **Binary search** is the "guess the number" game. I think of a number from 1 to 100; you guess 50, and I say "higher". Now half the numbers are gone in one guess. Keep guessing the **middle** of what's left and you always win within **7 guesses**, because 100 → 50 → 25 → 13 → 7 → 4 → 2 → 1.
@@ -3026,6 +3145,8 @@ Every step halves the range, so it's **O(log n)**: at most about 20 steps for a 
 **The classic bugs:** an off-by-one in `lo`/`hi` updates, a loop that never ends because the range doesn't shrink (`lo = mid` instead of `lo = mid + 1`), and searching an unsorted list. Pick **one** template, learn it by heart, and always test it on a list of 1 and 2 items.
 
 Section [28](#28-binary-search-on-the-answer) shows binary search's most powerful use: searching for an **answer**, not an item.
+
+**Used in real software:** **`git bisect`** binary-searches your commit history to find the commit that introduced a bug; **database indexes** (B-trees, Section [56](#56-algorithms-behind-real-systems-consistent-hashing-rate-limiters-b-trees-lsm-trees-and-vector-search)) are a many-way binary search on disk; and Python's `bisect` module keeps lists sorted for fast lookups.
 
 ### Python
 
@@ -3120,6 +3241,8 @@ The last line counts the 2s in O(log n) without looking at each one.
 
 ### Theory
 
+> **In simple words:** a **hash function** turns a key (a word, a number) into a **locker number**. To find the key again you compute the same locker number and walk straight there, instead of opening every locker. That's why dict and set lookups are O(1) on average.
+
 **Start with a counting problem:** how often does each number 0–9 appear in a list? You already know the answer from Section [16](#16-strings): make a list of 10 counters and use the **number itself as the index**, `count[x] += 1`. Finding any number's count is then O(1).
 
 That trick breaks down when the "keys" aren't small numbers: counting words, or numbers up to 10¹⁸, would need an impossibly long list. A **hash table** fixes that. It turns **any** key into a list index with a **hash function** (a formula that turns a key into a number), `index = hash(key) % size`, and then works just like the counting list. Python gives you two hash tables:
@@ -3162,6 +3285,8 @@ Compare `x in some_list` (O(n): checks every item) with `x in some_set` (O(1)). 
 - **"Have I seen it?"** with a set: duplicates, repeated states, first repeated item.
 - **Complement lookup:** for each x, is `target - x` already seen? That gives Two Sum in O(n) instead of O(n²).
 - **Grouping** by a shared key: anagrams share the same sorted letters.
+
+**Used in real software:** Python's own `dict` and `set` (CPython uses a compact, insertion-ordered hash table with open addressing), caches like Redis and Memcached, database "hash joins" and hash indexes, and duplicate detection. Two things worth knowing: Python **randomises string hashes** each time it starts, so attackers can't craft keys that all collide and slow a server down (a "hash-flooding" attack); and the `hash()` used by tables is **not** a cryptographic hash. For passwords and signatures, systems use cryptographic hashes like SHA-256 or password hashes like Argon2 and bcrypt.
 
 ### Python
 
@@ -3261,6 +3386,8 @@ Counter("mississippi").most_common(2)                    # → [("i", 4), ("s", 
 
 ### Theory
 
+> **In simple words:** the same idea can be cheap or expensive depending on the structure you pick. Learn the price of each operation, and watch for single lines that secretly loop.
+
 You now know four Python structures: `list`, `str`, `dict` and `set`. The same job costs very different amounts depending on which one you use, and one innocent-looking line can hide a whole loop. Learn this table by heart:
 
 | Operation | list | str | dict / set |
@@ -3355,6 +3482,8 @@ Part 4 combines these tools into **techniques**, the reusable ideas behind most 
 
 ### Theory
 
+> **In simple words:** don't jump to code. Understand the problem, solve small examples by hand, write the simplest correct solution, and only then make it faster by removing repeated work.
+
 From here on, problems won't tell you which tool to use. This method works for almost all of them:
 
 1. **Understand:** restate the problem in your own words. Ask about the input size, the edge cases (empty input, one item, duplicates, negatives) and what exactly to return.
@@ -3376,7 +3505,9 @@ From here on, problems won't tell you which tool to use. This method works for a
 | n ≤ 10⁵ – 10⁶ | O(n log n) or O(n) | Sorting, hashing, one or two passes |
 | n up to 10⁹ or more | O(log n), O(√n) or O(1) | Binary search, maths (Part 2) |
 
-Section [55](#55-pattern-cheat-sheet-which-technique-when) has the full version of this table, once every technique has been covered.
+Section [59](#59-pattern-cheat-sheet-which-technique-when) has the full version of this table, once every technique has been covered.
+
+**Used in real software:** the same method is how engineers approach any new task: write a correct, simple version first (with tests), measure it, and optimise only the parts that are actually slow.
 
 ### Python
 
@@ -3421,15 +3552,41 @@ Then try the structured lists: [NeetCode practice](https://neetcode.io/practice)
 
 ### Theory
 
-You've already used two indexes at once: reversing a list from both ends, and the read/write indexes in Section [15](#15-arrays-and-python-lists). **Two pointers** makes that a general technique: two indexes walk through a sequence together, usually from **both ends inwards** or both **forwards at different speeds**. Each move discards possibilities for good, turning an O(n²) pair search into O(n).
+> **In simple words:** instead of checking every pair of items (slow), keep **two fingers** on the list and move them cleverly, so each step rules out many pairs at once.
 
-| Variant | Use it for |
-|---|---|
-| Opposite ends (L → ← R) on **sorted** data | Pair or triplet sums, container with most water, palindromes |
-| Same direction (slow/fast, read/write) | Remove duplicates in place, move zeroes, partitioning |
-| Two sequences | Merge two sorted lists, "is subsequence" |
+You've already used two indexes at once: reversing a list from both ends, and the read/write indexes in Section [15](#15-arrays-and-python-lists). **Two pointers** turns that into a general technique.
 
-**Why it's correct (opposite ends, sorted):** if `nums[L] + nums[R]` is too big, every pair using `R` with anything ≥ `L` is also too big, so `R` can be dropped.
+**Everyday picture.** Two friends look for two books whose prices add up to exactly ₹100 on a shelf sorted from cheapest to most expensive. One starts at the cheapest end, the other at the most expensive end. If the pair costs too much, the friend at the expensive end steps left (a cheaper book); if it costs too little, the friend at the cheap end steps right. They never need to go back.
+
+**The three shapes of two pointers:**
+
+| Shape | How the pointers move | Typical problems |
+|---|---|---|
+| **Opposite ends** (L → … ← R), usually on **sorted** data | Start at both ends and move inwards | Pair/triplet with a target sum, container with most water, palindromes |
+| **Same direction, different speeds** (slow/fast, read/write) | Both move right; one runs ahead | Remove duplicates in place, move zeroes, partitioning, cycle detection in linked lists |
+| **Two sequences**, one pointer each | Each pointer walks its own list | Merge two sorted lists, "is s a subsequence of t?" |
+
+**Worked example: pair with sum 10 in `[1, 2, 4, 6, 8, 11]`**
+
+| Step | L (value) | R (value) | Sum | Decision |
+|---|---|---|---|---|
+| 1 | 0 (1) | 5 (11) | 12 | Too big → move R left |
+| 2 | 0 (1) | 4 (8) | 9 | Too small → move L right |
+| 3 | 1 (2) | 4 (8) | 10 | Found: indexes (1, 4) |
+
+**Why is it correct?** In step 1 the sum 12 is too big. Pairing 11 with any other number would be even bigger (every other number is ≥ 1, the smallest), so 11 can never be part of the answer and we drop it for good. Every step removes one number permanently, so there are at most n steps: **O(n)** instead of the O(n²) of checking every pair.
+
+**3Sum** (three numbers summing to 0) fixes the first number with a loop and runs the pair search on the rest: O(n²), better than the O(n³) of three nested loops. To avoid duplicate triplets, skip a number when it equals the one before it.
+
+**When to use it (clues):** the input is sorted (or sorting it is allowed), you're looking for a pair or triplet, you need to work in place with O(1) extra memory, or you're comparing two sequences.
+
+**Common mistakes:**
+
+- ❌ Using opposite-end pointers on **unsorted** data: the "too big, move left" logic only works when the order is known.
+- ❌ `while lo <= hi` in pair problems, which pairs an item with itself. Use `lo < hi`.
+- ❌ Forgetting to skip duplicates in 3Sum, which produces the same triplet several times.
+
+**Used in real software:** the merge step of merge sort, and the "sort-merge join" that databases use to combine two sorted tables; removing duplicates from sorted logs; comparing two versions of a sorted list.
 
 ### Python
 
@@ -3491,17 +3648,46 @@ three_sum([-1, 0, 1, 2, -1, -4])         # → [[-1, -1, 2], [-1, 0, 1]]
 
 ### Theory
 
-A **sliding window** is a two-pointer technique: `left` and `right` mark a range `[left, right]` that moves across a sequence. Instead of recomputing each window from scratch, **update** the answer as elements enter on the right and leave on the left: O(n) instead of O(n·k).
+> **In simple words:** look at the data through a "window" that slides along it. When the window moves one step, **update** your answer (add what came in, remove what went out) instead of recounting everything inside it.
 
-- **Fixed size k:** add `nums[right]`, remove `nums[right - k]`.
-- **Variable size:** expand `right` every step; **shrink `left` while the window is invalid** (too big a sum, a repeated character…). Record the answer when the window is valid.
-- The window state is usually a running sum, or a dict (or `Counter`) of the characters inside the window. (For the maximum of each window, Section [34](#34-queues-and-deques) adds a special queue.)
+**Everyday picture.** A train passes, and you want the busiest group of 3 carriages. You don't recount all 3 carriages each time the view moves: you add the carriage that just appeared and subtract the one that just left.
 
-`float("inf")` (infinity) is a handy starting value for a "smallest so far" variable: any real number is smaller.
+A **subarray** (or **substring**, for strings) is an unbroken piece: `[5, 1, 3]` is a subarray of `[2, 1, 5, 1, 3, 2]`, but `[2, 5]` isn't. A sliding window is a two-pointer technique (Section [22](#22-two-pointers)): `left` and `right` mark the window `[left, right]`.
 
-A **subarray** (or **substring**, for strings) is an unbroken piece: `[5, 1, 3]` is a subarray of `[2, 1, 5, 1, 3, 2]`, but `[2, 5]` isn't.
+**Type 1: fixed-size window (size k).** Build the first window, then slide: add `nums[right]`, remove `nums[right - k]`.
 
-Clues: "subarray/substring", "contiguous" (meaning unbroken), "longest/shortest/max … such that …".
+Worked example, the best sum of 3 in a row in `[2, 1, 5, 1, 3, 2]`:
+
+| Window | Calculation | Sum |
+|---|---|---|
+| [2, 1, 5] | first window | 8 |
+| [1, 5, 1] | 8 + 1 − 2 | 7 |
+| [5, 1, 3] | 7 + 3 − 1 | **9** |
+| [1, 3, 2] | 9 + 2 − 5 | 6 |
+
+Each slide costs O(1), so the whole scan is O(n) instead of O(n × k).
+
+**Type 2: variable-size window.** The window grows and shrinks:
+
+1. **Expand:** move `right` one step and add the new item to the window's state.
+2. **Shrink:** while the window breaks the rule (the sum is too big, a character repeats, …), remove `nums[left]` and move `left` right.
+3. **Record:** when the window is valid, update the answer (longest, shortest, count).
+
+Both pointers only move forwards, so each item enters and leaves the window at most once: O(n) in total, even though there's a loop inside a loop.
+
+**What the window remembers ("state"):** a running sum, a dict (or `Counter`) of the characters inside it, or the last position where each character was seen. `float("inf")` (infinity) is a handy starting value for "the smallest so far": any real number is smaller. (For the **maximum** of each window, Section [34](#34-queues-and-deques) adds a special queue.)
+
+**When to use it (clues):** "subarray" or "substring", "contiguous" (meaning unbroken), "longest / shortest / maximum … such that …", "at most k distinct", "every window of size k".
+
+**When it doesn't work:** with **negative numbers**, adding an item can make a sum smaller, so "shrink while the sum is too big" stops making sense. Use prefix sums + a dict instead (Section [24](#24-prefix-sums)).
+
+**Common mistakes:**
+
+- ❌ Recomputing `sum(nums[left:right + 1])` inside the loop, which quietly brings back O(n × k).
+- ❌ Updating the answer before shrinking the window back to a valid state.
+- ❌ An off-by-one in the window length: it's `right - left + 1`.
+
+**Used in real software:** API **rate limiters** ("at most 100 requests in any 60 seconds"), moving averages on monitoring dashboards, TCP's sliding window for network flow control, and "trending in the last hour" counters.
 
 ### Python
 
@@ -3559,15 +3745,41 @@ min_len_subarray(7, [2, 3, 1, 2, 4, 3])      # → 2
 
 ### Theory
 
-A **prefix sum** array stores running totals: `P[0] = 0`, `P[i] = nums[0] + … + nums[i-1]`. Then **any range sum** is one subtraction:
+> **In simple words:** write down the **running total** once. Then the sum of any stretch is just "total up to the end minus total before the start": one subtraction, however long the stretch is.
+
+**Everyday picture.** A car's odometer shows the total distance driven so far. To know how far you drove between Monday and Friday, you don't add up every trip: you subtract Monday's reading from Friday's. A prefix-sum list is an odometer for your data.
+
+**How it works.** Build `P` with `P[0] = 0` and `P[i + 1] = P[i] + nums[i]`, so `P[i]` is the sum of the first i items. Then
 
 > sum(nums[i..j]) = P[j + 1] − P[i]
 
-- Build in O(n), answer each range query in O(1). Ideal when there are many queries on data that doesn't change.
-- **Prefix sum + a dict (hash map)** counts subarrays with sum k in O(n). A subarray ending at `j` sums to k when some earlier prefix equals `P[j+1] − k`. This works with negative numbers, where a sliding window fails.
-- **2D prefix sums** give any rectangle's sum in O(1) (image processing, grid queries).
-- The same idea works with products (careful with zeros), counts, and XOR (Section [51](#51-bit-manipulation)).
+Worked example with `nums = [3, 1, 4, 1, 5, 9]`:
+
+| i | 0 | 1 | 2 | 3 | 4 | 5 | 6 |
+|---|---|---|---|---|---|---|---|
+| `nums[i]` | 3 | 1 | 4 | 1 | 5 | 9 | |
+| `P[i]` (sum of the first i) | 0 | 3 | 4 | 8 | 9 | 14 | 23 |
+
+The sum of `nums[2..4]` = 4 + 1 + 5 = 10 = `P[5] − P[2]` = 14 − 4. ✓
+
+**Cost:** O(n) once to build, then O(1) per question. It's ideal when there are **many** range questions on data that **doesn't change**. (If values change between questions, see Section [53](#53-range-queries-with-updates-fenwick-trees-and-segment-trees).)
+
+**The big trick: prefix sums + a dict.** "How many subarrays sum to exactly k?" A subarray ending at position j sums to k exactly when some **earlier** running total equals `(running total now) − k`. So walk once, keep a dict counting how often each running total has appeared, and at each step add `seen[total - k]` to the answer. That's O(n), and unlike a sliding window it works with **negative numbers**. Start with `seen[0] = 1`, meaning "the empty prefix has total 0", so subarrays that start at index 0 are counted.
+
+**Variations:**
+
+- **2D prefix sums** give any rectangle's sum in O(1): `P[r][c]` = the sum of everything above and to the left.
+- The same idea works with counts (how many vowels in `s[i..j]`?), products (careful with zeros) and XOR (Section [51](#51-bit-manipulation)).
+- **Difference arrays** are the reverse trick: to add x to every item in a range many times, do `diff[l] += x`, `diff[r + 1] -= x`, and take one prefix sum at the end.
 - Shortcut: `itertools.accumulate(nums)` produces the running totals for you.
+
+**Common mistakes:**
+
+- ❌ An off-by-one between `P[j + 1] − P[i]` and `P[j] − P[i]`. Write the small table above and check once.
+- ❌ Forgetting `seen[0] = 1`, which misses subarrays that start at index 0.
+- ❌ Using a sliding window when the numbers can be negative.
+
+**Used in real software:** "integral images" in computer vision (the classic Viola–Jones face detector sums image rectangles in O(1) this way), cumulative metrics on analytics dashboards, and running totals in SQL window functions (`SUM(...) OVER (ORDER BY ...)`).
 
 ### Python
 
@@ -3619,6 +3831,8 @@ count_subarrays_with_sum([1, 2, 3, -2, 2], 3)  # → 4
 
 ### Theory
 
+> **In simple words:** these are famous one-pass tricks: each one keeps **one or two running values** (the best so far, a candidate, a few pointers) and updates them as it walks the array once.
+
 A handful of array problems come up in interviews so often that each has a well-known one-pass solution. Learn the **idea** behind each one, not just the code.
 
 **1. Maximum subarray sum (Kadane's algorithm).** Find the unbroken piece of the array with the largest sum. Brute force tries every subarray: O(n²). Kadane's insight: walk left to right keeping `best_here`, the best sum of a subarray that **ends at the current item**. For each new item x there are only two choices:
@@ -3643,6 +3857,8 @@ So `best_here = max(x, best_here + x)`, and the answer is the largest `best_here
 If there's no such `i`, the array is the last permutation, so reversing it all wraps around to the first.
 
 **6. Missing number in 0 … n.** The expected total is n(n + 1)/2 (Section [11](#11-maths-toolbox-series-factorials-fibonacci-powers-and-modulo)); subtract the actual sum.
+
+**Used in real software:** running maximums and minimums power trading and analytics dashboards (best buy/sell points, biggest gain over a period); majority voting is used in streaming "heavy hitters" detection; and three-way partitioning is inside real quick sort implementations to handle many equal values.
 
 ### Python
 
@@ -3751,6 +3967,8 @@ missing_number([3, 0, 1])                         # → 2
 
 ### Theory
 
+> **In simple words:** a matrix is a grid of rows and columns. Most grid problems are about **moving around it correctly**: which cells are neighbours, and how to walk it in a given order without going off the edge.
+
 A **matrix** (grid) is a list of rows: `grid[r][c]` is row `r`, column `c`, with `rows = len(grid)` and `cols = len(grid[0])` (Section [15](#15-arrays-and-python-lists) showed how to create one safely). Grids appear everywhere: images, game boards, maps, spreadsheets. Most grid problems reuse a few ideas.
 
 **1. Moving around a grid.** The 4 neighbours of `(r, c)` are up, down, left and right. Keep them in a **directions list** and check the bounds before using a neighbour:
@@ -3775,6 +3993,8 @@ Add `(-1, -1), (-1, 1), (1, -1), (1, 1)` for 8 directions (diagonals). Section [
 
 - **Every row sorted, and each row starts after the previous one ends:** it's really one sorted list of `rows × cols` items. Binary-search index `i` from 0 to `rows × cols − 1`, and turn it into a cell with `r = i // cols`, `c = i % cols` (the `//` and `%` from Section [2](#2-python-basics-values-variables-decisions-and-functions)). O(log(rows × cols)).
 - **Rows sorted and columns sorted separately:** start at the **top-right** corner. If the value is too big, move left (everything below is even bigger); if it's too small, move down. Each step removes a row or a column: O(rows + cols).
+
+**Used in real software:** images are matrices of pixels (rotating a photo is a matrix rotation), spreadsheets, game boards and maps, and the matrices of numbers inside every machine-learning model.
 
 ### Python
 
@@ -3888,6 +4108,8 @@ search_staircase(g, 5), search_staircase(g, 15)                        # → (Tr
 
 ### Theory
 
+> **In simple words:** an interval is a time slot (start, end). Sort the slots by start time, and then only **neighbouring** slots can overlap, so one pass from left to right handles them.
+
 An **interval** is a range `[start, end]`: a meeting from 9 to 11, a booking, a section of a road. Interval problems ask which ranges overlap, how to combine them, or how many overlap at once.
 
 **When do two intervals overlap?** `[a, b]` and `[c, d]` overlap exactly when **`a <= d and c <= b`** (each starts before the other ends). Read the problem carefully: are touching intervals like `[1, 3]` and `[3, 5]` overlapping? Usually yes for merging, and usually no for meetings (one ends as the next begins).
@@ -3900,6 +4122,8 @@ An **interval** is a range `[start, end]`: a meeting from 9 to 11, a booking, a 
 - **Intersection of two sorted lists of intervals:** two pointers. The overlap of two intervals is `[max(starts), min(ends)]` when that's non-empty; then move past whichever interval ends first.
 
 Choosing the most non-overlapping intervals is a greedy problem (sort by **end**), covered in Section [48](#48-greedy-algorithms).
+
+**Used in real software:** calendar apps finding free slots and double bookings, meeting-room and hotel booking systems, CPU and job scheduling, and genome analysis (overlapping DNA regions). Databases use **interval trees** for fast "what overlaps this range?" queries.
 
 ### Python
 
@@ -3992,6 +4216,8 @@ interval_intersection([[0, 2], [5, 10], [13, 23], [24, 25]], [[1, 5], [8, 12], [
 
 ### Theory
 
+> **In simple words:** if you can check "does this answer work?" and the checks go no, no, no, yes, yes, yes as the answer grows, then binary search finds the smallest answer that works, without trying them all.
+
 Section [18](#18-searching-linear-search-and-binary-search) searched a sorted list for an **item**. The same halving idea can search for an **answer**, which is binary search's most powerful use.
 
 It works whenever you can ask a **yes/no question about a candidate answer** whose replies look like this as the candidate grows:
@@ -4014,6 +4240,8 @@ Total cost: O(n × log(range)). Even a range of 10⁹ needs only about 30 checks
 **Clues in the problem:** "minimum speed/capacity/time such that…", "maximise the minimum…", "minimise the maximum…", or a huge answer range with a cheap way to *check* a candidate.
 
 **Rounding up division:** "hours to eat a pile of p at speed k" is p / k rounded **up**, which is `(p + k - 1) // k` in integers.
+
+**Used in real software:** capacity planning ("the fewest servers that handle the peak load"), finding the largest image quality that fits a size limit, and tuning thresholds. `git bisect` is the same idea over time: "is the bug present at this commit?" is no, no, …, yes, yes.
 
 ### Python
 
@@ -4073,6 +4301,8 @@ min_eating_speed([3, 6, 7, 11], 8)                         # → 4
 
 ### Theory
 
+> **In simple words:** both split the problem into halves. **Merge sort** splits the list, sorts each half, and zips the halves together. **Quick sort** picks a pivot, puts smaller items on its left and bigger on its right, and repeats on each side.
+
 The basic sorts from Section [17](#17-basic-sorting-selection-bubble-and-insertion-sort) are O(n²). **Merge sort** and **quick sort** reach **O(n log n)** with an idea called **divide and conquer**:
 
 1. **Divide** the problem into smaller pieces of the same kind.
@@ -4098,6 +4328,19 @@ The basic sorts from Section [17](#17-basic-sorting-selection-bubble-and-inserti
 - **Sorts that only compare items can't beat O(n log n)** in the worst case (a mathematical lower bound). Counting sort beats it by not comparing: it counts each value, like the counting list in Section [19](#19-hashing-dictionaries-and-sets), so it only works for small integer ranges.
 - Heap sort, another O(n log n) sort, appears with heaps in Section [39](#39-heaps-and-priority-queues).
 - **Python's `sorted()` / `list.sort()` use Timsort** (a merge/insertion hybrid). It's stable, O(n log n) worst case, and O(n) on already-sorted runs. In real code, always use it with `key=`; implement sorts yourself only to learn or when an interview asks.
+
+**What real languages use in 2026.** No production sort is a "pure" textbook algorithm: they're **hybrids** that combine a fast general method, insertion sort for small pieces, and special handling for data that's already partly sorted.
+
+| Language | Built-in sort | Notes |
+|---|---|---|
+| Python (`sorted`, `list.sort`) | An adaptive merge sort (Timsort); since CPython 3.11 it decides which runs to merge with the **Powersort** rule | Stable; O(n) on already-sorted data |
+| Java | Dual-pivot quick sort for primitive arrays; TimSort for objects | Objects need a stable sort |
+| C++ | `std::sort`: typically **introsort** (quick sort that falls back to heap sort if it recurses too deep, plus insertion sort for small pieces); `std::stable_sort`: merge sort | Guaranteed O(n log n) |
+| Go (1.19+) | **pdqsort** ("pattern-defeating quick sort") | Detects and avoids bad patterns |
+| Rust (1.81+, 2024) | **driftsort** (stable `sort`) and **ipnsort** (`sort_unstable`) | Newer designs tuned for modern CPUs |
+| JavaScript (V8, in Chrome and Node.js) | TimSort | `Array.prototype.sort` has been required to be stable since ES2019 |
+
+The lesson for interviews: know merge sort and quick sort deeply, and mention that real libraries are tuned hybrids of them. Section [57](#57-whats-new-recent-breakthroughs-and-modern-practice-20222026) describes how an AI system (DeepMind's AlphaDev) even found faster routines for sorting tiny arrays that were added to LLVM's C++ library in 2023.
 
 ### Python
 
@@ -4218,6 +4461,8 @@ So far every structure has been built into Python. Part 5 shows how to **build y
 
 ### Theory
 
+> **In simple words:** a class is a **blueprint** ("every student has a name and marks"), and an object is one **thing built from it** (Asha, with her marks). A node is a tiny object that holds a value and **arrows to other nodes**.
+
 Python gives you lists, strings, dicts and sets. The rest of DSA (linked lists, trees, graphs) uses structures Python **doesn't** have built in, so you build them yourself out of small pieces called **nodes**. That needs two ideas: **classes** and **references**.
 
 **1. Classes and objects.** A **class** is a blueprint; an **object** is one thing built from it. `class Student:` describes what every student has; `Student("Asha", [90, 85])` builds one particular student.
@@ -4241,6 +4486,8 @@ Python gives you lists, strings, dicts and sets. The rest of DSA (linked lists, 
 | Any number (a list of neighbours) | Graph: a network | Section [41](#41-graphs-representation-bfs-and-dfs) |
 
 **Walking a chain** is the most important loop in Part 5: start at the first node, and move with `current = current.next` until `current` is `None`.
+
+**Used in real software:** almost all modern software is organised into classes and objects: a web framework's `Request` and `User`, a game's `Player`, a GUI's `Button`. The node-and-reference idea is how browsers store web pages (the DOM tree), how databases link records, and how Python itself stores lists of objects (as references).
 
 ### Python
 
@@ -4359,6 +4606,8 @@ print(r.area(), r.perimeter(), walk(head), count_nodes(head))
 
 ### Theory
 
+> **In simple words:** a linked list is a **chain** of nodes: each node holds a value and an arrow to the next one. You can add or remove links anywhere without shifting everything, but to reach the 100th node you must follow 99 arrows.
+
 A **linked list** is the chain of nodes from Section [30](#30-classes-objects-and-nodes): each node holds a value and a reference to the **next** node, and the last node's `next` is `None`. The list is known by its first node, the **head**. (In a **doubly** linked list, each node also points back to the **previous** node.)
 
 **Linked list vs array (Python list):**
@@ -4386,6 +4635,8 @@ Linked lists win when you add and remove at the front (or at known places) a lot
 - **In-place reversal** with three variables `prev`, `curr` and `nxt`: turn each arrow around, one node at a time.
 - **Fast and slow pointers:** `slow` moves 1 step and `fast` moves 2. When `fast` reaches the end, `slow` is at the **middle**. If the list has a **cycle** (a loop back to an earlier node), `fast` eventually laps `slow` and they meet (Floyd's cycle detection).
 - **Merging two sorted lists:** repeatedly take the smaller head, like the merge step of merge sort.
+
+**Used in real software:** the Linux kernel uses doubly linked lists all over (processes, open files); LRU caches combine a linked list with a dict (Section [35](#35-design-problems-min-stack-queue-from-stacks-lru-cache)); memory allocators keep "free lists"; and undo histories are often linked. In everyday application code, though, arrays usually win: they're cache-friendly (Section [15](#15-arrays-and-python-lists)), so use Python lists unless you truly need O(1) inserts in the middle.
 
 ### Python
 
@@ -4511,6 +4762,8 @@ to_list(merge_sorted(build([1, 4, 6]), build([2, 3, 7])))   # → [1, 2, 3, 4, 6
 ![Removing the n-th node from the end with two pointers n apart](images/dsa/p5-ll-gap.svg)
 
 ### Theory
+
+> **In simple words:** almost every linked-list question is solved with the same four tools: a dummy node, fast and slow pointers, two pointers a fixed gap apart, and reversing links in place.
 
 Almost every linked list interview question combines four tools from Section [31](#31-linked-lists):
 
@@ -4680,15 +4933,47 @@ Nodes can be dict keys: each object is hashable by its identity.
 
 ### Theory
 
-A **stack** is **Last In, First Out** (LIFO), like a pile of plates: you add to the top and take from the top. `push`, `pop` and `peek` are O(1). In Python, a list used only at its end is a perfect stack (`append`, `pop`, `stack[-1]`).
+> **In simple words:** a stack is a pile. You can only add to the **top** and take from the **top**, so the last thing you put in is the first thing you get back: **Last In, First Out (LIFO)**.
 
-**When to reach for a stack:**
+**Everyday picture.** A pile of plates: you put a clean plate on top and take the top plate when you need one. You never pull a plate from the middle.
 
-- **Matching pairs:** brackets `([]{})`, opening and closing HTML tags.
-- **Evaluating expressions:** postfix notation like `3 4 + 2 *` (push numbers; an operator pops two, computes, and pushes the result).
-- **Monotonic stack:** keep the items in the stack in increasing (or decreasing) order to answer "what's the next greater/smaller element?" for every item in O(n) total. Each item is pushed and popped at most once. In the code below, the stack holds the positions still **waiting** for a bigger number; each new number pops (and answers) every smaller number waiting on top.
-- **Undo and back buttons:** each action is pushed; undo pops the latest one.
-- **Recursion** itself: the call stack from Section [14](#14-recursion-basics) is a stack, so any recursive algorithm can be rewritten with an explicit stack. Section [41](#41-graphs-representation-bfs-and-dfs) does this for depth-first search.
+**The operations (all O(1)):**
+
+| Operation | Meaning | Python (a list used only at its end) |
+|---|---|---|
+| push | Put an item on top | `stack.append(x)` |
+| pop | Remove and return the top item | `stack.pop()` |
+| peek / top | Look at the top without removing it | `stack[-1]` |
+| is empty? | Anything left? | `not stack` or `len(stack) == 0` |
+
+A plain Python list is a perfect stack as long as you only touch its end (Section [20](#20-pythons-cost-model-what-each-operation-costs)).
+
+**Why "last in, first out" is so useful:** whenever something must be **closed or finished in the reverse order it was opened**, a stack keeps track. Worked example, checking the brackets in `{[()]}`:
+
+| Read | Action | Stack afterwards |
+|---|---|---|
+| `{` | opening: push | `{` |
+| `[` | opening: push | `{ [` |
+| `(` | opening: push | `{ [ (` |
+| `)` | closing: top is `(`, a match → pop | `{ [` |
+| `]` | closing: top is `[`, a match → pop | `{` |
+| `}` | closing: top is `{`, a match → pop | *(empty)* |
+
+The stack is empty at the end, so the brackets are balanced. For `([)]`, the `)` arrives while the top is `[`: a mismatch, so it's invalid.
+
+**The monotonic stack** answers "for each item, what's the **next bigger** (or smaller) item to its right?" in O(n). The stack holds the positions still **waiting** for their answer, and their values decrease from bottom to top. When a new, bigger number arrives, it is the answer for every smaller number waiting on top, so pop and answer them all, then push the new one. Every item is pushed once and popped at most once: O(n) in total. The same idea solves "daily temperatures" (how many days until a warmer day?) and "largest rectangle in a histogram".
+
+**When to use a stack (clues):** matching pairs (brackets, HTML tags), "undo", evaluating expressions like `3 4 + 2 *` (postfix notation: push numbers; an operator pops two, computes, and pushes the result), "next greater/smaller element", and turning recursion into a loop.
+
+**Recursion is a stack.** The call stack from Section [14](#14-recursion-basics) is a real stack of waiting function calls, so any recursive algorithm can be rewritten with an explicit stack. Section [41](#41-graphs-representation-bfs-and-dfs) does this for depth-first search.
+
+**Common mistakes:**
+
+- ❌ Calling `stack.pop()` or `stack[-1]` on an empty stack (`IndexError`). Check `if stack` first.
+- ❌ Forgetting to check that the stack is empty **at the end** (for `((`, every character was fine, but nothing was closed).
+- ❌ Using `list.pop(0)`: that's a queue operation, and slow (Section [34](#34-queues-and-deques)).
+
+**Used in real software:** the **undo** history in editors, the browser's **back** button, the function **call stack** in every programming language, and compilers checking and parsing nested code.
 
 ### Python
 
@@ -4744,13 +5029,41 @@ next_greater([2, 1, 5, 3, 6])                        # → [5, 5, 6, 6, -1]
 
 ### Theory
 
-A **queue** is **First In, First Out** (FIFO): add at the back, remove from the front, like a line at a ticket counter. A **deque** (double-ended queue) adds and removes at **both** ends in O(1).
+> **In simple words:** a queue is a line of people. New people join at the **back**, and the person at the **front** is served first: **First In, First Out (FIFO)**.
 
-- Use `collections.deque` (`from collections import deque`): `append` and `popleft` are both O(1). **Never** use `list.pop(0)` as a queue: it shifts every element (Section [20](#20-pythons-cost-model-what-each-operation-costs)).
-- A deque also has `appendleft` and `pop`, so it works as a stack too. It can't be indexed quickly in the middle (O(n)); use a list for that.
-- Queues power task scheduling, printer queues, rate limiters and buffers, and later **breadth-first search** (level-by-level exploration of trees and graphs, Sections [36](#36-binary-trees-and-traversals) and [41](#41-graphs-representation-bfs-and-dfs)).
-- A **monotonic deque** is the queue version of Section [33](#33-stacks)'s monotonic stack: it keeps a sliding window's (Section [23](#23-sliding-window)) maximum at the front, giving O(n) for "max of every window".
-- `queue.Queue` is the thread-safe version for producer/consumer code, not for algorithms.
+**Everyday picture.** The line at a ticket counter. Nobody skips ahead, and nobody leaves from the middle. A **deque** ("deck", a double-ended queue) is a line where people may join or leave at **both** ends.
+
+**The operations:**
+
+| Operation | Meaning | Python `collections.deque` | Cost |
+|---|---|---|---|
+| enqueue | Join at the back | `q.append(x)` | O(1) |
+| dequeue | Leave from the front | `q.popleft()` | O(1) |
+| front / back | Look at either end | `q[0]`, `q[-1]` | O(1) |
+| Add/remove at the other ends | Deque only | `q.appendleft(x)`, `q.pop()` | O(1) |
+| Index the middle | Rarely needed | `q[i]` | O(n) |
+
+Get it with `from collections import deque`. **Never** use `list.pop(0)` as a queue: it shifts every remaining element one place left, which is O(n) per operation (Section [20](#20-pythons-cost-model-what-each-operation-costs)). A deque stores its items in linked blocks, so both ends are O(1).
+
+**Worked example: counting recent requests.** "How many requests arrived in the last 3,000 ms?" Keep the request times in a queue. When a new request arrives at time t, add it at the back, then remove from the front every time older than `t − 3000`. The queue then holds exactly the recent requests, and its length is the answer. Every request is added once and removed once: O(1) amortised per request.
+
+**The monotonic deque** keeps the **maximum of a sliding window** (Section [23](#23-sliding-window)) at its front, in O(n) for the whole array. It's the queue version of the monotonic stack from Section [33](#33-stacks):
+
+1. Before adding a new number, pop every **smaller** number from the back. They can never be a window's maximum again, because the new number is bigger **and** will stay in the window longer.
+2. Pop the front if it has slid out of the window.
+3. The front is now the window's maximum.
+
+**When to use a queue (clues):** "process in arrival order", "level by level", "shortest number of steps", buffering data between a fast producer and a slow consumer. Queues power **breadth-first search** (BFS) on trees and graphs (Sections [36](#36-binary-trees-and-traversals) and [41](#41-graphs-representation-bfs-and-dfs)).
+
+`queue.Queue` is a different, thread-safe queue for programs running several threads at once. For algorithms, use `deque`.
+
+**Common mistakes:**
+
+- ❌ `list.pop(0)` in a loop, which turns an O(n) algorithm into O(n²).
+- ❌ Reading `q[0]` without checking that the queue isn't empty.
+- ❌ Using a plain stack where arrival order matters.
+
+**Used in real software:** printer queues, task queues in web back ends (Celery, RQ), message brokers (RabbitMQ, Amazon SQS), operating-system schedulers that give each program a turn, network routers buffering packets, and web crawlers visiting pages level by level.
 
 ### Python
 
@@ -4809,6 +5122,8 @@ window_max([1, 3, -1, -3, 5, 3, 6, 7], 3)    # → [3, 3, 5, 5, 6, 7]
 
 ### Theory
 
+> **In simple words:** no single structure is good at everything, so you **combine** two or three structures, each doing the job it's best at, and keep them in sync.
+
 In a **design** question you're asked to build a class with certain operations, each within a target cost: "design a cache where `get` and `put` are O(1)". No single structure does everything, so you **combine** structures, each covering the operation it's good at.
 
 **The method:**
@@ -4826,6 +5141,8 @@ In a **design** question you're asked to build a class with certain operations, 
   - a **doubly linked list** keeps the nodes in order of use, most recent at the front. Any node can be unlinked and moved to the front in O(1), because it knows both neighbours. The least recently used node is always at the back.
   - Python's `collections.OrderedDict` is exactly this combination built in: `move_to_end(key)` marks a key as recent, and `popitem(last=False)` removes the oldest.
 - **Insert, delete and get-random, all O(1):** keep the values in a **list** (so a random index is O(1)) and a **dict** from value to its index. To delete, move the **last** value into the deleted slot, update its index, and pop the end. Removing from the middle of a list would be O(n).
+
+**Used in real software:** Python's `functools.lru_cache` (an LRU cache on a function), Redis's eviction policies (it uses an approximate LRU based on sampling, to save memory), browser and CDN caches, and CPU caches. Design questions are also a stepping stone to **system design** interviews.
 
 ### Python
 
@@ -5024,17 +5341,46 @@ Part 6 gives nodes **two** links instead of one, which turns a chain into a tree
 
 ### Theory
 
-A **tree** is a hierarchy of nodes, like a family tree or the folders on your computer. It's built from the nodes of Section [30](#30-classes-objects-and-nodes), but each node can point to **several** children, and there are no loops. In a **binary tree** each node has at most **two** children, `left` and `right` (either can be `None`).
+> **In simple words:** a tree is a family tree of data. One node at the top (the **root**) has children, they have children, and so on. In a **binary** tree, every node has **at most two** children: a left one and a right one.
 
-- **Terms:** root, parent/child, leaf (no children), **depth** (edges from the root), **height** (longest path down to a leaf), subtree.
-- A tree with n nodes has n − 1 edges. A **balanced** tree has height O(log n); a skewed one has height O(n).
-- **Traversal** means visiting every node once. Trees are naturally recursive (every child is the root of a smaller tree), so the traversals are short recursive functions.
-- **Depth-first (DFS) traversals** go all the way down one branch before the next (recursion, or an explicit stack):
-  - **pre-order** (node, left, right): copying a tree, serialising it;
-  - **in-order** (left, node, right): sorted order in a BST;
-  - **post-order** (left, right, node): deleting a tree, computing heights and sizes bottom-up.
-- **Breadth-first (BFS) / level order** visits the tree level by level with a queue (Section [34](#34-queues-and-deques)): level averages, the right-side view, the closest node to the root.
-- Most tree problems are "solve for the left subtree, solve for the right, combine": O(n) time, O(h) stack space.
+It's built from the nodes of Section [30](#30-classes-objects-and-nodes), except that each node has **two** links (`left` and `right`, either of which can be `None`), and nothing ever loops back up.
+
+**Everyday pictures:** the folders on your computer (folders inside folders), a company's org chart, a tournament bracket.
+
+**Words you need:**
+
+| Word | Meaning |
+|---|---|
+| Root | The top node (no parent) |
+| Parent / child | A node and the nodes directly below it |
+| Leaf | A node with **no** children |
+| Subtree | A node together with everything below it; it's a tree too |
+| Depth of a node | How many edges it is from the root (the root has depth 0) |
+| Height of a tree | The number of levels on the longest path from the root down to a leaf |
+| Balanced | Left and right sides have about the same height everywhere, so the height is about log₂ n |
+
+A tree with n nodes has exactly n − 1 edges (every node except the root has one edge up to its parent). A **balanced** tree of a million nodes is only about 20 levels tall; a badly **skewed** one (every node with one child) is a million levels tall, just like a linked list.
+
+**Traversal** means visiting every node once. Because every child is the root of a smaller tree, the traversals are tiny recursive functions (Section [14](#14-recursion-basics)). For the tree in the code below (1 at the root; 2 and 3 below it; 4 and 5 under 2; 6 under 3):
+
+| Traversal | Order | Result | Used for |
+|---|---|---|---|
+| **Pre-order** | node, then left, then right | 1 2 4 5 3 6 | Copying or saving a tree (the parent comes first) |
+| **In-order** | left, then node, then right | 4 2 5 1 3 6 | Sorted order in a BST (Section [38](#38-binary-search-trees)) |
+| **Post-order** | left, then right, then node | 4 5 2 6 3 1 | Deleting a tree, or computing sizes and heights from the bottom up |
+| **Level order (BFS)** | level by level, left to right | 1 · 2 3 · 4 5 6 | The closest nodes first, level averages, the "right side view" |
+
+The first three are **depth-first (DFS)**: they go all the way down one branch before trying the next. Level order is **breadth-first (BFS)**: it uses a queue (Section [34](#34-queues-and-deques)), and processing `len(q)` nodes at a time handles exactly one level per round.
+
+**The pattern behind most tree problems:** "solve the left subtree, solve the right subtree, combine the two answers at this node". The height, for example, is `1 + max(height(left), height(right))`. Each node is visited once, so it's O(n) time, and the recursion uses O(h) stack space, where h is the height.
+
+**Common mistakes:**
+
+- ❌ Forgetting the base case `if node is None`, which crashes on leaves' missing children.
+- ❌ Confusing depth (from the top) with height (to the bottom).
+- ❌ Deep recursion on a very skewed tree (Python's ~1,000-level limit). Use an explicit stack or queue for trees that might be 10⁵ levels deep.
+
+**Used in real software:** file systems, the HTML page structure in every browser (the DOM tree), JSON and XML documents, the syntax trees compilers build from code, and decision trees in machine learning.
 
 ### Python
 
@@ -5110,6 +5456,8 @@ height(root)                                      # → 3
 
 ### Theory
 
+> **In simple words:** most tree problems are "ask the left subtree, ask the right subtree, combine the two answers at this node". Decide whether information travels **down** the tree (as parameters) or **up** (as return values).
+
 Tree questions are among the most asked at top companies, and almost all of them are solved by one of **two recursive templates**:
 
 | Template | Information flows | Write it as | Examples |
@@ -5129,6 +5477,8 @@ Tree questions are among the most asked at top companies, and almost all of them
 - **Serialize / deserialize:** write a pre-order traversal with a marker (`#`) for empty children; reading the values back in the same order rebuilds the same tree.
 
 **Test input format.** LeetCode writes trees as a level-order list with `None` for missing children: `[3, 9, 20, None, None, 15, 7]`. The `build_tree` helper below turns that into nodes, so you can test your solutions locally.
+
+**Used in real software:** the same patterns run on real trees: a browser computing the size of every element on a page (bottom-up), a file manager calculating folder sizes (bottom-up), permission checks that inherit settings from parent folders (top-down), and "nearest common manager" in an org chart (lowest common ancestor).
 
 ### Python
 
@@ -5331,12 +5681,41 @@ s, level_values(deserialize(s))                     # → ("3,9,#,#,20,15,#,#,7,
 
 ### Theory
 
-A **binary search tree (BST)** is a binary tree that works like binary search (Section [18](#18-searching-linear-search-and-binary-search)) built into its shape. It keeps an ordering rule at **every** node: everything in the left subtree is smaller, and everything in the right subtree is larger. So:
+> **In simple words:** a binary search tree is a binary tree that keeps its values **in order**: smaller values always go left, bigger values always go right. So finding a value is like binary search, one step down the tree at a time.
 
-- Search, insert and delete follow **one root-to-leaf path**: O(h), which is O(log n) when balanced.
-- An **in-order traversal returns the values sorted**. That's the key to "k-th smallest" and "validate BST" problems.
-- Inserting already-sorted data creates a **skewed** tree (a linked list), O(n) per operation. **Self-balancing** trees (AVL, red-black) keep h = O(log n); they're used by Java's `TreeMap` and C++'s `std::map`. Python's standard library has none: use `bisect` on a sorted list, or the `sortedcontainers` package.
-- **Validating** needs the full valid range (low, high) passed down, not just a comparison with the direct children.
+**Everyday picture.** A "higher or lower" guessing game frozen into a shape. At each node you ask "is my value smaller or bigger than this?" and go left or right, discarding the whole other side.
+
+**The rule (at EVERY node, not just between parent and child):** every value in the **left subtree** is smaller than the node, and every value in the **right subtree** is bigger. (It's binary search from Section [18](#18-searching-linear-search-and-binary-search), built into the tree's shape.)
+
+**Worked example: inserting 8, 3, 10, 1, 6, 14, 4, 7, 13 in that order.** 8 becomes the root. 3 < 8 goes left. 10 > 8 goes right. 1 < 8, then 1 < 3: left of 3. 6 < 8, then 6 > 3: right of 3. And so on. To **search** for 7: 7 < 8 → left; 7 > 3 → right; 7 > 6 → right; found. Only 4 nodes were checked, not 9.
+
+**What a BST gives you:**
+
+- Search, insert and delete follow **one path from the root down**: O(h), where h is the height. That's O(log n) when the tree is balanced.
+- An **in-order traversal visits the values in sorted order** (left, node, right). That's the key to "k-th smallest", "validate BST" and "closest value" problems.
+- Min and max are the leftmost and rightmost nodes.
+
+**The danger: unbalanced trees.** Inserting already-sorted data (1, 2, 3, 4, …) makes every node a right child: a "tree" that's really a linked list, with O(n) operations. **Self-balancing** BSTs (AVL trees, red-black trees) rotate nodes after inserts and deletes to keep the height O(log n). You're rarely asked to code them, but you should know they exist and why.
+
+**Validating a BST is a classic trap.** Checking only that `left.val < node.val < right.val` isn't enough: a small value can hide deep in a right subtree. Pass the allowed **range** `(low, high)` down the tree (top-down, Section [37](#37-binary-tree-interview-problems)) and narrow it at each step.
+
+**BST or something else?**
+
+| You need | Use |
+|---|---|
+| Only "is x present?" | A set (O(1) average, Section [19](#19-hashing-dictionaries-and-sets)) |
+| Sorted order, "next bigger than x", ranges, **with** inserts and deletes | A balanced BST |
+| Sorted data that rarely changes | A sorted list + `bisect` (Section [18](#18-searching-linear-search-and-binary-search)) |
+
+Python has no built-in balanced BST. In real code, use a sorted list with `bisect`, or the popular `sortedcontainers` package (`SortedList`).
+
+**Common mistakes:**
+
+- ❌ Validating with only a node's direct children (see above).
+- ❌ Assuming O(log n) without balancing: sorted input makes it O(n).
+- ❌ Forgetting what to do with duplicates. Decide on a side (the code below sends them right).
+
+**Used in real software:** Java's `TreeMap` and C++'s `std::map` are red-black trees; the Linux kernel's process scheduler keeps tasks in a red-black tree; and databases use a wider cousin, the **B-tree** (Section [56](#56-algorithms-behind-real-systems-consistent-hashing-rate-limiters-b-trees-lsm-trees-and-vector-search)), for their indexes.
 
 ### Python
 
@@ -5407,21 +5786,45 @@ is_valid(bad)                                   # → False
 
 ### Theory
 
-A **priority queue** is a queue where the item that leaves next is the one with the **highest priority** (the smallest number, say), not the one that arrived first: hospital emergency rooms, task schedulers, "top 10" lists.
+> **In simple words:** a heap is a structure that always knows its **smallest** item (or largest) and hands it to you instantly, while staying cheap to add to. It's how you build a **priority queue**: a line where the most urgent item goes first, not the one that arrived first.
 
-The usual way to build one is a **binary heap**: a binary tree that is **complete** (every level full except possibly the last, which fills from the left) where every parent is ≤ its children (a **min-heap**). The minimum is always at the root, and the whole tree lives in a plain list: the children of `i` are at `2i+1` and `2i+2`, and its parent is at `(i-1)//2`.
+**Everyday picture.** A hospital emergency room. Patients don't leave in arrival order; the most urgent case is always treated next, and new patients can arrive at any time.
+
+**How it works.** A binary heap is a binary tree with two rules:
+
+1. **Shape:** it's **complete**, meaning every level is full except possibly the last, which fills from the left. So its height is always about log₂ n.
+2. **Order (min-heap):** every parent is ≤ its children. So the smallest item is always at the root.
+
+Because the shape is so regular, the tree lives in a **plain list** with no node objects at all: the children of index i are at 2i + 1 and 2i + 2, and its parent is at (i − 1) // 2.
+
+- **Push:** put the new item at the end of the list, then **sift it up**, swapping with its parent while it's smaller. That's at most log n swaps.
+- **Pop the minimum:** take the root, move the last item to the root, then **sift it down**, swapping with its smaller child while it's bigger. Also O(log n).
+- **Heapify** (turning a whole list into a heap) is O(n), faster than n pushes.
 
 | Operation | Cost |
 |---|---|
-| Peek min `h[0]` | O(1) |
-| Push / pop | O(log n) (sift up / sift down) |
+| Peek at the min, `h[0]` | O(1) |
+| Push / pop | O(log n) |
 | Build from a list (`heapify`) | O(n) |
+| Search for any value | O(n) (a heap is **not** sorted, only "roughly ordered") |
 
-- Python's `heapq` module (`import heapq`) turns a plain list into a **min-heap**: `heapq.heappush(h, x)`, `heapq.heappop(h)` (removes and returns the smallest), `heapq.heapify(lst)` (rearranges a list into a heap in O(n)), and `h[0]` to peek. For a max-heap, push negated values (`-x`) or tuples like `(-priority, item)`.
-- **Top-k pattern:** keep a heap of size k. The k largest of n items cost O(n log k), better than sorting when k ≪ n.
-- **Heap sort:** heapify, then pop n times: O(n log n), in place, not stable (it completes the table in Section [29](#29-merge-sort-and-quick-sort)).
-- **Merge k sorted lists**, the **running median** (two heaps) and schedulers are heap problems, and Section [43](#43-shortest-paths-dijkstra) uses a heap for shortest paths.
-- Tuples compare element by element. Add a tie-breaker counter so items that aren't comparable never get compared: `(priority, counter, item)`.
+**In Python:** the `heapq` module (`import heapq`) works on a plain list as a **min-heap**: `heapq.heappush(h, x)`, `heapq.heappop(h)`, `heapq.heapify(lst)`, and `h[0]` to peek. For a **max-heap**, push negated numbers (`-x`) or tuples like `(-priority, item)`. (Python 3.14 added built-in max-heap functions such as `heapq.heappush_max` and `heapq.heappop_max`; the negation trick works on every version.)
+
+**Patterns:**
+
+- **Top k:** keep a heap of size k. For the k largest of n items, push each item and pop whenever the heap grows past k: O(n log k), better than sorting when k is much smaller than n.
+- **Merge k sorted lists:** keep one item from each list in a heap and repeatedly take the smallest.
+- **Running median:** two heaps (shown in the code below).
+- **Heap sort:** heapify, then pop n times: O(n log n) and in place, but not stable (it completes the table in Section [29](#29-merge-sort-and-quick-sort)).
+- **Tie-breaking:** tuples compare item by item, so `(priority, counter, item)` makes sure two items with the same priority never compare the items themselves (which may not be comparable).
+
+**Common mistakes:**
+
+- ❌ Expecting `h` to be sorted. Only `h[0]` is guaranteed; `h[1]` is not necessarily the second smallest.
+- ❌ Forgetting to negate **both** when pushing and when popping in a max-heap.
+- ❌ Sorting the whole list when you only need the top k.
+
+**Used in real software:** Python's `asyncio` event loop keeps scheduled callbacks in a heap (next deadline first), timers in language runtimes, "top 10" and trending lists, Dijkstra's shortest paths in route planners (Section [43](#43-shortest-paths-dijkstra)), and job schedulers that run the most urgent job first.
 
 ### Python
 
@@ -5506,13 +5909,35 @@ medians                                         # → [5, 10.0, 5, 4.0, 5]
 
 ### Theory
 
-A **trie** stores strings character by character along paths from the root, so words with the same prefix **share** nodes. Each node has children (one per next character) and an **end-of-word** flag.
+> **In simple words:** a trie stores words letter by letter, like a tree of letters. Words that start the same way **share the same path**, so "all words starting with `ca`" is just "walk down c → a and list everything below".
 
-- Insert and search cost **O(L)**, where L is the word length, however many words are stored.
-- `starts_with(prefix)` is also O(L). This is what hash sets can't do efficiently.
-- Uses: autocomplete, spell-checkers, word games (Boggle / "word search II"), IP routing (longest prefix match).
-- Memory-heavy: one node per character. Use a dict of children (flexible) or a list of 26 (fast, lowercase only).
-- The code stores each node as a plain dict mapping a character to the child node. `node.setdefault(ch, {})` returns the child for `ch`, creating an empty one first if it doesn't exist. The special key `"$"` marks "a word ends here".
+**Everyday picture.** The phone's autocomplete. You type `c`, `a`, and it instantly offers "car", "cart", "cat". It doesn't scan every word it knows; it walks down the letters you've typed and lists what's below that point.
+
+**How it works:**
+
+- Each node has **children**, one for each possible next letter, and an **end-of-word** flag.
+- The root represents the empty string. The path root → c → a → t spells "cat", and the node for `t` is marked "a word ends here".
+- **Insert** a word: walk its letters from the root, creating missing child nodes, and mark the last node.
+- **Search** a word: walk its letters; it's present only if every letter exists **and** the last node is marked. ("ca" walks fine, but isn't marked, so it isn't a word.)
+- **starts_with(prefix):** walk the letters; if the walk succeeds, some word has this prefix.
+
+Worked example: after inserting "cat", "car", "cart" and "dog", the root has two children, `c` and `d`. The `c` → `a` path is shared by three words, and it splits into `t` (a word end) and `r` (a word end, which continues to `t`, another word end).
+
+**Cost:** insert, search and starts_with are all **O(L)**, where L is the length of the word. That doesn't depend on how many words are stored, whether ten or ten million.
+
+**Trie or set?** A set answers "is this exact word present?" in O(L) too, but it can't answer "which words start with `ca`?" without checking every word. Prefix questions are what tries are for.
+
+**In code:** each node can be a dict from a character to the child node (flexible, any alphabet) or a list of 26 children (faster, lowercase only). The code below uses nested dicts: `node.setdefault(ch, {})` returns the child for `ch`, creating an empty one first if it doesn't exist, and the special key `"$"` marks "a word ends here".
+
+**Cost warning:** a trie uses a lot of memory (one node per character). **Radix trees** (compressed tries) save space by merging chains of single-child nodes into one edge labelled with several letters.
+
+**Common mistakes:**
+
+- ❌ Treating a prefix as a word (forgetting the end-of-word marker).
+- ❌ Scanning all words for prefix queries when a trie would do it in O(prefix length).
+- ❌ Using a trie for exact lookups only, where a set is simpler.
+
+**Used in real software:** autocomplete and search suggestions, spell checkers, word games, and **IP routing** (routers find the longest matching address prefix with trie-like structures). Radix trees also appear inside real systems: Redis streams, for example, are built on one.
 
 ### Python
 
@@ -5601,19 +6026,47 @@ Part 7 removes the last restriction: nodes can link to **any** other nodes, even
 
 ### Theory
 
-A **graph** is the most general node structure: a set of **vertices** (nodes) connected by **edges** (links), with no rules about who links to whom. Maps (places and roads), social networks (people and friendships) and the web (pages and links) are all graphs. Edges can be **directed** (one-way: follows, prerequisites) or **undirected** (two-way: friendships, roads), and **weighted** (distance, cost) or unweighted. Trees are graphs without cycles; grids are graphs where each cell connects to its neighbours.
+> **In simple words:** a graph is a set of **dots** (vertices) joined by **lines** (edges). Anything made of "things and connections between them" is a graph: cities and roads, people and friendships, web pages and links.
 
-| Representation | Space | Check edge u–v | List neighbours | Use when |
-|---|---|---|---|---|
-| **Adjacency list** (`dict[node, list]`) | O(V + E) | O(degree) | O(degree) | Almost always (sparse graphs) |
-| Adjacency matrix | O(V²) | O(1) | O(V) | Dense graphs, small V |
-| Edge list | O(E) | O(E) | O(E) | The usual input format |
+It's the most general node structure: a linked list allows one link per node, a tree two (or more) links but no loops, and a graph has **no rules at all**. Trees are graphs without cycles; grids are graphs where each cell connects to its neighbours.
 
-V is the number of vertices and E the number of edges. **Traversals** visit every reachable node once, in O(V + E), with a **visited** set so cycles don't cause infinite loops:
+**Kinds of graphs:**
 
-- **BFS** (a queue) explores level by level, so it finds the **shortest path in unweighted graphs** (and grids).
-- **DFS** (recursion or a stack) goes deep first. Use it for connectivity, counting separate groups ("islands"), cycle detection and topological sort (Section [44](#44-topological-sort)). It's the recursion from Section [14](#14-recursion-basics); with an explicit stack (Section [33](#33-stacks)) it avoids Python's recursion limit.
-- **Grid problems:** neighbours are the 4 directions `(±1, 0), (0, ±1)`; mark cells visited as you go.
+| Kind | Meaning | Example |
+|---|---|---|
+| **Undirected** | Edges work both ways | Friendships, two-way roads |
+| **Directed** | Edges are one-way arrows | "Follows" on social media, course prerequisites, one-way streets |
+| **Weighted** | Each edge has a number (cost, distance, time) | Road distances |
+| **Unweighted** | Every edge counts as 1 | "Minimum number of moves" |
+| **Cyclic / acyclic** | Has loops / has none | A directed acyclic graph (**DAG**) models dependencies |
+
+**Storing a graph.** V is the number of vertices, E the number of edges.
+
+| Representation | What it is | Space | "Are u and v connected?" | "List u's neighbours" | Use when |
+|---|---|---|---|---|---|
+| **Adjacency list** | `graph[u]` = list of u's neighbours (a dict or a list of lists) | O(V + E) | O(degree) | O(degree) | Almost always |
+| Adjacency matrix | `m[u][v]` = 1 if connected | O(V²) | O(1) | O(V) | Small, dense graphs |
+| Edge list | A list of `(u, v)` pairs | O(E) | O(E) | O(E) | The usual input format; convert it first |
+
+For an undirected edge, add it **both** ways: `graph[a].append(b)` and `graph[b].append(a)`.
+
+**Exploring a graph: BFS and DFS.** Both visit every reachable vertex once, in **O(V + E)**. Both need a **visited** set, because unlike trees, graphs can have cycles, and without it you'd walk in circles forever.
+
+- **BFS (breadth-first search)** explores in **rings**: first the start, then all its neighbours, then their neighbours… It uses a queue (Section [34](#34-queues-and-deques)). Because it reaches everything at distance 1 before distance 2, the first time BFS reaches a node is along a **shortest path** (in edges). Mark nodes visited when you **add** them to the queue, not when you remove them, or a node can be queued many times.
+- **DFS (depth-first search)** goes as **deep** as it can down one path, then backs up and tries the next. It's recursion (Section [14](#14-recursion-basics)), or an explicit stack (Section [33](#33-stacks)) to avoid Python's recursion limit. It's the natural choice for "is there a path?", counting separate groups, cycles and topological sort (Section [44](#44-topological-sort)).
+
+Worked example, BFS from 0 in the graph built below (edges 0–1, 0–2, 1–3, 2–3, 2–4, 3–5, 4–5): distance 0: {0}; distance 1: {1, 2}; distance 2: {3, 4}; distance 3: {5}. So the shortest path from 0 to 5 has 3 edges.
+
+**Grids are graphs.** Each cell is a vertex, and its up/down/left/right neighbours (Section [26](#26-matrices-2d-array-problems)) are its edges. "Count the islands" is "count the connected groups of land cells": start a DFS from each unvisited land cell and count how many times you had to start one.
+
+**Common mistakes:**
+
+- ❌ No visited set (infinite loop on any cycle).
+- ❌ Marking nodes visited only when you pop them in BFS (the same node gets queued many times).
+- ❌ Adding an undirected edge in only one direction.
+- ❌ Forgetting that the graph may be **disconnected**: loop over every vertex as a possible start.
+
+**Used in real software:** maps and navigation, social networks ("people you may know" is a two-step BFS), web crawlers and search engines (PageRank ranks pages using the link graph), package managers resolving dependencies, and garbage collectors, which find unreachable objects by traversing the graph of references from live variables.
 
 ### Python
 
@@ -5691,6 +6144,8 @@ count_islands(["11000", "11000", "00100", "00011"])   # → 3
 
 ### Theory
 
+> **In simple words:** BFS and DFS answer most graph questions once you know what to look for: a **cycle** (a path back to where you've been), a **two-colouring** (splitting nodes into two teams), or **distances from many starting points at once**.
+
 With BFS and DFS from Section [41](#41-graphs-representation-bfs-and-dfs) you can already answer most graph questions. These patterns come up again and again:
 
 **1. Cycle in an undirected graph.** During DFS, reaching an already-visited node that **isn't the node you just came from** (the parent) means there's a cycle. (Union-find, coming in Section [45](#45-union-find-disjoint-set-union), is another way.)
@@ -5708,6 +6163,8 @@ Reaching a **grey** node means you've come back to a node on your own path: a cy
 **4. Multi-source BFS.** When the question is "how far is each cell from the **nearest** source" (rotting oranges, the nearest 0, the nearest exit), put **all** the sources in the queue at the start, at distance 0. BFS then expands from all of them at once, so each cell is reached first by its nearest source. That's O(cells) in total, instead of one BFS per source.
 
 **5. Connected components.** Count how many times you have to start a new DFS/BFS from an unvisited node. Grids work the same way, with the 4 directions of Section [26](#26-matrices-2d-array-problems) as the edges.
+
+**Used in real software:** dependency tools detect cycles ("package A needs B needs A"), deadlock detectors look for cycles in "who waits for whom" graphs, recommendation and matching systems use bipartite graphs (users ↔ products), and multi-source BFS computes "distance to the nearest store/hospital" for every map cell at once.
 
 ### Python
 
@@ -5826,21 +6283,46 @@ rotting_oranges([[2, 1, 1], [1, 1, 0], [0, 1, 1]]), rotting_oranges([[2, 1, 1], 
 
 ### Theory
 
-In a **weighted** graph each edge has a cost (a distance, a price, a time), and the shortest path is the one with the smallest **total** cost, not the fewest edges.
+> **In simple words:** Dijkstra's algorithm finds the cheapest route from one place to every other place, when roads have different lengths. It always settles the **closest unsettled place next**, like water spreading outwards from the start and reaching nearer places first.
+
+In a **weighted** graph each edge has a cost (a distance, a price, a time). The shortest path is the one with the smallest **total** cost, not the fewest edges, so plain BFS no longer works: two short hops can beat one long edge.
+
+**How it works:**
+
+1. `dist[start] = 0`; every other distance is unknown (∞).
+2. Keep a min-heap (Section [39](#39-heaps-and-priority-queues)) of `(distance, node)` pairs, starting with `(0, start)`.
+3. Pop the node with the **smallest** distance. With non-negative weights, nothing found later can be cheaper, so this distance is **final**.
+4. **Relax** its edges: for each neighbour v through an edge of weight w, if `dist[u] + w < dist[v]`, you've found a cheaper way to v: update `dist[v]` and push `(dist[v], v)`.
+5. Repeat until the heap is empty. If a popped pair's distance is bigger than the recorded one, it's a **stale** entry from before an improvement: skip it (the "lazy deletion" trick).
+
+Worked example (the graph in the code below): start at A. A's edges give C = 1 and B = 4. Pop C (1): C → B costs 1 + 2 = 3 < 4, so B improves to 3; C → E gives E = 9. Pop B (3): B → D gives D = 8, and B → E gives 3 + 6 = 9, no better. Pop D (8): D → F gives F = 10. Pop E (9): E → F gives 12, no better. Final: A 0, C 1, B 3, D 8, E 9, F 10.
+
+**Cost:** O((V + E) log V) with a heap.
+
+**The one rule: no negative edges.** A negative edge could make an already-"final" node cheaper later, which breaks step 3. Use Bellman-Ford instead (Section [46](#46-minimum-spanning-trees-bellman-ford-and-floyd-warshall)).
+
+**Getting the path, not just the distance:** whenever you improve `dist[v]`, record `parent[v] = u`. At the end, follow the parents back from the target to the start.
+
+**Choosing a shortest-path algorithm:**
 
 | Graph | Algorithm | Time |
 |---|---|---|
-| Unweighted | **BFS** | O(V + E) |
-| Weights 0 or 1 | 0-1 BFS (a deque) | O(V + E) |
-| Non-negative weights | **Dijkstra** (a min-heap) | O((V + E) log V) |
+| Unweighted (every edge = 1) | **BFS** (Section [41](#41-graphs-representation-bfs-and-dfs)) | O(V + E) |
+| Weights 0 or 1 only | 0-1 BFS (a deque: push weight-0 edges to the front) | O(V + E) |
+| Non-negative weights | **Dijkstra** | O((V + E) log V) |
+| One target, and a good distance estimate (like straight-line distance on a map) | **A\*** (below) | Usually far fewer nodes than Dijkstra |
 | Negative weights (no negative cycle) | Bellman-Ford (Section [46](#46-minimum-spanning-trees-bellman-ford-and-floyd-warshall)) | O(V · E) |
 | All pairs, small V | Floyd-Warshall (Section [46](#46-minimum-spanning-trees-bellman-ford-and-floyd-warshall)) | O(V³) |
 
-**Dijkstra's idea:** repeatedly take the unfinished node with the **smallest known distance**. With non-negative weights, that distance can't improve later, so it's final. Then **relax** its edges (`dist[v] = min(dist[v], dist[u] + w)`).
+**A\* search** is Dijkstra with a sense of direction. When you're heading for one specific target, it orders the heap by `distance so far + estimate of the distance left`, where the estimate (the **heuristic**) must never overestimate: straight-line distance on a map, or Manhattan distance (`|Δrow| + |Δcol|`) on a grid. It explores towards the target first, so it usually touches far fewer nodes. With a heuristic of 0 it's exactly Dijkstra.
 
-- Use a heap (Section [39](#39-heaps-and-priority-queues)) of `(distance, node)` pairs, so the closest unfinished node is always on top. Skip stale entries whose distance is larger than the recorded best (the "lazy deletion" trick).
-- **A negative edge breaks it**: a node marked final could later be reached more cheaply.
-- To rebuild the actual path, store `parent[v] = u` whenever you improve `dist[v]`.
+**Common mistakes:**
+
+- ❌ Using BFS on a weighted graph.
+- ❌ Forgetting to skip stale heap entries, which makes the algorithm much slower.
+- ❌ Running Dijkstra with negative edges.
+
+**Used in real software:** route planning in map apps (Dijkstra and A\*, plus heavy precomputation like "contraction hierarchies" so that a query on a continent-sized road network takes milliseconds), network routing protocols (OSPF computes shortest paths with Dijkstra), pathfinding for characters in video games (A\*), and robot motion planning. A 2025 research result even beat Dijkstra's running time on sparse directed graphs; Section [57](#57-whats-new-recent-breakthroughs-and-modern-practice-20222026) has the story.
 
 ### Python
 
@@ -5868,6 +6350,65 @@ graph = {
 dict(sorted(dijkstra(graph, "A").items()))   # → {"A": 0, "B": 3, "C": 1, "D": 8, "E": 9, "F": 10}
 ```
 
+Path reconstruction and **A\*** on a grid (`#` is a wall; each step costs 1; the heuristic is the Manhattan distance to the goal):
+
+```python
+def dijkstra_path(graph, source, target):
+    dist, parent = {source: 0}, {source: None}
+    heap = [(0, source)]
+    while heap:
+        d, u = heapq.heappop(heap)
+        if d > dist[u]:
+            continue
+        if u == target:
+            break
+        for v, w in graph.get(u, []):
+            if d + w < dist.get(v, float("inf")):
+                dist[v], parent[v] = d + w, u     # remember how we got here
+                heapq.heappush(heap, (d + w, v))
+    path, node = [], target
+    while node is not None:                       # walk the parents back to the start
+        path.append(node)
+        node = parent[node]
+    return dist[target], path[::-1]
+
+def a_star(grid, start, goal, use_heuristic=True):
+    rows, cols = len(grid), len(grid[0])
+    def h(cell):                                  # never overestimates on a 4-direction grid
+        if not use_heuristic:
+            return 0                              # h = 0 turns A* into plain Dijkstra
+        return abs(cell[0] - goal[0]) + abs(cell[1] - goal[1])
+    best = {start: 0}
+    heap = [(h(start), 0, start)]                 # (distance so far + estimate, distance so far, cell)
+    expanded = 0
+    while heap:
+        _, g, cell = heapq.heappop(heap)
+        if g > best[cell]:
+            continue
+        expanded += 1
+        if cell == goal:
+            return g, expanded
+        r, c = cell
+        for nr, nc in ((r + 1, c), (r - 1, c), (r, c + 1), (r, c - 1)):
+            if 0 <= nr < rows and 0 <= nc < cols and grid[nr][nc] != "#":
+                if g + 1 < best.get((nr, nc), float("inf")):
+                    best[(nr, nc)] = g + 1
+                    heapq.heappush(heap, (g + 1 + h((nr, nc)), g + 1, (nr, nc)))
+    return -1, expanded
+
+dijkstra_path(graph, "A", "F")                    # → (10, ["A", "C", "B", "D", "F"])
+maze = ["....#...",
+        ".##.#.#.",
+        "....#.#.",
+        ".##...#.",
+        "......#."]
+a_star(maze, (0, 0), (4, 5))[0]                   # → 9
+open_field = ["." * 20 for _ in range(20)]
+a_star(open_field, (10, 0), (10, 19)), a_star(open_field, (10, 0), (10, 19), use_heuristic=False)   # → ((19, 20), (19, 291))
+```
+
+`a_star` returns (steps, cells expanded). On the open 20 × 20 field, A\* walks almost straight to the goal and expands 20 cells; without the heuristic (plain Dijkstra) it spreads in every direction and expands 291. Both find the same 19-step route.
+
 ### Practice
 
 | # | LeetCode problem | Difficulty |
@@ -5887,12 +6428,36 @@ dict(sorted(dijkstra(graph, "A").items()))   # → {"A": 0, "B": 3, "C": 1, "D":
 
 ### Theory
 
-A **topological order** lists the nodes of a **directed acyclic graph (DAG)** so every edge u → v has u before v: prerequisites first. Build systems, course planners, spreadsheet recalculation and package managers all do this.
+> **In simple words:** topological sort puts tasks in an order where **every task comes after the tasks it depends on**. Like getting dressed: socks before shoes, shirt before tie.
 
-- **Kahn's algorithm (BFS):** count each node's incoming edges (**in-degree**); start with all zero-in-degree nodes; when you output a node, decrement its neighbours and enqueue any that reach zero.
-- If fewer than V nodes come out, there's a **cycle** (no valid order). That's exactly how "can I finish all courses?" is answered.
-- DFS alternative: add a node to the order **after** visiting all its descendants, then reverse.
-- O(V + E). Many orders can be valid.
+**Everyday picture.** A course plan: you can't take DSA before Python, or Machine Learning before DSA and Maths. A topological order is any valid sequence of courses that respects every prerequisite.
+
+**The graph:** tasks are vertices, and an edge **u → v** means "u must come before v". The graph must be a **DAG** (directed acyclic graph): if there's a cycle (A needs B, B needs A), no valid order exists.
+
+**Kahn's algorithm (BFS, the most common):**
+
+1. Count each node's **in-degree**: how many arrows point **into** it (how many prerequisites it still waits for).
+2. Put every node with in-degree 0 (nothing to wait for) into a queue.
+3. Take a node from the queue and add it to the order. For each of its outgoing arrows, decrease that neighbour's in-degree by 1 (one fewer prerequisite to wait for). Any neighbour that reaches 0 joins the queue.
+4. Repeat until the queue is empty.
+
+**Cycle check for free:** if the order has fewer nodes than the graph, some nodes never reached in-degree 0. They're stuck waiting on each other in a cycle. That's exactly how "can all the courses be finished?" is answered.
+
+Worked example (the courses in the code below; 0 Intro, 1 Python, 2 Maths, 3 DSA, 4 ML): in-degrees 0, 1, 1, 2, 2. Start with {0}. Output 0 → Python and Maths drop to 0. Output 1 → DSA drops to 1. Output 2 → DSA drops to 0, ML drops to 1. Output 3 → ML drops to 0. Output 4. Order: 0, 1, 2, 3, 4.
+
+**The DFS alternative:** run DFS and add each node to a list **after** all of its descendants are finished (post-order), then reverse the list.
+
+**Cost:** O(V + E). Many different orders can be valid; if a problem needs the smallest in dictionary order, use a heap instead of the queue.
+
+**Python has it built in:** `graphlib.TopologicalSorter` (Python 3.9+) takes each node's prerequisites and returns an order with `static_order()`, raising `CycleError` if there's a cycle (see the code below).
+
+**Common mistakes:**
+
+- ❌ Drawing the arrow the wrong way round. Decide clearly: `needs → course` means "needs comes first".
+- ❌ Forgetting the cycle check (comparing the order's length with the number of nodes).
+- ❌ Starting only from node 0 instead of from **every** node with in-degree 0.
+
+**Used in real software:** build tools (Make, Bazel, and every compiler deciding which files to build first), package managers installing dependencies before the packages that need them, spreadsheet recalculation (a cell after the cells it reads), and workflow schedulers like Apache Airflow, whose pipelines are literally DAGs.
 
 ### Python
 
@@ -5922,6 +6487,29 @@ topo_sort(5, [(1, 0), (2, 0), (3, 1), (3, 2), (4, 3), (4, 2)])   # → [0, 1, 2,
 topo_sort(2, [(0, 1), (1, 0)])                                   # → []
 ```
 
+Python's built-in version (Python 3.9+): give each node its prerequisites.
+
+```python
+from graphlib import TopologicalSorter, CycleError
+
+needs = {"DSA": {"Python", "Maths"}, "ML": {"DSA", "Maths"}, "Python": {"Intro"}, "Maths": {"Intro"}}
+order = list(TopologicalSorter(needs).static_order())
+order[0], order[-1], order.index("Python") < order.index("DSA")   # → ("Intro", "ML", True)
+
+try:
+    list(TopologicalSorter({"a": {"b"}, "b": {"a"}}).static_order())
+except CycleError:
+    print("cycle found: no valid order")
+```
+
+**Output:**
+
+```text
+cycle found: no valid order
+```
+
+`try` / `except` runs the code in `try`, and if it raises the named error, runs the `except` block instead of crashing.
+
 ### Practice
 
 | # | LeetCode problem | Difficulty |
@@ -5942,12 +6530,33 @@ topo_sort(2, [(0, 1), (1, 0)])                                   # → []
 
 ### Theory
 
-**Union-Find** tracks which items belong to the same group while groups keep merging. Each group is a tree, and its **root** is the group's representative.
+> **In simple words:** union-find keeps track of **groups** that keep merging. It answers two questions very fast: "are these two items in the same group?" and "merge these two groups".
 
-- `find(x)` follows parents up to the root. `union(a, b)` links one root under the other.
-- **Path compression** (point nodes straight at the root during `find`) plus **union by size/rank** (attach the smaller tree under the larger) make both operations nearly O(1): O(α(n)), where α is the inverse Ackermann function, below 5 for any practical n.
-- Uses: connected components, **detecting a cycle** in an undirected graph (union of two already-connected nodes), Kruskal's minimum spanning tree (connecting all points with the cheapest set of edges), and merging accounts or friend circles.
-- Better than BFS/DFS when edges arrive **one at a time** and you query connectivity in between.
+**Everyday picture.** Friend circles at a party. Each group has a **leader**. To know whether two people are in the same circle, ask each for their leader and compare. When two circles become friends, one leader simply agrees to follow the other.
+
+**How it works.** Every item has a `parent`. At the start everyone is their own parent (their own group of one). A group is a small tree, and its **root** (the item that is its own parent) is the group's leader.
+
+- **`find(x)`**: follow parents up until you reach the root. Two items are in the same group exactly when `find` returns the same root.
+- **`union(a, b)`**: find both roots. If they're different, make one root point to the other: the groups are merged. If they're the same, `a` and `b` were already connected; in a graph, that edge would close a **cycle**.
+
+**Two tricks make it almost O(1):**
+
+1. **Path compression:** during `find`, point the nodes you pass straight at (or closer to) the root, so later finds are shorter. (The code below uses "path halving", a simple version that points each node at its grandparent.)
+2. **Union by size:** attach the **smaller** tree under the **larger** one, so trees stay flat.
+
+Together they make each operation O(α(n)), where α is the "inverse Ackermann" function, which is at most 4 for any input that could fit in the universe. Think of it as O(1).
+
+Worked example (the code below): 6 people, 0 … 5. union(1, 2), union(1, 3) → group {1, 2, 3}. union(4, 5) → group {4, 5}. Now find(3) = find(1), but find(5) ≠ find(1). union(3, 5) merges them into {1, 2, 3, 4, 5}; then union(2, 4) returns False, because they're already connected. Groups left: {0} and {1, 2, 3, 4, 5}, so 2.
+
+**Union-find or BFS/DFS?** For a fixed graph, both count connected groups in about O(V + E). Union-find wins when **edges arrive one at a time** and you must answer "connected yet?" after each one, without re-running a search.
+
+**Common mistakes:**
+
+- ❌ Comparing `parent[a] == parent[b]` instead of `find(a) == find(b)` (parents aren't necessarily roots).
+- ❌ Skipping both tricks, which can make trees tall and operations O(n).
+- ❌ Forgetting to count down the number of groups only when a merge actually happens.
+
+**Used in real software:** Kruskal's minimum spanning tree (Section [46](#46-minimum-spanning-trees-bellman-ford-and-floyd-warshall)), labelling connected regions in images, network connectivity monitoring, and merging duplicate customer accounts that share an email or phone number.
 
 ### Python
 
@@ -6001,6 +6610,8 @@ d.union(2, 4), d.groups                        # → (False, 2)
 
 ### Theory
 
+> **In simple words:** a **minimum spanning tree** connects every point as cheaply as possible (the cheapest road network that links all towns). **Bellman-Ford** and **Floyd-Warshall** find shortest routes when Dijkstra can't: with negative costs, or between every pair of places.
+
 **Minimum spanning tree (MST).** Given towns and the cost of building each possible road, connect **every** town using the cheapest total set of roads. The answer is always a tree: V − 1 edges and no cycles (any cycle has a removable edge). Two **greedy** algorithms find it: each step takes the cheapest safe choice and never undoes it (Section [48](#48-greedy-algorithms) covers greedy thinking in general):
 
 - **Kruskal:** sort all edges by weight; go through them cheapest first, and keep an edge if it joins two **different** groups. Union-find (Section [45](#45-union-find-disjoint-set-union)) answers "different groups?" in near O(1). Stop at V − 1 edges. Cost: O(E log E) for the sort.
@@ -6016,6 +6627,8 @@ d.union(2, 4), d.groups                        # → (False, 2)
 | Shortest paths from one source, weights ≥ 0 | Dijkstra | O((V + E) log V) |
 | From one source, negative weights, or "at most k edges" | Bellman-Ford | O(V · E) |
 | Between **all** pairs, small V | Floyd-Warshall | O(V³) |
+
+**Used in real software:** designing cable, fibre and power networks (MST), clustering data points (cut the most expensive MST edges), currency-exchange and arbitrage detection (Bellman-Ford finds negative cycles), and distance tables between all pairs of cities (Floyd-Warshall).
 
 ### Python
 
@@ -6141,24 +6754,48 @@ Part 8 moves from structures to **strategies** for designing algorithms.
 
 ### Theory
 
-**Backtracking** builds a solution one choice at a time and **undoes** the last choice (backtracks) to try the next option. It explores a **decision tree** depth-first: the DFS from Section [41](#41-graphs-representation-bfs-and-dfs), on a tree of choices that is never built in memory, only walked.
+> **In simple words:** backtracking tries every possibility **one choice at a time**. When a path can't work, it steps back ("backtracks"), undoes the last choice, and tries the next option. It's how you'd solve a maze: walk until you hit a dead end, go back to the last junction, try another way.
 
-The template has three parts: **choose → explore → un-choose**.
+**Everyday picture.** Packing a suitcase by trial: put an item in, then another; if the lid won't close, take out the last item and try a different one.
+
+**The decision tree.** Every sequence of choices is a path in a tree. For the subsets of `[1, 2, 3]`, the first level decides "take 1 or not", the second "take 2 or not", the third "take 3 or not": 2 × 2 × 2 = 8 leaves, one per subset. Backtracking walks this tree depth-first (like DFS in Section [41](#41-graphs-representation-bfs-and-dfs)), but never builds it in memory; it only walks it.
+
+**The template: choose → explore → un-choose.**
 
 ```text
 def backtrack(state):
-    if state is a complete solution: record it; return
-    for choice in options(state):
-        if choice is valid:
-            make choice
-            backtrack(next state)
-            undo choice
+    if state is a complete solution: record a copy of it; return
+    for choice in the options available now:
+        if the choice is allowed:
+            make the choice            (choose)
+            backtrack(the new state)   (explore)
+            undo the choice            (un-choose)
 ```
 
-- Sizes explode: 2ⁿ subsets, n! permutations. **Pruning** (skipping branches that can't lead to a valid answer) is what makes it practical.
-- Typical problems: subsets, permutations, combinations or combination sum, N-Queens, Sudoku, word search, and generating valid parentheses.
-- Append a **copy** of the current path (`path[:]`), because the list keeps changing.
-- To avoid duplicate results with repeated inputs: sort first, and skip equal neighbours at the same depth.
+**Why "undo"?** All the branches share one `path` list. After exploring a choice, you must restore the list exactly as it was, so the next choice starts from a clean state.
+
+**How big can it get?** Very big: 2ⁿ subsets, n! orderings (10! is 3.6 million). Two things make it practical:
+
+- **Pruning:** stop a branch as soon as it can't lead to a valid answer (the running total already exceeds the target; a queen is already attacked). This can cut away most of the tree.
+- **Small inputs:** backtracking problems usually have n ≤ 15 or so; the input size is a hint (Section [59](#59-pattern-cheat-sheet-which-technique-when)).
+
+**The classic problems:**
+
+| Problem | Choice at each step | Pruning |
+|---|---|---|
+| Subsets | Take this item or skip it | — |
+| Permutations | Which unused item goes next | Skip used items |
+| Combination sum | Which candidate to add (reuse allowed) | Stop when the candidate is bigger than what's left |
+| N-Queens | Which column for the queen in this row | Skip attacked columns and diagonals |
+| Word search in a grid | Which neighbouring cell to step to | Stop when the letter doesn't match |
+| Sudoku | Which digit for this empty cell | Skip digits already in the row, column or box |
+
+**Two details that cause most bugs:**
+
+- Record a **copy** of the current path (`path[:]`), because `path` keeps changing afterwards.
+- To avoid **duplicate** results when the input has repeated values: sort first, and skip a value that equals the previous one at the same depth.
+
+**Used in real software:** Sudoku and puzzle solvers, SAT solvers (they decide whether a huge logic formula can be satisfied, by backtracking with clever learning, and are used to verify chips and software), and regular-expression engines. Python's `re` module is a backtracking engine, which is why a badly written pattern can take "forever" on some inputs (a "catastrophic backtracking" bug, sometimes used for denial-of-service attacks).
 
 ### Python
 
@@ -6272,12 +6909,40 @@ Cells on the same diagonal share `r - c`, and cells on the same anti-diagonal sh
 
 ### Theory
 
-A **greedy** algorithm makes the **locally best** choice at each step and never reconsiders it. When it works, it's simple and fast, often just "sort, then one pass". The catch is that it **only works when you can prove** the local choice is always safe:
+> **In simple words:** a greedy algorithm makes the choice that looks **best right now** and never changes its mind. It's fast and simple, but it's only correct for problems where "best right now" is guaranteed to lead to the best overall answer.
 
-- **Exchange argument:** any optimal solution can be changed to include the greedy choice without getting worse.
-- Greedy works for interval scheduling (earliest **end** first), Dijkstra (Section [43](#43-shortest-paths-dijkstra)), Kruskal's spanning tree, jump game, gas station, and making change with standard coin systems.
-- Greedy **fails** for 0/1 knapsack and for coin change with unusual coins: coins [1, 3, 4] for amount 6 greedily gives 4+1+1 (3 coins), but 3+3 needs 2. Those need DP.
-- If you can't find a proof or a counterexample quickly, test greedy against a brute force on small inputs.
+**Everyday picture.** A shopkeeper giving ₹87 in change hands over the biggest note or coin that fits (a 50, then 20, 10, 5, 2) until nothing is left. With Indian currency this always uses the fewest coins. With strange coins it can fail (see below).
+
+**How greedy solutions usually look:** sort by the right key, then one pass that takes each item if it fits. O(n log n) in total.
+
+**The hard part is choosing the key, and proving it.** Example: fit the most meetings into one room.
+
+| Rule | Does it work? |
+|---|---|
+| Take the **shortest** meeting first | ❌ A short meeting in the middle can block two others |
+| Take the meeting that **starts earliest** | ❌ An early, very long meeting blocks everything |
+| Take the meeting that **ends earliest** | ✅ It leaves the most time for the rest |
+
+**Why "ends earliest" is right (the exchange argument):** take any best schedule. Swap its first meeting for the meeting that ends earliest overall. That meeting ends no later, so it can't clash with the rest of the schedule, and the count stays the same. Repeating the argument shows greedy is never worse than the best. This "swap in the greedy choice without making things worse" reasoning is how every greedy algorithm is proved.
+
+**When greedy fails:** coins [1, 3, 4] for amount 6. Greedy takes 4, then 1, then 1 (3 coins), but 3 + 3 uses only 2. Once a choice limits future choices in a way that matters, you need to consider **all** options: that's dynamic programming (Section [49](#49-dynamic-programming)). The 0/1 knapsack (take items to fit a bag) is another classic greedy failure.
+
+**How to decide in an interview:**
+
+1. Suggest a greedy rule.
+2. Try to break it with a small counterexample (spend two minutes on it).
+3. If you can't break it, try an exchange argument. If you can, switch to DP.
+4. If unsure, test greedy against a brute force on small random inputs.
+
+**Classic greedy problems:** interval scheduling (earliest end first), jump game (track the farthest reachable index), gas station, assigning cookies, partition labels, Huffman coding, and Dijkstra (Section [43](#43-shortest-paths-dijkstra)) and the minimum spanning tree algorithms (Section [46](#46-minimum-spanning-trees-bellman-ford-and-floyd-warshall)), which are greedy too.
+
+**Common mistakes:**
+
+- ❌ Trusting greedy without a proof or at least a counterexample hunt.
+- ❌ Sorting by the wrong key (start instead of end time).
+- ❌ Using greedy on 0/1 knapsack or coin change with unusual coins.
+
+**Used in real software:** **Huffman coding** (inside ZIP files, PNG images and HTTP compression) builds its code greedily by always merging the two rarest symbols; schedulers and meeting planners; network design (minimum spanning trees); and cashier and vending-machine change-making.
 
 ### Python
 
@@ -6334,31 +6999,48 @@ The last line is the **counterexample**: greedy uses 3 coins (4+1+1), but the op
 
 ### Theory
 
-**Dynamic programming (DP)** solves problems with:
+> **In simple words:** dynamic programming (DP) means **never solving the same small problem twice**. Break the problem into smaller versions of itself, solve each one once, **write the answer down**, and build bigger answers from the saved ones.
 
-1. **Overlapping subproblems:** the same smaller question is asked again and again (fib(2) in the picture; Section [14](#14-recursion-basics) counted 21,891 calls for fib(20)).
-2. **Optimal substructure:** the best answer is built from the best answers to the subproblems.
+**Everyday picture.** Someone asks "what's 1 + 1 + 1 + 1 + 1?" You count: 5. They add "+ 1" at the end and ask again. You don't recount from scratch: you answer 6 at once, because you remembered 5. That's DP.
 
-It solves each subproblem **once** and stores the result.
+**When does DP apply?** Two signs:
 
-| Style | How | Pros |
+1. **Overlapping subproblems:** the same smaller question is asked again and again. The recursive Fibonacci in Section [14](#14-recursion-basics) made 21,891 calls for fib(20), because fib(18), fib(17), … were recomputed over and over (see the picture).
+2. **Optimal substructure:** the best answer is built from the best answers to smaller questions. The fewest coins for 11 is 1 + the fewest coins for 11 − (some coin).
+
+**Two ways to write it:**
+
+| Style | How | Good for |
 |---|---|---|
-| **Top-down (memoisation)** | Plain recursion + a cache (`@functools.cache`, see below) | Easiest to write from the recurrence; only solves the states it needs |
-| **Bottom-up (tabulation)** | Fill a table from the base cases up | No recursion limit; easy to shrink memory |
+| **Top-down (memoisation)** | Write the plain recursion, then save each answer in a cache | The easiest step from a recursive idea; only solves the states it needs |
+| **Bottom-up (tabulation)** | Fill a list/table from the smallest cases upwards, in a loop | No recursion limit; easy to shrink memory |
+
+In Python, top-down is often one line: `@cache` (from `functools`) placed above a function is a **decorator**. It wraps the function so each answer is stored in a dict the first time it's computed, and returned instantly on every later call with the same arguments. It turns the exponential Fibonacci into O(n).
 
 **The recipe that works for almost every DP problem:**
 
-1. **State:** what does `dp[i]` (or `dp[i][j]`) mean? Say it in words: "the fewest coins to make amount i".
-2. **Transition:** how does a state follow from smaller ones? For coins: `dp[a] = min(dp[a − c] + 1)` over each coin c.
-3. **Base cases:** `dp[0] = 0`.
-4. **Order:** compute the smaller states first. **Answer:** which state holds it?
-5. **Optimise space:** if row i needs only row i − 1, keep two rows (or one).
+1. **State:** what does `dp[i]` (or `dp[i][j]`) mean? Say it in a full sentence: "`dp[a]` = the fewest coins that make amount a".
+2. **Transition:** how does a state come from smaller states? "To make a, the last coin is some c, so `dp[a] = min(dp[a − c] + 1)` over every coin c ≤ a."
+3. **Base case:** the smallest states, answered directly: `dp[0] = 0`.
+4. **Order:** compute smaller states before the states that need them (here, amounts from 1 up). **Answer:** which state holds it? (`dp[amount]`.)
+5. **Save space** (optional): if row i only needs row i − 1, keep one or two rows instead of the whole table.
 
-`@cache` (from `functools`) placed above a function is a **decorator**: it wraps the function so each answer is stored in a dict the first time it's computed, and returned instantly on every later call with the same arguments. It turns the exponential Fibonacci from Section [14](#14-recursion-basics) into O(n).
+**Worked example: climbing stairs.** You can climb 1 or 2 steps at a time. How many ways are there to climb n steps? The last move was either a 1-step (from n − 1) or a 2-step (from n − 2), so `ways(n) = ways(n − 1) + ways(n − 2)`, with ways(0) = ways(1) = 1. That gives 1, 1, 2, 3, 5, 8, …: it's Fibonacci again. ways(10) = 89.
 
-Common families: 1D (climbing stairs, house robber, coin change), 2D grids (unique paths, minimum path sum), two strings (LCS, edit distance), knapsack, and intervals.
+**Cost of a DP:** (number of states) × (work per state). Coin change: `amount` states × `len(coins)` choices each.
 
 ![2D DP grid](images/dsa/26-dp-grid.svg)
+
+**Common families** (Section [50](#50-dynamic-programming-ii-knapsack-subsequences-strings-and-intervals) covers the rest): 1D (climbing stairs, house robber, coin change), 2D grids (unique paths, minimum path sum), two strings (longest common subsequence, edit distance), knapsack, and intervals.
+
+**Common mistakes:**
+
+- ❌ Starting to code before stating the state in words.
+- ❌ Wrong base cases (off by one at `dp[0]`).
+- ❌ Filling the table in an order that reads states before they're computed.
+- ❌ Using greedy where choices interact (Section [48](#48-greedy-algorithms)).
+
+**Used in real software:** `diff` and `git diff` (closely related to the longest common subsequence), spell checkers suggesting words by edit distance, DNA and protein sequence alignment in bioinformatics, speech recognition (the Viterbi algorithm), and the line-breaking algorithm that TeX uses to lay out paragraphs.
 
 ### Python
 
@@ -6431,6 +7113,8 @@ rob([2, 7, 9, 3, 1])                   # → 12
 
 ### Theory
 
+> **In simple words:** most DP interview problems belong to a few **families**. Once you recognise the family, the table (the "state") and the rule for filling it are standard.
+
 Section [49](#49-dynamic-programming) gave the recipe: **state → transition → base case → order → answer**. Interview DP problems fall into a few **families**. Recognise the family and the state is usually standard:
 
 | Family | State | Transition (idea) | Classic problems |
@@ -6450,6 +7134,8 @@ Section [49](#49-dynamic-programming) gave the recipe: **state → transition �
 - **LIS in O(n log n):** keep `tails[k]` = the smallest possible last value of an increasing subsequence of length k + 1. For each x, binary-search (Section [18](#18-searching-linear-search-and-binary-search)) the first tail ≥ x and replace it, or append x if it's bigger than all of them. The length of `tails` is the answer.
 - **Edit distance:** if the last characters match, `dp[i][j] = dp[i-1][j-1]`; otherwise 1 + the best of insert (`dp[i][j-1]`), delete (`dp[i-1][j]`) and replace (`dp[i-1][j-1]`).
 - **Interval DP:** fill by **increasing length**, because a range depends on shorter ranges inside it. For burst balloons, choose which balloon `k` bursts **last** in the range (i, j): its neighbours at that moment are the fixed ends i and j.
+
+**Used in real software:** knapsack-style DP decides what fits in a budget (ad bidding, cargo loading, cloud resource allocation), edit distance powers spell checkers and fuzzy search, and LCS-style DP is the core of `diff` and of DNA alignment tools in bioinformatics.
 
 ### Python
 
@@ -6591,22 +7277,38 @@ max_profit_cooldown([1, 2, 3, 0, 2])                 # → 3
 
 ### Theory
 
-Integers are stored in **binary** (Section [12](#12-number-systems-decimal-and-binary)), and bitwise operators work on every bit at once in O(1):
+> **In simple words:** every integer is stored as a row of **bits** (0s and 1s, Section [12](#12-number-systems-decimal-and-binary)). Bitwise operators work on **all the bits at once**, like flipping a whole row of light switches in one move, which makes some tricks very fast.
 
-| Operator | Meaning | Common use |
-|---|---|---|
-| `a & b` | AND | Test or clear bits; `x & 1` checks for odd |
-| `a \| b` | OR | Set bits |
-| `a ^ b` | XOR | Toggle bits; `x ^ x = 0`, so pairs cancel |
-| `~x` | NOT | In Python, `~x == -x - 1` |
-| `x << k`, `x >> k` | Shift | Multiply or divide by 2ᵏ |
+**The operators** (each is O(1)), shown on 12 = `1100` and 10 = `1010`:
 
-- **Tricks:**
-  - `x & (x - 1)` clears the lowest set bit (count bits, or test for a power of two: `x > 0 and x & (x - 1) == 0`);
-  - `x & -x` isolates the lowest set bit;
-  - XOR everything to find the single unpaired number.
-- **Bitmasks** represent subsets of up to ~20 items as integers: bit i set means item i is in the subset. That enables bitmask DP, and it's another way to enumerate subsets.
-- Python ints have **unlimited precision** (no overflow), and negatives behave as if infinitely sign-extended. Mask with `& 0xFFFFFFFF` to mimic 32-bit behaviour.
+| Operator | Name | Rule for each bit pair | 12 op 10 | Common use |
+|---|---|---|---|---|
+| `a & b` | AND | 1 only if **both** are 1 | `1000` = 8 | Test or clear bits; `x & 1` is 1 for odd numbers |
+| `a \| b` | OR | 1 if **either** is 1 | `1110` = 14 | Turn bits on |
+| `a ^ b` | XOR | 1 if they're **different** | `0110` = 6 | Toggle bits; `x ^ x = 0` |
+| `~x` | NOT | Flip every bit | | In Python, `~x == -x - 1` |
+| `x << k` | Left shift | Move bits k places left | 13 << 1 = 26 | Multiply by 2ᵏ |
+| `x >> k` | Right shift | Move bits k places right | 13 >> 1 = 6 | Floor-divide by 2ᵏ |
+
+**Bit i of x** is `(x >> i) & 1`. Turn it on with `x | (1 << i)`, off with `x & ~(1 << i)`, and flip it with `x ^ (1 << i)`.
+
+**The famous tricks, explained:**
+
+- **`x & (x - 1)` removes the lowest 1-bit.** Subtracting 1 turns the lowest 1 into 0 and every 0 below it into 1 (like 1000 − 1 = 0111), so the AND clears exactly that bit. Uses: count the 1-bits (repeat until 0), and test for a power of two (a power of two has exactly one 1-bit: `x > 0 and x & (x - 1) == 0`).
+- **XOR cancels pairs.** `a ^ a = 0` and `a ^ 0 = a`, and the order doesn't matter. So XOR-ing a list where every number appears twice except one leaves exactly that one: 4 ^ 1 ^ 2 ^ 1 ^ 2 = 4.
+- **`x & -x` isolates the lowest 1-bit** (it's what Fenwick trees use, Section [53](#53-range-queries-with-updates-fenwick-trees-and-segment-trees)).
+
+**Bitmasks: a set in one integer.** With up to about 20 items, bit i can mean "item i is in the set". Then every subset of n items is one of the integers 0 … 2ⁿ − 1, so looping over `range(1 << n)` visits every subset. That's another way to write subset backtracking, and the basis of "bitmask DP".
+
+**Python details:** integers have **unlimited size** (no overflow), and negative numbers behave as if they had infinitely many 1-bits on the left. To imitate the 32-bit integers of C, Java or LeetCode's problem statements, mask with `& 0xFFFFFFFF`. `bin(x)` shows the bits, and `x.bit_count()` (Python 3.10+) counts the 1-bits.
+
+**Common mistakes:**
+
+- ❌ Operator precedence: `x & 1 == 0` means `x & (1 == 0)`. Write `(x & 1) == 0`.
+- ❌ Expecting 32-bit overflow behaviour in Python.
+- ❌ Using bitmasks for more than about 20–25 items (2²⁵ is already 33 million subsets).
+
+**Used in real software:** Unix file permissions (`chmod 755` is three groups of 3 bits: read, write, execute), network subnet masks (`255.255.255.0`), feature flags packed into one integer, graphics and compression code, Bloom filters (Section [55](#55-randomised-and-streaming-algorithms-shuffling-sampling-bloom-filters-and-sketches)), and chess engines that store the board as 64-bit "bitboards".
 
 ### Python
 
@@ -6669,8 +7371,8 @@ Part 9 covers specialised topics that harder interviews add on top.
 
 # Part 9 — Advanced: Specialised Topics
 
-> **Goal:** Topics that harder interview rounds add: string matching and range queries with updates.  
-> **You need:** Parts 3–8, especially hashing, modulo, trees and bits.
+> **Goal:** Topics that harder interview rounds add: string matching, range queries with updates, bridges, strongly connected components and max flow.  
+> **You need:** Parts 3–8, especially hashing, modulo, trees, graphs and bits.
 
 ---
 
@@ -6679,6 +7381,8 @@ Part 9 covers specialised topics that harder interviews add on top.
 ![The KMP failure table tells the search how far it can safely jump](images/dsa/p9-kmp.svg)
 
 ### Theory
+
+> **In simple words:** to find a pattern in a long text, don't restart from scratch after every mismatch. **KMP** remembers how much of the pattern already matched; **Rabin-Karp** compares quick fingerprints (hashes) instead of whole strings.
 
 **1. Palindromic substrings: expand around the centre.** Every palindrome has a centre: one character (odd length, "aba") or the gap between two characters (even length, "abba"). There are 2n − 1 centres. From each one, expand outwards while the two ends match. That finds the **longest palindromic substring**, or **counts** all palindromic substrings, in O(n²) time and O(1) space. (Manacher's algorithm does it in O(n), but it's rarely expected.)
 
@@ -6696,6 +7400,8 @@ Part 9 covers specialised topics that harder interviews add on top.
 | Find a pattern, guaranteed linear time | KMP |
 | Many patterns, or repeated substrings of a fixed length | Rabin-Karp rolling hash |
 | "Is s made of a repeated block?", "longest prefix that is also a suffix" | KMP's failure table directly |
+
+**Used in real software:** text editors' find, `grep` (GNU grep uses Boyer–Moore, a cousin of KMP that skips ahead), **rsync** and backup tools (a rolling checksum finds matching blocks between two versions of a file), plagiarism detection (fingerprints of text windows), and antivirus scanners matching thousands of patterns at once with Aho–Corasick, a trie-based extension of KMP.
 
 ### Python
 
@@ -6798,6 +7504,8 @@ rabin_karp("abababcabab", "abab")                # → [0, 2, 7]
 
 ### Theory
 
+> **In simple words:** when numbers keep **changing** and you keep asking for **range totals**, store extra "summary" values over blocks of the array, so each update and each question only touches about log n blocks.
+
 Prefix sums (Section [24](#24-prefix-sums)) answer "sum of `nums[i..j]`?" in O(1), but only while the array **never changes**: after one update, O(n) prefix values are wrong. When updates and queries are **mixed** (a live leaderboard, stock prices changing all day), you need both operations fast:
 
 | Structure | Update one value | Range query | Code size | Handles |
@@ -6816,6 +7524,8 @@ Prefix sums (Section [24](#24-prefix-sums)) answer "sum of `nums[i..j]`?" in O(1
 **Fenwick tree.** A clever list where position i stores the sum of a block of values ending at i, whose size is **i's lowest set bit** (`i & -i`, Section [51](#51-bit-manipulation)). Moving to the next responsible position is `i += i & -i` (for updates) or `i -= i & -i` (for prefix sums), so each takes O(log n) steps. A range sum is `prefix(r) − prefix(l − 1)`. It uses 1-based indexes.
 
 **Clues in a problem:** "update one element and query a range, many times", "count of smaller numbers after self", "reverse pairs", "number of inversions". The last three insert values one at a time and ask "how many so far are smaller?" with a Fenwick tree indexed by value.
+
+**Used in real software:** live leaderboards and rankings ("how many players scored less than me?"), time-series databases answering range queries over metrics, and order-statistics problems. In interviews they're more common at companies with harder rounds.
 
 ### Python
 
@@ -6912,6 +7622,159 @@ count_smaller_after([5, 2, 6, 1])                      # → [2, 1, 1, 0]
 
 ---
 
+## 54. Advanced Graphs: Bridges, Strongly Connected Components and Max Flow
+
+![A bridge whose removal splits the network, and strongly connected groups in a directed graph](images/dsa/p9-advanced-graphs.svg)
+
+### Theory
+
+> **In simple words:** three questions about how well a network holds together. Which single link, if cut, would split the network? (**bridges**) Which groups of places can all reach each other along one-way roads? (**strongly connected components**) How much can flow from a source to a destination through pipes of limited size? (**max flow**)
+
+**1. Bridges ("critical connections").** In an undirected graph, a **bridge** is an edge whose removal disconnects the graph. (An **articulation point** is the same idea for a vertex.) The obvious method removes each edge and re-checks connectivity: O(E × (V + E)). **Tarjan's algorithm** finds all bridges in one DFS, O(V + E):
+
+- `disc[v]`: the time at which DFS first reached v (1, 2, 3, …).
+- `low[v]`: the earliest discovery time v's subtree can reach, using tree edges down plus **one** back edge up.
+- A tree edge u → v is a **bridge** when `low[v] > disc[u]`: nothing below v can climb back to u or above without that edge.
+
+Intuition: an edge that lies on a **cycle** is never a bridge (the cycle gives another route), and `low` detects exactly that "another route back up".
+
+**2. Strongly connected components (SCCs).** In a **directed** graph, an SCC is a largest group where every vertex can reach every other one. Squash each SCC into a single node and the result is always a DAG, which is why SCCs appear before topological sorting in many real problems. **Kosaraju's algorithm** (two DFS passes, O(V + E)):
+
+1. Run DFS on the graph and record vertices in the order they **finish**.
+2. Reverse every edge.
+3. Take vertices in reverse finishing order; each DFS on the reversed graph from an unvisited vertex collects exactly one SCC.
+
+(Tarjan's SCC algorithm does it in one pass with `low` values, like the bridge algorithm.)
+
+**3. Maximum flow and minimum cut.** Each edge is a pipe with a **capacity**. How much can flow from source s to sink t per second? The **Ford–Fulkerson** idea: repeatedly find a path from s to t with spare capacity (an **augmenting path**), push as much as it allows, and record the reverse "undo" capacity so later paths can reroute earlier flow. Finding each path with **BFS** gives **Edmonds–Karp**, O(V × E²).
+
+- **Max-flow = min-cut:** the maximum flow equals the smallest total capacity of edges you'd have to cut to separate s from t. So max-flow algorithms also find a network's **bottleneck**.
+- **Bipartite matching** (assigning workers to jobs, students to projects) is a max-flow problem: source → workers → jobs → sink, all capacities 1.
+- Interviews rarely ask you to code max flow, but recognising "this is a flow/matching problem" is valuable. In research, a 2022 algorithm by Chen, Kyng, Liu, Peng, Probst Gutenberg and Sachdeva solves max flow in **almost-linear time** (Section [57](#57-whats-new-recent-breakthroughs-and-modern-practice-20222026)).
+
+**Common mistakes:**
+
+- ❌ In bridge finding, skipping the parent edge by **vertex** instead of by edge (it breaks when two vertices have parallel edges; fine for simple graphs).
+- ❌ Forgetting the reverse edges in max flow, which makes the algorithm unable to undo a bad early choice.
+- ❌ Using recursive DFS on graphs with 10⁵ vertices in Python (recursion limit). Convert to an explicit stack, or raise the limit with `sys.setrecursionlimit` carefully.
+
+**Used in real software:** finding single points of failure in computer networks and power grids (bridges and articulation points), analysing web and social graphs and simplifying dependency graphs (SCCs; compilers also use them to find mutually recursive functions), and flow networks for transport and logistics capacity, airline crew assignment, image segmentation (min-cut) and matching markets.
+
+### Python
+
+```python
+from collections import deque
+
+def bridges(n, edges):
+    graph = [[] for _ in range(n)]
+    for a, b in edges:
+        graph[a].append(b)
+        graph[b].append(a)
+    disc, low, time, out = [0] * n, [0] * n, [1], []
+    def dfs(u, parent):
+        disc[u] = low[u] = time[0]
+        time[0] += 1
+        for v in graph[u]:
+            if v == parent:
+                continue
+            if disc[v]:                              # back edge: v was reached earlier
+                low[u] = min(low[u], disc[v])
+            else:
+                dfs(v, u)
+                low[u] = min(low[u], low[v])
+                if low[v] > disc[u]:                 # v's subtree can't climb above u
+                    out.append((u, v))
+    for v in range(n):
+        if not disc[v]:
+            dfs(v, -1)
+    return sorted(out)
+
+def kosaraju(n, edges):
+    graph, reverse = [[] for _ in range(n)], [[] for _ in range(n)]
+    for a, b in edges:
+        graph[a].append(b)
+        reverse[b].append(a)
+    seen, order = set(), []
+    def dfs1(u):
+        seen.add(u)
+        for v in graph[u]:
+            if v not in seen:
+                dfs1(v)
+        order.append(u)                              # record when u FINISHES
+    for v in range(n):
+        if v not in seen:
+            dfs1(v)
+    seen, comps = set(), []
+    def dfs2(u, comp):
+        seen.add(u)
+        comp.append(u)
+        for v in reverse[u]:
+            if v not in seen:
+                dfs2(v, comp)
+    for v in reversed(order):                        # latest finisher first
+        if v not in seen:
+            comp = []
+            dfs2(v, comp)
+            comps.append(sorted(comp))
+    return sorted(comps)
+
+# two triangles joined by the single edge 2-3
+bridges(6, [(0, 1), (1, 2), (2, 0), (2, 3), (3, 4), (4, 5), (5, 3)])   # → [(2, 3)]
+bridges(4, [(0, 1), (1, 2), (2, 3)])                                  # → [(0, 1), (1, 2), (2, 3)]
+kosaraju(6, [(0, 1), (1, 2), (2, 0), (2, 3), (3, 4), (4, 3), (4, 5)])  # → [[0, 1, 2], [3, 4], [5]]
+```
+
+```python
+def max_flow(n, capacity_edges, s, t):
+    """Edmonds-Karp: BFS for augmenting paths on a residual capacity matrix."""
+    cap = [[0] * n for _ in range(n)]
+    for u, v, c in capacity_edges:
+        cap[u][v] += c
+    flow = 0
+    while True:
+        parent = [-1] * n
+        parent[s] = s
+        q = deque([s])
+        while q and parent[t] == -1:                 # BFS for a path with spare capacity
+            u = q.popleft()
+            for v in range(n):
+                if parent[v] == -1 and cap[u][v] > 0:
+                    parent[v] = u
+                    q.append(v)
+        if parent[t] == -1:
+            return flow                              # no augmenting path left
+        push, v = float("inf"), t
+        while v != s:                                # the path's narrowest pipe
+            push = min(push, cap[parent[v]][v])
+            v = parent[v]
+        v = t
+        while v != s:                                # use it, and add "undo" capacity backwards
+            cap[parent[v]][v] -= push
+            cap[v][parent[v]] += push
+            v = parent[v]
+        flow += push
+
+# 0 = source, 5 = sink
+pipes = [(0, 1, 16), (0, 2, 13), (1, 2, 10), (2, 1, 4), (1, 3, 12), (3, 2, 9),
+         (2, 4, 14), (4, 3, 7), (3, 5, 20), (4, 5, 4)]
+max_flow(6, pipes, 0, 5)                                               # → 23
+```
+
+The answer 23 is also the capacity of the smallest cut: the pipes 1→3 (12), 4→3 (7) and 4→5 (4) add up to 23, and removing them separates the source from the sink.
+
+### Practice
+
+| # | LeetCode problem | Difficulty |
+|---|---|---|
+| 1 | [1192. Critical Connections in a Network](https://leetcode.com/problems/critical-connections-in-a-network/) (bridges) | 🔴 Hard |
+| 2 | [1568. Minimum Number of Days to Disconnect Island](https://leetcode.com/problems/minimum-number-of-days-to-disconnect-island/) (articulation points) | 🔴 Hard |
+| 3 | [2360. Longest Cycle in a Graph](https://leetcode.com/problems/longest-cycle-in-a-graph/) | 🔴 Hard |
+| 4 | [1557. Minimum Number of Vertices to Reach All Nodes](https://leetcode.com/problems/minimum-number-of-vertices-to-reach-all-nodes/) (in-degree/SCC thinking) | 🟡 Medium |
+
+**Learn & visualise:** [CP-Algorithms: Finding bridges](https://cp-algorithms.com/graph/bridge-searching.html) · [CP-Algorithms: Strongly connected components](https://cp-algorithms.com/graph/strongly-connected-components.html) · [CP-Algorithms: Edmonds–Karp](https://cp-algorithms.com/graph/edmonds_karp.html) · [VisuAlgo: Max flow](https://visualgo.net/en/maxflow)
+
+---
+
 ### ✅ Part 9 checkpoint
 
 Without looking, can you:
@@ -6920,19 +7783,401 @@ Without looking, can you:
 - [ ] Build KMP's failure table and use it to search in O(n + m)?
 - [ ] Explain a rolling hash, and why equal hashes must be double-checked?
 - [ ] Write a Fenwick tree and a segment tree, and say when prefix sums are no longer enough?
+- [ ] Find bridges with `disc`/`low` values, and strongly connected components with Kosaraju?
+- [ ] Explain max flow, augmenting paths and why max flow equals min cut?
 
-Part 10 is for revision: a topic checklist, a cheat sheet and the theory questions interviewers ask most.
+Part 10 shows how these ideas run inside real systems today.
 
 ---
 
-# Part 10 — Interview Prep: Revision
+# Part 10 — Advanced: Algorithms in the Real World (2026)
+
+> **Goal:** How randomised and probabilistic algorithms, consistent hashing, database indexes and vector search run inside real systems, and what's new in the field.  
+> **You need:** Parts 3–9.
+
+---
+
+## 55. Randomised and Streaming Algorithms: Shuffling, Sampling, Bloom Filters and Sketches
+
+![A Bloom filter sets k bits per item; a lookup checks the same k bits](images/dsa/p10-bloom.svg)
+
+### Theory
+
+> **In simple words:** sometimes the smartest move is to **flip a coin**, or to accept a tiny, controlled chance of error, in exchange for huge savings in time or memory. Big systems in 2026 do this constantly: they can't store or sort everything, so they sample, estimate and summarise.
+
+**Two kinds of randomised algorithm:**
+
+- **Las Vegas:** always correct, only the running time is random. Randomised quick sort and quickselect (Section [29](#29-merge-sort-and-quick-sort)) are always right, and a random pivot makes the slow case practically impossible.
+- **Monte Carlo:** always fast, but the answer may be slightly off, with a probability you control. Bloom filters and sketches below.
+
+In Python, `random.seed(42)` makes the "random" numbers repeat exactly on every run, which is essential for tests and debugging.
+
+**1. Shuffling fairly (Fisher–Yates).** Go from the last position down to the first; swap position i with a random position **from 0 to i** (including i). Every one of the n! orders is equally likely, in O(n). The classic bug is swapping with a random position from the **whole** list each time: it looks fine but some orders come out more often than others. `random.shuffle` uses Fisher–Yates.
+
+**2. Reservoir sampling: a fair sample from a stream of unknown length.** You're reading a log with billions of lines and want k random lines, but you can't store the log or know its length in advance. Keep the first k items. For item number i (counting from 1, with i > k), keep it with probability k/i, replacing a random slot of the reservoir. At every moment, each item seen so far is in the sample with the same probability k/i. Memory: O(k).
+
+**3. Weighted random choice.** To pick index i with probability `w[i] / sum(w)`: build prefix sums of the weights (Section [24](#24-prefix-sums)), pick a random number between 0 and the total, and binary-search (Section [18](#18-searching-linear-search-and-binary-search)) for where it lands. O(log n) per pick. (`random.choices(items, weights)` does this for you.)
+
+**4. Bloom filter: "definitely not" or "probably yes" in tiny memory.** A bit array of m bits, all 0, plus k different hash functions.
+
+- **Add** an item: compute its k hashes and set those k bits to 1.
+- **Check** an item: compute the same k bits. If **any** is 0, the item was **definitely never added**. If all are 1, it was **probably** added: the bits might have been set by other items (a **false positive**).
+- There are **no false negatives**, and the false-positive rate is tunable: about 10 bits per item with 7 hash functions gives roughly 1% false positives, however large the items are.
+
+It's perfect as a cheap **first check** before an expensive one: "is this key possibly on disk?", "has this user possibly seen this post?".
+
+**5. Count-Min Sketch: approximate counts.** A small grid of counters with d rows; each row has its own hash function. To count an item, add 1 to one counter in each row (the one its hash picks). To estimate its count, take the **minimum** of its d counters. Collisions only ever **add** to counters, so the estimate is never too low, and the minimum picks the least-polluted row. It answers "roughly how often has this appeared?" for millions of distinct items in a few kilobytes.
+
+**6. HyperLogLog: counting distinct items.** "How many unique visitors today?" Storing every visitor ID is expensive. HyperLogLog hashes each ID and remembers, in small buckets, the longest run of leading zeros seen (a long run is rare, so it hints at many distinct values). With about 12 KB it estimates billions of distinct items to within about 1%. Redis offers it directly (`PFADD`, `PFCOUNT`).
+
+**Common mistakes:**
+
+- ❌ A biased shuffle (swapping with any position instead of positions 0 … i).
+- ❌ Using Python's built-in `hash()` for Bloom filters or sketches that must give the same answer on every run: string hashes are randomised per process. Use `hashlib` (as in the code) for stable hashes.
+- ❌ Forgetting that a Bloom filter can't **delete** items (a "counting Bloom filter" or "cuckoo filter" can).
+
+**Used in real software:** databases like Cassandra, HBase and RocksDB keep a Bloom filter per data file to skip files that can't contain a key; CDNs and caches avoid caching one-hit wonders; Redis provides HyperLogLog; analytics and monitoring systems use sketches for "top trending" and "unique users" counts; A/B testing platforms randomly assign users to experiments; and reservoir sampling keeps a fair sample of requests in logging and tracing systems.
+
+### Python
+
+```python
+import random
+
+def fisher_yates(items):
+    a = items[:]
+    for i in range(len(a) - 1, 0, -1):
+        j = random.randint(0, i)                   # 0 .. i, inclusive
+        a[i], a[j] = a[j], a[i]
+    return a
+
+def reservoir_sample(stream, k):
+    sample = []
+    for i, item in enumerate(stream, start=1):
+        if i <= k:
+            sample.append(item)                    # fill the reservoir first
+        else:
+            j = random.randint(1, i)               # keep item with probability k / i
+            if j <= k:
+                sample[j - 1] = item
+    return sample
+
+random.seed(42)                                    # repeatable "randomness"
+deck = fisher_yates(list(range(10)))
+sorted(deck) == list(range(10)), len(reservoir_sample(range(1_000_000), 5))   # → (True, 5)
+
+counts = {}
+for _ in range(60_000):                            # every order of [1, 2, 3] ~ 10,000 times
+    order = tuple(fisher_yates([1, 2, 3]))
+    counts[order] = counts.get(order, 0) + 1
+len(counts), max(counts.values()) / min(counts.values()) < 1.1                # → (6, True)
+
+hits = [0] * 10
+for _ in range(20_000):
+    for x in reservoir_sample(range(10), 3):      # each of 10 items should appear ~6,000 times
+        hits[x] += 1
+max(hits) / min(hits) < 1.1                                                    # → True
+```
+
+```python
+import hashlib
+from bisect import bisect_right
+from itertools import accumulate
+
+class BloomFilter:
+    def __init__(self, m, k):
+        self.m, self.k, self.bits = m, k, 0        # one big int used as a row of m bits
+
+    def _positions(self, item):
+        for seed in range(self.k):                 # k different hash functions via different salts
+            digest = hashlib.sha256(f"{seed}:{item}".encode()).digest()
+            yield int.from_bytes(digest[:8], "big") % self.m
+
+    def add(self, item):
+        for p in self._positions(item):
+            self.bits |= 1 << p                    # set bit p
+
+    def __contains__(self, item):                  # makes `item in bloom` work
+        return all(self.bits >> p & 1 for p in self._positions(item))
+
+class CountMinSketch:
+    def __init__(self, width, depth):
+        self.w, self.d = width, depth
+        self.table = [[0] * width for _ in range(depth)]
+
+    def _cols(self, item):
+        for row in range(self.d):
+            digest = hashlib.sha256(f"{row}|{item}".encode()).digest()
+            yield row, int.from_bytes(digest[:8], "big") % self.w
+
+    def add(self, item, count=1):
+        for row, col in self._cols(item):
+            self.table[row][col] += count
+
+    def estimate(self, item):
+        return min(self.table[row][col] for row, col in self._cols(item))
+
+bf = BloomFilter(m=1000, k=7)
+for word in ["apple", "banana", "cherry"]:
+    bf.add(word)
+"apple" in bf, "banana" in bf, "grape" in bf       # → (True, True, False)
+
+cms = CountMinSketch(width=50, depth=4)
+for word, n in [("python", 120), ("java", 40), ("rust", 7)]:
+    cms.add(word, n)
+cms.estimate("python") >= 120, cms.estimate("rust") >= 7, cms.estimate("go") >= 0   # → (True, True, True)
+
+def weighted_pick(weights, r):                     # r: a random number in [0, total)
+    return bisect_right(list(accumulate(weights)), r)
+
+[weighted_pick([1, 3, 6], r) for r in (0.5, 1.0, 3.9, 4.0, 9.9)]   # → [0, 1, 1, 2, 2]
+```
+
+- `yield` makes a function a **generator**: it hands out values one at a time to the loop that uses it.
+- Defining `__contains__` lets `in` work on your own class.
+
+### Practice
+
+| # | LeetCode problem | Difficulty |
+|---|---|---|
+| 1 | [384. Shuffle an Array](https://leetcode.com/problems/shuffle-an-array/) | 🟡 Medium |
+| 2 | [382. Linked List Random Node](https://leetcode.com/problems/linked-list-random-node/) (reservoir sampling) | 🟡 Medium |
+| 3 | [398. Random Pick Index](https://leetcode.com/problems/random-pick-index/) | 🟡 Medium |
+| 4 | [528. Random Pick with Weight](https://leetcode.com/problems/random-pick-with-weight/) | 🟡 Medium |
+| 5 | [470. Implement Rand10() Using Rand7()](https://leetcode.com/problems/implement-rand10-using-rand7/) | 🟡 Medium |
+| 6 | [710. Random Pick with Blacklist](https://leetcode.com/problems/random-pick-with-blacklist/) | 🔴 Hard |
+
+**Learn more:** [Wikipedia: Fisher–Yates shuffle](https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle) · [Wikipedia: Reservoir sampling](https://en.wikipedia.org/wiki/Reservoir_sampling) · [Wikipedia: Bloom filter](https://en.wikipedia.org/wiki/Bloom_filter) · [Redis docs: HyperLogLog](https://redis.io/docs/latest/develop/data-types/probabilistic/hyperloglogs/)
+
+---
+
+## 56. Algorithms Behind Real Systems: Consistent Hashing, Rate Limiters, B-Trees, LSM Trees and Vector Search
+
+![Consistent hashing: servers and keys on a ring; each key goes to the next server clockwise](images/dsa/p10-consistent-hashing.svg)
+
+### Theory
+
+> **In simple words:** the structures in this file aren't just interview puzzles. Real systems (databases, caches, search engines, AI apps) are built from them. This section shows the most important combinations used in industry today, all made from pieces you already know.
+
+**1. Consistent hashing: spreading data across many servers.** With N cache servers, the obvious rule is `server = hash(key) % N` (Section [11](#11-maths-toolbox-series-factorials-fibonacci-powers-and-modulo)). But when N changes (a server is added or dies), almost **every** key moves to a different server, and the whole cache goes cold at once. Consistent hashing fixes this:
+
+- Put the servers on a **ring** (the circle of all hash values), each at the position of its hash.
+- A key belongs to the **first server clockwise** from the key's hash. Find it with binary search over the sorted server positions (Section [18](#18-searching-linear-search-and-binary-search)).
+- Adding or removing one server only moves the keys in **one slice** of the ring: about 1/N of them.
+- Each server is placed at many positions (**virtual nodes**) so the slices are evenly sized.
+
+Used in: Amazon's Dynamo-style databases and Cassandra, distributed caches, and load balancers.
+
+**2. Rate limiting: the token bucket.** "Each user may make at most 10 requests per second, with short bursts allowed." Picture a bucket holding up to `capacity` tokens, refilled at `rate` tokens per second. Each request takes one token; with no token left, the request is rejected (HTTP 429 "Too Many Requests"). It needs O(1) memory per user: the token count and the last refill time. (The sliding-window log in Section [34](#34-queues-and-deques) is the exact alternative that costs more memory.) Used in: API gateways, cloud APIs (including LLM APIs' request and token limits), and login-attempt protection.
+
+**3. B-trees and B+ trees: how database indexes work.** A BST (Section [38](#38-binary-search-trees)) has 2 children per node, so a billion keys means about 30 levels, and on disk each level is a slow read. A **B-tree** node holds **hundreds** of sorted keys and has hundreds of children. With 500 children per node, three levels reach 500³ = 125 million keys, so any key is found in about 3–4 disk reads, and each node is binary-searched in memory. In a **B+ tree** (the variant databases use) all the data lives in the leaves, and the leaves are linked together, so range queries (`WHERE age BETWEEN 20 AND 30`) just walk along the leaves. Used in: PostgreSQL, MySQL (InnoDB), SQLite and most file systems.
+
+**4. LSM trees: databases optimised for writing.** Updating a B-tree in place means random disk writes. A **log-structured merge (LSM) tree** turns writes into fast sequential ones:
+
+1. New writes go into an in-memory sorted structure (the **memtable**) and an append-only log (for crash safety).
+2. When the memtable is full, it's written to disk as an immutable, sorted file.
+3. Background **compaction** merges sorted files together, like merge sort's merge step (Section [29](#29-merge-sort-and-quick-sort)) or a k-way merge with a heap (Section [39](#39-heaps-and-priority-queues)).
+4. Reads check the memtable, then the files, newest first, and each file's **Bloom filter** (Section [55](#55-randomised-and-streaming-algorithms-shuffling-sampling-bloom-filters-and-sketches)) skips files that can't contain the key.
+
+Used in: RocksDB, LevelDB, Cassandra, ScyllaDB and many time-series databases.
+
+**5. Vector search: the retrieval engine of AI apps.** Modern AI systems turn text, images or products into **embeddings**: lists of hundreds of numbers where similar meanings are close together. "Find documents similar to this question" (the core of RAG chatbots) becomes "find the vectors nearest to this vector".
+
+- **Similarity:** usually **cosine similarity**, the cosine of the angle between two vectors (1 = same direction, 0 = unrelated), computed as dot(a, b) / (|a| × |b|).
+- **Exact search** compares the query with every vector: O(n × d) for n vectors of d numbers each. That's fine for thousands of vectors, too slow for hundreds of millions.
+- **Approximate nearest neighbour (ANN)** indexes trade a little accuracy for huge speed. **HNSW** (Hierarchical Navigable Small World) builds a layered graph: a sparse top layer for long jumps and denser lower layers for fine search, then walks it greedily towards the query (Section [48](#48-greedy-algorithms) + Section [41](#41-graphs-representation-bfs-and-dfs)). **IVF** clusters the vectors and searches only the nearest clusters. **Product quantization** compresses vectors to save memory.
+
+Used in: vector databases and libraries (FAISS, pgvector for PostgreSQL, Milvus, Qdrant, Weaviate, Pinecone), semantic search, recommendations and RAG pipelines. (The AI/ML notes in this repo cover RAG in depth.)
+
+**6. Merkle trees: checking huge data cheaply.** Hash every data block, then hash pairs of hashes, and so on up to one **root hash**. If any block changes, the root changes. Two machines can compare roots, and only if they differ walk down the tree to find **which** blocks differ, in O(log n) comparisons instead of sending everything. Used in: **Git** (every commit and folder is identified by a hash of its contents), blockchains, and database replicas (Cassandra and DynamoDB-style anti-entropy repair).
+
+**7. Other everyday pieces:** **external merge sort** sorts data bigger than memory (sort chunks that fit, then k-way merge them with a heap); **geospatial indexes** (geohashes, quadtrees, and Uber's H3 hexagon grid) answer "what's near me?"; and **inverted indexes** (a dict from each word to the list of documents containing it) power full-text search engines like Elasticsearch and PostgreSQL's full-text search.
+
+**How industry applies all this in 2026:**
+
+- **Use the standard library and proven tools first:** `sorted`, `heapq`, `bisect`, `collections`, `graphlib`, a real database. Hand-written structures are for learning and for the rare cases a library can't handle.
+- **Measure before optimising:** profile, find the real bottleneck, then pick the right structure.
+- **At scale, approximate:** Bloom filters, sketches, HyperLogLog and ANN search accept a tiny error for enormous savings.
+- **Memory access matters as much as Big-O:** contiguous arrays and cache-friendly layouts often beat "theoretically better" pointer-heavy structures.
+
+### Python
+
+```python
+import hashlib
+from bisect import bisect_right
+
+def stable_hash(text):                                 # the same on every run (unlike hash())
+    return int.from_bytes(hashlib.md5(text.encode()).digest()[:8], "big")
+
+class ConsistentHashRing:
+    def __init__(self, servers, vnodes=100):
+        self.vnodes = vnodes
+        self.ring = []                                 # sorted (position, server) pairs
+        for s in servers:
+            self.add(s)
+
+    def add(self, server):
+        for i in range(self.vnodes):                   # many positions per server
+            self.ring.append((stable_hash(f"{server}#{i}"), server))
+        self.ring.sort()
+
+    def server_for(self, key):
+        i = bisect_right(self.ring, (stable_hash(key), ""))   # first position clockwise
+        return self.ring[i % len(self.ring)][1]               # wrap around the ring
+
+keys = [f"user:{i}" for i in range(10_000)]
+ring = ConsistentHashRing(["A", "B", "C", "D"])
+before = {k: ring.server_for(k) for k in keys}
+ring.add("E")
+moved = sum(before[k] != ring.server_for(k) for k in keys)
+modulo_moved = sum(stable_hash(k) % 4 != stable_hash(k) % 5 for k in keys)
+moved < 3_000, modulo_moved > 7_000                    # → (True, True)
+```
+
+Adding a fifth server moved roughly a fifth of the keys (under 3,000 of 10,000), while plain `% N` hashing would move about 80% (over 7,000).
+
+```python
+class TokenBucket:
+    def __init__(self, capacity, rate):
+        self.capacity, self.rate = capacity, rate      # max tokens, tokens added per second
+        self.tokens, self.last = capacity, 0.0
+
+    def allow(self, now):
+        self.tokens = min(self.capacity, self.tokens + (now - self.last) * self.rate)
+        self.last = now
+        if self.tokens >= 1:
+            self.tokens -= 1
+            return True
+        return False                                   # would be HTTP 429 in a real API
+
+bucket = TokenBucket(capacity=3, rate=1)               # bursts of 3, then 1 request per second
+[bucket.allow(t) for t in (0, 0, 0, 0, 0.5, 1.0, 2.5)]   # → [True, True, True, False, False, True, True]
+
+def cosine(a, b):
+    dot = sum(x * y for x, y in zip(a, b))
+    norm = (sum(x * x for x in a) ** 0.5) * (sum(y * y for y in b) ** 0.5)
+    return dot / norm
+
+def top_k(query, docs, k):                             # exact nearest neighbours: O(n × d)
+    scored = sorted(((cosine(query, vec), name) for name, vec in docs.items()), reverse=True)
+    return [name for score, name in scored[:k]]
+
+docs = {"cats": [0.9, 0.1, 0.0], "dogs": [0.8, 0.3, 0.1], "stocks": [0.0, 0.2, 0.9], "bonds": [0.1, 0.1, 0.8]}
+top_k([0.85, 0.2, 0.05], docs, 2), top_k([0.0, 0.25, 0.9], docs, 1)   # → (["cats", "dogs"], ["stocks"])
+
+def merkle_root(blocks):
+    level = [hashlib.sha256(b.encode()).hexdigest() for b in blocks]
+    while len(level) > 1:
+        if len(level) % 2:
+            level.append(level[-1])                   # duplicate the last hash on odd levels
+        level = [hashlib.sha256((level[i] + level[i + 1]).encode()).hexdigest()
+                 for i in range(0, len(level), 2)]
+    return level[0]
+
+r1 = merkle_root(["block1", "block2", "block3", "block4"])
+r2 = merkle_root(["block1", "block2", "blockX", "block4"])
+r1 == merkle_root(["block1", "block2", "block3", "block4"]), r1 == r2   # → (True, False)
+```
+
+The toy embeddings above have 3 numbers; real ones have hundreds or thousands, and a real system would call a vector database or `pgvector` instead of looping in Python.
+
+### Practice
+
+These are design-flavoured; try explaining each out loud, then code a small version:
+
+1. Design a rate limiter allowing 100 requests per minute per user. Compare token bucket, fixed window and sliding window.
+2. Design a URL shortener's key → URL storage for 1 billion links spread across 50 servers, where servers are added over time.
+3. Given 10 GB of numbers and 1 GB of memory, sort them (external merge sort).
+4. Build a tiny "semantic search": store 20 sentences with hand-made 3-number vectors and return the 3 closest to a query.
+
+| # | LeetCode problem | Difficulty |
+|---|---|---|
+| 1 | [933. Number of Recent Calls](https://leetcode.com/problems/number-of-recent-calls/) (a sliding-window rate counter) | 🟢 Easy |
+| 2 | [1146. Snapshot Array](https://leetcode.com/problems/snapshot-array/) (versioned storage + binary search) | 🟡 Medium |
+| 3 | [981. Time Based Key-Value Store](https://leetcode.com/problems/time-based-key-value-store/) | 🟡 Medium |
+| 4 | [146. LRU Cache](https://leetcode.com/problems/lru-cache/) (the cache in front of every system) | 🟡 Medium |
+
+**Learn more:** [Wikipedia: Consistent hashing](https://en.wikipedia.org/wiki/Consistent_hashing) · [Wikipedia: Token bucket](https://en.wikipedia.org/wiki/Token_bucket) · [Wikipedia: B+ tree](https://en.wikipedia.org/wiki/B%2B_tree) · [Wikipedia: Log-structured merge-tree](https://en.wikipedia.org/wiki/Log-structured_merge-tree) · [pgvector (GitHub)](https://github.com/pgvector/pgvector) · [HNSW paper (arXiv)](https://arxiv.org/abs/1603.09320)
+
+---
+
+## 57. What's New: Recent Breakthroughs and Modern Practice (2022–2026)
+
+![Timeline of recent algorithm breakthroughs](images/dsa/p10-timeline.svg)
+
+### Theory
+
+> **In simple words:** algorithms aren't finished. Problems studied for 50+ years, like shortest paths, sorting and hash tables, got **new, faster answers** in the last few years, and AI systems have started discovering algorithms too. You don't need these results for interviews, but knowing them shows you follow the field, and some already run inside the tools you use.
+
+**1. Shortest paths got faster than Dijkstra (2025).** For decades, Dijkstra's algorithm (Section [43](#43-shortest-paths-dijkstra)) with a good heap, O(m + n log n), was thought to be about the best possible for single-source shortest paths, because it effectively **sorts** vertices by distance. In 2025, Duan, Mao, Mao, Shu and Yin presented a deterministic algorithm for directed graphs with non-negative weights running in **O(m log^(2/3) n)**, faster than Dijkstra on sparse graphs, by avoiding a full sort. It won the best paper award at STOC 2025. Around the same time (FOCS 2024), Haeupler and colleagues showed that Dijkstra with a specially designed heap is **universally optimal** in a precise sense: no algorithm can beat it on any graph structure by more than a constant factor, when the answer must include the order of the vertices.
+
+**2. Negative edge weights in near-linear time (2022).** Bellman-Ford (Section [46](#46-minimum-spanning-trees-bellman-ford-and-floyd-warshall)) takes O(V × E). Bernstein, Nanongkai and Wulff-Nilsen found a near-linear-time algorithm for shortest paths with negative integer weights (FOCS 2022 best paper).
+
+**3. Maximum flow in almost-linear time (2022).** Chen, Kyng, Liu, Peng, Probst Gutenberg and Sachdeva solved max flow (Section [54](#54-advanced-graphs-bridges-strongly-connected-components-and-max-flow)) in m^(1+o(1)) time: essentially as fast as reading the graph. It's a theoretical milestone rather than a practical library routine today.
+
+**4. Hash tables: a 40-year-old conjecture overturned (2025).** In 1985, Andrew Yao conjectured that a certain simple style of open-addressing hash table (Section [19](#19-hashing-dictionaries-and-sets)) couldn't be made faster. Andrew Krapivin, then an undergraduate, with Martín Farach-Colton and William Kuszmaul, showed that with a clever layout it can, using ideas from "tiny pointers". Published in 2025, it changes what we believe is possible for the most-used data structure in computing.
+
+**5. AI discovering algorithms.**
+
+- **AlphaDev** (DeepMind, 2023) used reinforcement learning to find shorter machine-code routines for sorting 3–5 items. They were merged into LLVM's C++ standard library (libc++), so they run inside real software.
+- **AlphaTensor** (2022) found new ways to multiply small matrices with fewer multiplications, and **AlphaEvolve** (2025) found a way to multiply two 4 × 4 complex-valued matrices with 48 multiplications, improving on Strassen's 1969 method (49).
+- **FunSearch** (2023) used a large language model plus automatic checking to find new constructions in mathematics and better heuristics for bin packing.
+
+**6. How the languages you use changed.**
+
+| Change | Year | Section |
+|---|---|---|
+| CPython's `list.sort` switched to the **Powersort** merge policy (Python 3.11) | 2022 | [29](#29-merge-sort-and-quick-sort) |
+| Go's `sort` switched to **pdqsort** (Go 1.19) | 2022 | [29](#29-merge-sort-and-quick-sort) |
+| Rust's sorts replaced by **driftsort** and **ipnsort** (Rust 1.81) | 2024 | [29](#29-merge-sort-and-quick-sort) |
+| Python 3.13 added an experimental **free-threaded** build (no global interpreter lock), officially supported from Python 3.14 | 2024–2025 | Parallel CPU work in pure Python |
+| Python 3.14 added built-in **max-heap** functions to `heapq` | 2025 | [39](#39-heaps-and-priority-queues) |
+
+**7. Security: post-quantum cryptography (2024).** Large quantum computers could break RSA and elliptic-curve cryptography, which rely on factoring and related problems (Section [8](#8-divisors-and-prime-numbers)). In August 2024, NIST published the first post-quantum standards (ML-KEM, ML-DSA and SLH-DSA), based on lattices and hash functions, and browsers and messaging apps have started deploying them alongside the classic methods.
+
+**8. What changed in engineering practice.**
+
+- **Vector search went mainstream.** AI applications (chatbots with company knowledge, semantic search) made approximate nearest-neighbour search (HNSW, IVF, Section [56](#56-algorithms-behind-real-systems-consistent-hashing-rate-limiters-b-trees-lsm-trees-and-vector-search)) an everyday tool, including inside PostgreSQL via pgvector.
+- **Probabilistic structures are standard at scale:** Bloom filters, HyperLogLog and sketches (Section [55](#55-randomised-and-streaming-algorithms-shuffling-sampling-bloom-filters-and-sketches)) inside databases, analytics and caches.
+- **AI coding assistants are everywhere.** They write a lot of routine code, which makes **understanding** more valuable, not less: you must judge whether generated code is correct and efficient, spot the O(n²) hidden in it, and test the edge cases. Coding interviews still largely test DSA, and some companies have started allowing AI tools in some rounds, where the focus shifts to explaining, verifying and improving the code.
+
+**What to do with this:** for interviews, master Parts 1–8. For your career, remember the pattern: well-known problems keep getting better solutions, and libraries quietly adopt them, so prefer the standard library, keep your tools updated, and stay curious.
+
+### Practice
+
+Explain in your own words (out loud or in writing):
+
+1. Why was Dijkstra's O(m + n log n) considered a "sorting barrier", and what does beating it mean?
+2. Why do language runtimes keep changing their sort algorithm if all of them are O(n log n)?
+3. Why must an AI-discovered algorithm (AlphaDev, AlphaEvolve) still be **proved** or **verified** before it's trusted?
+4. What changes for RSA if large quantum computers arrive, and what is replacing it?
+
+**Learn more:** [Quanta Magazine: computer science coverage](https://www.quantamagazine.org/computer-science/) (readable articles on most of the results above) · [DeepMind: AlphaDev](https://deepmind.google/discover/blog/alphadev-discovers-faster-sorting-algorithms/) · [NIST: post-quantum cryptography](https://csrc.nist.gov/projects/post-quantum-cryptography)
+
+---
+
+### ✅ Part 10 checkpoint
+
+Without looking, can you:
+
+- [ ] Shuffle fairly with Fisher–Yates, and sample k items from a stream of unknown length?
+- [ ] Explain how a Bloom filter answers "definitely not" vs "probably yes", and where databases use one?
+- [ ] Explain consistent hashing and why plain `hash % N` fails when servers change?
+- [ ] Describe a token-bucket rate limiter, a B+ tree index and an LSM tree in a few sentences each?
+- [ ] Explain vector search, cosine similarity and why ANN indexes like HNSW exist?
+- [ ] Name two recent algorithm breakthroughs and one way your tools changed because of them?
+
+Part 11 is for revision: a topic checklist, a cheat sheet and the theory questions interviewers ask most.
+
+---
+
+# Part 11 — Interview Prep: Revision
 
 > **Goal:** Check your coverage against what top companies ask, and revise quickly before interviews.  
-> **You need:** Parts 1–9.
+> **You need:** Parts 1–10.
 
 ---
 
-## 54. Interview Topic Checklist: What Top Companies Ask
+## 58. Interview Topic Checklist: What Top Companies Ask
 
 ### Theory
 
@@ -6970,6 +8215,9 @@ Coding rounds at large product companies (Google, Amazon, Microsoft, Meta, Apple
 | Maths | ⭐ | Part 2 ([7](#7-working-with-digits)–[12](#12-number-systems-decimal-and-binary)) | [9. Palindrome Number](https://leetcode.com/problems/palindrome-number/) · [50. Pow(x, n)](https://leetcode.com/problems/powx-n/) · [204. Count Primes](https://leetcode.com/problems/count-primes/) · [202. Happy Number](https://leetcode.com/problems/happy-number/) |
 | String algorithms | ⭐ | [16](#16-strings), [52](#52-string-algorithms-palindromes-kmp-and-rabin-karp) | [5. Longest Palindromic Substring](https://leetcode.com/problems/longest-palindromic-substring/) · [647. Palindromic Substrings](https://leetcode.com/problems/palindromic-substrings/) · [28. Find the Index of the First Occurrence in a String](https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/) |
 | Segment / Fenwick trees | ⭐ | [53](#53-range-queries-with-updates-fenwick-trees-and-segment-trees) | [307. Range Sum Query - Mutable](https://leetcode.com/problems/range-sum-query-mutable/) · [315. Count of Smaller Numbers After Self](https://leetcode.com/problems/count-of-smaller-numbers-after-self/) |
+| Advanced graphs | ⭐ | [54](#54-advanced-graphs-bridges-strongly-connected-components-and-max-flow) | [1192. Critical Connections in a Network](https://leetcode.com/problems/critical-connections-in-a-network/) · [2360. Longest Cycle in a Graph](https://leetcode.com/problems/longest-cycle-in-a-graph/) |
+| Randomised algorithms | ⭐ | [55](#55-randomised-and-streaming-algorithms-shuffling-sampling-bloom-filters-and-sketches) | [384. Shuffle an Array](https://leetcode.com/problems/shuffle-an-array/) · [382. Linked List Random Node](https://leetcode.com/problems/linked-list-random-node/) · [528. Random Pick with Weight](https://leetcode.com/problems/random-pick-with-weight/) |
+| Systems-flavoured design | ⭐⭐ | [35](#35-design-problems-min-stack-queue-from-stacks-lru-cache), [56](#56-algorithms-behind-real-systems-consistent-hashing-rate-limiters-b-trees-lsm-trees-and-vector-search) | [981. Time Based Key-Value Store](https://leetcode.com/problems/time-based-key-value-store/) · [1146. Snapshot Array](https://leetcode.com/problems/snapshot-array/) · [933. Number of Recent Calls](https://leetcode.com/problems/number-of-recent-calls/) |
 
 **Beyond the problem list, interviewers check that you can:**
 
@@ -6981,11 +8229,11 @@ Coding rounds at large product companies (Google, Amazon, Microsoft, Meta, Apple
 
 **Not covered by this file:** system design (see `nodejs.md` → system design sections) and behavioural questions. Most companies interview for those separately from DSA.
 
-**A practice plan:** finish Parts 1–3 first. Then, for each row above, solve the must-do problems in order (115 problems in total), timing yourself at 25–45 minutes per problem. Finish with mixed, random problems, because a real interview doesn't tell you the topic.
+**A practice plan:** finish Parts 1–3 first. Then, for each row above, solve the must-do problems in order (123 problems in total), timing yourself at 25–45 minutes per problem. Finish with mixed, random problems, because a real interview doesn't tell you the topic.
 
 ---
 
-## 55. Pattern Cheat Sheet: Which Technique When?
+## 59. Pattern Cheat Sheet: Which Technique When?
 
 Read the problem for **clues**, then match them to a technique:
 
@@ -7023,6 +8271,13 @@ Read the problem for **clues**, then match them to a technique:
 | "Palindromic substring", "find a pattern in text" | Expand around centre / KMP / rolling hash |
 | "Update a value and query a range", many times | Fenwick tree / segment tree |
 | "Appears once while others appear twice", subsets of ≤ 20 | Bit manipulation |
+| "Critical connection", "single point of failure" | Bridges / articulation points (Tarjan's low-link) |
+| "Groups where everyone reaches everyone" (directed) | Strongly connected components (Kosaraju / Tarjan) |
+| "Maximum throughput", "assign workers to jobs" | Max flow / bipartite matching |
+| "Shuffle", "random sample from a stream", "pick by weight" | Fisher–Yates, reservoir sampling, prefix sums + binary search |
+| "Seen before?" with tiny memory, "unique count" at huge scale | Bloom filter, HyperLogLog, Count-Min Sketch |
+| "Spread keys over servers that come and go" | Consistent hashing |
+| "Find similar items/documents" | Embeddings + cosine similarity + ANN index (HNSW) |
 
 **Input size → target complexity** (roughly 10⁷ simple steps per second in Python):
 
@@ -7068,7 +8323,7 @@ Read the problem for **clues**, then match them to a technique:
 
 ---
 
-## 56. Most Asked DSA Theory Questions
+## 60. Most Asked DSA Theory Questions
 
 1. **`print` vs `return`?** → `print` shows a value on the screen; `return` hands it back to the caller so the program can use it. A function without `return` gives back `None`.
 2. **What do `//` and `%` do, and why are they everywhere in DSA?** → Floor division and remainder. `n % 10` / `n // 10` peel digits, `n % 2` tests parity, `a % b == 0` tests divisibility, and `% m` keeps huge answers small.
@@ -7100,5 +8355,10 @@ Read the problem for **clues**, then match them to a technique:
 28. **Minimum spanning tree vs shortest path tree?** → An MST minimises the **total** weight needed to connect all nodes; a shortest-path tree minimises the distance from **one source** to each node. They're usually different trees.
 29. **Why is KMP linear?** → The text pointer never moves backwards; after a mismatch, the failure table says how much of the pattern is already matched. Each character is compared O(1) times amortised, so O(n + m).
 30. **When do you need a segment tree or Fenwick tree instead of prefix sums?** → When values change between range queries. Prefix sums need O(n) per update; the trees do both updates and queries in O(log n).
+31. **What does a Bloom filter guarantee, and what doesn't it?** → A "no" is always correct (no false negatives); a "yes" may be wrong (false positives, at a tunable rate). It can't delete items or list its contents.
+32. **Why use consistent hashing instead of `hash(key) % N`?** → With `% N`, changing N remaps almost every key. With a hash ring, adding or removing a server moves only about 1/N of the keys; virtual nodes keep the load even.
+33. **Why do databases use B+ trees rather than binary search trees?** → Disk reads are slow, and a B+ tree node holds hundreds of keys, so the tree is only 3–4 levels deep even for hundreds of millions of rows; linked leaves make range scans fast.
+34. **Exact vs approximate nearest-neighbour search?** → Exact compares the query with every vector, O(n × d); ANN indexes like HNSW or IVF check a small, well-chosen fraction for a big speed-up, at the cost of occasionally missing a true neighbour.
+35. **What is a bridge in a graph, and how do you find all of them in O(V + E)?** → An edge whose removal disconnects the graph. One DFS tracks discovery times and low-links; edge u → v is a bridge when low[v] > disc[u].
 
 ---
