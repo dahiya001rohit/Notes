@@ -8,7 +8,7 @@ Complete notes from absolute basics to production and interviews. Every topic ha
 |---|---|---|---|
 | [JavaScript](javascript.md) | JavaScript from absolute zero in five levels (Basic → Easy → Moderate → Advanced → Interview Prep): variables, types, operators, decisions, loops, strings, arrays, objects and functions; array methods, destructuring, scope, closures, this, coercion and errors; objects, prototypes, classes, Map/Set, generators, the event loop, promises, async/await, modules, regex and Intl; the DOM, events, storage, fetch, CORS, rendering and web security; functional patterns, debounce/throttle, Proxy, design patterns, memory, performance and ES2020–ES2026; tooling, testing, debugging and production code; polyfills, DSA and output questions. Every example runs on Node.js 24 or headless Chromium with real output | 51 | 7,114 |
 | [TypeScript](typescript.md) | TypeScript from zero in five levels (Basic → Easy → Moderate → Advanced → Interview Prep): how TypeScript runs, basic types, arrays, objects, functions, unions, type vs interface; unknown/never, narrowing, discriminated unions, as const and satisfies, enums, structural typing, classes; generics, keyof/typeof, utility, mapped, conditional and template literal types; modules, tsconfig, async code, Zod validation, error handling, decorators; React, Express, end-to-end types, branded types, variance; production setup, what's new up to TypeScript 7, fixing compiler errors; type challenges. Every example type-checked with TypeScript 7.0 and run on Node.js 24, with real compiler output | 40 | 7,159 |
-| [React](react.md) | Components & hooks → patterns & performance → state/data → Next.js → testing → production & machine coding | 56 | 7,709 |
+| [React](react.md) | React from zero in five levels (Basic → Easy → Moderate → Advanced → Interview Prep): components, JSX, props, lists and keys, state, events, forms; where state lives, effects, refs, data fetching, styling, composition; useReducer, context, custom hooks, rendering and reconciliation, performance and the React Compiler, Suspense and error boundaries, accessibility; React Router, TanStack Query, React 19 actions, React Hook Form + Zod, Zustand, testing with Testing Library and MSW; SSR, hydration, streaming, Server Components and Next.js, transitions, streaming AI chat UIs, security, architecture, legacy classes, production; behaviour questions and machine coding. Every example runs on React 19 with real output | 37 | 6,738 |
 | [Node.js](nodejs.md) | Runtime & event loop → Express & APIs → auth & security → databases → queues, observability, system design | 65 | 8,524 |
 | [Python](python.md) | Python from absolute zero in five levels (Basic → Easy → Moderate → Advanced → Interview Prep): variables, numbers, strings, decisions and loops; lists, dicts, sets, comprehensions and functions; errors, files, modules and uv, the standard library, classes, dataclasses and type hints; decorators, generators, context managers, regex, Pythonic style, pytest and logging; internals, descriptors, threads, processes, free-threading, asyncio, performance, databases and scripting; production tooling, packaging and what's new in 3.12–3.14. Every example runs on Python 3.14 with real output | 44 | 6,977 |
 | [FastAPI](fastapi.md) | Production APIs with FastAPI from zero in five levels (Basic → Easy → Moderate → Advanced → Interview Prep): HTTP and REST, routes, parameters and Pydantic bodies; response models, errors, forms/files and routers; dependency injection, async, settings and lifespan, SQLAlchemy 2.0, JWT auth and authorisation, CORS, testing; pagination, background jobs, WebSockets, SSE streaming for LLMs, webhooks, caching and rate limits; API design, OWASP API Top 10, observability, deployment and serving ML/LLM models. Every response shown was produced by the app (FastAPI 0.141, Python 3.14) | 33 | 4,853 |
@@ -20,7 +20,7 @@ Complete notes from absolute basics to production and interviews. Every topic ha
 | [LLM Engineering](llm-engineering.md) | Building applications with large language models, from zero, in five levels (Basic → Easy → Moderate → Advanced → Interview Prep): how LLMs work and are trained, tokens and cost, the Claude API from Python (messages, streaming, errors, refusals), prompt engineering, structured outputs, tool use, embeddings and vector search, prompt caching and batching, images and PDFs, evaluation and LLM-as-judge, hallucinations and prompt injection, fine-tuning (SFT, DPO, LoRA), reasoning models, open-weight models and vLLM, LLMOps and LLM system design. Local examples run with real output; API code checked against the official SDK | 21 | 3,167 |
 | [RAG and AI Agents](rag-and-agents.md) | Retrieval-augmented generation and agentic AI, from zero, in five levels (Basic → Easy → Moderate → Advanced → Interview Prep): RAG from scratch, loading and chunking, BM25 and vector search, hybrid search, reranking and query rewriting, RAG evaluation, vectorless RAG (full-text, text-to-SQL, tree navigation, agentic search, long context), contextual retrieval, parent documents and GraphRAG, production RAG (freshness, permissions, injection), LangChain, LangGraph, the agent loop, tools, memory and context engineering, agents with LangGraph, multi-agent systems, MCP, agent evaluation and security, and system design. Examples run locally with real output; API code checked against the official SDKs | 21 | 3,936 |
 | [Best Practices](best-practices.md) | Every good practice combined across the stack, the Gotchas Hall of Fame, and checklists | 32 | 1,733 |
-| **Total** | | **536** | **76,129** |
+| **Total** | | **517** | **75,158** |
 
 ## How every file is organized
 
@@ -125,7 +125,7 @@ The AI/ML files form one path, from "I know some Python" to building and shippin
 
 ### Phase 5 — React
 
-- **React:** [What is React](react.md#1-what-is-react) · [JSX](react.md#2-jsx) · [Components](react.md#3-components) · [Props](react.md#4-props) · [State & useState](react.md#5-state--usestate) · [Lists & Keys](react.md#8-lists--keys) · [Forms: Controlled vs Uncontrolled](react.md#9-forms-controlled-vs-uncontrolled) · [useEffect](react.md#12-useeffect) · [useRef](react.md#13-useref) · [useContext & Context API](react.md#14-usecontext--context-api) · [Custom Hooks](react.md#25-custom-hooks) · [Rendering: when & why components re-render](react.md#10-rendering--re-rendering) · [Performance Optimization](react.md#32-performance-optimization) · [React Router](react.md#35-react-router) · [Data Fetching: fetch, TanStack Query](react.md#38-data-fetching) · [Testing React](react.md#45-testing-react)
+- **React:** [Getting Started: What React Is and Your First Component](react.md#1-getting-started-what-react-is-and-your-first-component) · [JSX: HTML-Like Syntax in JavaScript](react.md#2-jsx-html-like-syntax-in-javascript) · [Components and Props](react.md#3-components-and-props) · [State with useState: Memory, Snapshots and Immutable Updates](react.md#5-state-with-usestate-memory-snapshots-and-immutable-updates) · [Conditional Rendering, Lists and Keys](react.md#4-conditional-rendering-lists-and-keys) · [Forms: Controlled and Uncontrolled Inputs](react.md#7-forms-controlled-and-uncontrolled-inputs) · [Effects with useEffect (and When You Don't Need One)](react.md#9-effects-with-useeffect-and-when-you-dont-need-one) · [Refs: useRef for DOM Elements and Values That Don't Re-render](react.md#10-refs-useref-for-dom-elements-and-values-that-dont-re-render) · [Context: Sharing Data Without Prop Drilling](react.md#15-context-sharing-data-without-prop-drilling) · [Custom Hooks: Reusing Stateful Logic](react.md#16-custom-hooks-reusing-stateful-logic) · [How React Renders: Trigger, Render, Commit, Reconciliation and Keys](react.md#17-how-react-renders-trigger-render-commit-reconciliation-and-keys) · [Performance: memo, useMemo, useCallback and the React Compiler](react.md#18-performance-memo-usememo-usecallback-and-the-react-compiler) · [Routing with React Router: Pages, URLs, Loaders and Actions](react.md#21-routing-with-react-router-pages-urls-loaders-and-actions) · [Server State with TanStack Query](react.md#22-server-state-with-tanstack-query) · [Testing React Apps: Testing Library, User Events, MSW and Playwright](react.md#25-testing-react-apps-testing-library-user-events-msw-and-playwright)
 
 ### Phase 6 — Backend with Node.js
 
@@ -139,7 +139,7 @@ The AI/ML files form one path, from "I know some Python" to building and shippin
 ### Phase 8 — Production engineering
 
 - **JavaScript:** [Testing JavaScript: Unit, Integration and End-to-End](javascript.md#44-testing-javascript-unit-integration-and-end-to-end) · [Production-Grade JavaScript: Code Quality, Refactoring and Reliability](javascript.md#46-production-grade-javascript-code-quality-refactoring-and-reliability)
-- **React:** [Production React Patterns](react.md#51-production-react-patterns) · [Accessibility (a11y)](react.md#47-accessibility-a11y)
+- **React:** [Production React: Performance, Virtualisation, Monitoring and Deployment](react.md#33-production-react-performance-virtualisation-monitoring-and-deployment) · [Accessibility, Portals and Modals](react.md#20-accessibility-portals-and-modals)
 - **Node.js:** [Security Best Practices](nodejs.md#40-security) · [OWASP API Security Top 10 (2023) with Examples](nodejs.md#41-owasp-api-security-top-10-2023-with-examples) · [Observability Hands-On: Logs, Metrics, Traces, SLOs & Alerts](nodejs.md#44-observability-hands-on-logs-metrics-traces-slos--alerts) · [BullMQ in Depth](nodejs.md#51-bullmq-in-depth) · [Graceful Shutdown](nodejs.md#54-graceful-shutdown) · [Streaming Responses & Server-Sent Events in Depth](nodejs.md#49-streaming-responses--server-sent-events-in-depth) · [Deployment: Docker, PM2, CI/CD, Nginx](nodejs.md#58-deployment)
 - **TypeScript:** [Production TypeScript: Project Setup, Linting, Testing, Migration and Publishing](typescript.md#34-production-typescript-project-setup-linting-testing-migration-and-publishing)
 - **Python:** [Production-Grade Python: Project Layout, Configuration, Tooling and CI](python.md#37-production-grade-python-project-layout-configuration-tooling-and-ci) · [Packaging and Publishing a Library](python.md#38-packaging-and-publishing-a-library)
@@ -149,7 +149,7 @@ The AI/ML files form one path, from "I know some Python" to building and shippin
 ### Phase 9 — Senior topics
 
 - **Node.js:** [System Design Basics for Backend Interviews](nodejs.md#63-system-design-basics-for-backend-interviews) · [Microservices, API Gateway, Message Brokers](nodejs.md#55-microservices) · [Resilience: Timeouts, Retries, Circuit Breakers & Load Shedding](nodejs.md#56-resilience-timeouts-retries-circuit-breakers--load-shedding) · [Building & Publishing an npm Package](nodejs.md#60-building--publishing-an-npm-package) · [Monorepos: pnpm Workspaces, Turborepo & Shared Packages](nodejs.md#61-monorepos-pnpm-workspaces-turborepo--shared-packages)
-- **React:** [How Hooks Work Under the Hood (+ Children & cloneElement APIs)](react.md#24-how-hooks-work-under-the-hood--children--cloneelement-apis) · [Next.js App Router Deep Dive (+ Animations)](react.md#44-nextjs-app-router-deep-dive--animations)
+- **React:** [How React Renders: Trigger, Render, Commit, Reconciliation and Keys](react.md#17-how-react-renders-trigger-render-commit-reconciliation-and-keys) · [React Server Components, Server Functions and Next.js](react.md#27-react-server-components-server-functions-and-nextjs)
 - **TypeScript:** [TypeScript with React](typescript.md#29-typescript-with-react) · [Advanced Type System Topics: Recursive Types, Variance and Type-Level Limits](typescript.md#33-advanced-type-system-topics-recursive-types-variance-and-type-level-limits) · [End-to-End Type Safety: Sharing Types Between Client and Server](typescript.md#31-end-to-end-type-safety-sharing-types-between-client-and-server)
 - **Python:** [Advanced Classes: Attribute Lookup, Descriptors, Class Hooks and Metaclasses](python.md#31-advanced-classes-attribute-lookup-descriptors-class-hooks-and-metaclasses)
 
@@ -160,7 +160,7 @@ Go through these in order in the last week before an interview; for each topic, 
 ### Core concepts (explain out loud)
 
 - **JavaScript:** [Closures](javascript.md#14-closures) · [How JavaScript Runs: Call Stack, Event Loop, Tasks and Microtasks](javascript.md#23-how-javascript-runs-call-stack-event-loop-tasks-and-microtasks) · [The this Keyword, call, apply and bind](javascript.md#15-the-this-keyword-call-apply-and-bind) · [Prototypes and Prototypal Inheritance](javascript.md#19-prototypes-and-prototypal-inheritance)
-- **React:** [Rendering: when & why components re-render](react.md#10-rendering--re-rendering) · [Rules of Hooks](react.md#23-rules-of-hooks) · [Virtual DOM, Reconciliation, Diffing & Fiber](react.md#11-virtual-dom-reconciliation--fiber)
+- **React:** [How React Renders: Trigger, Render, Commit, Reconciliation and Keys](react.md#17-how-react-renders-trigger-render-commit-reconciliation-and-keys) · [State with useState: Memory, Snapshots and Immutable Updates](react.md#5-state-with-usestate-memory-snapshots-and-immutable-updates)
 - **Node.js:** [The Node.js Event Loop (phases)](nodejs.md#10-the-nodejs-event-loop) · [Streams](nodejs.md#14-streams)
 
 ### Write from memory
@@ -171,7 +171,7 @@ Go through these in order in the last week before an interview; for each topic, 
 ### Predict the output
 
 - **JavaScript:** [Output-Based Questions (Predict the Output)](javascript.md#49-output-based-questions-predict-the-output)
-- **React:** [Output / Behaviour Questions](react.md#55-output--behaviour-questions)
+- **React:** [Behaviour Questions: What Renders, What Logs, and When](react.md#34-behaviour-questions-what-renders-what-logs-and-when)
 - **Node.js:** [Output-Based Questions](nodejs.md#64-output-based-questions)
 - **Python:** [Output-Based Questions (Predict the Output)](python.md#42-output-based-questions-predict-the-output)
 
@@ -181,7 +181,7 @@ Go through these in order in the last week before an interview; for each topic, 
 - **Node.js:** [SQL Deep Dive: Joins, Window Functions, Query Plans & Locking](nodejs.md#33-sql-deep-dive-joins-window-functions-query-plans--locking)
 - **Python:** [Python's Toolbox for Data Structures and Algorithms](python.md#40-pythons-toolbox-for-data-structures-and-algorithms) · [Interview Coding: Classic Python Problems](python.md#41-interview-coding-classic-python-problems)
 - **DSA in Python:** [Interview Topic Checklist: What Top Companies Ask](dsa-python.md#58-interview-topic-checklist-what-top-companies-ask) · [Pattern Cheat Sheet: Which Technique When?](dsa-python.md#59-pattern-cheat-sheet-which-technique-when) · [Most Asked DSA Theory Questions](dsa-python.md#60-most-asked-dsa-theory-questions)
-- **React:** [Machine Coding Questions (with solutions)](react.md#53-machine-coding-questions) · [Machine Coding II (Carousel, Kanban, Data Table, Wizard, Toasts, Comments)](react.md#54-machine-coding-ii-carousel-kanban-data-table-wizard-toasts-comments)
+- **React:** [Machine Coding Round: Classic Components Built and Tested](react.md#35-machine-coding-round-classic-components-built-and-tested)
 - **TypeScript:** [Type Challenges: Implement the Utility Types Yourself](typescript.md#37-type-challenges-implement-the-utility-types-yourself)
 - **SQL & PostgreSQL:** [Classic SQL Interview Problems (with Solutions)](sql-postgresql.md#32-classic-sql-interview-problems-with-solutions) · [SQL and PostgreSQL Cheat Sheet](sql-postgresql.md#33-sql-and-postgresql-cheat-sheet) · [Most Asked SQL and Database Theory Questions](sql-postgresql.md#34-most-asked-sql-and-database-theory-questions)
 - **Data Science:** [Interview Problems: pandas and NumPy](data-science.md#25-interview-problems-pandas-and-numpy) · [Data Science Cheat Sheet](data-science.md#26-data-science-cheat-sheet) · [Most Asked Data Science Theory Questions](data-science.md#27-most-asked-data-science-theory-questions)
@@ -199,7 +199,7 @@ Go through these in order in the last week before an interview; for each topic, 
 
 - **JavaScript:** [Most Asked JavaScript Interview Questions](javascript.md#51-most-asked-javascript-interview-questions)
 - **TypeScript:** [Most Asked TypeScript Interview Questions](typescript.md#40-most-asked-typescript-interview-questions)
-- **React:** [Most Asked Interview Questions](react.md#56-most-asked-interview-questions)
+- **React:** [Most Asked React Interview Questions](react.md#37-most-asked-react-interview-questions)
 - **Node.js:** [Most Asked Interview Questions](nodejs.md#65-most-asked-interview-questions)
 - **Python:** [Most Asked Python Interview Questions](python.md#44-most-asked-python-interview-questions)
 - **FastAPI:** [Most Asked FastAPI and Backend Interview Questions](fastapi.md#33-most-asked-fastapi-and-backend-interview-questions)
@@ -352,64 +352,66 @@ Go through these in order in the last week before an interview; for each topic, 
 </details>
 
 <details>
-<summary><b>React</b> — 56 sections</summary>
+<summary><b>React</b> — 37 sections in 7 parts</summary>
 
-1. [What is React](react.md#1-what-is-react)
-2. [JSX](react.md#2-jsx)
-3. [Components](react.md#3-components)
-4. [Props](react.md#4-props)
-5. [State & useState](react.md#5-state--usestate)
-6. [Event Handling (Synthetic Events)](react.md#6-event-handling)
-7. [Conditional Rendering](react.md#7-conditional-rendering)
-8. [Lists & Keys](react.md#8-lists--keys)
-9. [Forms: Controlled vs Uncontrolled](react.md#9-forms-controlled-vs-uncontrolled)
-10. [Rendering: when & why components re-render](react.md#10-rendering--re-rendering)
-11. [Virtual DOM, Reconciliation, Diffing & Fiber](react.md#11-virtual-dom-reconciliation--fiber)
-12. [useEffect](react.md#12-useeffect)
-13. [useRef](react.md#13-useref)
-14. [useContext & Context API](react.md#14-usecontext--context-api)
-15. [useReducer](react.md#15-usereducer)
-16. [useMemo](react.md#16-usememo)
-17. [useCallback](react.md#17-usecallback)
-18. [React.memo](react.md#18-reactmemo)
-19. [useLayoutEffect & useInsertionEffect](react.md#19-uselayouteffect--useinsertioneffect)
-20. [useImperativeHandle & forwardRef](react.md#20-useimperativehandle--forwardref)
-21. [useId, useTransition, useDeferredValue, useSyncExternalStore, useDebugValue](react.md#21-more-hooks)
-22. [React 19: Actions, use, useActionState, useOptimistic, useFormStatus](react.md#22-react-19-features)
-23. [Rules of Hooks](react.md#23-rules-of-hooks)
-24. [How Hooks Work Under the Hood (+ Children & cloneElement APIs)](react.md#24-how-hooks-work-under-the-hood--children--cloneelement-apis)
-25. [Custom Hooks](react.md#25-custom-hooks)
-26. [Lifting State Up & Prop Drilling](react.md#26-lifting-state-up--prop-drilling)
-27. [Component Lifecycle (Class Components)](react.md#27-component-lifecycle-class-components)
-28. [Fragments & Portals](react.md#28-fragments--portals)
-29. [Error Boundaries](react.md#29-error-boundaries)
-30. [Code Splitting: lazy & Suspense](react.md#30-code-splitting-lazy--suspense)
-31. [Advanced Patterns: HOC, Render Props, Compound Components, Controlled Props](react.md#31-advanced-patterns)
-32. [Performance Optimization](react.md#32-performance-optimization)
-33. [React 18: Concurrent Rendering & Automatic Batching](react.md#33-react-18-concurrent-features)
-34. [Strict Mode](react.md#34-strict-mode)
-35. [React Router](react.md#35-react-router)
-36. [State Management: Redux Toolkit, Zustand, Context](react.md#36-state-management)
-37. [State Management II: Choosing a Tool, Jotai, Redux-Saga & State Machines](react.md#37-state-management-ii-choosing-a-tool-jotai-redux-saga--state-machines)
-38. [Data Fetching: fetch, TanStack Query](react.md#38-data-fetching)
-39. [Styling in React](react.md#39-styling)
-40. [Internationalization (i18n), Theming & Dark Mode, Design Tokens](react.md#40-internationalization-i18n-theming--dark-mode-design-tokens)
-41. [Rendering Strategies: CSR, SSR, SSG, ISR, RSC](react.md#41-rendering-strategies-csr-ssr-ssg-isr)
-42. [Server Components & Next.js Basics](react.md#42-server-components--nextjs-basics)
-43. [Hydration](react.md#43-hydration)
-44. [Next.js App Router Deep Dive (+ Animations)](react.md#44-nextjs-app-router-deep-dive--animations)
-45. [Testing React](react.md#45-testing-react)
-46. [Testing React in Depth: Providers, MSW, Async UI, Router, Query & Playwright](react.md#46-testing-react-in-depth-providers-msw-async-ui-router-query--playwright)
-47. [Accessibility (a11y)](react.md#47-accessibility-a11y)
-48. [Security in React](react.md#48-security-in-react)
-49. [Folder Structure & Best Practices](react.md#49-folder-structure--best-practices)
-50. [Common Mistakes / Anti-patterns](react.md#50-common-mistakes)
-51. [Production React Patterns](react.md#51-production-react-patterns)
-52. [Real-time & Rich Interactions: WebSockets, Uploads with Progress, Drag & Drop](react.md#52-real-time--rich-interactions-websockets-uploads-with-progress-drag--drop)
-53. [Machine Coding Questions (with solutions)](react.md#53-machine-coding-questions)
-54. [Machine Coding II (Carousel, Kanban, Data Table, Wizard, Toasts, Comments)](react.md#54-machine-coding-ii-carousel-kanban-data-table-wizard-toasts-comments)
-55. [Output / Behaviour Questions](react.md#55-output--behaviour-questions)
-56. [Most Asked Interview Questions](react.md#56-most-asked-interview-questions)
+
+**Part 1 — Basic: First Steps**
+
+1. [Getting Started: What React Is and Your First Component](react.md#1-getting-started-what-react-is-and-your-first-component)
+2. [JSX: HTML-Like Syntax in JavaScript](react.md#2-jsx-html-like-syntax-in-javascript)
+3. [Components and Props](react.md#3-components-and-props)
+4. [Conditional Rendering, Lists and Keys](react.md#4-conditional-rendering-lists-and-keys)
+5. [State with useState: Memory, Snapshots and Immutable Updates](react.md#5-state-with-usestate-memory-snapshots-and-immutable-updates)
+6. [Handling Events](react.md#6-handling-events)
+7. [Forms: Controlled and Uncontrolled Inputs](react.md#7-forms-controlled-and-uncontrolled-inputs)
+
+**Part 2 — Easy: Thinking in React**
+
+8. [Thinking in React: Where State Lives, Lifting State Up and Derived Data](react.md#8-thinking-in-react-where-state-lives-lifting-state-up-and-derived-data)
+9. [Effects with useEffect (and When You Don't Need One)](react.md#9-effects-with-useeffect-and-when-you-dont-need-one)
+10. [Refs: useRef for DOM Elements and Values That Don't Re-render](react.md#10-refs-useref-for-dom-elements-and-values-that-dont-re-render)
+11. [Fetching Data: Loading, Errors and Race Conditions](react.md#11-fetching-data-loading-errors-and-race-conditions)
+12. [Styling React Apps](react.md#12-styling-react-apps)
+13. [Composition Patterns: children, Slots, Render Props and Avoiding Prop Drilling](react.md#13-composition-patterns-children-slots-render-props-and-avoiding-prop-drilling)
+
+**Part 3 — Moderate: Hooks and How React Works**
+
+14. [useReducer: State Logic in One Place](react.md#14-usereducer-state-logic-in-one-place)
+15. [Context: Sharing Data Without Prop Drilling](react.md#15-context-sharing-data-without-prop-drilling)
+16. [Custom Hooks: Reusing Stateful Logic](react.md#16-custom-hooks-reusing-stateful-logic)
+17. [How React Renders: Trigger, Render, Commit, Reconciliation and Keys](react.md#17-how-react-renders-trigger-render-commit-reconciliation-and-keys)
+18. [Performance: memo, useMemo, useCallback and the React Compiler](react.md#18-performance-memo-usememo-usecallback-and-the-react-compiler)
+19. [Suspense, lazy, use() and Error Boundaries](react.md#19-suspense-lazy-use-and-error-boundaries)
+20. [Accessibility, Portals and Modals](react.md#20-accessibility-portals-and-modals)
+
+**Part 4 — Moderate: Building Real Apps**
+
+21. [Routing with React Router: Pages, URLs, Loaders and Actions](react.md#21-routing-with-react-router-pages-urls-loaders-and-actions)
+22. [Server State with TanStack Query](react.md#22-server-state-with-tanstack-query)
+23. [Forms in Production: React 19 Actions, Optimistic UI and React Hook Form + Zod](react.md#23-forms-in-production-react-19-actions-optimistic-ui-and-react-hook-form--zod)
+24. [Global State Management: Choosing Between Context, Zustand, Redux and Friends](react.md#24-global-state-management-choosing-between-context-zustand-redux-and-friends)
+25. [Testing React Apps: Testing Library, User Events, MSW and Playwright](react.md#25-testing-react-apps-testing-library-user-events-msw-and-playwright)
+
+**Part 5 — Advanced: Server Rendering and Modern React**
+
+26. [Rendering Strategies: CSR, SSR, SSG, ISR, Streaming and Hydration](react.md#26-rendering-strategies-csr-ssr-ssg-isr-streaming-and-hydration)
+27. [React Server Components, Server Functions and Next.js](react.md#27-react-server-components-server-functions-and-nextjs)
+28. [Concurrent Rendering: useTransition and useDeferredValue](react.md#28-concurrent-rendering-usetransition-and-usedeferredvalue)
+29. [Building Streaming UIs: Real-Time Updates and AI Chat Interfaces](react.md#29-building-streaming-uis-real-time-updates-and-ai-chat-interfaces)
+30. [Security in React Apps](react.md#30-security-in-react-apps)
+
+**Part 6 — Advanced: Architecture and Production**
+
+31. [Architecture: Project Structure, Design Systems and Scaling a Codebase](react.md#31-architecture-project-structure-design-systems-and-scaling-a-codebase)
+32. [Legacy React: Class Components, Lifecycle Methods and HOCs](react.md#32-legacy-react-class-components-lifecycle-methods-and-hocs)
+33. [Production React: Performance, Virtualisation, Monitoring and Deployment](react.md#33-production-react-performance-virtualisation-monitoring-and-deployment)
+
+**Part 7 — Interview Prep: Revision**
+
+34. [Behaviour Questions: What Renders, What Logs, and When](react.md#34-behaviour-questions-what-renders-what-logs-and-when)
+35. [Machine Coding Round: Classic Components Built and Tested](react.md#35-machine-coding-round-classic-components-built-and-tested)
+36. [React Cheat Sheet](react.md#36-react-cheat-sheet)
+37. [Most Asked React Interview Questions](react.md#37-most-asked-react-interview-questions)
 
 </details>
 
