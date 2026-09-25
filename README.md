@@ -9,7 +9,7 @@ Complete notes from absolute basics to production and interviews. Every topic ha
 | [JavaScript](javascript.md) | JavaScript from absolute zero in five levels (Basic → Easy → Moderate → Advanced → Interview Prep): variables, types, operators, decisions, loops, strings, arrays, objects and functions; array methods, destructuring, scope, closures, this, coercion and errors; objects, prototypes, classes, Map/Set, generators, the event loop, promises, async/await, modules, regex and Intl; the DOM, events, storage, fetch, CORS, rendering and web security; functional patterns, debounce/throttle, Proxy, design patterns, memory, performance and ES2020–ES2026; tooling, testing, debugging and production code; polyfills, DSA and output questions. Every example runs on Node.js 24 or headless Chromium with real output | 51 | 7,114 |
 | [TypeScript](typescript.md) | TypeScript from zero in five levels (Basic → Easy → Moderate → Advanced → Interview Prep): how TypeScript runs, basic types, arrays, objects, functions, unions, type vs interface; unknown/never, narrowing, discriminated unions, as const and satisfies, enums, structural typing, classes; generics, keyof/typeof, utility, mapped, conditional and template literal types; modules, tsconfig, async code, Zod validation, error handling, decorators; React, Express, end-to-end types, branded types, variance; production setup, what's new up to TypeScript 7, fixing compiler errors; type challenges. Every example type-checked with TypeScript 7.0 and run on Node.js 24, with real compiler output | 40 | 7,159 |
 | [React](react.md) | React from zero in five levels (Basic → Easy → Moderate → Advanced → Interview Prep): components, JSX, props, lists and keys, state, events, forms; where state lives, effects, refs, data fetching, styling, composition; useReducer, context, custom hooks, rendering and reconciliation, performance and the React Compiler, Suspense and error boundaries, accessibility; React Router, TanStack Query, React 19 actions, React Hook Form + Zod, Zustand, testing with Testing Library and MSW; SSR, hydration, streaming, Server Components and Next.js, transitions, streaming AI chat UIs, security, architecture, legacy classes, production; behaviour questions and machine coding. Every example runs on React 19 with real output | 37 | 6,738 |
-| [Node.js](nodejs.md) | Runtime & event loop → Express & APIs → auth & security → databases → queues, observability, system design | 65 | 8,524 |
+| [Node.js](nodejs.md) | Node.js backends from zero in five levels (Basic → Easy → Moderate → Advanced → Interview Prep): modules, npm, env config, files, HTTP; the event loop, async patterns, streams; Express 5, REST design, Zod validation and OpenAPI, authentication (sessions, JWT, password hashing), authorisation and OWASP API security, Fastify/Hono/NestJS; PostgreSQL, MongoDB, Redis caching, file uploads, BullMQ queues, WebSockets and SSE, webhooks and payments; worker threads, resilience, observability, testing, LLM-powered streaming endpoints, graceful shutdown and Docker, architecture, system design, profiling and modern Node. Every example runs on Node.js 24 against real PostgreSQL and Redis | 35 | 5,848 |
 | [Python](python.md) | Python from absolute zero in five levels (Basic → Easy → Moderate → Advanced → Interview Prep): variables, numbers, strings, decisions and loops; lists, dicts, sets, comprehensions and functions; errors, files, modules and uv, the standard library, classes, dataclasses and type hints; decorators, generators, context managers, regex, Pythonic style, pytest and logging; internals, descriptors, threads, processes, free-threading, asyncio, performance, databases and scripting; production tooling, packaging and what's new in 3.12–3.14. Every example runs on Python 3.14 with real output | 44 | 6,977 |
 | [FastAPI](fastapi.md) | Production APIs with FastAPI from zero in five levels (Basic → Easy → Moderate → Advanced → Interview Prep): HTTP and REST, routes, parameters and Pydantic bodies; response models, errors, forms/files and routers; dependency injection, async, settings and lifespan, SQLAlchemy 2.0, JWT auth and authorisation, CORS, testing; pagination, background jobs, WebSockets, SSE streaming for LLMs, webhooks, caching and rate limits; API design, OWASP API Top 10, observability, deployment and serving ML/LLM models. Every response shown was produced by the app (FastAPI 0.141, Python 3.14) | 33 | 4,853 |
 | [DSA in Python](dsa-python.md) | Data structures & algorithms from absolute zero in five levels (Basic → Easy → Moderate → Advanced → Interview Prep): Python basics, pattern printing and number theory first, then arrays, hashing, techniques, linked lists, trees, graphs, DP, string algorithms, segment trees, max flow, the algorithms inside real systems (Bloom filters, consistent hashing, B-trees, vector search) and recent breakthroughs, plus a checklist of what top companies ask. Every topic: simple explanation, diagram, tested Python, practice | 60 | 8,364 |
@@ -20,7 +20,7 @@ Complete notes from absolute basics to production and interviews. Every topic ha
 | [LLM Engineering](llm-engineering.md) | Building applications with large language models, from zero, in five levels (Basic → Easy → Moderate → Advanced → Interview Prep): how LLMs work and are trained, tokens and cost, the Claude API from Python (messages, streaming, errors, refusals), prompt engineering, structured outputs, tool use, embeddings and vector search, prompt caching and batching, images and PDFs, evaluation and LLM-as-judge, hallucinations and prompt injection, fine-tuning (SFT, DPO, LoRA), reasoning models, open-weight models and vLLM, LLMOps and LLM system design. Local examples run with real output; API code checked against the official SDK | 21 | 3,167 |
 | [RAG and AI Agents](rag-and-agents.md) | Retrieval-augmented generation and agentic AI, from zero, in five levels (Basic → Easy → Moderate → Advanced → Interview Prep): RAG from scratch, loading and chunking, BM25 and vector search, hybrid search, reranking and query rewriting, RAG evaluation, vectorless RAG (full-text, text-to-SQL, tree navigation, agentic search, long context), contextual retrieval, parent documents and GraphRAG, production RAG (freshness, permissions, injection), LangChain, LangGraph, the agent loop, tools, memory and context engineering, agents with LangGraph, multi-agent systems, MCP, agent evaluation and security, and system design. Examples run locally with real output; API code checked against the official SDKs | 21 | 3,936 |
 | [Best Practices](best-practices.md) | Every good practice combined across the stack, the Gotchas Hall of Fame, and checklists | 32 | 1,733 |
-| **Total** | | **517** | **75,158** |
+| **Total** | | **487** | **72,482** |
 
 ## How every file is organized
 
@@ -129,7 +129,7 @@ The AI/ML files form one path, from "I know some Python" to building and shippin
 
 ### Phase 6 — Backend with Node.js
 
-- **Node.js:** [What is Node.js](nodejs.md#1-what-is-nodejs) · [Modules: CommonJS, ESM, require resolution](nodejs.md#2-modules) · [The Node.js Event Loop (phases)](nodejs.md#10-the-nodejs-event-loop) · [Streams](nodejs.md#14-streams) · [Express.js basics](nodejs.md#16-expressjs) · [Middleware](nodejs.md#18-middleware) · [REST API Design](nodejs.md#20-rest-api-design) · [Request Validation](nodejs.md#22-validation) · [Authentication: Sessions, Cookies, JWT, OAuth](nodejs.md#24-authentication) · [Databases: SQL, PostgreSQL, Prisma](nodejs.md#31-sql--prisma) · [SQL Deep Dive: Joins, Window Functions, Query Plans & Locking](nodejs.md#33-sql-deep-dive-joins-window-functions-query-plans--locking) · [Search with PostgreSQL: Full-Text, Fuzzy Matching & Autocomplete](nodejs.md#34-search-with-postgresql-full-text-fuzzy-matching--autocomplete) · [Database Migrations & Seeding](nodejs.md#35-database-migrations--seeding) · [Testing (Jest/Vitest, Supertest, node:test)](nodejs.md#52-testing)
+- **Node.js:** [Getting Started: What Node.js Is and Your First Server](nodejs.md#1-getting-started-what-nodejs-is-and-your-first-server) · [Modules: ES Modules, CommonJS and Built-ins](nodejs.md#2-modules-es-modules-commonjs-and-built-ins) · [The Node.js Event Loop: How One Thread Serves Thousands](nodejs.md#7-the-nodejs-event-loop-how-one-thread-serves-thousands) · [Buffers and Streams: Handling Big Data in Small Pieces](nodejs.md#9-buffers-and-streams-handling-big-data-in-small-pieces) · [Express 5: Routing, Middleware and Error Handling](nodejs.md#10-express-5-routing-middleware-and-error-handling) · [REST API Design: Resources, Pagination, Errors, Versioning and Idempotency](nodejs.md#11-rest-api-design-resources-pagination-errors-versioning-and-idempotency) · [Request Validation and OpenAPI Documentation](nodejs.md#12-request-validation-and-openapi-documentation) · [Authentication: Passwords, Sessions, JWTs and Cookies](nodejs.md#13-authentication-passwords-sessions-jwts-and-cookies) · [Databases from Node: PostgreSQL, Pools, Transactions, SQL Injection and ORMs](nodejs.md#16-databases-from-node-postgresql-pools-transactions-sql-injection-and-orms) · [Testing Node.js Services: node:test, Mocks, API Tests and Test Databases](nodejs.md#26-testing-nodejs-services-nodetest-mocks-api-tests-and-test-databases)
 
 ### Phase 7 — Backend with Python & FastAPI
 
@@ -140,7 +140,7 @@ The AI/ML files form one path, from "I know some Python" to building and shippin
 
 - **JavaScript:** [Testing JavaScript: Unit, Integration and End-to-End](javascript.md#44-testing-javascript-unit-integration-and-end-to-end) · [Production-Grade JavaScript: Code Quality, Refactoring and Reliability](javascript.md#46-production-grade-javascript-code-quality-refactoring-and-reliability)
 - **React:** [Production React: Performance, Virtualisation, Monitoring and Deployment](react.md#33-production-react-performance-virtualisation-monitoring-and-deployment) · [Accessibility, Portals and Modals](react.md#20-accessibility-portals-and-modals)
-- **Node.js:** [Security Best Practices](nodejs.md#40-security) · [OWASP API Security Top 10 (2023) with Examples](nodejs.md#41-owasp-api-security-top-10-2023-with-examples) · [Observability Hands-On: Logs, Metrics, Traces, SLOs & Alerts](nodejs.md#44-observability-hands-on-logs-metrics-traces-slos--alerts) · [BullMQ in Depth](nodejs.md#51-bullmq-in-depth) · [Graceful Shutdown](nodejs.md#54-graceful-shutdown) · [Streaming Responses & Server-Sent Events in Depth](nodejs.md#49-streaming-responses--server-sent-events-in-depth) · [Deployment: Docker, PM2, CI/CD, Nginx](nodejs.md#58-deployment)
+- **Node.js:** [Authorisation and API Security: Permissions, CORS, Headers, Rate Limits and the OWASP API Top 10](nodejs.md#14-authorisation-and-api-security-permissions-cors-headers-rate-limits-and-the-owasp-api-top-10) · [Observability: Structured Logs, Metrics, Traces and Health Checks](nodejs.md#25-observability-structured-logs-metrics-traces-and-health-checks) · [Background Jobs and Queues: BullMQ, Retries and Scheduled Work](nodejs.md#20-background-jobs-and-queues-bullmq-retries-and-scheduled-work) · [Deployment: Graceful Shutdown, Docker and Running Node in Production](nodejs.md#28-deployment-graceful-shutdown-docker-and-running-node-in-production) · [Real-Time: WebSockets, Server-Sent Events and Pub/Sub](nodejs.md#21-real-time-websockets-server-sent-events-and-pubsub)
 - **TypeScript:** [Production TypeScript: Project Setup, Linting, Testing, Migration and Publishing](typescript.md#34-production-typescript-project-setup-linting-testing-migration-and-publishing)
 - **Python:** [Production-Grade Python: Project Layout, Configuration, Tooling and CI](python.md#37-production-grade-python-project-layout-configuration-tooling-and-ci) · [Packaging and Publishing a Library](python.md#38-packaging-and-publishing-a-library)
 - **FastAPI:** [Streaming Responses and Server-Sent Events (LLM Token Streaming)](fastapi.md#23-streaming-responses-and-server-sent-events-llm-token-streaming) · [FastAPI Cheat Sheet](fastapi.md#32-fastapi-cheat-sheet)
@@ -148,7 +148,7 @@ The AI/ML files form one path, from "I know some Python" to building and shippin
 
 ### Phase 9 — Senior topics
 
-- **Node.js:** [System Design Basics for Backend Interviews](nodejs.md#63-system-design-basics-for-backend-interviews) · [Microservices, API Gateway, Message Brokers](nodejs.md#55-microservices) · [Resilience: Timeouts, Retries, Circuit Breakers & Load Shedding](nodejs.md#56-resilience-timeouts-retries-circuit-breakers--load-shedding) · [Building & Publishing an npm Package](nodejs.md#60-building--publishing-an-npm-package) · [Monorepos: pnpm Workspaces, Turborepo & Shared Packages](nodejs.md#61-monorepos-pnpm-workspaces-turborepo--shared-packages)
+- **Node.js:** [Scaling and System Design: Microservices, Events, Sharding and the Interview Approach](nodejs.md#30-scaling-and-system-design-microservices-events-sharding-and-the-interview-approach) · [Resilience: Timeouts, Retries with Backoff, Circuit Breakers and Load Shedding](nodejs.md#24-resilience-timeouts-retries-with-backoff-circuit-breakers-and-load-shedding) · [npm, package.json, Versions and Lock Files](nodejs.md#3-npm-packagejson-versions-and-lock-files) · [Backend Architecture: Layers, Dependency Injection, Project Structure and Monorepos](nodejs.md#29-backend-architecture-layers-dependency-injection-project-structure-and-monorepos)
 - **React:** [How React Renders: Trigger, Render, Commit, Reconciliation and Keys](react.md#17-how-react-renders-trigger-render-commit-reconciliation-and-keys) · [React Server Components, Server Functions and Next.js](react.md#27-react-server-components-server-functions-and-nextjs)
 - **TypeScript:** [TypeScript with React](typescript.md#29-typescript-with-react) · [Advanced Type System Topics: Recursive Types, Variance and Type-Level Limits](typescript.md#33-advanced-type-system-topics-recursive-types-variance-and-type-level-limits) · [End-to-End Type Safety: Sharing Types Between Client and Server](typescript.md#31-end-to-end-type-safety-sharing-types-between-client-and-server)
 - **Python:** [Advanced Classes: Attribute Lookup, Descriptors, Class Hooks and Metaclasses](python.md#31-advanced-classes-attribute-lookup-descriptors-class-hooks-and-metaclasses)
@@ -161,7 +161,7 @@ Go through these in order in the last week before an interview; for each topic, 
 
 - **JavaScript:** [Closures](javascript.md#14-closures) · [How JavaScript Runs: Call Stack, Event Loop, Tasks and Microtasks](javascript.md#23-how-javascript-runs-call-stack-event-loop-tasks-and-microtasks) · [The this Keyword, call, apply and bind](javascript.md#15-the-this-keyword-call-apply-and-bind) · [Prototypes and Prototypal Inheritance](javascript.md#19-prototypes-and-prototypal-inheritance)
 - **React:** [How React Renders: Trigger, Render, Commit, Reconciliation and Keys](react.md#17-how-react-renders-trigger-render-commit-reconciliation-and-keys) · [State with useState: Memory, Snapshots and Immutable Updates](react.md#5-state-with-usestate-memory-snapshots-and-immutable-updates)
-- **Node.js:** [The Node.js Event Loop (phases)](nodejs.md#10-the-nodejs-event-loop) · [Streams](nodejs.md#14-streams)
+- **Node.js:** [The Node.js Event Loop: How One Thread Serves Thousands](nodejs.md#7-the-nodejs-event-loop-how-one-thread-serves-thousands) · [Buffers and Streams: Handling Big Data in Small Pieces](nodejs.md#9-buffers-and-streams-handling-big-data-in-small-pieces)
 
 ### Write from memory
 
@@ -172,13 +172,13 @@ Go through these in order in the last week before an interview; for each topic, 
 
 - **JavaScript:** [Output-Based Questions (Predict the Output)](javascript.md#49-output-based-questions-predict-the-output)
 - **React:** [Behaviour Questions: What Renders, What Logs, and When](react.md#34-behaviour-questions-what-renders-what-logs-and-when)
-- **Node.js:** [Output-Based Questions](nodejs.md#64-output-based-questions)
+- **Node.js:** [Output-Based Questions (Predict the Output)](nodejs.md#33-output-based-questions-predict-the-output)
 - **Python:** [Output-Based Questions (Predict the Output)](python.md#42-output-based-questions-predict-the-output)
 
 ### Coding & machine coding
 
 - **JavaScript:** [DSA in JavaScript: Toolbox and Classic Coding Questions](javascript.md#48-dsa-in-javascript-toolbox-and-classic-coding-questions)
-- **Node.js:** [SQL Deep Dive: Joins, Window Functions, Query Plans & Locking](nodejs.md#33-sql-deep-dive-joins-window-functions-query-plans--locking)
+- **Node.js:** [Databases from Node: PostgreSQL, Pools, Transactions, SQL Injection and ORMs](nodejs.md#16-databases-from-node-postgresql-pools-transactions-sql-injection-and-orms)
 - **Python:** [Python's Toolbox for Data Structures and Algorithms](python.md#40-pythons-toolbox-for-data-structures-and-algorithms) · [Interview Coding: Classic Python Problems](python.md#41-interview-coding-classic-python-problems)
 - **DSA in Python:** [Interview Topic Checklist: What Top Companies Ask](dsa-python.md#58-interview-topic-checklist-what-top-companies-ask) · [Pattern Cheat Sheet: Which Technique When?](dsa-python.md#59-pattern-cheat-sheet-which-technique-when) · [Most Asked DSA Theory Questions](dsa-python.md#60-most-asked-dsa-theory-questions)
 - **React:** [Machine Coding Round: Classic Components Built and Tested](react.md#35-machine-coding-round-classic-components-built-and-tested)
@@ -192,7 +192,7 @@ Go through these in order in the last week before an interview; for each topic, 
 
 ### System design & production
 
-- **Node.js:** [System Design Basics for Backend Interviews](nodejs.md#63-system-design-basics-for-backend-interviews)
+- **Node.js:** [Scaling and System Design: Microservices, Events, Sharding and the Interview Approach](nodejs.md#30-scaling-and-system-design-microservices-events-sharding-and-the-interview-approach)
 - **Best Practices:** [Gotchas Hall of Fame](best-practices.md#31-gotchas-hall-of-fame)
 
 ### Most-asked questions (final pass)
@@ -200,7 +200,7 @@ Go through these in order in the last week before an interview; for each topic, 
 - **JavaScript:** [Most Asked JavaScript Interview Questions](javascript.md#51-most-asked-javascript-interview-questions)
 - **TypeScript:** [Most Asked TypeScript Interview Questions](typescript.md#40-most-asked-typescript-interview-questions)
 - **React:** [Most Asked React Interview Questions](react.md#37-most-asked-react-interview-questions)
-- **Node.js:** [Most Asked Interview Questions](nodejs.md#65-most-asked-interview-questions)
+- **Node.js:** [Most Asked Node.js Interview Questions](nodejs.md#35-most-asked-nodejs-interview-questions)
 - **Python:** [Most Asked Python Interview Questions](python.md#44-most-asked-python-interview-questions)
 - **FastAPI:** [Most Asked FastAPI and Backend Interview Questions](fastapi.md#33-most-asked-fastapi-and-backend-interview-questions)
 
@@ -416,73 +416,64 @@ Go through these in order in the last week before an interview; for each topic, 
 </details>
 
 <details>
-<summary><b>Node.js</b> — 65 sections</summary>
+<summary><b>Node.js</b> — 35 sections in 7 parts</summary>
 
-1. [What is Node.js](nodejs.md#1-what-is-nodejs)
-2. [Modules: CommonJS, ESM, require resolution](nodejs.md#2-modules)
-3. [npm, package.json, semver, package-lock](nodejs.md#3-npm--packagejson)
-4. [Globals & the process object](nodejs.md#4-globals--process)
-5. [Environment Variables & Config](nodejs.md#5-environment-variables)
-6. [fs — File System](nodejs.md#6-fs-module)
-7. [path, os, url, util, crypto](nodejs.md#7-path-os-url-util-crypto)
-8. [Events & EventEmitter](nodejs.md#8-events--eventemitter)
-9. [Node Architecture: V8, libuv, Thread Pool](nodejs.md#9-node-architecture)
-10. [The Node.js Event Loop (phases)](nodejs.md#10-the-nodejs-event-loop)
-11. [process.nextTick vs setImmediate vs setTimeout vs Promises](nodejs.md#11-nexttick-vs-setimmediate-vs-settimeout)
-12. [Blocking vs Non-blocking](nodejs.md#12-blocking-vs-non-blocking)
-13. [Buffers](nodejs.md#13-buffers)
-14. [Streams](nodejs.md#14-streams)
-15. [http module — building a server from scratch](nodejs.md#15-http-module)
-16. [Express.js basics](nodejs.md#16-expressjs)
-17. [Routing](nodejs.md#17-routing)
-18. [Middleware](nodejs.md#18-middleware)
-19. [Error Handling (Express & process level)](nodejs.md#19-error-handling)
-20. [REST API Design](nodejs.md#20-rest-api-design)
-21. [Node Networking in Depth: TCP, Keep-Alive, HTTP Caching, Compression & Timeouts](nodejs.md#21-node-networking-in-depth-tcp-keep-alive-http-caching-compression--timeouts)
-22. [Request Validation](nodejs.md#22-validation)
-23. [API Documentation with OpenAPI (Swagger)](nodejs.md#23-api-documentation-with-openapi-swagger)
-24. [Authentication: Sessions, Cookies, JWT, OAuth](nodejs.md#24-authentication)
-25. [Authorization: RBAC](nodejs.md#25-authorization)
-26. [Password Hashing (bcrypt/argon2)](nodejs.md#26-password-hashing)
-27. [Advanced Authentication: OAuth PKCE, MFA (TOTP), Passkeys & Account Security](nodejs.md#27-advanced-authentication-oauth-pkce-mfa-totp-passkeys--account-security)
-28. [CORS](nodejs.md#28-cors)
-29. [Beyond Express: NestJS & Fastify](nodejs.md#29-beyond-express-nestjs--fastify)
-30. [Databases: MongoDB & Mongoose](nodejs.md#30-mongodb--mongoose)
-31. [Databases: SQL, PostgreSQL, Prisma](nodejs.md#31-sql--prisma)
-32. [SQL vs NoSQL, Indexing, Transactions](nodejs.md#32-sql-vs-nosql-indexing-transactions)
-33. [SQL Deep Dive: Joins, Window Functions, Query Plans & Locking](nodejs.md#33-sql-deep-dive-joins-window-functions-query-plans--locking)
-34. [Search with PostgreSQL: Full-Text, Fuzzy Matching & Autocomplete](nodejs.md#34-search-with-postgresql-full-text-fuzzy-matching--autocomplete)
-35. [Database Migrations & Seeding](nodejs.md#35-database-migrations--seeding)
-36. [Data Import Pipelines: Stream CSV → Validate → Batch Insert → Report](nodejs.md#36-data-import-pipelines-stream-csv--validate--batch-insert--report)
-37. [File Uploads (multer)](nodejs.md#37-file-uploads)
-38. [Caching with Redis](nodejs.md#38-caching-with-redis)
-39. [Rate Limiting](nodejs.md#39-rate-limiting)
-40. [Security Best Practices](nodejs.md#40-security)
-41. [OWASP API Security Top 10 (2023) with Examples](nodejs.md#41-owasp-api-security-top-10-2023-with-examples)
-42. [Webhooks & Payment Integration](nodejs.md#42-webhooks--payment-integration)
-43. [Logging & Monitoring](nodejs.md#43-logging--monitoring)
-44. [Observability Hands-On: Logs, Metrics, Traces, SLOs & Alerts](nodejs.md#44-observability-hands-on-logs-metrics-traces-slos--alerts)
-45. [child_process](nodejs.md#45-child_process)
-46. [Worker Threads](nodejs.md#46-worker-threads)
-47. [Cluster Module & Scaling](nodejs.md#47-cluster--scaling)
-48. [WebSockets & Real-time (Socket.IO, SSE)](nodejs.md#48-websockets--real-time)
-49. [Streaming Responses & Server-Sent Events in Depth](nodejs.md#49-streaming-responses--server-sent-events-in-depth)
-50. [Job Queues & Background Work](nodejs.md#50-job-queues)
-51. [BullMQ in Depth](nodejs.md#51-bullmq-in-depth)
-52. [Testing (Jest/Vitest, Supertest, node:test)](nodejs.md#52-testing)
-53. [Performance & Debugging, Memory Leaks](nodejs.md#53-performance--debugging)
-54. [Graceful Shutdown](nodejs.md#54-graceful-shutdown)
-55. [Microservices, API Gateway, Message Brokers](nodejs.md#55-microservices)
-56. [Resilience: Timeouts, Retries, Circuit Breakers & Load Shedding](nodejs.md#56-resilience-timeouts-retries-circuit-breakers--load-shedding)
-57. [GraphQL basics](nodejs.md#57-graphql-basics)
-58. [Deployment: Docker, PM2, CI/CD, Nginx](nodejs.md#58-deployment)
-59. [Project Structure (MVC / layered)](nodejs.md#59-project-structure)
-60. [Building & Publishing an npm Package](nodejs.md#60-building--publishing-an-npm-package)
-61. [Monorepos: pnpm Workspaces, Turborepo & Shared Packages](nodejs.md#61-monorepos-pnpm-workspaces-turborepo--shared-packages)
-62. [Modern Node Features](nodejs.md#62-modern-node-features)
-63. [System Design Basics for Backend Interviews](nodejs.md#63-system-design-basics-for-backend-interviews)
-64. [Output-Based Questions](nodejs.md#64-output-based-questions)
-65. [Most Asked Interview Questions](nodejs.md#65-most-asked-interview-questions)
+
+**Part 1 — Basic: First Steps**
+
+1. [Getting Started: What Node.js Is and Your First Server](nodejs.md#1-getting-started-what-nodejs-is-and-your-first-server)
+2. [Modules: ES Modules, CommonJS and Built-ins](nodejs.md#2-modules-es-modules-commonjs-and-built-ins)
+3. [npm, package.json, Versions and Lock Files](nodejs.md#3-npm-packagejson-versions-and-lock-files)
+4. [The process Object, Environment Variables and Configuration](nodejs.md#4-the-process-object-environment-variables-and-configuration)
+5. [Files and Paths: fs/promises, path and Handling File Errors](nodejs.md#5-files-and-paths-fspromises-path-and-handling-file-errors)
+6. [HTTP Fundamentals: Requests, Responses, Status Codes and fetch](nodejs.md#6-http-fundamentals-requests-responses-status-codes-and-fetch)
+
+**Part 2 — Easy: How Node Works**
+
+7. [The Node.js Event Loop: How One Thread Serves Thousands](nodejs.md#7-the-nodejs-event-loop-how-one-thread-serves-thousands)
+8. [Events and Async Patterns: EventEmitter, Promises, Concurrency Limits and Cancellation](nodejs.md#8-events-and-async-patterns-eventemitter-promises-concurrency-limits-and-cancellation)
+9. [Buffers and Streams: Handling Big Data in Small Pieces](nodejs.md#9-buffers-and-streams-handling-big-data-in-small-pieces)
+
+**Part 3 — Moderate: Building APIs**
+
+10. [Express 5: Routing, Middleware and Error Handling](nodejs.md#10-express-5-routing-middleware-and-error-handling)
+11. [REST API Design: Resources, Pagination, Errors, Versioning and Idempotency](nodejs.md#11-rest-api-design-resources-pagination-errors-versioning-and-idempotency)
+12. [Request Validation and OpenAPI Documentation](nodejs.md#12-request-validation-and-openapi-documentation)
+13. [Authentication: Passwords, Sessions, JWTs and Cookies](nodejs.md#13-authentication-passwords-sessions-jwts-and-cookies)
+14. [Authorisation and API Security: Permissions, CORS, Headers, Rate Limits and the OWASP API Top 10](nodejs.md#14-authorisation-and-api-security-permissions-cors-headers-rate-limits-and-the-owasp-api-top-10)
+15. [Beyond Express: Fastify, Hono and NestJS](nodejs.md#15-beyond-express-fastify-hono-and-nestjs)
+
+**Part 4 — Moderate: Data and Integrations**
+
+16. [Databases from Node: PostgreSQL, Pools, Transactions, SQL Injection and ORMs](nodejs.md#16-databases-from-node-postgresql-pools-transactions-sql-injection-and-orms)
+17. [MongoDB and Mongoose: Document Databases from Node](nodejs.md#17-mongodb-and-mongoose-document-databases-from-node)
+18. [Caching: In-Memory, Redis and HTTP Caching](nodejs.md#18-caching-in-memory-redis-and-http-caching)
+19. [File Uploads: Multipart Forms, Validation and Object Storage](nodejs.md#19-file-uploads-multipart-forms-validation-and-object-storage)
+20. [Background Jobs and Queues: BullMQ, Retries and Scheduled Work](nodejs.md#20-background-jobs-and-queues-bullmq-retries-and-scheduled-work)
+21. [Real-Time: WebSockets, Server-Sent Events and Pub/Sub](nodejs.md#21-real-time-websockets-server-sent-events-and-pubsub)
+22. [Webhooks and Payment Integrations: Signatures, Idempotency and Retries](nodejs.md#22-webhooks-and-payment-integrations-signatures-idempotency-and-retries)
+
+**Part 5 — Advanced: Reliability and Operations**
+
+23. [Using Every CPU Core: Worker Threads, Child Processes and Clustering](nodejs.md#23-using-every-cpu-core-worker-threads-child-processes-and-clustering)
+24. [Resilience: Timeouts, Retries with Backoff, Circuit Breakers and Load Shedding](nodejs.md#24-resilience-timeouts-retries-with-backoff-circuit-breakers-and-load-shedding)
+25. [Observability: Structured Logs, Metrics, Traces and Health Checks](nodejs.md#25-observability-structured-logs-metrics-traces-and-health-checks)
+26. [Testing Node.js Services: node:test, Mocks, API Tests and Test Databases](nodejs.md#26-testing-nodejs-services-nodetest-mocks-api-tests-and-test-databases)
+27. [AI Backends in Node: Calling LLM APIs, Streaming to Users and Guardrails](nodejs.md#27-ai-backends-in-node-calling-llm-apis-streaming-to-users-and-guardrails)
+28. [Deployment: Graceful Shutdown, Docker and Running Node in Production](nodejs.md#28-deployment-graceful-shutdown-docker-and-running-node-in-production)
+
+**Part 6 — Advanced: Architecture and Scale**
+
+29. [Backend Architecture: Layers, Dependency Injection, Project Structure and Monorepos](nodejs.md#29-backend-architecture-layers-dependency-injection-project-structure-and-monorepos)
+30. [Scaling and System Design: Microservices, Events, Sharding and the Interview Approach](nodejs.md#30-scaling-and-system-design-microservices-events-sharding-and-the-interview-approach)
+31. [Performance and Debugging: Profiling, Memory Leaks and the Inspector](nodejs.md#31-performance-and-debugging-profiling-memory-leaks-and-the-inspector)
+32. [Modern Node.js (20 → 24): Built-ins That Replace Packages](nodejs.md#32-modern-nodejs-20--24-built-ins-that-replace-packages)
+
+**Part 7 — Interview Prep: Revision**
+
+33. [Output-Based Questions (Predict the Output)](nodejs.md#33-output-based-questions-predict-the-output)
+34. [Node.js Cheat Sheet](nodejs.md#34-nodejs-cheat-sheet)
+35. [Most Asked Node.js Interview Questions](nodejs.md#35-most-asked-nodejs-interview-questions)
 
 </details>
 
