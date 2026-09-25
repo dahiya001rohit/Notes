@@ -6,7 +6,7 @@ Complete notes from absolute basics to production and interviews. Every topic ha
 
 | File | Covers | Sections | Lines |
 |---|---|---|---|
-| [JavaScript](javascript.md) | Language fundamentals → async → browser → tooling → testing → production, DSA, polyfills | 58 | 11,017 |
+| [JavaScript](javascript.md) | JavaScript from absolute zero in five levels (Basic → Easy → Moderate → Advanced → Interview Prep): variables, types, operators, decisions, loops, strings, arrays, objects and functions; array methods, destructuring, scope, closures, this, coercion and errors; objects, prototypes, classes, Map/Set, generators, the event loop, promises, async/await, modules, regex and Intl; the DOM, events, storage, fetch, CORS, rendering and web security; functional patterns, debounce/throttle, Proxy, design patterns, memory, performance and ES2020–ES2026; tooling, testing, debugging and production code; polyfills, DSA and output questions. Every example runs on Node.js 24 or headless Chromium with real output | 51 | 7,114 |
 | [TypeScript](typescript.md) | Types from basics to advanced type-level programming, TS with React/Node, end-to-end type safety | 43 | 3,779 |
 | [React](react.md) | Components & hooks → patterns & performance → state/data → Next.js → testing → production & machine coding | 56 | 7,709 |
 | [Node.js](nodejs.md) | Runtime & event loop → Express & APIs → auth & security → databases → queues, observability, system design | 65 | 8,524 |
@@ -20,7 +20,7 @@ Complete notes from absolute basics to production and interviews. Every topic ha
 | [LLM Engineering](llm-engineering.md) | Building applications with large language models, from zero, in five levels (Basic → Easy → Moderate → Advanced → Interview Prep): how LLMs work and are trained, tokens and cost, the Claude API from Python (messages, streaming, errors, refusals), prompt engineering, structured outputs, tool use, embeddings and vector search, prompt caching and batching, images and PDFs, evaluation and LLM-as-judge, hallucinations and prompt injection, fine-tuning (SFT, DPO, LoRA), reasoning models, open-weight models and vLLM, LLMOps and LLM system design. Local examples run with real output; API code checked against the official SDK | 21 | 3,167 |
 | [RAG and AI Agents](rag-and-agents.md) | Retrieval-augmented generation and agentic AI, from zero, in five levels (Basic → Easy → Moderate → Advanced → Interview Prep): RAG from scratch, loading and chunking, BM25 and vector search, hybrid search, reranking and query rewriting, RAG evaluation, vectorless RAG (full-text, text-to-SQL, tree navigation, agentic search, long context), contextual retrieval, parent documents and GraphRAG, production RAG (freshness, permissions, injection), LangChain, LangGraph, the agent loop, tools, memory and context engineering, agents with LangGraph, multi-agent systems, MCP, agent evaluation and security, and system design. Examples run locally with real output; API code checked against the official SDKs | 21 | 3,936 |
 | [Best Practices](best-practices.md) | Every good practice combined across the stack, the Gotchas Hall of Fame, and checklists | 32 | 1,733 |
-| **Total** | | **546** | **76,652** |
+| **Total** | | **539** | **72,749** |
 
 ## How every file is organized
 
@@ -80,7 +80,7 @@ The AI/ML files form one path, from "I know some Python" to building and shippin
 
 ### Phase 1 — Programming basics (pick JS or Python first)
 
-- **JavaScript:** [Getting Started: What is JavaScript & Your First Program](javascript.md#1-getting-started-what-is-javascript--your-first-program) · [var, let, const](javascript.md#2-var-let-const) · [Data Types](javascript.md#3-data-types) · [Operators, Control Flow & Loops](javascript.md#4-operators-control-flow--loops) · [Functions (all types)](javascript.md#6-functions) · [Arrays & Array Methods (+ polyfills)](javascript.md#20-arrays--array-methods) · [Strings](javascript.md#21-strings) · [Objects in Depth](javascript.md#14-objects-in-depth)
+- **JavaScript:** [Getting Started: What JavaScript Is and Your First Program](javascript.md#1-getting-started-what-javascript-is-and-your-first-program) · [Variables: let, const and var](javascript.md#2-variables-let-const-and-var) · [Data Types: Primitives, Objects, null and undefined](javascript.md#3-data-types-primitives-objects-null-and-undefined) · [Operators: Arithmetic, Comparison, Logical, ?? and ?.](javascript.md#4-operators-arithmetic-comparison-logical--and-) · [Functions: Declarations, Expressions, Arrows and Parameters](javascript.md#10-functions-declarations-expressions-arrows-and-parameters) · [Array Methods: map, filter, reduce, find and Friends](javascript.md#11-array-methods-map-filter-reduce-find-and-friends) · [Strings and Template Literals](javascript.md#7-strings-and-template-literals) · [Objects in Depth: Copying, Property Descriptors, Getters/Setters and Immutability](javascript.md#18-objects-in-depth-copying-property-descriptors-getterssetters-and-immutability)
 - **Python:** [Getting Started: What Python Is and Your First Program](python.md#1-getting-started-what-python-is-and-your-first-program) · [Variables: Names for Values](python.md#2-variables-names-for-values) · [Numbers, Operators and Type Conversion](python.md#3-numbers-operators-and-type-conversion) · [Making Decisions: if, elif, else and match](python.md#5-making-decisions-if-elif-else-and-match) · [Loops: while, for and range](python.md#6-loops-while-for-and-range) · [Functions: Reusable Blocks of Code](python.md#12-functions-reusable-blocks-of-code) · [Lists: Ordered, Changeable Collections](python.md#7-lists-ordered-changeable-collections) · [Dictionaries: Looking Things Up by Key](python.md#9-dictionaries-looking-things-up-by-key)
 
 ### DSA track — study alongside the other phases
@@ -113,11 +113,11 @@ The AI/ML files form one path, from "I know some Python" to building and shippin
 
 ### Phase 2 — How JavaScript really works
 
-- **JavaScript:** [Scope, Lexical Scope, Scope Chain](javascript.md#7-scope-lexical-scope-scope-chain) · [Hoisting & Temporal Dead Zone](javascript.md#8-hoisting--temporal-dead-zone) · [Execution Context & Call Stack](javascript.md#10-execution-context--call-stack) · [Closures](javascript.md#11-closures) · [The `this` Keyword](javascript.md#12-the-this-keyword) · [Prototypes & Inheritance](javascript.md#17-prototypes--prototypal-inheritance) · [Classes](javascript.md#18-classes) · [OOP in JavaScript (Object-Oriented Programming)](javascript.md#19-oop-in-javascript-object-oriented-programming) · [Event Loop](javascript.md#25-event-loop) · [Promises (+ polyfills)](javascript.md#27-promises) · [Async / Await](javascript.md#28-async--await) · [Error Handling](javascript.md#33-error-handling) · [Modules (CommonJS vs ESM)](javascript.md#31-modules) · [Regular Expressions](javascript.md#47-regular-expressions)
+- **JavaScript:** [Scope, Hoisting and the Temporal Dead Zone](javascript.md#13-scope-hoisting-and-the-temporal-dead-zone) · [How JavaScript Runs: Call Stack, Event Loop, Tasks and Microtasks](javascript.md#23-how-javascript-runs-call-stack-event-loop-tasks-and-microtasks) · [Closures](javascript.md#14-closures) · [The this Keyword, call, apply and bind](javascript.md#15-the-this-keyword-call-apply-and-bind) · [Prototypes and Prototypal Inheritance](javascript.md#19-prototypes-and-prototypal-inheritance) · [Classes: Fields, Private Members, Static, Inheritance and OOP](javascript.md#20-classes-fields-private-members-static-inheritance-and-oop) · [Callbacks and Promises](javascript.md#24-callbacks-and-promises) · [async/await: Asynchronous Code That Reads Like Normal Code](javascript.md#25-asyncawait-asynchronous-code-that-reads-like-normal-code) · [Error Handling: try, catch, throw and Custom Errors](javascript.md#17-error-handling-try-catch-throw-and-custom-errors) · [Modules: import, export, ESM vs CommonJS](javascript.md#26-modules-import-export-esm-vs-commonjs) · [Regular Expressions](javascript.md#27-regular-expressions)
 
 ### Phase 3 — The browser & frontend fundamentals
 
-- **JavaScript:** [DOM & Events (Bubbling, Capturing, Delegation)](javascript.md#35-dom--events) · [Browser Storage & Cookies](javascript.md#36-browser-storage--cookies) · [Web APIs (fetch, AbortController, Workers, rAF, Observers)](javascript.md#42-web-apis) · [Networking for Frontend: What Happens When You Type a URL](javascript.md#48-networking-for-frontend-what-happens-when-you-type-a-url) · [Performance Concepts](javascript.md#49-performance-concepts) · [Security Basics (XSS, CSRF, CORS)](javascript.md#50-security-basics) · [Debounce & Throttle](javascript.md#24-debounce--throttle)
+- **JavaScript:** [The DOM and Events](javascript.md#29-the-dom-and-events) · [Browser Storage: localStorage, sessionStorage, Cookies and IndexedDB](javascript.md#30-browser-storage-localstorage-sessionstorage-cookies-and-indexeddb) · [Web APIs: fetch, AbortController, URL, Observers and Workers](javascript.md#31-web-apis-fetch-abortcontroller-url-observers-and-workers) · [Networking for Frontend Developers: From URL to Page, HTTP, Caching and CORS](javascript.md#34-networking-for-frontend-developers-from-url-to-page-http-caching-and-cors) · [Performance: How V8 Runs Your Code and How to Make It Fast](javascript.md#41-performance-how-v8-runs-your-code-and-how-to-make-it-fast) · [Frontend Security: XSS, CSRF, CSP, Prototype Pollution and the Supply Chain](javascript.md#35-frontend-security-xss-csrf-csp-prototype-pollution-and-the-supply-chain) · [Debounce and Throttle](javascript.md#37-debounce-and-throttle)
 
 ### Phase 4 — TypeScript
 
@@ -138,7 +138,7 @@ The AI/ML files form one path, from "I know some Python" to building and shippin
 
 ### Phase 8 — Production engineering
 
-- **JavaScript:** [Testing JavaScript (Vitest / Jest)](javascript.md#53-testing-javascript-vitest--jest) · [Production-Grade JavaScript](javascript.md#54-production-grade-javascript) · [Code Smells & Refactoring Catalog](javascript.md#55-code-smells--refactoring-catalog)
+- **JavaScript:** [Testing JavaScript: Unit, Integration and End-to-End](javascript.md#44-testing-javascript-unit-integration-and-end-to-end) · [Production-Grade JavaScript: Code Quality, Refactoring and Reliability](javascript.md#46-production-grade-javascript-code-quality-refactoring-and-reliability)
 - **React:** [Production React Patterns](react.md#51-production-react-patterns) · [Accessibility (a11y)](react.md#47-accessibility-a11y)
 - **Node.js:** [Security Best Practices](nodejs.md#40-security) · [OWASP API Security Top 10 (2023) with Examples](nodejs.md#41-owasp-api-security-top-10-2023-with-examples) · [Observability Hands-On: Logs, Metrics, Traces, SLOs & Alerts](nodejs.md#44-observability-hands-on-logs-metrics-traces-slos--alerts) · [BullMQ in Depth](nodejs.md#51-bullmq-in-depth) · [Graceful Shutdown](nodejs.md#54-graceful-shutdown) · [Streaming Responses & Server-Sent Events in Depth](nodejs.md#49-streaming-responses--server-sent-events-in-depth) · [Deployment: Docker, PM2, CI/CD, Nginx](nodejs.md#58-deployment)
 - **TypeScript:** [Production TypeScript Best Practices](typescript.md#40-production-typescript-best-practices)
@@ -159,25 +159,25 @@ Go through these in order in the last week before an interview; for each topic, 
 
 ### Core concepts (explain out loud)
 
-- **JavaScript:** [Closures](javascript.md#11-closures) · [Event Loop](javascript.md#25-event-loop) · [The `this` Keyword](javascript.md#12-the-this-keyword) · [Prototypes & Inheritance](javascript.md#17-prototypes--prototypal-inheritance)
+- **JavaScript:** [Closures](javascript.md#14-closures) · [How JavaScript Runs: Call Stack, Event Loop, Tasks and Microtasks](javascript.md#23-how-javascript-runs-call-stack-event-loop-tasks-and-microtasks) · [The this Keyword, call, apply and bind](javascript.md#15-the-this-keyword-call-apply-and-bind) · [Prototypes and Prototypal Inheritance](javascript.md#19-prototypes-and-prototypal-inheritance)
 - **React:** [Rendering: when & why components re-render](react.md#10-rendering--re-rendering) · [Rules of Hooks](react.md#23-rules-of-hooks) · [Virtual DOM, Reconciliation, Diffing & Fiber](react.md#11-virtual-dom-reconciliation--fiber)
 - **Node.js:** [The Node.js Event Loop (phases)](nodejs.md#10-the-nodejs-event-loop) · [Streams](nodejs.md#14-streams)
 
 ### Write from memory
 
-- **JavaScript:** [Polyfill Collection](javascript.md#52-polyfill-collection) · [Debounce & Throttle](javascript.md#24-debounce--throttle) · [Promises (+ polyfills)](javascript.md#27-promises)
+- **JavaScript:** [Polyfills and "Implement It Yourself" Questions](javascript.md#47-polyfills-and-implement-it-yourself-questions) · [Debounce and Throttle](javascript.md#37-debounce-and-throttle) · [Callbacks and Promises](javascript.md#24-callbacks-and-promises)
 - **Python:** [Closures and Decorators](python.md#23-closures-and-decorators) · [Iterators and Generators: Producing Values Lazily](python.md#24-iterators-and-generators-producing-values-lazily)
 
 ### Predict the output
 
-- **JavaScript:** [Output-Based Questions](javascript.md#57-output-based-questions)
+- **JavaScript:** [Output-Based Questions (Predict the Output)](javascript.md#49-output-based-questions-predict-the-output)
 - **React:** [Output / Behaviour Questions](react.md#55-output--behaviour-questions)
 - **Node.js:** [Output-Based Questions](nodejs.md#64-output-based-questions)
 - **Python:** [Output-Based Questions (Predict the Output)](python.md#42-output-based-questions-predict-the-output)
 
 ### Coding & machine coding
 
-- **JavaScript:** [Data Structures & Algorithms in JavaScript](javascript.md#56-data-structures--algorithms-in-javascript)
+- **JavaScript:** [DSA in JavaScript: Toolbox and Classic Coding Questions](javascript.md#48-dsa-in-javascript-toolbox-and-classic-coding-questions)
 - **Node.js:** [SQL Deep Dive: Joins, Window Functions, Query Plans & Locking](nodejs.md#33-sql-deep-dive-joins-window-functions-query-plans--locking)
 - **Python:** [Python's Toolbox for Data Structures and Algorithms](python.md#40-pythons-toolbox-for-data-structures-and-algorithms) · [Interview Coding: Classic Python Problems](python.md#41-interview-coding-classic-python-problems)
 - **DSA in Python:** [Interview Topic Checklist: What Top Companies Ask](dsa-python.md#58-interview-topic-checklist-what-top-companies-ask) · [Pattern Cheat Sheet: Which Technique When?](dsa-python.md#59-pattern-cheat-sheet-which-technique-when) · [Most Asked DSA Theory Questions](dsa-python.md#60-most-asked-dsa-theory-questions)
@@ -197,7 +197,7 @@ Go through these in order in the last week before an interview; for each topic, 
 
 ### Most-asked questions (final pass)
 
-- **JavaScript:** [Most Asked Interview Questions](javascript.md#58-most-asked-interview-questions)
+- **JavaScript:** [Most Asked JavaScript Interview Questions](javascript.md#51-most-asked-javascript-interview-questions)
 - **TypeScript:** [Most Asked Interview Questions](typescript.md#43-most-asked-interview-questions)
 - **React:** [Most Asked Interview Questions](react.md#56-most-asked-interview-questions)
 - **Node.js:** [Most Asked Interview Questions](nodejs.md#65-most-asked-interview-questions)
@@ -207,66 +207,80 @@ Go through these in order in the last week before an interview; for each topic, 
 ## Full index
 
 <details>
-<summary><b>JavaScript</b> — 58 sections</summary>
+<summary><b>JavaScript</b> — 51 sections in 7 parts</summary>
 
-1. [Getting Started: What is JavaScript & Your First Program](javascript.md#1-getting-started-what-is-javascript--your-first-program)
-2. [var, let, const](javascript.md#2-var-let-const)
-3. [Data Types](javascript.md#3-data-types)
-4. [Operators, Control Flow & Loops](javascript.md#4-operators-control-flow--loops)
-5. [Type Coercion, == vs ===](javascript.md#5-type-coercion--vs-)
-6. [Functions (all types)](javascript.md#6-functions)
-7. [Scope, Lexical Scope, Scope Chain](javascript.md#7-scope-lexical-scope-scope-chain)
-8. [Hoisting & Temporal Dead Zone](javascript.md#8-hoisting--temporal-dead-zone)
-9. [How JavaScript Runs](javascript.md#9-how-javascript-runs)
-10. [Execution Context & Call Stack](javascript.md#10-execution-context--call-stack)
-11. [Closures](javascript.md#11-closures)
-12. [The `this` Keyword](javascript.md#12-the-this-keyword)
-13. [call, apply, bind (+ polyfills)](javascript.md#13-call-apply-bind)
-14. [Objects in Depth](javascript.md#14-objects-in-depth)
-15. [Copying: Shallow vs Deep](javascript.md#15-shallow-vs-deep-copy)
-16. [Destructuring, Spread, Rest](javascript.md#16-destructuring-spread-rest)
-17. [Prototypes & Inheritance](javascript.md#17-prototypes--prototypal-inheritance)
-18. [Classes](javascript.md#18-classes)
-19. [OOP in JavaScript (Object-Oriented Programming)](javascript.md#19-oop-in-javascript-object-oriented-programming)
-20. [Arrays & Array Methods (+ polyfills)](javascript.md#20-arrays--array-methods)
-21. [Strings](javascript.md#21-strings)
-22. [Higher-Order Functions, Currying, Composition](javascript.md#22-higher-order-functions-currying-composition)
-23. [Functional Programming in Depth](javascript.md#23-functional-programming-in-depth)
-24. [Debounce & Throttle](javascript.md#24-debounce--throttle)
-25. [Event Loop](javascript.md#25-event-loop)
-26. [Callbacks & Callback Hell](javascript.md#26-callbacks--callback-hell)
-27. [Promises (+ polyfills)](javascript.md#27-promises)
-28. [Async / Await](javascript.md#28-async--await)
-29. [Iterators & Generators](javascript.md#29-iterators--generators)
-30. [Symbol, Map, Set, WeakMap, WeakSet, WeakRef](javascript.md#30-symbol-map-set-weakmap-weakset)
-31. [Modules (CommonJS vs ESM)](javascript.md#31-modules)
-32. [Build Tooling: Transpilers, Bundlers & the JS Toolchain](javascript.md#32-build-tooling-transpilers-bundlers--the-js-toolchain)
-33. [Error Handling](javascript.md#33-error-handling)
-34. [Debugging JavaScript](javascript.md#34-debugging-javascript)
-35. [DOM & Events (Bubbling, Capturing, Delegation)](javascript.md#35-dom--events)
-36. [Browser Storage & Cookies](javascript.md#36-browser-storage--cookies)
-37. [Memory Management & Garbage Collection](javascript.md#37-memory-management--garbage-collection)
-38. [Strict Mode](javascript.md#38-strict-mode)
-39. [Proxy & Reflect](javascript.md#39-proxy--reflect)
-40. [Getters, Setters, Property Descriptors](javascript.md#40-getters-setters-property-descriptors)
-41. [Design Patterns](javascript.md#41-design-patterns)
-42. [Web APIs (fetch, AbortController, Workers, rAF, Observers)](javascript.md#42-web-apis)
-43. [Binary Data & Files in the Browser](javascript.md#43-binary-data--files-in-the-browser)
-44. [Browser Internals: Rendering Pipeline, Web Components & Service Workers (PWA)](javascript.md#44-browser-internals-rendering-pipeline-web-components--service-workers-pwa)
-45. [Date, Math, Number, Intl](javascript.md#45-date-math-number-intl)
-46. [Dates & Time Zones in Depth](javascript.md#46-dates--time-zones-in-depth)
-47. [Regular Expressions](javascript.md#47-regular-expressions)
-48. [Networking for Frontend: What Happens When You Type a URL](javascript.md#48-networking-for-frontend-what-happens-when-you-type-a-url)
-49. [Performance Concepts](javascript.md#49-performance-concepts)
-50. [Security Basics (XSS, CSRF, CORS)](javascript.md#50-security-basics)
-51. [Modern JS (ES6 → ES2025)](javascript.md#51-modern-js-features)
-52. [Polyfill Collection](javascript.md#52-polyfill-collection)
-53. [Testing JavaScript (Vitest / Jest)](javascript.md#53-testing-javascript-vitest--jest)
-54. [Production-Grade JavaScript](javascript.md#54-production-grade-javascript)
-55. [Code Smells & Refactoring Catalog](javascript.md#55-code-smells--refactoring-catalog)
-56. [Data Structures & Algorithms in JavaScript](javascript.md#56-data-structures--algorithms-in-javascript)
-57. [Output-Based Questions](javascript.md#57-output-based-questions)
-58. [Most Asked Interview Questions](javascript.md#58-most-asked-interview-questions)
+
+**Part 1 — Basic: First Steps**
+
+1. [Getting Started: What JavaScript Is and Your First Program](javascript.md#1-getting-started-what-javascript-is-and-your-first-program)
+2. [Variables: let, const and var](javascript.md#2-variables-let-const-and-var)
+3. [Data Types: Primitives, Objects, null and undefined](javascript.md#3-data-types-primitives-objects-null-and-undefined)
+4. [Operators: Arithmetic, Comparison, Logical, ?? and ?.](javascript.md#4-operators-arithmetic-comparison-logical--and-)
+5. [Decisions: if, else, switch and the Ternary Operator](javascript.md#5-decisions-if-else-switch-and-the-ternary-operator)
+6. [Loops: for, while, for...of and for...in](javascript.md#6-loops-for-while-forof-and-forin)
+7. [Strings and Template Literals](javascript.md#7-strings-and-template-literals)
+8. [Arrays: Ordered Lists](javascript.md#8-arrays-ordered-lists)
+9. [Objects: Grouping Data with Keys](javascript.md#9-objects-grouping-data-with-keys)
+10. [Functions: Declarations, Expressions, Arrows and Parameters](javascript.md#10-functions-declarations-expressions-arrows-and-parameters)
+
+**Part 2 — Easy: The Core Language**
+
+11. [Array Methods: map, filter, reduce, find and Friends](javascript.md#11-array-methods-map-filter-reduce-find-and-friends)
+12. [Destructuring, Spread and Rest](javascript.md#12-destructuring-spread-and-rest)
+13. [Scope, Hoisting and the Temporal Dead Zone](javascript.md#13-scope-hoisting-and-the-temporal-dead-zone)
+14. [Closures](javascript.md#14-closures)
+15. [The this Keyword, call, apply and bind](javascript.md#15-the-this-keyword-call-apply-and-bind)
+16. [Type Conversion, Coercion and == vs ===](javascript.md#16-type-conversion-coercion-and--vs-)
+17. [Error Handling: try, catch, throw and Custom Errors](javascript.md#17-error-handling-try-catch-throw-and-custom-errors)
+
+**Part 3 — Moderate: Objects, Async and Modules**
+
+18. [Objects in Depth: Copying, Property Descriptors, Getters/Setters and Immutability](javascript.md#18-objects-in-depth-copying-property-descriptors-getterssetters-and-immutability)
+19. [Prototypes and Prototypal Inheritance](javascript.md#19-prototypes-and-prototypal-inheritance)
+20. [Classes: Fields, Private Members, Static, Inheritance and OOP](javascript.md#20-classes-fields-private-members-static-inheritance-and-oop)
+21. [Map, Set, WeakMap, WeakSet and Symbol](javascript.md#21-map-set-weakmap-weakset-and-symbol)
+22. [Iterators, Generators and Iterator Helpers](javascript.md#22-iterators-generators-and-iterator-helpers)
+23. [How JavaScript Runs: Call Stack, Event Loop, Tasks and Microtasks](javascript.md#23-how-javascript-runs-call-stack-event-loop-tasks-and-microtasks)
+24. [Callbacks and Promises](javascript.md#24-callbacks-and-promises)
+25. [async/await: Asynchronous Code That Reads Like Normal Code](javascript.md#25-asyncawait-asynchronous-code-that-reads-like-normal-code)
+26. [Modules: import, export, ESM vs CommonJS](javascript.md#26-modules-import-export-esm-vs-commonjs)
+27. [Regular Expressions](javascript.md#27-regular-expressions)
+28. [Dates, Time Zones, Numbers and Intl](javascript.md#28-dates-time-zones-numbers-and-intl)
+
+**Part 4 — Moderate: JavaScript in the Browser**
+
+29. [The DOM and Events](javascript.md#29-the-dom-and-events)
+30. [Browser Storage: localStorage, sessionStorage, Cookies and IndexedDB](javascript.md#30-browser-storage-localstorage-sessionstorage-cookies-and-indexeddb)
+31. [Web APIs: fetch, AbortController, URL, Observers and Workers](javascript.md#31-web-apis-fetch-abortcontroller-url-observers-and-workers)
+32. [Files, Blobs, Binary Data and Streams](javascript.md#32-files-blobs-binary-data-and-streams)
+33. [How Browsers Render Pages: Critical Path, Reflow, Web Components and Service Workers](javascript.md#33-how-browsers-render-pages-critical-path-reflow-web-components-and-service-workers)
+34. [Networking for Frontend Developers: From URL to Page, HTTP, Caching and CORS](javascript.md#34-networking-for-frontend-developers-from-url-to-page-http-caching-and-cors)
+35. [Frontend Security: XSS, CSRF, CSP, Prototype Pollution and the Supply Chain](javascript.md#35-frontend-security-xss-csrf-csp-prototype-pollution-and-the-supply-chain)
+
+**Part 5 — Advanced: Patterns and Performance**
+
+36. [Functional Programming: Pure Functions, Immutability, Currying and Composition](javascript.md#36-functional-programming-pure-functions-immutability-currying-and-composition)
+37. [Debounce and Throttle](javascript.md#37-debounce-and-throttle)
+38. [Proxy and Reflect](javascript.md#38-proxy-and-reflect)
+39. [Design Patterns in JavaScript](javascript.md#39-design-patterns-in-javascript)
+40. [Memory Management, Garbage Collection and Leaks](javascript.md#40-memory-management-garbage-collection-and-leaks)
+41. [Performance: How V8 Runs Your Code and How to Make It Fast](javascript.md#41-performance-how-v8-runs-your-code-and-how-to-make-it-fast)
+42. [Modern JavaScript: What's New in ES2020–ES2026](javascript.md#42-modern-javascript-whats-new-in-es2020es2026)
+
+**Part 6 — Advanced: Tooling, Testing and Production**
+
+43. [Tooling: npm, Package Managers, Bundlers, Linters and TypeScript](javascript.md#43-tooling-npm-package-managers-bundlers-linters-and-typescript)
+44. [Testing JavaScript: Unit, Integration and End-to-End](javascript.md#44-testing-javascript-unit-integration-and-end-to-end)
+45. [Debugging JavaScript](javascript.md#45-debugging-javascript)
+46. [Production-Grade JavaScript: Code Quality, Refactoring and Reliability](javascript.md#46-production-grade-javascript-code-quality-refactoring-and-reliability)
+
+**Part 7 — Interview Prep: Revision**
+
+47. [Polyfills and "Implement It Yourself" Questions](javascript.md#47-polyfills-and-implement-it-yourself-questions)
+48. [DSA in JavaScript: Toolbox and Classic Coding Questions](javascript.md#48-dsa-in-javascript-toolbox-and-classic-coding-questions)
+49. [Output-Based Questions (Predict the Output)](javascript.md#49-output-based-questions-predict-the-output)
+50. [JavaScript Cheat Sheet](javascript.md#50-javascript-cheat-sheet)
+51. [Most Asked JavaScript Interview Questions](javascript.md#51-most-asked-javascript-interview-questions)
 
 </details>
 
