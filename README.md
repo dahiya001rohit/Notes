@@ -12,9 +12,9 @@ Complete notes from absolute basics to production and interviews. Every topic ha
 | [Node.js](nodejs.md) | Runtime & event loop → Express & APIs → auth & security → databases → queues, observability, system design | 65 | 8,524 |
 | [Python](python.md) | Absolute basics → OOP & functional features → stdlib, scripting, databases → concurrency → production, DSA | 47 | 5,425 |
 | [FastAPI](fastapi.md) | Routing & Pydantic → DI, databases, auth → queues, integrations → testing, observability, security, deployment | 43 | 3,832 |
-| [DSA in Python](dsa-python.md) | Data structures & algorithms from basics: a diagram, theory, tested Python and verified practice problems per topic | 29 | 1,924 |
+| [DSA in Python](dsa-python.md) | Data structures & algorithms from absolute zero, in school-year order: Python basics, pattern printing and number theory first, then arrays, hashing, techniques, linked lists, trees, graphs and DP. A diagram, theory, tested Python and practice per topic | 44 | 5,267 |
 | [Best Practices](best-practices.md) | Every good practice combined across the stack, the Gotchas Hall of Fame, and checklists | 32 | 1,733 |
-| **Total** | | **373** | **43,943** |
+| **Total** | | **388** | **47,286** |
 
 ## How every file is organized
 
@@ -34,7 +34,7 @@ Conventions: ❌ = wrong/risky, ✅ = recommended · *(caught in these notes)* =
 
 ### DSA track — study alongside the other phases
 
-- **DSA in Python:** [How to Study DSA](dsa-python.md#1-how-to-study-dsa) · [Big-O: Time and Space Complexity](dsa-python.md#2-big-o-time-and-space-complexity) · [Arrays and Python Lists](dsa-python.md#4-arrays-and-python-lists) · [Hash Tables: dict and set](dsa-python.md#6-hash-tables-dict-and-set) · [Two Pointers](dsa-python.md#11-two-pointers) · [Sliding Window](dsa-python.md#12-sliding-window) · [Binary Search](dsa-python.md#14-binary-search) · [Binary Trees and Traversals](dsa-python.md#16-binary-trees-and-traversals) · [Graphs: Representation, BFS and DFS](dsa-python.md#20-graphs-representation-bfs-and-dfs) · [Dynamic Programming](dsa-python.md#26-dynamic-programming)
+- **DSA in Python** (go in order, part by part; each part ends with a checkpoint): [How to Use These Notes](dsa-python.md#1-how-to-use-these-notes) · [Loops and Dry Runs](dsa-python.md#3-loops-and-dry-runs) · [Pattern Printing I: Squares and Triangles](dsa-python.md#4-pattern-printing-i-squares-and-triangles) · [Working with Digits](dsa-python.md#7-working-with-digits) · [Divisors and Prime Numbers](dsa-python.md#8-divisors-and-prime-numbers) · [GCD, LCM and Euclid's Algorithm](dsa-python.md#9-gcd-lcm-and-euclids-algorithm) · [Big-O: How Fast Is My Code?](dsa-python.md#13-big-o-how-fast-is-my-code) · [Recursion Basics](dsa-python.md#14-recursion-basics) · [Arrays and Python Lists](dsa-python.md#15-arrays-and-python-lists) · [Hashing: Dictionaries and Sets](dsa-python.md#19-hashing-dictionaries-and-sets) · [Two Pointers](dsa-python.md#22-two-pointers) · [Sliding Window](dsa-python.md#23-sliding-window) · [Classes, Objects and Nodes](dsa-python.md#27-classes-objects-and-nodes) · [Linked Lists](dsa-python.md#28-linked-lists) · [Binary Trees and Traversals](dsa-python.md#31-binary-trees-and-traversals) · [Graphs: Representation, BFS and DFS](dsa-python.md#35-graphs-representation-bfs-and-dfs) · [Dynamic Programming](dsa-python.md#41-dynamic-programming)
 
 ### Phase 2 — How JavaScript really works
 
@@ -105,7 +105,7 @@ Go through these in order in the last week before an interview; for each topic, 
 - **JavaScript:** [Data Structures & Algorithms in JavaScript](javascript.md#56-data-structures--algorithms-in-javascript)
 - **Node.js:** [SQL Deep Dive: Joins, Window Functions, Query Plans & Locking](nodejs.md#33-sql-deep-dive-joins-window-functions-query-plans--locking)
 - **Python:** [Data Structures & Algorithms in Python](python.md#44-data-structures--algorithms-in-python) · [Coding Questions (with solutions)](python.md#45-coding-questions)
-- **DSA in Python:** [Pattern Cheat Sheet: Which Technique When?](dsa-python.md#28-pattern-cheat-sheet-which-technique-when) · [Most Asked DSA Theory Questions](dsa-python.md#29-most-asked-dsa-theory-questions)
+- **DSA in Python:** [Pattern Cheat Sheet: Which Technique When?](dsa-python.md#43-pattern-cheat-sheet-which-technique-when) · [Most Asked DSA Theory Questions](dsa-python.md#44-most-asked-dsa-theory-questions)
 - **React:** [Machine Coding Questions (with solutions)](react.md#53-machine-coding-questions) · [Machine Coding II (Carousel, Kanban, Data Table, Wizard, Toasts, Comments)](react.md#54-machine-coding-ii-carousel-kanban-data-table-wizard-toasts-comments)
 - **TypeScript:** [Type Challenges](typescript.md#42-type-challenges)
 
@@ -474,37 +474,78 @@ Go through these in order in the last week before an interview; for each topic, 
 </details>
 
 <details>
-<summary><b>DSA in Python</b> — 29 sections</summary>
+<summary><b>DSA in Python</b> — 44 sections in 9 parts</summary>
 
-1. [How to Study DSA](dsa-python.md#1-how-to-study-dsa)
-2. [Big-O: Time and Space Complexity](dsa-python.md#2-big-o-time-and-space-complexity)
-3. [Python's Cost Model](dsa-python.md#3-pythons-cost-model)
-4. [Arrays and Python Lists](dsa-python.md#4-arrays-and-python-lists)
-5. [Strings](dsa-python.md#5-strings)
-6. [Hash Tables: dict and set](dsa-python.md#6-hash-tables-dict-and-set)
-7. [Linked Lists](dsa-python.md#7-linked-lists)
-8. [Stacks](dsa-python.md#8-stacks)
-9. [Queues and Deques](dsa-python.md#9-queues-and-deques)
-10. [Recursion](dsa-python.md#10-recursion)
-11. [Two Pointers](dsa-python.md#11-two-pointers)
-12. [Sliding Window](dsa-python.md#12-sliding-window)
-13. [Prefix Sums](dsa-python.md#13-prefix-sums)
-14. [Binary Search](dsa-python.md#14-binary-search)
-15. [Sorting](dsa-python.md#15-sorting)
-16. [Binary Trees and Traversals](dsa-python.md#16-binary-trees-and-traversals)
-17. [Binary Search Trees](dsa-python.md#17-binary-search-trees)
-18. [Heaps and Priority Queues](dsa-python.md#18-heaps-and-priority-queues)
-19. [Tries (Prefix Trees)](dsa-python.md#19-tries-prefix-trees)
-20. [Graphs: Representation, BFS and DFS](dsa-python.md#20-graphs-representation-bfs-and-dfs)
-21. [Shortest Paths: Dijkstra](dsa-python.md#21-shortest-paths-dijkstra)
-22. [Topological Sort](dsa-python.md#22-topological-sort)
-23. [Union-Find (Disjoint Set Union)](dsa-python.md#23-union-find-disjoint-set-union)
-24. [Backtracking](dsa-python.md#24-backtracking)
-25. [Greedy Algorithms](dsa-python.md#25-greedy-algorithms)
-26. [Dynamic Programming](dsa-python.md#26-dynamic-programming)
-27. [Bit Manipulation](dsa-python.md#27-bit-manipulation)
-28. [Pattern Cheat Sheet: Which Technique When?](dsa-python.md#28-pattern-cheat-sheet-which-technique-when)
-29. [Most Asked DSA Theory Questions](dsa-python.md#29-most-asked-dsa-theory-questions)
+**Part 1 — Primary School: Programming Basics**
+
+1. [How to Use These Notes](dsa-python.md#1-how-to-use-these-notes)
+2. [Python Basics: Values, Variables, Decisions and Functions](dsa-python.md#2-python-basics-values-variables-decisions-and-functions)
+3. [Loops and Dry Runs](dsa-python.md#3-loops-and-dry-runs)
+4. [Pattern Printing I: Squares and Triangles](dsa-python.md#4-pattern-printing-i-squares-and-triangles)
+5. [Pattern Printing II: Pyramids, Diamonds and Hollow Shapes](dsa-python.md#5-pattern-printing-ii-pyramids-diamonds-and-hollow-shapes)
+6. [Pattern Printing III: Number and Letter Patterns](dsa-python.md#6-pattern-printing-iii-number-and-letter-patterns)
+
+**Part 2 — Middle School: Maths for Programmers**
+
+7. [Working with Digits](dsa-python.md#7-working-with-digits)
+8. [Divisors and Prime Numbers](dsa-python.md#8-divisors-and-prime-numbers)
+9. [GCD, LCM and Euclid's Algorithm](dsa-python.md#9-gcd-lcm-and-euclids-algorithm)
+10. [Sieve of Eratosthenes and Prime Factorisation](dsa-python.md#10-sieve-of-eratosthenes-and-prime-factorisation)
+11. [Maths Toolbox: Series, Factorials, Fibonacci, Powers and Modulo](dsa-python.md#11-maths-toolbox-series-factorials-fibonacci-powers-and-modulo)
+12. [Number Systems: Decimal and Binary](dsa-python.md#12-number-systems-decimal-and-binary)
+
+**Part 3 — High School: First Data Structures and Algorithms**
+
+13. [Big-O: How Fast Is My Code?](dsa-python.md#13-big-o-how-fast-is-my-code)
+14. [Recursion Basics](dsa-python.md#14-recursion-basics)
+15. [Arrays and Python Lists](dsa-python.md#15-arrays-and-python-lists)
+16. [Strings](dsa-python.md#16-strings)
+17. [Basic Sorting: Selection, Bubble and Insertion Sort](dsa-python.md#17-basic-sorting-selection-bubble-and-insertion-sort)
+18. [Searching: Linear Search and Binary Search](dsa-python.md#18-searching-linear-search-and-binary-search)
+19. [Hashing: Dictionaries and Sets](dsa-python.md#19-hashing-dictionaries-and-sets)
+20. [Python's Cost Model: What Each Operation Costs](dsa-python.md#20-pythons-cost-model-what-each-operation-costs)
+
+**Part 4 — Senior Secondary: Problem-Solving Techniques**
+
+21. [How to Attack a New Problem](dsa-python.md#21-how-to-attack-a-new-problem)
+22. [Two Pointers](dsa-python.md#22-two-pointers)
+23. [Sliding Window](dsa-python.md#23-sliding-window)
+24. [Prefix Sums](dsa-python.md#24-prefix-sums)
+25. [Binary Search on the Answer](dsa-python.md#25-binary-search-on-the-answer)
+26. [Merge Sort and Quick Sort](dsa-python.md#26-merge-sort-and-quick-sort)
+
+**Part 5 — College, Year 1: Building Your Own Data Structures**
+
+27. [Classes, Objects and Nodes](dsa-python.md#27-classes-objects-and-nodes)
+28. [Linked Lists](dsa-python.md#28-linked-lists)
+29. [Stacks](dsa-python.md#29-stacks)
+30. [Queues and Deques](dsa-python.md#30-queues-and-deques)
+
+**Part 6 — College, Year 2: Trees**
+
+31. [Binary Trees and Traversals](dsa-python.md#31-binary-trees-and-traversals)
+32. [Binary Search Trees](dsa-python.md#32-binary-search-trees)
+33. [Heaps and Priority Queues](dsa-python.md#33-heaps-and-priority-queues)
+34. [Tries (Prefix Trees)](dsa-python.md#34-tries-prefix-trees)
+
+**Part 7 — College, Year 3: Graphs**
+
+35. [Graphs: Representation, BFS and DFS](dsa-python.md#35-graphs-representation-bfs-and-dfs)
+36. [Shortest Paths: Dijkstra](dsa-python.md#36-shortest-paths-dijkstra)
+37. [Topological Sort](dsa-python.md#37-topological-sort)
+38. [Union-Find (Disjoint Set Union)](dsa-python.md#38-union-find-disjoint-set-union)
+
+**Part 8 — Final Year: Algorithm Design Strategies**
+
+39. [Backtracking](dsa-python.md#39-backtracking)
+40. [Greedy Algorithms](dsa-python.md#40-greedy-algorithms)
+41. [Dynamic Programming](dsa-python.md#41-dynamic-programming)
+42. [Bit Manipulation](dsa-python.md#42-bit-manipulation)
+
+**Part 9 — Placement Prep: Revision**
+
+43. [Pattern Cheat Sheet: Which Technique When?](dsa-python.md#43-pattern-cheat-sheet-which-technique-when)
+44. [Most Asked DSA Theory Questions](dsa-python.md#44-most-asked-dsa-theory-questions)
 
 </details>
 
