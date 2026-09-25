@@ -7,7 +7,7 @@ Complete notes from absolute basics to production and interviews. Every topic ha
 | File | Covers | Sections | Lines |
 |---|---|---|---|
 | [JavaScript](javascript.md) | JavaScript from absolute zero in five levels (Basic → Easy → Moderate → Advanced → Interview Prep): variables, types, operators, decisions, loops, strings, arrays, objects and functions; array methods, destructuring, scope, closures, this, coercion and errors; objects, prototypes, classes, Map/Set, generators, the event loop, promises, async/await, modules, regex and Intl; the DOM, events, storage, fetch, CORS, rendering and web security; functional patterns, debounce/throttle, Proxy, design patterns, memory, performance and ES2020–ES2026; tooling, testing, debugging and production code; polyfills, DSA and output questions. Every example runs on Node.js 24 or headless Chromium with real output | 51 | 7,114 |
-| [TypeScript](typescript.md) | Types from basics to advanced type-level programming, TS with React/Node, end-to-end type safety | 43 | 3,779 |
+| [TypeScript](typescript.md) | TypeScript from zero in five levels (Basic → Easy → Moderate → Advanced → Interview Prep): how TypeScript runs, basic types, arrays, objects, functions, unions, type vs interface; unknown/never, narrowing, discriminated unions, as const and satisfies, enums, structural typing, classes; generics, keyof/typeof, utility, mapped, conditional and template literal types; modules, tsconfig, async code, Zod validation, error handling, decorators; React, Express, end-to-end types, branded types, variance; production setup, what's new up to TypeScript 7, fixing compiler errors; type challenges. Every example type-checked with TypeScript 7.0 and run on Node.js 24, with real compiler output | 40 | 7,159 |
 | [React](react.md) | Components & hooks → patterns & performance → state/data → Next.js → testing → production & machine coding | 56 | 7,709 |
 | [Node.js](nodejs.md) | Runtime & event loop → Express & APIs → auth & security → databases → queues, observability, system design | 65 | 8,524 |
 | [Python](python.md) | Python from absolute zero in five levels (Basic → Easy → Moderate → Advanced → Interview Prep): variables, numbers, strings, decisions and loops; lists, dicts, sets, comprehensions and functions; errors, files, modules and uv, the standard library, classes, dataclasses and type hints; decorators, generators, context managers, regex, Pythonic style, pytest and logging; internals, descriptors, threads, processes, free-threading, asyncio, performance, databases and scripting; production tooling, packaging and what's new in 3.12–3.14. Every example runs on Python 3.14 with real output | 44 | 6,977 |
@@ -20,7 +20,7 @@ Complete notes from absolute basics to production and interviews. Every topic ha
 | [LLM Engineering](llm-engineering.md) | Building applications with large language models, from zero, in five levels (Basic → Easy → Moderate → Advanced → Interview Prep): how LLMs work and are trained, tokens and cost, the Claude API from Python (messages, streaming, errors, refusals), prompt engineering, structured outputs, tool use, embeddings and vector search, prompt caching and batching, images and PDFs, evaluation and LLM-as-judge, hallucinations and prompt injection, fine-tuning (SFT, DPO, LoRA), reasoning models, open-weight models and vLLM, LLMOps and LLM system design. Local examples run with real output; API code checked against the official SDK | 21 | 3,167 |
 | [RAG and AI Agents](rag-and-agents.md) | Retrieval-augmented generation and agentic AI, from zero, in five levels (Basic → Easy → Moderate → Advanced → Interview Prep): RAG from scratch, loading and chunking, BM25 and vector search, hybrid search, reranking and query rewriting, RAG evaluation, vectorless RAG (full-text, text-to-SQL, tree navigation, agentic search, long context), contextual retrieval, parent documents and GraphRAG, production RAG (freshness, permissions, injection), LangChain, LangGraph, the agent loop, tools, memory and context engineering, agents with LangGraph, multi-agent systems, MCP, agent evaluation and security, and system design. Examples run locally with real output; API code checked against the official SDKs | 21 | 3,936 |
 | [Best Practices](best-practices.md) | Every good practice combined across the stack, the Gotchas Hall of Fame, and checklists | 32 | 1,733 |
-| **Total** | | **539** | **72,749** |
+| **Total** | | **536** | **76,129** |
 
 ## How every file is organized
 
@@ -121,7 +121,7 @@ The AI/ML files form one path, from "I know some Python" to building and shippin
 
 ### Phase 4 — TypeScript
 
-- **TypeScript:** [What is TypeScript](typescript.md#1-what-is-typescript) · [Basic Types](typescript.md#3-basic-types) · [any, unknown, never, void](typescript.md#4-any-unknown-never-void) · [Objects: type aliases & interfaces](typescript.md#7-object-types) · [Union & Intersection Types](typescript.md#9-union--intersection-types) · [Type Narrowing & Type Guards](typescript.md#11-type-narrowing--type-guards) · [Discriminated Unions & Exhaustiveness](typescript.md#12-discriminated-unions) · [Generics](typescript.md#16-generics) · [Utility Types (all built-ins + implementations)](typescript.md#22-utility-types) · [TypeScript with React](typescript.md#33-typescript-with-react) · [Runtime Validation with Zod](typescript.md#36-runtime-validation-with-zod)
+- **TypeScript:** [Getting Started: What TypeScript Is and Your First Program](typescript.md#1-getting-started-what-typescript-is-and-your-first-program) · [Basic Types, Annotations and Type Inference](typescript.md#2-basic-types-annotations-and-type-inference) · [The Special Types: any, unknown, never and void](typescript.md#8-the-special-types-any-unknown-never-and-void) · [Object Types: Shapes, Optional and Readonly Properties](typescript.md#4-object-types-shapes-optional-and-readonly-properties) · [Union and Literal Types: "This or That"](typescript.md#6-union-and-literal-types-this-or-that) · [Narrowing and Type Guards](typescript.md#9-narrowing-and-type-guards) · [Discriminated Unions and Exhaustive Checks](typescript.md#10-discriminated-unions-and-exhaustive-checks) · [Generics: Types With Parameters](typescript.md#15-generics-types-with-parameters) · [Built-in Utility Types](typescript.md#18-built-in-utility-types) · [TypeScript with React](typescript.md#29-typescript-with-react) · [Runtime Validation with Zod: One Schema, Types and Checks](typescript.md#26-runtime-validation-with-zod-one-schema-types-and-checks)
 
 ### Phase 5 — React
 
@@ -141,7 +141,7 @@ The AI/ML files form one path, from "I know some Python" to building and shippin
 - **JavaScript:** [Testing JavaScript: Unit, Integration and End-to-End](javascript.md#44-testing-javascript-unit-integration-and-end-to-end) · [Production-Grade JavaScript: Code Quality, Refactoring and Reliability](javascript.md#46-production-grade-javascript-code-quality-refactoring-and-reliability)
 - **React:** [Production React Patterns](react.md#51-production-react-patterns) · [Accessibility (a11y)](react.md#47-accessibility-a11y)
 - **Node.js:** [Security Best Practices](nodejs.md#40-security) · [OWASP API Security Top 10 (2023) with Examples](nodejs.md#41-owasp-api-security-top-10-2023-with-examples) · [Observability Hands-On: Logs, Metrics, Traces, SLOs & Alerts](nodejs.md#44-observability-hands-on-logs-metrics-traces-slos--alerts) · [BullMQ in Depth](nodejs.md#51-bullmq-in-depth) · [Graceful Shutdown](nodejs.md#54-graceful-shutdown) · [Streaming Responses & Server-Sent Events in Depth](nodejs.md#49-streaming-responses--server-sent-events-in-depth) · [Deployment: Docker, PM2, CI/CD, Nginx](nodejs.md#58-deployment)
-- **TypeScript:** [Production TypeScript Best Practices](typescript.md#40-production-typescript-best-practices)
+- **TypeScript:** [Production TypeScript: Project Setup, Linting, Testing, Migration and Publishing](typescript.md#34-production-typescript-project-setup-linting-testing-migration-and-publishing)
 - **Python:** [Production-Grade Python: Project Layout, Configuration, Tooling and CI](python.md#37-production-grade-python-project-layout-configuration-tooling-and-ci) · [Packaging and Publishing a Library](python.md#38-packaging-and-publishing-a-library)
 - **FastAPI:** [Streaming Responses and Server-Sent Events (LLM Token Streaming)](fastapi.md#23-streaming-responses-and-server-sent-events-llm-token-streaming) · [FastAPI Cheat Sheet](fastapi.md#32-fastapi-cheat-sheet)
 - **Best Practices:** [Git in Practice: Everyday Workflow, Fixing History & Recovery](best-practices.md#27-git-in-practice-everyday-workflow-fixing-history--recovery) · [Feature Flags & Safe Rollouts](best-practices.md#29-feature-flags--safe-rollouts) · [Incident Response, On-Call, Postmortems & Living Documentation](best-practices.md#30-incident-response-on-call-postmortems--living-documentation) · [Gotchas Hall of Fame](best-practices.md#31-gotchas-hall-of-fame) · [Checklists](best-practices.md#32-checklists)
@@ -150,7 +150,7 @@ The AI/ML files form one path, from "I know some Python" to building and shippin
 
 - **Node.js:** [System Design Basics for Backend Interviews](nodejs.md#63-system-design-basics-for-backend-interviews) · [Microservices, API Gateway, Message Brokers](nodejs.md#55-microservices) · [Resilience: Timeouts, Retries, Circuit Breakers & Load Shedding](nodejs.md#56-resilience-timeouts-retries-circuit-breakers--load-shedding) · [Building & Publishing an npm Package](nodejs.md#60-building--publishing-an-npm-package) · [Monorepos: pnpm Workspaces, Turborepo & Shared Packages](nodejs.md#61-monorepos-pnpm-workspaces-turborepo--shared-packages)
 - **React:** [How Hooks Work Under the Hood (+ Children & cloneElement APIs)](react.md#24-how-hooks-work-under-the-hood--children--cloneelement-apis) · [Next.js App Router Deep Dive (+ Animations)](react.md#44-nextjs-app-router-deep-dive--animations)
-- **TypeScript:** [Typing React Components: Advanced Patterns](typescript.md#34-typing-react-components-advanced-patterns) · [Advanced TypeScript Features](typescript.md#39-advanced-typescript-features) · [End-to-End Type Safety: Shared Schemas, tRPC & OpenAPI Codegen](typescript.md#37-end-to-end-type-safety-shared-schemas-trpc--openapi-codegen)
+- **TypeScript:** [TypeScript with React](typescript.md#29-typescript-with-react) · [Advanced Type System Topics: Recursive Types, Variance and Type-Level Limits](typescript.md#33-advanced-type-system-topics-recursive-types-variance-and-type-level-limits) · [End-to-End Type Safety: Sharing Types Between Client and Server](typescript.md#31-end-to-end-type-safety-sharing-types-between-client-and-server)
 - **Python:** [Advanced Classes: Attribute Lookup, Descriptors, Class Hooks and Metaclasses](python.md#31-advanced-classes-attribute-lookup-descriptors-class-hooks-and-metaclasses)
 
 ## Interview revision plan
@@ -182,7 +182,7 @@ Go through these in order in the last week before an interview; for each topic, 
 - **Python:** [Python's Toolbox for Data Structures and Algorithms](python.md#40-pythons-toolbox-for-data-structures-and-algorithms) · [Interview Coding: Classic Python Problems](python.md#41-interview-coding-classic-python-problems)
 - **DSA in Python:** [Interview Topic Checklist: What Top Companies Ask](dsa-python.md#58-interview-topic-checklist-what-top-companies-ask) · [Pattern Cheat Sheet: Which Technique When?](dsa-python.md#59-pattern-cheat-sheet-which-technique-when) · [Most Asked DSA Theory Questions](dsa-python.md#60-most-asked-dsa-theory-questions)
 - **React:** [Machine Coding Questions (with solutions)](react.md#53-machine-coding-questions) · [Machine Coding II (Carousel, Kanban, Data Table, Wizard, Toasts, Comments)](react.md#54-machine-coding-ii-carousel-kanban-data-table-wizard-toasts-comments)
-- **TypeScript:** [Type Challenges](typescript.md#42-type-challenges)
+- **TypeScript:** [Type Challenges: Implement the Utility Types Yourself](typescript.md#37-type-challenges-implement-the-utility-types-yourself)
 - **SQL & PostgreSQL:** [Classic SQL Interview Problems (with Solutions)](sql-postgresql.md#32-classic-sql-interview-problems-with-solutions) · [SQL and PostgreSQL Cheat Sheet](sql-postgresql.md#33-sql-and-postgresql-cheat-sheet) · [Most Asked SQL and Database Theory Questions](sql-postgresql.md#34-most-asked-sql-and-database-theory-questions)
 - **Data Science:** [Interview Problems: pandas and NumPy](data-science.md#25-interview-problems-pandas-and-numpy) · [Data Science Cheat Sheet](data-science.md#26-data-science-cheat-sheet) · [Most Asked Data Science Theory Questions](data-science.md#27-most-asked-data-science-theory-questions)
 - **Machine Learning:** [Interview Coding: ML Algorithms from Scratch in NumPy](machine-learning.md#30-interview-coding-ml-algorithms-from-scratch-in-numpy) · [Machine Learning Cheat Sheet](machine-learning.md#31-machine-learning-cheat-sheet) · [Most Asked Machine Learning Theory Questions](machine-learning.md#32-most-asked-machine-learning-theory-questions)
@@ -198,7 +198,7 @@ Go through these in order in the last week before an interview; for each topic, 
 ### Most-asked questions (final pass)
 
 - **JavaScript:** [Most Asked JavaScript Interview Questions](javascript.md#51-most-asked-javascript-interview-questions)
-- **TypeScript:** [Most Asked Interview Questions](typescript.md#43-most-asked-interview-questions)
+- **TypeScript:** [Most Asked TypeScript Interview Questions](typescript.md#40-most-asked-typescript-interview-questions)
 - **React:** [Most Asked Interview Questions](react.md#56-most-asked-interview-questions)
 - **Node.js:** [Most Asked Interview Questions](nodejs.md#65-most-asked-interview-questions)
 - **Python:** [Most Asked Python Interview Questions](python.md#44-most-asked-python-interview-questions)
@@ -285,51 +285,69 @@ Go through these in order in the last week before an interview; for each topic, 
 </details>
 
 <details>
-<summary><b>TypeScript</b> — 43 sections</summary>
+<summary><b>TypeScript</b> — 40 sections in 7 parts</summary>
 
-1. [What is TypeScript](typescript.md#1-what-is-typescript)
-2. [Setup & Compilation](typescript.md#2-setup--compilation)
-3. [Basic Types](typescript.md#3-basic-types)
-4. [any, unknown, never, void](typescript.md#4-any-unknown-never-void)
-5. [Type Inference & Annotations](typescript.md#5-type-inference--annotations)
-6. [Arrays & Tuples](typescript.md#6-arrays--tuples)
-7. [Objects: type aliases & interfaces](typescript.md#7-object-types)
-8. [type vs interface](typescript.md#8-type-vs-interface)
-9. [Union & Intersection Types](typescript.md#9-union--intersection-types)
-10. [Literal Types & `as const`](typescript.md#10-literal-types--as-const)
-11. [Type Narrowing & Type Guards](typescript.md#11-type-narrowing--type-guards)
-12. [Discriminated Unions & Exhaustiveness](typescript.md#12-discriminated-unions)
-13. [Functions](typescript.md#13-functions)
-14. [Function Overloads](typescript.md#14-function-overloads)
-15. [Enums](typescript.md#15-enums)
-16. [Generics](typescript.md#16-generics)
-17. [Generic Constraints & Defaults](typescript.md#17-generic-constraints--defaults)
-18. [keyof, typeof, Indexed Access Types](typescript.md#18-keyof-typeof-indexed-access)
-19. [Mapped Types](typescript.md#19-mapped-types)
-20. [Conditional Types & `infer`](typescript.md#20-conditional-types--infer)
+
+**Part 1 — Basic: First Steps**
+
+1. [Getting Started: What TypeScript Is and Your First Program](typescript.md#1-getting-started-what-typescript-is-and-your-first-program)
+2. [Basic Types, Annotations and Type Inference](typescript.md#2-basic-types-annotations-and-type-inference)
+3. [Arrays, Tuples and Safe Indexing](typescript.md#3-arrays-tuples-and-safe-indexing)
+4. [Object Types: Shapes, Optional and Readonly Properties](typescript.md#4-object-types-shapes-optional-and-readonly-properties)
+5. [Typing Functions: Parameters, Returns, Callbacks and void](typescript.md#5-typing-functions-parameters-returns-callbacks-and-void)
+6. [Union and Literal Types: "This or That"](typescript.md#6-union-and-literal-types-this-or-that)
+7. [Type Aliases vs Interfaces](typescript.md#7-type-aliases-vs-interfaces)
+
+**Part 2 — Easy: Making Types Precise**
+
+8. [The Special Types: any, unknown, never and void](typescript.md#8-the-special-types-any-unknown-never-and-void)
+9. [Narrowing and Type Guards](typescript.md#9-narrowing-and-type-guards)
+10. [Discriminated Unions and Exhaustive Checks](typescript.md#10-discriminated-unions-and-exhaustive-checks)
+11. [as const, satisfies, Type Assertions and the ! Operator](typescript.md#11-as-const-satisfies-type-assertions-and-the--operator)
+12. [Enums and Their Modern Alternatives](typescript.md#12-enums-and-their-modern-alternatives)
+13. [Structural Typing: Shapes, Not Names](typescript.md#13-structural-typing-shapes-not-names)
+14. [Classes: Access Modifiers, implements, abstract and override](typescript.md#14-classes-access-modifiers-implements-abstract-and-override)
+
+**Part 3 — Moderate: Generics and Type-Level Tools**
+
+15. [Generics: Types With Parameters](typescript.md#15-generics-types-with-parameters)
+16. [keyof, typeof and Indexed Access Types](typescript.md#16-keyof-typeof-and-indexed-access-types)
+17. [Generic Constraints, Defaults and const Type Parameters](typescript.md#17-generic-constraints-defaults-and-const-type-parameters)
+18. [Built-in Utility Types](typescript.md#18-built-in-utility-types)
+19. [Mapped Types: Transforming Every Property](typescript.md#19-mapped-types-transforming-every-property)
+20. [Conditional Types and infer](typescript.md#20-conditional-types-and-infer)
 21. [Template Literal Types](typescript.md#21-template-literal-types)
-22. [Utility Types (all built-ins + implementations)](typescript.md#22-utility-types)
-23. [Type Assertions, Non-null `!`, `satisfies`](typescript.md#23-type-assertions-non-null--satisfies)
-24. [Classes in TS](typescript.md#24-classes)
-25. [Abstract Classes & Interfaces with Classes](typescript.md#25-abstract-classes)
-26. [Index Signatures & Record](typescript.md#26-index-signatures)
-27. [Readonly & Immutability](typescript.md#27-readonly--immutability)
-28. [Modules, Namespaces, Declaration Files (.d.ts)](typescript.md#28-modules-namespaces-declaration-files)
-29. [Declaration Merging & Module Augmentation](typescript.md#29-declaration-merging--module-augmentation)
-30. [Decorators](typescript.md#30-decorators)
-31. [tsconfig.json explained](typescript.md#31-tsconfigjson)
-32. [Structural Typing, Variance, Excess Property Checks](typescript.md#32-structural-typing)
-33. [TypeScript with React](typescript.md#33-typescript-with-react)
-34. [Typing React Components: Advanced Patterns](typescript.md#34-typing-react-components-advanced-patterns)
-35. [TypeScript with Node & Express](typescript.md#35-typescript-with-node--express)
-36. [Runtime Validation with Zod](typescript.md#36-runtime-validation-with-zod)
-37. [End-to-End Type Safety: Shared Schemas, tRPC & OpenAPI Codegen](typescript.md#37-end-to-end-type-safety-shared-schemas-trpc--openapi-codegen)
-38. [Branded Types & Other Patterns](typescript.md#38-patterns)
-39. [Advanced TypeScript Features](typescript.md#39-advanced-typescript-features)
-40. [Production TypeScript Best Practices](typescript.md#40-production-typescript-best-practices)
-41. [Common Errors & Fixes](typescript.md#41-common-errors--fixes)
-42. [Type Challenges](typescript.md#42-type-challenges)
-43. [Most Asked Interview Questions](typescript.md#43-most-asked-interview-questions)
+22. [Function Overloads, this Parameters and Typing Callbacks Well](typescript.md#22-function-overloads-this-parameters-and-typing-callbacks-well)
+
+**Part 4 — Moderate: Real Projects**
+
+23. [Modules, import type, Declaration Files and @types](typescript.md#23-modules-import-type-declaration-files-and-types)
+24. [tsconfig.json: Compiler Options That Matter in 2026](typescript.md#24-tsconfigjson-compiler-options-that-matter-in-2026)
+25. [Typing Async Code: Promises, fetch and Errors](typescript.md#25-typing-async-code-promises-fetch-and-errors)
+26. [Runtime Validation with Zod: One Schema, Types and Checks](typescript.md#26-runtime-validation-with-zod-one-schema-types-and-checks)
+27. [Error Handling Patterns: Typed Errors, Result Types and using](typescript.md#27-error-handling-patterns-typed-errors-result-types-and-using)
+28. [Decorators](typescript.md#28-decorators)
+
+**Part 5 — Advanced: TypeScript with Frameworks and Patterns**
+
+29. [TypeScript with React](typescript.md#29-typescript-with-react)
+30. [TypeScript on the Server: Node.js and Express](typescript.md#30-typescript-on-the-server-nodejs-and-express)
+31. [End-to-End Type Safety: Sharing Types Between Client and Server](typescript.md#31-end-to-end-type-safety-sharing-types-between-client-and-server)
+32. [Practical Type Patterns: Branded Types, State Machines and Typed Events](typescript.md#32-practical-type-patterns-branded-types-state-machines-and-typed-events)
+33. [Advanced Type System Topics: Recursive Types, Variance and Type-Level Limits](typescript.md#33-advanced-type-system-topics-recursive-types-variance-and-type-level-limits)
+
+**Part 6 — Advanced: Production TypeScript**
+
+34. [Production TypeScript: Project Setup, Linting, Testing, Migration and Publishing](typescript.md#34-production-typescript-project-setup-linting-testing-migration-and-publishing)
+35. [What's New: TypeScript 5.0 to 7.0](typescript.md#35-whats-new-typescript-50-to-70)
+36. [Reading and Fixing Common Compiler Errors](typescript.md#36-reading-and-fixing-common-compiler-errors)
+
+**Part 7 — Interview Prep: Revision**
+
+37. [Type Challenges: Implement the Utility Types Yourself](typescript.md#37-type-challenges-implement-the-utility-types-yourself)
+38. ["Does It Compile?" Questions](typescript.md#38-does-it-compile-questions)
+39. [TypeScript Cheat Sheet](typescript.md#39-typescript-cheat-sheet)
+40. [Most Asked TypeScript Interview Questions](typescript.md#40-most-asked-typescript-interview-questions)
 
 </details>
 
