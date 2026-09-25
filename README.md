@@ -11,7 +11,7 @@ Complete notes from absolute basics to production and interviews. Every topic ha
 | [React](react.md) | Components & hooks → patterns & performance → state/data → Next.js → testing → production & machine coding | 56 | 7,709 |
 | [Node.js](nodejs.md) | Runtime & event loop → Express & APIs → auth & security → databases → queues, observability, system design | 65 | 8,524 |
 | [Python](python.md) | Python from absolute zero in five levels (Basic → Easy → Moderate → Advanced → Interview Prep): variables, numbers, strings, decisions and loops; lists, dicts, sets, comprehensions and functions; errors, files, modules and uv, the standard library, classes, dataclasses and type hints; decorators, generators, context managers, regex, Pythonic style, pytest and logging; internals, descriptors, threads, processes, free-threading, asyncio, performance, databases and scripting; production tooling, packaging and what's new in 3.12–3.14. Every example runs on Python 3.14 with real output | 44 | 6,977 |
-| [FastAPI](fastapi.md) | Routing & Pydantic → DI, databases, auth → queues, integrations → testing, observability, security, deployment | 43 | 3,832 |
+| [FastAPI](fastapi.md) | Production APIs with FastAPI from zero in five levels (Basic → Easy → Moderate → Advanced → Interview Prep): HTTP and REST, routes, parameters and Pydantic bodies; response models, errors, forms/files and routers; dependency injection, async, settings and lifespan, SQLAlchemy 2.0, JWT auth and authorisation, CORS, testing; pagination, background jobs, WebSockets, SSE streaming for LLMs, webhooks, caching and rate limits; API design, OWASP API Top 10, observability, deployment and serving ML/LLM models. Every response shown was produced by the app (FastAPI 0.141, Python 3.14) | 33 | 4,853 |
 | [DSA in Python](dsa-python.md) | Data structures & algorithms from absolute zero in five levels (Basic → Easy → Moderate → Advanced → Interview Prep): Python basics, pattern printing and number theory first, then arrays, hashing, techniques, linked lists, trees, graphs, DP, string algorithms, segment trees, max flow, the algorithms inside real systems (Bloom filters, consistent hashing, B-trees, vector search) and recent breakthroughs, plus a checklist of what top companies ask. Every topic: simple explanation, diagram, tested Python, practice | 60 | 8,364 |
 | [SQL & PostgreSQL](sql-postgresql.md) | SQL from zero in five levels (Basic → Easy → Moderate → Advanced → Interview Prep): tables and queries, joins, CTEs, design and normalisation, window functions, transactions and MVCC, indexes and query plans, JSONB, full-text search, pgvector for AI, security, Python (psycopg, SQLAlchemy), backups, replication, scaling, PostgreSQL 17/18, and classic interview problems. Every query run on PostgreSQL with real output | 34 | 5,291 |
 | [Data Science](data-science.md) | The Python data toolkit from zero in five levels (Basic → Easy → Moderate → Advanced → Interview Prep): NumPy arrays and broadcasting, pandas 3 (loading, selecting, cleaning, groupby, merge, pivot, time series), Arrow, Polars and DuckDB for bigger data, Matplotlib and Seaborn charts, statistics (distributions, confidence intervals, hypothesis tests, A/B testing), a full EDA and feature preparation for ML, plus pandas interview problems. Every example run with real output and real chart images | 27 | 3,755 |
@@ -20,7 +20,7 @@ Complete notes from absolute basics to production and interviews. Every topic ha
 | [LLM Engineering](llm-engineering.md) | Building applications with large language models, from zero, in five levels (Basic → Easy → Moderate → Advanced → Interview Prep): how LLMs work and are trained, tokens and cost, the Claude API from Python (messages, streaming, errors, refusals), prompt engineering, structured outputs, tool use, embeddings and vector search, prompt caching and batching, images and PDFs, evaluation and LLM-as-judge, hallucinations and prompt injection, fine-tuning (SFT, DPO, LoRA), reasoning models, open-weight models and vLLM, LLMOps and LLM system design. Local examples run with real output; API code checked against the official SDK | 21 | 3,167 |
 | [RAG and AI Agents](rag-and-agents.md) | Retrieval-augmented generation and agentic AI, from zero, in five levels (Basic → Easy → Moderate → Advanced → Interview Prep): RAG from scratch, loading and chunking, BM25 and vector search, hybrid search, reranking and query rewriting, RAG evaluation, vectorless RAG (full-text, text-to-SQL, tree navigation, agentic search, long context), contextual retrieval, parent documents and GraphRAG, production RAG (freshness, permissions, injection), LangChain, LangGraph, the agent loop, tools, memory and context engineering, agents with LangGraph, multi-agent systems, MCP, agent evaluation and security, and system design. Examples run locally with real output; API code checked against the official SDKs | 21 | 3,936 |
 | [Best Practices](best-practices.md) | Every good practice combined across the stack, the Gotchas Hall of Fame, and checklists | 32 | 1,733 |
-| **Total** | | **556** | **75,631** |
+| **Total** | | **546** | **76,652** |
 
 ## How every file is organized
 
@@ -134,7 +134,7 @@ The AI/ML files form one path, from "I know some Python" to building and shippin
 ### Phase 7 — Backend with Python & FastAPI
 
 - **Python:** [Classes and Objects](python.md#18-classes-and-objects) · [Closures and Decorators](python.md#23-closures-and-decorators) · [Iterators and Generators: Producing Values Lazily](python.md#24-iterators-and-generators-producing-values-lazily) · [Errors and Exceptions: try, except, raise](python.md#14-errors-and-exceptions-try-except-raise) · [Type Hints and Static Type Checking](python.md#22-type-hints-and-static-type-checking) · [asyncio: async and await](python.md#33-asyncio-async-and-await) · [Testing with pytest](python.md#28-testing-with-pytest)
-- **FastAPI:** [What is FastAPI](fastapi.md#1-what-is-fastapi) · [Request Body with Pydantic](fastapi.md#6-request-body-with-pydantic) · [Dependency Injection](fastapi.md#11-dependency-injection) · [async def vs def](fastapi.md#13-async-def-vs-def) · [Databases: SQLAlchemy 2.0](fastapi.md#15-databases-sqlalchemy-20) · [Authentication: OAuth2 + JWT](fastapi.md#19-authentication-oauth2--jwt) · [Testing FastAPI](fastapi.md#32-testing-fastapi)
+- **FastAPI:** [How to Use These Notes: APIs, HTTP and What FastAPI Is](fastapi.md#1-how-to-use-these-notes-apis-http-and-what-fastapi-is) · [Request Bodies with Pydantic Models](fastapi.md#5-request-bodies-with-pydantic-models) · [Dependency Injection with Depends](fastapi.md#11-dependency-injection-with-depends) · [async def vs def: Concurrency in FastAPI](fastapi.md#12-async-def-vs-def-concurrency-in-fastapi) · [Databases with SQLAlchemy 2.0: Models, Sessions and CRUD](fastapi.md#14-databases-with-sqlalchemy-20-models-sessions-and-crud) · [Authentication: Password Hashing, JWT and OAuth2](fastapi.md#16-authentication-password-hashing-jwt-and-oauth2) · [Testing FastAPI Apps](fastapi.md#19-testing-fastapi-apps)
 
 ### Phase 8 — Production engineering
 
@@ -143,7 +143,7 @@ The AI/ML files form one path, from "I know some Python" to building and shippin
 - **Node.js:** [Security Best Practices](nodejs.md#40-security) · [OWASP API Security Top 10 (2023) with Examples](nodejs.md#41-owasp-api-security-top-10-2023-with-examples) · [Observability Hands-On: Logs, Metrics, Traces, SLOs & Alerts](nodejs.md#44-observability-hands-on-logs-metrics-traces-slos--alerts) · [BullMQ in Depth](nodejs.md#51-bullmq-in-depth) · [Graceful Shutdown](nodejs.md#54-graceful-shutdown) · [Streaming Responses & Server-Sent Events in Depth](nodejs.md#49-streaming-responses--server-sent-events-in-depth) · [Deployment: Docker, PM2, CI/CD, Nginx](nodejs.md#58-deployment)
 - **TypeScript:** [Production TypeScript Best Practices](typescript.md#40-production-typescript-best-practices)
 - **Python:** [Production-Grade Python: Project Layout, Configuration, Tooling and CI](python.md#37-production-grade-python-project-layout-configuration-tooling-and-ci) · [Packaging and Publishing a Library](python.md#38-packaging-and-publishing-a-library)
-- **FastAPI:** [Server-Sent Events & Streaming Answers in FastAPI](fastapi.md#27-server-sent-events--streaming-answers-in-fastapi) · [Production Checklist & Best Practices](fastapi.md#41-production-checklist)
+- **FastAPI:** [Streaming Responses and Server-Sent Events (LLM Token Streaming)](fastapi.md#23-streaming-responses-and-server-sent-events-llm-token-streaming) · [FastAPI Cheat Sheet](fastapi.md#32-fastapi-cheat-sheet)
 - **Best Practices:** [Git in Practice: Everyday Workflow, Fixing History & Recovery](best-practices.md#27-git-in-practice-everyday-workflow-fixing-history--recovery) · [Feature Flags & Safe Rollouts](best-practices.md#29-feature-flags--safe-rollouts) · [Incident Response, On-Call, Postmortems & Living Documentation](best-practices.md#30-incident-response-on-call-postmortems--living-documentation) · [Gotchas Hall of Fame](best-practices.md#31-gotchas-hall-of-fame) · [Checklists](best-practices.md#32-checklists)
 
 ### Phase 9 — Senior topics
@@ -202,7 +202,7 @@ Go through these in order in the last week before an interview; for each topic, 
 - **React:** [Most Asked Interview Questions](react.md#56-most-asked-interview-questions)
 - **Node.js:** [Most Asked Interview Questions](nodejs.md#65-most-asked-interview-questions)
 - **Python:** [Most Asked Python Interview Questions](python.md#44-most-asked-python-interview-questions)
-- **FastAPI:** [Most Asked Interview Questions](fastapi.md#43-most-asked-interview-questions)
+- **FastAPI:** [Most Asked FastAPI and Backend Interview Questions](fastapi.md#33-most-asked-fastapi-and-backend-interview-questions)
 
 ## Full index
 
@@ -524,51 +524,59 @@ Go through these in order in the last week before an interview; for each topic, 
 </details>
 
 <details>
-<summary><b>FastAPI</b> — 43 sections</summary>
+<summary><b>FastAPI</b> — 33 sections in 6 parts</summary>
 
-1. [What is FastAPI](fastapi.md#1-what-is-fastapi)
-2. [Setup & First App](fastapi.md#2-setup--first-app)
-3. [Path Operations & HTTP Methods](fastapi.md#3-path-operations--http-methods)
-4. [Path Parameters](fastapi.md#4-path-parameters)
-5. [Query Parameters](fastapi.md#5-query-parameters)
-6. [Request Body with Pydantic](fastapi.md#6-request-body-with-pydantic)
-7. [Pydantic v2 Deep Dive](fastapi.md#7-pydantic-v2-deep-dive)
-8. [Response Models & Status Codes](fastapi.md#8-response-models--status-codes)
-9. [Headers, Cookies, Forms & File Uploads](fastapi.md#9-headers-cookies-forms--file-uploads)
-10. [Error Handling](fastapi.md#10-error-handling)
-11. [Dependency Injection](fastapi.md#11-dependency-injection)
-12. [APIRouter & Project Structure](fastapi.md#12-apirouter--project-structure)
-13. [async def vs def](fastapi.md#13-async-def-vs-def)
-14. [Settings & Configuration](fastapi.md#14-settings--configuration)
-15. [Databases: SQLAlchemy 2.0](fastapi.md#15-databases-sqlalchemy-20)
-16. [Async SQLAlchemy](fastapi.md#16-async-sqlalchemy)
-17. [Migrations with Alembic](fastapi.md#17-migrations-with-alembic)
-18. [Other Databases: SQLModel & MongoDB (Beanie)](fastapi.md#18-other-databases-sqlmodel--mongodb-beanie)
-19. [Authentication: OAuth2 + JWT](fastapi.md#19-authentication-oauth2--jwt)
-20. [Authorization: Roles, Scopes, Ownership](fastapi.md#20-authorization-roles-scopes-ownership)
-21. [Multi-Tenancy & API Versioning](fastapi.md#21-multi-tenancy--api-versioning)
-22. [Middleware & CORS](fastapi.md#22-middleware--cors)
-23. [Lifespan Events (startup/shutdown)](fastapi.md#23-lifespan-events)
-24. [Background Tasks & Job Queues](fastapi.md#24-background-tasks--job-queues)
-25. [Task Queues in Depth: Celery & ARQ](fastapi.md#25-task-queues-in-depth-celery--arq)
-26. [WebSockets & Streaming](fastapi.md#26-websockets--streaming)
-27. [Server-Sent Events & Streaming Answers in FastAPI](fastapi.md#27-server-sent-events--streaming-answers-in-fastapi)
-28. [Pagination, Filtering & Sorting](fastapi.md#28-pagination-filtering--sorting)
-29. [Caching & Rate Limiting](fastapi.md#29-caching--rate-limiting)
-30. [Calling External APIs (httpx)](fastapi.md#30-calling-external-apis)
-31. [Integrations: Webhooks, Payments, Email & S3 Uploads](fastapi.md#31-integrations-webhooks-payments-email--s3-uploads)
-32. [Testing FastAPI](fastapi.md#32-testing-fastapi)
-33. [OpenAPI Docs Customization](fastapi.md#33-openapi-docs-customization)
-34. [Logging, Monitoring & Request IDs](fastapi.md#34-logging-monitoring--request-ids)
-35. [Observability Hands-On in FastAPI (Metrics, Tracing, Error Tracking)](fastapi.md#35-observability-hands-on-in-fastapi-metrics-tracing-error-tracking)
-36. [Security Best Practices](fastapi.md#36-security-best-practices)
-37. [OWASP API Top 10 in FastAPI](fastapi.md#37-owasp-api-top-10-in-fastapi)
-38. [Performance](fastapi.md#38-performance)
-39. [Deployment: Uvicorn, Gunicorn, Docker](fastapi.md#39-deployment)
-40. [Complete CRUD Example (layered)](fastapi.md#40-complete-crud-example)
-41. [Production Checklist & Best Practices](fastapi.md#41-production-checklist)
-42. [FastAPI vs Flask vs Django vs Express](fastapi.md#42-fastapi-vs-flask-vs-django-vs-express)
-43. [Most Asked Interview Questions](fastapi.md#43-most-asked-interview-questions)
+
+**Part 1 — Basic: How APIs Work and Your First Endpoints**
+
+1. [How to Use These Notes: APIs, HTTP and What FastAPI Is](fastapi.md#1-how-to-use-these-notes-apis-http-and-what-fastapi-is)
+2. [Your First FastAPI App](fastapi.md#2-your-first-fastapi-app)
+3. [Path Operations: Routes and HTTP Methods](fastapi.md#3-path-operations-routes-and-http-methods)
+4. [Path and Query Parameters with Validation](fastapi.md#4-path-and-query-parameters-with-validation)
+5. [Request Bodies with Pydantic Models](fastapi.md#5-request-bodies-with-pydantic-models)
+
+**Part 2 — Easy: Data, Responses and Structure**
+
+6. [Pydantic v2 in Depth: Validation, Serialisation and Custom Rules](fastapi.md#6-pydantic-v2-in-depth-validation-serialisation-and-custom-rules)
+7. [Response Models, Status Codes and Response Types](fastapi.md#7-response-models-status-codes-and-response-types)
+8. [Error Handling: HTTPException, Custom Errors and Consistent Error Responses](fastapi.md#8-error-handling-httpexception-custom-errors-and-consistent-error-responses)
+9. [Headers, Cookies, Forms and File Uploads](fastapi.md#9-headers-cookies-forms-and-file-uploads)
+10. [APIRouter and Project Structure](fastapi.md#10-apirouter-and-project-structure)
+
+**Part 3 — Moderate: Building a Real API**
+
+11. [Dependency Injection with Depends](fastapi.md#11-dependency-injection-with-depends)
+12. [async def vs def: Concurrency in FastAPI](fastapi.md#12-async-def-vs-def-concurrency-in-fastapi)
+13. [Settings, Lifespan Events and Shared Resources](fastapi.md#13-settings-lifespan-events-and-shared-resources)
+14. [Databases with SQLAlchemy 2.0: Models, Sessions and CRUD](fastapi.md#14-databases-with-sqlalchemy-20-models-sessions-and-crud)
+15. [Async Databases, Transactions, Repositories and Migrations](fastapi.md#15-async-databases-transactions-repositories-and-migrations)
+16. [Authentication: Password Hashing, JWT and OAuth2](fastapi.md#16-authentication-password-hashing-jwt-and-oauth2)
+17. [Authorisation: Roles, Permissions, Ownership and Multi-Tenancy](fastapi.md#17-authorisation-roles-permissions-ownership-and-multi-tenancy)
+18. [Middleware and CORS](fastapi.md#18-middleware-and-cors)
+19. [Testing FastAPI Apps](fastapi.md#19-testing-fastapi-apps)
+
+**Part 4 — Moderate: API Features**
+
+20. [Pagination, Filtering and Sorting](fastapi.md#20-pagination-filtering-and-sorting)
+21. [Background Tasks and Job Queues](fastapi.md#21-background-tasks-and-job-queues)
+22. [WebSockets: Real-Time, Two-Way Connections](fastapi.md#22-websockets-real-time-two-way-connections)
+23. [Streaming Responses and Server-Sent Events (LLM Token Streaming)](fastapi.md#23-streaming-responses-and-server-sent-events-llm-token-streaming)
+24. [Calling Other APIs and Receiving Webhooks](fastapi.md#24-calling-other-apis-and-receiving-webhooks)
+25. [Caching and Rate Limiting](fastapi.md#25-caching-and-rate-limiting)
+
+**Part 5 — Advanced: Design, Security and Production**
+
+26. [API Design: Naming, Versioning, Idempotency and Consistency](fastapi.md#26-api-design-naming-versioning-idempotency-and-consistency)
+27. [API Security: The OWASP API Top 10 in FastAPI](fastapi.md#27-api-security-the-owasp-api-top-10-in-fastapi)
+28. [Observability: Structured Logs, Request IDs, Metrics and Tracing](fastapi.md#28-observability-structured-logs-request-ids-metrics-and-tracing)
+29. [Performance and Deployment: Workers, Docker, Proxies and Scaling](fastapi.md#29-performance-and-deployment-workers-docker-proxies-and-scaling)
+30. [Serving ML Models and LLM Features with FastAPI](fastapi.md#30-serving-ml-models-and-llm-features-with-fastapi)
+
+**Part 6 — Interview Prep: Revision**
+
+31. [Interview Coding: Build a Small API](fastapi.md#31-interview-coding-build-a-small-api)
+32. [FastAPI Cheat Sheet](fastapi.md#32-fastapi-cheat-sheet)
+33. [Most Asked FastAPI and Backend Interview Questions](fastapi.md#33-most-asked-fastapi-and-backend-interview-questions)
 
 </details>
 

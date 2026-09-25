@@ -1,3832 +1,4853 @@
-# FastAPI — Complete Notes
+# FastAPI: Building Production APIs in Python
 
-> Every major FastAPI concept, each with an explanation, 2–3 examples and interview questions.
-> Covers routing, Pydantic v2, dependency injection, databases (SQLAlchemy 2.0 + Alembic), auth (OAuth2 + JWT), middleware, background jobs, WebSockets, testing, performance, deployment and production best practices.
-> Read `python.md` first for async/await, type hints, decorators and context managers.
+Web APIs with FastAPI from zero, in **levels**: **Basic** (HTTP and REST, first app, routes, parameters, request bodies) → **Easy** (Pydantic, response models, errors, headers/forms/files, routers) → **Moderate** (dependency injection, async, settings and lifespan, SQLAlchemy, authentication and authorisation, middleware and CORS, testing; pagination, background jobs, WebSockets, streaming/SSE for LLMs, webhooks, caching and rate limiting) → **Advanced** (API design, OWASP API security, observability, deployment, serving ML and LLM models) → **Interview Prep**. **Each part uses only what earlier parts taught.**
 
----
+Every section has the same shape: a **picture** where it helps, **theory** in plain words, **Python** examples, **common mistakes**, and **practice** with hidden answers and links. Every example builds a small app and calls it through FastAPI's `TestClient` (or a real uvicorn server where concurrency matters); the responses under **Output** are exactly what the app returned with FastAPI 0.141, Pydantic 2.13 and Python 3.14.
+
+Each part ends with a ✅ **checkpoint**. Before this file: `python.md` (Parts 1–3 and asyncio). Related: `sql-postgresql.md`, `llm-engineering.md` and `rag-and-agents.md` (the AI features you'll serve with FastAPI).
 
 ## Table of Contents
 
-1. [What is FastAPI](#1-what-is-fastapi)
-2. [Setup & First App](#2-setup--first-app)
-3. [Path Operations & HTTP Methods](#3-path-operations--http-methods)
-4. [Path Parameters](#4-path-parameters)
-5. [Query Parameters](#5-query-parameters)
-6. [Request Body with Pydantic](#6-request-body-with-pydantic)
-7. [Pydantic v2 Deep Dive](#7-pydantic-v2-deep-dive)
-8. [Response Models & Status Codes](#8-response-models--status-codes)
-9. [Headers, Cookies, Forms & File Uploads](#9-headers-cookies-forms--file-uploads)
-10. [Error Handling](#10-error-handling)
-11. [Dependency Injection](#11-dependency-injection)
-12. [APIRouter & Project Structure](#12-apirouter--project-structure)
-13. [async def vs def](#13-async-def-vs-def)
-14. [Settings & Configuration](#14-settings--configuration)
-15. [Databases: SQLAlchemy 2.0](#15-databases-sqlalchemy-20)
-16. [Async SQLAlchemy](#16-async-sqlalchemy)
-17. [Migrations with Alembic](#17-migrations-with-alembic)
-18. [Other Databases: SQLModel & MongoDB (Beanie)](#18-other-databases-sqlmodel--mongodb-beanie)
-19. [Authentication: OAuth2 + JWT](#19-authentication-oauth2--jwt)
-20. [Authorization: Roles, Scopes, Ownership](#20-authorization-roles-scopes-ownership)
-21. [Multi-Tenancy & API Versioning](#21-multi-tenancy--api-versioning)
-22. [Middleware & CORS](#22-middleware--cors)
-23. [Lifespan Events (startup/shutdown)](#23-lifespan-events)
-24. [Background Tasks & Job Queues](#24-background-tasks--job-queues)
-25. [Task Queues in Depth: Celery & ARQ](#25-task-queues-in-depth-celery--arq)
-26. [WebSockets & Streaming](#26-websockets--streaming)
-27. [Server-Sent Events & Streaming Answers in FastAPI](#27-server-sent-events--streaming-answers-in-fastapi)
-28. [Pagination, Filtering & Sorting](#28-pagination-filtering--sorting)
-29. [Caching & Rate Limiting](#29-caching--rate-limiting)
-30. [Calling External APIs (httpx)](#30-calling-external-apis)
-31. [Integrations: Webhooks, Payments, Email & S3 Uploads](#31-integrations-webhooks-payments-email--s3-uploads)
-32. [Testing FastAPI](#32-testing-fastapi)
-33. [OpenAPI Docs Customization](#33-openapi-docs-customization)
-34. [Logging, Monitoring & Request IDs](#34-logging-monitoring--request-ids)
-35. [Observability Hands-On in FastAPI (Metrics, Tracing, Error Tracking)](#35-observability-hands-on-in-fastapi-metrics-tracing-error-tracking)
-36. [Security Best Practices](#36-security-best-practices)
-37. [OWASP API Top 10 in FastAPI](#37-owasp-api-top-10-in-fastapi)
-38. [Performance](#38-performance)
-39. [Deployment: Uvicorn, Gunicorn, Docker](#39-deployment)
-40. [Complete CRUD Example (layered)](#40-complete-crud-example)
-41. [Production Checklist & Best Practices](#41-production-checklist)
-42. [FastAPI vs Flask vs Django vs Express](#42-fastapi-vs-flask-vs-django-vs-express)
-43. [Most Asked Interview Questions](#43-most-asked-interview-questions)
+**[Part 1 — Basic: How APIs Work and Your First Endpoints](#part-1--basic-how-apis-work-and-your-first-endpoints)**
+
+1. [How to Use These Notes: APIs, HTTP and What FastAPI Is](#1-how-to-use-these-notes-apis-http-and-what-fastapi-is)
+2. [Your First FastAPI App](#2-your-first-fastapi-app)
+3. [Path Operations: Routes and HTTP Methods](#3-path-operations-routes-and-http-methods)
+4. [Path and Query Parameters with Validation](#4-path-and-query-parameters-with-validation)
+5. [Request Bodies with Pydantic Models](#5-request-bodies-with-pydantic-models)
+
+**[Part 2 — Easy: Data, Responses and Structure](#part-2--easy-data-responses-and-structure)**
+
+6. [Pydantic v2 in Depth: Validation, Serialisation and Custom Rules](#6-pydantic-v2-in-depth-validation-serialisation-and-custom-rules)
+7. [Response Models, Status Codes and Response Types](#7-response-models-status-codes-and-response-types)
+8. [Error Handling: HTTPException, Custom Errors and Consistent Error Responses](#8-error-handling-httpexception-custom-errors-and-consistent-error-responses)
+9. [Headers, Cookies, Forms and File Uploads](#9-headers-cookies-forms-and-file-uploads)
+10. [APIRouter and Project Structure](#10-apirouter-and-project-structure)
+
+**[Part 3 — Moderate: Building a Real API](#part-3--moderate-building-a-real-api)**
+
+11. [Dependency Injection with Depends](#11-dependency-injection-with-depends)
+12. [async def vs def: Concurrency in FastAPI](#12-async-def-vs-def-concurrency-in-fastapi)
+13. [Settings, Lifespan Events and Shared Resources](#13-settings-lifespan-events-and-shared-resources)
+14. [Databases with SQLAlchemy 2.0: Models, Sessions and CRUD](#14-databases-with-sqlalchemy-20-models-sessions-and-crud)
+15. [Async Databases, Transactions, Repositories and Migrations](#15-async-databases-transactions-repositories-and-migrations)
+16. [Authentication: Password Hashing, JWT and OAuth2](#16-authentication-password-hashing-jwt-and-oauth2)
+17. [Authorisation: Roles, Permissions, Ownership and Multi-Tenancy](#17-authorisation-roles-permissions-ownership-and-multi-tenancy)
+18. [Middleware and CORS](#18-middleware-and-cors)
+19. [Testing FastAPI Apps](#19-testing-fastapi-apps)
+
+**[Part 4 — Moderate: API Features](#part-4--moderate-api-features)**
+
+20. [Pagination, Filtering and Sorting](#20-pagination-filtering-and-sorting)
+21. [Background Tasks and Job Queues](#21-background-tasks-and-job-queues)
+22. [WebSockets: Real-Time, Two-Way Connections](#22-websockets-real-time-two-way-connections)
+23. [Streaming Responses and Server-Sent Events (LLM Token Streaming)](#23-streaming-responses-and-server-sent-events-llm-token-streaming)
+24. [Calling Other APIs and Receiving Webhooks](#24-calling-other-apis-and-receiving-webhooks)
+25. [Caching and Rate Limiting](#25-caching-and-rate-limiting)
+
+**[Part 5 — Advanced: Design, Security and Production](#part-5--advanced-design-security-and-production)**
+
+26. [API Design: Naming, Versioning, Idempotency and Consistency](#26-api-design-naming-versioning-idempotency-and-consistency)
+27. [API Security: The OWASP API Top 10 in FastAPI](#27-api-security-the-owasp-api-top-10-in-fastapi)
+28. [Observability: Structured Logs, Request IDs, Metrics and Tracing](#28-observability-structured-logs-request-ids-metrics-and-tracing)
+29. [Performance and Deployment: Workers, Docker, Proxies and Scaling](#29-performance-and-deployment-workers-docker-proxies-and-scaling)
+30. [Serving ML Models and LLM Features with FastAPI](#30-serving-ml-models-and-llm-features-with-fastapi)
+
+**[Part 6 — Interview Prep: Revision](#part-6--interview-prep-revision)**
+
+31. [Interview Coding: Build a Small API](#31-interview-coding-build-a-small-api)
+32. [FastAPI Cheat Sheet](#32-fastapi-cheat-sheet)
+33. [Most Asked FastAPI and Backend Interview Questions](#33-most-asked-fastapi-and-backend-interview-questions)
 
 ---
 
-## 1. What is FastAPI
+# Part 1 — Basic: How APIs Work and Your First Endpoints
 
-**FastAPI** is a modern, high-performance Python web framework for building APIs, based on **standard Python type hints**.
-
-Built on:
-- **Starlette** — the ASGI web toolkit (routing, middleware, WebSockets, requests/responses).
-- **Pydantic** — data validation & serialization using type hints.
-
-Key features:
-- **Fast**: one of the fastest Python frameworks (async, ASGI, Pydantic core in Rust).
-- **Type hints drive everything**: validation, conversion, serialization, editor autocomplete, docs.
-- **Automatic interactive docs**: Swagger UI at `/docs`, ReDoc at `/redoc`, OpenAPI schema at `/openapi.json`.
-- **Dependency Injection** system built in.
-- **async/await** first-class (but sync functions work too).
-- Standards-based: OpenAPI, JSON Schema, OAuth2.
-
-### WSGI vs ASGI
-
-| WSGI (Flask, Django classic) | ASGI (FastAPI, Starlette, Django async) |
-|---|---|
-| Synchronous, one request per worker thread | Asynchronous, many concurrent requests per worker |
-| No native WebSockets | WebSockets, HTTP/2, long-lived connections |
-| Servers: Gunicorn, uWSGI | Servers: Uvicorn, Hypercorn, Granian |
-
-**Interview Qs**
-- Why FastAPI? → Speed, automatic validation & docs from type hints, DI, async support, great developer experience.
-- What are Starlette and Pydantic's roles? (above)
-- WSGI vs ASGI? (table)
+> **Goal:** Understand HTTP and REST, build and run a FastAPI app, and accept validated path, query and body input.  
+> **You need:** Python up to classes and type hints (`python.md` Parts 1–3).
 
 ---
 
-## 2. Setup & First App
+## 1. How to Use These Notes: APIs, HTTP and What FastAPI Is
 
-```bash
-mkdir api && cd api
-python3 -m venv .venv && source .venv/bin/activate   # isolated environment (see python.md: Installing Packages)
-pip install "fastapi[standard]"                      # includes uvicorn, the fastapi CLI, httpx, etc.
+![The learning path](images/fastapi/00-roadmap.svg)
 
-# or with uv (faster, manages the venv for you)
-uv init api && cd api && uv add "fastapi[standard]"
+### Theory
+
+> **In simple words:** an **API** (application programming interface) is how programs talk to each other. A web API is a server that waits for **HTTP requests** ("give me order 90312", "create this user") and sends back **responses**, usually as **JSON**. Your mobile app, React website, other services and AI agents all talk to backends this way. **FastAPI** is a modern Python framework for building such APIs: you write ordinary Python functions with type hints, and FastAPI turns them into validated, documented, fast HTTP endpoints.
+
+**How these notes are organised:**
+
+| Part | Level | You learn |
+|---|---|---|
+| 1 | Basic | HTTP and REST, your first app, routes, path and query parameters, request bodies |
+| 2 | Easy | Pydantic models, response models and status codes, errors, headers/forms/files, routers |
+| 3 | Moderate | Dependency injection, async vs sync, settings and lifespan, databases with SQLAlchemy, authentication and authorisation, middleware and CORS, testing |
+| 4 | Moderate | Pagination, background jobs, WebSockets, streaming and Server-Sent Events, calling other APIs and webhooks, caching and rate limits |
+| 5 | Advanced | API design, security (OWASP API Top 10), observability, performance, deployment, serving ML and LLM models |
+| 6 | Interview Prep | Coding tasks, cheat sheet, most-asked questions |
+
+**What you need first:** Python up to classes, type hints and `async`/`await` (`python.md` Parts 1–3, plus the asyncio section). SQL basics help for the database sections (`sql-postgresql.md`).
+
+**About the examples:** every example builds a small app and calls it with FastAPI's **`TestClient`**, which sends real HTTP requests to the app in memory (no server needed). The status codes and JSON under **Output** are exactly what the app returned (FastAPI 0.141, Pydantic 2.13, Python 3.14).
+
+**HTTP in five minutes:**
+
+| Part of a request | Example | Meaning |
+|---|---|---|
+| **Method** | `GET`, `POST`, `PUT`, `PATCH`, `DELETE` | What to do: read, create, replace, partly update, delete |
+| **Path** | `/orders/90312` | Which resource |
+| **Query string** | `?status=paid&limit=10` | Options: filtering, sorting, paging |
+| **Headers** | `Authorization: Bearer …`, `Content-Type: application/json` | Metadata: who you are, what format |
+| **Body** | `{"sku": "P1", "qty": 2}` | Data sent with POST/PUT/PATCH |
+
+A **response** has a **status code**, headers and a body. Status codes in families: **2xx** success (200 OK, 201 Created, 204 No Content), **3xx** redirect, **4xx** the client's fault (400 Bad Request, 401 Unauthorized = not logged in, 403 Forbidden = not allowed, 404 Not Found, 409 Conflict, 422 validation failed, 429 Too Many Requests), **5xx** the server's fault (500, 502, 503).
+
+**REST** is a style for designing APIs around **resources** (nouns) and HTTP methods (verbs): `GET /orders` lists, `POST /orders` creates, `GET /orders/{id}` reads one, `PATCH /orders/{id}` updates, `DELETE /orders/{id}` deletes. `GET` must not change anything; `GET`, `PUT` and `DELETE` should be **idempotent** (repeating them has the same effect as doing it once).
+
+**Why FastAPI (2026):**
+
+- **Type hints drive everything:** request parsing, validation (via **Pydantic**), conversion, editor autocomplete and the docs.
+- **Automatic interactive docs** (Swagger UI at `/docs`, ReDoc at `/redoc`) from the **OpenAPI** schema, which also generates client code.
+- **Async-first** on the ASGI standard (Starlette underneath), so it handles many concurrent connections, WebSockets and streaming, which matters for LLM apps.
+- **Dependency injection** for clean, testable code (auth, database sessions, settings).
+- One of the most popular Python web frameworks; used for ML/AI serving, microservices and full backends.
+
+**WSGI vs ASGI:** WSGI (Flask, classic Django) handles one request per worker at a time, synchronously. **ASGI** (FastAPI, Starlette, modern Django) supports `async`, WebSockets and long-lived connections. FastAPI apps run on an ASGI server such as **Uvicorn** (or Granian, Hypercorn).
+
+### Practice
+
+1. For an online shop's "reviews" feature, write the REST endpoints (method + path) to: list reviews of product P1, add a review to P1, edit your review 55, delete review 55. Which of these must be idempotent?
+
+<details>
+<summary><b>Answer</b></summary>
+
+`GET /products/P1/reviews`, `POST /products/P1/reviews`, `PATCH /reviews/55` (or `PUT` to replace it entirely), `DELETE /reviews/55`. GET, PUT and DELETE must be idempotent; POST creates a new review each time (so clients that retry need an idempotency key, Section [26](#26-api-design-naming-versioning-idempotency-and-consistency)). PATCH can be idempotent if it sets fields to values ("rating = 4") rather than applying increments.
+
+</details>
+
+**Learn more:** [FastAPI documentation](https://fastapi.tiangolo.com/) · [MDN: an overview of HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview) · [MDN: HTTP status codes](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)
+
+---
+
+## 2. Your First FastAPI App
+
+### Theory
+
+> **In simple words:** a FastAPI app is an object (`app = FastAPI()`) plus functions decorated with the HTTP method and path they handle (`@app.get("/")`). Whatever the function returns (a dict, a list, a Pydantic model) is converted to JSON automatically. You run it with a server, open `/docs` in the browser, and you can try every endpoint from there.
+
+**Setup (uv):**
+
+```text
+uv init shop-api && cd shop-api
+uv add "fastapi[standard]"          # FastAPI + uvicorn + the fastapi CLI + httpx and friends
+uv run fastapi dev main.py          # development server with auto-reload on http://127.0.0.1:8000
+uv run fastapi run main.py          # production mode (no reload)
 ```
 
-```python
-# main.py
-from fastapi import FastAPI
+Then open `http://127.0.0.1:8000/docs` (Swagger UI: try requests in the browser), `/redoc`, or `/openapi.json` (the machine-readable schema).
 
-app = FastAPI(title="Todo API", version="1.0.0")
+**The pieces of a path operation:**
+
+```text
+@app.get("/items/{item_id}")        ← decorator: HTTP method + path ("operation")
+async def read_item(item_id: int):  ← function: parameters are parsed and validated from the request
+    return {"item_id": item_id}     ← return value: serialised to JSON with status 200
+```
+
+`async def` or plain `def` both work; Section [12](#12-async-def-vs-def-concurrency-in-fastapi) explains which to choose.
+
+**Testing without a server:** `fastapi.testclient.TestClient(app)` (built on `httpx`) sends requests straight into the app. It's how you'll write automated tests (Section [19](#19-testing-fastapi-apps)), and it's how every example in these notes is run.
+
+### Python
+
+```python
+from fastapi import FastAPI
+from fastapi.testclient import TestClient
+
+app = FastAPI(title="ShopKart API", version="1.0.0")
 
 @app.get("/")
-def root():
-    return {"message": "Hello FastAPI"}      # dicts/lists/Pydantic models → JSON automatically
+def home():
+    return {"message": "Welcome to ShopKart"}
 
 @app.get("/health")
 async def health():
     return {"status": "ok"}
+
+client = TestClient(app)
+r = client.get("/")
+print(r.status_code, r.json(), r.headers["content-type"])
+print(client.get("/health").json())
+print(client.get("/nope").status_code, client.get("/nope").json())
+print(client.post("/health").status_code, client.post("/health").json())
+
+schema = client.get("/openapi.json").json()           # the OpenAPI schema behind /docs
+print(schema["info"], list(schema["paths"]))
 ```
 
-```bash
-fastapi dev main.py            # dev server with auto-reload → http://127.0.0.1:8000
-fastapi run main.py            # production mode
-uvicorn main:app --reload      # classic way (module:variable)
+**Output:**
+
+```text
+200 {'message': 'Welcome to ShopKart'} application/json
+{'status': 'ok'}
+404 {'detail': 'Not Found'}
+405 {'detail': 'Method Not Allowed'}
+{'title': 'ShopKart API', 'version': '1.0.0'} ['/', '/health']
 ```
 
-Open `http://127.0.0.1:8000/docs` → interactive Swagger UI where you can try every endpoint.
+Unknown paths give **404**, and a known path with the wrong method gives **405 Method Not Allowed**, without any code from you. The OpenAPI schema lists every path; `/docs` renders it as an interactive page.
+
+**Common mistakes:**
+
+- ❌ Naming your file `fastapi.py` (it shadows the library).
+- ❌ Running `python main.py` without starting a server (use `fastapi dev` or `uvicorn main:app --reload`).
+- ❌ Using `--reload` in production.
+- ❌ Returning objects FastAPI can't serialise (open files, database connections); return dicts, lists or models.
+
+### Practice
+
+1. Add `GET /version` returning `{"name": ..., "version": ...}` taken from `app.title` and `app.version`, and test it with `TestClient`.
+
+<details>
+<summary><b>Answer</b></summary>
+
+```python
+@app.get("/version")
+def version():
+    return {"name": app.title, "version": app.version}
+
+print(client.get("/version").json())
+```
+
+**Output:**
+
+```text
+{'name': 'ShopKart API', 'version': '1.0.0'}
+```
+
+</details>
+
+**Learn more:** [FastAPI tutorial: first steps](https://fastapi.tiangolo.com/tutorial/first-steps/) · [FastAPI CLI](https://fastapi.tiangolo.com/fastapi-cli/) · [Uvicorn](https://www.uvicorn.org/)
 
 ---
 
-## 3. Path Operations & HTTP Methods
+## 3. Path Operations: Routes and HTTP Methods
 
-A **path operation** = path + HTTP method + function. The decorator registers the route.
+### Theory
+
+> **In simple words:** each endpoint is a **path operation**: an HTTP method plus a path, handled by one function. `@app.get("/orders")` answers "list orders", `@app.post("/orders")` answers "create an order", and so on. A small in-memory "database" (a dict) is enough to build a complete create-read-update-delete (**CRUD**) API and see how the pieces fit.
+
+**Decorators:** `@app.get`, `@app.post`, `@app.put`, `@app.patch`, `@app.delete` (also `head`, `options`, and `@app.api_route(..., methods=[...])` for several). Useful decorator arguments: `status_code=201`, `tags=["orders"]` (groups endpoints in the docs), `summary=`, `description=`, `response_model=` (Section [7](#7-response-models-status-codes-and-response-types)), `deprecated=True`.
+
+**Which method, which status code:**
+
+| Action | Method + path | Success status |
+|---|---|---|
+| List | `GET /orders` | 200 |
+| Read one | `GET /orders/{id}` | 200 (404 if missing) |
+| Create | `POST /orders` | **201 Created** (often with a `Location` header) |
+| Replace | `PUT /orders/{id}` | 200 |
+| Partial update | `PATCH /orders/{id}` | 200 |
+| Delete | `DELETE /orders/{id}` | **204 No Content** (empty body) |
+
+**Route order matters:** FastAPI checks routes **in the order they were declared** and uses the first match. A fixed path like `/orders/latest` must come **before** `/orders/{order_id}`, or "latest" is treated as an order id.
+
+**Raising errors:** `raise HTTPException(status_code=404, detail="...")` stops the function and sends that error response (Section [8](#8-error-handling-httpexception-custom-errors-and-consistent-error-responses) covers errors in depth).
+
+### Python
 
 ```python
-@app.get("/items")            # read (list)
-@app.get("/items/{id}")       # read one
-@app.post("/items")           # create
-@app.put("/items/{id}")       # replace
-@app.patch("/items/{id}")     # partial update
-@app.delete("/items/{id}")    # delete
-@app.options(...), @app.head(...)
-@app.api_route("/ping", methods=["GET", "POST"])
+from fastapi import FastAPI, HTTPException
+from fastapi.testclient import TestClient
+
+app = FastAPI()
+ORDERS: dict[int, dict] = {}                       # an in-memory "database"
+next_id = 1
+
+@app.get("/orders", tags=["orders"])
+def list_orders():
+    return list(ORDERS.values())
+
+@app.get("/orders/latest", tags=["orders"])         # declared BEFORE /orders/{order_id}
+def latest_order():
+    if not ORDERS:
+        raise HTTPException(status_code=404, detail="no orders yet")
+    return ORDERS[max(ORDERS)]
+
+@app.get("/orders/{order_id}", tags=["orders"])
+def get_order(order_id: int):
+    if order_id not in ORDERS:
+        raise HTTPException(status_code=404, detail=f"order {order_id} not found")
+    return ORDERS[order_id]
+
+@app.post("/orders", status_code=201, tags=["orders"])
+def create_order(order: dict):                      # a plain dict body for now; Pydantic models come soon
+    global next_id
+    ORDERS[next_id] = {"id": next_id, **order}
+    next_id += 1
+    return ORDERS[next_id - 1]
+
+@app.delete("/orders/{order_id}", status_code=204, tags=["orders"])
+def delete_order(order_id: int):
+    if ORDERS.pop(order_id, None) is None:
+        raise HTTPException(status_code=404, detail=f"order {order_id} not found")
+
+client = TestClient(app)
+print(client.get("/orders/latest").status_code, client.get("/orders/latest").json())
+for body in [{"sku": "P1", "qty": 2}, {"sku": "P9", "qty": 1}]:
+    r = client.post("/orders", json=body)
+    print(r.status_code, r.json())
+print(client.get("/orders").json())
+print(client.get("/orders/latest").json(), client.get("/orders/1").json())
+r = client.delete("/orders/1")
+print(r.status_code, repr(r.text), client.get("/orders/1").status_code)
+print(client.get("/orders/abc").status_code)          # not an int → validation error
 ```
 
-### Example — in-memory CRUD
+**Output:**
+
+```text
+404 {'detail': 'no orders yet'}
+201 {'id': 1, 'sku': 'P1', 'qty': 2}
+201 {'id': 2, 'sku': 'P9', 'qty': 1}
+[{'id': 1, 'sku': 'P1', 'qty': 2}, {'id': 2, 'sku': 'P9', 'qty': 1}]
+{'id': 2, 'sku': 'P9', 'qty': 1} {'id': 1, 'sku': 'P1', 'qty': 2}
+204 '' 404
+422
+```
+
+The last line shows FastAPI's automatic **validation**: `order_id: int` means "abc" is rejected with **422** before your function runs.
+
+**Common mistakes:**
+
+- ❌ Declaring `/orders/{order_id}` before `/orders/latest`.
+- ❌ Returning 200 for creation (use 201) or a body with 204.
+- ❌ Using `GET` for actions that change data (crawlers and prefetchers will trigger them).
+- ❌ Module-level dicts as a "database" in real apps (lost on restart, not shared between workers).
+
+### Practice
+
+1. Add `PATCH /orders/{order_id}` that updates only the fields sent in the body (a dict), returning the updated order or 404. Test it by changing order 2's quantity to 5.
+
+<details>
+<summary><b>Answer</b></summary>
 
 ```python
-from fastapi import FastAPI, HTTPException, status
-from pydantic import BaseModel
+@app.patch("/orders/{order_id}", tags=["orders"])
+def update_order(order_id: int, changes: dict):
+    if order_id not in ORDERS:
+        raise HTTPException(status_code=404, detail=f"order {order_id} not found")
+    ORDERS[order_id].update({k: v for k, v in changes.items() if k != "id"})   # never let clients change the id
+    return ORDERS[order_id]
+
+print(client.patch("/orders/2", json={"qty": 5, "id": 999}).json(), client.patch("/orders/7", json={}).status_code)
+```
+
+**Output:**
+
+```text
+{'id': 2, 'sku': 'P9', 'qty': 5} 404
+```
+
+</details>
+
+**Learn more:** [FastAPI: path operation configuration](https://fastapi.tiangolo.com/tutorial/path-operation-configuration/) · [MDN: HTTP request methods](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods)
+
+---
+
+## 4. Path and Query Parameters with Validation
+
+### Theory
+
+> **In simple words:** a **path parameter** is part of the URL that identifies a resource: in `/orders/90312`, the `90312`. A **query parameter** comes after `?` and adjusts the request: `/orders?status=paid&limit=10`. In FastAPI you just declare them as function parameters with type hints; FastAPI reads them from the URL, **converts** them to the right type, **validates** them, and returns a clear 422 error if they're wrong.
+
+**How FastAPI decides where a parameter comes from:**
+
+- Name appears in the path (`{order_id}`) → **path parameter**.
+- Simple type (`int`, `str`, `bool`, `Enum`, `date`, …) not in the path → **query parameter**.
+- A Pydantic model → **request body** (next section).
+
+**Required or optional:** a query parameter **without a default** is required; with a default it's optional; `str | None = None` means optional with no value.
+
+**Validation with `Annotated`:** `Annotated[int, Path(ge=1)]`, `Annotated[str, Query(min_length=3, max_length=50, pattern=...)]`, `Annotated[int, Query(ge=1, le=100)] = 20`. Numeric checks: `gt`, `ge`, `lt`, `le`; strings: `min_length`, `max_length`, `pattern`. `Query(alias="sort-by")` for names that aren't valid Python; `description=` shows in the docs; `list[str]` with `Query()` accepts repeated parameters (`?tag=a&tag=b`).
+
+**Enums** restrict a value to fixed choices, and the docs show a dropdown.
+
+**Booleans** accept `true/false`, `1/0`, `yes/no`, `on/off`.
+
+**Query parameter models:** group many filters into one Pydantic model: `filters: Annotated[OrderFilters, Query()]`.
+
+### Python
+
+```python
+from datetime import date
+from enum import StrEnum
+from typing import Annotated
+from fastapi import FastAPI, Path, Query
+from fastapi.testclient import TestClient
 
 app = FastAPI()
 
-class TodoIn(BaseModel):
-    title: str
-    done: bool = False
-
-class Todo(TodoIn):
-    id: int
-
-todos: dict[int, Todo] = {}
-next_id = 1
-
-@app.get("/todos")
-def list_todos() -> list[Todo]:
-    return list(todos.values())
-
-@app.post("/todos", status_code=status.HTTP_201_CREATED)
-def create_todo(data: TodoIn) -> Todo:
-    global next_id
-    todo = Todo(id=next_id, **data.model_dump())
-    todos[next_id] = todo
-    next_id += 1
-    return todo
-
-@app.get("/todos/{todo_id}")
-def get_todo(todo_id: int) -> Todo:
-    if todo_id not in todos:
-        raise HTTPException(status_code=404, detail="Todo not found")
-    return todos[todo_id]
-
-@app.delete("/todos/{todo_id}", status_code=status.HTTP_204_NO_CONTENT)
-def delete_todo(todo_id: int) -> None:
-    if todos.pop(todo_id, None) is None:
-        raise HTTPException(status_code=404, detail="Todo not found")
-```
-
-### Route order matters
-
-Routes are matched **in the order they're declared**.
-
-```python
-@app.get("/users/me")          # must come BEFORE /users/{user_id}
-def me(): ...
-
-@app.get("/users/{user_id}")
-def get_user(user_id: int): ...
-# If reversed, "/users/me" would try to parse "me" as an int → 422
-```
-
----
-
-## 4. Path Parameters
-
-Values embedded in the URL path. The type hint makes FastAPI **validate and convert** automatically.
-
-```python
-@app.get("/users/{user_id}")
-def get_user(user_id: int):          # "/users/42" → 42 (int); "/users/abc" → 422 error
-    return {"user_id": user_id}
-```
-
-### Example — Enum for fixed values
-
-```python
-from enum import StrEnum
-
-class Category(StrEnum):
-    electronics = "electronics"
-    books = "books"
-
-@app.get("/products/{category}")
-def by_category(category: Category):
-    return {"category": category.value}   # only allowed values; shown as a dropdown in /docs
-```
-
-### Example — validation with Path & Annotated
-
-```python
-from typing import Annotated
-from fastapi import Path
+class Status(StrEnum):
+    PENDING = "pending"
+    PAID = "paid"
+    SHIPPED = "shipped"
 
 @app.get("/orders/{order_id}")
-def get_order(order_id: Annotated[int, Path(gt=0, le=1_000_000, description="The order ID")]):
+def get_order(order_id: Annotated[int, Path(ge=1, description="Order number")]):
     return {"order_id": order_id}
 
-@app.get("/files/{file_path:path}")      # path converter: captures slashes
-def read_file(file_path: str):
-    return {"file_path": file_path}      # /files/a/b/c.txt → "a/b/c.txt"
-```
-
-`Annotated[type, metadata]` is the recommended style — the type stays a normal type, and metadata (validation, dependencies) is attached separately.
-
----
-
-## 5. Query Parameters
-
-Function parameters that are **not** in the path are treated as **query parameters** (`?key=value`).
-
-```python
-@app.get("/products")
-def list_products(skip: int = 0, limit: int = 20, q: str | None = None, in_stock: bool = False):
-    # /products?skip=20&limit=10&q=phone&in_stock=true
-    return {"skip": skip, "limit": limit, "q": q, "in_stock": in_stock}
-```
-
-- Default value → optional. No default → **required**.
-- `bool` accepts `true/false/1/0/yes/no/on/off`.
-
-### Validation with Query
-
-```python
-from fastapi import Query
-
-@app.get("/search")
-def search(
-    q: Annotated[str, Query(min_length=2, max_length=50, pattern=r"^[\w\s-]+$")],
-    page: Annotated[int, Query(ge=1)] = 1,
-    size: Annotated[int, Query(ge=1, le=100)] = 20,
-    tags: Annotated[list[str], Query()] = [],        # ?tags=a&tags=b → ["a", "b"]
-    sort: Annotated[str, Query(alias="sort-by")] = "created_at",  # ?sort-by=price
+@app.get("/orders")
+def list_orders(
+    status: Status | None = None,
+    limit: Annotated[int, Query(ge=1, le=100)] = 20,
+    since: date | None = None,
+    express: bool = False,
+    tag: Annotated[list[str], Query()] = [],
+    q: Annotated[str | None, Query(min_length=3, max_length=50)] = None,
 ):
-    return {"q": q, "page": page, "size": size, "tags": tags, "sort": sort}
+    return {"status": status, "limit": limit, "since": since, "express": express, "tags": tag, "q": q}
+
+client = TestClient(app)
+print(client.get("/orders/42").json())
+print(client.get("/orders?status=paid&limit=5&since=2026-09-01&express=yes&tag=gift&tag=fragile").json())
+print(client.get("/orders").json())
+
+for bad in ["/orders/0", "/orders?limit=500", "/orders?status=lost", "/orders?q=ab"]:
+    r = client.get(bad)
+    err = r.json()["detail"][0]
+    print(r.status_code, bad, "→", err["loc"], err["msg"])
 ```
 
-### Query parameter models (group many params)
+**Output:**
+
+```text
+{'order_id': 42}
+{'status': 'paid', 'limit': 5, 'since': '2026-09-01', 'express': True, 'tags': ['gift', 'fragile'], 'q': None}
+{'status': None, 'limit': 20, 'since': None, 'express': False, 'tags': [], 'q': None}
+422 /orders/0 → ['path', 'order_id'] Input should be greater than or equal to 1
+422 /orders?limit=500 → ['query', 'limit'] Input should be less than or equal to 100
+422 /orders?status=lost → ['query', 'status'] Input should be 'pending', 'paid' or 'shipped'
+422 /orders?q=ab → ['query', 'q'] String should have at least 3 characters
+```
+
+Every error says **where** the problem is (`loc`: path or query, and which parameter) and **what** is wrong, with no validation code written by you.
+
+**Query parameter models** keep long filter lists tidy (Pydantic models are explained properly in the next two sections; here, a model is just a class listing fields with types and defaults):
 
 ```python
 from pydantic import BaseModel, Field
-from typing import Literal
 
 class ProductFilters(BaseModel):
-    model_config = {"extra": "forbid"}          # reject unknown query params
-    q: str | None = None
-    min_price: float | None = Field(None, ge=0)
-    max_price: float | None = Field(None, ge=0)
-    sort: Literal["price", "-price", "newest"] = "newest"
-    page: int = Field(1, ge=1)
-    size: int = Field(20, ge=1, le=100)
+    model_config = {"extra": "forbid"}              # unknown query parameters → 422
+    min_price: float = Field(0, ge=0)
+    max_price: float | None = None
+    in_stock: bool = True
+    sort: str = Field("price", pattern="^(price|name|-price|-name)$")
 
 @app.get("/products")
-def list_products(filters: Annotated[ProductFilters, Query()]):
+def search_products(filters: Annotated[ProductFilters, Query()]):
     return filters
+
+print(client.get("/products?min_price=100&sort=-price").json())
+print(client.get("/products?colour=red").status_code)
 ```
 
----
+**Output:**
 
-## 6. Request Body with Pydantic
+```text
+{'min_price': 100.0, 'max_price': None, 'in_stock': True, 'sort': '-price'}
+422
+```
 
-A parameter typed as a **Pydantic model** is read from the **JSON body**.
+**Common mistakes:**
+
+- ❌ Mutable defaults like `tag: list[str] = []` without `Query()` (FastAPI would expect a body); declare list query parameters with `Query()`.
+- ❌ Doing validation by hand in the function instead of in the parameter declaration.
+- ❌ Huge unbounded `limit` values (clients can ask for a million rows); always cap them.
+- ❌ Putting identifiers in query strings (`/orders?id=5`) when they identify a resource; use the path.
+
+### Practice
+
+1. Add `GET /users/{username}/orders` where `username` is 3–20 lowercase letters/digits (use `pattern`) and an optional `year` between 2020 and 2030. Test one valid and one invalid username.
+
+<details>
+<summary><b>Answer</b></summary>
 
 ```python
-from pydantic import BaseModel, EmailStr, Field
-
-class UserCreate(BaseModel):
-    name: str = Field(min_length=2, max_length=50)
-    email: EmailStr                               # needs `email-validator` (included in fastapi[standard])
-    age: int | None = Field(default=None, ge=13, le=120)
-    tags: list[str] = []
-
-@app.post("/users", status_code=201)
-def create_user(user: UserCreate):
-    # user is already validated & typed
-    return {"created": user.name, "email": user.email}
-```
-
-Invalid body → automatic **422 Unprocessable Entity** with details:
-
-```json
-{
-  "detail": [
-    { "type": "string_too_short", "loc": ["body", "name"], "msg": "String should have at least 2 characters", "input": "A" },
-    { "type": "value_error", "loc": ["body", "email"], "msg": "value is not a valid email address..." }
-  ]
-}
-```
-
-### Mixing path, query and body
-
-```python
-@app.put("/items/{item_id}")
-def update_item(item_id: int, item: ItemUpdate, notify: bool = False):
-    # item_id → path, item → body, notify → query
-    ...
-```
-
-### Multiple bodies & Body()
-
-```python
-from fastapi import Body
-
-@app.post("/orders")
-def create_order(
-    order: OrderIn,
-    customer: CustomerIn,
-    priority: Annotated[int, Body(ge=1, le=5)] = 3,
+@app.get("/users/{username}/orders")
+def user_orders(
+    username: Annotated[str, Path(pattern="^[a-z0-9]{3,20}$")],
+    year: Annotated[int | None, Query(ge=2020, le=2030)] = None,
 ):
-    # expects {"order": {...}, "customer": {...}, "priority": 3}
-    ...
+    return {"username": username, "year": year}
 
-@app.post("/notes")
-def create_note(note: Annotated[NoteIn, Body(embed=True)]):
-    # expects {"note": {...}} instead of the model fields at the top level
-    ...
+print(client.get("/users/asha29/orders?year=2026").json())
+r = client.get("/users/Asha!/orders")
+print(r.status_code, r.json()["detail"][0]["msg"])
 ```
+
+**Output:**
+
+```text
+{'username': 'asha29', 'year': 2026}
+422 String should match pattern '^[a-z0-9]{3,20}$'
+```
+
+</details>
+
+**Learn more:** [FastAPI: query parameters and validation](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/) · [FastAPI: path parameters and numeric validation](https://fastapi.tiangolo.com/tutorial/path-params-numeric-validations/) · [FastAPI: query parameter models](https://fastapi.tiangolo.com/tutorial/query-param-models/)
 
 ---
 
-## 7. Pydantic v2 Deep Dive
+## 5. Request Bodies with Pydantic Models
 
-Pydantic validates data using type hints and converts ("coerces") input to the declared types. v2's core is written in Rust (much faster than v1).
+### Theory
 
-### Models & fields
+> **In simple words:** when a client **sends data** (create an order, update a profile), it puts JSON in the request **body**. In FastAPI you describe the expected shape as a **Pydantic model**: a class listing each field with its type (and optional rules). FastAPI then reads the JSON, checks every field, converts types, and hands your function a ready-to-use Python object. Bad data never reaches your code; the client gets a precise 422 error instead.
+
+**A model:**
+
+```text
+class OrderIn(BaseModel):
+    sku: str                           ← required
+    qty: int = 1                       ← optional with a default
+    note: str | None = None            ← optional, may be null
+    items: list[Item]                  ← nested models and lists work
+```
+
+**Where parameters come from (the rule again):** in the path → path parameter; simple type → query; **Pydantic model → body**. You can mix all three in one function.
+
+**Validation and conversion:** `"2"` becomes `2` for an `int` field (lax mode, the default for JSON), missing required fields and wrong types are rejected, extra fields are ignored by default (set `extra="forbid"` to reject them, which is safer for write endpoints). Nested models validate recursively, and error locations point to the exact field (`["body", "items", 0, "qty"]`).
+
+**Several body parts:** two model parameters make FastAPI expect `{"order": {...}, "customer": {...}}`. `Body()` adds single values to the body; `Body(embed=True)` wraps a lone model under its name.
+
+**Why models instead of `dict`:** validation, conversion, editor autocomplete, and accurate docs and client code generation from the OpenAPI schema.
+
+### Python
 
 ```python
-from datetime import datetime
-from decimal import Decimal
+from typing import Annotated
+from fastapi import Body, FastAPI
+from fastapi.testclient import TestClient
+from pydantic import BaseModel, Field
+
+class Item(BaseModel):
+    sku: str = Field(min_length=2, max_length=20)
+    qty: int = Field(default=1, ge=1, le=50)
+    price: float = Field(gt=0)
+
+class OrderIn(BaseModel):
+    customer_email: str
+    items: list[Item] = Field(min_length=1)
+    note: str | None = None
+
+app = FastAPI()
+
+@app.post("/stores/{store_id}/orders", status_code=201)
+def create_order(store_id: int, order: OrderIn, express: bool = False):     # path + body + query
+    total = sum(i.qty * i.price for i in order.items)
+    return {"store_id": store_id, "express": express, "customer": order.customer_email,
+            "lines": len(order.items), "total": round(total, 2)}
+
+client = TestClient(app)
+good = {"customer_email": "asha@example.com", "items": [{"sku": "P1", "qty": "2", "price": 499}, {"sku": "P9", "price": 99.5}]}
+r = client.post("/stores/7/orders?express=true", json=good)
+print(r.status_code, r.json())
+
+bad = {"customer_email": "asha@example.com", "items": [{"sku": "P", "qty": 0, "price": -5}]}
+r = client.post("/stores/7/orders", json=bad)
+print(r.status_code)
+for e in r.json()["detail"]:
+    print("  ", e["loc"], "-", e["msg"])
+print(client.post("/stores/7/orders", json={"items": []}).json()["detail"][0]["loc"])
+```
+
+**Output:**
+
+```text
+201 {'store_id': 7, 'express': True, 'customer': 'asha@example.com', 'lines': 2, 'total': 1097.5}
+422
+   ['body', 'items', 0, 'sku'] - String should have at least 2 characters
+   ['body', 'items', 0, 'qty'] - Input should be greater than or equal to 1
+   ['body', 'items', 0, 'price'] - Input should be greater than 0
+['body', 'customer_email']
+```
+
+**Several bodies and single body values:**
+
+```python
+class Customer(BaseModel):
+    name: str
+    email: str
+
+@app.post("/checkout")
+def checkout(order: OrderIn, customer: Customer, coupon: Annotated[str | None, Body()] = None):
+    return {"customer": customer.name, "items": len(order.items), "coupon": coupon}
+
+@app.post("/items")
+def add_item(item: Annotated[Item, Body(embed=True)]):
+    return item
+
+body = {"order": good, "customer": {"name": "Asha", "email": "asha@example.com"}, "coupon": "DIWALI"}
+print(client.post("/checkout", json=body).json())
+print(client.post("/items", json={"item": {"sku": "P1", "price": 10}}).json())
+```
+
+**Output:**
+
+```text
+{'customer': 'Asha', 'items': 2, 'coupon': 'DIWALI'}
+{'sku': 'P1', 'qty': 1, 'price': 10.0}
+```
+
+**Common mistakes:**
+
+- ❌ `order: dict` for inputs (no validation, no docs).
+- ❌ Accepting extra fields silently on write endpoints (clients' typos go unnoticed, and it enables mass assignment, Section [27](#27-api-security-the-owasp-api-top-10-in-fastapi)).
+- ❌ Sending a body with `GET` (not supported by many clients and proxies).
+- ❌ Reusing one model for input and output (clients could set `id` or `is_admin`); Section [7](#7-response-models-status-codes-and-response-types) shows separate models.
+
+### Practice
+
+1. Create a `ReviewIn` model (rating 1–5, comment 10–500 characters, optional `photos` list of at most 3 URLs as strings) and `POST /products/{sku}/reviews` returning 201 with the review and sku. Test a valid review and one with rating 6.
+
+<details>
+<summary><b>Answer</b></summary>
+
+```python
+class ReviewIn(BaseModel):
+    model_config = {"extra": "forbid"}
+    rating: int = Field(ge=1, le=5)
+    comment: str = Field(min_length=10, max_length=500)
+    photos: list[str] = Field(default_factory=list, max_length=3)
+
+@app.post("/products/{sku}/reviews", status_code=201)
+def add_review(sku: str, review: ReviewIn):
+    return {"sku": sku, **review.model_dump()}
+
+r = client.post("/products/P1/reviews", json={"rating": 5, "comment": "Great pen, smooth ink"})
+print(r.status_code, r.json())
+r = client.post("/products/P1/reviews", json={"rating": 6, "comment": "Too good to be true!"})
+print(r.status_code, r.json()["detail"][0]["msg"])
+```
+
+**Output:**
+
+```text
+201 {'sku': 'P1', 'rating': 5, 'comment': 'Great pen, smooth ink', 'photos': []}
+422 Input should be less than or equal to 5
+```
+
+</details>
+
+---
+
+### ✅ Part 1 checkpoint
+
+Without looking, can you:
+
+- [ ] Explain HTTP methods, status code families, REST resources and idempotency?
+- [ ] Create a FastAPI app, run it, and call it with `TestClient`?
+- [ ] Write CRUD path operations with correct status codes and route order?
+- [ ] Declare validated path and query parameters (including enums, lists and limits)?
+- [ ] Accept nested JSON bodies with Pydantic models and read 422 error details?
+
+**Learn more:** [FastAPI: request body](https://fastapi.tiangolo.com/tutorial/body/) · [FastAPI: body with multiple parameters](https://fastapi.tiangolo.com/tutorial/body-multiple-params/) · [Pydantic: models](https://docs.pydantic.dev/latest/concepts/models/)
+
+---
+
+# Part 2 — Easy: Data, Responses and Structure
+
+> **Goal:** Master Pydantic, shape responses and errors, handle headers, forms and files, and organise code with routers.  
+> **You need:** Part 1.
+
+---
+
+## 6. Pydantic v2 in Depth: Validation, Serialisation and Custom Rules
+
+### Theory
+
+> **In simple words:** Pydantic is the library FastAPI uses to **check and convert data**. You describe the shape once as a model; Pydantic validates incoming data against it (types, lengths, ranges, formats, your own rules) and serialises outgoing data to JSON. It's written in Rust underneath, so it's fast. It's also used far beyond FastAPI: settings, configuration files, LLM structured outputs (`llm-engineering.md`), data pipelines.
+
+**Core API (v2 names):**
+
+| Task | Method |
+|---|---|
+| Validate a dict | `Model.model_validate(data)` |
+| Validate JSON text | `Model.model_validate_json(text)` (faster than `json.loads` + validate) |
+| Object → dict / JSON | `obj.model_dump()`, `obj.model_dump_json()`; options `exclude_unset`, `exclude_none`, `by_alias`, `include`/`exclude` |
+| Copy with changes | `obj.model_copy(update={...})` |
+| JSON schema | `Model.model_json_schema()` |
+| Validate any type | `TypeAdapter(list[int]).validate_python(...)` |
+
+(v1 names like `.dict()`, `.parse_obj()`, `@validator` are deprecated.)
+
+**Field rules:** `Field(min_length=, max_length=, pattern=, gt=, ge=, lt=, le=, multiple_of=, default=, default_factory=, alias=, description=, examples=)`. Special types: `EmailStr` (needs `email-validator`), `HttpUrl`, `SecretStr`, `UUID`, `datetime`/`date`, `Decimal`, `constr`-style `Annotated[str, StringConstraints(strip_whitespace=True, to_lower=True)]`.
+
+**Custom validation:**
+
+| Decorator | Runs | Use |
+|---|---|---|
+| `@field_validator("field")` | On one field (after type conversion by default; `mode="before"` to see raw input) | Normalise or check one value |
+| `@model_validator(mode="after")` | On the whole model | Rules across fields ("end after start") |
+| `@computed_field` | On output | Derived values included in `model_dump` and the schema |
+| `Annotated[int, AfterValidator(fn)]` | Reusable validated types | The same rule in many models |
+
+**Model configuration** (`model_config = ConfigDict(...)`): `extra="forbid"` (reject unknown fields), `frozen=True`, `str_strip_whitespace=True`, `from_attributes=True` (read from ORM objects, Section [14](#14-databases-with-sqlalchemy-20-models-sessions-and-crud)), `alias_generator=to_camel` + `populate_by_name=True` (camelCase JSON, snake_case Python), `strict=True` (no type coercion).
+
+**Discriminated unions:** when a field can hold one of several models, a `Literal` "type" field tells Pydantic which to use, giving fast validation and clear errors: `payment: Annotated[Card | Upi, Field(discriminator="method")]`.
+
+### Python
+
+```python
+from datetime import date
 from typing import Annotated, Literal
-from pydantic import BaseModel, Field, EmailStr, HttpUrl, ConfigDict, SecretStr
+from pydantic import (AfterValidator, BaseModel, ConfigDict, Field, ValidationError, computed_field,
+                      field_validator, model_validator)
+from pydantic.alias_generators import to_camel
+
+def indian_pincode(v: str) -> str:
+    if not (v.isdigit() and len(v) == 6 and v[0] != "0"):
+        raise ValueError("must be a 6-digit PIN code")
+    return v
+
+Pincode = Annotated[str, AfterValidator(indian_pincode)]         # a reusable validated type
 
 class Address(BaseModel):
     city: str
-    pincode: Annotated[str, Field(pattern=r"^\d{6}$")]
+    pincode: Pincode
 
-class User(BaseModel):
-    model_config = ConfigDict(
-        str_strip_whitespace=True,     # trim strings
-        extra="forbid",                # error on unknown fields (catches typos & mass-assignment)
-        frozen=False,
-    )
+class Booking(BaseModel):
+    model_config = ConfigDict(alias_generator=to_camel, populate_by_name=True, extra="forbid", str_strip_whitespace=True)
 
-    id: int
-    name: str = Field(min_length=2, max_length=50, examples=["Rohit"])
-    email: EmailStr
-    website: HttpUrl | None = None
-    password: SecretStr                # hidden in repr/logs
-    role: Literal["user", "admin"] = "user"
-    balance: Decimal = Decimal("0.00")
-    address: Address | None = None     # nested model
-    tags: list[str] = Field(default_factory=list)
-    created_at: datetime = Field(default_factory=datetime.now)
+    guest_name: str = Field(min_length=2)
+    check_in: date
+    check_out: date
+    guests: int = Field(ge=1, le=6)
+    address: Address
 
-u = User(id="1", name="  Rohit ", email="r@x.com", password="secret")
-u.id            # 1 (string "1" coerced to int in the default "lax" mode)
-u.name          # "Rohit" (stripped)
-u.password      # SecretStr('**********')
-u.password.get_secret_value()   # "secret"
-```
-
-### Validation & serialization methods (v2 names)
-
-```python
-User.model_validate({"id": 1, ...})         # dict → model (validates)
-User.model_validate_json('{"id": 1, ...}')  # JSON string → model (fast)
-u.model_dump()                              # model → dict
-u.model_dump(exclude={"password"}, exclude_none=True, by_alias=True)
-u.model_dump(mode="json")                   # JSON-safe types (datetime → str, Decimal → str)
-u.model_dump_json(indent=2)                 # → JSON string
-u.model_copy(update={"name": "New"})        # copy with changes
-User.model_json_schema()                    # JSON Schema (used for OpenAPI)
-```
-
-| v1 | v2 |
-|---|---|
-| `.dict()` | `.model_dump()` |
-| `.json()` | `.model_dump_json()` |
-| `parse_obj()` | `model_validate()` |
-| `class Config: orm_mode = True` | `model_config = ConfigDict(from_attributes=True)` |
-| `@validator` | `@field_validator` |
-| `@root_validator` | `@model_validator` |
-
-### Custom validators
-
-```python
-from pydantic import field_validator, model_validator
-from typing import Self
-
-class SignUp(BaseModel):
-    username: str
-    password: str
-    confirm_password: str
-
-    @field_validator("username")
+    @field_validator("guest_name")
     @classmethod
-    def username_alphanumeric(cls, v: str) -> str:
-        if not v.isalnum():
-            raise ValueError("must be alphanumeric")
-        return v.lower()                      # validators can also transform
+    def title_case(cls, v: str) -> str:
+        return v.title()
 
-    @field_validator("password")
-    @classmethod
-    def strong_password(cls, v: str) -> str:
-        if len(v) < 8 or not any(c.isdigit() for c in v) or not any(c.isupper() for c in v):
-            raise ValueError("min 8 chars, with a digit and an uppercase letter")
-        return v
-
-    @model_validator(mode="after")            # cross-field validation
-    def passwords_match(self) -> Self:
-        if self.password != self.confirm_password:
-            raise ValueError("passwords do not match")
+    @model_validator(mode="after")
+    def dates_in_order(self):
+        if self.check_out <= self.check_in:
+            raise ValueError("check_out must be after check_in")
         return self
-```
 
-### Reusable annotated types
-
-```python
-from pydantic import AfterValidator, BeforeValidator
-
-def validate_phone(v: str) -> str:
-    digits = "".join(c for c in v if c.isdigit())
-    if len(digits) != 10:
-        raise ValueError("phone must have 10 digits")
-    return digits
-
-IndianPhone = Annotated[str, AfterValidator(validate_phone)]
-PositiveInt = Annotated[int, Field(gt=0)]
-LowerStr = Annotated[str, BeforeValidator(lambda v: v.lower() if isinstance(v, str) else v)]
-
-class Contact(BaseModel):
-    phone: IndianPhone
-    age: PositiveInt
-    handle: LowerStr
-```
-
-### Computed fields, aliases, strict mode
-
-```python
-from pydantic import computed_field, AliasChoices
-
-class CartItem(BaseModel):
-    price: Decimal
-    qty: int
-
-    @computed_field                     # included in model_dump & the response
+    @computed_field
     @property
-    def subtotal(self) -> Decimal:
-        return self.price * self.qty
+    def nights(self) -> int:
+        return (self.check_out - self.check_in).days
 
-class ExternalUser(BaseModel):
-    model_config = ConfigDict(populate_by_name=True)
-    user_id: int = Field(alias="userId")          # accept camelCase JSON, use snake_case in Python
-    full_name: str = Field(validation_alias=AliasChoices("fullName", "name"))
+raw = '{"guestName": "  asha rao ", "checkIn": "2026-12-20", "checkOut": "2026-12-23", "guests": "2", "address": {"city": "Goa", "pincode": "403001"}}'
+b = Booking.model_validate_json(raw)
+print(b.guest_name, b.nights, b.guests, type(b.check_in).__name__)
+print(b.model_dump(by_alias=True, mode="json"))
 
-ExternalUser.model_validate({"userId": 1, "fullName": "A"})
-
-class StrictModel(BaseModel):
-    model_config = ConfigDict(strict=True)        # no coercion: "1" is NOT accepted for int
-    count: int
+try:
+    Booking.model_validate({"guestName": "A", "checkIn": "2026-12-23", "checkOut": "2026-12-20", "guests": 9,
+                            "address": {"city": "Goa", "pincode": "0123"}, "vip": True})
+except ValidationError as e:
+    for err in e.errors():
+        print(err["loc"], "-", err["msg"])
 ```
 
-### camelCase API automatically
+**Output:**
 
-```python
-from pydantic.alias_generators import to_camel
-
-class CamelModel(BaseModel):
-    model_config = ConfigDict(alias_generator=to_camel, populate_by_name=True)
-
-class OrderOut(CamelModel):
-    order_id: int
-    created_at: datetime
-# FastAPI responses use aliases by default → {"orderId": 1, "createdAt": "..."}
+```text
+Asha Rao 3 2 date
+{'guestName': 'Asha Rao', 'checkIn': '2026-12-20', 'checkOut': '2026-12-23', 'guests': 2, 'address': {'city': 'Goa', 'pincode': '403001'}, 'nights': 3}
+('guestName',) - String should have at least 2 characters
+('guests',) - Input should be less than or equal to 6
+('address', 'pincode') - Value error, must be a 6-digit PIN code
+('vip',) - Extra inputs are not permitted
 ```
 
-### Discriminated unions
+**Discriminated unions and partial updates:**
 
 ```python
 class CardPayment(BaseModel):
     method: Literal["card"]
-    card_last4: str
+    last4: str = Field(pattern=r"^\d{4}$")
 
 class UpiPayment(BaseModel):
     method: Literal["upi"]
-    vpa: str
+    vpa: str = Field(pattern=r"^[\w.-]+@\w+$")
 
-class PaymentRequest(BaseModel):
-    amount: Decimal
+class Checkout(BaseModel):
+    amount: float
     payment: Annotated[CardPayment | UpiPayment, Field(discriminator="method")]
 
-PaymentRequest.model_validate({"amount": "99", "payment": {"method": "upi", "vpa": "a@okbank"}})
+print(Checkout.model_validate({"amount": 499, "payment": {"method": "upi", "vpa": "asha@okbank"}}).payment)
+try:
+    Checkout.model_validate({"amount": 499, "payment": {"method": "cash"}})
+except ValidationError as e:
+    print(e.errors()[0]["msg"])
+
+class ProfileUpdate(BaseModel):
+    name: str | None = None
+    city: str | None = None
+    newsletter: bool | None = None
+
+patch = ProfileUpdate.model_validate({"city": "Pune", "newsletter": None})
+print(patch.model_dump(), patch.model_dump(exclude_unset=True))   # only what the client actually sent
 ```
 
-### ORM mode (from_attributes)
+**Output:**
+
+```text
+method='upi' vpa='asha@okbank'
+Input tag 'cash' found using 'method' does not match any of the expected tags: 'card', 'upi'
+{'name': None, 'city': 'Pune', 'newsletter': None} {'city': 'Pune', 'newsletter': None}
+```
+
+`exclude_unset=True` distinguishes "the client didn't send `name`" from "the client set `newsletter` to null", which is exactly what PATCH endpoints need (Section [7](#7-response-models-status-codes-and-response-types)).
+
+**Common mistakes:**
+
+- ❌ Using Pydantic v1 methods (`.dict()`, `@validator`) in new code.
+- ❌ Validators with side effects (database calls, network); keep them pure and fast.
+- ❌ Forgetting `mode="json"` in `model_dump` when you need JSON-compatible values (dates as strings).
+- ❌ `Optional` fields that should really be required; being explicit about defaults avoids silent `None`s.
+
+### Practice
+
+1. Write a `SignUp` model with `email` (lower-cased and stripped), `password` (at least 10 characters, containing a digit), `password_repeat` that must match, and `age` ≥ 13. The response should never include the passwords: show `model_dump(exclude=...)`.
+
+<details>
+<summary><b>Answer</b></summary>
 
 ```python
-class UserOut(BaseModel):
-    model_config = ConfigDict(from_attributes=True)   # read from object attributes (SQLAlchemy models)
-    id: int
-    email: str
+class SignUp(BaseModel):
+    email: Annotated[str, Field(pattern=r"^[^@\s]+@[^@\s]+\.[a-z]{2,}$")]
+    password: str = Field(min_length=10)
+    password_repeat: str
+    age: int = Field(ge=13)
 
-UserOut.model_validate(db_user)   # works on an ORM object
+    @field_validator("email", mode="before")
+    @classmethod
+    def normalise_email(cls, v):
+        return v.strip().lower() if isinstance(v, str) else v
+
+    @field_validator("password")
+    @classmethod
+    def has_digit(cls, v):
+        if not any(ch.isdigit() for ch in v):
+            raise ValueError("password needs at least one digit")
+        return v
+
+    @model_validator(mode="after")
+    def passwords_match(self):
+        if self.password != self.password_repeat:
+            raise ValueError("passwords do not match")
+        return self
+
+s = SignUp(email="  Asha@Example.COM ", password="correcthorse9", password_repeat="correcthorse9", age=21)
+print(s.model_dump(exclude={"password", "password_repeat"}))
+try:
+    SignUp(email="a@b.io", password="nodigitshere", password_repeat="x", age=12)
+except ValidationError as e:
+    print([err["msg"] for err in e.errors()])
 ```
 
-**Interview Qs**
-- What does Pydantic do in FastAPI? → Validates requests, serializes responses, generates JSON Schema for docs.
-- `field_validator` vs `model_validator`?
-- Lax vs strict mode?
-- How to hide fields like passwords in responses? → Separate output models / `response_model`, `exclude`, `SecretStr`.
+**Output:**
+
+```text
+{'email': 'asha@example.com', 'age': 21}
+['Value error, password needs at least one digit', 'Input should be greater than or equal to 13']
+```
+
+The `after` model validator only runs once all fields are individually valid, so the mismatch isn't reported while other errors exist.
+
+</details>
+
+**Learn more:** [Pydantic docs](https://docs.pydantic.dev/latest/) · [Pydantic: validators](https://docs.pydantic.dev/latest/concepts/validators/) · [Pydantic: unions and discriminators](https://docs.pydantic.dev/latest/concepts/unions/) · [Migration guide v1 → v2](https://docs.pydantic.dev/latest/migration/)
 
 ---
 
-## 8. Response Models & Status Codes
+## 7. Response Models, Status Codes and Response Types
 
-**Always define what your API returns.** A response model:
-- **filters** output to only declared fields (e.g. never leak `hashed_password`),
-- **validates** & serializes output,
-- **documents** the response in OpenAPI.
+### Theory
 
-### Example 1 — separate input / output / DB schemas (the standard pattern)
+> **In simple words:** a **response model** describes exactly what your endpoint sends back. FastAPI uses it to **filter** the output (a password hash stored in your database never leaks, because the response model doesn't include it), to **validate** it, and to **document** it. The standard pattern is **separate models** for what clients send (`UserCreate`), what you store (`UserInDB`), and what you return (`UserOut`).
+
+**Declaring the output:** either a return type annotation (`def get_user(...) -> UserOut:`) or `response_model=UserOut` in the decorator (use the latter when you return a dict or an ORM object that should be converted). Options: `response_model_exclude_unset=True`, `response_model_exclude_none=True`.
+
+**The input/output/storage split:**
+
+| Model | Contains | Why separate |
+|---|---|---|
+| `UserCreate` | email, password | What a client may send (no `id`, no `is_admin`) |
+| `UserUpdate` | all fields optional | PATCH: only sent fields change (`exclude_unset`) |
+| `UserInDB` / ORM model | id, email, hashed_password, is_admin, created_at | What's stored |
+| `UserOut` | id, email, created_at | What's safe to return |
+
+A common trick is a shared base class (`UserBase`) with the fields all of them share.
+
+**Status codes:** set the success code in the decorator (`status_code=201`) using `fastapi.status` constants for readability (`status.HTTP_201_CREATED`). To choose the code at runtime, add a `response: Response` parameter and set `response.status_code`, or return a `JSONResponse`.
+
+**Other response classes:** `JSONResponse` (default), `HTMLResponse`, `PlainTextResponse`, `RedirectResponse`, `FileResponse` (serve a file efficiently), `StreamingResponse` (Section [23](#23-streaming-responses-and-server-sent-events-llm-token-streaming)), `Response` (raw bytes with a media type). Headers and cookies can be set on the `Response` object.
+
+### Python
 
 ```python
+from datetime import UTC, datetime
+from fastapi import FastAPI, HTTPException, Response, status
+from fastapi.responses import HTMLResponse, PlainTextResponse, RedirectResponse
+from fastapi.testclient import TestClient
+from pydantic import BaseModel, Field
+
 class UserBase(BaseModel):
-    email: EmailStr
+    email: str
     name: str
 
-class UserCreate(UserBase):          # input
-    password: str
+class UserCreate(UserBase):
+    password: str = Field(min_length=8)
 
-class UserUpdate(BaseModel):         # partial input (PATCH)
-    email: EmailStr | None = None
+class UserUpdate(BaseModel):
     name: str | None = None
+    email: str | None = None
 
-class UserOut(UserBase):             # output — no password
-    model_config = ConfigDict(from_attributes=True)
+class UserOut(UserBase):
     id: int
     created_at: datetime
 
-@app.post("/users", response_model=UserOut, status_code=201)
-def create_user(data: UserCreate, db: DbSession):
-    user = User(email=data.email, name=data.name, hashed_password=hash_password(data.password))
-    db.add(user); db.commit(); db.refresh(user)
-    return user                       # ORM object → filtered through UserOut
+DB: dict[int, dict] = {}                           # stored rows include secret fields
 
-# Return type annotation works too (and is type-checked):
-@app.get("/users/{user_id}")
-def get_user(user_id: int, db: DbSession) -> UserOut:
-    ...
-```
+app = FastAPI()
 
-### Example 2 — PATCH with exclude_unset
+@app.post("/users", status_code=status.HTTP_201_CREATED, response_model=UserOut)
+def create_user(user: UserCreate, response: Response):
+    user_id = len(DB) + 1
+    DB[user_id] = {"id": user_id, "email": user.email, "name": user.name,
+                   "hashed_password": "argon2$" + user.password[::-1],   # stand-in; real password hashing comes in Part 3
+                   "is_admin": False, "created_at": datetime(2026, 9, 25, 10, 0, tzinfo=UTC)}
+    response.headers["Location"] = f"/users/{user_id}"
+    return DB[user_id]                             # a dict with secrets; the response model filters it
 
-```python
 @app.patch("/users/{user_id}", response_model=UserOut)
-def update_user(user_id: int, data: UserUpdate, db: DbSession):
-    user = db.get(User, user_id)
-    if not user:
-        raise HTTPException(404, "User not found")
-    for field, value in data.model_dump(exclude_unset=True).items():   # only fields the client sent
-        setattr(user, field, value)
-    db.commit(); db.refresh(user)
-    return user
+def update_user(user_id: int, changes: UserUpdate):
+    if user_id not in DB:
+        raise HTTPException(404, "user not found")
+    DB[user_id].update(changes.model_dump(exclude_unset=True))   # only fields the client sent
+    return DB[user_id]
+
+client = TestClient(app)
+r = client.post("/users", json={"email": "asha@example.com", "name": "Asha", "password": "s3cret-pass"})
+print(r.status_code, r.headers["location"], r.json())
+print(client.patch("/users/1", json={"name": "Asha Rao"}).json())
+print(sorted(DB[1]))                               # what's stored still has the hash and admin flag
 ```
 
-`exclude_unset=True` distinguishes "not sent" from "sent as null".
+**Output:**
 
-### Example 3 — response options & other response classes
+```text
+201 /users/1 {'email': 'asha@example.com', 'name': 'Asha', 'id': 1, 'created_at': '2026-09-25T10:00:00Z'}
+{'email': 'asha@example.com', 'name': 'Asha Rao', 'id': 1, 'created_at': '2026-09-25T10:00:00Z'}
+['created_at', 'email', 'hashed_password', 'id', 'is_admin', 'name']
+```
+
+`hashed_password` and `is_admin` exist in storage but never appear in responses, because `UserOut` doesn't list them. The PATCH changed only `name`.
 
 ```python
-@app.get("/users", response_model=list[UserOut], response_model_exclude_none=True)
+@app.get("/hello", response_class=HTMLResponse)
+def hello():
+    return "<h1>Hello!</h1>"
 
-from fastapi.responses import JSONResponse, HTMLResponse, PlainTextResponse, RedirectResponse, FileResponse, StreamingResponse, Response
+@app.get("/robots.txt", response_class=PlainTextResponse)
+def robots():
+    return "User-agent: *\nDisallow: /admin"
 
-@app.get("/legacy")
-def legacy():
-    return RedirectResponse("/new", status_code=301)
+@app.get("/old-docs")
+def old_docs():
+    return RedirectResponse("/docs", status_code=301)
 
-@app.get("/report.pdf")
-def report():
-    return FileResponse("reports/latest.pdf", media_type="application/pdf", filename="report.pdf")
+@app.put("/users/{user_id}/avatar", status_code=204)
+def set_avatar(user_id: int):
+    return Response(status_code=204)
 
-@app.get("/custom")
-def custom():
-    return JSONResponse(content={"ok": True}, status_code=202, headers={"X-Job-Id": "123"})
-
-@app.get("/page", response_class=HTMLResponse)
-def page():
-    return "<h1>Hello</h1>"
+r = client.get("/hello")
+print(r.headers["content-type"], r.text)
+print(client.get("/robots.txt").text.splitlines())
+r = client.get("/old-docs", follow_redirects=False)
+print(r.status_code, r.headers["location"])
+print(client.put("/users/1/avatar").status_code)
 ```
 
-When you return a `Response` directly, FastAPI skips `response_model` validation — you're in full control.
+**Output:**
 
-### Status codes
+```text
+text/html; charset=utf-8 <h1>Hello!</h1>
+['User-agent: *', 'Disallow: /admin']
+301 /docs
+204
+```
+
+**Common mistakes:**
+
+- ❌ Returning ORM objects or dicts that include secrets without a response model.
+- ❌ One model for input and output (clients can set `id`, `is_admin`, `created_at`).
+- ❌ PATCH that overwrites unsent fields with `None` (use `exclude_unset=True`).
+- ❌ Always returning 200, even for creation or when nothing is returned.
+
+### Practice
+
+1. Add `GET /users` returning `list[UserOut]` and `GET /users/{user_id}` returning 404 when missing. Create a second user and list both.
+
+<details>
+<summary><b>Answer</b></summary>
 
 ```python
-from fastapi import status
+@app.get("/users", response_model=list[UserOut])
+def list_users():
+    return list(DB.values())
 
-@app.post("/items", status_code=status.HTTP_201_CREATED)
-@app.delete("/items/{id}", status_code=status.HTTP_204_NO_CONTENT)
+@app.get("/users/{user_id}", response_model=UserOut)
+def get_user(user_id: int):
+    if user_id not in DB:
+        raise HTTPException(404, "user not found")
+    return DB[user_id]
 
-# Dynamic status
-from fastapi import Response
-@app.put("/items/{id}")
-def upsert(id: int, item: ItemIn, response: Response):
-    if id not in db:
-        response.status_code = 201
-    ...
+client.post("/users", json={"email": "ravi@example.com", "name": "Ravi", "password": "another-pass"})
+print([u["email"] for u in client.get("/users").json()], client.get("/users/9").status_code)
 ```
 
-Common: 200 OK, 201 Created, 202 Accepted, 204 No Content, 400 Bad Request, 401 Unauthorized, 403 Forbidden, 404 Not Found, 409 Conflict, 422 Validation Error, 429 Too Many Requests, 500 Server Error, 503 Unavailable.
+**Output:**
+
+```text
+['asha@example.com', 'ravi@example.com'] 404
+```
+
+</details>
+
+**Learn more:** [FastAPI: response model](https://fastapi.tiangolo.com/tutorial/response-model/) · [FastAPI: extra models](https://fastapi.tiangolo.com/tutorial/extra-models/) · [FastAPI: custom responses](https://fastapi.tiangolo.com/advanced/custom-response/)
 
 ---
 
-## 9. Headers, Cookies, Forms & File Uploads
+## 8. Error Handling: HTTPException, Custom Errors and Consistent Error Responses
 
-### Headers & cookies
+### Theory
 
-```python
-from fastapi import Header, Cookie, Response
+> **In simple words:** when something goes wrong, an API must answer with the **right status code** and a **clear, consistent** JSON error that clients can handle: "404, order not found", "409, email already registered", "422, quantity must be at least 1". FastAPI gives you `HTTPException` for quick errors and **exception handlers** to turn your own domain exceptions into HTTP responses in one central place.
 
-@app.get("/whoami")
-def whoami(
-    user_agent: Annotated[str | None, Header()] = None,      # reads "User-Agent" (underscores → hyphens)
-    x_request_id: Annotated[str | None, Header()] = None,
-    session_id: Annotated[str | None, Cookie()] = None,
-):
-    return {"ua": user_agent, "request_id": x_request_id, "session": session_id}
+**Tools:**
 
-@app.post("/login")
-def login(response: Response):
-    response.set_cookie(
-        key="session_id", value="abc123",
-        httponly=True, secure=True, samesite="lax", max_age=60 * 60 * 24,
-    )
-    response.headers["X-Custom"] = "value"
-    return {"ok": True}
+| Tool | Use |
+|---|---|
+| `raise HTTPException(status_code, detail, headers=...)` | Quick errors inside endpoints |
+| Custom exception classes (`OrderNotFound(Exception)`) | Raised by business logic that knows nothing about HTTP |
+| `@app.exception_handler(OrderNotFound)` | Converts that exception to a response, for every endpoint |
+| `@app.exception_handler(RequestValidationError)` | Customise the 422 validation error format |
+| A catch-all `Exception` handler | Log the traceback, return a generic 500 with a request id (never leak internals) |
 
-@app.post("/logout")
-def logout(response: Response):
-    response.delete_cookie("session_id")
-    return {"ok": True}
-```
+**Keep business logic HTTP-free:** a service function raises `InsufficientStock`, not `HTTPException(409)`. The API layer maps exceptions to status codes. The same logic can then be reused from a CLI, a queue worker or tests.
 
-### Form data (HTML forms, OAuth2 login)
+**A consistent error format:** pick one shape and use it everywhere, e.g. the standard **Problem Details** (RFC 9457): `{"type": ..., "title": ..., "status": ..., "detail": ..., "instance": ...}`, or a simple `{"error": {"code": "ORDER_NOT_FOUND", "message": "...", "request_id": "..."}}`. Machine-readable **codes** let clients react without parsing messages.
+
+**Which status?** 400 malformed request · 401 not authenticated (send `WWW-Authenticate`) · 403 authenticated but not allowed · 404 not found (also used to hide existence of others' resources) · 409 conflict (duplicate, version mismatch) · 422 validation failed · 429 rate limited (with `Retry-After`) · 500 bug · 502/503/504 upstream problems.
+
+### Python
 
 ```python
-from fastapi import Form
-
-@app.post("/contact")
-def contact(name: Annotated[str, Form()], message: Annotated[str, Form(max_length=1000)]):
-    return {"name": name}
-```
-
-### File uploads
-
-```python
-from fastapi import UploadFile, File
-import aiofiles, uuid
-from pathlib import Path
-
-ALLOWED = {"image/jpeg", "image/png", "image/webp"}
-MAX_SIZE = 5 * 1024 * 1024
-UPLOAD_DIR = Path("uploads")
-
-@app.post("/avatar")
-async def upload_avatar(file: UploadFile):
-    if file.content_type not in ALLOWED:
-        raise HTTPException(415, "Only JPEG/PNG/WebP images allowed")
-
-    ext = Path(file.filename or "").suffix.lower()
-    dest = UPLOAD_DIR / f"{uuid.uuid4()}{ext}"          # never trust the client's filename
-    size = 0
-    async with aiofiles.open(dest, "wb") as out:
-        while chunk := await file.read(1024 * 1024):   # stream in 1MB chunks
-            size += len(chunk)
-            if size > MAX_SIZE:
-                await out.close(); dest.unlink(missing_ok=True)
-                raise HTTPException(413, "File too large (max 5MB)")
-            await out.write(chunk)
-    return {"filename": dest.name, "size": size}
-
-@app.post("/gallery")
-async def upload_many(files: list[UploadFile], album: Annotated[str, Form()]):
-    return {"album": album, "count": len(files)}
-```
-
-`UploadFile` is spooled to disk for large files (doesn't load everything into memory). In production, upload to object storage (S3) — ideally via **pre-signed URLs** so files go directly from client to storage.
-
----
-
-## 10. Error Handling
-
-### HTTPException
-
-```python
-from fastapi import HTTPException
-
-@app.get("/items/{item_id}")
-def get_item(item_id: int):
-    item = db.get(item_id)
-    if item is None:
-        raise HTTPException(
-            status_code=404,
-            detail="Item not found",
-            headers={"X-Error": "item-missing"},
-        )
-    return item
-```
-
-### Custom exceptions + global handlers (recommended pattern)
-
-Keep business logic free of HTTP details: raise **domain exceptions** in services, map them to HTTP responses in one place.
-
-```python
-# errors.py
-class AppError(Exception):
-    status_code = 500
-    code = "INTERNAL_ERROR"
-    def __init__(self, message: str, details: dict | None = None):
-        super().__init__(message)
-        self.message = message
-        self.details = details or {}
-
-class NotFoundError(AppError):
-    status_code = 404
-    code = "NOT_FOUND"
-
-class ConflictError(AppError):
-    status_code = 409
-    code = "CONFLICT"
-
-class PermissionDenied(AppError):
-    status_code = 403
-    code = "FORBIDDEN"
-
-# main.py
-from fastapi import Request
-from fastapi.responses import JSONResponse
-from fastapi.exceptions import RequestValidationError
 import logging
+from fastapi import FastAPI, HTTPException, Request
+from fastapi.exceptions import RequestValidationError
+from fastapi.responses import JSONResponse
+from fastapi.testclient import TestClient
+from pydantic import BaseModel, Field
 
-logger = logging.getLogger(__name__)
+class ShopError(Exception):
+    status_code, code = 400, "SHOP_ERROR"
+    def __init__(self, message):
+        self.message = message
 
-@app.exception_handler(AppError)
-async def app_error_handler(request: Request, exc: AppError):
-    return JSONResponse(
-        status_code=exc.status_code,
-        content={"error": {"code": exc.code, "message": exc.message, "details": exc.details}},
-    )
+class OrderNotFound(ShopError):
+    status_code, code = 404, "ORDER_NOT_FOUND"
+
+class InsufficientStock(ShopError):
+    status_code, code = 409, "INSUFFICIENT_STOCK"
+
+STOCK = {"P1": 3}
+
+def reserve(sku: str, qty: int):                    # business logic: no HTTP here
+    if STOCK.get(sku, 0) < qty:
+        raise InsufficientStock(f"only {STOCK.get(sku, 0)} of {sku} left")
+    STOCK[sku] -= qty
+
+app = FastAPI()
+
+@app.exception_handler(ShopError)
+async def shop_error_handler(request: Request, exc: ShopError):
+    return JSONResponse(status_code=exc.status_code, content={"error": {"code": exc.code, "message": exc.message}})
 
 @app.exception_handler(RequestValidationError)
 async def validation_handler(request: Request, exc: RequestValidationError):
-    return JSONResponse(
-        status_code=422,
-        content={"error": {
-            "code": "VALIDATION_ERROR",
-            "message": "Invalid request",
-            "details": [{"field": ".".join(map(str, e["loc"][1:])), "message": e["msg"]} for e in exc.errors()],
-        }},
-    )
+    fields = [{"field": ".".join(str(p) for p in e["loc"][1:]), "message": e["msg"]} for e in exc.errors()]
+    return JSONResponse(status_code=422, content={"error": {"code": "VALIDATION_ERROR", "fields": fields}})
 
 @app.exception_handler(Exception)
-async def unhandled_handler(request: Request, exc: Exception):
-    logger.exception("Unhandled error on %s %s", request.method, request.url.path)
-    return JSONResponse(status_code=500, content={"error": {"code": "INTERNAL_ERROR", "message": "Something went wrong"}})
+async def unexpected_handler(request: Request, exc: Exception):
+    logging.getLogger("shop").error("unhandled error on %s", request.url.path)   # log details server-side
+    return JSONResponse(status_code=500, content={"error": {"code": "INTERNAL", "message": "Something went wrong"}})
 
-# services/users.py
-def get_user_or_404(db, user_id: int) -> User:
-    user = db.get(User, user_id)
-    if not user:
-        raise NotFoundError(f"User {user_id} not found")
-    return user
+class ReserveIn(BaseModel):
+    sku: str
+    qty: int = Field(ge=1)
+
+@app.post("/reservations")
+def make_reservation(body: ReserveIn):
+    reserve(body.sku, body.qty)
+    return {"reserved": body.qty, "left": STOCK[body.sku]}
+
+@app.get("/orders/{order_id}")
+def get_order(order_id: int):
+    raise OrderNotFound(f"order {order_id} does not exist")
+
+@app.get("/admin")
+def admin():
+    raise HTTPException(status_code=403, detail="admins only")
+
+@app.get("/buggy")
+def buggy():
+    return 1 / 0
+
+client = TestClient(app, raise_server_exceptions=False)   # show the 500 response instead of raising in tests
+for method, url, body in [("post", "/reservations", {"sku": "P1", "qty": 2}), ("post", "/reservations", {"sku": "P1", "qty": 5}),
+                          ("post", "/reservations", {"sku": "P1", "qty": 0}), ("get", "/orders/7", None),
+                          ("get", "/admin", None), ("get", "/buggy", None)]:
+    r = client.request(method, url, json=body)
+    print(r.status_code, r.json())
 ```
 
-Benefits: consistent error format for the frontend, no stack traces leaked, services reusable outside HTTP (CLI, workers).
+**Output:**
 
-**Interview Qs**
-- 422 vs 400? → 422 = FastAPI's automatic validation error; 400 = a generic bad request you raise yourself.
-- How do you return a consistent error format? → Custom exception classes + `@app.exception_handler`.
+```text
+200 {'reserved': 2, 'left': 1}
+409 {'error': {'code': 'INSUFFICIENT_STOCK', 'message': 'only 1 of P1 left'}}
+422 {'error': {'code': 'VALIDATION_ERROR', 'fields': [{'field': 'qty', 'message': 'Input should be greater than or equal to 1'}]}}
+404 {'error': {'code': 'ORDER_NOT_FOUND', 'message': 'order 7 does not exist'}}
+403 {'detail': 'admins only'}
+500 {'error': {'code': 'INTERNAL', 'message': 'Something went wrong'}}
+```
+
+Every error has the same shape and a machine-readable code, except `HTTPException`, which keeps FastAPI's default `{"detail": ...}` unless you also register a handler for it (`from starlette.exceptions import HTTPException as StarletteHTTPException`). The 500 response reveals nothing about the `ZeroDivisionError`; the details go to the logs.
+
+**Common mistakes:**
+
+- ❌ Returning `{"error": ...}` with status **200** (clients and monitoring think it succeeded).
+- ❌ Leaking stack traces, SQL or internal paths in error messages.
+- ❌ Raising `HTTPException` deep inside business logic.
+- ❌ A different error shape per endpoint.
+- ❌ 403 vs 404 confusion: return 404 for other users' resources when revealing their existence is itself a leak.
+
+### Practice
+
+1. Register a handler for FastAPI's `HTTPException` so that `/admin` also returns the `{"error": {"code": ..., "message": ...}}` shape, with code `HTTP_403`.
+
+<details>
+<summary><b>Answer</b></summary>
+
+```python
+from starlette.exceptions import HTTPException as StarletteHTTPException
+
+app2 = FastAPI()                          # handlers are best registered before the app serves requests
+
+@app2.exception_handler(StarletteHTTPException)
+async def http_error_handler(request: Request, exc: StarletteHTTPException):
+    return JSONResponse(status_code=exc.status_code, headers=exc.headers,
+                        content={"error": {"code": f"HTTP_{exc.status_code}", "message": exc.detail}})
+
+@app2.get("/admin")
+def admin_only():
+    raise HTTPException(status_code=403, detail="admins only")
+
+client2 = TestClient(app2)
+print(client2.get("/admin").json(), client2.get("/no-such-page").json())
+```
+
+**Output:**
+
+```text
+{'error': {'code': 'HTTP_403', 'message': 'admins only'}} {'error': {'code': 'HTTP_404', 'message': 'Not Found'}}
+```
+
+Registering the handler for **Starlette's** `HTTPException` also covers errors raised by the framework itself, like 404 for unknown paths.
+
+</details>
+
+**Learn more:** [FastAPI: handling errors](https://fastapi.tiangolo.com/tutorial/handling-errors/) · [RFC 9457: Problem Details for HTTP APIs](https://www.rfc-editor.org/rfc/rfc9457)
 
 ---
 
-## 11. Dependency Injection
+## 9. Headers, Cookies, Forms and File Uploads
 
-`Depends()` declares that a path operation **needs** something (DB session, current user, settings, pagination params, services). FastAPI calls the dependency, caches it **per request**, and injects the result. Dependencies can depend on other dependencies (a graph).
+### Theory
 
-Why DI: reuse, separation of concerns, easy testing (override dependencies), cleanup handled automatically.
+> **In simple words:** not all input arrives as JSON. **Headers** carry metadata (who's calling, which language, a request id), **cookies** are small values the browser sends back automatically (sessions), **forms** are what HTML `<form>` submissions and OAuth2 login send, and **file uploads** send images, PDFs or CSVs. FastAPI reads each with a marker: `Header()`, `Cookie()`, `Form()`, `File()`/`UploadFile`.
 
-### Example 1 — reusable common parameters
+**Headers:** `user_agent: Annotated[str | None, Header()] = None` reads `User-Agent` (underscores become hyphens automatically; header names are case-insensitive). Set response headers via `response.headers[...]`. Common custom headers: `X-Request-ID`, `Idempotency-Key`, `X-API-Key`.
 
-```python
-from fastapi import Depends
+**Cookies:** read with `Cookie()`, set with `response.set_cookie(key, value, httponly=True, secure=True, samesite="lax", max_age=...)`. `HttpOnly` hides the cookie from JavaScript (protects against XSS theft), `Secure` sends it only over HTTPS, `SameSite` limits cross-site sending (CSRF protection).
 
-def pagination(page: int = Query(1, ge=1), size: int = Query(20, ge=1, le=100)) -> dict:
-    return {"offset": (page - 1) * size, "limit": size}
+**Forms:** `username: Annotated[str, Form()]` (needs the `python-multipart` package, included in `fastapi[standard]`). You can't mix `Form` and a JSON body in one request (it's one or the other encoding). Form models work like query models: `data: Annotated[LoginForm, Form()]`.
 
-Pagination = Annotated[dict, Depends(pagination)]      # type alias → reuse everywhere
+**Files:** `UploadFile` gives a spooled file object (kept in memory up to a size, then written to a temporary file), with `.filename`, `.content_type`, `.size`, and async `await file.read()`/`.seek()`. `bytes = File()` reads everything into memory (only for small files). Several files: `list[UploadFile]`.
 
-@app.get("/products")
-def list_products(p: Pagination):
-    return {"offset": p["offset"], "limit": p["limit"]}
+**Upload safety:** limit the size (read in chunks and stop), check the type by **content** (magic bytes), not just the extension or declared content type; never use the client's filename as a path (path traversal: `../../etc/passwd`); generate your own names; store outside the web root or in object storage (S3/GCS with pre-signed URLs, Section [24](#24-calling-other-apis-and-receiving-webhooks)); scan if users share files.
 
-@app.get("/orders")
-def list_orders(p: Pagination): ...
-```
-
-### Example 2 — dependencies with `yield` (setup + teardown): DB session
+### Python
 
 ```python
-from sqlalchemy.orm import Session
-
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db                 # injected into the route
-    except Exception:
-        db.rollback()            # undo partial work if the handler raised
-        raise
-    finally:
-        db.close()               # always runs (cleanup)
-
-# Commit explicitly in the service/route (db.commit()) BEFORE returning, so a failed
-# commit becomes an error response instead of a "200 OK" for data that wasn't saved.
-
-DbSession = Annotated[Session, Depends(get_db)]
-
-@app.get("/users/{user_id}")
-def get_user(user_id: int, db: DbSession):
-    return db.get(User, user_id)
-```
-
-### Example 3 — dependency chain: token → current user → admin
-
-```python
-from fastapi.security import OAuth2PasswordBearer
-
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/auth/token")
-
-def get_current_user(token: Annotated[str, Depends(oauth2_scheme)], db: DbSession) -> User:
-    payload = decode_token(token)                   # raises 401 if invalid
-    user = db.get(User, int(payload["sub"]))
-    if not user or not user.is_active:
-        raise HTTPException(401, "Invalid credentials", headers={"WWW-Authenticate": "Bearer"})
-    return user
-
-CurrentUser = Annotated[User, Depends(get_current_user)]
-
-def require_admin(user: CurrentUser) -> User:
-    if user.role != "admin":
-        raise HTTPException(403, "Admins only")
-    return user
-
-AdminUser = Annotated[User, Depends(require_admin)]
-
-@app.get("/me")
-def me(user: CurrentUser): return user
-
-@app.delete("/users/{user_id}")
-def delete_user(user_id: int, admin: AdminUser, db: DbSession): ...
-```
-
-### Class-based & parameterized dependencies
-
-```python
-class RoleChecker:
-    def __init__(self, *allowed: str):
-        self.allowed = allowed
-    def __call__(self, user: CurrentUser) -> User:     # instance is callable → usable in Depends
-        if user.role not in self.allowed:
-            raise HTTPException(403, "Insufficient permissions")
-        return user
-
-@app.post("/articles", dependencies=[Depends(RoleChecker("editor", "admin"))])
-def publish_article(...): ...
-```
-
-### Service layer injection
-
-```python
-class UserService:
-    def __init__(self, db: DbSession):
-        self.db = db
-    def get(self, user_id: int) -> User:
-        user = self.db.get(User, user_id)
-        if not user:
-            raise NotFoundError(f"User {user_id} not found")
-        return user
-
-@app.get("/users/{user_id}", response_model=UserOut)
-def read_user(user_id: int, service: Annotated[UserService, Depends()]):   # Depends() with no arg → uses the type
-    return service.get(user_id)
-```
-
-### Router-level & global dependencies
-
-```python
-router = APIRouter(prefix="/admin", dependencies=[Depends(require_admin)])   # all admin routes protected
-app = FastAPI(dependencies=[Depends(verify_api_key)])                       # every route
-```
-
-### Caching per request
-
-If two dependencies both depend on `get_db`, it's called **once** per request and the same session is shared. Use `Depends(get_db, use_cache=False)` to opt out.
-
-### Overriding in tests
-
-```python
-app.dependency_overrides[get_db] = get_test_db
-app.dependency_overrides[get_current_user] = lambda: User(id=1, role="admin")
-```
-
-**Interview Qs**
-- What is DI in FastAPI and why use it?
-- How do `yield` dependencies work? → Code before `yield` runs before the handler, code after runs after (cleanup).
-- How do you protect all routes in a router? → `APIRouter(dependencies=[...])`.
-- How do you mock dependencies in tests? → `app.dependency_overrides`.
-
----
-
-## 12. APIRouter & Project Structure
-
-Split the app into routers (like Express routers / Flask blueprints).
-
-```python
-# app/api/routes/users.py
-from fastapi import APIRouter
-
-router = APIRouter(prefix="/users", tags=["users"])
-
-@router.get("/", response_model=list[UserOut])
-def list_users(db: DbSession, p: Pagination): ...
-
-@router.post("/", response_model=UserOut, status_code=201)
-def create_user(data: UserCreate, service: Annotated[UserService, Depends()]): ...
-
-# app/main.py
-from app.api.routes import users, auth, orders
+from typing import Annotated
+from uuid import uuid4
+from fastapi import Cookie, FastAPI, File, Form, Header, HTTPException, Response, UploadFile
+from fastapi.testclient import TestClient
 
 app = FastAPI()
-app.include_router(auth.router)
-app.include_router(users.router, prefix="/api/v1")
-app.include_router(orders.router, prefix="/api/v1", dependencies=[Depends(get_current_user)])
+
+@app.get("/whoami")
+def whoami(
+    user_agent: Annotated[str | None, Header()] = None,
+    accept_language: Annotated[str, Header()] = "en",
+    x_request_id: Annotated[str | None, Header()] = None,
+    session: Annotated[str | None, Cookie()] = None,
+):
+    return {"agent": user_agent, "lang": accept_language, "request_id": x_request_id, "session": session}
+
+@app.post("/login")
+def login(username: Annotated[str, Form()], password: Annotated[str, Form()], response: Response):
+    if password != "correct-horse":
+        raise HTTPException(401, "wrong username or password")
+    response.set_cookie("session", "sess-" + username, httponly=True, secure=True, samesite="lax", max_age=3600)
+    return {"logged_in": username}
+
+MAX_BYTES = 1_000_000
+PNG_SIGNATURE = b"\x89PNG\r\n\x1a\n"
+
+@app.post("/avatars", status_code=201)
+async def upload_avatar(file: UploadFile, caption: Annotated[str, Form()] = ""):
+    head = await file.read(8)
+    if head != PNG_SIGNATURE:                                   # check the content, not the name
+        raise HTTPException(415, "only PNG images are accepted")
+    rest = await file.read(MAX_BYTES)                           # read at most the limit (+ the 8 bytes above)
+    if await file.read(1):
+        raise HTTPException(413, "file too large")
+    stored_name = f"{uuid4().hex[:8]}.png"                      # never trust the client's filename
+    return {"original": file.filename, "stored_as_png": stored_name.endswith(".png"), "bytes": len(head) + len(rest), "caption": caption}
+
+client = TestClient(app, base_url="https://testserver")     # https, so Secure cookies are kept and sent
+print(client.get("/whoami", headers={"User-Agent": "ShopApp/2.1", "X-Request-ID": "req-42", "Accept-Language": "hi"}).json())
+r = client.post("/login", data={"username": "asha", "password": "correct-horse"})
+print(r.json(), r.headers["set-cookie"])
+print(client.get("/whoami").json()["session"])                   # the client stored the cookie and sends it back
+plain_http = TestClient(app)
+plain_http.post("/login", data={"username": "ravi", "password": "correct-horse"})
+print(plain_http.get("/whoami").json()["session"])               # over plain http a Secure cookie is never sent
+
+png = PNG_SIGNATURE + b"\x00" * 100
+print(client.post("/avatars", files={"file": ("../../me.png", png, "image/png")}, data={"caption": "me"}).json())
+print(client.post("/avatars", files={"file": ("cat.png", b"GIF89a....", "image/png")}).status_code)
+print(client.post("/avatars", files={"file": ("big.png", PNG_SIGNATURE + b"\x00" * 2_000_000, "image/png")}).status_code)
 ```
 
-### Recommended structure (layered)
+**Output:**
 
+```text
+{'agent': 'ShopApp/2.1', 'lang': 'hi', 'request_id': 'req-42', 'session': None}
+{'logged_in': 'asha'} session=sess-asha; HttpOnly; Max-Age=3600; Path=/; SameSite=lax; Secure
+sess-asha
+None
+{'original': '../../me.png', 'stored_as_png': True, 'bytes': 108, 'caption': 'me'}
+415
+413
 ```
-app/
-├── main.py                # create app, include routers, middleware, handlers, lifespan
-├── core/
-│   ├── config.py          # Settings (pydantic-settings)
-│   ├── security.py        # hashing, JWT
-│   ├── logging.py
-│   └── errors.py          # AppError hierarchy + handlers
-├── db/
-│   ├── base.py            # DeclarativeBase
-│   └── session.py         # engine, SessionLocal, get_db
-├── models/                # SQLAlchemy ORM models
-│   └── user.py
-├── schemas/               # Pydantic models (request/response)
-│   └── user.py
-├── repositories/          # DB queries only
-│   └── user_repo.py
-├── services/              # business logic (no HTTP stuff)
-│   └── user_service.py
-├── api/
-│   ├── deps.py            # shared dependencies (DbSession, CurrentUser, Pagination)
-│   └── routes/
-│       ├── auth.py
-│       └── users.py
-└── workers/               # background jobs
+
+The cookie came back on the HTTPS client but **not** over plain HTTP, because it's marked `Secure`: exactly what protects session cookies from being sniffed. The "cat.png" upload claimed to be a PNG but its content was a GIF: checked by magic bytes, it's rejected with 415. The oversized file gets 413, and the malicious `../../me.png` filename is never used as a path.
+
+**Common mistakes:**
+
+- ❌ Trusting `file.filename` or `content_type` from the client.
+- ❌ `await file.read()` with no size limit (a 10 GB upload fills memory or disk).
+- ❌ Session cookies without `HttpOnly`/`Secure`/`SameSite`.
+- ❌ Expecting JSON and form data in the same request.
+
+### Practice
+
+1. Add `POST /imports` that accepts a CSV file (check the first line is exactly `sku,qty`), counts the data rows, and rejects anything else with 400.
+
+<details>
+<summary><b>Answer</b></summary>
+
+```python
+import csv, io
+
+@app.post("/imports")
+async def import_csv(file: UploadFile):
+    text = (await file.read(MAX_BYTES)).decode("utf-8", errors="replace")
+    rows = list(csv.reader(io.StringIO(text)))
+    if not rows or rows[0] != ["sku", "qty"]:
+        raise HTTPException(400, "expected a CSV with header sku,qty")
+    return {"rows": len(rows) - 1}
+
+print(client.post("/imports", files={"file": ("stock.csv", b"sku,qty\nP1,4\nP2,9\n", "text/csv")}).json())
+print(client.post("/imports", files={"file": ("x.csv", b"name,price\n", "text/csv")}).json())
+```
+
+**Output:**
+
+```text
+{'rows': 2}
+{'detail': 'expected a CSV with header sku,qty'}
+```
+
+</details>
+
+**Learn more:** [FastAPI: request files](https://fastapi.tiangolo.com/tutorial/request-files/) · [FastAPI: form data](https://fastapi.tiangolo.com/tutorial/request-forms/) · [OWASP: file upload cheat sheet](https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html)
+
+---
+
+## 10. APIRouter and Project Structure
+
+### Theory
+
+> **In simple words:** putting every endpoint in one `main.py` works for ten routes, not for a hundred. An **`APIRouter`** is a mini-app for one area (orders, users, payments) with its own prefix, tags and shared settings; the main app **includes** the routers. Combined with a layered folder structure, each part of the API lives in its own file and can be understood, tested and changed on its own.
+
+**Router options:** `APIRouter(prefix="/orders", tags=["orders"], dependencies=[...], responses={404: {...}})`; `app.include_router(router, prefix="/v1")` adds another prefix (versioning, Section [26](#26-api-design-naming-versioning-idempotency-and-consistency)). Routers can include other routers.
+
+**A layered structure that scales:**
+
+```text
+src/shop/
+├── main.py              # create_app(): FastAPI(), middleware, include routers, exception handlers
+├── config.py            # Settings (pydantic-settings)
+├── db.py                # engine, session dependency
+├── api/                 # HTTP layer: routers only parse input, call services, shape output
+│   ├── deps.py          # shared dependencies (current user, pagination)
+│   ├── orders.py
+│   └── users.py
+├── schemas/             # Pydantic models (request/response)
+├── models/              # ORM models (database tables)
+├── services/            # business logic: no FastAPI imports, raises domain exceptions
+└── repositories/        # database queries
 tests/
-alembic/
-pyproject.toml
-Dockerfile
 ```
 
-Flow: **route** (HTTP: parse/validate, status codes) → **service** (business rules) → **repository** (SQL) → **model** (DB table). Schemas (Pydantic) at the edges.
+Organise **by layer** (as above) for small/medium apps, or **by feature/domain** (`orders/{router,service,schemas,models}.py`) for large ones; both are fine if you're consistent. The key rule: routers stay thin; logic lives in services that don't know about HTTP.
 
-For large apps, group by **feature/domain** instead: `app/users/{router,schemas,models,service}.py`.
+**App factory:** a `create_app()` function that builds and returns the app makes testing with different settings easy.
+
+### Python
+
+```python
+from fastapi import APIRouter, FastAPI
+from fastapi.testclient import TestClient
+
+orders = APIRouter(prefix="/orders", tags=["orders"])
+users = APIRouter(prefix="/users", tags=["users"])
+
+@orders.get("")
+def list_orders():
+    return [{"id": 1}]
+
+@orders.get("/{order_id}")
+def get_order(order_id: int):
+    return {"id": order_id}
+
+@users.get("/me")
+def me():
+    return {"name": "Asha"}
+
+def create_app() -> FastAPI:
+    app = FastAPI(title="ShopKart")
+    api_v1 = APIRouter(prefix="/api/v1")
+    api_v1.include_router(orders)
+    api_v1.include_router(users)
+    app.include_router(api_v1)
+    return app
+
+app = create_app()
+client = TestClient(app)
+print(client.get("/api/v1/orders/5").json(), client.get("/api/v1/users/me").json())
+print({path: list(ops)[0] for path, ops in client.get("/openapi.json").json()["paths"].items()})
+print(client.get("/openapi.json").json()["paths"]["/api/v1/orders"]["get"]["tags"])
+```
+
+**Output:**
+
+```text
+{'id': 5} {'name': 'Asha'}
+{'/api/v1/orders': 'get', '/api/v1/orders/{order_id}': 'get', '/api/v1/users/me': 'get'}
+['orders']
+```
+
+**Common mistakes:**
+
+- ❌ Business logic and SQL inside route functions.
+- ❌ Circular imports between routers and `main.py` (routers shouldn't import the app; use dependencies and a factory).
+- ❌ Inconsistent prefixes and trailing slashes (`/orders` vs `/orders/` causes redirects).
+- ❌ A single giant `schemas.py`/`models.py` shared by unrelated features.
+
+### Practice
+
+1. Add a `payments` router with prefix `/payments` and a router-level `responses={402: {"description": "Payment required"}}`, with one endpoint `POST /payments/{order_id}`. Include it under `/api/v1` in a new app and print the documented response codes for that endpoint.
+
+<details>
+<summary><b>Answer</b></summary>
+
+```python
+payments = APIRouter(prefix="/payments", tags=["payments"], responses={402: {"description": "Payment required"}})
+
+@payments.post("/{order_id}", status_code=201)
+def pay(order_id: int):
+    return {"order_id": order_id, "status": "paid"}
+
+app2 = FastAPI()
+app2.include_router(payments, prefix="/api/v1")
+spec = TestClient(app2).get("/openapi.json").json()
+print(sorted(spec["paths"]["/api/v1/payments/{order_id}"]["post"]["responses"]))
+```
+
+**Output:**
+
+```text
+['201', '402', '422']
+```
+
+</details>
 
 ---
 
-## 13. async def vs def
+### ✅ Part 2 checkpoint
 
-FastAPI supports both:
+Without looking, can you:
 
-| You write | FastAPI runs it | Use when |
-|---|---|---|
-| `async def` | Directly on the event loop | You `await` async libraries (httpx.AsyncClient, asyncpg, async SQLAlchemy, redis.asyncio) |
-| `def` | In a **threadpool** (so it doesn't block the loop) | You use **blocking** libraries (requests, sync SQLAlchemy, psycopg2, boto3) or CPU-light sync code |
+- [ ] Write Pydantic models with field constraints, validators, computed fields, aliases and discriminated unions?
+- [ ] Separate input, update, storage and output models, and filter responses with `response_model`?
+- [ ] Choose correct status codes and return consistent error JSON through exception handlers?
+- [ ] Read headers and cookies, accept forms, and handle file uploads safely?
+- [ ] Split an app into routers and a layered structure with an app factory?
 
-### The #1 FastAPI performance bug
-
-```python
-import time, requests
-
-@app.get("/bad")
-async def bad():
-    time.sleep(2)                         # ❌ blocks the whole event loop — ALL requests freeze
-    return requests.get(URL).json()       # ❌ blocking HTTP inside async def
-
-@app.get("/ok-sync")
-def ok_sync():                            # ✅ plain def → runs in threadpool
-    time.sleep(2)
-    return requests.get(URL).json()
-
-@app.get("/good-async")
-async def good_async():                   # ✅ truly async
-    await asyncio.sleep(2)
-    async with httpx.AsyncClient() as client:
-        r = await client.get(URL)
-    return r.json()
-
-@app.get("/mixed")
-async def mixed():
-    data = await fetch_async()
-    result = await run_in_threadpool(blocking_sdk_call, data)   # from starlette.concurrency
-    # or: await asyncio.to_thread(blocking_sdk_call, data)
-    return result
-```
-
-**Rules**
-- Inside `async def`: never call blocking I/O or `time.sleep`.
-- If unsure / using sync libraries → use `def`.
-- CPU-heavy work (image processing, ML inference, big reports) → offload to a process pool or a task queue (Celery/ARQ), not the request.
-- Dependencies follow the same rule (can be `def` or `async def`).
-
-**Interview Qs**
-- When should a FastAPI endpoint be `async def` vs `def`?
-- What happens if you use `requests` inside `async def`? → Blocks the event loop; throughput collapses.
+**Learn more:** [FastAPI: bigger applications](https://fastapi.tiangolo.com/tutorial/bigger-applications/) · [zhanymkanov/fastapi-best-practices](https://github.com/zhanymkanov/fastapi-best-practices)
 
 ---
 
-## 14. Settings & Configuration
+# Part 3 — Moderate: Building a Real API
+
+> **Goal:** Use dependency injection, async correctly, settings and lifespan, SQLAlchemy databases, authentication, authorisation, middleware and tests.  
+> **You need:** Parts 1–2, asyncio (`python.md`), SQL basics (`sql-postgresql.md`).
+
+---
+
+## 11. Dependency Injection with Depends
+
+![A request flows through a chain of dependencies: pagination params, a database session, the token, then the current user, then an admin check, before the endpoint runs; yield dependencies clean up afterwards](images/fastapi/01-dependencies.svg)
+
+### Theory
+
+> **In simple words:** many endpoints need the same things: a database session, the logged-in user, pagination values, settings. Instead of repeating that code, you write it once as a **dependency** (an ordinary function) and ask for it with `Depends(...)`. FastAPI calls the dependency for each request and passes the result into your endpoint. Dependencies can depend on other dependencies, can clean up after the request (with `yield`), and can be **swapped out in tests**, which is the real superpower.
+
+**How it works:**
+
+```text
+def get_current_user(token = Depends(get_token)) -> User: ...
+@app.get("/me")
+def me(user: Annotated[User, Depends(get_current_user)]): ...
+```
+
+For each request FastAPI resolves the tree: `get_token` → `get_current_user` → your endpoint. Anything a dependency declares (query params, headers, body, other dependencies) is read from the request just like endpoint parameters, and appears in the docs.
+
+**Kinds of dependencies:**
+
+| Kind | Example |
+|---|---|
+| Shared parameters | `pagination: Annotated[Page, Depends()]` |
+| Resources with clean-up | `def get_db(): db = Session(); try: yield db finally: db.close()` |
+| Auth chain | token → current user → require admin |
+| Classes / callables with configuration | `Depends(RateLimiter(times=5))`, `Depends(require_role("admin"))` |
+| Router- or app-level | `APIRouter(dependencies=[Depends(verify_api_key)])` runs for every route (result not needed) |
+
+**Caching:** within one request, the same dependency is called **once** even if several others need it (`use_cache=False` to disable).
+
+**Type aliases** keep signatures short: `CurrentUser = Annotated[User, Depends(get_current_user)]`, then `def me(user: CurrentUser)`.
+
+**Testing:** `app.dependency_overrides[get_db] = get_test_db` replaces a dependency everywhere for tests (Section [19](#19-testing-fastapi-apps)).
+
+### Python
 
 ```python
-# app/core/config.py
+from dataclasses import dataclass
+from typing import Annotated
+from fastapi import Depends, FastAPI, Header, HTTPException, Query
+from fastapi.testclient import TestClient
+
+app = FastAPI()
+EVENTS = []                                          # records what the dependencies do
+
+@dataclass
+class Page:
+    limit: int = Query(20, ge=1, le=100)
+    offset: int = Query(0, ge=0)
+
+class FakeSession:
+    def __init__(self):
+        EVENTS.append("session opened")
+    def close(self):
+        EVENTS.append("session closed")
+
+def get_db():
+    db = FakeSession()
+    try:
+        yield db                                     # the endpoint runs here
+    finally:
+        db.close()                                   # runs after the response, even on errors
+
+USERS = {"tok-asha": {"name": "Asha", "role": "admin"}, "tok-ravi": {"name": "Ravi", "role": "customer"}}
+
+def get_token(authorization: Annotated[str | None, Header()] = None) -> str:
+    if not authorization or not authorization.startswith("Bearer "):
+        raise HTTPException(401, "missing token", headers={"WWW-Authenticate": "Bearer"})
+    return authorization.removeprefix("Bearer ")
+
+def get_current_user(token: Annotated[str, Depends(get_token)]) -> dict:
+    EVENTS.append("user looked up")
+    if token not in USERS:
+        raise HTTPException(401, "invalid token")
+    return USERS[token]
+
+CurrentUser = Annotated[dict, Depends(get_current_user)]
+
+def require_role(role: str):                           # a dependency factory
+    def checker(user: CurrentUser) -> dict:
+        if user["role"] != role:
+            raise HTTPException(403, f"{role} role required")
+        return user
+    return checker
+
+@app.get("/orders")
+def list_orders(page: Annotated[Page, Depends()], user: CurrentUser, db: Annotated[FakeSession, Depends(get_db)]):
+    return {"user": user["name"], "limit": page.limit, "offset": page.offset}
+
+@app.delete("/orders/{order_id}")
+def delete_order(order_id: int, admin: Annotated[dict, Depends(require_role("admin"))], user: CurrentUser):
+    return {"deleted": order_id, "by": admin["name"], "same_user_object": admin is user}
+
+client = TestClient(app)
+print(client.get("/orders?limit=5", headers={"Authorization": "Bearer tok-ravi"}).json(), EVENTS)
+EVENTS.clear()
+print(client.get("/orders").status_code, client.get("/orders", headers={"Authorization": "Bearer nope"}).json())
+print(client.delete("/orders/7", headers={"Authorization": "Bearer tok-ravi"}).json())
+EVENTS.clear()
+print(client.delete("/orders/7", headers={"Authorization": "Bearer tok-asha"}).json(), EVENTS)
+```
+
+**Output:**
+
+```text
+{'user': 'Ravi', 'limit': 5, 'offset': 0} ['user looked up', 'session opened', 'session closed']
+401 {'detail': 'invalid token'}
+{'detail': 'admin role required'}
+{'deleted': 7, 'by': 'Asha', 'same_user_object': True} ['user looked up']
+```
+
+Notice: the session was opened before the endpoint and closed after it; `get_current_user` ran **once** for the delete even though two parameters needed it (cached per request, so `admin is user`).
+
+**Common mistakes:**
+
+- ❌ Creating database sessions or clients inside each endpoint instead of a dependency.
+- ❌ Doing heavy work in dependencies that many endpoints use (it runs on every request).
+- ❌ Forgetting `try`/`finally` around `yield` (clean-up skipped on errors).
+- ❌ Global state that can't be overridden in tests.
+
+### Practice
+
+1. Write a dependency `verify_api_key` that requires the header `X-API-Key: secret-123`, and apply it to a whole router `/internal` so every route there is protected. Test one route with and without the key.
+
+<details>
+<summary><b>Answer</b></summary>
+
+```python
+from fastapi import APIRouter
+
+def verify_api_key(x_api_key: Annotated[str | None, Header()] = None):
+    if x_api_key != "secret-123":
+        raise HTTPException(401, "invalid API key")
+
+internal = APIRouter(prefix="/internal", dependencies=[Depends(verify_api_key)])
+
+@internal.get("/stats")
+def stats():
+    return {"orders_today": 42}
+
+app2 = FastAPI()
+app2.include_router(internal)
+c2 = TestClient(app2)
+print(c2.get("/internal/stats").status_code, c2.get("/internal/stats", headers={"X-API-Key": "secret-123"}).json())
+```
+
+**Output:**
+
+```text
+401 {'orders_today': 42}
+```
+
+(In production compare secrets with `secrets.compare_digest` to avoid timing attacks, Section [27](#27-api-security-the-owasp-api-top-10-in-fastapi).)
+
+</details>
+
+**Learn more:** [FastAPI: dependencies](https://fastapi.tiangolo.com/tutorial/dependencies/) · [FastAPI: dependencies with yield](https://fastapi.tiangolo.com/tutorial/dependencies/dependencies-with-yield/) · [FastAPI: testing dependencies with overrides](https://fastapi.tiangolo.com/advanced/testing-dependencies/)
+
+---
+
+## 12. async def vs def: Concurrency in FastAPI
+
+### Theory
+
+> **In simple words:** FastAPI runs on an **event loop** (asyncio, `python.md`). An `async def` endpoint runs **on** the loop: while it `await`s a database or HTTP call, the loop serves other requests. A plain `def` endpoint runs in a **thread pool**, so blocking code in it doesn't freeze the loop. The one thing you must never do is **block inside `async def`** (e.g. `time.sleep`, `requests.get`, a synchronous database driver): that stalls **every** request on that worker.
+
+**The rule of thumb:**
+
+| Your endpoint does… | Write |
+|---|---|
+| `await` calls with async libraries (httpx.AsyncClient, asyncpg, async SQLAlchemy, async LLM SDK clients) | `async def` |
+| Blocking calls (requests, a sync DB driver, file I/O, CPU work) | `def` (runs in a thread pool of ~40 threads by default) |
+| Nothing slow at all | Either; `async def` avoids the thread hop |
+| Heavy CPU work (ML inference, image processing) | A process pool, a separate worker service, or a queue; not the request thread |
+
+In `async def` you can still call a blocking function safely with `await run_in_threadpool(fn, ...)` (from `fastapi.concurrency`) or `await asyncio.to_thread(fn, ...)`.
+
+**Dependencies follow the same rules:** `async def` dependencies run on the loop, `def` dependencies in the thread pool.
+
+**The #1 FastAPI performance bug:** `async def` + a blocking call. Under load, requests queue up behind it and latency explodes, while CPU looks idle. Tests with one request at a time never show it.
+
+### Python
+
+The demo: three concurrent requests to each endpoint, each doing a 0.3-second "database call". It runs on a real server (uvicorn in a background thread) because concurrency needs real connections:
+
+```python
+import asyncio, threading, time
+import httpx
+import uvicorn
+from fastapi import FastAPI
+
+app = FastAPI()
+
+@app.get("/async-good")
+async def async_good():
+    await asyncio.sleep(0.3)                # non-blocking wait: the loop serves others meanwhile
+    return {"ok": True}
+
+@app.get("/sync-good")
+def sync_good():
+    time.sleep(0.3)                         # blocking, but plain def runs in the thread pool
+    return {"ok": True}
+
+@app.get("/async-bad")
+async def async_bad():
+    time.sleep(0.3)                         # BLOCKS the event loop: everyone waits
+    return {"ok": True}
+
+server = uvicorn.Server(uvicorn.Config(app, port=8765, log_level="error"))
+thread = threading.Thread(target=server.run, daemon=True)
+thread.start()
+while not server.started:
+    time.sleep(0.05)
+
+async def hit(path, n=3):
+    async with httpx.AsyncClient(base_url="http://127.0.0.1:8765") as client:
+        start = time.perf_counter()
+        await asyncio.gather(*(client.get(path) for _ in range(n)))
+        return time.perf_counter() - start
+
+for path in ["/async-good", "/sync-good", "/async-bad"]:
+    seconds = asyncio.run(hit(path))
+    verdict = "overlapped (about 0.3 s in total)" if seconds < 0.6 else "ran one after another (about 0.9 s)"
+    print(f"{path:12s} 3 concurrent requests {verdict}")     # timings vary a little, so we print the verdict
+server.should_exit = True
+thread.join()
+```
+
+**Output:**
+
+```text
+/async-good  3 concurrent requests overlapped (about 0.3 s in total)
+/sync-good   3 concurrent requests overlapped (about 0.3 s in total)
+/async-bad   3 concurrent requests ran one after another (about 0.9 s)
+```
+
+The first two finish in about 0.3 s (the three waits overlap). The blocking `async def` takes about 0.9 s: the requests ran **one after another**, and with 100 concurrent users it would be 30 s.
+
+**Common mistakes:**
+
+- ❌ `requests.get(...)`, `time.sleep`, or a sync database session inside `async def`.
+- ❌ Making everything `async def` "because it's faster" without async libraries underneath.
+- ❌ CPU-heavy work (model inference, PDF rendering) inside the request, blocking workers; offload it.
+- ❌ Creating a new `httpx.AsyncClient` per request (reuse one via lifespan, Section [13](#13-settings-lifespan-events-and-shared-resources)).
+
+### Practice
+
+1. You must call a legacy blocking function `legacy_price(sku)` (it sleeps 0.2 s) from an `async def` endpoint. Show how to do it without blocking the loop, and test it with `TestClient`.
+
+<details>
+<summary><b>Answer</b></summary>
+
+```python
+from fastapi.concurrency import run_in_threadpool
+from fastapi.testclient import TestClient
+
+def legacy_price(sku: str) -> float:
+    time.sleep(0.2)
+    return {"P1": 499.0}.get(sku, 0.0)
+
+@app.get("/price/{sku}")
+async def price(sku: str):
+    value = await run_in_threadpool(legacy_price, sku)     # runs in a worker thread
+    return {"sku": sku, "price": value}
+
+print(TestClient(app).get("/price/P1").json())
+```
+
+**Output:**
+
+```text
+{'sku': 'P1', 'price': 499.0}
+```
+
+</details>
+
+**Learn more:** [FastAPI: concurrency and async/await](https://fastapi.tiangolo.com/async/) · [Starlette: thread pool](https://www.starlette.io/threadpool/)
+
+---
+
+## 13. Settings, Lifespan Events and Shared Resources
+
+### Theory
+
+> **In simple words:** an API needs **configuration** (database URL, API keys, feature flags) that changes between your laptop, staging and production, so it must come from the **environment**, not the code. It also needs **shared resources** created once at start-up and closed at shutdown: a database connection pool, an HTTP client, a loaded ML model. FastAPI's **lifespan** function handles start-up and shutdown in one place.
+
+**Settings with `pydantic-settings`** (see also `python.md`, production section): a `BaseSettings` class reads environment variables (and `.env`), converts and validates them, and fails fast at start-up if something is wrong. Expose it through a cached dependency (`@lru_cache def get_settings()`), so tests can override it.
+
+**Lifespan:**
+
+```text
+@asynccontextmanager
+async def lifespan(app):
+    # start-up: create pools/clients, load models, warm caches
+    yield {"http": client}            ← optional: a dict of shared state, available as request.state.http
+    # shutdown: close pools/clients, flush buffers
+app = FastAPI(lifespan=lifespan)
+```
+
+(The older `@app.on_event("startup")` hooks are deprecated.)
+
+**What belongs in lifespan:** database engine/pool, `httpx.AsyncClient` (connection reuse makes outbound calls much faster), Redis client, ML models and tokenizers (load once, not per request), LLM SDK clients, background schedulers. Don't do slow or failure-prone work (like migrations) there if you can avoid it: a failing start-up means the app never becomes healthy.
+
+### Python
+
+```python
+from contextlib import asynccontextmanager
 from functools import lru_cache
-from pydantic import PostgresDsn, SecretStr, AnyHttpUrl
+from typing import Annotated
+import os
+from fastapi import Depends, FastAPI, Request
+from fastapi.testclient import TestClient
+from pydantic import Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 class Settings(BaseSettings):
-    model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8", extra="ignore")
+    model_config = SettingsConfigDict(env_prefix="SHOP_", env_file=".env", extra="ignore")
+    app_name: str = "ShopKart API"
+    database_url: str = "sqlite:///./dev.db"
+    llm_model: str = "claude-opus-5"
+    max_page_size: int = Field(100, ge=10, le=1000)
+    enable_new_checkout: bool = False
 
-    app_name: str = "My API"
-    environment: str = "development"
-    debug: bool = False
-    database_url: PostgresDsn
-    redis_url: str = "redis://localhost:6379/0"
-    jwt_secret: SecretStr
-    jwt_algorithm: str = "HS256"
-    access_token_expire_minutes: int = 15
-    cors_origins: list[AnyHttpUrl] = []          # JSON list in env: CORS_ORIGINS='["https://app.com"]'
-
-@lru_cache                                       # read env once
+@lru_cache
 def get_settings() -> Settings:
     return Settings()
 
 SettingsDep = Annotated[Settings, Depends(get_settings)]
+LOG = []
+
+class PriceModel:                                    # stands in for an expensive ML model
+    def __init__(self):
+        LOG.append("model loaded")
+    def predict(self, sku: str) -> float:
+        return 99.0 + len(sku)
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    LOG.append("startup")
+    model = PriceModel()                             # loaded ONCE, shared by all requests
+    yield {"price_model": model}                     # available as request.state.price_model
+    LOG.append("shutdown")
+
+os.environ["SHOP_ENABLE_NEW_CHECKOUT"] = "true"
+app = FastAPI(lifespan=lifespan)
 
 @app.get("/info")
 def info(settings: SettingsDep):
-    return {"app": settings.app_name, "env": settings.environment}
+    return {"app": settings.app_name, "new_checkout": settings.enable_new_checkout, "page_cap": settings.max_page_size}
+
+@app.get("/suggested-price/{sku}")
+def suggested_price(sku: str, request: Request):
+    return {"sku": sku, "price": request.state.price_model.predict(sku)}
+
+with TestClient(app) as client:                      # `with` runs the lifespan start-up and shutdown
+    print(client.get("/info").json())
+    print(client.get("/suggested-price/P1").json(), client.get("/suggested-price/P22").json())
+    print(LOG)
+print(LOG)
+
+app.dependency_overrides[get_settings] = lambda: Settings(app_name="Test API", max_page_size=10)
+with TestClient(app) as client:
+    print(client.get("/info").json())
 ```
 
-- Env vars are validated at startup → missing/invalid config fails fast.
-- `SecretStr` prevents secrets from appearing in logs.
-- Using a dependency makes it easy to override settings in tests.
+**Output:**
+
+```text
+{'app': 'ShopKart API', 'new_checkout': True, 'page_cap': 100}
+{'sku': 'P1', 'price': 101.0} {'sku': 'P22', 'price': 102.0}
+['startup', 'model loaded']
+['startup', 'model loaded', 'shutdown']
+{'app': 'Test API', 'new_checkout': True, 'page_cap': 10}
+```
+
+The model loaded once however many requests came in, the shutdown code ran when the client closed, and a test swapped the settings with one line.
+
+**Common mistakes:**
+
+- ❌ Reading `os.environ` in random places; centralise in a settings class.
+- ❌ Loading ML models or creating clients inside the endpoint (slow, wasteful).
+- ❌ Module-level globals created at import time (hard to test, run even for scripts that import the module).
+- ❌ Forgetting to close pools and clients at shutdown.
+- ❌ Using `TestClient(app)` without `with` when the app depends on lifespan state (start-up never runs).
+
+### Practice
+
+1. Add a shared `httpx.AsyncClient` to the lifespan state (with a base URL and 5-second timeout) and an endpoint that returns its base URL and timeout, proving it's the same client object on two requests (compare `id`).
+
+<details>
+<summary><b>Answer</b></summary>
+
+```python
+import httpx
+
+@asynccontextmanager
+async def lifespan2(app: FastAPI):
+    async with httpx.AsyncClient(base_url="https://api.example.com", timeout=5.0) as http:
+        yield {"http": http}                          # closed automatically at shutdown
+
+app2 = FastAPI(lifespan=lifespan2)
+
+@app2.get("/client")
+def client_info(request: Request):
+    http = request.state.http
+    return {"base_url": str(http.base_url), "timeout": http.timeout.read, "id": id(http)}
+
+with TestClient(app2) as c:
+    a, b = c.get("/client").json(), c.get("/client").json()
+    print(a["base_url"], a["timeout"], a["id"] == b["id"])
+```
+
+**Output:**
+
+```text
+https://api.example.com 5.0 True
+```
+
+</details>
+
+**Learn more:** [FastAPI: lifespan events](https://fastapi.tiangolo.com/advanced/events/) · [FastAPI: settings and environment variables](https://fastapi.tiangolo.com/advanced/settings/)
 
 ---
 
-## 15. Databases: SQLAlchemy 2.0
+## 14. Databases with SQLAlchemy 2.0: Models, Sessions and CRUD
 
-**SQLAlchemy** is the standard Python ORM. Version 2.0 uses typed `Mapped[...]` models and the `select()` API.
+![Request flow with a database: the endpoint gets a session from a dependency, calls a service/repository that runs SQL through SQLAlchemy, commits, and the session is closed after the response; Pydantic models convert ORM objects to JSON](images/fastapi/02-db-flow.svg)
 
-### Setup
+### Theory
+
+> **In simple words:** real APIs store data in a database (usually PostgreSQL; `sql-postgresql.md`). **SQLAlchemy** is Python's standard toolkit for talking to SQL databases: you describe tables as Python classes (the **ORM**), and it turns your queries into SQL. In FastAPI, each request gets a **session** (a unit of work with the database) from a dependency; the endpoint uses it and the session is closed afterwards. Pydantic response models convert the database objects to JSON.
+
+**SQLAlchemy 2.0 pieces:**
+
+| Piece | Role |
+|---|---|
+| `engine = create_engine(url)` | Connection pool to the database (one per app) |
+| `class Base(DeclarativeBase)` + models with `Mapped[...]` and `mapped_column(...)` | Tables as typed classes |
+| `sessionmaker(engine)` → `Session` | A unit of work: tracks changes, commits or rolls back |
+| `select(Product).where(...).order_by(...).limit(...)` | The 2.0 query style; run with `session.scalars(stmt)` / `session.execute(stmt)` |
+| `session.get(Product, id)` | Fetch by primary key |
+| `session.add(obj)`, `session.delete(obj)`, `session.commit()`, `session.refresh(obj)` | Write |
+| `relationship()` + `selectinload()` | Related objects, loaded efficiently (avoid N+1 queries) |
+
+**The session dependency:** `def get_db(): with SessionLocal() as session: yield session`. One session per request; commit in the service or endpoint when the unit of work succeeds; errors roll back.
+
+**Pydantic ↔ ORM:** response models with `model_config = ConfigDict(from_attributes=True)` read attributes from ORM objects, so you can return the ORM object and FastAPI serialises it through the response model.
+
+**Integrity:** let the database enforce rules (`unique`, `nullable=False`, `CheckConstraint`, foreign keys) and translate `IntegrityError` into 409 responses. Validation in Pydantic is the first line; constraints in the database are the last.
+
+**Alternatives:** **SQLModel** (by FastAPI's author: one class serves as both the SQLAlchemy table and the Pydantic model), raw SQL with `psycopg`/`asyncpg`, Tortoise ORM, or MongoDB with Beanie/Motor for document data.
+
+### Python
+
+A complete products API with SQLite (swap the URL for `postgresql+psycopg://...` in real apps):
 
 ```python
-# app/db/session.py
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker, DeclarativeBase
+from typing import Annotated
+from fastapi import Depends, FastAPI, HTTPException, Query
+from fastapi.testclient import TestClient
+from pydantic import BaseModel, ConfigDict, Field
+from sqlalchemy import CheckConstraint, ForeignKey, String, create_engine, func, select
+from sqlalchemy.exc import IntegrityError
+from sqlalchemy.orm import DeclarativeBase, Mapped, Session, mapped_column, relationship, selectinload, sessionmaker
+from sqlalchemy.pool import StaticPool
 
-engine = create_engine(
-    str(settings.database_url),         # postgresql+psycopg://user:pass@localhost:5432/app
-    pool_size=10, max_overflow=20,      # connection pool
-    pool_pre_ping=True,                 # drop dead connections
-)
-SessionLocal = sessionmaker(bind=engine, autoflush=False, expire_on_commit=False)
+engine = create_engine("sqlite://", connect_args={"check_same_thread": False}, poolclass=StaticPool)   # in-memory, shared
+SessionLocal = sessionmaker(engine, expire_on_commit=False)
 
 class Base(DeclarativeBase):
     pass
-```
 
-### Models
-
-```python
-# app/models/user.py
-from datetime import datetime
-from sqlalchemy import String, ForeignKey, func, Index
-from sqlalchemy.orm import Mapped, mapped_column, relationship
-
-class User(Base):
-    __tablename__ = "users"
-
+class Category(Base):
+    __tablename__ = "categories"
     id: Mapped[int] = mapped_column(primary_key=True)
-    email: Mapped[str] = mapped_column(String(255), unique=True, index=True)
+    name: Mapped[str] = mapped_column(String(50), unique=True)
+    products: Mapped[list["Product"]] = relationship(back_populates="category")
+
+class Product(Base):
+    __tablename__ = "products"
+    __table_args__ = (CheckConstraint("price > 0", name="price_positive"),)
+    id: Mapped[int] = mapped_column(primary_key=True)
+    sku: Mapped[str] = mapped_column(String(20), unique=True, index=True)
     name: Mapped[str] = mapped_column(String(100))
-    hashed_password: Mapped[str]
-    role: Mapped[str] = mapped_column(default="user")
-    is_active: Mapped[bool] = mapped_column(default=True)
-    created_at: Mapped[datetime] = mapped_column(server_default=func.now())
+    price: Mapped[float]
+    category_id: Mapped[int] = mapped_column(ForeignKey("categories.id"))
+    category: Mapped[Category] = relationship(back_populates="products")
 
-    posts: Mapped[list["Post"]] = relationship(back_populates="author", cascade="all, delete-orphan")
+Base.metadata.create_all(engine)                    # real apps use Alembic migrations instead
 
-class Post(Base):
-    __tablename__ = "posts"
-    id: Mapped[int] = mapped_column(primary_key=True)
-    title: Mapped[str] = mapped_column(String(200))
-    body: Mapped[str | None]                          # nullable because of `| None`
-    author_id: Mapped[int] = mapped_column(ForeignKey("users.id", ondelete="CASCADE"), index=True)
-    author: Mapped[User] = relationship(back_populates="posts")
-```
+class ProductIn(BaseModel):
+    sku: str = Field(min_length=2, max_length=20)
+    name: str
+    price: float = Field(gt=0)
+    category: str
 
-### CRUD with the 2.0 API
-
-```python
-from sqlalchemy import select, update, delete, func
-from sqlalchemy.orm import selectinload
-
-# Create
-user = User(email="r@x.com", name="Rohit", hashed_password=hash_password("pw"))
-db.add(user)
-db.commit()
-db.refresh(user)                                       # load generated id/defaults
-
-# Read
-db.get(User, 1)                                        # by primary key
-db.scalar(select(User).where(User.email == "r@x.com")) # one or None
-users = db.scalars(
-    select(User)
-    .where(User.is_active, User.name.ilike("%ro%"))
-    .order_by(User.created_at.desc())
-    .offset(0).limit(20)
-).all()
-total = db.scalar(select(func.count()).select_from(User))
-
-# Avoid N+1: eager-load relationships
-users_with_posts = db.scalars(select(User).options(selectinload(User.posts))).all()
-
-# Joins & aggregates
-rows = db.execute(
-    select(User.name, func.count(Post.id).label("post_count"))
-    .join(Post, isouter=True)
-    .group_by(User.id)
-    .having(func.count(Post.id) > 2)
-).all()
-
-# Update
-user.name = "New Name"; db.commit()
-db.execute(update(User).where(User.last_login < cutoff).values(is_active=False)); db.commit()
-
-# Delete
-db.delete(user); db.commit()
-db.execute(delete(Post).where(Post.author_id == 1)); db.commit()
-```
-
-### Transactions
-
-```python
-with SessionLocal() as db, db.begin():         # commits on success, rolls back on exception
-    sender = db.get(Account, 1, with_for_update=True)    # row lock (SELECT ... FOR UPDATE)
-    receiver = db.get(Account, 2, with_for_update=True)
-    if sender.balance < 100:
-        raise ValueError("insufficient funds")
-    sender.balance -= 100
-    receiver.balance += 100
-```
-
-### Repository pattern
-
-```python
-class UserRepository:
-    def __init__(self, db: Session):
-        self.db = db
-    def get_by_email(self, email: str) -> User | None:
-        return self.db.scalar(select(User).where(User.email == email))
-    def create(self, **fields) -> User:
-        user = User(**fields)
-        self.db.add(user)
-        self.db.flush()          # get id without committing (service decides when to commit)
-        return user
-    def list(self, offset: int, limit: int) -> list[User]:
-        return list(self.db.scalars(select(User).offset(offset).limit(limit)))
-```
-
-**SQLModel** (by FastAPI's author) combines SQLAlchemy models + Pydantic models in one class — handy for small apps. For MongoDB use **Beanie** (async ODM) or **Motor**.
-
----
-
-## 16. Async SQLAlchemy
-
-For fully async apps (`async def` routes), use async drivers (`asyncpg`) and `AsyncSession`.
-
-```python
-# app/db/session.py
-from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker, AsyncSession
-
-engine = create_async_engine(
-    "postgresql+asyncpg://user:pass@localhost/app",
-    pool_size=10, max_overflow=20, pool_pre_ping=True,
-)
-AsyncSessionLocal = async_sessionmaker(engine, expire_on_commit=False)
-
-async def get_db():
-    async with AsyncSessionLocal() as session:
-        yield session
-
-AsyncDb = Annotated[AsyncSession, Depends(get_db)]
-
-@app.get("/users/{user_id}", response_model=UserOut)
-async def get_user(user_id: int, db: AsyncDb):
-    user = await db.get(User, user_id)
-    if not user:
-        raise NotFoundError(f"User {user_id} not found")
-    return user
-
-@app.get("/users", response_model=list[UserOut])
-async def list_users(db: AsyncDb, p: Pagination):
-    result = await db.scalars(select(User).offset(p["offset"]).limit(p["limit"]))
-    return result.all()
-
-@app.post("/users", response_model=UserOut, status_code=201)
-async def create_user(data: UserCreate, db: AsyncDb):
-    user = User(**data.model_dump(exclude={"password"}), hashed_password=hash_password(data.password))
-    db.add(user)
-    try:
-        await db.commit()
-    except IntegrityError:
-        await db.rollback()
-        raise ConflictError("Email already registered")
-    await db.refresh(user)
-    return user
-```
-
-Async gotcha: **lazy loading doesn't work** in async (accessing `user.posts` triggers I/O without `await` → error). Always eager-load with `selectinload`/`joinedload`.
-
----
-
-## 17. Migrations with Alembic
-
-**Migrations** version-control your DB schema changes. Never use `Base.metadata.create_all()` in production.
-
-```bash
-uv add alembic
-alembic init -t async alembic       # or `alembic init alembic` for sync
-```
-
-```python
-# alembic/env.py (key lines)
-from app.core.config import get_settings
-from app.db.base import Base
-import app.models                    # import all models so autogenerate sees them
-
-config.set_main_option("sqlalchemy.url", str(get_settings().database_url))
-target_metadata = Base.metadata
-```
-
-```bash
-alembic revision --autogenerate -m "create users and posts"   # generates a migration file — REVIEW IT
-alembic upgrade head                                          # apply
-alembic downgrade -1                                          # roll back one
-alembic history; alembic current
-```
-
-```python
-# alembic/versions/xxxx_add_phone_to_users.py
-def upgrade() -> None:
-    op.add_column("users", sa.Column("phone", sa.String(15), nullable=True))
-    op.create_index("ix_users_phone", "users", ["phone"])
-
-def downgrade() -> None:
-    op.drop_index("ix_users_phone", table_name="users")
-    op.drop_column("users", "phone")
-```
-
-Best practices: review autogenerated migrations, keep them small, make changes **backwards compatible** (expand → migrate data → contract), run migrations in CI/deploy step before starting new app versions.
-
----
-
-## 18. Other Databases: SQLModel & MongoDB (Beanie)
-
-### SQLModel — one class for the table and the schema
-
-**SQLModel** (by FastAPI's author) builds on **SQLAlchemy + Pydantic**: a class can be both a database table and a validation/serialization model, which removes duplication in small/medium apps.
-
-The recommended pattern still uses **separate models per purpose**, but shares fields through inheritance:
-
-```python
-from sqlmodel import SQLModel, Field, Session, create_engine, select
-from fastapi import FastAPI, Depends, HTTPException, Query
-from typing import Annotated
-
-# Shared fields
-class HeroBase(SQLModel):
-    name: str = Field(index=True, min_length=1, max_length=100)
-    age: int | None = Field(default=None, ge=0)
-
-# Table model (table=True → SQLAlchemy table)
-class Hero(HeroBase, table=True):
-    id: int | None = Field(default=None, primary_key=True)
-    secret_name: str                                  # stored, never returned
-
-# API schemas (plain Pydantic models)
-class HeroCreate(HeroBase):
-    secret_name: str
-
-class HeroPublic(HeroBase):
+class ProductOut(BaseModel):
+    model_config = ConfigDict(from_attributes=True)  # read from ORM attributes
     id: int
+    sku: str
+    name: str
+    price: float
+    category_name: str
 
-class HeroUpdate(SQLModel):
-    name: str | None = None
-    age: int | None = None
+    @classmethod
+    def from_orm_product(cls, p: Product) -> "ProductOut":
+        return cls(id=p.id, sku=p.sku, name=p.name, price=p.price, category_name=p.category.name)
 
-engine = create_engine("sqlite:///heroes.db", connect_args={"check_same_thread": False})
-
-def get_session():
-    with Session(engine) as session:
+def get_db():
+    with SessionLocal() as session:
         yield session
 
-SessionDep = Annotated[Session, Depends(get_session)]
+DB = Annotated[Session, Depends(get_db)]
 app = FastAPI()
 
-@app.post("/heroes", response_model=HeroPublic, status_code=201)
-def create_hero(data: HeroCreate, session: SessionDep):
-    hero = Hero.model_validate(data)                  # validate & convert to the table model
-    session.add(hero)
-    session.commit()
-    session.refresh(hero)
-    return hero                                       # secret_name filtered out by HeroPublic
-
-@app.get("/heroes", response_model=list[HeroPublic])
-def list_heroes(session: SessionDep, offset: int = 0, limit: Annotated[int, Query(le=100)] = 20):
-    return session.exec(select(Hero).offset(offset).limit(limit)).all()
-
-@app.patch("/heroes/{hero_id}", response_model=HeroPublic)
-def update_hero(hero_id: int, data: HeroUpdate, session: SessionDep):
-    hero = session.get(Hero, hero_id)
-    if not hero:
-        raise HTTPException(404, "Hero not found")
-    hero.sqlmodel_update(data.model_dump(exclude_unset=True))   # only fields the client sent
-    session.add(hero)
-    session.commit()
-    session.refresh(hero)
-    return hero
-```
-
-**SQLModel vs SQLAlchemy + Pydantic**
-
-| SQLModel | SQLAlchemy 2.0 + separate Pydantic schemas |
-|---|---|
-| Less code, shared fields via inheritance | More explicit, full SQLAlchemy power |
-| Great for small/medium apps & prototypes | Better for large/complex domains, advanced queries |
-| Still uses SQLAlchemy underneath (and Alembic for migrations) | The industry standard, most docs/examples |
-
-Either way: use Alembic migrations, never `SQLModel.metadata.create_all()` in production.
-
----
-
-### MongoDB with Beanie (async ODM)
-
-**Beanie** is an async ODM for MongoDB built on **Pydantic** — documents are Pydantic models, so they plug straight into FastAPI. (The older **Motor** driver is being replaced by PyMongo's native async client; recent Beanie versions support it — check the versions you install.)
-
-```python
-from contextlib import asynccontextmanager
-from datetime import datetime, UTC
-from typing import Annotated
-from beanie import Document, Indexed, PydanticObjectId, init_beanie
-from pydantic import BaseModel, Field
-from pymongo import AsyncMongoClient, ASCENDING, DESCENDING, IndexModel
-
-class Address(BaseModel):                      # embedded document
-    city: str
-    pincode: str
-
-class Product(Document):
-    name: str
-    sku: Annotated[str, Indexed(unique=True)]
-    price_paise: int = Field(gt=0)
-    tags: list[str] = []
-    address: Address | None = None
-    created_at: datetime = Field(default_factory=lambda: datetime.now(UTC))
-
-    class Settings:
-        name = "products"                      # collection name
-        indexes = [IndexModel([("tags", ASCENDING), ("created_at", DESCENDING)])]
-
-class ProductCreate(BaseModel):
-    name: str
-    sku: str
-    price_paise: int = Field(gt=0)
-    tags: list[str] = []
-
-@asynccontextmanager
-async def lifespan(app):
-    client = AsyncMongoClient(settings.mongo_url)
-    await init_beanie(database=client["shop"], document_models=[Product])   # also creates indexes
-    yield
-    await client.close()
-
-app = FastAPI(lifespan=lifespan)
-
-@app.post("/products", response_model=Product, status_code=201)
-async def create_product(data: ProductCreate):
-    return await Product(**data.model_dump()).insert()
-
-@app.get("/products/{product_id}", response_model=Product)
-async def get_product(product_id: PydanticObjectId):          # validates the ObjectId format → 422 if invalid
-    product = await Product.get(product_id)
-    if not product:
-        raise HTTPException(404, "Product not found")
-    return product
-
-@app.get("/products", response_model=list[Product])
-async def search_products(tag: str | None = None, max_price: int | None = None, skip: int = 0, limit: int = 20):
-    query = Product.find()
-    if tag:
-        query = query.find(Product.tags == tag)
-    if max_price is not None:
-        query = query.find(Product.price_paise <= max_price)
-    return await query.sort(-Product.created_at).skip(skip).limit(min(limit, 100)).to_list()
-
-@app.patch("/products/{product_id}/price")
-async def update_price(product_id: PydanticObjectId, price_paise: int):
-    product = await Product.get(product_id)
-    if not product:
-        raise HTTPException(404, "Product not found")
-    await product.set({Product.price_paise: price_paise})   # atomic $set
-    return {"ok": True}
-```
-
-MongoDB + FastAPI tips:
-- Define **indexes** in `Settings` for every query pattern; add unique indexes for natural keys (SKU, email).
-- Return **response models** that hide internal fields; convert `ObjectId` to string (`PydanticObjectId` does it).
-- Embed data read together (addresses, line items); reference data that grows unbounded or is shared.
-- Use **transactions** (replica set required) only when multiple documents must change atomically.
-- Cursor-based pagination (`_id > last_id`) for large collections instead of big `skip` values.
-
-**SQL or MongoDB for a FastAPI app?** Default to **Postgres** (relations, transactions, reporting); choose MongoDB when data is document-shaped, schemas vary a lot, and access patterns are known.
-
-### Interview Qs
-
-1. What is SQLModel and how does it relate to SQLAlchemy and Pydantic?
-2. Why still keep separate Create/Public/Update models with SQLModel?
-3. How do you integrate MongoDB with FastAPI? What is Beanie?
-4. How do you validate MongoDB ObjectIds in path parameters?
-5. Embedding vs referencing in MongoDB?
-
----
-
-## 19. Authentication: OAuth2 + JWT
-
-The standard FastAPI setup: **OAuth2 Password flow** with **JWT bearer tokens**, passwords hashed with **Argon2/bcrypt**.
-
-```bash
-uv add pyjwt "pwdlib[argon2]"      # (older tutorials use python-jose + passlib)
-```
-
-### Security helpers
-
-```python
-# app/core/security.py
-from datetime import datetime, timedelta, UTC
-import jwt
-from pwdlib import PasswordHash
-
-password_hash = PasswordHash.recommended()        # Argon2
-
-def hash_password(plain: str) -> str:
-    return password_hash.hash(plain)
-
-def verify_password(plain: str, hashed: str) -> bool:
-    return password_hash.verify(plain, hashed)
-
-def create_access_token(subject: str, role: str, expires_minutes: int = 15) -> str:
-    now = datetime.now(UTC)
-    payload = {"sub": subject, "role": role, "iat": now, "exp": now + timedelta(minutes=expires_minutes), "type": "access"}
-    return jwt.encode(payload, settings.jwt_secret.get_secret_value(), algorithm=settings.jwt_algorithm)
-
-def decode_token(token: str) -> dict:
+@app.post("/products", status_code=201, response_model=ProductOut)
+def create_product(data: ProductIn, db: DB):
+    category = db.scalar(select(Category).where(Category.name == data.category)) or Category(name=data.category)
+    product = Product(sku=data.sku, name=data.name, price=data.price, category=category)
+    db.add(product)
     try:
-        return jwt.decode(token, settings.jwt_secret.get_secret_value(), algorithms=[settings.jwt_algorithm])
-    except jwt.ExpiredSignatureError:
-        raise HTTPException(401, "Token expired", headers={"WWW-Authenticate": "Bearer"})
-    except jwt.InvalidTokenError:
-        raise HTTPException(401, "Invalid token", headers={"WWW-Authenticate": "Bearer"})
+        db.commit()
+    except IntegrityError:
+        db.rollback()
+        raise HTTPException(409, f"sku {data.sku} already exists")
+    return ProductOut.from_orm_product(product)
+
+@app.get("/products", response_model=list[ProductOut])
+def list_products(db: DB, max_price: float | None = None, limit: Annotated[int, Query(le=100)] = 20):
+    stmt = select(Product).options(selectinload(Product.category)).order_by(Product.price).limit(limit)
+    if max_price is not None:
+        stmt = stmt.where(Product.price <= max_price)
+    return [ProductOut.from_orm_product(p) for p in db.scalars(stmt)]
+
+@app.get("/categories/summary")
+def category_summary(db: DB):
+    rows = db.execute(select(Category.name, func.count(Product.id), func.round(func.avg(Product.price), 2))
+                      .join(Product).group_by(Category.name).order_by(Category.name))
+    return [{"category": n, "products": c, "avg_price": a} for n, c, a in rows]
+
+@app.delete("/products/{product_id}", status_code=204)
+def delete_product(product_id: int, db: DB):
+    product = db.get(Product, product_id)
+    if product is None:
+        raise HTTPException(404, "product not found")
+    db.delete(product)
+    db.commit()
+
+client = TestClient(app)
+for p in [("P1", "Gel pen", 20, "stationery"), ("P2", "Notebook", 60, "stationery"), ("B1", "Backpack", 1299, "bags")]:
+    r = client.post("/products", json=dict(zip(["sku", "name", "price", "category"], p)))
+    print(r.status_code, r.json())
+print(client.post("/products", json={"sku": "P1", "name": "dup", "price": 5, "category": "x"}).json())
+print([p["sku"] for p in client.get("/products?max_price=100").json()])
+print(client.get("/categories/summary").json())
+print(client.delete("/products/2").status_code, client.delete("/products/2").status_code)
 ```
 
-Always pass `algorithms=[...]` explicitly when decoding (prevents algorithm-confusion attacks).
+**Output:**
 
-### Login endpoint & protected routes
+```text
+201 {'id': 1, 'sku': 'P1', 'name': 'Gel pen', 'price': 20.0, 'category_name': 'stationery'}
+201 {'id': 2, 'sku': 'P2', 'name': 'Notebook', 'price': 60.0, 'category_name': 'stationery'}
+201 {'id': 3, 'sku': 'B1', 'name': 'Backpack', 'price': 1299.0, 'category_name': 'bags'}
+{'detail': 'sku P1 already exists'}
+['P1', 'P2']
+[{'category': 'bags', 'products': 1, 'avg_price': 1299.0}, {'category': 'stationery', 'products': 2, 'avg_price': 40.0}]
+204 404
+```
+
+The duplicate SKU was caught by the database's unique constraint and turned into a 409. With `from_attributes=True`, an endpoint whose output fields match the ORM attributes can simply `return product`; here a small classmethod also flattens the related category's name into the response.
+
+**Common mistakes:**
+
+- ❌ One global session shared by all requests (not thread-safe; transactions leak between users).
+- ❌ N+1 queries: accessing `product.category` in a loop triggers one query per product; use `selectinload`/`joinedload`.
+- ❌ Returning ORM objects with lazy relationships after the session closed (`DetachedInstanceError`); load what you need first.
+- ❌ `create_all` in production instead of migrations.
+- ❌ Forgetting that the check-then-insert race needs a unique constraint (handle `IntegrityError`).
+
+### Practice
+
+1. Add `PATCH /products/{product_id}` with a `ProductUpdate` model (optional `name`, `price` > 0) that only changes sent fields, and returns 404 for unknown ids.
+
+<details>
+<summary><b>Answer</b></summary>
 
 ```python
-from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
+class ProductUpdate(BaseModel):
+    name: str | None = None
+    price: float | None = Field(default=None, gt=0)
 
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/auth/token")   # enables the "Authorize" button in /docs
+@app.patch("/products/{product_id}", response_model=ProductOut)
+def update_product(product_id: int, changes: ProductUpdate, db: DB):
+    product = db.get(Product, product_id)
+    if product is None:
+        raise HTTPException(404, "product not found")
+    for field, value in changes.model_dump(exclude_unset=True).items():
+        setattr(product, field, value)
+    db.commit()
+    return ProductOut.from_orm_product(product)
+
+print(client.patch("/products/1", json={"price": 25}).json(), client.patch("/products/99", json={}).status_code)
+```
+
+**Output:**
+
+```text
+{'id': 1, 'sku': 'P1', 'name': 'Gel pen', 'price': 25.0, 'category_name': 'stationery'} 404
+```
+
+</details>
+
+**Learn more:** [SQLAlchemy 2.0 unified tutorial](https://docs.sqlalchemy.org/en/20/tutorial/) · [FastAPI: SQL databases (SQLModel)](https://fastapi.tiangolo.com/tutorial/sql-databases/) · [SQLAlchemy: relationship loading techniques](https://docs.sqlalchemy.org/en/20/orm/queryguide/relationships.html)
+
+---
+
+## 15. Async Databases, Transactions, Repositories and Migrations
+
+### Theory
+
+> **In simple words:** with `async def` endpoints you want an **async** database driver, so waiting for the database doesn't block the event loop. Beyond that, a production database layer needs **transactions** that group changes safely, a **repository/service** structure so SQL doesn't leak everywhere, **connection pooling** tuned for your workers, and **migrations** (Alembic) so the schema can change over time without losing data.
+
+**Async SQLAlchemy:** `create_async_engine("postgresql+asyncpg://...")` (or `sqlite+aiosqlite://` for tests), `async_sessionmaker`, `AsyncSession`, and `await session.execute(...)`, `await session.commit()`. Relationships must be loaded eagerly (`selectinload`), because lazy loading would need an implicit `await`.
+
+**Transactions:** `async with session.begin():` commits at the end of the block or rolls back on any exception. Put **one business operation** (e.g. "place order": reserve stock + create order + record payment intent) in **one** transaction. Use row locks (`with_for_update()`) or optimistic concurrency (a `version` column) when two requests may change the same row (stock, balances).
+
+**Repository and service layers:**
+
+| Layer | Knows about | Example |
+|---|---|---|
+| Router | HTTP (status codes, request/response models) | `POST /orders` → calls `OrderService.place(...)` |
+| Service | Business rules, transactions | "can't order more than stock", "apply coupon" |
+| Repository | SQL/ORM queries | `get_by_sku`, `list_for_customer`, `add` |
+
+This keeps each piece small and testable (services can be tested with a fake repository).
+
+**Connection pools:** each worker process has a pool (`pool_size`, `max_overflow`). Total connections = workers × (pool_size + max_overflow) must stay below the database's limit; use **PgBouncer** in front of PostgreSQL for many workers or serverless. Set `pool_pre_ping=True` to survive dropped connections.
+
+**Migrations with Alembic:**
+
+```text
+uv add alembic
+alembic init -t async migrations           # creates alembic.ini and migrations/env.py (point it at Base.metadata)
+alembic revision --autogenerate -m "add orders table"   # compares models with the database, writes a script
+alembic upgrade head                       # apply; `alembic downgrade -1` to roll back
+```
+
+Always **review** autogenerated scripts (renames look like drop + add, which loses data), run migrations as a separate deploy step (not at app start-up with many replicas), and prefer backwards-compatible changes (add a nullable column, deploy code, backfill, then add constraints: "expand and contract").
+
+### Python
+
+Async SQLAlchemy with a service/repository split and a transaction that either fully succeeds or fully rolls back:
+
+```python
+import asyncio
+from sqlalchemy import CheckConstraint, ForeignKey, select
+from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
+from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
+
+class Base(DeclarativeBase):
+    pass
+
+class Stock(Base):
+    __tablename__ = "stock"
+    __table_args__ = (CheckConstraint("quantity >= 0", name="non_negative"),)
+    sku: Mapped[str] = mapped_column(primary_key=True)
+    quantity: Mapped[int]
+
+class Order(Base):
+    __tablename__ = "orders"
+    id: Mapped[int] = mapped_column(primary_key=True)
+    sku: Mapped[str] = mapped_column(ForeignKey("stock.sku"))
+    qty: Mapped[int]
+
+class OutOfStock(Exception):
+    pass
+
+class StockRepository:
+    def __init__(self, session: AsyncSession):
+        self.session = session
+    async def get_for_update(self, sku: str) -> Stock | None:
+        return await self.session.scalar(select(Stock).where(Stock.sku == sku).with_for_update())
+
+class OrderService:
+    def __init__(self, session: AsyncSession):
+        self.session, self.stock = session, StockRepository(session)
+    async def place(self, sku: str, qty: int) -> int:
+        async with self.session.begin():                   # one transaction for the whole operation
+            item = await self.stock.get_for_update(sku)      # locks the row in PostgreSQL (no-op in SQLite)
+            if item is None or item.quantity < qty:
+                raise OutOfStock(f"not enough {sku}")
+            item.quantity -= qty
+            order = Order(sku=sku, qty=qty)
+            self.session.add(order)
+            await self.session.flush()                       # get the generated id
+            return order.id
+
+async def main():
+    engine = create_async_engine("sqlite+aiosqlite://")
+    async with engine.begin() as conn:
+        await conn.run_sync(Base.metadata.create_all)
+    Session = async_sessionmaker(engine, expire_on_commit=False)
+    async with Session() as s, s.begin():
+        s.add_all([Stock(sku="P1", quantity=5), Stock(sku="P2", quantity=1)])
+
+    async with Session() as session:
+        print("order id:", await OrderService(session).place("P1", 3))
+    async with Session() as session:
+        try:
+            await OrderService(session).place("P1", 3)          # only 2 left
+        except OutOfStock as e:
+            print("rejected:", e)
+    async with Session() as session:
+        stock = {s.sku: s.quantity for s in await session.scalars(select(Stock))}
+        orders = (await session.scalars(select(Order))).all()
+        print(stock, [(o.id, o.sku, o.qty) for o in orders])
+    await engine.dispose()
+
+asyncio.run(main())
+```
+
+**Output:**
+
+```text
+order id: 1
+rejected: not enough P1
+{'P1': 2, 'P2': 1} [(1, 'P1', 3)]
+```
+
+The failed order changed nothing: the transaction rolled back, so stock and orders stay consistent. In FastAPI, the service is created from a session dependency (`async def get_session(): async with Session() as s: yield s`).
+
+**Common mistakes:**
+
+- ❌ A sync driver/session inside `async def` endpoints (blocks the loop).
+- ❌ Several commits inside one business operation (partial updates on failure).
+- ❌ Check-then-update races on stock/balances without locks, constraints or version checks.
+- ❌ Pools that exceed the database's connection limit when you scale out.
+- ❌ Running unreviewed autogenerated migrations, or migrating at start-up in every replica.
+
+### Practice
+
+1. Add a `restock(sku, qty)` method to `OrderService` (in a transaction, qty must be positive) and use it to add 10 units of P2, then place an order for 4 units of P2.
+
+<details>
+<summary><b>Answer</b></summary>
+
+```python
+async def restock(session: AsyncSession, sku: str, qty: int) -> int:
+    if qty <= 0:
+        raise ValueError("qty must be positive")
+    async with session.begin():
+        item = await StockRepository(session).get_for_update(sku)
+        item.quantity += qty
+        return item.quantity
+
+async def practice():
+    engine = create_async_engine("sqlite+aiosqlite://")
+    async with engine.begin() as conn:
+        await conn.run_sync(Base.metadata.create_all)
+    Session = async_sessionmaker(engine, expire_on_commit=False)
+    async with Session() as s, s.begin():
+        s.add(Stock(sku="P2", quantity=1))
+    async with Session() as s:
+        print("P2 now:", await restock(s, "P2", 10))
+    async with Session() as s:
+        print("order id:", await OrderService(s).place("P2", 4))
+    async with Session() as s:
+        print("P2 left:", (await s.get(Stock, "P2")).quantity)
+    await engine.dispose()
+
+asyncio.run(practice())
+```
+
+**Output:**
+
+```text
+P2 now: 11
+order id: 1
+P2 left: 7
+```
+
+</details>
+
+**Learn more:** [SQLAlchemy: asyncio support](https://docs.sqlalchemy.org/en/20/orm/extensions/asyncio.html) · [Alembic tutorial](https://alembic.sqlalchemy.org/en/latest/tutorial.html) · [Martin Fowler: repository pattern](https://martinfowler.com/eaaCatalog/repository.html)
+
+---
+
+## 16. Authentication: Password Hashing, JWT and OAuth2
+
+![The login flow: the client posts username and password to /token; the server verifies the password hash and returns a signed JWT access token; the client sends it as a Bearer header on later requests; a dependency verifies the signature and expiry and loads the user](images/fastapi/03-auth-flow.svg)
+
+### Theory
+
+> **In simple words:** **authentication** answers "who are you?". The usual flow for APIs: the user logs in once with username and password; the server checks the password against a stored **hash** (never the password itself) and gives back a signed **access token**; the client sends that token with every later request (`Authorization: Bearer <token>`), and a dependency checks it. The token is usually a **JWT**: a small signed JSON document saying who the user is and when the token expires.
+
+**Storing passwords:** never store plain passwords or fast hashes (MD5, SHA-256). Use a slow, salted **password hashing** algorithm: **Argon2id** (recommended) or bcrypt, via `pwdlib` (the library FastAPI's docs now use; `passlib` is unmaintained). Verification recomputes the hash and compares.
+
+**JWT (JSON Web Token):** `header.payload.signature`, base64-encoded. The payload has **claims**: `sub` (user id), `exp` (expiry), `iat` (issued at), optionally `scope`/`roles`, `iss`/`aud`. It's **signed** (HS256 with a secret, or RS256/ES256 with a private key), not encrypted: anyone can read it, nobody can change it without the key. Libraries: `PyJWT`, `joserfc`.
+
+**Token strategy:**
+
+| Token | Lifetime | Stored |
+|---|---|---|
+| Access token (JWT) | Short: 5–15 minutes | Memory in the client; sent as `Bearer` header |
+| Refresh token | Long: days–weeks, **rotated** on each use, revocable in the database | An `HttpOnly`, `Secure`, `SameSite` cookie (web) or secure storage (mobile) |
+
+Short access tokens limit damage if one leaks; refresh tokens let users stay logged in and can be revoked (logout, stolen device).
+
+**FastAPI helpers:** `OAuth2PasswordBearer(tokenUrl="token")` reads the Bearer token (and adds the "Authorize" button to `/docs`); `OAuth2PasswordRequestForm` reads the login form (`username`, `password`). Other schemes: `APIKeyHeader` (service-to-service keys), `HTTPBasic`.
+
+**Don't build everything yourself when you don't have to:** for social login, SSO, MFA and passkeys use an identity provider (Auth0, Clerk, Cognito, Keycloak, Supabase/Firebase Auth) with OpenID Connect, and have FastAPI only **verify** their tokens (check signature via the provider's JWKS, `iss`, `aud`, `exp`).
+
+### Python
+
+```python
+from datetime import UTC, datetime, timedelta
+from typing import Annotated
+import jwt
+from fastapi import Depends, FastAPI, HTTPException, status
+from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
+from fastapi.testclient import TestClient
+from pwdlib import PasswordHash
+from pydantic import BaseModel
+
+SECRET_KEY = "change-me-to-a-long-random-value"      # from settings/secret manager in real apps
+ALGORITHM = "HS256"
+ACCESS_MINUTES = 15
+password_hash = PasswordHash.recommended()          # Argon2id
+
+USERS = {"asha": {"username": "asha", "full_name": "Asha Rao", "hashed_password": password_hash.hash("correct-horse-9"), "disabled": False},
+         "ravi": {"username": "ravi", "full_name": "Ravi K", "hashed_password": password_hash.hash("another-pass-2"), "disabled": True}}
+print(USERS["asha"]["hashed_password"][:30] + "…")   # salted Argon2 hash, never the password
 
 class Token(BaseModel):
     access_token: str
     token_type: str = "bearer"
 
-@router.post("/auth/token", response_model=Token)
-def login(form: Annotated[OAuth2PasswordRequestForm, Depends()], db: DbSession):
-    user = db.scalar(select(User).where(User.email == form.username))   # OAuth2 form uses "username"
-    if not user or not verify_password(form.password, user.hashed_password):
-        raise HTTPException(401, "Incorrect email or password", headers={"WWW-Authenticate": "Bearer"})
-    return Token(access_token=create_access_token(str(user.id), user.role))
+class User(BaseModel):
+    username: str
+    full_name: str
 
-def get_current_user(token: Annotated[str, Depends(oauth2_scheme)], db: DbSession) -> User:
-    payload = decode_token(token)
-    if payload.get("type") != "access":
-        raise HTTPException(401, "Invalid token type")
-    user = db.get(User, int(payload["sub"]))
-    if user is None or not user.is_active:
-        raise HTTPException(401, "User not found or inactive")
+def create_access_token(username: str, now: datetime | None = None) -> str:
+    now = now or datetime.now(UTC)
+    payload = {"sub": username, "iat": now, "exp": now + timedelta(minutes=ACCESS_MINUTES)}
+    return jwt.encode(payload, SECRET_KEY, algorithm=ALGORITHM)
+
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
+CREDENTIALS_ERROR = HTTPException(status.HTTP_401_UNAUTHORIZED, "could not validate credentials",
+                                  headers={"WWW-Authenticate": "Bearer"})
+
+def get_current_user(token: Annotated[str, Depends(oauth2_scheme)]) -> User:
+    try:
+        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])   # checks signature AND expiry
+    except jwt.ExpiredSignatureError:
+        raise HTTPException(401, "token expired", headers={"WWW-Authenticate": "Bearer"})
+    except jwt.InvalidTokenError:
+        raise CREDENTIALS_ERROR
+    user = USERS.get(payload.get("sub", ""))
+    if user is None or user["disabled"]:
+        raise CREDENTIALS_ERROR
+    return User(**user)
+
+app = FastAPI()
+
+@app.post("/token", response_model=Token)
+def login(form: Annotated[OAuth2PasswordRequestForm, Depends()]):
+    user = USERS.get(form.username)
+    # same error for "no such user" and "wrong password": don't reveal which usernames exist
+    if not user or not password_hash.verify(form.password, user["hashed_password"]) or user["disabled"]:
+        raise HTTPException(401, "incorrect username or password", headers={"WWW-Authenticate": "Bearer"})
+    return Token(access_token=create_access_token(user["username"]))
+
+@app.get("/me", response_model=User)
+def me(user: Annotated[User, Depends(get_current_user)]):
     return user
 
-CurrentUser = Annotated[User, Depends(get_current_user)]
+client = TestClient(app)
+r = client.post("/token", data={"username": "asha", "password": "correct-horse-9"})
+token = r.json()["access_token"]
+print(r.status_code, r.json()["token_type"], token.count("."), "dots (header.payload.signature)")
+print(jwt.decode(token, options={"verify_signature": False})["sub"])          # anyone can READ the payload
+print(client.get("/me", headers={"Authorization": f"Bearer {token}"}).json())
+print(client.post("/token", data={"username": "asha", "password": "wrong"}).json())
+print(client.post("/token", data={"username": "ravi", "password": "another-pass-2"}).status_code)   # disabled
+print(client.get("/me").status_code, client.get("/me").headers["www-authenticate"])
 
-@router.get("/users/me", response_model=UserOut)
-def read_me(user: CurrentUser):
-    return user
+forged = token[:-4] + ("AAAA" if not token.endswith("AAAA") else "BBBB")     # tamper with the signature
+print(client.get("/me", headers={"Authorization": f"Bearer {forged}"}).json())
+old = create_access_token("asha", now=datetime.now(UTC) - timedelta(hours=1))
+print(client.get("/me", headers={"Authorization": f"Bearer {old}"}).json())
 ```
 
-To avoid **timing-based user enumeration**, run a dummy password verify even when the user doesn't exist.
+**Output:**
 
-### Register
+```text
+$argon2id$v=19$m=65536,t=3,p=4…
+200 bearer 2 dots (header.payload.signature)
+asha
+{'username': 'asha', 'full_name': 'Asha Rao'}
+{'detail': 'incorrect username or password'}
+401
+401 Bearer
+{'detail': 'could not validate credentials'}
+{'detail': 'token expired'}
+```
+
+**Common mistakes:**
+
+- ❌ Storing passwords in plain text or with fast hashes; use Argon2id/bcrypt.
+- ❌ Long-lived access tokens with no way to revoke them.
+- ❌ Putting secrets or personal data in the JWT payload (it's readable by anyone).
+- ❌ Hard-coded or short `SECRET_KEY`s, or accepting `alg: none`/unexpected algorithms (always pass `algorithms=[...]`).
+- ❌ Error messages that reveal whether a username exists; no rate limiting on login (credential stuffing).
+- ❌ Storing tokens in `localStorage` in browsers (exposed to XSS); prefer HttpOnly cookies for web sessions.
+
+### Practice
+
+1. Add a `POST /register` endpoint that hashes the password, rejects duplicate usernames with 409 and passwords shorter than 10 characters with 422, then log in as the new user and call `/me`.
+
+<details>
+<summary><b>Answer</b></summary>
 
 ```python
-@router.post("/auth/register", response_model=UserOut, status_code=201)
-def register(data: UserCreate, db: DbSession):
-    if db.scalar(select(User).where(User.email == data.email)):
-        raise HTTPException(409, "Email already registered")
-    user = User(email=data.email, name=data.name, hashed_password=hash_password(data.password))
-    db.add(user); db.commit(); db.refresh(user)
-    return user
+from pydantic import Field
+
+class RegisterIn(BaseModel):
+    username: str = Field(pattern="^[a-z0-9_]{3,20}$")
+    full_name: str
+    password: str = Field(min_length=10)
+
+@app.post("/register", status_code=201, response_model=User)
+def register(data: RegisterIn):
+    if data.username in USERS:
+        raise HTTPException(409, "username taken")
+    USERS[data.username] = {"username": data.username, "full_name": data.full_name,
+                            "hashed_password": password_hash.hash(data.password), "disabled": False}
+    return User(**USERS[data.username])
+
+print(client.post("/register", json={"username": "meera", "full_name": "Meera S", "password": "long-enough-1"}).json())
+print(client.post("/register", json={"username": "meera", "full_name": "M", "password": "long-enough-1"}).status_code,
+      client.post("/register", json={"username": "zoya", "full_name": "Z", "password": "short"}).status_code)
+t = client.post("/token", data={"username": "meera", "password": "long-enough-1"}).json()["access_token"]
+print(client.get("/me", headers={"Authorization": f"Bearer {t}"}).json())
 ```
 
-### Refresh tokens (HttpOnly cookie)
+**Output:**
 
-```python
-@router.post("/auth/login")
-def login_cookie(form: Annotated[OAuth2PasswordRequestForm, Depends()], response: Response, db: DbSession):
-    user = authenticate(db, form.username, form.password)
-    refresh = create_refresh_token(str(user.id), token_version=user.token_version)   # e.g. 7 days, type="refresh"
-    response.set_cookie("refresh_token", refresh, httponly=True, secure=True, samesite="strict",
-                        path="/auth/refresh", max_age=7 * 24 * 3600)
-    return {"access_token": create_access_token(str(user.id), user.role), "token_type": "bearer"}
-
-@router.post("/auth/refresh")
-def refresh(response: Response, db: DbSession, refresh_token: Annotated[str | None, Cookie()] = None):
-    if not refresh_token:
-        raise HTTPException(401, "Missing refresh token")
-    payload = decode_token(refresh_token)
-    user = db.get(User, int(payload["sub"]))
-    if not user or payload.get("type") != "refresh" or payload.get("ver") != user.token_version:
-        raise HTTPException(401, "Refresh token revoked")
-    # rotate: issue a new refresh token too
-    ...
+```text
+{'username': 'meera', 'full_name': 'Meera S'}
+409 422
+{'username': 'meera', 'full_name': 'Meera S'}
 ```
 
-Logout-everywhere: increment `user.token_version` → all old refresh tokens become invalid.
+</details>
 
-### API keys (service-to-service)
-
-```python
-from fastapi.security import APIKeyHeader
-import secrets
-
-api_key_header = APIKeyHeader(name="X-API-Key")
-
-def verify_api_key(key: Annotated[str, Depends(api_key_header)]):
-    if not secrets.compare_digest(key, settings.internal_api_key.get_secret_value()):   # constant-time compare
-        raise HTTPException(403, "Invalid API key")
-```
+**Learn more:** [FastAPI: OAuth2 with password and JWT](https://fastapi.tiangolo.com/tutorial/security/oauth2-jwt/) · [OWASP: password storage cheat sheet](https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html) · [PyJWT](https://pyjwt.readthedocs.io/) · [pwdlib](https://frankie567.github.io/pwdlib/)
 
 ---
 
-## 20. Authorization: Roles, Scopes, Ownership
+## 17. Authorisation: Roles, Permissions, Ownership and Multi-Tenancy
 
-```python
-# Role-based
-def require_roles(*roles: str):
-    def checker(user: CurrentUser) -> User:
-        if user.role not in roles:
-            raise HTTPException(403, "Insufficient permissions")
-        return user
-    return checker
+### Theory
 
-@router.delete("/users/{user_id}", status_code=204, dependencies=[Depends(require_roles("admin"))])
-def delete_user(user_id: int, db: DbSession): ...
+> **In simple words:** **authentication** proves who you are; **authorisation** decides what you're **allowed** to do. A logged-in customer may read **their own** orders but not anyone else's; a support agent may refund; only an admin may delete products. Broken authorisation is the **number one** API security problem (OWASP API1: *Broken Object Level Authorization*), because it's easy to check "is logged in" and forget "owns this object".
 
-# Ownership (prevents IDOR — accessing someone else's resource by changing the ID)
-@router.patch("/posts/{post_id}", response_model=PostOut)
-def update_post(post_id: int, data: PostUpdate, user: CurrentUser, db: DbSession):
-    post = db.get(Post, post_id)
-    if not post:
-        raise HTTPException(404, "Post not found")
-    if post.author_id != user.id and user.role != "admin":
-        raise HTTPException(403, "Not your post")        # or 404 to hide existence
-    for k, v in data.model_dump(exclude_unset=True).items():
-        setattr(post, k, v)
-    db.commit(); db.refresh(post)
-    return post
-```
+**Three layers of checks:**
 
-OAuth2 **scopes** (`Security(get_current_user, scopes=["items:write"])` + `SecurityScopes`) are available for fine-grained permissions shown in the docs.
+| Check | Question | Example |
+|---|---|---|
+| **Function level** (roles/permissions) | May this kind of user call this endpoint at all? | Only `admin` can `DELETE /products/{id}` |
+| **Object level** (ownership) | May this user touch **this particular** object? | Order 90312 belongs to Asha, so Ravi gets 404 |
+| **Field level** | May this user read or change this field? | Customers can't set `status` or `discount` on their orders |
 
-**Rule**: every route that touches user data must check both authentication (who) and authorization (allowed?). Filter queries by the owner: `select(Order).where(Order.user_id == user.id)`.
+**Models of permissions:**
 
----
+- **RBAC** (role-based): users have roles, roles have permissions (`orders:refund`). Simple and common.
+- **Scopes** (OAuth2): the token carries what it may do (`orders:read`), good for third-party and machine clients.
+- **ABAC / policy engines** (attribute-based: "managers can approve refunds under ₹10,000 in their own region"): for complex rules, tools like Oso, Cerbos, OpenFGA or OPA.
 
-## 21. Multi-Tenancy & API Versioning
+**Implementation rules:**
 
-### Part 1 — Multi-tenancy (SaaS)
+- Enforce in **dependencies** or a **service/policy layer**, not scattered `if` statements; deny by default.
+- **Scope every query to the user** (`WHERE customer_id = :current_user`) instead of fetching by id and checking afterwards; it can't be forgotten in one code path.
+- Return **404** (not 403) for objects the user shouldn't know exist.
+- **Multi-tenancy** (SaaS with many companies): every row carries a `tenant_id`, taken from the **token**, never from the request body; every query filters by it (or use PostgreSQL row-level security, `sql-postgresql.md`).
 
-A **multi-tenant** app serves many customers (**tenants** — companies, workspaces, schools) from one deployment, while keeping each tenant's data **isolated**. A single missing filter can leak one company's data to another — the most serious bug a SaaS can have.
-
-#### Isolation models
-
-| Model | How | Pros | Cons |
-|---|---|---|---|
-| **Shared tables** (`tenant_id` column) | Every row has `tenant_id`; every query filters by it | Cheapest, simplest ops, easy analytics | Leak risk if a filter is missed → needs strong guardrails |
-| **Schema per tenant** (Postgres schemas) | Same DB, separate schema per tenant | Better isolation, per-tenant backup possible | Migrations × N schemas, connection/search_path handling |
-| **Database per tenant** | Separate DB (or cluster) per tenant | Strongest isolation, per-tenant scaling/compliance | Expensive, complex ops at scale |
-
-Most SaaS products start with **shared tables + strong guardrails**, and move big/regulated customers to dedicated databases later.
-
-#### Resolving the current tenant
-
-- ✅ From the **authenticated user/token** (JWT claim or the user's DB record) — the source of truth.
-- ✅ **Subdomain** (`acme.app.com`) or path (`/t/acme/...`) — then **verify the user belongs to that tenant**.
-- ⚠️ `X-Tenant-ID` header — only for trusted internal services; never trust it alone from browsers.
-
-#### Implementation: shared tables with automatic filtering
-
-Guardrail 1: the tenant comes from the user, via a dependency. Guardrail 2: **every ORM query is filtered automatically**, so forgetting a `where(tenant_id == ...)` can't leak data. The tenant is stored on the **session** (`Session.info`), so every query made with that session is scoped.
+### Python
 
 ```python
 from typing import Annotated
-from fastapi import Depends, FastAPI, HTTPException
-from sqlalchemy import String, UniqueConstraint, create_engine, event, select
-from sqlalchemy.orm import DeclarativeBase, Mapped, Session, mapped_column, sessionmaker, with_loader_criteria
-from sqlalchemy.pool import StaticPool
-
-class Base(DeclarativeBase): ...
-
-class TenantScoped:
-    """Mixin: every model with tenant_id is filtered automatically."""
-    tenant_id: Mapped[int] = mapped_column(index=True)
-
-class Project(TenantScoped, Base):
-    __tablename__ = "projects"
-    __table_args__ = (UniqueConstraint("tenant_id", "name"),)   # uniqueness is PER TENANT
-    id: Mapped[int] = mapped_column(primary_key=True)
-    name: Mapped[str] = mapped_column(String(100))
-
-# In-memory SQLite for the demo (StaticPool = one shared connection). Use Postgres in production.
-engine = create_engine("sqlite://", connect_args={"check_same_thread": False}, poolclass=StaticPool)
-SessionLocal = sessionmaker(bind=engine)
-
-@event.listens_for(Session, "do_orm_execute")
-def _add_tenant_filter(execute_state):
-    tenant_id = execute_state.session.info.get("tenant_id")
-    if execute_state.is_select and tenant_id is not None:
-        execute_state.statement = execute_state.statement.options(
-            with_loader_criteria(TenantScoped, lambda cls: cls.tenant_id == tenant_id, include_aliases=True)
-        )
-
-# --- dependencies ---
-def get_current_user():                        # real app: decode JWT (see Authentication)
-    return {"id": 1, "tenant_id": 10}
-
-def tenant_session(user: Annotated[dict, Depends(get_current_user)]):
-    db = SessionLocal(info={"tenant_id": user["tenant_id"]})   # every query on this session is scoped
-    try:
-        yield db
-    finally:
-        db.close()
-
-TenantDb = Annotated[Session, Depends(tenant_session)]
-CurrentUser = Annotated[dict, Depends(get_current_user)]
-app = FastAPI()
-
-@app.post("/projects", status_code=201)
-def create_project(name: str, db: TenantDb, user: CurrentUser):
-    project = Project(name=name, tenant_id=user["tenant_id"])   # tenant set from the USER, never from input
-    db.add(project)
-    db.commit()
-    return {"id": project.id, "name": project.name}
-
-@app.get("/projects")
-def list_projects(db: TenantDb):
-    return [{"id": p.id, "name": p.name} for p in db.scalars(select(Project).order_by(Project.id))]   # filtered automatically
-
-@app.get("/projects/{project_id}")
-def get_project(project_id: int, db: TenantDb):
-    project = db.scalar(select(Project).where(Project.id == project_id))
-    if project is None:
-        raise HTTPException(404, "Project not found")            # other tenants' IDs look like 404
-    return {"id": project.id, "name": project.name}
-```
-
-**Why not a `ContextVar` set in the dependency?** FastAPI runs a plain-`def` generator dependency's setup and teardown in **different threadpool contexts**, so `var.reset(token)` after `yield` fails ("Token was created in a different Context"), and a value set there isn't reliably visible in the route. Attaching the tenant to the session (or passing it explicitly) avoids that. (In `async def` dependencies contextvars behave as expected, but explicit is still clearer.)
-
-Note: `db.get(Model, id)` may return an object from the session identity map without running a SELECT — use `select(...)` (or check `tenant_id`) for tenant-scoped lookups.
-
-#### Defence in depth: Postgres Row-Level Security (RLS)
-
-```sql
-ALTER TABLE projects ENABLE ROW LEVEL SECURITY;
-CREATE POLICY tenant_isolation ON projects
-  USING (tenant_id = current_setting('app.current_tenant')::int);
--- per request/transaction:  SET LOCAL app.current_tenant = '10';
-```
-
-Even if application code forgets a filter, the database refuses to return other tenants' rows (the app must connect as a non-owner role without `BYPASSRLS`).
-
-#### Multi-tenancy checklist
-
-- [ ] Tenant derived from the authenticated user; membership verified for subdomain/path tenants
-- [ ] Automatic query filtering (ORM criteria) + RLS for critical tables
-- [ ] Unique constraints and indexes include `tenant_id` (`(tenant_id, email)`)
-- [ ] **Tests that try to read/update another tenant's data** and expect 404/403
-- [ ] Cache keys, file storage paths, search indexes and queues all include the tenant
-- [ ] Background jobs carry `tenant_id` explicitly (context vars don't cross process boundaries)
-- [ ] Per-tenant rate limits & quotas (noisy-neighbour protection)
-- [ ] Tenant-aware logging/metrics; admin "impersonation" audited
-- [ ] Data export & deletion per tenant (GDPR, offboarding)
-
----
-
-### Part 2 — API versioning
-
-Once clients (mobile apps, partners) depend on your API, you can't change it freely: old mobile app versions stay installed for years.
-
-#### Breaking vs non-breaking changes
-
-| Non-breaking (safe) | Breaking (needs a new version) |
-|---|---|
-| Add a new endpoint | Remove/rename an endpoint or field |
-| Add an **optional** request field | Add a **required** request field |
-| Add a field to a response | Change a field's type/format/meaning |
-| Add a new enum value* | Change status codes or error format |
-| Relax validation | Tighten validation, change auth requirements |
-
-\*Only if clients handle unknown values gracefully — document that they must.
-
-#### Strategies
-
-| Strategy | Example | Notes |
-|---|---|---|
-| **URL path** | `/api/v1/users` | Most common, obvious, easy to route & cache |
-| Header | `X-API-Version: 2` / `Accept: application/vnd.shop.v2+json` | Clean URLs, harder to test in a browser |
-| Query param | `/users?version=2` | Simple but easy to forget |
-| Date-based (Stripe style) | `Stripe-Version: 2025-06-30` pinned per account | Fine-grained; needs transformation layers |
-
-#### URL versioning in FastAPI
-
-```python
-from fastapi import APIRouter, FastAPI, Response
+from fastapi import Depends, FastAPI, Header, HTTPException
+from fastapi.testclient import TestClient
 from pydantic import BaseModel
 
-# One service/data layer shared by all versions
-USERS = {1: {"id": 1, "first_name": "Rohit", "last_name": "Dahiya", "email": "r@x.com"}}
+USERS = {  # token → user (from the JWT in a real app)
+    "t-asha": {"id": 1, "name": "Asha", "tenant": "shopkart", "role": "customer"},
+    "t-ravi": {"id": 2, "name": "Ravi", "tenant": "shopkart", "role": "customer"},
+    "t-sam":  {"id": 3, "name": "Sam", "tenant": "shopkart", "role": "support"},
+    "t-zed":  {"id": 4, "name": "Zed", "tenant": "othershop", "role": "admin"},
+}
+ROLE_PERMISSIONS = {"customer": {"orders:read_own"}, "support": {"orders:read_any", "orders:refund"},
+                    "admin": {"orders:read_any", "orders:refund", "products:delete"}}
+ORDERS = {90312: {"id": 90312, "tenant": "shopkart", "customer_id": 1, "total": 998, "status": "paid"},
+          90313: {"id": 90313, "tenant": "shopkart", "customer_id": 2, "total": 150, "status": "paid"}}
 
-class UserV1(BaseModel):          # v1 contract: single "name" field
-    id: int
-    name: str
-    email: str
+def current_user(authorization: Annotated[str, Header()]) -> dict:
+    user = USERS.get(authorization.removeprefix("Bearer "))
+    if user is None:
+        raise HTTPException(401, "not authenticated")
+    return user
 
-class UserV2(BaseModel):          # v2 contract: split names
-    id: int
-    first_name: str
-    last_name: str
-    email: str
+User = Annotated[dict, Depends(current_user)]
 
-v1 = APIRouter(prefix="/api/v1", tags=["v1"])
-v2 = APIRouter(prefix="/api/v2", tags=["v2"])
+def require(permission: str):
+    def check(user: User) -> dict:
+        if permission not in ROLE_PERMISSIONS[user["role"]]:
+            raise HTTPException(403, f"missing permission {permission}")
+        return user
+    return check
 
-@v1.get("/users/{user_id}", response_model=UserV1, deprecated=True)     # shown as deprecated in /docs
-def get_user_v1(user_id: int, response: Response):
-    u = USERS[user_id]
-    response.headers["Deprecation"] = "true"
-    response.headers["Sunset"] = "Wed, 31 Dec 2026 23:59:59 GMT"         # when v1 will be removed
-    response.headers["Link"] = '</api/v2/users>; rel="successor-version"'
-    return {"id": u["id"], "name": f'{u["first_name"]} {u["last_name"]}', "email": u["email"]}
-
-@v2.get("/users/{user_id}", response_model=UserV2)
-def get_user_v2(user_id: int):
-    return USERS[user_id]
+def visible_orders(user: dict):
+    """The ONE place that decides which orders a user can see (tenant + ownership)."""
+    mine = [o for o in ORDERS.values() if o["tenant"] == user["tenant"]]
+    if "orders:read_any" in ROLE_PERMISSIONS[user["role"]]:
+        return mine
+    return [o for o in mine if o["customer_id"] == user["id"]]
 
 app = FastAPI()
-app.include_router(v1)
-app.include_router(v2)
+
+@app.get("/orders")
+def list_orders(user: User):
+    return [o["id"] for o in visible_orders(user)]
+
+@app.get("/orders/{order_id}")
+def get_order(order_id: int, user: User):
+    order = next((o for o in visible_orders(user) if o["id"] == order_id), None)
+    if order is None:
+        raise HTTPException(404, "order not found")      # not 403: don't reveal that it exists
+    return order
+
+class RefundIn(BaseModel):
+    model_config = {"extra": "forbid"}                   # field level: clients can't sneak in other fields
+    amount: float
+
+@app.post("/orders/{order_id}/refund")
+def refund(order_id: int, body: RefundIn, staff: Annotated[dict, Depends(require("orders:refund"))]):
+    order = get_order(order_id, staff)                   # reuse the scoped lookup
+    if body.amount > order["total"]:
+        raise HTTPException(422, "refund larger than order total")
+    return {"order": order_id, "refunded": body.amount, "by": staff["name"]}
+
+c = TestClient(app)
+h = lambda token: {"Authorization": f"Bearer {token}"}
+print("Asha sees", c.get("/orders", headers=h("t-asha")).json(), "| Sam sees", c.get("/orders", headers=h("t-sam")).json(),
+      "| Zed sees", c.get("/orders", headers=h("t-zed")).json())
+print(c.get("/orders/90313", headers=h("t-asha")).status_code, "← Asha asking for Ravi's order (BOLA blocked)")
+print(c.get("/orders/90312", headers=h("t-zed")).status_code, "← an admin of ANOTHER tenant")
+print(c.post("/orders/90312/refund", json={"amount": 100}, headers=h("t-asha")).json())
+print(c.post("/orders/90312/refund", json={"amount": 100}, headers=h("t-sam")).json())
+print(c.post("/orders/90312/refund", json={"amount": 100, "status": "refunded"}, headers=h("t-sam")).status_code)
 ```
 
-Separate docs per version: build one `FastAPI()` sub-app per version and `app.mount("/api/v1", v1_app)` — each gets its own `/docs` and OpenAPI schema.
+**Output:**
 
-#### Versioning best practices
+```text
+Asha sees [90312] | Sam sees [90312, 90313] | Zed sees []
+404 ← Asha asking for Ravi's order (BOLA blocked)
+404 ← an admin of ANOTHER tenant
+{'detail': 'missing permission orders:refund'}
+{'order': 90312, 'refunded': 100.0, 'by': 'Sam'}
+422
+```
 
-- **Version the contract, not the code**: share services/repositories; keep version-specific code in routers + schemas (adapters).
-- Prefer **additive, non-breaking changes** — most changes shouldn't need a new version.
-- Only bump the **major** version for breaking changes; keep at most 2 versions alive.
-- **Deprecate before removing**: mark `deprecated=True`, send `Deprecation`/`Sunset` headers, announce in a changelog, email API consumers.
-- **Measure usage per version** (logs/metrics by path prefix or header) before turning anything off.
-- Mobile apps: combine API versioning with a **minimum supported app version** check (force-update screen).
-- Contract tests per version so old versions don't break accidentally.
+Even an admin of another company sees nothing: the tenant comes from the user's token and every lookup goes through `visible_orders`.
 
-### Interview Qs
+**Common mistakes:**
 
-1. What are the three multi-tenancy isolation models and their trade-offs?
-2. How do you determine the current tenant securely?
-3. How do you make sure no query forgets the tenant filter? (automatic ORM criteria, RLS, tests)
-4. Why must unique constraints include `tenant_id`?
-5. What else besides DB queries must be tenant-aware? (cache, files, queues, rate limits, logs)
-6. What counts as a breaking API change?
-7. URL vs header vs date-based versioning — pros and cons?
-8. How do you deprecate and sunset an API version safely?
-9. How would you structure code to support v1 and v2 without duplicating business logic?
+- ❌ Checking only "is logged in" and then fetching any object by id (BOLA).
+- ❌ Trusting `tenant_id`, `user_id` or `role` sent in the request body or query.
+- ❌ Authorisation checks copy-pasted into each endpoint (one will be forgotten).
+- ❌ Returning 403 for other users' objects (reveals they exist; ids become enumerable).
+- ❌ Accepting extra fields on updates (mass assignment: `"role": "admin"`).
+
+### Practice
+
+1. Add `DELETE /products/{sku}` that needs `products:delete`, and show which of Asha, Sam and Zed get 200 vs 403.
+
+<details>
+<summary><b>Answer</b></summary>
+
+```python
+@app.delete("/products/{sku}")
+def delete_product(sku: str, admin: Annotated[dict, Depends(require("products:delete"))]):
+    return {"deleted": sku, "by": admin["name"]}
+
+for token in ["t-asha", "t-sam", "t-zed"]:
+    print(USERS[token]["name"], c.delete("/products/P1", headers=h(token)).status_code)
+```
+
+**Output:**
+
+```text
+Asha 403
+Sam 403
+Zed 200
+```
+
+</details>
+
+**Learn more:** [OWASP API Security Top 10 (2023)](https://owasp.org/API-Security/editions/2023/en/0x11-t10/) · [FastAPI: OAuth2 scopes](https://fastapi.tiangolo.com/advanced/security/oauth2-scopes/) · [OpenFGA (relationship-based authorisation)](https://openfga.dev/)
 
 ---
 
-## 22. Middleware & CORS
+## 18. Middleware and CORS
 
-Middleware runs **for every request** before the route and **after** the response is created.
+### Theory
+
+> **In simple words:** **middleware** is code that wraps **every** request and response, like a security guard and a receptionist at the building entrance: it runs before your endpoint (read headers, start a timer, check the host) and after it (add headers, log how long it took, compress the body). **CORS** is the browser rule that decides whether a web page from one site (your React app on `app.shopkart.in`) may call an API on another (`api.shopkart.in`); the API must opt in with CORS headers.
+
+**Writing middleware:** `@app.middleware("http")` with `async def mw(request, call_next): ...; response = await call_next(request); ...; return response`, or a class (pure ASGI middleware is faster and works with streaming). Middleware runs in **reverse order of adding**: the last added is the outermost.
+
+**Built-in middleware:**
+
+| Middleware | Purpose |
+|---|---|
+| `CORSMiddleware` | Allow browsers on other origins to call the API |
+| `GZipMiddleware` | Compress larger responses |
+| `TrustedHostMiddleware` | Reject requests with unexpected `Host` headers |
+| `HTTPSRedirectMiddleware` | Redirect HTTP to HTTPS (usually done by the proxy instead) |
+| Third-party | Request ids (`asgi-correlation-id`), Prometheus metrics, OpenTelemetry, rate limiting, sessions |
+
+**Middleware vs dependencies:** middleware applies to **everything** (including 404s and docs) and sees raw requests/responses: good for logging, timing, request ids, security headers, compression. Dependencies apply to **chosen** routes and integrate with validation and docs: good for auth, database sessions, pagination.
+
+**CORS, properly:** a browser sends an `Origin` header; for non-simple requests (JSON bodies, custom headers, PUT/DELETE) it first sends a **preflight** `OPTIONS` request. The API answers with `Access-Control-Allow-Origin` (and friends). Rules: list exact origins (`["https://app.shopkart.in"]`), never `"*"` with `allow_credentials=True` (browsers forbid it, and it would let any site use your users' cookies), allow only needed methods and headers. CORS is **not** a server-side security control: it only restricts browsers; curl and servers ignore it.
+
+### Python
 
 ```python
-import time, uuid, logging
-from fastapi import Request
-
-@app.middleware("http")
-async def add_request_id_and_timing(request: Request, call_next):
-    request_id = request.headers.get("X-Request-ID", str(uuid.uuid4()))
-    request.state.request_id = request_id               # available in handlers
-    start = time.perf_counter()
-    response = await call_next(request)                 # run the rest of the app
-    duration_ms = (time.perf_counter() - start) * 1000
-    response.headers["X-Request-ID"] = request_id
-    response.headers["X-Process-Time-Ms"] = f"{duration_ms:.1f}"
-    logging.getLogger("access").info("%s %s %s %.1fms", request.method, request.url.path, response.status_code, duration_ms)
-    return response
-```
-
-### Built-in middleware
-
-```python
+import time, uuid
+from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.middleware.gzip import GZipMiddleware
-from fastapi.middleware.trustedhost import TrustedHostMiddleware
-from fastapi.middleware.httpsredirect import HTTPSRedirectMiddleware
+from fastapi.testclient import TestClient
 
+app = FastAPI()
+app.add_middleware(GZipMiddleware, minimum_size=500)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://myapp.com", "http://localhost:5173"],   # never "*" with credentials
+    allow_origins=["https://app.shopkart.in"],        # exact origins, no "*" with credentials
     allow_credentials=True,
-    allow_methods=["GET", "POST", "PUT", "PATCH", "DELETE"],
-    allow_headers=["Authorization", "Content-Type"],
+    allow_methods=["GET", "POST", "PATCH"],
+    allow_headers=["Authorization", "Content-Type", "X-Request-ID"],
+    max_age=600,                                      # browsers cache the preflight for 10 minutes
 )
-app.add_middleware(GZipMiddleware, minimum_size=1000)
-app.add_middleware(TrustedHostMiddleware, allowed_hosts=["api.myapp.com", "localhost"])
+
+@app.middleware("http")
+async def request_context(request: Request, call_next):
+    request_id = request.headers.get("x-request-id") or uuid.uuid4().hex[:12]
+    start = time.perf_counter()
+    response = await call_next(request)               # the rest of the app runs here
+    response.headers["X-Request-ID"] = request_id
+    response.headers["X-Response-Time-ms"] = str(round((time.perf_counter() - start) * 1000))
+    response.headers["X-Content-Type-Options"] = "nosniff"
+    response.headers["Referrer-Policy"] = "no-referrer"
+    return response
+
+@app.get("/products")
+def products():
+    return [{"sku": f"P{i}", "name": "Gel pen " * 5} for i in range(40)]
+
+c = TestClient(app)
+r = c.get("/products", headers={"X-Request-ID": "req-777", "Accept-Encoding": "gzip"})
+print(r.headers["x-request-id"], r.headers["content-encoding"], "x-response-time-ms" in r.headers, r.headers["x-content-type-options"])
+
+pre = c.options("/products", headers={"Origin": "https://app.shopkart.in", "Access-Control-Request-Method": "POST",
+                                      "Access-Control-Request-Headers": "Authorization"})
+print(pre.status_code, pre.headers["access-control-allow-origin"], pre.headers["access-control-allow-credentials"])
+evil = c.options("/products", headers={"Origin": "https://evil.example", "Access-Control-Request-Method": "POST"})
+print(evil.status_code, "access-control-allow-origin" in evil.headers)
+simple = c.get("/products", headers={"Origin": "https://evil.example"})
+print(simple.status_code, "access-control-allow-origin" in simple.headers)
 ```
 
-Order: middleware added **last** runs **first** (outermost).
+**Output:**
 
-**Middleware vs dependencies**: middleware for cross-cutting concerns on every request (logging, timing, CORS, request IDs, security headers). Dependencies for per-route needs (auth, DB, pagination), with typed access and docs.
+```text
+req-777 gzip True nosniff
+200 https://app.shopkart.in true
+400 False
+200 False
+```
+
+The last line surprises many people: the request from the evil origin **still ran** and returned 200; CORS only makes the *browser* hide the response from the evil page (no `Access-Control-Allow-Origin` header). That's why state-changing endpoints still need authentication and CSRF protection, not just CORS.
+
+**Common mistakes:**
+
+- ❌ `allow_origins=["*"]` with credentials, or reflecting any `Origin` back.
+- ❌ Treating CORS as protection against attackers (it only affects browsers).
+- ❌ Heavy work or database calls in middleware for every request (including health checks).
+- ❌ `BaseHTTPMiddleware`-style middleware that reads the whole body, breaking streaming responses.
+
+### Practice
+
+1. Add middleware that rejects requests whose `Content-Length` is over 1 MB with 413 before the endpoint runs, and test it with a 2 MB body to a POST endpoint.
+
+<details>
+<summary><b>Answer</b></summary>
+
+```python
+from fastapi.responses import JSONResponse
+
+app2 = FastAPI()
+
+@app2.middleware("http")
+async def limit_body(request: Request, call_next):
+    length = request.headers.get("content-length")
+    if length and int(length) > 1_000_000:
+        return JSONResponse({"detail": "request body too large"}, status_code=413)
+    return await call_next(request)
+
+@app2.post("/upload")
+async def upload(request: Request):
+    return {"bytes": len(await request.body())}
+
+c2 = TestClient(app2)
+print(c2.post("/upload", content=b"x" * 1000).json(), c2.post("/upload", content=b"x" * 2_000_000).status_code)
+```
+
+**Output:**
+
+```text
+{'bytes': 1000} 413
+```
+
+(Clients can lie about or omit `Content-Length` with chunked uploads, so production setups also cap body size at the proxy, e.g. `client_max_body_size` in Nginx.)
+
+</details>
+
+**Learn more:** [FastAPI: middleware](https://fastapi.tiangolo.com/tutorial/middleware/) · [FastAPI: CORS](https://fastapi.tiangolo.com/tutorial/cors/) · [MDN: CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
 
 ---
 
-## 23. Lifespan Events
+## 19. Testing FastAPI Apps
 
-Run code **once at startup** (connect DB/Redis, load ML model, warm caches) and **once at shutdown** (close pools) — replaces the deprecated `@app.on_event("startup")`.
+### Theory
 
-```python
-from contextlib import asynccontextmanager
-import httpx
-import redis.asyncio as redis
+> **In simple words:** API tests send requests to your app and check the responses: "creating an order returns 201", "Ravi can't see Asha's order", "a bad token gets 401". With FastAPI you test the **real app** in memory using `TestClient` (or `httpx.AsyncClient` for async tests), and replace slow or external pieces (the real database, payment gateway, email, the current user) with test versions using **dependency overrides**.
 
-@asynccontextmanager
-async def lifespan(app: FastAPI):
-    # startup
-    app.state.http = httpx.AsyncClient(timeout=10)          # one shared client (connection pooling)
-    app.state.redis = redis.from_url(settings.redis_url)
-    app.state.model = load_ml_model("model.pkl")            # load heavy things ONCE
-    yield
-    # shutdown (graceful)
-    await app.state.http.aclose()
-    await app.state.redis.aclose()
-    await engine.dispose()
+**The toolkit:**
 
-app = FastAPI(lifespan=lifespan)
-
-@app.get("/predict")
-async def predict(request: Request, x: float):
-    return {"y": request.app.state.model.predict([[x]]).tolist()}
-```
-
----
-
-## 24. Background Tasks & Job Queues
-
-### BackgroundTasks — small fire-and-forget work after the response
-
-```python
-from fastapi import BackgroundTasks
-
-def send_welcome_email(email: str, name: str):
-    ...   # runs AFTER the response is sent, in the same process
-
-@router.post("/users", status_code=201)
-def create_user(data: UserCreate, background: BackgroundTasks, db: DbSession):
-    user = create(db, data)
-    background.add_task(send_welcome_email, user.email, user.name)
-    return user
-```
-
-Limits: same process (lost if the server restarts), no retries, no scheduling, adds load to the web worker. Don't pass the request's DB session into a background task — open a new one.
-
-### Real job queues for heavy/important work
-
-| Tool | Notes |
+| Tool | Use |
 |---|---|
-| **Celery** (+ Redis/RabbitMQ) | Most popular, retries, scheduling (beat), mature |
-| **ARQ** | Async, Redis-based, lightweight — good match for FastAPI |
-| **Dramatiq**, **RQ**, **Taskiq** | Alternatives |
+| `TestClient(app)` | Synchronous requests to the app; `with TestClient(app)` also runs lifespan start-up/shutdown |
+| `httpx.AsyncClient(transport=ASGITransport(app))` + `pytest-asyncio`/`anyio` | Async tests (when the test itself needs to `await` things) |
+| `app.dependency_overrides[dep] = fake` | Swap the DB session, current user, settings, external clients |
+| pytest fixtures | A fresh test database per test (or per session with transactions rolled back), a logged-in client, sample data |
+| `respx` / `pytest-httpx` | Mock outgoing HTTP calls made with httpx |
+| `testcontainers` | Throwaway real PostgreSQL/Redis in Docker for integration tests |
+| Schemathesis | Property-based testing that generates requests from your OpenAPI schema and finds crashes |
 
+**What to test:** status codes and bodies for success cases; validation errors; **auth and authorisation** (401/403/404 for each role; BOLA tests are the most valuable security tests); edge cases (empty lists, pagination ends, duplicates → 409); error handlers; and a few end-to-end flows (register → login → order → refund).
+
+**Test database strategies:** SQLite in memory is fast but differs from PostgreSQL (types, constraints, JSON); for confidence run integration tests against real PostgreSQL (testcontainers or a CI service), wrapping each test in a transaction that's rolled back.
+
+### Python
+
+A small app, a pytest test file with fixtures and dependency overrides, run with pytest:
+
+```python
+import re, subprocess, sys
+from pathlib import Path
+
+Path("shop_app.py").write_text('''
+from typing import Annotated
+from fastapi import Depends, FastAPI, HTTPException
+from pydantic import BaseModel, Field
+
+class OrderIn(BaseModel):
+    sku: str
+    qty: int = Field(1, ge=1)
+
+class Store:                                   # the real one would use a database
+    def __init__(self):
+        self.orders = {}
+    def add(self, owner, data):
+        oid = len(self.orders) + 1
+        self.orders[oid] = {"id": oid, "owner": owner, **data}
+        return self.orders[oid]
+
+_store = Store()
+def get_store() -> Store:
+    return _store
+
+def get_current_user() -> str:
+    raise HTTPException(401, "not authenticated")   # real version decodes a JWT
+
+app = FastAPI()
+
+@app.post("/orders", status_code=201)
+def create(order: OrderIn, user: Annotated[str, Depends(get_current_user)], store: Annotated[Store, Depends(get_store)]):
+    return store.add(user, order.model_dump())
+
+@app.get("/orders/{oid}")
+def read(oid: int, user: Annotated[str, Depends(get_current_user)], store: Annotated[Store, Depends(get_store)]):
+    order = store.orders.get(oid)
+    if not order or order["owner"] != user:
+        raise HTTPException(404, "order not found")
+    return order
+''', encoding="utf-8")
+
+Path("test_shop_app.py").write_text('''
+import pytest
+from fastapi.testclient import TestClient
+from shop_app import Store, app, get_current_user, get_store
+
+@pytest.fixture
+def store():
+    fresh = Store()                                  # isolated state for every test
+    app.dependency_overrides[get_store] = lambda: fresh
+    yield fresh
+    app.dependency_overrides.clear()
+
+def client_as(user):
+    app.dependency_overrides[get_current_user] = lambda: user
+    return TestClient(app)
+
+def test_requires_login(store):
+    assert TestClient(app).post("/orders", json={"sku": "P1"}).status_code == 401
+
+def test_create_order(store):
+    r = client_as("asha").post("/orders", json={"sku": "P1", "qty": 2})
+    assert r.status_code == 201
+    assert r.json() == {"id": 1, "owner": "asha", "sku": "P1", "qty": 2}
+
+@pytest.mark.parametrize("body", [{"sku": "P1", "qty": 0}, {"qty": 1}, {}])
+def test_validation(store, body):
+    assert client_as("asha").post("/orders", json=body).status_code == 422
+
+def test_users_cannot_read_each_others_orders(store):
+    oid = client_as("asha").post("/orders", json={"sku": "P1"}).json()["id"]
+    assert client_as("asha").get(f"/orders/{oid}").status_code == 200
+    assert client_as("ravi").get(f"/orders/{oid}").status_code == 404
+
+def test_each_test_gets_a_fresh_store(store):
+    assert store.orders == {}
+''', encoding="utf-8")
+
+result = subprocess.run([sys.executable, "-m", "pytest", "-q", "-p", "no:cacheprovider", "test_shop_app.py"],
+                        capture_output=True, text=True)
+print(re.sub(r" in [\d.]+s", "", result.stdout.strip().splitlines()[-1]))
+```
+
+**Output:**
+
+```text
+7 passed
+```
+
+An **async** test calls the app through httpx's ASGI transport, useful when the test must await other things (a database, a queue):
+
+```python
+import asyncio
+import httpx
+from fastapi import FastAPI
+
+api = FastAPI()
+
+@api.get("/ping")
+async def ping():
+    return {"pong": True}
+
+async def test_ping():
+    transport = httpx.ASGITransport(app=api)
+    async with httpx.AsyncClient(transport=transport, base_url="http://test") as client:
+        r = await client.get("/ping")
+    assert r.status_code == 200 and r.json() == {"pong": True}
+    return "async test passed"
+
+print(asyncio.run(test_ping()))
+```
+
+**Output:**
+
+```text
+async test passed
+```
+
+**Common mistakes:**
+
+- ❌ Tests that share state (one test's data breaks another); use fixtures that reset state.
+- ❌ Forgetting to clear `dependency_overrides` between tests.
+- ❌ Only testing happy paths; no 401/403/404/422 tests.
+- ❌ Calling real external services (payments, email, LLM APIs) from tests; mock them.
+- ❌ Testing only against SQLite when production is PostgreSQL.
+
+### Practice
+
+1. Add a test to `test_shop_app.py` checking that two different users both get order id numbering from the same store (Asha creates #1, Ravi creates #2) and that each can read only their own. Run the suite again.
+
+<details>
+<summary><b>Answer</b></summary>
+
+```python
+with open("test_shop_app.py", "a", encoding="utf-8") as f:
+    f.write('''
+def test_two_users(store):
+    assert client_as("asha").post("/orders", json={"sku": "P1"}).json()["id"] == 1
+    assert client_as("ravi").post("/orders", json={"sku": "P2"}).json()["id"] == 2
+    assert client_as("ravi").get("/orders/2").status_code == 200
+    assert client_as("ravi").get("/orders/1").status_code == 404
+''')
+result = subprocess.run([sys.executable, "-m", "pytest", "-q", "-p", "no:cacheprovider", "test_shop_app.py"],
+                        capture_output=True, text=True)
+print(re.sub(r" in [\d.]+s", "", result.stdout.strip().splitlines()[-1]))
+```
+
+**Output:**
+
+```text
+8 passed
+```
+
+</details>
+
+---
+
+### ✅ Part 3 checkpoint
+
+Without looking, can you:
+
+- [ ] Build dependency chains (pagination, DB session with clean-up, token → user → role) and override them in tests?
+- [ ] Choose `async def` or `def` correctly and explain the blocking-the-loop bug?
+- [ ] Load validated settings and share resources (clients, models) through lifespan?
+- [ ] Build CRUD endpoints with SQLAlchemy 2.0, transactions and a service/repository split, and run migrations with Alembic?
+- [ ] Implement password hashing and JWT login, and enforce role, ownership and tenant checks?
+- [ ] Add middleware and configure CORS correctly, and write pytest tests for success, validation and authorisation cases?
+
+**Learn more:** [FastAPI: testing](https://fastapi.tiangolo.com/tutorial/testing/) · [FastAPI: async tests](https://fastapi.tiangolo.com/advanced/async-tests/) · [Schemathesis](https://schemathesis.readthedocs.io/) · [Testcontainers for Python](https://testcontainers-python.readthedocs.io/)
+
+---
+
+# Part 4 — Moderate: API Features
+
+> **Goal:** Add pagination, background jobs, WebSockets, streaming and SSE, external API calls and webhooks, caching and rate limiting.  
+> **You need:** Parts 1–3.
+
+---
+
+## 20. Pagination, Filtering and Sorting
+
+### Theory
+
+> **In simple words:** an endpoint like `GET /orders` must never return **all** rows: with a million orders the response would be huge and slow. **Pagination** returns one page at a time. **Filtering** (`?status=paid`) and **sorting** (`?sort=-created_at`) let clients ask for exactly what they need, but only on fields you allow.
+
+**Two pagination styles:**
+
+| Style | Request | How it works | Good for | Weak at |
+|---|---|---|---|---|
+| **Offset** | `?limit=20&offset=40` | `LIMIT 20 OFFSET 40` | Admin tables with page numbers, small data | Slow for deep pages (the DB still walks past skipped rows); items shift when rows are added |
+| **Cursor (keyset)** | `?limit=20&cursor=eyJpZCI6MTIzfQ` | `WHERE (created_at, id) < (:last_ts, :last_id) ORDER BY created_at DESC, id DESC LIMIT 20` | Feeds, infinite scroll, APIs, big tables | No "jump to page 57" |
+
+A cursor is an **opaque** token (base64 of the last item's sort keys) so clients can't depend on its format. Always sort on a **unique** key (add `id` as a tie-breaker), and index the sort columns (`sql-postgresql.md`).
+
+**Response shape:** `{"items": [...], "next_cursor": "…" | null}` for cursors; `{"items": [...], "total": 1234, "limit": 20, "offset": 40}` for offsets (counting `total` can itself be expensive on big tables; make it optional). A generic Pydantic `Page[T]` model keeps it consistent.
+
+**Safe filtering and sorting:** map allowed sort fields to columns with a dict (`{"price": Product.price, "-price": Product.price.desc()}`); never pass user input into `order_by(text(...))` or SQL strings. Cap `limit` (e.g. 100).
+
+### Python
+
+```python
+import base64, json
+from typing import Annotated
+from fastapi import FastAPI, HTTPException, Query
+from fastapi.testclient import TestClient
+from pydantic import BaseModel
+
+ORDERS = [{"id": i, "status": "paid" if i % 3 else "pending", "total": (i * 37) % 500 + 50} for i in range(1, 51)]
+
+class Page[T](BaseModel):                         # a generic page model
+    items: list[T]
+    next_cursor: str | None = None
+
+class OrderOut(BaseModel):
+    id: int
+    status: str
+    total: int
+
+def encode_cursor(last_id: int) -> str:
+    return base64.urlsafe_b64encode(json.dumps({"id": last_id}).encode()).decode()
+
+def decode_cursor(cursor: str) -> int:
+    try:
+        return json.loads(base64.urlsafe_b64decode(cursor))["id"]
+    except Exception:
+        raise HTTPException(400, "invalid cursor")
+
+SORTS = {"total": lambda o: (o["total"], o["id"]), "-total": lambda o: (-o["total"], o["id"]), "id": lambda o: o["id"]}
+
+app = FastAPI()
+
+@app.get("/orders", response_model=Page[OrderOut])
+def list_orders(limit: Annotated[int, Query(ge=1, le=100)] = 10, cursor: str | None = None, status: str | None = None):
+    rows = [o for o in ORDERS if status is None or o["status"] == status]
+    rows.sort(key=lambda o: -o["id"])                     # newest first; id is unique
+    if cursor:
+        last_id = decode_cursor(cursor)
+        rows = [o for o in rows if o["id"] < last_id]      # keyset: continue after the last seen id
+    page = rows[:limit]
+    more = len(rows) > limit
+    return Page[OrderOut](items=page, next_cursor=encode_cursor(page[-1]["id"]) if more else None)
+
+@app.get("/orders/top")
+def top_orders(sort: Annotated[str, Query(pattern="^(-?total|id)$")] = "-total", limit: Annotated[int, Query(le=20)] = 3):
+    return [o["id"] for o in sorted(ORDERS, key=SORTS[sort])[:limit]]
+
+c = TestClient(app)
+cursor, pages = None, []
+while True:                                          # a client walking through all pending orders
+    params = {"limit": 6, "status": "pending"} | ({"cursor": cursor} if cursor else {})
+    body = c.get("/orders", params=params).json()
+    pages.append([o["id"] for o in body["items"]])
+    cursor = body["next_cursor"]
+    if cursor is None:
+        break
+print(pages)
+print(c.get("/orders/top").json(), c.get("/orders/top?sort=total").json(), c.get("/orders/top?sort=drop table").status_code)
+print(c.get("/orders?cursor=garbage").json(), c.get("/orders?limit=1000").status_code)
+```
+
+**Output:**
+
+```text
+[[48, 45, 42, 39, 36, 33], [30, 27, 24, 21, 18, 15], [12, 9, 6, 3]]
+[27, 13, 40] [41, 14, 28] 422
+{'detail': 'invalid cursor'} 422
+```
+
+**Common mistakes:**
+
+- ❌ No pagination, or an uncapped `limit`.
+- ❌ Offset pagination on huge, fast-changing tables (slow deep pages, duplicates/skips as rows are inserted).
+- ❌ Sorting on a non-unique column without a tie-breaker (items repeat or vanish between pages).
+- ❌ Building `ORDER BY` from raw user input (SQL injection).
+- ❌ Exposing cursor internals that clients start depending on.
+
+### Practice
+
+1. Add `offset`-style pagination at `GET /orders/table?limit=&offset=` that returns `{"items", "total", "limit", "offset"}` and walk to the last page for `limit=20`.
+
+<details>
+<summary><b>Answer</b></summary>
+
+```python
+@app.get("/orders/table")
+def orders_table(limit: Annotated[int, Query(ge=1, le=100)] = 20, offset: Annotated[int, Query(ge=0)] = 0):
+    rows = sorted(ORDERS, key=lambda o: o["id"])
+    return {"items": [o["id"] for o in rows[offset:offset + limit]], "total": len(rows), "limit": limit, "offset": offset}
+
+last = c.get("/orders/table?limit=20&offset=40").json()
+print(last["items"], last["total"])
+```
+
+**Output:**
+
+```text
+[41, 42, 43, 44, 45, 46, 47, 48, 49, 50] 50
+```
+
+</details>
+
+**Learn more:** [Use The Index, Luke: pagination done the right way](https://use-the-index-luke.com/no-offset) · [Slack engineering: evolving API pagination](https://slack.engineering/evolving-api-pagination-at-slack/) · [fastapi-pagination](https://github.com/uriyyo/fastapi-pagination)
+
+---
+
+## 21. Background Tasks and Job Queues
+
+### Theory
+
+> **In simple words:** some work shouldn't make the user wait: sending a confirmation email, resizing an uploaded photo, generating a PDF invoice, calling a slow partner API, running an LLM batch job. FastAPI's **`BackgroundTasks`** runs small jobs **after** the response is sent, in the same process. For anything important, slow or heavy, use a real **job queue** (Celery, ARQ, Dramatiq, RQ, or a cloud queue): the API only **enqueues** a job and returns immediately; separate **worker** processes do the work, with retries, and survive restarts.
+
+**`BackgroundTasks` vs a queue:**
+
+| | `BackgroundTasks` | Job queue (Celery/ARQ/…) |
+|---|---|---|
+| Runs | In the web process, after the response | In separate worker processes |
+| If the server restarts | The job is lost | The job waits in the broker (Redis/RabbitMQ/SQS) |
+| Retries, scheduling, monitoring | None | Built in |
+| Heavy CPU work | Slows your API | Isolated |
+| Good for | Tiny, non-critical tasks (log an event, send a best-effort notification) | Emails, payments follow-up, file processing, reports, ML jobs |
+
+**Job design rules (the important part):**
+
+- **Idempotent** jobs: a job may run twice (retries, redelivery); make that harmless (check "already sent?", use idempotency keys).
+- Pass **ids**, not big objects: `send_invoice(order_id=90312)`; the worker loads fresh data.
+- Retries with **exponential backoff** and a maximum; send permanently failing jobs to a **dead-letter queue** for inspection.
+- **Timeouts** on every external call inside jobs.
+- **The transactional outbox:** when a job must run only if a database change committed, write the job to an `outbox` table **in the same transaction**, and have a relay enqueue it; otherwise you may send "order confirmed" for an order that rolled back.
+- Return a **job id** to the client (`202 Accepted` + `GET /jobs/{id}` for status) for long work.
+
+**Choosing a queue:** Celery (mature, feature-rich, sync-first), ARQ or Dramatiq (async-friendly, simpler), RQ (simplest), Temporal (durable workflows with many steps), cloud queues (SQS, Pub/Sub, Cloud Tasks) for serverless setups. Scheduled jobs: Celery beat, APScheduler, or cron/Kubernetes CronJobs.
+
+### Python
+
+`BackgroundTasks` runs after the response is sent, and a **202 + job status** pattern with an in-memory queue and worker shows the queue workflow end to end:
+
+```python
+import asyncio
+import uuid
+from fastapi import BackgroundTasks, FastAPI, HTTPException
+from fastapi.testclient import TestClient
+
+app = FastAPI()
+LOG = []
+
+def send_welcome_email(email: str):
+    LOG.append(f"email sent to {email}")
+
+@app.post("/signup", status_code=201)
+def signup(email: str, background: BackgroundTasks):
+    LOG.append("user saved")
+    background.add_task(send_welcome_email, email)     # runs after the response is returned
+    LOG.append("response ready")
+    return {"email": email}
+
+JOBS: dict[str, dict] = {}
+QUEUE: asyncio.Queue | None = None
+
+async def worker():
+    while True:
+        job_id = await QUEUE.get()
+        job = JOBS[job_id]
+        job["status"] = "running"
+        await asyncio.sleep(0.05)                       # the slow work (a report, an LLM batch…)
+        job.update(status="done", result=f"report for {job['params']['month']} with 3 pages")
+        QUEUE.task_done()
+
+@app.post("/reports", status_code=202)
+async def create_report(month: str):
+    job_id = uuid.uuid4().hex[:8]
+    JOBS[job_id] = {"status": "queued", "params": {"month": month}, "result": None}
+    await QUEUE.put(job_id)                              # enqueue and return immediately
+    return {"job_id": job_id, "status_url": f"/jobs/{job_id}"}
+
+@app.get("/jobs/{job_id}")
+def job_status(job_id: str):
+    if job_id not in JOBS:
+        raise HTTPException(404, "unknown job")
+    return {k: v for k, v in JOBS[job_id].items() if k != "params"}
+
+with TestClient(app) as c:
+    print(c.post("/signup", params={"email": "asha@example.com"}).json(), LOG)
+
+async def demo():
+    global QUEUE
+    QUEUE = asyncio.Queue()
+    task = asyncio.create_task(worker())
+    import httpx
+    async with httpx.AsyncClient(transport=httpx.ASGITransport(app=app), base_url="http://t") as client:
+        created = (await client.post("/reports", params={"month": "2026-09"})).json()
+        status = (await client.get(created["status_url"])).json()["status"]
+        print(created["status_url"].startswith("/jobs/"), "not finished yet:", status in {"queued", "running"})
+        await QUEUE.join()                                # wait until the worker finished
+        print((await client.get(created["status_url"])).json())
+    task.cancel()
+
+asyncio.run(demo())
+```
+
+**Output:**
+
+```text
+{'email': 'asha@example.com'} ['user saved', 'response ready', 'email sent to asha@example.com']
+True not finished yet: True
+{'status': 'done', 'result': 'report for 2026-09 with 3 pages'}
+```
+
+The email was sent **after** the response was ready. The report request returned `202` instantly with a status URL; a client polls it (or gets a webhook/notification) until the job is done. In production the queue is Redis/RabbitMQ/SQS and the worker is a separate process such as a Celery or ARQ worker:
+
+<!-- no-run (needs a Redis server and a separate worker process) -->
 ```python
 # tasks.py (Celery)
 from celery import Celery
-celery_app = Celery("worker", broker=settings.redis_url, backend=settings.redis_url)
-
-@celery_app.task(bind=True, autoretry_for=(ConnectionError,), retry_backoff=True, max_retries=5)
-def generate_report(self, report_id: int):
-    ...
-
-# route: enqueue & return immediately
-@router.post("/reports", status_code=202)
-def request_report(params: ReportIn, user: CurrentUser):
-    report = create_report_row(user.id, params)
-    task = generate_report.delay(report.id)
-    return {"report_id": report.id, "task_id": task.id, "status": "queued"}
-
-@router.get("/reports/{report_id}")
-def report_status(report_id: int): ...       # client polls, or use websockets/SSE/email when done
-```
-
-Use queues for: emails, PDF/report generation, image/video processing, ML inference batches, webhooks to third parties, anything slow or needing retries.
-
----
-
-## 25. Task Queues in Depth: Celery & ARQ
-
-`BackgroundTasks` runs work in the same process after the response — fine for tiny jobs, but lost on restart and never retried. Real background work (emails, reports, image processing, webhooks, syncs) belongs in a **task queue** with **separate worker processes**.
-
-```
-FastAPI (producer) ──enqueue(task, ids)──► Broker (Redis / RabbitMQ / SQS) ──► Worker processes (consumers)
-      │ 202 Accepted + job_id                                                       │
-      └──────── GET /jobs/{id} ◄──── Result backend / your DB (status, result) ◄──────┘
-```
-
-### 1. Celery
-
-The most widely used Python task queue: retries, scheduling (beat), routing, chords/groups, many brokers, monitoring (Flower).
-
-```python
-# app/worker.py
-from celery import Celery
-from celery.schedules import crontab
 
 celery_app = Celery("shop", broker="redis://localhost:6379/0", backend="redis://localhost:6379/1")
-celery_app.conf.update(
-    task_serializer="json", accept_content=["json"], result_serializer="json",   # never pickle untrusted data
-    timezone="UTC", enable_utc=True,
-    task_acks_late=True,                 # ack AFTER the task finishes → a crashed worker's task is redelivered
-    task_reject_on_worker_lost=True,
-    worker_prefetch_multiplier=1,        # don't hoard tasks (fair distribution for long tasks)
-    task_time_limit=300,                 # hard kill after 5 min
-    task_soft_time_limit=240,            # raises SoftTimeLimitExceeded first → chance to clean up
-    result_expires=3600,
-    task_routes={
-        "app.tasks.send_email": {"queue": "emails"},
-        "app.tasks.generate_report": {"queue": "reports"},     # slow jobs can't block emails
-    },
-    beat_schedule={
-        "nightly-cleanup": {"task": "app.tasks.cleanup_expired_carts", "schedule": crontab(hour=2, minute=0)},
-        "sync-rates-every-15m": {"task": "app.tasks.sync_exchange_rates", "schedule": 15 * 60},
-    },
-)
+
+@celery_app.task(bind=True, autoretry_for=(ConnectionError,), retry_backoff=True, max_retries=5, acks_late=True)
+def send_invoice(self, order_id: int):
+    order = load_order(order_id)                  # load fresh data by id
+    if order.invoice_sent:                        # idempotent: safe to run twice
+        return "already sent"
+    email_invoice(order)
+    mark_invoice_sent(order_id)
+
+# in the FastAPI endpoint:  send_invoice.delay(order_id)        and run:  celery -A tasks worker
 ```
+
+**Common mistakes:**
+
+- ❌ Heavy or critical work in `BackgroundTasks` (lost on restart, no retries, slows the API).
+- ❌ Non-idempotent jobs that double-charge or double-email on retry.
+- ❌ Passing whole ORM objects to jobs instead of ids.
+- ❌ Enqueuing a job before the database transaction commits (use an outbox).
+- ❌ Long work inside the request with the client waiting for minutes; return 202 and a job id.
+
+### Practice
+
+1. Make `send_welcome_email` idempotent: keep a set of addresses already emailed and skip duplicates. Sign up the same address twice and show the log contains one email.
+
+<details>
+<summary><b>Answer</b></summary>
 
 ```python
-# app/tasks.py
-import httpx
-from celery.utils.log import get_task_logger
-from app.worker import celery_app
+SENT = set()
 
-logger = get_task_logger(__name__)
+def send_welcome_email_once(email: str):
+    if email in SENT:
+        LOG.append(f"skipped duplicate for {email}")
+        return
+    SENT.add(email)
+    LOG.append(f"email sent to {email}")
 
-@celery_app.task(
-    bind=True,
-    autoretry_for=(httpx.TransportError, httpx.HTTPStatusError),   # transient failures only
-    retry_backoff=True, retry_backoff_max=600, retry_jitter=True,  # 1s, 2s, 4s … capped, randomized
-    max_retries=5,
-)
-def send_email(self, email_id: int) -> None:
-    with SessionLocal() as db:                         # a NEW session per task — never reuse the request's
-        email = db.get(OutgoingEmail, email_id)
-        if email is None or email.status == "sent":    # idempotency guard: already done → no-op
-            return
-        response = httpx.post(PROVIDER_URL, json=email.payload(), timeout=10,
-                              headers={"Idempotency-Key": f"email-{email_id}"})
-        response.raise_for_status()
-        email.status = "sent"
-        db.commit()
-        logger.info("email %s sent (attempt %s)", email_id, self.request.retries + 1)
+app2 = FastAPI()
 
-@celery_app.task(bind=True)
-def generate_report(self, report_id: int) -> str:
-    self.update_state(state="PROGRESS", meta={"percent": 0})
-    rows = load_rows(report_id)
-    for i, chunk in enumerate(chunked(rows, 1000), start=1):
-        write_chunk(report_id, chunk)
-        self.update_state(state="PROGRESS", meta={"percent": round(i * 1000 / max(len(rows), 1) * 100)})
-    return upload_report(report_id)                    # returns a URL/key, not the file itself
+@app2.post("/signup")
+def signup2(email: str, background: BackgroundTasks):
+    background.add_task(send_welcome_email_once, email)
+    return {"ok": True}
+
+LOG.clear()
+c2 = TestClient(app2)
+c2.post("/signup", params={"email": "ravi@example.com"})
+c2.post("/signup", params={"email": "ravi@example.com"})
+print(LOG)
 ```
 
-```python
-# FastAPI side: enqueue, return 202, poll status
-from celery.result import AsyncResult
+**Output:**
 
-@router.post("/reports", status_code=202)
-def request_report(params: ReportRequest, user: CurrentUser, db: DbSession):
-    report = Report(owner_id=user.id, params=params.model_dump(), status="queued")
-    db.add(report); db.commit()                          # COMMIT FIRST, then enqueue (see "enqueue after commit")
-    task = generate_report.apply_async(args=[report.id], queue="reports")
-    report.task_id = task.id; db.commit()
-    return {"report_id": report.id, "status_url": f"/reports/{report.id}"}
-
-@router.get("/reports/{report_id}")
-def report_status(report_id: int, user: CurrentUser, db: DbSession):
-    report = db.get(Report, report_id)
-    if not report or report.owner_id != user.id:
-        raise HTTPException(404)
-    result = AsyncResult(report.task_id, app=celery_app)
-    return {"state": result.state, "progress": result.info if result.state == "PROGRESS" else None,
-            "url": result.result if result.successful() else None}
+```text
+['email sent to ravi@example.com', 'skipped duplicate for ravi@example.com']
 ```
 
-Calling tasks:
+(In production "already sent" lives in the database, set in the same transaction as the work, or checked via a unique constraint on an `emails_sent` table.)
 
-```python
-send_email.delay(email_id)                                          # shortcut
-send_email.apply_async(args=[email_id], countdown=60)                # run in 60 s
-send_email.apply_async(args=[email_id], queue="emails", priority=9)
-```
+</details>
 
-Running:
-
-```bash
-celery -A app.worker worker -Q emails,default --concurrency=8 --loglevel=INFO
-celery -A app.worker worker -Q reports --concurrency=2              # separate worker pool for slow jobs
-celery -A app.worker beat --loglevel=INFO                            # exactly ONE beat instance!
-celery -A app.worker flower --port=5555                              # monitoring UI (protect it)
-```
-
-Workflows: `group` (parallel), `chain` (sequential), `chord` (parallel then a callback) — e.g. resize 20 images in parallel, then build a zip.
-
-### 2. ARQ — async tasks for asyncio apps
-
-**ARQ** is a small **asyncio**-native queue on Redis — a natural fit when your FastAPI code and libraries are already async.
-
-```python
-# app/arq_worker.py
-from arq import Retry, cron
-from arq.connections import RedisSettings
-
-async def send_welcome_email(ctx, user_id: int) -> None:
-    http = ctx["http"]                                   # shared client created in on_startup
-    try:
-        r = await http.post(PROVIDER_URL, json={"user_id": user_id}, timeout=10)
-        r.raise_for_status()
-    except Exception as exc:
-        if ctx["job_try"] < 5:
-            raise Retry(defer=ctx["job_try"] * 10) from exc   # retry in 10s, 20s, 30s…
-        raise                                            # give up → job marked failed
-
-async def nightly_cleanup(ctx) -> None:
-    ...
-
-async def on_startup(ctx):
-    import httpx
-    ctx["http"] = httpx.AsyncClient()
-
-async def on_shutdown(ctx):
-    await ctx["http"].aclose()
-
-class WorkerSettings:
-    functions = [send_welcome_email]
-    cron_jobs = [cron(nightly_cleanup, hour=2, minute=0)]
-    redis_settings = RedisSettings(host="localhost")
-    on_startup, on_shutdown = on_startup, on_shutdown
-    max_jobs = 20                                        # concurrent jobs per worker
-    job_timeout = 300
-# run:  arq app.arq_worker.WorkerSettings
-```
-
-```python
-# FastAPI side
-from contextlib import asynccontextmanager
-from arq import create_pool
-
-@asynccontextmanager
-async def lifespan(app):
-    app.state.arq = await create_pool(RedisSettings(host="localhost"))
-    yield
-    await app.state.arq.close()
-
-@router.post("/users", status_code=201)
-async def register(data: UserCreate, request: Request):
-    user = await create_user(data)
-    await request.app.state.arq.enqueue_job(
-        "send_welcome_email", user.id,
-        _job_id=f"welcome-{user.id}",                   # same id twice → enqueued only once (dedupe)
-    )
-    return user
-```
-
-### 3. Task design rules (the important part)
-
-**1. Tasks must be idempotent.** Queues deliver **at least once**: with `acks_late`, a worker crash or timeout re-delivers the task; retries re-run it. Running twice must not charge twice or send two emails.
-
-```python
-import sqlite3   # works the same with Postgres: a UNIQUE constraint does the dedupe
-
-def run_once(db: sqlite3.Connection, key: str, action) -> bool:
-    """Run `action` only the first time `key` is seen. Returns True if it ran."""
-    try:
-        with db:                                         # transaction
-            db.execute("INSERT INTO processed_tasks (key) VALUES (?)", (key,))
-            action()                                     # if this raises, the INSERT rolls back → can retry
-        return True
-    except sqlite3.IntegrityError:
-        return False                                     # duplicate delivery → skip
-```
-
-Other idempotency tools: check current state first (`if order.status == "paid": return`), upserts instead of inserts, provider idempotency keys, conditional updates (`UPDATE … WHERE status = 'pending'`).
-
-**2. Pass IDs, not objects.** Send `order_id`, load fresh data in the task. Objects get stale, may not serialize, and bloat the broker.
-
-**3. Enqueue only after the DB transaction commits.** Otherwise the worker may start before the row exists (or for a row that gets rolled back).
-
-```python
-class AfterCommit:
-    """Collect side effects during a unit of work; fire them only after a successful commit."""
-    def __init__(self):
-        self._callbacks = []
-    def add(self, fn, *args):
-        self._callbacks.append((fn, args))
-    def commit(self, db):
-        db.commit()
-        callbacks, self._callbacks = self._callbacks, []
-        for fn, args in callbacks:
-            fn(*args)
-    def rollback(self, db):
-        db.rollback()
-        self._callbacks.clear()                          # nothing is enqueued for rolled-back work
-```
-
-For guaranteed delivery even if the enqueue call itself fails right after commit, use the **transactional outbox** (write an `outbox` row in the same transaction; a relay publishes it).
-
-**4. Retry only transient errors**, with exponential backoff + jitter and a max; send permanently failing tasks to a **dead-letter queue / failed jobs table** and alert.
-
-```python
-import random
-
-def backoff_delay(attempt: int, base: float = 1.0, cap: float = 600.0, jitter: bool = True) -> float:
-    """attempt 0 → ~1s, 1 → ~2s, 2 → ~4s … capped. Full jitter spreads retries out."""
-    delay = min(cap, base * 2 ** attempt)
-    return random.uniform(0, delay) if jitter else delay
-```
-
-**5. Keep tasks short**; split big jobs into chunks/sub-tasks; set time limits; report progress.
-
-```python
-from itertools import islice
-
-def chunked(iterable, size: int):
-    it = iter(iterable)
-    while batch := list(islice(it, size)):
-        yield batch
-```
-
-**6. Separate queues** by priority/latency (emails vs reports vs imports) with their own workers, so a flood of slow jobs can't delay urgent ones.
-
-**7. Resources per task**: open DB sessions/HTTP clients per task or per worker (startup hooks) — never reuse objects from the web request.
-
-**8. Observability**: log with task ID, measure duration/failures/retries and **queue depth** (alert when it grows), use Flower or your metrics stack; propagate trace context from the request into the task.
-
-**9. Security**: JSON serializer only (no pickle), broker not exposed publicly (password/TLS), validate task arguments like any input.
-
-**10. Deploy workers separately** from the web app; scale workers by queue depth; use warm shutdown (finish current tasks on SIGTERM).
-
-### 4. Scheduled (periodic) jobs
-
-- Celery **beat** or ARQ **cron** — run **exactly one** scheduler instance (two beats = every job runs twice), or use a lock.
-- Make scheduled jobs **idempotent** and **catch-up safe** (a missed run shouldn't corrupt data; a double run shouldn't duplicate).
-- Store schedules in **UTC**; be careful with jobs at local midnight across DST changes.
-- Long-running cron jobs: prevent overlaps (lock key with TTL).
-- Alternatives: Kubernetes CronJobs, cloud schedulers (EventBridge, Cloud Scheduler) that enqueue a task.
-
-### 5. Choosing a queue
-
-| Tool | Style | Best for |
-|---|---|---|
-| **Celery** | Sync (prefork/threads/gevent), feature-rich | Most production apps; complex workflows; mature ecosystem |
-| **ARQ** | asyncio, Redis only, small | Async FastAPI apps, simple jobs |
-| **Dramatiq** | Sync, simpler than Celery, good defaults | Teams wanting Celery-like power with less config |
-| **RQ** | Sync, Redis, very simple | Small apps |
-| **Taskiq** | asyncio, pluggable brokers, FastAPI-friendly DI | Async apps needing more than ARQ |
-| **SQS + Lambda / Cloud Tasks** | Managed | Serverless, no workers to run |
-
-### Interview Qs
-
-1. When would you use Celery instead of FastAPI `BackgroundTasks`?
-2. What does "at-least-once delivery" mean for task design? How do you make tasks idempotent?
-3. What do `acks_late`, `prefetch_multiplier` and time limits do?
-4. Why pass IDs instead of objects to tasks?
-5. Why must you enqueue a task only after the DB transaction commits? What is the outbox pattern?
-6. How do you implement retries correctly? What is a dead-letter queue?
-7. Why run only one Celery beat instance?
-8. How do you report progress of a long-running task to the frontend?
-9. How would you prevent slow report jobs from delaying password-reset emails?
+**Learn more:** [FastAPI: background tasks](https://fastapi.tiangolo.com/tutorial/background-tasks/) · [Celery documentation](https://docs.celeryq.dev/) · [ARQ](https://arq-docs.helpmanual.io/) · [Transactional outbox pattern](https://microservices.io/patterns/data/transactional-outbox.html)
 
 ---
 
-## 26. WebSockets & Streaming
+## 22. WebSockets: Real-Time, Two-Way Connections
 
-### WebSocket chat with a connection manager
+### Theory
+
+> **In simple words:** normal HTTP is "ask, answer, hang up". A **WebSocket** keeps one connection **open**, and both sides can send messages at any time: perfect for chat, live dashboards, multiplayer games, collaborative editing and live order tracking. FastAPI supports them with `@app.websocket("/path")`: accept the connection, then loop receiving and sending messages until the client disconnects.
+
+**Lifecycle:** client connects (an HTTP request that "upgrades") → `await ws.accept()` → `await ws.receive_text()`/`receive_json()` and `send_text()`/`send_json()` in a loop → `WebSocketDisconnect` is raised when the client leaves → clean up.
+
+**Connection manager:** to broadcast (chat rooms), keep the set of active connections per room and send to each; remove dead ones.
+
+**Scaling beyond one process:** each worker only knows its own connections. With several workers or servers, publish messages through **Redis pub/sub** (or NATS, Kafka) so every worker forwards them to its local clients. Load balancers need WebSocket support and **sticky sessions** are not required if state lives in Redis.
+
+**Auth:** browsers can't set custom headers on WebSocket connections, so authenticate with a cookie or a short-lived token in the query string (`?token=...`) or the first message, and check it **before** `accept()` (close with code 1008 on failure).
+
+**WebSockets vs SSE vs polling:**
+
+| | Direction | Use when |
+|---|---|---|
+| Polling (`GET` every N seconds) | Client pulls | Rare updates, simplest |
+| **SSE** (Server-Sent Events, next section) | Server → client over plain HTTP | Notifications, progress, **LLM token streaming** |
+| **WebSocket** | Both ways | Chat, games, collaborative apps, voice |
+
+### Python
 
 ```python
-from fastapi import WebSocket, WebSocketDisconnect
+from collections import defaultdict
+from fastapi import FastAPI, WebSocket, WebSocketDisconnect, status
+from fastapi.testclient import TestClient
 
-class ConnectionManager:
+app = FastAPI()
+
+class RoomManager:
     def __init__(self):
-        self.rooms: dict[str, set[WebSocket]] = {}
+        self.rooms: dict[str, set[WebSocket]] = defaultdict(set)
 
-    async def connect(self, room: str, ws: WebSocket):
+    async def join(self, room: str, ws: WebSocket):
         await ws.accept()
-        self.rooms.setdefault(room, set()).add(ws)
+        self.rooms[room].add(ws)
 
-    def disconnect(self, room: str, ws: WebSocket):
-        self.rooms.get(room, set()).discard(ws)
+    def leave(self, room: str, ws: WebSocket):
+        self.rooms[room].discard(ws)
 
     async def broadcast(self, room: str, message: dict):
-        for ws in list(self.rooms.get(room, [])):
+        for ws in list(self.rooms[room]):
             try:
                 await ws.send_json(message)
             except Exception:
-                self.disconnect(room, ws)
+                self.leave(room, ws)                       # drop dead connections
 
-manager = ConnectionManager()
+manager = RoomManager()
+TOKENS = {"tok-asha": "Asha", "tok-ravi": "Ravi"}
 
-@app.websocket("/ws/{room}")
-async def chat(ws: WebSocket, room: str, token: str):         # ?token=... (browsers can't set WS headers)
-    user = verify_ws_token(token)
-    if not user:
-        await ws.close(code=1008)                              # policy violation
+@app.websocket("/ws/rooms/{room}")
+async def chat(ws: WebSocket, room: str, token: str = ""):
+    user = TOKENS.get(token)
+    if user is None:                                       # authenticate BEFORE accepting
+        await ws.close(code=status.WS_1008_POLICY_VIOLATION)
         return
-    await manager.connect(room, ws)
+    await manager.join(room, ws)
+    await manager.broadcast(room, {"system": f"{user} joined"})
     try:
         while True:
             data = await ws.receive_json()
-            await manager.broadcast(room, {"from": user.name, "text": data["text"]})
+            await manager.broadcast(room, {"from": user, "text": data["text"][:500]})
     except WebSocketDisconnect:
-        manager.disconnect(room, ws)
+        manager.leave(room, ws)
+        await manager.broadcast(room, {"system": f"{user} left"})
+
+client = TestClient(app)
+with client.websocket_connect("/ws/rooms/support?token=tok-asha") as asha:
+    print(asha.receive_json())
+    with client.websocket_connect("/ws/rooms/support?token=tok-ravi") as ravi:
+        print(asha.receive_json(), ravi.receive_json())
+        ravi.send_json({"text": "Where is order 90312?"})
+        print(asha.receive_json(), ravi.receive_json())
+    print(asha.receive_json())                             # Ravi disconnected
+
+try:
+    with client.websocket_connect("/ws/rooms/support?token=bad") as ws:
+        ws.receive_json()
+except WebSocketDisconnect as e:
+    print("rejected with close code", e.code)
 ```
 
-In-memory managers only work with **one process**. With multiple workers/servers, broadcast through **Redis pub/sub** (or a broker).
+**Output:**
 
-### Streaming responses & Server-Sent Events (e.g. LLM token streaming)
+```text
+{'system': 'Asha joined'}
+{'system': 'Ravi joined'} {'system': 'Ravi joined'}
+{'from': 'Ravi', 'text': 'Where is order 90312?'} {'from': 'Ravi', 'text': 'Where is order 90312?'}
+{'system': 'Ravi left'}
+rejected with close code 1008
+```
+
+**Common mistakes:**
+
+- ❌ Accepting connections before checking authentication.
+- ❌ Keeping connection lists in process memory with several workers (use Redis pub/sub).
+- ❌ No limits on message size or rate (a client can flood the server).
+- ❌ Not handling `WebSocketDisconnect`, leaving dead connections in the manager.
+- ❌ Using WebSockets for one-way streams where SSE is simpler.
+
+### Practice
+
+1. Add a `/ws/echo` endpoint that replies to each text message with its upper-case version and closes the connection (code 1000) when it receives `"bye"`.
+
+<details>
+<summary><b>Answer</b></summary>
 
 ```python
-from fastapi.responses import StreamingResponse
-import asyncio, json
+@app.websocket("/ws/echo")
+async def echo(ws: WebSocket):
+    await ws.accept()
+    while True:
+        text = await ws.receive_text()
+        if text == "bye":
+            await ws.close(code=1000)
+            break
+        await ws.send_text(text.upper())
 
-async def event_stream():
-    for i in range(5):
-        yield f"data: {json.dumps({'progress': i * 20})}\n\n"   # SSE format
-        await asyncio.sleep(1)
-    yield "data: [DONE]\n\n"
-
-@app.get("/progress")
-async def progress():
-    return StreamingResponse(event_stream(), media_type="text/event-stream",
-                             headers={"Cache-Control": "no-cache"})
-
-# Stream a large file / CSV export without loading it all in memory
-@app.get("/export.csv")
-def export_csv(db: DbSession):
-    def rows():
-        yield "id,email\n"
-        for user in db.scalars(select(User).execution_options(yield_per=1000)):
-            yield f"{user.id},{user.email}\n"
-    return StreamingResponse(rows(), media_type="text/csv",
-                             headers={"Content-Disposition": "attachment; filename=users.csv"})
+with client.websocket_connect("/ws/echo") as ws:
+    ws.send_text("hello")
+    print(ws.receive_text())
+    ws.send_text("bye")
+    try:
+        ws.receive_text()
+    except WebSocketDisconnect as e:
+        print("closed with code", e.code)
 ```
+
+**Output:**
+
+```text
+HELLO
+closed with code 1000
+```
+
+</details>
+
+**Learn more:** [FastAPI: WebSockets](https://fastapi.tiangolo.com/advanced/websockets/) · [MDN: WebSocket API](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API) · [broadcaster (Redis pub/sub for Starlette)](https://github.com/encode/broadcaster)
 
 ---
 
-## 27. Server-Sent Events & Streaming Answers in FastAPI
+## 23. Streaming Responses and Server-Sent Events (LLM Token Streaming)
 
-The previous section streamed with a plain `StreamingResponse`. Recent FastAPI versions have **built-in SSE**: return `yield`ed events from a path operation marked `response_class=EventSourceResponse`, and FastAPI encodes the wire format, sets the anti-buffering headers and sends keep-alive pings. The concepts (event ids, resume, in-band errors, proxy buffering) are explained in `nodejs.md` → "Streaming Responses & Server-Sent Events in Depth". This section shows the FastAPI way. It was tested with FastAPI 0.136: through `TestClient`, and against a real `uvicorn` server for client disconnects.
+### Theory
 
-### What `EventSourceResponse` does for you
+> **In simple words:** instead of building the whole response and sending it at the end, a **streaming response** sends it **piece by piece** as it's produced. That's how ChatGPT-style apps show an answer word by word: the backend forwards tokens from the LLM as they arrive, so users see text after a few hundred milliseconds instead of waiting ten seconds. **Server-Sent Events (SSE)** is the simple, standard format for this: a long-lived HTTP response of `data: ...` lines that browsers read with `EventSource` or `fetch`.
 
-```python
-from fastapi import FastAPI
-from fastapi.sse import EventSourceResponse, ServerSentEvent
+**The options in FastAPI:**
 
-app = FastAPI()
+| Tool | Output |
+|---|---|
+| `StreamingResponse(generator, media_type=...)` | Any bytes as they're yielded (CSV exports, files, raw text) |
+| A generator path operation (returns `yield`ed objects) | **JSON Lines** (`application/jsonl`): one JSON object per line |
+| `response_class=EventSourceResponse` (`fastapi.sse`) | SSE: FastAPI formats events, sets `text/event-stream` and anti-buffering headers, sends keep-alive pings |
 
-@app.get("/progress", response_class=EventSourceResponse)
-async def progress():
-    for pct in (0, 50, 100):
-        yield {"progress": pct}                                  # plain objects → JSON in a `data:` line
-    yield ServerSentEvent(event="done", id="3", data={"ok": True}, retry=5_000)
-```
+**The SSE wire format:** events separated by a blank line; fields `data:` (the payload; FastAPI JSON-encodes it), `event:` (a name), `id:` (so a reconnecting browser sends `Last-Event-ID` and can resume), `retry:` (reconnect delay in ms). Comment lines starting with `:` are keep-alive pings.
 
-```text
-data: {"progress": 0}
+**Production details that bite:**
 
-data: {"progress": 50}
+- **Proxy buffering:** Nginx and some load balancers buffer responses, so tokens arrive all at once at the end; send `X-Accel-Buffering: no` (FastAPI's SSE does) or disable buffering for that route.
+- **Timeouts:** proxies close idle connections (often 60 s); keep-alive pings prevent that.
+- **Client disconnects:** when the user closes the tab, stop the upstream work (the generator is cancelled; use `try`/`finally` to cancel the LLM call and save partial results).
+- **Errors mid-stream:** the 200 status is already sent, so report errors **in-band** as an `event: error`.
+- **POST streaming:** chat requests need a body, so use `POST` + `fetch` + a stream reader (the browser `EventSource` only supports GET); FastAPI SSE works with any method.
 
-data: {"progress": 100}
-
-event: done
-data: {"ok": true}
-id: 3
-retry: 5000
-
-```
-
-- Works with **any method**, so `POST` streaming for chat is supported.
-- Sets `Content-Type: text/event-stream`, `Cache-Control: no-cache` and `X-Accel-Buffering: no`.
-- Sends a `: ping` comment when your generator has been silent for 15 s, so proxies don't close the idle connection.
-- `data` is **always JSON-encoded**, strings included (`data="hi"` sends `data: "hi"`). Use `raw_data=` for pre-formatted text.
-- Multi-line data is split into several `data:` lines correctly.
-- A generator path operation **without** `EventSourceResponse` streams **JSON Lines** (`application/jsonl`), one JSON object per line. That's handy for exports and machine clients.
-
-If your FastAPI version has no `fastapi.sse`, upgrade, or use the `sse-starlette` package (`EventSourceResponse` with similar features), or a `StreamingResponse` as in the previous section plus the headers above.
-
-### A notifications feed that resumes after reconnects
+### Python
 
 ```python
-import asyncio
-from dataclasses import dataclass
-from typing import Annotated, Any
-
-from fastapi import FastAPI, Header
-from fastapi.sse import EventSourceResponse, ServerSentEvent
-
-app = FastAPI()
-
-@dataclass
-class Entry:
-    id: int
-    event: str
-    data: Any
-
-# Demo storage (one process). With several workers or servers, use Redis Streams (XADD/XRANGE) for
-# history and Redis pub/sub for fan-out, so every worker sees every event.
-LOG: list[Entry] = []
-SUBSCRIBERS: set[asyncio.Queue[Entry | None]] = set()
-
-def publish(event: str, data: Any) -> Entry:
-    entry = Entry(id=(LOG[-1].id + 1) if LOG else 1, event=event, data=data)
-    LOG.append(entry)
-    del LOG[:-1000]                                      # keep the last 1,000 for replay
-    for queue in list(SUBSCRIBERS):
-        try:
-            queue.put_nowait(entry)
-        except asyncio.QueueFull:                        # slow consumer: drop it; it resumes via Last-Event-ID
-            SUBSCRIBERS.discard(queue)
-            queue.get_nowait()
-            queue.put_nowait(None)                       # sentinel: tell its stream to end
-    return entry
-
-def to_sse(entry: Entry) -> ServerSentEvent:
-    return ServerSentEvent(event=entry.event, id=str(entry.id), data=entry.data)
-
-@app.get("/notifications/stream", response_class=EventSourceResponse)
-async def notifications_stream(
-    last_event_id: Annotated[str | None, Header()] = None,   # the `Last-Event-ID` header the browser sends on reconnect
-    since: int = 0,                                          # ?since= for the very first connection
-):
-    last_seen = int(last_event_id) if last_event_id and last_event_id.isdigit() else since
-    queue: asyncio.Queue[Entry | None] = asyncio.Queue(maxsize=100)
-    SUBSCRIBERS.add(queue)                     # subscribe FIRST, then replay: nothing can fall into the gap
-    try:
-        replayed = [e for e in LOG if e.id > last_seen]
-        for entry in replayed:
-            yield to_sse(entry)
-        newest = replayed[-1].id if replayed else last_seen
-        while (entry := await queue.get()) is not None:
-            if entry.id > newest:              # skip events already sent during the replay
-                yield to_sse(entry)
-    finally:
-        SUBSCRIBERS.discard(queue)             # runs on client disconnect too (the generator is cancelled)
-```
-
-Subscribing before replaying means an event published during the replay is either in the replayed list or in the queue, and the `id` check removes the duplicate. Parse `Last-Event-ID` leniently: a validation error would answer `422`, and `EventSource` never reconnects after a non-200 response.
-
-### Streaming an LLM-style answer over POST
-
-```python
-import asyncio
+import asyncio, json
 from collections.abc import AsyncIterator
 from typing import Annotated
-
 from fastapi import FastAPI
+from fastapi.responses import StreamingResponse
 from fastapi.sse import EventSourceResponse, ServerSentEvent
+from fastapi.testclient import TestClient
 from pydantic import BaseModel, StringConstraints
 
 app = FastAPI()
 
-class ChatRequest(BaseModel):
-    prompt: Annotated[str, StringConstraints(strip_whitespace=True, min_length=1, max_length=2000)]
+@app.get("/export.csv")
+def export_csv():
+    def rows():
+        yield "sku,qty\n"
+        for i in range(1, 4):
+            yield f"P{i},{i * 10}\n"              # rows are sent as they're produced
+    return StreamingResponse(rows(), media_type="text/csv")
 
-class ModelError(Exception):
-    pass
+async def fake_llm(prompt: str) -> AsyncIterator[str]:
+    """Stands in for an LLM SDK's streaming call (e.g. `client.messages.stream` in llm-engineering.md)."""
+    for token in ["Your ", "order ", "90312 ", "arrives ", "on ", "27 ", "Sept."]:
+        await asyncio.sleep(0.01)
+        yield token
 
-GENERATION = {"started": 0, "cancelled": 0}
-
-async def generate_tokens(prompt: str) -> AsyncIterator[str]:
-    """Stand-in for an LLM SDK's async token stream."""
-    GENERATION["started"] += 1
-    if prompt == "fail":
-        raise ModelError("model overloaded")
-    try:
-        for word in f'You asked: "{prompt}". Streaming sends each token as soon as it is ready.'.split():
-            await asyncio.sleep(0.03)
-            yield word + " "
-    except asyncio.CancelledError:
-        GENERATION["cancelled"] += 1           # client disconnected: the upstream call stops here
-        raise                                  # always re-raise CancelledError
+class ChatIn(BaseModel):
+    message: Annotated[str, StringConstraints(strip_whitespace=True, min_length=1, max_length=2000)]
 
 @app.post("/chat", response_class=EventSourceResponse)
-async def chat(body: ChatRequest):             # a bad body is rejected with 422 BEFORE streaming starts
-    tokens = 0
+async def chat(body: ChatIn):
+    full = []
     try:
-        async for text in generate_tokens(body.prompt):
-            yield ServerSentEvent(event="token", data={"text": text})
-            tokens += 1
-        yield ServerSentEvent(event="done", data={"tokens": tokens})
-    except ModelError:
-        # the 200 is already sent, so errors travel inside the stream
-        yield ServerSentEvent(event="error", data={"message": "Generation failed, please retry"})
+        async for token in fake_llm(body.message):
+            full.append(token)
+            yield ServerSentEvent(event="token", data={"text": token})
+        yield ServerSentEvent(event="done", data={"text": "".join(full)})
+    except Exception:
+        yield ServerSentEvent(event="error", data={"message": "generation failed"})   # in-band error
+    finally:
+        pass                                    # cancel upstream work / save partial answer here
+
+c = TestClient(app)
+print(c.get("/export.csv").text)
+with c.stream("POST", "/chat", json={"message": "Where is my order?"}) as r:
+    print(r.status_code, r.headers["content-type"], r.headers.get("x-accel-buffering"))
+    raw = "".join(r.iter_text())
+print(raw[:120].replace("\n", "⏎"))
+events = [block for block in raw.strip().split("\n\n")]
+tokens = [json.loads(line[6:])["text"] for b in events for line in b.split("\n") if line.startswith("data: ") and "event: token" in b]
+print(len(events), "events;", "".join(tokens))
 ```
 
-When the client disconnects, FastAPI cancels the generator. The `CancelledError` surfaces at the current `await`, so `finally:` blocks and `except CancelledError` handlers run. That's where you close the upstream SDK stream to stop paying for tokens nobody will read. Never swallow `CancelledError`.
+**Output:**
 
-The browser side is the same `fetch` + stream parser + React hook shown in `nodejs.md` (Streaming Responses section): `EventSource` can't send a `POST` body.
+```text
+sku,qty
+P1,10
+P2,20
+P3,30
 
-**Blocking SDKs.** A plain `def` generator path operation runs in the thread pool (FastAPI iterates it with `iterate_in_threadpool`), so a synchronous SDK doesn't block the event loop. Prefer the SDK's async client when there is one.
+200 text/event-stream; charset=utf-8 no
+event: token⏎data: {"text": "Your "}⏎⏎event: token⏎data: {"text": "order "}⏎⏎event: token⏎data: {"text": "90312 "}⏎⏎even
+8 events; Your order 90312 arrives on 27 Sept.
+```
 
-### Testing streams
+The browser side (JavaScript) reads the stream with `fetch` and appends each token to the page:
+
+```text
+const res = await fetch("/chat", {method: "POST", headers: {"Content-Type": "application/json"},
+                                   body: JSON.stringify({message: "Where is my order?"})});
+const reader = res.body.pipeThrough(new TextDecoderStream()).getReader();
+// read chunks, split on "\n\n", parse "event:" and "data:" lines, append data.text to the chat bubble
+```
+
+**Common mistakes:**
+
+- ❌ Waiting for the full LLM answer before responding (seconds of blank screen).
+- ❌ Proxy buffering left on, so the "stream" arrives in one piece.
+- ❌ Not stopping the LLM call when the client disconnects (you keep paying for tokens nobody reads).
+- ❌ Raising exceptions mid-stream instead of sending an error event.
+- ❌ Streaming with `BaseHTTPMiddleware`-style middleware that buffers bodies.
+
+### Practice
+
+1. Add `GET /progress` as SSE that sends `{"pct": 0}`, `{"pct": 50}`, `{"pct": 100}` as events with ids "1", "2", "3", and print the raw text received.
+
+<details>
+<summary><b>Answer</b></summary>
 
 ```python
-import json
+@app.get("/progress", response_class=EventSourceResponse)
+async def progress():
+    for i, pct in enumerate([0, 50, 100], start=1):
+        yield ServerSentEvent(id=str(i), data={"pct": pct})
 
+print(c.get("/progress").text)
+```
+
+**Output:**
+
+```text
+data: {"pct": 0}
+id: 1
+
+data: {"pct": 50}
+id: 2
+
+data: {"pct": 100}
+id: 3
+```
+
+</details>
+
+**Learn more:** [FastAPI: custom and streaming responses](https://fastapi.tiangolo.com/advanced/custom-response/) · [MDN: using server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events) · [Anthropic: streaming messages](https://platform.claude.com/docs/en/build-with-claude/streaming)
+
+---
+
+## 24. Calling Other APIs and Receiving Webhooks
+
+### Theory
+
+> **In simple words:** backends constantly talk to **other** services: payment gateways, shipping partners, email providers, LLM APIs. Calling them (**outbound**) safely needs a shared client, **timeouts**, **retries** with backoff for temporary failures, and circuit breakers when a service is down. Services also call **you** (**inbound webhooks**: "payment succeeded", "parcel delivered"); you must **verify** they're genuine (signatures), respond fast, and handle **duplicates**.
+
+**Outbound calls with `httpx`:**
+
+- One shared `httpx.AsyncClient` (created in lifespan) for connection pooling; set `base_url`, headers and **timeouts** (`httpx.Timeout(10.0, connect=2.0)`). Never call external services without a timeout.
+- **Retry** only safe cases: connection errors, 429 (respect `Retry-After`), 502/503/504; with **exponential backoff and jitter**; limit attempts. Don't blindly retry non-idempotent POSTs unless the API supports **idempotency keys** (payments do).
+- **Circuit breaker:** after repeated failures, stop calling for a while and fail fast (or serve a fallback), so a slow dependency doesn't exhaust your workers.
+- Map upstream errors to your own: upstream 5xx/timeout → your 502/504, with a clear message; log the upstream request id.
+- Libraries: `tenacity` or `stamina` (retries), `respx` (mock httpx in tests), `aiobreaker`/`purgatory` (circuit breakers).
+
+**Inbound webhooks:**
+
+1. **Verify the signature:** the sender signs the raw body with a shared secret (HMAC-SHA256) and sends it in a header; recompute over the **raw bytes** and compare with `hmac.compare_digest`. Also check a timestamp to block replays.
+2. **Respond 2xx quickly**; do the real work in a background job.
+3. **Deduplicate:** senders retry, so store processed event ids (unique constraint) and ignore repeats.
+4. Don't trust the payload blindly; for money, re-fetch the object from the provider's API.
+
+**Payments pattern** (Razorpay/Stripe-style): create an order/intent server-side with the amount (never trust the client's amount) → client pays on the provider's page/SDK → provider sends a signed webhook → you mark the order paid **from the webhook** (not from the browser redirect) → idempotent fulfilment.
+
+**Files to object storage:** give clients **pre-signed URLs** (S3/GCS/R2) to upload directly, so large files don't pass through your API.
+
+### Python
+
+```python
+import asyncio, hashlib, hmac, json, time
+import httpx
+from fastapi import FastAPI, Header, HTTPException, Request
 from fastapi.testclient import TestClient
 
-from main import app          # the chat app above
+# A fake courier API that fails twice with 503, then succeeds (a MockTransport stands in for the network)
+calls = {"n": 0}
+def courier_api(request: httpx.Request) -> httpx.Response:
+    calls["n"] += 1
+    if calls["n"] <= 2:
+        return httpx.Response(503, json={"error": "busy"})
+    return httpx.Response(200, json={"awb": "DL123", "status": "in transit"})
 
-def parse_sse(lines):
-    """Minimal test helper: group `field: value` lines into events."""
-    event: dict = {}
-    for line in lines:
-        if line == "":
-            if event:
-                yield event
-            event = {}
-        elif not line.startswith(":"):
-            field, _, value = line.partition(": ")
-            event[field] = event[field] + "\n" + value if field in event else value
+async def get_with_retries(client: httpx.AsyncClient, url: str, attempts: int = 4, base_delay: float = 0.01):
+    for attempt in range(1, attempts + 1):
+        try:
+            r = await client.get(url)
+            if r.status_code not in (429, 502, 503, 504):
+                return r
+            print(f"attempt {attempt}: upstream {r.status_code}, retrying")
+        except httpx.TransportError as e:                 # connection errors, timeouts
+            print(f"attempt {attempt}: {type(e).__name__}, retrying")
+        await asyncio.sleep(base_delay * 2 ** (attempt - 1))   # exponential backoff (add jitter in production)
+    raise HTTPException(502, "courier service unavailable")
 
-def test_chat_streams_tokens_then_done():
-    client = TestClient(app)
-    with client.stream("POST", "/chat", json={"prompt": "hi"}) as response:
-        assert response.status_code == 200
-        assert response.headers["content-type"].startswith("text/event-stream")
-        events = list(parse_sse(response.iter_lines()))
-    assert [e["event"] for e in events][-1] == "done"
-    assert "".join(json.loads(e["data"])["text"] for e in events if e["event"] == "token").strip().startswith("You asked")
-
-def test_empty_prompt_is_422_before_streaming():
-    assert TestClient(app).post("/chat", json={"prompt": "   "}).status_code == 422
-```
-
-`TestClient` is fine for streams that **end**, like `/chat`. It **hangs on a stream that never ends**, such as a live feed, even after you `break` out of the loop, because it waits for the app to finish. Test endless feeds, and disconnect handling, against a real `uvicorn` server (started in a background thread) with `httpx.stream(...)`: break after a few events, then assert that your `finally` cleanup ran.
-
-### Deployment notes
-
-- **Workers and fan-out:** each Uvicorn/Gunicorn worker has its own `SUBSCRIBERS`. Fan out through Redis pub/sub (`redis.asyncio`), and keep history in Redis Streams or the database so any worker can replay.
-- **Proxies:** `X-Accel-Buffering: no` is already set; also raise nginx's `proxy_read_timeout` for stream routes, and keep keep-alive pings (15 s) below every idle timeout on the path (AWS ALB defaults to 60 s).
-- **Graceful shutdown:** open streams keep a worker busy. Use `uvicorn --timeout-graceful-shutdown 10` so deploys don't hang. Clients reconnect (and resume) on their own.
-- **Don't wrap streams in response-buffering middleware** (some custom logging middlewares read the whole body). Log the start and end of streams instead.
-
-### Interview Qs
-
-1. How do you send SSE from FastAPI? → A generator path operation with `response_class=EventSourceResponse`, yielding objects (sent as JSON `data:`) or `ServerSentEvent(event=, id=, data=, retry=)`.
-2. How does FastAPI keep idle SSE connections alive? → It sends a `: ping` comment when the generator has been quiet for 15 s.
-3. What happens to your generator when the client disconnects? → It's cancelled: `CancelledError` is raised at the current `await`, so `finally` and cleanup run. Re-raise it.
-4. How do you resume a feed after a reconnect? → Give every event an `id`, read the `Last-Event-ID` header, replay newer events from a log, then continue live. Subscribe before replaying and skip duplicates.
-5. How are validation errors and mid-stream errors handled differently? → Body validation fails with `422` before streaming; once streaming has started, send an in-band `error` event.
-6. What does a generator endpoint without `EventSourceResponse` return? → JSON Lines (`application/jsonl`).
-7. How do you scale SSE across Uvicorn workers? → Redis pub/sub for fan-out and Redis Streams or a database for replayable history.
-
----
-
-## 28. Pagination, Filtering & Sorting
-
-### Offset pagination with a generic response model
-
-```python
-from pydantic import BaseModel
-from typing import Generic, TypeVar
-
-T = TypeVar("T")
-
-class Page(BaseModel, Generic[T]):
-    items: list[T]
-    total: int
-    page: int
-    size: int
-    pages: int
-
-@router.get("/products", response_model=Page[ProductOut])
-def list_products(
-    db: DbSession,
-    page: Annotated[int, Query(ge=1)] = 1,
-    size: Annotated[int, Query(ge=1, le=100)] = 20,
-    q: str | None = None,
-    min_price: Annotated[float | None, Query(ge=0)] = None,
-    sort: Literal["price", "-price", "newest"] = "newest",
-):
-    stmt = select(Product)
-    if q:
-        stmt = stmt.where(Product.name.ilike(f"%{q}%"))        # parameterized — safe
-    if min_price is not None:
-        stmt = stmt.where(Product.price >= min_price)
-
-    total = db.scalar(select(func.count()).select_from(stmt.subquery()))
-    order = {"price": Product.price.asc(), "-price": Product.price.desc(), "newest": Product.created_at.desc()}[sort]
-    items = db.scalars(stmt.order_by(order).offset((page - 1) * size).limit(size)).all()
-    return Page(items=items, total=total, page=page, size=size, pages=-(-total // size))
-```
-
-Whitelist sort fields (never pass a raw column name from the client into SQL).
-
-### Cursor (keyset) pagination — for feeds & large tables
-
-```python
-@router.get("/feed")
-def feed(db: DbSession, after_id: int | None = None, limit: int = Query(20, le=100)):
-    stmt = select(Post).order_by(Post.id.desc()).limit(limit + 1)
-    if after_id:
-        stmt = stmt.where(Post.id < after_id)
-    posts = db.scalars(stmt).all()
-    has_more = len(posts) > limit
-    posts = posts[:limit]
-    return {"items": posts, "next_cursor": posts[-1].id if has_more else None}
-```
-
-Offset is simple but slow for deep pages and unstable with inserts; cursor pagination is fast and consistent.
-
----
-
-## 29. Caching & Rate Limiting
-
-### Redis cache (cache-aside)
-
-```python
-import json
-
-async def get_product_cached(product_id: int, db: AsyncDb, r) -> dict:
-    key = f"product:{product_id}"
-    if cached := await r.get(key):
-        return json.loads(cached)
-    product = await db.get(Product, product_id)
-    if not product:
-        raise NotFoundError("Product not found")
-    data = ProductOut.model_validate(product).model_dump(mode="json")
-    await r.set(key, json.dumps(data), ex=300)          # TTL 5 minutes
-    return data
-
-# Invalidate on update
-await r.delete(f"product:{product_id}")
-```
-
-HTTP caching: set `Cache-Control`/`ETag` headers for public GET endpoints so CDNs/browsers cache.
-
-### Rate limiting with slowapi
-
-```python
-from slowapi import Limiter, _rate_limit_exceeded_handler
-from slowapi.util import get_remote_address
-from slowapi.errors import RateLimitExceeded
-
-limiter = Limiter(key_func=get_remote_address, storage_uri=settings.redis_url)   # Redis → shared across workers
-app.state.limiter = limiter
-app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
-
-@router.post("/auth/token")
-@limiter.limit("5/minute")                     # brute-force protection
-def login(request: Request, form: Annotated[OAuth2PasswordRequestForm, Depends()]): ...
-
-@router.get("/search")
-@limiter.limit("60/minute")
-def search(request: Request, q: str): ...
-```
-
-Behind a proxy, make sure the real client IP is used (Uvicorn `--proxy-headers --forwarded-allow-ips=...`). Rate limiting is often also done at the gateway (Nginx, Cloudflare, API Gateway).
-
----
-
-## 30. Calling External APIs
-
-Use **httpx** (sync + async), reuse one client (connection pooling), always set **timeouts**, retry only transient errors.
-
-```python
-import httpx
-from tenacity import retry, stop_after_attempt, wait_exponential_jitter, retry_if_exception_type
-
-class PaymentClient:
-    def __init__(self, client: httpx.AsyncClient):
-        self.client = client
-
-    @retry(stop=stop_after_attempt(3), wait=wait_exponential_jitter(initial=0.3, max=3),
-           retry=retry_if_exception_type((httpx.TransportError, httpx.HTTPStatusError)))
-    async def create_order(self, amount_paise: int, idempotency_key: str) -> dict:
-        r = await self.client.post(
-            "https://api.payments.example/orders",
-            json={"amount": amount_paise, "currency": "INR"},
-            headers={"Idempotency-Key": idempotency_key},       # safe retries for POST
-            timeout=httpx.Timeout(10.0, connect=3.0),
-        )
-        if r.status_code >= 500:
-            r.raise_for_status()                                # 5xx → retry
-        if r.status_code >= 400:
-            raise AppError(f"Payment provider rejected: {r.text}")   # 4xx → don't retry
+async def track():
+    async with httpx.AsyncClient(base_url="https://courier.example", timeout=httpx.Timeout(5.0, connect=1.0),
+                                 transport=httpx.MockTransport(courier_api)) as client:
+        r = await get_with_retries(client, "/track/90312")
         return r.json()
 
-def get_payment_client(request: Request) -> PaymentClient:
-    return PaymentClient(request.app.state.http)                # shared client from lifespan
+print(asyncio.run(track()))
 ```
 
----
+**Output:**
 
-## 31. Integrations: Webhooks, Payments, Email & S3 Uploads
+```text
+attempt 1: upstream 503, retrying
+attempt 2: upstream 503, retrying
+{'awb': 'DL123', 'status': 'in transit'}
+```
 
-Concepts are explained in depth in the Node notes ("Webhooks & Payment Integration"); this section shows the **FastAPI/Python** way, with production rules.
-
-### 1. Receiving webhooks securely
-
-Rules: verify the **signature over the raw body**, reject **stale timestamps** (replay attacks), **dedupe by event ID** (providers deliver at least once), **respond 2xx fast** and process in the background.
+**Verifying a signed webhook:**
 
 ```python
-import hashlib, hmac, json, time
-from fastapi import FastAPI, Request, HTTPException, BackgroundTasks
-
-WEBHOOK_SECRET = b"whsec_test_secret"            # from settings (SecretStr) in real code
-TOLERANCE_SECONDS = 300
-processed_event_ids: set[str] = set()            # real app: DB table with a UNIQUE constraint on event_id
-
+WEBHOOK_SECRET = b"whsec_test_123"
+PROCESSED: set[str] = set()
 app = FastAPI()
 
-def verify_signature(raw_body: bytes, header: str | None) -> None:
-    # header format: "t=1727150000,v1=<hex hmac>"
-    if not header:
-        raise HTTPException(400, "Missing signature")
-    parts = dict(item.split("=", 1) for item in header.split(",") if "=" in item)
-    timestamp, signature = parts.get("t"), parts.get("v1")
-    if not timestamp or not signature or not timestamp.isdigit():
-        raise HTTPException(400, "Malformed signature")
-    if abs(time.time() - int(timestamp)) > TOLERANCE_SECONDS:
-        raise HTTPException(400, "Stale webhook")                       # replay protection
-    expected = hmac.new(WEBHOOK_SECRET, f"{timestamp}.".encode() + raw_body, hashlib.sha256).hexdigest()
-    if not hmac.compare_digest(expected, signature):                    # constant-time comparison
-        raise HTTPException(401, "Invalid signature")
-
-def handle_event(event: dict) -> None:
-    ...  # fulfil order, send receipt, etc. — idempotent
+def sign(body: bytes, timestamp: int) -> str:
+    return hmac.new(WEBHOOK_SECRET, f"{timestamp}.".encode() + body, hashlib.sha256).hexdigest()
 
 @app.post("/webhooks/payments")
-async def payments_webhook(request: Request, background: BackgroundTasks):
-    raw = await request.body()                                          # RAW bytes — don't parse first
-    verify_signature(raw, request.headers.get("X-Signature"))
-    event = json.loads(raw)
+async def payment_webhook(request: Request, x_signature: str = Header(), x_timestamp: int = Header()):
+    body = await request.body()                                  # the RAW bytes, exactly as signed
+    if abs(time.time() - x_timestamp) > 300:
+        raise HTTPException(400, "stale webhook")                # replay protection
+    if not hmac.compare_digest(sign(body, x_timestamp), x_signature):
+        raise HTTPException(401, "bad signature")
+    event = json.loads(body)
+    if event["id"] in PROCESSED:
+        return {"status": "duplicate ignored"}                   # senders retry: be idempotent
+    PROCESSED.add(event["id"])
+    # enqueue fulfilment here (background job); respond fast
+    return {"status": "accepted", "order": event["data"]["order_id"]}
 
-    if event["id"] in processed_event_ids:                              # duplicate delivery → ack & ignore
-        return {"status": "duplicate"}
-    processed_event_ids.add(event["id"])
-
-    background.add_task(handle_event, event)                            # real app: enqueue to Celery/ARQ
-    return {"status": "received"}
+c = TestClient(app)
+event = json.dumps({"id": "evt_1", "type": "payment.captured", "data": {"order_id": "90312", "amount": 99800}}).encode()
+ts = int(time.time())
+good = {"X-Signature": sign(event, ts), "X-Timestamp": str(ts), "Content-Type": "application/json"}
+print(c.post("/webhooks/payments", content=event, headers=good).json())
+print(c.post("/webhooks/payments", content=event, headers=good).json())
+tampered = event.replace(b"99800", b"1")
+print(c.post("/webhooks/payments", content=tampered, headers=good).status_code)
+old = {**good, "X-Timestamp": str(ts - 3600), "X-Signature": sign(event, ts - 3600)}
+print(c.post("/webhooks/payments", content=event, headers=old).json())
 ```
 
-With a provider SDK (e.g. Stripe) the verification is one call:
+**Output:**
+
+```text
+{'status': 'accepted', 'order': '90312'}
+{'status': 'duplicate ignored'}
+401
+{'detail': 'stale webhook'}
+```
+
+**Common mistakes:**
+
+- ❌ Outbound calls without timeouts (one slow partner freezes your whole API).
+- ❌ A new HTTP client per request (no connection reuse).
+- ❌ Retrying non-idempotent requests without idempotency keys (double charges).
+- ❌ Verifying webhook signatures over re-serialised JSON instead of the raw body, or with `==` instead of `compare_digest`.
+- ❌ Marking orders paid from the browser redirect instead of the verified webhook.
+
+### Practice
+
+1. Change the fake courier so it always returns 503, and show that `get_with_retries` gives up with a 502 after 4 attempts.
+
+<details>
+<summary><b>Answer</b></summary>
 
 ```python
-import stripe
+async def track_down():
+    async with httpx.AsyncClient(base_url="https://courier.example",
+                                 transport=httpx.MockTransport(lambda req: httpx.Response(503))) as client:
+        try:
+            await get_with_retries(client, "/track/90312")
+        except HTTPException as e:
+            return e.status_code, e.detail
 
-@app.post("/webhooks/stripe")
-async def stripe_webhook(request: Request):
-    payload = await request.body()
-    try:
-        event = stripe.Webhook.construct_event(payload, request.headers.get("stripe-signature"), settings.stripe_webhook_secret)
-    except (ValueError, stripe.SignatureVerificationError):
-        raise HTTPException(400, "Invalid webhook")
-    if event["type"] == "payment_intent.succeeded":
-        await queue.enqueue("fulfil_order", event["data"]["object"]["id"], event_id=event["id"])
-    return {"received": True}
+print(asyncio.run(track_down()))
 ```
 
-Idempotency in the database (safe even with concurrent duplicate deliveries):
+**Output:**
 
-```python
-from sqlalchemy.exc import IntegrityError
-
-def record_event_once(db, event_id: str, event_type: str) -> bool:
-    db.add(WebhookEvent(id=event_id, type=event_type))       # id is the PRIMARY KEY / UNIQUE
-    try:
-        db.commit()
-        return True                                          # first time we see it
-    except IntegrityError:
-        db.rollback()
-        return False                                         # already processed
+```text
+attempt 1: upstream 503, retrying
+attempt 2: upstream 503, retrying
+attempt 3: upstream 503, retrying
+attempt 4: upstream 503, retrying
+(502, 'courier service unavailable')
 ```
 
-### 2. Payment flow (Razorpay/Stripe style)
+</details>
 
-```
-1. POST /checkout      → server computes the amount FROM THE DB, creates a pending Order + provider order (idempotency key = order id)
-2. Client pays on the provider's hosted checkout (card data never touches your server)
-3. POST /payments/verify → server verifies the provider signature (UX: show "paid" quickly)
-4. Webhook payment.captured → SOURCE OF TRUTH: mark paid idempotently, fulfil, send receipt
-```
-
-```python
-import hmac, hashlib
-from sqlalchemy import update
-
-def verify_payment_signature(provider_order_id: str, payment_id: str, signature: str, key_secret: bytes) -> bool:
-    expected = hmac.new(key_secret, f"{provider_order_id}|{payment_id}".encode(), hashlib.sha256).hexdigest()
-    return hmac.compare_digest(expected, signature)
-
-def mark_order_paid(db, provider_order_id: str, payment_id: str) -> bool:
-    """State transition pending → paid, done atomically and idempotently."""
-    result = db.execute(
-        update(Order)
-        .where(Order.provider_order_id == provider_order_id, Order.status == "pending")   # only from pending
-        .values(status="paid", payment_id=payment_id)
-    )
-    db.commit()
-    return result.rowcount == 1          # False → already paid (duplicate) or not pending
-```
-
-Rules: **amounts as integer paise/cents**, never trust client prices/"success" callbacks, **webhooks are the source of truth**, **idempotency keys** on outgoing charge/refund calls, an **order state machine** with conditional updates, a **reconciliation job** that compares your orders with the provider's records, and never store card data.
-
-### 3. Sending email
-
-**Never send email inside the request** — SMTP/API calls are slow and flaky. Enqueue a job (Celery/ARQ) or at least use `BackgroundTasks`.
-
-#### Templates with Jinja2 (autoescape on!)
-
-```python
-from jinja2 import Environment, DictLoader, select_autoescape
-
-env = Environment(
-    loader=DictLoader({
-        "welcome.html": "<h1>Welcome, {{ name }}!</h1><p><a href=\"{{ verify_url }}\">Verify your email</a></p>",
-        "welcome.txt": "Welcome, {{ name }}!\nVerify your email: {{ verify_url }}",
-    }),
-    autoescape=select_autoescape(["html"]),       # escapes user data in HTML → prevents HTML/JS injection
-)
-
-def render_welcome(name: str, verify_url: str) -> tuple[str, str]:
-    ctx = {"name": name, "verify_url": verify_url}
-    return env.get_template("welcome.html").render(ctx), env.get_template("welcome.txt").render(ctx)
-```
-
-(Real apps use `FileSystemLoader("templates")`.)
-
-#### Sending via a provider API (recommended) or SMTP
-
-```python
-import httpx
-from email.message import EmailMessage
-import smtplib
-
-async def send_via_api(to: str, subject: str, html: str, text: str) -> None:
-    # SES / SendGrid / Postmark / Resend all look roughly like this
-    async with httpx.AsyncClient(timeout=10) as client:
-        r = await client.post(
-            "https://api.email-provider.example/v1/send",
-            headers={"Authorization": f"Bearer {settings.email_api_key.get_secret_value()}"},
-            json={"from": "Shop <no-reply@mail.shop.com>", "to": [to], "subject": subject, "html": html, "text": text},
-        )
-        r.raise_for_status()
-
-def send_via_smtp(to: str, subject: str, html: str, text: str) -> None:
-    msg = EmailMessage()
-    msg["From"], msg["To"], msg["Subject"] = "Shop <no-reply@mail.shop.com>", to, subject
-    msg.set_content(text)                          # plain-text part (deliverability + accessibility)
-    msg.add_alternative(html, subtype="html")      # HTML part
-    with smtplib.SMTP(settings.smtp_host, 587, timeout=10) as smtp:
-        smtp.starttls()
-        smtp.login(settings.smtp_user, settings.smtp_password.get_secret_value())
-        smtp.send_message(msg)
-
-@app.post("/users", status_code=201)
-async def register(data: UserCreate, background: BackgroundTasks):
-    user = await create_user(data)
-    html, text = render_welcome(user.name, make_verify_url(user))
-    background.add_task(send_via_api, user.email, "Welcome to Shop", html, text)   # after the response
-    return user
-```
-
-#### Email best practices
-
-- **Deliverability**: send from your own domain with **SPF, DKIM and DMARC** records; use a subdomain (`mail.shop.com`) for bulk/marketing; warm up new domains.
-- Always include a **plain-text** version; keep HTML simple (tables, inline CSS).
-- Handle **bounce & complaint webhooks** from the provider — stop sending to bad addresses.
-- Marketing emails need an **unsubscribe link** and `List-Unsubscribe` header; transactional ones (receipts, password reset) are separate streams.
-- **Retries with backoff** in the job queue; **idempotency** so a retried job doesn't send twice (store "sent" state per email type/user).
-- Escape user content in templates; never put secrets or full tokens in logs.
-- **Dev/test**: capture emails locally (Mailpit/MailHog) or mock the provider — never email real users from staging.
-
-### 4. File uploads to S3 with pre-signed URLs
-
-Uploading big files **through** your API wastes bandwidth/CPU and ties up workers. Instead, the API hands the client a **short-lived, pre-signed URL** and the client uploads **directly** to object storage.
-
-```
-1. Client → POST /uploads {filename, content_type, size}   (authenticated)
-2. API validates type & size, picks the object KEY, returns a pre-signed POST (expires in ~5 min)
-3. Client uploads the file directly to S3 using that URL + fields
-4. Client → POST /uploads/complete {key}  (or S3 event → queue → worker)
-5. API verifies the object (exists, size, content type), scans it if needed, saves the key in the DB
-6. Downloads: API returns a short-lived pre-signed GET URL (bucket stays private)
-```
-
-```python
-import uuid
-import boto3
-from pydantic import BaseModel, Field
-
-s3 = boto3.client("s3", region_name="ap-south-1")
-BUCKET = "shop-user-uploads"                   # PRIVATE bucket (block public access)
-ALLOWED_TYPES = {"image/jpeg": ".jpg", "image/png": ".png", "application/pdf": ".pdf"}
-MAX_BYTES = 10 * 1024 * 1024
-
-class UploadRequest(BaseModel):
-    content_type: str
-    size: int = Field(gt=0, le=MAX_BYTES)
-
-@app.post("/uploads")
-def create_upload(req: UploadRequest, user: CurrentUser):
-    if req.content_type not in ALLOWED_TYPES:
-        raise HTTPException(415, "Unsupported file type")
-    key = f"users/{user.id}/{uuid.uuid4()}{ALLOWED_TYPES[req.content_type]}"   # never use the client's filename as the key
-    presigned = s3.generate_presigned_post(
-        Bucket=BUCKET,
-        Key=key,
-        Fields={"Content-Type": req.content_type},
-        Conditions=[
-            {"Content-Type": req.content_type},
-            ["content-length-range", 1, MAX_BYTES],        # S3 enforces the size limit
-        ],
-        ExpiresIn=300,
-    )
-    return {"key": key, "url": presigned["url"], "fields": presigned["fields"]}
-
-@app.post("/uploads/complete")
-def complete_upload(key: str, user: CurrentUser, db: DbSession):
-    if not key.startswith(f"users/{user.id}/"):
-        raise HTTPException(403, "Not your upload")      # prevent claiming someone else's object
-    head = s3.head_object(Bucket=BUCKET, Key=key)        # verify it really exists
-    if head["ContentLength"] > MAX_BYTES:
-        raise HTTPException(400, "File too large")
-    db.add(Attachment(user_id=user.id, key=key, size=head["ContentLength"], content_type=head["ContentType"]))
-    db.commit()
-    return {"ok": True}
-
-@app.get("/attachments/{attachment_id}/download")
-def download(attachment_id: int, user: CurrentUser, db: DbSession):
-    att = db.get(Attachment, attachment_id)
-    if not att or att.user_id != user.id:
-        raise HTTPException(404)
-    url = s3.generate_presigned_url("get_object", Params={"Bucket": BUCKET, "Key": att.key}, ExpiresIn=60)
-    return {"url": url}
-```
-
-#### Upload best practices
-
-- **Private buckets**; access only via short-lived pre-signed URLs (or a CDN with signed URLs/cookies).
-- Enforce **size & type** in the pre-signed policy (not just on the client).
-- Generate **random keys** namespaced by tenant/user; store the key, not a public URL.
-- **Verify after upload** (head_object), and scan user files for malware if they're shared with others.
-- **CORS** on the bucket for the frontend origin (PUT/POST only).
-- **Lifecycle rules** to delete abandoned uploads (objects never "completed") and move old files to cheaper storage.
-- Large files: **multipart uploads** (resumable, parallel parts).
-- Serve images through an image CDN/resizer instead of the raw original.
-
-### Interview Qs
-
-1. How do you verify a webhook in FastAPI? Why must you use `await request.body()`?
-2. How do you make webhook processing idempotent under concurrent duplicate deliveries?
-3. Walk through a secure payment integration. Which step is the source of truth?
-4. How do you mark an order paid exactly once? (conditional update on status)
-5. Why shouldn't you send emails inside the request handler?
-6. What are SPF, DKIM and DMARC?
-7. Why use pre-signed URLs for uploads? How do you enforce file size limits with S3?
-8. How do you stop users from accessing other users' files in S3?
+**Learn more:** [HTTPX: async client](https://www.python-httpx.org/async/) · [HTTPX: timeouts](https://www.python-httpx.org/advanced/timeouts/) · [Stripe: webhook signatures](https://docs.stripe.com/webhooks#verify-events) · [AWS: exponential backoff and jitter](https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/)
 
 ---
 
-## 32. Testing FastAPI
+## 25. Caching and Rate Limiting
 
-### TestClient (sync) with dependency overrides and a test DB
+### Theory
+
+> **In simple words:** **caching** keeps a copy of an expensive answer so the next identical request is answered instantly (the product catalogue changes hourly, but is read thousands of times a minute). **Rate limiting** caps how many requests a user or IP can make in a period, to protect your API from abuse, runaway scripts and cost explosions (especially for LLM endpoints). Both usually use **Redis** in production, because it's shared by all workers.
+
+**Where to cache:**
+
+| Layer | How | Good for |
+|---|---|---|
+| HTTP caching | `Cache-Control`, `ETag` → client/CDN reuses responses; `If-None-Match` → `304 Not Modified` | Public, read-heavy data (catalogue, images) |
+| Application cache (cache-aside) | Look in Redis → on a miss, compute/query and store with a **TTL** | Expensive queries, external API results, LLM answers for identical prompts |
+| In-process (`functools.lru_cache`, `cachetools`) | Per worker memory | Tiny, rarely changing data (config, feature flags) |
+| Database | Materialised views, indexes | Heavy aggregations (`sql-postgresql.md`) |
+
+**Cache invalidation** ("one of the two hard things"): use **TTLs** as a safety net, **delete/update keys when data changes** (write-through or delete-on-write), version keys (`product:v3:P1`), and avoid caching per-user private data under shared keys. Protect against **stampedes** (many requests recomputing the same expired key) with locks or early refresh.
+
+**Rate limiting algorithms:**
+
+| Algorithm | Idea |
+|---|---|
+| Fixed window | Count requests per minute bucket; simple, bursty at window edges |
+| Sliding window | Smoother; count over the last N seconds |
+| **Token bucket** | Tokens refill at a steady rate up to a capacity; each request spends one (or more, e.g. by LLM tokens used); allows short bursts |
+
+Limit by **user id or API key** (not just IP; many users share IPs, attackers rotate them), use stricter limits on expensive or sensitive endpoints (login, password reset, LLM chat), and answer **429 Too Many Requests** with `Retry-After` and `RateLimit-*` headers. Libraries: `slowapi`, `fastapi-limiter`, or limits at the API gateway/CDN (Cloudflare, Nginx, Kong).
+
+### Python
+
+**Cache-aside with a TTL**, **ETags** with `304`, and a **token-bucket** rate-limit dependency:
 
 ```python
-# tests/conftest.py
-import pytest
+import hashlib, json, time
+from typing import Annotated
+from fastapi import Depends, FastAPI, Header, HTTPException, Request, Response
 from fastapi.testclient import TestClient
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
-from sqlalchemy.pool import StaticPool
-from app.main import app
-from app.db.session import Base, get_db
-from app.api.deps import get_current_user
 
-engine = create_engine("sqlite://", connect_args={"check_same_thread": False}, poolclass=StaticPool)
-TestingSession = sessionmaker(bind=engine, expire_on_commit=False)
+class TTLCache:                                         # stands in for Redis GET/SETEX
+    def __init__(self):
+        self.data = {}
+    def get(self, key):
+        value, expires = self.data.get(key, (None, 0))
+        return value if time.monotonic() < expires else None
+    def set(self, key, value, ttl):
+        self.data[key] = (value, time.monotonic() + ttl)
+    def delete(self, key):
+        self.data.pop(key, None)
 
-@pytest.fixture
-def db():
-    Base.metadata.create_all(engine)
-    session = TestingSession()
-    yield session
-    session.close()
-    Base.metadata.drop_all(engine)
+cache = TTLCache()
+DB_CALLS = {"n": 0}
+PRODUCTS = {"P1": {"sku": "P1", "name": "Gel pen", "price": 20}}
 
-@pytest.fixture
-def client(db):
-    app.dependency_overrides[get_db] = lambda: db
-    with TestClient(app) as c:                 # `with` runs lifespan startup/shutdown
-        yield c
-    app.dependency_overrides.clear()
+def load_product(sku):                                   # the "expensive" query
+    DB_CALLS["n"] += 1
+    return PRODUCTS[sku]
 
-@pytest.fixture
-def auth_client(client, db):
-    user = User(email="t@x.com", name="Test", hashed_password="x", role="admin")
-    db.add(user); db.commit()
-    app.dependency_overrides[get_current_user] = lambda: user
-    return client
+class TokenBucket:
+    def __init__(self, rate_per_sec, capacity):
+        self.rate, self.capacity, self.buckets = rate_per_sec, capacity, {}
+    def take(self, key, now):
+        tokens, last = self.buckets.get(key, (self.capacity, now))
+        tokens = min(self.capacity, tokens + (now - last) * self.rate)
+        allowed = tokens >= 1
+        self.buckets[key] = (tokens - 1 if allowed else tokens, now)
+        retry_after = 0 if allowed else (1 - tokens) / self.rate
+        return allowed, int(tokens - 1 if allowed else tokens), retry_after
+
+limiter = TokenBucket(rate_per_sec=0.5, capacity=3)     # bursts of 3, then one every 2 s
+CLOCK = {"now": 1000.0}                                   # a controllable clock for the demo
+
+def rate_limit(request: Request, response: Response, x_api_key: Annotated[str, Header()] = "anonymous"):
+    allowed, remaining, retry_after = limiter.take(x_api_key, CLOCK["now"])
+    if not allowed:
+        raise HTTPException(429, "rate limit exceeded", headers={"Retry-After": str(max(1, round(retry_after)))})
+    response.headers["RateLimit-Remaining"] = str(remaining)
+
+app = FastAPI()
+
+@app.get("/products/{sku}", dependencies=[Depends(rate_limit)])
+def get_product(sku: str, response: Response, if_none_match: Annotated[str | None, Header()] = None):
+    key = f"product:{sku}"
+    product = cache.get(key)
+    if product is None:
+        product = load_product(sku)
+        cache.set(key, product, ttl=60)
+    etag = '"' + hashlib.sha256(json.dumps(product, sort_keys=True).encode()).hexdigest()[:16] + '"'
+    if if_none_match == etag:
+        return Response(status_code=304, headers={"ETag": etag})       # client's copy is still fresh
+    response.headers["ETag"] = etag
+    response.headers["Cache-Control"] = "public, max-age=60"
+    return product
+
+@app.put("/products/{sku}/price")
+def update_price(sku: str, price: float):
+    PRODUCTS[sku] = {**PRODUCTS[sku], "price": price}
+    cache.delete(f"product:{sku}")                        # invalidate on write
+    return PRODUCTS[sku]
+
+c = TestClient(app)
+h = {"X-API-Key": "key-asha"}
+r1 = c.get("/products/P1", headers=h)
+etag = r1.headers["etag"]
+r2 = c.get("/products/P1", headers={**h, "If-None-Match": etag})
+print(r1.status_code, r2.status_code, "DB calls:", DB_CALLS["n"], "| remaining after the first call:", r1.headers.get("ratelimit-remaining"))
+r3 = c.get("/products/P1", headers=h)
+r4 = c.get("/products/P1", headers=h)
+print(r3.status_code, r4.status_code, r4.json(), "Retry-After:", r4.headers.get("retry-after"))
+CLOCK["now"] += 2                                          # two seconds later one token has refilled
+print(c.get("/products/P1", headers=h).status_code, c.get("/products/P1", headers={"X-API-Key": "key-ravi"}).status_code)
+
+c.put("/products/P1/price", params={"price": 25})
+CLOCK["now"] += 10
+r5 = c.get("/products/P1", headers={**h, "If-None-Match": etag})
+print(r5.status_code, r5.json()["price"], "DB calls:", DB_CALLS["n"], r5.headers["etag"] != etag)
 ```
 
-```python
-# tests/test_users.py
-def test_create_user(client):
-    r = client.post("/api/v1/users", json={"email": "a@x.com", "name": "Asha", "password": "Secret123"})
-    assert r.status_code == 201
-    body = r.json()
-    assert body["email"] == "a@x.com"
-    assert "password" not in body and "hashed_password" not in body   # response model filtered it
+**Output:**
 
-def test_create_user_validation(client):
-    r = client.post("/api/v1/users", json={"email": "not-an-email", "name": "A"})
-    assert r.status_code == 422
-
-def test_duplicate_email(client):
-    payload = {"email": "a@x.com", "name": "Asha", "password": "Secret123"}
-    client.post("/api/v1/users", json=payload)
-    assert client.post("/api/v1/users", json=payload).status_code == 409
-
-def test_requires_auth(client):
-    assert client.get("/users/me").status_code == 401
-
-def test_admin_can_delete(auth_client):
-    assert auth_client.delete("/api/v1/users/1").status_code == 204
+```text
+200 304 DB calls: 1 | remaining after the first call: 2
+200 429 {'detail': 'rate limit exceeded'} Retry-After: 2
+200 200
+200 25.0 DB calls: 2 True
 ```
 
-### Async tests with httpx
+The second request was a `304` with no body (the client's copy was still valid) and no database call. After three requests the bucket was empty (429 with `Retry-After`); another user had their own bucket; after the price change the cache was invalidated, the ETag changed and the client got fresh data.
+
+**Common mistakes:**
+
+- ❌ Caching without TTLs or invalidation (stale prices for days).
+- ❌ Caching personalised responses under a shared key (one user sees another's data).
+- ❌ Per-process in-memory caches/limits with many workers (each worker has its own counts); use Redis.
+- ❌ Rate limiting only by IP, or not at all on login and LLM endpoints.
+- ❌ 429 without `Retry-After`, so clients retry immediately and make it worse.
+
+### Practice
+
+1. Make the rate limit cost-based: an LLM endpoint should spend one token per 100 characters of the prompt (at least 1). With a capacity of 10, show a short prompt allowed and a 2,000-character prompt rejected.
+
+<details>
+<summary><b>Answer</b></summary>
 
 ```python
-import pytest
-from httpx import AsyncClient, ASGITransport
-
-@pytest.mark.anyio
-async def test_health():
-    async with AsyncClient(transport=ASGITransport(app=app), base_url="http://test") as ac:
-        r = await ac.get("/health")
-    assert r.status_code == 200
-```
-
-Tips:
-- Use a real Postgres in CI (Docker / Testcontainers) for integration tests — SQLite behaves differently.
-- Wrap each test in a transaction and roll back for speed and isolation.
-- Mock external APIs (`respx` for httpx, or dependency overrides for client classes).
-- Test **services** directly (no HTTP) for business logic; test **routes** for status codes, validation, auth.
-
----
-
-## 33. OpenAPI Docs Customization
-
-```python
-app = FastAPI(
-    title="Shop API",
-    description="Orders, products and payments. **Markdown** supported.",
-    version="2.1.0",
-    contact={"name": "API Team", "email": "api@shop.com"},
-    openapi_tags=[
-        {"name": "auth", "description": "Login & tokens"},
-        {"name": "products", "description": "Catalog"},
-    ],
-    docs_url="/docs",                     # set to None to disable in production
-    redoc_url=None,
-)
-
-@router.post(
-    "/products",
-    response_model=ProductOut,
-    status_code=201,
-    tags=["products"],
-    summary="Create a product",
-    description="Creates a product. Requires the `admin` role.",
-    response_description="The created product",
-    responses={409: {"description": "SKU already exists"}, 403: {"description": "Not an admin"}},
-    deprecated=False,
-    operation_id="createProduct",         # nicer names for generated clients
-)
-def create_product(data: ProductCreate): ...
-
-class ProductCreate(BaseModel):
-    model_config = ConfigDict(json_schema_extra={"examples": [{"name": "Phone", "price": 19999, "sku": "PH-1"}]})
-    name: str
-    price: int = Field(description="Price in paise", gt=0)
-    sku: str
-```
-
-The OpenAPI schema (`/openapi.json`) can **generate typed clients** for the frontend (e.g. `openapi-typescript`, `orval`, `@hey-api/openapi-ts`) → the frontend and backend types stay in sync.
-
----
-
-## 34. Logging, Monitoring & Request IDs
-
-```python
-# app/core/logging.py — structured JSON logs with request IDs
-import logging, sys, contextvars
-from pythonjsonlogger.json import JsonFormatter
-
-request_id_ctx: contextvars.ContextVar[str] = contextvars.ContextVar("request_id", default="-")
-
-class RequestIdFilter(logging.Filter):
-    def filter(self, record):
-        record.request_id = request_id_ctx.get()
+class CostBucket(TokenBucket):
+    def spend(self, key, now, cost):
+        tokens, last = self.buckets.get(key, (self.capacity, now))
+        tokens = min(self.capacity, tokens + (now - last) * self.rate)
+        if tokens < cost:
+            self.buckets[key] = (tokens, now)
+            return False
+        self.buckets[key] = (tokens - cost, now)
         return True
 
-def setup_logging(level: str = "INFO"):
-    handler = logging.StreamHandler(sys.stdout)
-    handler.setFormatter(JsonFormatter("%(asctime)s %(levelname)s %(name)s %(message)s %(request_id)s"))
-    handler.addFilter(RequestIdFilter())
-    logging.basicConfig(level=level, handlers=[handler], force=True)
-
-# middleware sets it per request
-@app.middleware("http")
-async def request_context(request: Request, call_next):
-    rid = request.headers.get("X-Request-ID") or str(uuid.uuid4())
-    token = request_id_ctx.set(rid)
-    try:
-        response = await call_next(request)
-    finally:
-        request_id_ctx.reset(token)
-    response.headers["X-Request-ID"] = rid
-    return response
+llm_limit = CostBucket(rate_per_sec=1, capacity=10)
+for prompt in ["Where is my order?", "x" * 2000]:
+    cost = max(1, len(prompt) // 100)
+    print(len(prompt), "chars → cost", cost, "→ allowed:", llm_limit.spend("key-asha", CLOCK["now"], cost))
 ```
 
-Monitoring stack:
-- **Errors**: Sentry (`sentry-sdk[fastapi]` auto-instruments).
-- **Metrics**: Prometheus (`prometheus-fastapi-instrumentator`) → Grafana dashboards (latency p95/p99, error rate, RPS).
-- **Tracing**: OpenTelemetry (`opentelemetry-instrumentation-fastapi`, SQLAlchemy, httpx) → Jaeger/Tempo/Datadog.
-- **Health checks**: `/health` (liveness — process up) and `/ready` (readiness — DB/Redis reachable).
+**Output:**
 
-```python
-@app.get("/ready")
-async def ready(db: AsyncDb):
-    await db.execute(text("SELECT 1"))
-    await app.state.redis.ping()
-    return {"status": "ready"}
+```text
+18 chars → cost 1 → allowed: True
+2000 chars → cost 20 → allowed: False
 ```
+
+</details>
 
 ---
 
-## 35. Observability Hands-On in FastAPI (Metrics, Tracing, Error Tracking)
+### ✅ Part 4 checkpoint
 
-Concepts (RED/USE, cardinality, SLOs, burn rates, probes, incident workflow) are explained in `nodejs.md` → "Observability Hands-On". This section is the **Python/FastAPI** implementation. (Structured logs with request IDs are in the previous section.)
+Without looking, can you:
 
-### 1. Prometheus metrics
+- [ ] Implement offset and cursor pagination, safe sorting and capped limits?
+- [ ] Choose between `BackgroundTasks` and a job queue, and design idempotent jobs (202 + job status)?
+- [ ] Build a WebSocket endpoint with authentication and broadcasting, and explain how to scale it?
+- [ ] Stream responses and SSE events (e.g. LLM tokens), handling proxies, disconnects and in-band errors?
+- [ ] Call external APIs with timeouts, retries and backoff, and verify signed webhooks idempotently?
+- [ ] Add caching (TTL, invalidation, ETags) and token-bucket rate limiting with 429 + `Retry-After`?
 
-Quickest: **`prometheus-fastapi-instrumentator`** adds RED metrics per route and a `/metrics` endpoint.
+**Learn more:** [MDN: HTTP caching](https://developer.mozilla.org/en-US/docs/Web/HTTP/Caching) · [IETF draft: RateLimit header fields](https://datatracker.ietf.org/doc/draft-ietf-httpapi-ratelimit-headers/) · [Redis: caching patterns](https://redis.io/solutions/caching/) · [slowapi](https://github.com/laurentS/slowapi)
+
+---
+
+# Part 5 — Advanced: Design, Security and Production
+
+> **Goal:** Design durable APIs, defend against the OWASP API Top 10, observe, deploy and scale, and serve ML and LLM features.  
+> **You need:** Parts 1–4.
+
+---
+
+## 26. API Design: Naming, Versioning, Idempotency and Consistency
+
+### Theory
+
+> **In simple words:** an API is a **contract** that other teams, apps and companies build on, and it's very hard to change once they do. Good design makes the API predictable: consistent names and shapes, clear errors, safe retries, versions for breaking changes, and documentation generated from the code. A few rules applied everywhere matter more than any single clever endpoint.
+
+**Resource naming:** plural nouns (`/orders`, `/orders/{id}/items`), lowercase with hyphens (`/gift-cards`), no verbs in paths except for true actions (`POST /orders/{id}/cancel` is fine; `GET /getOrders` isn't), nesting at most one or two levels deep.
+
+**Consistency checklist:** one JSON style (`snake_case` or `camelCase`, never both), ISO 8601 UTC timestamps (`2026-09-25T10:00:00Z`), money as integer minor units or decimal strings plus a currency (never floats), ids as strings, one pagination style, one error format (Section [8](#8-error-handling-httpexception-custom-errors-and-consistent-error-responses)), `null` vs absent handled deliberately.
+
+**Idempotency keys:** for non-idempotent operations that clients may retry (payments, orders), the client sends `Idempotency-Key: <uuid>`; the server stores the first response under that key and returns the **same** response for repeats instead of acting twice. Essential for mobile networks and payment APIs.
+
+**Optimistic concurrency:** return an `ETag`/`version` with each resource; updates send `If-Match`; if someone else changed it meanwhile, answer **412 Precondition Failed** (or 409) instead of silently overwriting.
+
+**Versioning:** additive changes (new optional fields, new endpoints) don't need a new version; clients must ignore unknown fields. Breaking changes (renaming/removing fields, changing types or meaning) need a new version: **URL versioning** (`/v1/`, `/v2/`; most common and simplest), header versioning (`Accept: application/vnd.shop.v2+json`), or date-based versions (Stripe style). Announce deprecations with `Deprecation`/`Sunset` headers and give clients time.
+
+**Beyond REST:** **GraphQL** (clients ask for exactly the fields they need; one endpoint; great for complex frontends; Strawberry works with FastAPI), **gRPC** (fast binary RPC between internal services), **webhooks** (push events to partners), **AsyncAPI** for event-driven APIs. REST + OpenAPI remains the default for public and most internal APIs.
+
+**OpenAPI as the contract:** FastAPI generates it; publish it, **generate typed clients** (openapi-ts, openapi-python-client, orval), lint it (Spectral), and check for breaking changes in CI (oasdiff).
+
+### Python
+
+An **idempotency key** implementation: the second request with the same key returns the stored response without creating a second payment; reusing the key with a different body is rejected.
 
 ```python
-from prometheus_fastapi_instrumentator import Instrumentator
+import hashlib, json, uuid
+from typing import Annotated
+from fastapi import FastAPI, Header, HTTPException
+from fastapi.testclient import TestClient
+from pydantic import BaseModel, Field
 
-Instrumentator(
-    excluded_handlers=["/health", "/metrics"],
-    should_group_status_codes=True,          # 2xx/4xx/5xx labels → low cardinality
-).instrument(app).expose(app, include_in_schema=False)
+app = FastAPI()
+PAYMENTS: list[dict] = []
+IDEMPOTENCY: dict[str, tuple[str, dict]] = {}          # key → (request fingerprint, stored response); Redis/DB in production
+
+class PaymentIn(BaseModel):
+    order_id: str
+    amount_paise: int = Field(gt=0)                      # money as integer minor units
+    currency: str = "INR"
+
+@app.post("/v1/payments", status_code=201)
+def create_payment(body: PaymentIn, idempotency_key: Annotated[str, Header(min_length=8)]):
+    fingerprint = hashlib.sha256(body.model_dump_json().encode()).hexdigest()
+    if idempotency_key in IDEMPOTENCY:
+        stored_fp, stored_response = IDEMPOTENCY[idempotency_key]
+        if stored_fp != fingerprint:
+            raise HTTPException(422, "idempotency key reused with a different request")
+        return stored_response                          # same answer, no second charge
+    payment = {"id": f"pay_{len(PAYMENTS) + 1}", **body.model_dump(), "status": "captured"}
+    PAYMENTS.append(payment)
+    IDEMPOTENCY[idempotency_key] = (fingerprint, payment)
+    return payment
+
+c = TestClient(app)
+key = str(uuid.UUID(int=42))
+body = {"order_id": "90312", "amount_paise": 99800}
+first = c.post("/v1/payments", json=body, headers={"Idempotency-Key": key})
+retry = c.post("/v1/payments", json=body, headers={"Idempotency-Key": key})     # e.g. the network dropped the first reply
+print(first.json(), retry.json() == first.json(), "payments created:", len(PAYMENTS))
+print(c.post("/v1/payments", json={**body, "amount_paise": 1}, headers={"Idempotency-Key": key}).json())
+print(c.post("/v1/payments", json=body).status_code)                              # the key is required
 ```
 
-Or build it yourself with **`prometheus_client`** (shows what's happening):
+**Output:**
+
+```text
+{'id': 'pay_1', 'order_id': '90312', 'amount_paise': 99800, 'currency': 'INR', 'status': 'captured'} True payments created: 1
+{'detail': 'idempotency key reused with a different request'}
+422
+```
+
+**Optimistic concurrency with `If-Match`:**
 
 ```python
-import time
-from fastapi import FastAPI, Request, Response
-from prometheus_client import CONTENT_TYPE_LATEST, Counter, Gauge, Histogram, generate_latest
+DOC = {"id": "cart-1", "items": ["P1"], "version": 1}
 
-REQUEST_DURATION = Histogram(
-    "http_request_duration_seconds", "HTTP request latency",
-    ["method", "route", "status_class"],
-    buckets=(0.01, 0.05, 0.1, 0.25, 0.5, 1, 2.5, 5),
-)
-ORDERS_CREATED = Counter("orders_created_total", "Orders created", ["payment_method"])
-IN_FLIGHT = Gauge("http_requests_in_flight", "Requests being processed")
+@app.get("/v1/carts/cart-1")
+def get_cart():
+    return DOC
+
+@app.put("/v1/carts/cart-1")
+def replace_cart(items: list[str], if_match: Annotated[int, Header()]):
+    if if_match != DOC["version"]:
+        raise HTTPException(412, f"cart changed (now version {DOC['version']}); reload and retry")
+    DOC.update(items=items, version=DOC["version"] + 1)
+    return DOC
+
+v = c.get("/v1/carts/cart-1").json()["version"]
+print(c.put("/v1/carts/cart-1", json=["P1", "P2"], headers={"If-Match": str(v)}).json())      # phone saves first
+print(c.put("/v1/carts/cart-1", json=["P9"], headers={"If-Match": str(v)}).json())            # laptop, stale version
+```
+
+**Output:**
+
+```text
+{'id': 'cart-1', 'items': ['P1', 'P2'], 'version': 2}
+{'detail': 'cart changed (now version 2); reload and retry'}
+```
+
+**Common mistakes:**
+
+- ❌ Breaking changes without a new version (renaming a field breaks every client).
+- ❌ Floats for money; mixed naming styles; local-time timestamps.
+- ❌ Retry-unsafe POST endpoints for payments/orders without idempotency keys.
+- ❌ "Last write wins" updates that silently overwrite other users' changes.
+- ❌ Designing endpoints around database tables instead of client use cases.
+
+### Practice
+
+1. Add a `v2` payments endpoint that returns `amount` as a string with two decimals in rupees (`"998.00"`) instead of `amount_paise`, while `v1` keeps working. Mount both with routers.
+
+<details>
+<summary><b>Answer</b></summary>
+
+```python
+from fastapi import APIRouter
+
+v2 = APIRouter(prefix="/v2")
+
+@v2.post("/payments", status_code=201)
+def create_payment_v2(body: PaymentIn, idempotency_key: Annotated[str, Header(min_length=8)]):
+    payment = create_payment(body, idempotency_key)
+    out = {k: v for k, v in payment.items() if k != "amount_paise"}
+    return {**out, "amount": f"{payment['amount_paise'] / 100:.2f}"}
+
+app.include_router(v2)
+c2 = TestClient(app)
+print(c2.post("/v2/payments", json={"order_id": "777", "amount_paise": 15050}, headers={"Idempotency-Key": "k-" + "7" * 10}).json())
+print(c2.post("/v1/payments", json={"order_id": "777", "amount_paise": 15050}, headers={"Idempotency-Key": "k-" + "8" * 10}).json())
+```
+
+**Output:**
+
+```text
+{'id': 'pay_2', 'order_id': '777', 'currency': 'INR', 'status': 'captured', 'amount': '150.50'}
+{'id': 'pay_3', 'order_id': '777', 'amount_paise': 15050, 'currency': 'INR', 'status': 'captured'}
+```
+
+</details>
+
+**Learn more:** [Microsoft REST API guidelines](https://github.com/microsoft/api-guidelines) · [Stripe: idempotent requests](https://docs.stripe.com/api/idempotent_requests) · [Zalando RESTful API guidelines](https://opensource.zalando.com/restful-api-guidelines/) · [oasdiff (OpenAPI breaking-change detection)](https://github.com/oasdiff/oasdiff)
+
+---
+
+## 27. API Security: The OWASP API Top 10 in FastAPI
+
+### Theory
+
+> **In simple words:** APIs are attacked constantly and automatically. Most real breaches aren't clever hacks but **missing checks**: an endpoint that returns anyone's order if you change the id, an update that lets users set `is_admin`, an endpoint that fetches any URL a user supplies, a login with no rate limit. The **OWASP API Security Top 10 (2023)** lists the most common failures; each has a straightforward defence in FastAPI.
+
+| # | Risk | What goes wrong | Defence in FastAPI |
+|---|---|---|---|
+| API1 | Broken object level authorisation (BOLA) | Change `/orders/90312` to `/orders/90313`, see someone else's order | Scope every query by user/tenant; 404 for others' objects (Section [17](#17-authorisation-roles-permissions-ownership-and-multi-tenancy)) |
+| API2 | Broken authentication | Weak passwords, no rate limit, long-lived tokens, unsigned/`alg:none` JWTs | Argon2, short JWTs with `algorithms=[...]`, rate-limit login, MFA via an IdP (Section [16](#16-authentication-password-hashing-jwt-and-oauth2)) |
+| API3 | Broken object property level authorisation | Mass assignment (`"role": "admin"` in a body) or leaking fields (`password_hash`) | `extra="forbid"` input models, separate output models |
+| API4 | Unrestricted resource consumption | Huge pages, uploads, expensive queries, LLM calls with no limits | Cap `limit`, body and file sizes, timeouts, rate limits and cost budgets (Section [25](#25-caching-and-rate-limiting)) |
+| API5 | Broken function level authorisation | Regular users call admin endpoints | Role/permission dependencies on whole routers; deny by default |
+| API6 | Unrestricted access to sensitive business flows | Bots buy all the stock, abuse referral credits | Per-account limits, CAPTCHAs, anomaly detection |
+| API7 | Server-side request forgery (SSRF) | "Fetch this image URL" used to reach `http://169.254.169.254/` (cloud credentials) or internal services | Allow-list hosts, resolve and block private IP ranges, no redirects to internal addresses |
+| API8 | Security misconfiguration | Debug mode, open CORS, verbose errors, default credentials, missing security headers | Production settings, strict CORS, generic 500s, security headers, hide `/docs` if internal |
+| API9 | Improper inventory management | Forgotten `/v1` or staging endpoints still live | Inventory of APIs and versions, retire old ones, gateway in front |
+| API10 | Unsafe consumption of APIs | Trusting data from partner APIs or webhooks | Validate third-party responses with models, verify webhooks, timeouts |
+
+**Also essential:** HTTPS everywhere (HSTS), secrets from a secret manager (never in code or logs), dependency scanning (`pip-audit`, Dependabot), parameterised SQL only, output encoding, logging and alerting on auth failures, and **for LLM features** the OWASP Top 10 for LLMs (prompt injection, excessive agency; `llm-engineering.md`).
+
+### Python
+
+Three defences with tests: mass assignment blocked by a strict model, an SSRF guard for user-supplied URLs, and constant-time comparison for API keys.
+
+```python
+import ipaddress, secrets, socket
+from typing import Annotated
+from urllib.parse import urlparse
+from fastapi import FastAPI, Header, HTTPException
+from fastapi.testclient import TestClient
+from pydantic import BaseModel, ConfigDict, Field
+
+app = FastAPI()
+PROFILE = {"id": 7, "name": "Asha", "role": "customer", "credit": 0}
+
+class ProfileUpdate(BaseModel):
+    model_config = ConfigDict(extra="forbid")           # API3: unknown fields → 422, not silently applied
+    name: str | None = Field(default=None, max_length=50)
+
+@app.patch("/me")
+def update_me(changes: ProfileUpdate):
+    PROFILE.update(changes.model_dump(exclude_unset=True))
+    return PROFILE
+
+ALLOWED_SCHEMES = {"https"}
+def is_safe_url(url: str) -> bool:
+    """API7: allow only https URLs whose host resolves to public IP addresses."""
+    parsed = urlparse(url)
+    if parsed.scheme not in ALLOWED_SCHEMES or not parsed.hostname:
+        return False
+    try:
+        addresses = {info[4][0] for info in socket.getaddrinfo(parsed.hostname, None)}
+    except socket.gaierror:
+        return False
+    return all(ipaddress.ip_address(a).is_global for a in addresses)
+
+@app.post("/import-image")
+def import_image(url: str):
+    if not is_safe_url(url):
+        raise HTTPException(400, "URL not allowed")
+    return {"would_fetch": url}                           # then fetch with a timeout and no redirects to private IPs
+
+API_KEY = "sk_live_7f3a9c"
+@app.get("/internal/report")
+def report(x_api_key: Annotated[str, Header()] = ""):
+    if not secrets.compare_digest(x_api_key.encode(), API_KEY.encode()):   # constant time: no timing leaks
+        raise HTTPException(401, "invalid API key")
+    return {"orders": 42}
+
+c = TestClient(app)
+print(c.patch("/me", json={"name": "Asha Rao"}).json())
+r = c.patch("/me", json={"role": "admin", "credit": 100000})
+print(r.status_code, [e["loc"][-1] for e in r.json()["detail"]], PROFILE["role"])
+for url in ["http://127.0.0.1:8080/admin", "https://169.254.169.254/latest/meta-data/", "https://10.0.0.5/", "file:///etc/passwd",
+            "https://localhost/"]:
+    print(url, "→", c.post("/import-image", params={"url": url}).status_code)
+print(c.get("/internal/report", headers={"X-API-Key": "sk_live_7f3a9c"}).json(), c.get("/internal/report").status_code)
+```
+
+**Output:**
+
+```text
+{'id': 7, 'name': 'Asha Rao', 'role': 'customer', 'credit': 0}
+422 ['role', 'credit'] customer
+http://127.0.0.1:8080/admin → 400
+https://169.254.169.254/latest/meta-data/ → 400
+https://10.0.0.5/ → 400
+file:///etc/passwd → 400
+https://localhost/ → 400
+{'orders': 42} 401
+```
+
+(The SSRF check resolves hostnames, so names like `localhost` or a domain an attacker points at `10.0.0.5` are blocked too. Production code must also re-check after redirects, or disable them, and pin the resolved IP when connecting to prevent DNS rebinding.)
+
+**Common mistakes:**
+
+- ❌ Relying on "nobody will guess the id" (ids are sequential or leak easily).
+- ❌ `extra="allow"`/`dict` bodies on update endpoints.
+- ❌ Fetching user-supplied URLs server-side without SSRF protection.
+- ❌ Exposing stack traces, `/docs` and debug endpoints in production for internal APIs.
+- ❌ Comparing secrets with `==`, logging tokens, or hard-coding keys.
+
+### Practice
+
+1. Write a pytest-style test function (plain `assert`s) called `test_bola` for the authorisation app pattern: given two users, assert that user B gets 404 for user A's order id. Use this tiny app.
+
+<details>
+<summary><b>Answer</b></summary>
+
+```python
+bola_app = FastAPI()
+ORDERS = {1: {"owner": "asha"}, 2: {"owner": "ravi"}}
+
+@bola_app.get("/orders/{oid}")
+def get_order(oid: int, x_user: Annotated[str, Header()]):
+    order = ORDERS.get(oid)
+    if order is None or order["owner"] != x_user:
+        raise HTTPException(404, "order not found")
+    return order
+
+def test_bola():
+    client = TestClient(bola_app)
+    assert client.get("/orders/1", headers={"X-User": "asha"}).status_code == 200
+    assert client.get("/orders/1", headers={"X-User": "ravi"}).status_code == 404
+    assert client.get("/orders/2", headers={"X-User": "asha"}).status_code == 404
+
+test_bola()
+print("BOLA test passed")
+```
+
+**Output:**
+
+```text
+BOLA test passed
+```
+
+(The `X-User` header stands in for a verified token here; never trust such a header in a real app.)
+
+</details>
+
+**Learn more:** [OWASP API Security Top 10 (2023)](https://owasp.org/API-Security/editions/2023/en/0x11-t10/) · [OWASP: SSRF prevention cheat sheet](https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html) · [FastAPI: security](https://fastapi.tiangolo.com/tutorial/security/)
+
+---
+
+## 28. Observability: Structured Logs, Request IDs, Metrics and Tracing
+
+### Theory
+
+> **In simple words:** once your API is live, you need to answer questions like "why is checkout slow since 3 pm?" or "what happened to Asha's order at 10:02?" without attaching a debugger to production. **Observability** gives you three kinds of signals: **logs** (what happened, as searchable events), **metrics** (numbers over time: requests per second, error rate, latency percentiles), and **traces** (the path of one request through your API, database and other services, with timings). A **request id** ties them together.
+
+**The three pillars:**
+
+| Signal | Tools (2026) | Example question |
+|---|---|---|
+| Structured logs (JSON) | `logging`/`structlog` → Loki, Elasticsearch, CloudWatch, Datadog | "Show all errors for order 90312" |
+| Metrics | Prometheus client (`prometheus-client`, `prometheus-fastapi-instrumentator`) → Prometheus + Grafana | "p95 latency of `POST /orders` over the last hour" |
+| Traces | **OpenTelemetry** (auto-instrumentation for FastAPI, SQLAlchemy, httpx) → Tempo, Jaeger, Honeycomb, Datadog | "Which part of this slow request took 2 s?" |
+| Errors | Sentry (or similar) | "New exception after the last deploy, with stack trace and user count" |
+
+**What to measure (the "RED" method for each endpoint):** **R**ate (requests/second), **E**rrors (5xx rate), **D**uration (latency histograms: p50, p95, p99, not averages). Plus saturation (CPU, memory, DB pool usage, queue length) and business metrics (orders placed, payment failures, LLM tokens and cost).
+
+**SLOs:** agree on targets like "99.9% of requests succeed and 95% finish under 300 ms over 30 days". The **error budget** (0.1% ≈ 43 minutes a month) tells you when to slow down releases and fix reliability. Alert on SLO burn rate, not on every blip.
+
+**Request ids:** accept `X-Request-ID` from the client or gateway (or generate one), put it in every log line (via `contextvars`), return it in the response, and pass it to downstream calls. OpenTelemetry's trace id plays the same role across services.
+
+**Health endpoints:** `/health/live` (process is up) and `/health/ready` (can serve: database reachable), used by load balancers and Kubernetes.
+
+**Privacy:** never log passwords, tokens, full card numbers or unnecessary personal data; redact in a log filter.
+
+### Python
+
+Structured JSON logs with a request id carried by `contextvars`, and Prometheus-style metrics from middleware:
+
+```python
+import contextvars, json, logging, sys, time, uuid
+from collections import defaultdict
+from fastapi import FastAPI, HTTPException, Request
+from fastapi.testclient import TestClient
+
+request_id_var = contextvars.ContextVar("request_id", default="-")
+
+class JsonFormatter(logging.Formatter):
+    def format(self, record):
+        entry = {"level": record.levelname, "logger": record.name, "msg": record.getMessage(), "request_id": request_id_var.get()}
+        entry.update(getattr(record, "fields", {}))
+        return json.dumps(entry)
+
+handler = logging.StreamHandler(sys.stdout)
+handler.setFormatter(JsonFormatter())
+log = logging.getLogger("shop.api")
+log.handlers, log.propagate = [handler], False
+log.setLevel(logging.INFO)
+
+REQUESTS = defaultdict(int)                  # (method, route, status) → count
+LATENCY_BUCKETS = (0.05, 0.1, 0.5, 1.0)
+LATENCY = defaultdict(lambda: [0] * (len(LATENCY_BUCKETS) + 1))
 
 app = FastAPI()
 
 @app.middleware("http")
-async def prometheus_middleware(request: Request, call_next):
-    IN_FLIGHT.inc()
+async def observe(request: Request, call_next):
+    rid = request.headers.get("x-request-id") or uuid.uuid4().hex[:12]
+    token = request_id_var.set(rid)
     start = time.perf_counter()
-    status = 500
     try:
         response = await call_next(request)
-        status = response.status_code
-        return response
     finally:
-        IN_FLIGHT.dec()
-        route = request.scope.get("route")
-        REQUEST_DURATION.labels(
-            method=request.method,
-            route=getattr(route, "path", "unmatched"),      # "/orders/{order_id}" — the pattern, not the raw URL
-            status_class=f"{status // 100}xx",
-        ).observe(time.perf_counter() - start)
+        request_id_var.reset(token)
+    elapsed = time.perf_counter() - start
+    route = request.scope.get("route")
+    path = route.path if route else "unmatched"          # the route TEMPLATE, not the raw URL (keeps metrics small)
+    REQUESTS[(request.method, path, response.status_code)] += 1
+    LATENCY[path][next((i for i, b in enumerate(LATENCY_BUCKETS) if elapsed <= b), len(LATENCY_BUCKETS))] += 1
+    response.headers["X-Request-ID"] = rid
+    return response
 
-@app.get("/metrics", include_in_schema=False)
-def metrics() -> Response:                               # restrict to the internal network in production
-    return Response(generate_latest(), media_type=CONTENT_TYPE_LATEST)
+@app.post("/orders/{order_id}/pay")
+def pay(order_id: int):
+    log.info("payment captured", extra={"fields": {"order_id": order_id, "amount_paise": 99800}})
+    return {"paid": order_id}
+
+@app.get("/orders/{order_id}")
+def get_order(order_id: int):
+    if order_id > 100:
+        log.warning("order not found", extra={"fields": {"order_id": order_id}})
+        raise HTTPException(404, "not found")
+    return {"id": order_id}
+
+@app.get("/metrics")
+def metrics():
+    lines = [f'http_requests_total{{method="{m}",route="{p}",status="{s}"}} {n}' for (m, p, s), n in sorted(REQUESTS.items())]
+    return {"prometheus_text": lines}
+
+c = TestClient(app)
+c.post("/orders/90312/pay", headers={"X-Request-ID": "req-abc"})
+for oid in (1, 2, 500):
+    c.get(f"/orders/{oid}", headers={"X-Request-ID": f"req-{oid}"})
+print("\n".join(c.get("/metrics").json()["prometheus_text"]))
+print(sum(LATENCY["/orders/{order_id}"]), "latency observations for /orders/{order_id}")
 ```
 
-**Multiple workers** (Gunicorn/Uvicorn `--workers N`): each process has its own counters → use `prometheus_client` **multiprocess mode** (`PROMETHEUS_MULTIPROC_DIR`) or run one process per container and let Prometheus scrape each.
+**Output:**
 
-### 2. OpenTelemetry tracing
-
-```bash
-pip install opentelemetry-distro opentelemetry-exporter-otlp
-opentelemetry-bootstrap -a install                         # installs instrumentations for detected libraries
-
-# zero-code: wraps the app at startup (FastAPI, SQLAlchemy, httpx, redis, … auto-instrumented)
-OTEL_SERVICE_NAME=orders-api \
-OTEL_EXPORTER_OTLP_ENDPOINT=http://otel-collector:4318 \
-opentelemetry-instrument uvicorn app.main:app --host 0.0.0.0 --port 8000
+```text
+{"level": "INFO", "logger": "shop.api", "msg": "payment captured", "request_id": "req-abc", "order_id": 90312, "amount_paise": 99800}
+{"level": "WARNING", "logger": "shop.api", "msg": "order not found", "request_id": "req-500", "order_id": 500}
+http_requests_total{method="GET",route="/orders/{order_id}",status="200"} 2
+http_requests_total{method="GET",route="/orders/{order_id}",status="404"} 1
+http_requests_total{method="POST",route="/orders/{order_id}/pay",status="200"} 1
+3 latency observations for /orders/{order_id}
 ```
 
-Programmatic setup + manual spans for business steps:
+Every log line is JSON with the request id, so "show me everything for `req-500`" is one search. Metrics use the **route template** (`/orders/{order_id}`), not each URL, so there's one time series per endpoint instead of millions.
 
+With OpenTelemetry, tracing is mostly configuration (not run here):
+
+<!-- no-run (needs an OpenTelemetry collector) -->
 ```python
 from opentelemetry import trace
 from opentelemetry.exporter.otlp.proto.http.trace_exporter import OTLPSpanExporter
 from opentelemetry.instrumentation.fastapi import FastAPIInstrumentor
+from opentelemetry.instrumentation.httpx import HTTPXClientInstrumentor
+from opentelemetry.instrumentation.sqlalchemy import SQLAlchemyInstrumentor
 from opentelemetry.sdk.resources import Resource
 from opentelemetry.sdk.trace import TracerProvider
 from opentelemetry.sdk.trace.export import BatchSpanProcessor
-from opentelemetry.trace import Status, StatusCode
 
-provider = TracerProvider(resource=Resource.create({"service.name": "orders-api"}))
-provider.add_span_processor(BatchSpanProcessor(OTLPSpanExporter()))   # endpoint from OTEL_EXPORTER_OTLP_ENDPOINT
+provider = TracerProvider(resource=Resource.create({"service.name": "shop-api"}))
+provider.add_span_processor(BatchSpanProcessor(OTLPSpanExporter(endpoint="http://otel-collector:4318/v1/traces")))
 trace.set_tracer_provider(provider)
-FastAPIInstrumentor.instrument_app(app, excluded_urls="health,metrics")
-
-tracer = trace.get_tracer("orders")
-
-async def checkout(cart, user):
-    with tracer.start_as_current_span("checkout") as span:
-        span.set_attributes({"cart.items": len(cart.items), "user.tier": user.tier})   # no PII
-        try:
-            return await charge_payment(await price_cart(cart))
-        except Exception as exc:
-            span.record_exception(exc)
-            span.set_status(Status(StatusCode.ERROR, str(exc)))
-            raise
+FastAPIInstrumentor.instrument_app(app)          # a span per request
+HTTPXClientInstrumentor().instrument()           # spans for outgoing calls (propagates trace ids)
+SQLAlchemyInstrumentor().instrument(engine=engine)   # spans for SQL queries
 ```
 
-Add the trace ID to every log line so you can jump from a log to its trace:
+**Common mistakes:**
+
+- ❌ Unstructured `print` logs that can't be searched or correlated.
+- ❌ Metrics labelled by raw URL or user id (millions of time series, "cardinality explosion").
+- ❌ Alerting on averages instead of percentiles and error rates.
+- ❌ Logging secrets or personal data.
+- ❌ No request id, so one user's problem can't be followed across services.
+
+### Practice
+
+1. Compute an SLO report: 1,000,000 requests this month, 1,200 failed; the SLO is 99.9% success. What's the success rate, the error budget (allowed failures), and how much of it is used?
+
+<details>
+<summary><b>Answer</b></summary>
 
 ```python
-import logging
-from opentelemetry import trace
-
-class TraceIdFilter(logging.Filter):
-    def filter(self, record):
-        ctx = trace.get_current_span().get_span_context()
-        record.trace_id = format(ctx.trace_id, "032x") if ctx.is_valid else "-"
-        return True
+total, failed, slo = 1_000_000, 1_200, 0.999
+budget = total * (1 - slo)
+print(f"success {1 - failed / total:.4%}, budget {budget:,.0f} failures, used {failed / budget:.0%}")
 ```
 
-Flush on shutdown: call `provider.shutdown()` in the lifespan shutdown phase.
+**Output:**
 
-### 3. Error tracking (Sentry)
-
-```python
-import sentry_sdk
-
-sentry_sdk.init(
-    dsn=settings.sentry_dsn,
-    environment=settings.environment,
-    release=settings.app_version,           # errors grouped by deploy
-    traces_sample_rate=0.1,
-    send_default_pii=False,
-)
-# The FastAPI/Starlette integration is enabled automatically when those packages are installed.
+```text
+success 99.8800%, budget 1,000 failures, used 120%
 ```
 
-### 4. SLO math in Python
+The budget is overspent (120%): time to prioritise reliability work over new features until the rate recovers.
 
-```python
-def error_budget_minutes(slo: float, window_days: int = 30) -> float:
-    return (1 - slo) * window_days * 24 * 60
+</details>
 
-def burn_rate(observed_error_ratio: float, slo: float) -> float:
-    return observed_error_ratio / (1 - slo)
-
-error_budget_minutes(0.999)     # 43.2
-burn_rate(0.0144, 0.999)        # 14.4 → page someone
-```
-
-### Checklist
-
-- [ ] RED metrics per route pattern (+ in-flight gauge), `/metrics` not public, multiprocess mode if multiple workers
-- [ ] OpenTelemetry auto-instrumentation (FastAPI, SQLAlchemy, httpx, Redis) + manual business spans
-- [ ] Trace IDs in logs; spans flushed on shutdown
-- [ ] Sentry with environment + release
-- [ ] `/health` (liveness, no deps) and `/ready` (DB/Redis) endpoints
+**Learn more:** [OpenTelemetry Python: FastAPI instrumentation](https://opentelemetry-python-contrib.readthedocs.io/en/latest/instrumentation/fastapi/fastapi.html) · [Prometheus: histograms and summaries](https://prometheus.io/docs/practices/histograms/) · [Google SRE book: service level objectives](https://sre.google/sre-book/service-level-objectives/)
 
 ---
 
-## 36. Security Best Practices
+## 29. Performance and Deployment: Workers, Docker, Proxies and Scaling
 
-1. **Validate everything** with Pydantic; use `extra="forbid"` on input models to block unexpected fields (mass assignment).
-2. **Separate input/output schemas** — never return ORM objects without a `response_model` (leaks hashed passwords, internal fields).
-3. **Passwords**: Argon2/bcrypt via `pwdlib`/`passlib`; never log them.
-4. **JWT**: short-lived access tokens, strong secret (≥ 32 random bytes) or RS256 keys, explicit `algorithms=[...]`, validate `exp`, rotate refresh tokens.
-5. **Authorization on every route** — check ownership (IDOR), roles, and filter queries by user.
-6. **SQL injection**: use the ORM / bound parameters; never build SQL with f-strings; whitelist sort/filter columns.
-7. **CORS**: explicit origins, never `"*"` with credentials.
-8. **Rate limit** login, signup, OTP and expensive endpoints.
-9. **File uploads**: validate type & size, random filenames, store outside the app (S3), scan if needed.
-10. **Secrets** via env/secret manager, `SecretStr`; never commit `.env`.
-11. **HTTPS only** (TLS at the load balancer), HSTS, secure cookies (`HttpOnly`, `Secure`, `SameSite`).
-12. **Disable docs** in production if the API is private (`docs_url=None, openapi_url=None`) or protect them.
-13. **Don't leak errors** — generic 500 messages, details in logs only.
-14. **Timeouts** on outbound calls; **SSRF** protection when fetching user-supplied URLs (allowlist hosts, block internal IPs).
-15. **Dependencies**: pin with a lockfile, `pip-audit`, update regularly.
-16. **Security headers** middleware (CSP, X-Content-Type-Options, X-Frame-Options) for anything serving HTML.
-17. **Request size limits** at the proxy (Nginx `client_max_body_size`).
+![Production deployment: clients reach a CDN and load balancer (TLS), then several container replicas each running uvicorn workers; they share PostgreSQL through a pooler, Redis for cache and rate limits, a queue with separate workers, and send telemetry to monitoring](images/fastapi/04-deployment.svg)
 
----
+### Theory
 
-## 37. OWASP API Top 10 in FastAPI
+> **In simple words:** in production your app runs as several **worker processes** (to use all CPU cores), inside **containers**, behind a **load balancer or reverse proxy** that handles HTTPS, and it's scaled by running more copies. Performance mostly comes from not blocking the event loop, efficient database access, caching, and keeping heavy work out of the request path, not from micro-optimising Python.
 
-The risks are explained in `nodejs.md` → "OWASP API Security Top 10 (2023)". This section shows the **FastAPI/Pydantic** way to prevent the most common ones.
+**Running the server:**
 
-### API1 — BOLA: scope every lookup to the current user
+| Setup | Command | When |
+|---|---|---|
+| Dev | `fastapi dev main.py` | Auto-reload |
+| One process | `fastapi run main.py` or `uvicorn app.main:app --host 0.0.0.0 --port 8000` | In containers orchestrated by Kubernetes (scale with replicas) |
+| Several workers | `fastapi run --workers 4` / `uvicorn ... --workers 4` (or Gunicorn with `uvicorn.workers.UvicornWorker`, or Granian) | A VM or a single container using several cores |
+
+Rule of thumb: about one worker per CPU core for async apps (more for sync-heavy code). Behind a proxy, pass `--proxy-headers --forwarded-allow-ips=...` so the app sees the real client IP and scheme.
+
+**Containers (Docker):** a multi-stage build with uv: install locked dependencies in a builder stage, copy the virtual environment and code into a slim runtime image, run as a **non-root** user, set `PYTHONUNBUFFERED=1`, add a health check, keep images small (no compilers, no tests in the final image).
+
+```text
+FROM python:3.14-slim AS builder
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
+WORKDIR /app
+COPY pyproject.toml uv.lock ./
+RUN uv sync --locked --no-dev --no-install-project
+COPY src ./src
+RUN uv sync --locked --no-dev
+
+FROM python:3.14-slim
+RUN useradd --create-home app
+WORKDIR /app
+COPY --from=builder /app /app
+ENV PATH="/app/.venv/bin:$PATH" PYTHONUNBUFFERED=1
+USER app
+EXPOSE 8000
+CMD ["fastapi", "run", "src/shop/main.py", "--port", "8000", "--proxy-headers"]
+```
+
+**Where to run it (2026):** container platforms (Kubernetes/EKS/GKE/AKS, AWS ECS/Fargate, Google Cloud Run, Azure Container Apps, Fly.io, Railway, Render), or serverless (AWS Lambda with Mangum; cold starts and connection pooling need care). Put a **reverse proxy/load balancer** in front (Nginx, Traefik, Caddy, cloud LB) for TLS, compression, request size limits and routing, and a CDN for static and cacheable responses.
+
+**Zero-downtime operation:** rolling deploys with readiness checks, **graceful shutdown** (finish in-flight requests on SIGTERM; uvicorn does this; set timeouts shorter than the platform's grace period), database migrations that are backwards compatible (Section [15](#15-async-databases-transactions-repositories-and-migrations)), feature flags, and fast rollback.
+
+**Performance checklist:**
+
+1. No blocking calls in `async def` (Section [12](#12-async-def-vs-def-concurrency-in-fastapi)); shared HTTP clients and DB pools via lifespan.
+2. Efficient queries: indexes, no N+1, only needed columns, pagination.
+3. Cache hot reads (Section [25](#25-caching-and-rate-limiting)); CDN for public content.
+4. Offload heavy work to queues/workers; stream large or slow responses.
+5. Fast JSON: return Pydantic models with a declared response model (serialised in Rust by pydantic-core); `orjson` for custom responses.
+6. Measure with load tests (**Locust**, k6, `oha`) and profiles (py-spy) before tuning; watch p95/p99 latency, not averages.
+
+### Python
+
+A tiny load test against a real uvicorn server: 50 concurrent requests to an async endpoint in one process.
 
 ```python
-from typing import Annotated
-from fastapi import APIRouter, Depends, FastAPI, HTTPException, Query
-from pydantic import BaseModel, ConfigDict, Field
-
-class User(BaseModel):
-    id: int
-    role: str = "user"
-
-def get_current_user() -> User:                       # real app: decode & verify the JWT/session
-    return User(id=1)
-
-CurrentUser = Annotated[User, Depends(get_current_user)]
-
-INVOICES = {10: {"id": 10, "owner_id": 1, "total_paise": 5000, "internal_notes": "vip"},
-            11: {"id": 11, "owner_id": 2, "total_paise": 9000, "internal_notes": "late payer"}}
-
-class InvoiceOut(BaseModel):                          # API3: only these fields ever leave the server
-    id: int
-    total_paise: int
+import asyncio, threading, time
+import httpx
+import uvicorn
+from fastapi import FastAPI
 
 app = FastAPI()
 
-@app.get("/invoices/{invoice_id}", response_model=InvoiceOut)
-def get_invoice(invoice_id: int, user: CurrentUser):
-    invoice = INVOICES.get(invoice_id)
-    if invoice is None or invoice["owner_id"] != user.id:     # ownership check (SQL: WHERE id = :id AND owner_id = :uid)
-        raise HTTPException(404, "Invoice not found")          # 404 — don't confirm it exists
-    return invoice                                             # internal_notes filtered out by response_model
+@app.get("/fast")
+async def fast():
+    await asyncio.sleep(0.05)            # e.g. a 50 ms database query with an async driver
+    return {"ok": True}
+
+server = uvicorn.Server(uvicorn.Config(app, port=8766, log_level="error"))
+thread = threading.Thread(target=server.run, daemon=True)
+thread.start()
+while not server.started:
+    time.sleep(0.05)
+
+async def load(n=50):
+    limits = httpx.Limits(max_connections=n)
+    async with httpx.AsyncClient(base_url="http://127.0.0.1:8766", limits=limits) as client:
+        start = time.perf_counter()
+        responses = await asyncio.gather(*(client.get("/fast") for _ in range(n)))
+        elapsed = time.perf_counter() - start
+    return sum(r.status_code == 200 for r in responses), elapsed
+
+ok, elapsed = asyncio.run(load())
+print(f"{ok}/50 succeeded; all 50 overlapped in one process: {elapsed < 1.0}")
+server.should_exit = True
+thread.join()
 ```
 
-### API3 — Mass assignment: strict input models
+**Output:**
 
-```python
-class ProfileUpdate(BaseModel):
-    model_config = ConfigDict(extra="forbid")        # unknown fields → 422 instead of silently accepted
-    name: str | None = Field(default=None, min_length=1, max_length=80)
-    bio: str | None = Field(default=None, max_length=500)
-
-@app.patch("/me")
-def update_me(data: ProfileUpdate, user: CurrentUser):
-    changes = data.model_dump(exclude_unset=True)     # only what was sent — and only allowed fields exist
-    return {"updated": sorted(changes)}
-# PATCH /me {"name": "R", "role": "admin"} → 422 "Extra inputs are not permitted"
+```text
+50/50 succeeded; all 50 overlapped in one process: True
 ```
 
-Never pass `request.json()` straight into an ORM update; never return ORM objects without a `response_model`.
+Fifty 50 ms requests finished together in well under a second **in a single process**, because they spent their time awaiting. With a blocking call they would take 50 × 50 ms = 2.5 s, and more workers would only divide that.
 
-### API4 — Resource limits
+**Common mistakes:**
+
+- ❌ `--reload` or `debug=True` in production.
+- ❌ Running as root in containers, or baking secrets into images.
+- ❌ Too many workers × pool size exceeding database connections.
+- ❌ No readiness checks or graceful shutdown (errors on every deploy).
+- ❌ Optimising code before measuring; ignoring p99 latency.
+
+### Practice
+
+1. Estimate capacity: each request spends 20 ms of CPU in Python and 80 ms waiting on the database. How many requests per second can one async worker handle at most, and how many workers for 400 requests/second with 30% headroom?
+
+<details>
+<summary><b>Answer</b></summary>
 
 ```python
-@app.get("/products")
-def list_products(
-    limit: Annotated[int, Query(ge=1, le=100)] = 20,          # ?limit=100000 → 422
-    offset: Annotated[int, Query(ge=0, le=10_000)] = 0,       # deep offsets are expensive too
-    q: Annotated[str | None, Query(max_length=100)] = None,
-):
-    return {"limit": limit, "offset": offset, "q": q}
+import math
+
+cpu_ms = 20                                 # only CPU time blocks an async worker; waiting overlaps
+per_worker = 1000 / cpu_ms
+needed = math.ceil(400 * 1.3 / per_worker)
+print(f"one worker ≈ {per_worker:.0f} req/s max; workers for 400 req/s + 30% headroom: {needed}")
 ```
 
-Plus: rate limiting (slowapi / gateway), request body size limits at the proxy (`client_max_body_size`), upload size checks, timeouts on outbound calls and DB queries, and per-user quotas on expensive actions.
+**Output:**
 
-### API5 — Function-level authorization: protect the whole router
-
-```python
-def require_admin(user: CurrentUser) -> User:
-    if user.role != "admin":
-        raise HTTPException(403, "Admins only")
-    return user
-
-admin = APIRouter(prefix="/admin", dependencies=[Depends(require_admin)])   # every route below is protected
-
-@admin.delete("/users/{user_id}", status_code=204)
-def delete_user(user_id: int) -> None:
-    ...
-
-app.include_router(admin)
+```text
+one worker ≈ 50 req/s max; workers for 400 req/s + 30% headroom: 11
 ```
 
-### API7 — SSRF guard for user-supplied URLs
+In an async worker, waiting (the 80 ms) overlaps with other requests, so the CPU time sets the ceiling. Real capacity is lower (GC, serialisation, contention), which is why you verify with a load test.
+
+</details>
+
+**Learn more:** [FastAPI: deployment concepts](https://fastapi.tiangolo.com/deployment/concepts/) · [FastAPI in containers](https://fastapi.tiangolo.com/deployment/docker/) · [uv: Docker integration](https://docs.astral.sh/uv/guides/integration/docker/) · [Locust load testing](https://locust.io/)
+
+---
+
+## 30. Serving ML Models and LLM Features with FastAPI
+
+### Theory
+
+> **In simple words:** FastAPI is the most common way to put a machine-learning model or an LLM feature behind an API. The pattern is the same as any endpoint, with a few rules: **load the model once** at start-up (lifespan), **validate inputs** strictly with Pydantic, keep **heavy inference off the event loop**, return predictions with the **model version**, and for LLMs **stream** tokens, enforce **timeouts and budgets**, and never let user input reach tools or prompts unchecked.
+
+**Classic ML model serving (`machine-learning.md`):**
+
+- Save the whole **pipeline** (preprocessing + model) with `joblib`/`skops`/ONNX; load it in lifespan; expose `POST /predict` with a Pydantic input model mirroring the training features.
+- CPU-bound `predict` in a `def` endpoint (thread pool) or `run_in_threadpool`; for big models or GPUs use a dedicated serving system (NVIDIA Triton, TorchServe, BentoML, Ray Serve, vLLM for LLMs) and call it from FastAPI.
+- Batch endpoints (`list[Features]`) are far more efficient than many single calls.
+- Return `model_version` and log inputs/outputs (privacy permitting) for monitoring drift.
+
+**LLM features (`llm-engineering.md`, `rag-and-agents.md`):**
+
+- One shared async SDK client (e.g. `anthropic.AsyncAnthropic`) from lifespan; API keys from settings.
+- **Stream** answers with SSE (Section [23](#23-streaming-responses-and-server-sent-events-llm-token-streaming)); stop the upstream call on client disconnect.
+- **Timeouts, retries, and per-user budgets** (tokens/cost rate limits, Section [25](#25-caching-and-rate-limiting)); cap `max_tokens`.
+- Validate and bound inputs (length, attachments), use structured outputs for machine-readable results, and treat model output as untrusted (don't execute it).
+- Log token usage and cost per request; cache identical prompts where safe.
+
+### Python
+
+A scikit-learn pipeline trained on the fly (a real app would load it from a file), loaded once through lifespan and served with validation, batching and a model version:
 
 ```python
-import ipaddress
-import socket
-from urllib.parse import urlsplit
-
-ALLOWED_PORTS = {80, 443}
-
-def is_blocked_ip(address: str) -> bool:
-    ip = ipaddress.ip_address(address)
-    if isinstance(ip, ipaddress.IPv6Address) and ip.ipv4_mapped:      # ::ffff:127.0.0.1
-        ip = ip.ipv4_mapped
-    return (ip.is_private or ip.is_loopback or ip.is_link_local or ip.is_multicast
-            or ip.is_reserved or ip.is_unspecified or not ip.is_global)
-
-def assert_safe_url(url: str, resolve=socket.getaddrinfo) -> list[str]:
-    parts = urlsplit(url)
-    if parts.scheme not in ("http", "https"):
-        raise ValueError("Only http(s) URLs are allowed")
-    if parts.username or parts.password:
-        raise ValueError("Credentials in URL are not allowed")
-    if not parts.hostname:
-        raise ValueError("Invalid URL")
-    port = parts.port or (443 if parts.scheme == "https" else 80)
-    if port not in ALLOWED_PORTS:
-        raise ValueError("Port not allowed")
-    try:
-        infos = resolve(parts.hostname, port, proto=socket.IPPROTO_TCP)
-    except socket.gaierror as exc:
-        raise ValueError("Host does not resolve") from exc
-    addresses = sorted({info[4][0] for info in infos})
-    if not addresses or any(is_blocked_ip(a) for a in addresses):
-        raise ValueError("Destination not allowed")
-    return addresses          # connect to one of THESE addresses (prevents DNS rebinding), with timeouts
-```
-
-Then fetch with `httpx` using `follow_redirects=False` (validate every redirect target again), a short timeout, and a response size cap.
-
-### API8 — Misconfiguration checklist for FastAPI
-
-- `debug=False` in production; generic 500 responses (custom exception handler), details only in logs.
-- Disable or protect `/docs`, `/redoc`, `/openapi.json` for private APIs.
-- Explicit CORS origins (never `"*"` with credentials); `TrustedHostMiddleware`; HTTPS redirect at the proxy.
-- Security headers (via the proxy or a small middleware): HSTS, `X-Content-Type-Options: nosniff`, frame protection.
-- Secrets from `pydantic-settings` (`SecretStr`), least-privilege DB user, dependencies pinned and audited (`pip-audit`).
-
-### Security tests (pytest + TestClient)
-
-```python
+from contextlib import asynccontextmanager
+from typing import Annotated, Literal
+import numpy as np
+from fastapi import FastAPI, Request
 from fastapi.testclient import TestClient
-client = TestClient(app)
+from pydantic import BaseModel, Field
+from sklearn.compose import ColumnTransformer
+from sklearn.linear_model import LogisticRegression
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import OneHotEncoder, StandardScaler
+import pandas as pd
 
-def test_bola_other_users_invoice_is_404():
-    assert client.get("/invoices/11").status_code == 404        # owned by user 2
+def train_churn_model():
+    rng = np.random.default_rng(0)
+    n = 400
+    df = pd.DataFrame({"months_active": rng.integers(1, 60, n), "orders_last_90d": rng.integers(0, 20, n),
+                       "plan": rng.choice(["free", "plus"], n)})
+    churn = ((df.orders_last_90d < 3) & (df.plan == "free")).astype(int)
+    pre = ColumnTransformer([("num", StandardScaler(), ["months_active", "orders_last_90d"]),
+                             ("cat", OneHotEncoder(), ["plan"])])
+    return make_pipeline(pre, LogisticRegression()).fit(df, churn)
 
-def test_response_hides_internal_fields():
-    assert "internal_notes" not in client.get("/invoices/10").json()
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    yield {"model": train_churn_model(), "model_version": "churn-2026-09-25"}   # load ONCE (joblib.load in real apps)
 
-def test_mass_assignment_rejected():
-    assert client.patch("/me", json={"name": "R", "role": "admin"}).status_code == 422
+class Customer(BaseModel):
+    months_active: int = Field(ge=0, le=600)
+    orders_last_90d: int = Field(ge=0, le=10_000)
+    plan: Literal["free", "plus"]
 
-def test_pagination_capped():
-    assert client.get("/products?limit=100000").status_code == 422
+class Prediction(BaseModel):
+    churn_probability: float
+    will_churn: bool
+    model_version: str
 
-def test_admin_routes_reject_regular_users():
-    assert client.delete("/admin/users/5").status_code == 403
+app = FastAPI(lifespan=lifespan)
+
+@app.post("/predict/churn", response_model=list[Prediction])
+def predict(customers: Annotated[list[Customer], Field(min_length=1, max_length=1000)], request: Request):
+    frame = pd.DataFrame([c.model_dump() for c in customers])     # one batch call to the model
+    probs = request.state.model.predict_proba(frame)[:, 1]
+    return [Prediction(churn_probability=round(float(p), 3), will_churn=bool(p >= 0.5),
+                       model_version=request.state.model_version) for p in probs]
+
+with TestClient(app) as c:
+    batch = [{"months_active": 3, "orders_last_90d": 0, "plan": "free"},
+             {"months_active": 40, "orders_last_90d": 12, "plan": "plus"}]
+    for p in c.post("/predict/churn", json=batch).json():
+        print(p)
+    print(c.post("/predict/churn", json=[{"months_active": 3, "orders_last_90d": -1, "plan": "gold"}]).status_code)
 ```
 
----
+**Output:**
 
-## 38. Performance
-
-- Use `async def` + async drivers (asyncpg, redis.asyncio, httpx.AsyncClient) for I/O-heavy endpoints; `def` for blocking libraries.
-- **Never block the event loop** (see Section 13).
-- **Reuse clients & connection pools** (create in lifespan, not per request).
-- **DB**: indexes, `selectinload` to avoid N+1, select only needed columns, pagination, keep transactions short.
-- **Caching** (Redis, HTTP cache headers, CDN).
-- **Offload** slow work to background queues; return `202 Accepted`.
-- **Multiple workers**: `fastapi run --workers 4` / `uvicorn --workers N` / Gunicorn with Uvicorn workers (≈ CPU cores).
-- **uvloop + httptools** (installed with `uvicorn[standard]`) for a faster event loop and HTTP parser.
-- **ORJSON** responses for big payloads (`default_response_class=ORJSONResponse`) — or return pre-serialized data.
-- **Pydantic**: avoid validating huge responses twice; for big lists consider `TypeAdapter`.
-- **Profile**: `py-spy`, `pyinstrument` middleware, OpenTelemetry traces; load test with `locust`/`k6`.
-- **GZip** large responses (or at the proxy).
-
----
-
-## 39. Deployment
-
-### Running in production
-
-```bash
-fastapi run app/main.py --workers 4 --port 8000
-# or
-uvicorn app.main:app --host 0.0.0.0 --port 8000 --workers 4 --proxy-headers --forwarded-allow-ips="*"
-# or Gunicorn as process manager
-gunicorn app.main:app -k uvicorn.workers.UvicornWorker -w 4 -b 0.0.0.0:8000 --timeout 60 --graceful-timeout 30
+```text
+{'churn_probability': 0.772, 'will_churn': True, 'model_version': 'churn-2026-09-25'}
+{'churn_probability': 0.0, 'will_churn': False, 'model_version': 'churn-2026-09-25'}
+422
 ```
 
-In Kubernetes, run **one process per container** and scale with replicas instead of many workers.
+An LLM endpoint that streams Claude's answer as SSE, with the client created once in lifespan (needs an API key, so it isn't executed here; the streaming mechanics were shown offline in Section [23](#23-streaming-responses-and-server-sent-events-llm-token-streaming)):
 
-### Dockerfile (multi-stage with uv)
+<!-- no-run (needs an API key) -->
+```python
+from contextlib import asynccontextmanager
+import anthropic
+from fastapi import FastAPI, Request
+from fastapi.sse import EventSourceResponse, ServerSentEvent
+from pydantic import BaseModel, Field
 
-```dockerfile
-FROM python:3.13-slim AS builder
-COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
-WORKDIR /app
-ENV UV_COMPILE_BYTECODE=1 UV_LINK_MODE=copy
-COPY pyproject.toml uv.lock ./
-RUN uv sync --frozen --no-dev --no-install-project
-COPY . .
-RUN uv sync --frozen --no-dev
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    client = anthropic.AsyncAnthropic(timeout=60.0, max_retries=2)      # reads ANTHROPIC_API_KEY
+    yield {"llm": client}
+    await client.close()
 
-FROM python:3.13-slim
-WORKDIR /app
-RUN useradd --create-home appuser
-COPY --from=builder /app /app
-ENV PATH="/app/.venv/bin:$PATH" PYTHONUNBUFFERED=1
-USER appuser
-EXPOSE 8000
-HEALTHCHECK CMD python -c "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"
-CMD ["fastapi", "run", "app/main.py", "--port", "8000"]
+llm_app = FastAPI(lifespan=lifespan)
+
+class ChatIn(BaseModel):
+    message: str = Field(min_length=1, max_length=4000)
+
+@llm_app.post("/support/chat", response_class=EventSourceResponse)
+async def support_chat(body: ChatIn, request: Request):
+    llm: anthropic.AsyncAnthropic = request.state.llm
+    async with llm.messages.stream(
+        model="claude-opus-5",
+        max_tokens=1024,
+        system="You are ShopKart's support assistant. Answer briefly.",
+        messages=[{"role": "user", "content": body.message}],
+    ) as stream:
+        async for text in stream.text_stream:
+            yield ServerSentEvent(event="token", data={"text": text})
+        final = await stream.get_final_message()
+    yield ServerSentEvent(event="done", data={"stop_reason": final.stop_reason,
+                                              "output_tokens": final.usage.output_tokens})
+
+from fastapi.testclient import TestClient
+with TestClient(llm_app) as client:                     # try it (with ANTHROPIC_API_KEY set)
+    print(client.post("/support/chat", json={"message": "Where is order 90312?"}).text)
 ```
 
-### docker-compose for local dev
+**Common mistakes:**
 
-```yaml
-services:
-  api:
-    build: .
-    ports: ["8000:8000"]
-    env_file: .env
-    depends_on: [db, redis]
-    command: sh -c "alembic upgrade head && fastapi run app/main.py --port 8000"
-  db:
-    image: postgres:17
-    environment: { POSTGRES_USER: app, POSTGRES_PASSWORD: app, POSTGRES_DB: app }
-    volumes: [pgdata:/var/lib/postgresql/data]
-  redis:
-    image: redis:7
-  worker:
-    build: .
-    command: celery -A app.workers.tasks worker --loglevel=info
-    env_file: .env
-    depends_on: [redis, db]
-volumes: { pgdata: {} }
-```
+- ❌ Loading the model (or creating the SDK client) inside the endpoint on every request.
+- ❌ Accepting free-form dicts as model input; training/serving feature mismatches ("training-serving skew").
+- ❌ Heavy inference inside `async def` (blocks everything); large models inside the API process instead of a model server.
+- ❌ Waiting for full LLM answers instead of streaming; no token/cost limits per user.
+- ❌ Not returning or logging the model version, so you can't tell which model produced a prediction.
 
-Behind **Nginx** / a cloud load balancer for TLS, compression, request size limits and static files. Platforms: AWS ECS/Fargate, Cloud Run, Render, Railway, Fly.io, Kubernetes, or serverless via Mangum (AWS Lambda).
+### Practice
 
----
+1. Add `GET /model/info` returning the model version and the pipeline's step names (`model.named_steps`), and call it.
 
-## 40. Complete CRUD Example
-
-A compact but production-shaped "notes" feature: schemas → model → repository → service → router, with auth and ownership.
+<details>
+<summary><b>Answer</b></summary>
 
 ```python
-# app/schemas/note.py
-from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field
+@app.get("/model/info")
+def model_info(request: Request):
+    return {"version": request.state.model_version, "steps": list(request.state.model.named_steps)}
 
-class NoteCreate(BaseModel):
-    model_config = ConfigDict(extra="forbid", str_strip_whitespace=True)
-    title: str = Field(min_length=1, max_length=200)
-    content: str = Field(default="", max_length=10_000)
-    tags: list[str] = Field(default_factory=list, max_length=10)
+with TestClient(app) as c:
+    print(c.get("/model/info").json())
+```
 
-class NoteUpdate(BaseModel):
-    model_config = ConfigDict(extra="forbid", str_strip_whitespace=True)
-    title: str | None = Field(default=None, min_length=1, max_length=200)
-    content: str | None = Field(default=None, max_length=10_000)
-    tags: list[str] | None = None
+**Output:**
 
-class NoteOut(BaseModel):
-    model_config = ConfigDict(from_attributes=True)
-    id: int
-    title: str
-    content: str
-    tags: list[str]
+```text
+{'version': 'churn-2026-09-25', 'steps': ['columntransformer', 'logisticregression']}
+```
+
+</details>
+
+---
+
+### ✅ Part 5 checkpoint
+
+Without looking, can you:
+
+- [ ] Design consistent endpoints, version breaking changes, and implement idempotency keys and optimistic concurrency?
+- [ ] Defend against the OWASP API Top 10 (BOLA, mass assignment, SSRF, resource limits) and test those defences?
+- [ ] Add structured logs with request ids, RED metrics and tracing, and reason about SLOs and error budgets?
+- [ ] Deploy with workers, Docker and a reverse proxy, estimate capacity, and load-test before tuning?
+- [ ] Serve an ML model and a streaming LLM endpoint with lifespan-loaded resources and validated inputs?
+
+**Learn more:** [BentoML](https://docs.bentoml.com/) · [scikit-learn: model persistence](https://scikit-learn.org/stable/model_persistence.html) · [Anthropic: streaming (Python SDK)](https://platform.claude.com/docs/en/build-with-claude/streaming)
+
+---
+
+# Part 6 — Interview Prep: Revision
+
+> **Goal:** Build a small API under interview conditions and revise with a cheat sheet and the most-asked questions.  
+> **You need:** Parts 1–5.
+
+---
+
+## 31. Interview Coding: Build a Small API
+
+### Theory
+
+> **In simple words:** backend interviews often ask you to build a small API live in 30–60 minutes: a URL shortener, a to-do list with users, a rate limiter, a key-value store with TTLs. Interviewers look for: clear resource design, validation, correct status codes, error handling, separation of logic from HTTP, tests, and how you'd take it to production (database, caching, scaling). Talk through those decisions as you code.
+
+**A reliable order of work:** clarify requirements and edge cases → sketch endpoints and models → implement the core logic as plain functions/classes → wrap with FastAPI endpoints → test happy paths and errors with `TestClient` → discuss production concerns.
+
+### Python
+
+**A URL shortener:** create short codes (custom or generated), redirect with 307, count clicks, reject invalid URLs and duplicate custom codes, and return stats.
+
+```python
+import secrets, string
+from datetime import UTC, datetime
+from typing import Annotated
+from fastapi import FastAPI, HTTPException
+from fastapi.responses import RedirectResponse
+from fastapi.testclient import TestClient
+from pydantic import BaseModel, Field, HttpUrl
+
+ALPHABET = string.ascii_letters + string.digits
+
+class LinkIn(BaseModel):
+    url: HttpUrl
+    code: Annotated[str | None, Field(pattern="^[A-Za-z0-9_-]{4,20}$")] = None
+
+class LinkOut(BaseModel):
+    code: str
+    url: str
+    short_url: str
+    clicks: int
     created_at: datetime
-    updated_at: datetime
+
+class LinkStore:                                         # core logic, no HTTP (swap for Redis/PostgreSQL later)
+    def __init__(self):
+        self.links: dict[str, dict] = {}
+    def create(self, url: str, code: str | None) -> dict:
+        if code is None:
+            code = "".join(secrets.choice(ALPHABET) for _ in range(7))
+            while code in self.links:                    # extremely rare collision: try again
+                code = "".join(secrets.choice(ALPHABET) for _ in range(7))
+        elif code in self.links:
+            raise KeyError(code)
+        self.links[code] = {"code": code, "url": url, "clicks": 0, "created_at": datetime(2026, 9, 25, tzinfo=UTC)}
+        return self.links[code]
+    def resolve(self, code: str) -> str | None:
+        link = self.links.get(code)
+        if link:
+            link["clicks"] += 1
+            return link["url"]
+        return None
+
+store = LinkStore()
+app = FastAPI()
+BASE = "https://shk.rt/"
+
+@app.post("/links", status_code=201, response_model=LinkOut)
+def create_link(body: LinkIn):
+    try:
+        link = store.create(str(body.url), body.code)
+    except KeyError:
+        raise HTTPException(409, f"code {body.code!r} is taken")
+    return {**link, "short_url": BASE + link["code"]}
+
+@app.get("/links/{code}/stats", response_model=LinkOut)
+def stats(code: str):
+    if code not in store.links:
+        raise HTTPException(404, "unknown code")
+    return {**store.links[code], "short_url": BASE + code}
+
+@app.get("/{code}")
+def follow(code: str):
+    url = store.resolve(code)
+    if url is None:
+        raise HTTPException(404, "unknown code")
+    return RedirectResponse(url, status_code=307)
+
+c = TestClient(app, follow_redirects=False)
+made = c.post("/links", json={"url": "https://shopkart.example/sale?utm=mail", "code": "diwali"}).json()
+print(made["short_url"], made["clicks"])
+auto = c.post("/links", json={"url": "https://example.com/very/long/path"}).json()
+print(len(auto["code"]), auto["url"])
+for _ in range(3):
+    r = c.get("/diwali")
+print(r.status_code, r.headers["location"], c.get("/links/diwali/stats").json()["clicks"])
+print(c.post("/links", json={"url": "https://a.example", "code": "diwali"}).status_code,
+      c.post("/links", json={"url": "not a url"}).status_code, c.post("/links", json={"url": "https://a.example", "code": "x!"}).status_code,
+      c.get("/nope123").status_code)
 ```
+
+**Output:**
+
+```text
+https://shk.rt/diwali 0
+7 https://example.com/very/long/path
+307 https://shopkart.example/sale?utm=mail 3
+409 422 422 404
+```
+
+**Production discussion points:** store links in PostgreSQL with a unique index on `code` (insert and handle the conflict instead of check-then-insert); cache hot codes in Redis; count clicks asynchronously (a queue or Redis `INCR` flushed periodically) so redirects stay fast; rate-limit creation per user; block malicious destinations (Safe Browsing check); 301 vs 307 (301 is cached forever by browsers, so you'd lose click counts); custom domains; analytics in a separate store.
+
+**Common mistakes:**
+
+- ❌ Guessable sequential codes (enumeration of private links); use random codes from a secure generator.
+- ❌ Check-then-insert races on custom codes (rely on a unique constraint).
+- ❌ Doing slow analytics writes inside the redirect path.
+- ❌ Accepting any string as a URL (`javascript:` URLs, internal addresses).
+
+### Practice
+
+1. Add an optional `expires_in_seconds` to link creation. Expired links must return **410 Gone**. Use a module-level `NOW` value you can advance, instead of the real clock, so the test is deterministic.
+
+<details>
+<summary><b>Answer</b></summary>
 
 ```python
-# app/models/note.py
-from sqlalchemy import String, Text, ForeignKey, JSON, func
-from sqlalchemy.orm import Mapped, mapped_column
+NOW = {"t": 1_000.0}
 
-class Note(Base):
-    __tablename__ = "notes"
-    id: Mapped[int] = mapped_column(primary_key=True)
-    owner_id: Mapped[int] = mapped_column(ForeignKey("users.id", ondelete="CASCADE"), index=True)
-    title: Mapped[str] = mapped_column(String(200))
-    content: Mapped[str] = mapped_column(Text, default="")
-    tags: Mapped[list[str]] = mapped_column(JSON, default=list)
-    created_at: Mapped[datetime] = mapped_column(server_default=func.now())
-    updated_at: Mapped[datetime] = mapped_column(server_default=func.now(), onupdate=func.now())
+class ExpiringLinkIn(LinkIn):
+    expires_in_seconds: int | None = Field(default=None, gt=0)
+
+EXPIRY: dict[str, float] = {}
+app2 = FastAPI()
+
+@app2.post("/links", status_code=201)
+def create_expiring(body: ExpiringLinkIn):
+    link = store.create(str(body.url), body.code)
+    if body.expires_in_seconds:
+        EXPIRY[link["code"]] = NOW["t"] + body.expires_in_seconds
+    return {"code": link["code"]}
+
+@app2.get("/{code}")
+def follow_expiring(code: str):
+    if code in EXPIRY and NOW["t"] >= EXPIRY[code]:
+        raise HTTPException(410, "link expired")
+    url = store.resolve(code)
+    if url is None:
+        raise HTTPException(404, "unknown code")
+    return RedirectResponse(url, status_code=307)
+
+c2 = TestClient(app2, follow_redirects=False)
+code = c2.post("/links", json={"url": "https://flash.example", "code": "flash1", "expires_in_seconds": 60}).json()["code"]
+print(c2.get(f"/{code}").status_code)
+NOW["t"] += 61
+print(c2.get(f"/{code}").status_code)
 ```
 
-```python
-# app/repositories/note_repo.py
-from sqlalchemy import select, func
-from sqlalchemy.ext.asyncio import AsyncSession
+**Output:**
 
-class NoteRepository:
-    def __init__(self, db: AsyncSession):
-        self.db = db
-
-    async def get_for_owner(self, note_id: int, owner_id: int) -> Note | None:
-        return await self.db.scalar(select(Note).where(Note.id == note_id, Note.owner_id == owner_id))
-
-    async def list_for_owner(self, owner_id: int, q: str | None, offset: int, limit: int) -> tuple[list[Note], int]:
-        stmt = select(Note).where(Note.owner_id == owner_id)
-        if q:
-            stmt = stmt.where(Note.title.ilike(f"%{q}%"))
-        total = await self.db.scalar(select(func.count()).select_from(stmt.subquery()))
-        rows = await self.db.scalars(stmt.order_by(Note.updated_at.desc()).offset(offset).limit(limit))
-        return list(rows), total or 0
-
-    def add(self, note: Note) -> None:
-        self.db.add(note)
-
-    async def delete(self, note: Note) -> None:
-        await self.db.delete(note)
+```text
+307
+410
 ```
 
-```python
-# app/services/note_service.py
-class NoteService:
-    def __init__(self, db: AsyncDb):
-        self.db = db
-        self.repo = NoteRepository(db)
+</details>
 
-    async def create(self, owner_id: int, data: NoteCreate) -> Note:
-        note = Note(owner_id=owner_id, **data.model_dump())
-        self.repo.add(note)
-        await self.db.commit()
-        await self.db.refresh(note)
-        return note
-
-    async def get(self, owner_id: int, note_id: int) -> Note:
-        note = await self.repo.get_for_owner(note_id, owner_id)   # ownership enforced in the query
-        if not note:
-            raise NotFoundError(f"Note {note_id} not found")
-        return note
-
-    async def update(self, owner_id: int, note_id: int, data: NoteUpdate) -> Note:
-        note = await self.get(owner_id, note_id)
-        for field, value in data.model_dump(exclude_unset=True).items():
-            setattr(note, field, value)
-        await self.db.commit()
-        await self.db.refresh(note)
-        return note
-
-    async def delete(self, owner_id: int, note_id: int) -> None:
-        note = await self.get(owner_id, note_id)
-        await self.repo.delete(note)
-        await self.db.commit()
-
-NoteServiceDep = Annotated[NoteService, Depends()]
-```
-
-```python
-# app/api/routes/notes.py
-router = APIRouter(prefix="/notes", tags=["notes"])
-
-@router.post("", response_model=NoteOut, status_code=201)
-async def create_note(data: NoteCreate, user: CurrentUser, service: NoteServiceDep):
-    return await service.create(user.id, data)
-
-@router.get("", response_model=Page[NoteOut])
-async def list_notes(user: CurrentUser, db: AsyncDb,
-                     q: str | None = None,
-                     page: Annotated[int, Query(ge=1)] = 1,
-                     size: Annotated[int, Query(ge=1, le=100)] = 20):
-    items, total = await NoteRepository(db).list_for_owner(user.id, q, (page - 1) * size, size)
-    return Page(items=items, total=total, page=page, size=size, pages=-(-total // size))
-
-@router.get("/{note_id}", response_model=NoteOut)
-async def get_note(note_id: int, user: CurrentUser, service: NoteServiceDep):
-    return await service.get(user.id, note_id)
-
-@router.patch("/{note_id}", response_model=NoteOut)
-async def update_note(note_id: int, data: NoteUpdate, user: CurrentUser, service: NoteServiceDep):
-    return await service.update(user.id, note_id, data)
-
-@router.delete("/{note_id}", status_code=204)
-async def delete_note(note_id: int, user: CurrentUser, service: NoteServiceDep):
-    await service.delete(user.id, note_id)
-```
-
-```python
-# app/main.py
-def create_app() -> FastAPI:
-    setup_logging(settings.log_level)
-    app = FastAPI(title=settings.app_name, lifespan=lifespan,
-                  docs_url=None if settings.environment == "production" else "/docs")
-    app.add_middleware(CORSMiddleware, allow_origins=[str(o) for o in settings.cors_origins],
-                       allow_credentials=True, allow_methods=["*"], allow_headers=["*"])
-    register_exception_handlers(app)
-    app.include_router(auth.router)
-    app.include_router(notes.router, prefix="/api/v1")
-    return app
-
-app = create_app()
-```
-
-The app-factory pattern (`create_app()`) makes it easy to build differently configured apps for tests.
+**Learn more:** [System design primer: URL shortener](https://github.com/donnemartin/system-design-primer/blob/master/solutions/system_design/pastebin/README.md) · [FastAPI: full-stack template](https://github.com/fastapi/full-stack-fastapi-template)
 
 ---
 
-## 41. Production Checklist
+## 32. FastAPI Cheat Sheet
 
-**Code & structure**
-- [ ] Layered structure: routers → services → repositories; schemas separate from ORM models
-- [ ] Type hints everywhere; `ruff` + `mypy`/`pyright` in CI
-- [ ] `Annotated` dependency aliases (`DbSession`, `CurrentUser`, `Pagination`) to keep routes clean
-- [ ] App factory + lifespan for startup/shutdown
+**App and routes:**
 
-**API design**
-- [ ] Versioned routes (`/api/v1`), plural nouns, proper status codes
-- [ ] Separate Create / Update / Out schemas; `response_model` on every route
-- [ ] PATCH with `exclude_unset=True`
-- [ ] Consistent error format via exception handlers
-- [ ] Pagination on all list endpoints, with limits
-- [ ] Idempotency keys for payment/order creation
+```text
+app = FastAPI(title=..., lifespan=lifespan)              fastapi dev main.py  ·  fastapi run --workers 4
+@app.get/post/put/patch/delete("/items/{id}", status_code=201, response_model=Out, tags=[...])
+router = APIRouter(prefix="/orders", tags=["orders"], dependencies=[Depends(auth)]); app.include_router(router, prefix="/v1")
+path: id: Annotated[int, Path(ge=1)]      query: limit: Annotated[int, Query(le=100)] = 20      body: item: ItemIn
+header: Annotated[str | None, Header()]   cookie: Cookie()   form: Form()   file: UploadFile   list query: Query()
+```
 
-**Data**
-- [ ] Alembic migrations (never `create_all` in prod), reviewed
-- [ ] Indexes on filter/join/sort columns; no N+1 (eager loading)
-- [ ] Connection pooling configured; transactions short
-- [ ] Money as integer paise/`Decimal`; datetimes timezone-aware UTC
+**Pydantic v2:** `Field(min_length, max_length, pattern, gt, ge, le, default_factory, alias)` · `ConfigDict(extra="forbid", from_attributes=True, alias_generator=to_camel, populate_by_name=True)` · `@field_validator` · `@model_validator(mode="after")` · `@computed_field` · `model_validate(_json)` · `model_dump(exclude_unset=True, mode="json")` · discriminated unions with `Literal` + `Field(discriminator=...)`.
 
-**Security**
-- [ ] Argon2/bcrypt passwords, short-lived JWTs, refresh rotation
-- [ ] Authorization + ownership checks on every route
-- [ ] CORS allowlist, rate limiting on auth, input limits, `extra="forbid"`
-- [ ] Secrets from env/secret manager (`SecretStr`), docs disabled/protected if private
+**Responses and errors:** separate `In`/`Update`/`Out` models · `response_model` filters secrets · 201 create, 204 delete, 404, 409, 422, 429 · `raise HTTPException(status, detail, headers)` · `@app.exception_handler(MyError)` for domain errors and a generic 500 · `JSONResponse`, `RedirectResponse`, `StreamingResponse`, `FileResponse`, `EventSourceResponse` (SSE).
 
-**Reliability**
-- [ ] No blocking calls in `async def`
-- [ ] Timeouts + retries (transient only) on outbound HTTP; shared clients
-- [ ] Background queue for slow work; `BackgroundTasks` only for tiny tasks
-- [ ] Health + readiness endpoints; graceful shutdown
+**Dependencies:** `Depends(fn)` · `yield` for setup/teardown · chains (token → user → role) · factories (`require("perm")`) · cached per request · `app.dependency_overrides[dep] = fake` in tests · `Annotated` aliases (`CurrentUser`).
 
-**Observability**
-- [ ] Structured JSON logs with request IDs; no secrets in logs
-- [ ] Sentry for errors; Prometheus metrics; OpenTelemetry tracing
+**Async:** `async def` + awaitable libraries; `def` for blocking code (thread pool); never block in `async def`; `run_in_threadpool` for legacy calls; shared clients/pools/models in lifespan.
 
-**Testing & delivery**
-- [ ] Unit tests for services; API tests with TestClient/httpx + dependency overrides
-- [ ] Integration tests against real Postgres in CI
-- [ ] Docker image (non-root, slim), lockfile, CI/CD with migrations before deploy
+**Data:** SQLAlchemy 2.0 (`select`, `Mapped`, `mapped_column`, `selectinload`), one session per request, transactions per business operation, `IntegrityError` → 409, Alembic migrations (review autogenerate), async engine for async endpoints.
+
+**Security:** Argon2 hashing (pwdlib) · short JWT access + rotating refresh tokens · OAuth2PasswordBearer · scope queries by user/tenant (BOLA) · `extra="forbid"` · strict CORS origins · SSRF guards · `secrets.compare_digest` · rate-limit login and expensive endpoints · security headers · HTTPS.
+
+**Features:** offset vs cursor pagination · `BackgroundTasks` (small) vs Celery/ARQ (important/heavy; idempotent jobs; outbox) · WebSockets (auth before accept; Redis pub/sub to scale) · SSE for LLM streaming (disable proxy buffering) · httpx with timeouts, retries with backoff · verify webhook HMAC on raw body · cache-aside with TTL + invalidation · ETag/304 · token bucket + 429 `Retry-After` · idempotency keys · `If-Match` for concurrency.
+
+**Operations:** pydantic-settings · JSON logs with request ids · RED metrics per route template · OpenTelemetry traces · Sentry · health/readiness endpoints · Docker multi-stage with uv, non-root · workers ≈ cores · reverse proxy + `--proxy-headers` · graceful shutdown · load test (Locust/k6) before tuning.
+
+**FastAPI vs alternatives:**
+
+| Framework | Strengths | Choose when |
+|---|---|---|
+| **FastAPI** | Type-driven validation and docs, async, DI, performance | APIs, microservices, ML/LLM serving |
+| **Django (+ DRF / Django Ninja)** | Batteries included: ORM, admin, auth, migrations | Full web apps with admin panels, content sites |
+| **Flask** | Minimal, flexible, huge ecosystem | Small apps, legacy codebases |
+| **Litestar** | Similar to FastAPI, more built-ins | Teams wanting more structure |
+| **Express/NestJS (Node)** | JS/TS everywhere (`nodejs.md`) | TypeScript teams |
 
 ---
 
-## 42. FastAPI vs Flask vs Django vs Express
+## 33. Most Asked FastAPI and Backend Interview Questions
 
-| | FastAPI | Flask | Django (+DRF) | Express (Node) |
-|---|---|---|---|---|
-| Type | Async API framework | Micro framework | Batteries-included full-stack | Minimal Node framework |
-| Interface | ASGI | WSGI (async partially) | WSGI/ASGI | Node HTTP |
-| Validation | Built-in (Pydantic, type hints) | Extensions (marshmallow) | DRF serializers / forms | Libraries (zod, joi) |
-| Docs | Automatic OpenAPI/Swagger | Extensions | DRF spectacular | swagger-jsdoc etc. |
-| ORM | Bring your own (SQLAlchemy/SQLModel) | Bring your own | Django ORM built in | Prisma/Drizzle/Mongoose |
-| Admin panel | No | No | Yes | No |
-| Async | First-class | Limited | Improving | Native |
-| Best for | APIs, microservices, ML model serving | Small apps, simple APIs | Full web apps, admin-heavy, CMS | JS/TS teams, real-time apps |
+**Basics**
 
----
+1. **What is FastAPI and why is it fast?** → A Python web framework built on Starlette (ASGI) and Pydantic; async I/O lets one worker handle many concurrent requests, and validation/serialisation run in Rust (pydantic-core). Developer speed comes from type hints driving validation, docs and editor support.
+2. **WSGI vs ASGI?** → WSGI is synchronous, one request per worker thread; ASGI supports async, WebSockets and long-lived connections.
+3. **How does FastAPI know where a parameter comes from?** → Path if in the route, query for simple types, body for Pydantic models, or explicit markers (`Header`, `Cookie`, `Form`, `File`, `Body`).
+4. **What happens when validation fails?** → FastAPI returns 422 with a list of errors (location, message, type) before your function runs.
+5. **What is Pydantic used for?** → Parsing and validating input, serialising output, settings, and generating JSON Schema for OpenAPI docs.
+6. **What are response models for?** → Filtering and validating output (e.g. hiding password hashes) and documenting the response.
+7. **PUT vs PATCH?** → PUT replaces the resource; PATCH changes only sent fields (`exclude_unset=True`).
+8. **Which status codes do you use and when?** → 200/201/204 for success; 400 bad request; 401 not authenticated; 403 forbidden; 404 not found; 409 conflict; 422 validation; 429 rate limited; 500 server error; 502/503/504 upstream problems.
+9. **What is OpenAPI?** → A machine-readable API description FastAPI generates automatically; it powers `/docs`, client generation and contract tests.
+10. **What is idempotency and which methods are idempotent?** → Repeating a request has the same effect as doing it once; GET, PUT, DELETE (and HEAD, OPTIONS) should be; POST isn't, so use idempotency keys for retries.
 
-## 43. Most Asked Interview Questions
+**Intermediate**
 
-### Basics
+11. **Explain dependency injection in FastAPI.** → Functions declared with `Depends` are resolved per request (with sub-dependencies, caching and `yield` clean-up) and injected into endpoints; they can be overridden in tests.
+12. **`async def` vs `def` endpoints?** → `async def` runs on the event loop and must only await non-blocking calls; `def` runs in a thread pool and may block. Blocking inside `async def` stalls all requests.
+13. **How do you manage database sessions?** → One session per request from a `yield` dependency; commit per business operation; close in `finally`; connection pools sized for workers.
+14. **How do you implement authentication?** → Password hashing (Argon2), a login endpoint issuing short-lived JWT access tokens (plus rotating refresh tokens), and a dependency that verifies signature and expiry; or verify tokens from an identity provider (OIDC).
+15. **What's in a JWT and is it encrypted?** → Header, payload (claims like `sub`, `exp`) and signature; it's signed, not encrypted, so don't put secrets in it.
+16. **Authentication vs authorisation? What is BOLA?** → Who you are vs what you may do. BOLA is failing to check that the user may access a specific object (e.g. another user's order); prevent it by scoping queries.
+17. **How do you handle errors consistently?** → Domain exceptions in services, mapped to HTTP responses by exception handlers, one JSON error format with codes, generic 500s with logged details.
+18. **What are middleware used for?** → Cross-cutting concerns on every request: request ids, timing, logging, security headers, CORS, compression.
+19. **What is CORS?** → A browser mechanism where servers declare which origins may read their responses; configure exact origins; it's not a server-side security control.
+20. **How do you test FastAPI apps?** → TestClient or httpx AsyncClient with ASGITransport, dependency overrides for DB/auth/external services, fixtures for isolated data, tests for success, validation and authorisation cases.
+21. **BackgroundTasks vs Celery?** → BackgroundTasks runs small, non-critical work after the response in the same process; queues (Celery/ARQ) give durability, retries and separate workers for important or heavy jobs.
+22. **Offset vs cursor pagination?** → Offset is simple but slow for deep pages and unstable under inserts; cursor/keyset pagination is fast and stable for feeds and big tables.
 
-1. **What is FastAPI and why is it fast?** → ASGI (Starlette) + async, Pydantic v2 (Rust core), efficient serialization.
-2. **What are Starlette and Pydantic used for in FastAPI?**
-3. **WSGI vs ASGI?**
-4. **How does FastAPI use type hints?** → Parse/validate/convert params & bodies, serialize responses, generate OpenAPI docs, editor support.
-5. **Path vs query vs body parameters — how does FastAPI decide?** → In the path template → path; Pydantic model → body; simple types otherwise → query.
-6. **What is a response model and why use it?**
-7. **How are validation errors returned?** → 422 with a `detail` list; customizable via `RequestValidationError` handler.
-8. **How do you raise HTTP errors?** → `HTTPException`; custom exceptions + handlers for consistency.
-9. **What docs does FastAPI generate?** → `/docs` (Swagger UI), `/redoc`, `/openapi.json`.
-10. **How do you organize a large FastAPI project?** → APIRouters + layered/feature structure.
+**Advanced**
 
-### Intermediate
-
-11. **Explain Dependency Injection in FastAPI. What is `Depends`?**
-12. **How do `yield` dependencies work? Use case?** → DB sessions, resources with cleanup.
-13. **Are dependencies cached?** → Yes, per request (`use_cache=False` to disable).
-14. **`async def` vs `def` endpoints — how does FastAPI run each?**
-15. **What happens if you call a blocking function inside `async def`?**
-16. **How do you implement JWT authentication? OAuth2PasswordBearer?**
-17. **How do you implement role-based access control?**
-18. **How do you connect to a database? Sync vs async SQLAlchemy?**
-19. **Why use Alembic?**
-20. **Middleware vs dependencies — when to use which?**
-21. **How do you handle CORS?**
-22. **What are lifespan events? Why not create DB clients per request?**
-23. **BackgroundTasks vs Celery — when to use which?**
-24. **How do you handle file uploads? Large files?**
-25. **How do you implement pagination? Offset vs cursor?**
-26. **How do you test FastAPI apps? How to mock auth/DB?** → TestClient/httpx + `dependency_overrides`.
-27. **Pydantic v1 vs v2 differences?**
-28. **`field_validator` vs `model_validator`?**
-29. **How to exclude fields from responses (e.g. password)?**
-30. **PATCH semantics — how do you apply only sent fields?** → `model_dump(exclude_unset=True)`.
-
-### Advanced
-
-31. **How do you scale FastAPI?** → Multiple workers/replicas behind a load balancer, stateless design, Redis for shared state, async I/O, caching, queues, DB read replicas.
-32. **How do WebSockets work in FastAPI? How to broadcast across multiple workers?** → Redis pub/sub.
-33. **How do you stream responses (SSE / LLM tokens / big CSV)?** → `StreamingResponse` with generators.
-34. **How do you implement rate limiting?** → slowapi + Redis, or at the gateway.
-35. **How do you secure a FastAPI app in production?** (Section 36)
-36. **How do you add request IDs and structured logging?** → Middleware + contextvars + JSON formatter.
-37. **How do you deploy FastAPI?** → Docker, Uvicorn/Gunicorn workers, Nginx/LB, migrations, health checks.
-38. **How would you serve an ML model with FastAPI?** → Load once in lifespan, `def` endpoint or thread/process pool for CPU inference, batch requests, queue for heavy jobs, response models for predictions.
-39. **How do you keep frontend types in sync with the API?** → Generate TypeScript clients from the OpenAPI schema.
-40. **Explain the request lifecycle in FastAPI.** → ASGI server receives request → middleware (outer → inner) → routing → dependency resolution (validate params, run deps) → path function → response model validation/serialization → yield-dependency cleanup → middleware (inner → outer) → response sent → background tasks run.
+23. **How would you stream LLM responses?** → SSE or chunked streaming from an async generator that forwards tokens from the SDK stream; disable proxy buffering, handle client disconnects and send errors in-band.
+24. **WebSockets vs SSE?** → WebSockets are two-way (chat, games); SSE is server-to-client over plain HTTP with automatic reconnection (notifications, token streaming).
+25. **How do you make external calls resilient?** → Shared clients with timeouts, retries with exponential backoff and jitter for transient errors, circuit breakers, idempotency keys, and mapping upstream failures to 502/504.
+26. **How do you verify webhooks?** → HMAC signature over the raw body with a shared secret, constant-time comparison, timestamp checks against replays, and deduplication by event id.
+27. **How do you rate limit and cache in a multi-worker deployment?** → Use a shared store (Redis) for counters and cache entries; token bucket or sliding window per user/key; TTLs and invalidation on writes.
+28. **How do you version an API?** → Additive changes without versions; breaking changes under a new version (URL `/v2` most commonly), with deprecation headers and migration time.
+29. **How do you deploy FastAPI in production?** → Containers with locked dependencies, uvicorn/Gunicorn/Granian workers (or one process per pod), a reverse proxy/load balancer with TLS, health checks, graceful shutdown, migrations as a separate step, observability.
+30. **How do you debug a slow endpoint in production?** → Look at traces to find the slow span (DB, external call, CPU), check metrics (p95/p99, pool saturation), profile (py-spy), then fix the cause: blocking calls, N+1 queries, missing indexes, missing caching.
+31. **How do you serve an ML model with FastAPI?** → Load it once in lifespan, validate inputs with Pydantic, run inference off the event loop (thread/process pool or a model server), batch requests, return the model version, monitor inputs and predictions.
+32. **What are the OWASP API Top 10's most important items?** → BOLA, broken authentication, broken object property authorisation (mass assignment/data exposure), unrestricted resource consumption, broken function-level authorisation, SSRF and misconfiguration.
+33. **How do you prevent double processing of a payment?** → Idempotency keys on the API, unique constraints in the database, idempotent webhook handling by event id, and state machines that refuse invalid transitions.
+34. **What is the transactional outbox pattern?** → Writing events/jobs to an outbox table in the same database transaction as the business change, then publishing them from a relay, so messages are sent if and only if the change committed.
+35. **Design a URL shortener / order service API.** → Requirements → resources and endpoints → data model with unique constraints → validation and errors → caching of hot reads → async work (analytics, emails) through queues → rate limits and security → scaling (stateless workers, DB, Redis) → observability.
 
 ---
-
-**End of FastAPI notes.**
