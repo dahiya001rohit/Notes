@@ -1,4 +1,4 @@
-# Full-Stack & AI Notes — JavaScript · TypeScript · React · Node.js · Python · FastAPI · DSA · SQL · Data Science · Machine Learning
+# Full-Stack & AI Notes — JavaScript · TypeScript · React · Node.js · Python · FastAPI · DSA · SQL · Data Science · Machine Learning · Deep Learning
 
 Complete notes from absolute basics to production and interviews. Every topic has an explanation, 2–3 examples, best practices, and interview questions. Many code examples were executed/type-checked while writing; bugs those checks caught are collected in the **Gotchas Hall of Fame**.
 
@@ -16,8 +16,9 @@ Complete notes from absolute basics to production and interviews. Every topic ha
 | [SQL & PostgreSQL](sql-postgresql.md) | SQL from zero in five levels (Basic → Easy → Moderate → Advanced → Interview Prep): tables and queries, joins, CTEs, design and normalisation, window functions, transactions and MVCC, indexes and query plans, JSONB, full-text search, pgvector for AI, security, Python (psycopg, SQLAlchemy), backups, replication, scaling, PostgreSQL 17/18, and classic interview problems. Every query run on PostgreSQL with real output | 34 | 5,291 |
 | [Data Science](data-science.md) | The Python data toolkit from zero in five levels (Basic → Easy → Moderate → Advanced → Interview Prep): NumPy arrays and broadcasting, pandas 3 (loading, selecting, cleaning, groupby, merge, pivot, time series), Arrow, Polars and DuckDB for bigger data, Matplotlib and Seaborn charts, statistics (distributions, confidence intervals, hypothesis tests, A/B testing), a full EDA and feature preparation for ML, plus pandas interview problems. Every example run with real output and real chart images | 27 | 3,755 |
 | [Machine Learning](machine-learning.md) | Machine learning from zero to production in five levels (Basic → Easy → Moderate → Advanced → Interview Prep): the maths explained simply (vectors, gradient descent, loss functions), linear and logistic regression, honest evaluation and metrics, scikit-learn pipelines, cross-validation and tuning (Optuna), regularisation, trees, random forests, XGBoost and LightGBM, SVMs, clustering, PCA/t-SNE, anomalies, forecasting, recommenders, text classification, SHAP, leakage and fairness, serving (ONNX, FastAPI), MLflow, drift monitoring and ML system design. Every example run with real output and charts | 32 | 4,538 |
+| [Deep Learning](deep-learning.md) | Deep learning from zero in five levels (Basic → Easy → Moderate → Advanced → Interview Prep): neurons and backpropagation built from scratch in NumPy, PyTorch tensors, autograd and the training loop, training recipes (AdamW, schedules, normalisation, dropout), CNNs, embeddings and RNNs, attention and transformers, a tiny GPT built from scratch, Hugging Face, fine-tuning with Trainer, LoRA/QLoRA with PEFT, autoencoders and diffusion, mixed precision, FSDP, quantisation, distillation, mixture of experts and scaling laws. Every example run on CPU with real output | 20 | 3,009 |
 | [Best Practices](best-practices.md) | Every good practice combined across the stack, the Gotchas Hall of Fame, and checklists | 32 | 1,733 |
-| **Total** | | **497** | **63,967** |
+| **Total** | | **517** | **66,976** |
 
 ## How every file is organized
 
@@ -50,6 +51,10 @@ Conventions: ❌ = wrong/risky, ✅ = recommended · *(caught in these notes)* =
 ### AI/ML track — 2. Machine learning (after data science)
 
 - **Machine Learning** (maths → first models → scikit-learn → trust → MLOps; every example runs): [What Is Machine Learning?](machine-learning.md#2-what-is-machine-learning) · [Maths for ML 2: Slopes, Gradients and Gradient Descent](machine-learning.md#4-maths-for-ml-2-slopes-gradients-and-gradient-descent) · [Your First Model: Linear Regression](machine-learning.md#6-your-first-model-linear-regression) · [Train/Test Splits, Overfitting and Underfitting](machine-learning.md#7-traintest-splits-overfitting-and-underfitting) · [Measuring Classifiers: Confusion Matrix, Precision, Recall, ROC and PR Curves](machine-learning.md#9-measuring-classifiers-confusion-matrix-precision-recall-roc-and-pr-curves) · [scikit-learn Properly: Estimators, Pipelines and ColumnTransformer](machine-learning.md#11-scikit-learn-properly-estimators-pipelines-and-columntransformer) · [Cross-Validation and Hyperparameter Tuning](machine-learning.md#12-cross-validation-and-hyperparameter-tuning) · [Ensembles: Random Forests and Gradient Boosting (XGBoost, LightGBM, CatBoost)](machine-learning.md#15-ensembles-random-forests-and-gradient-boosting-xgboost-lightgbm-catboost) · [Explaining Models: Feature Importance, Partial Dependence and SHAP](machine-learning.md#23-explaining-models-feature-importance-partial-dependence-and-shap) · [Saving and Serving Models: joblib, skops, ONNX and a FastAPI Endpoint](machine-learning.md#26-saving-and-serving-models-joblib-skops-onnx-and-a-fastapi-endpoint) · [ML System Design: A Framework and a Worked Example](machine-learning.md#29-ml-system-design-a-framework-and-a-worked-example)
+
+### AI/ML track — 3. Deep learning (after machine learning)
+
+- **Deep Learning** (neurons → PyTorch → transformers → Hugging Face and LoRA → scale; every example runs): [Neurons, Layers and Activation Functions](deep-learning.md#2-neurons-layers-and-activation-functions) · [How Networks Learn: Backpropagation from Scratch](deep-learning.md#3-how-networks-learn-backpropagation-from-scratch) · [Your First PyTorch Model: Modules, DataLoaders and the Training Loop](deep-learning.md#5-your-first-pytorch-model-modules-dataloaders-and-the-training-loop) · [Training Recipes: Optimisers, Learning-Rate Schedules, Normalisation and Regularisation](deep-learning.md#6-training-recipes-optimisers-learning-rate-schedules-normalisation-and-regularisation) · [Convolutional Neural Networks (CNNs) for Images](deep-learning.md#8-convolutional-neural-networks-cnns-for-images) · [Attention and Transformers](deep-learning.md#10-attention-and-transformers) · [Build a Tiny GPT from Scratch](deep-learning.md#11-build-a-tiny-gpt-from-scratch) · [Hugging Face: The Hub, Transformers, Tokenizers and Pipelines](deep-learning.md#12-hugging-face-the-hub-transformers-tokenizers-and-pipelines) · [Parameter-Efficient Fine-Tuning: LoRA and QLoRA](deep-learning.md#14-parameter-efficient-fine-tuning-lora-and-qlora) · [Making Models Fast and Small: Mixed Precision, Distributed Training, Quantisation and Distillation](deep-learning.md#16-making-models-fast-and-small-mixed-precision-distributed-training-quantisation-and-distillation)
 
 ### Phase 2 — How JavaScript really works
 
@@ -126,6 +131,7 @@ Go through these in order in the last week before an interview; for each topic, 
 - **SQL & PostgreSQL:** [Classic SQL Interview Problems (with Solutions)](sql-postgresql.md#32-classic-sql-interview-problems-with-solutions) · [SQL and PostgreSQL Cheat Sheet](sql-postgresql.md#33-sql-and-postgresql-cheat-sheet) · [Most Asked SQL and Database Theory Questions](sql-postgresql.md#34-most-asked-sql-and-database-theory-questions)
 - **Data Science:** [Interview Problems: pandas and NumPy](data-science.md#25-interview-problems-pandas-and-numpy) · [Data Science Cheat Sheet](data-science.md#26-data-science-cheat-sheet) · [Most Asked Data Science Theory Questions](data-science.md#27-most-asked-data-science-theory-questions)
 - **Machine Learning:** [Interview Coding: ML Algorithms from Scratch in NumPy](machine-learning.md#30-interview-coding-ml-algorithms-from-scratch-in-numpy) · [Machine Learning Cheat Sheet](machine-learning.md#31-machine-learning-cheat-sheet) · [Most Asked Machine Learning Theory Questions](machine-learning.md#32-most-asked-machine-learning-theory-questions)
+- **Deep Learning:** [Interview Coding: Deep-Learning Building Blocks](deep-learning.md#18-interview-coding-deep-learning-building-blocks) · [Deep Learning Cheat Sheet](deep-learning.md#19-deep-learning-cheat-sheet) · [Most Asked Deep Learning Theory Questions](deep-learning.md#20-most-asked-deep-learning-theory-questions)
 
 ### System design & production
 
@@ -757,6 +763,50 @@ Go through these in order in the last week before an interview; for each topic, 
 30. [Interview Coding: ML Algorithms from Scratch in NumPy](machine-learning.md#30-interview-coding-ml-algorithms-from-scratch-in-numpy)
 31. [Machine Learning Cheat Sheet](machine-learning.md#31-machine-learning-cheat-sheet)
 32. [Most Asked Machine Learning Theory Questions](machine-learning.md#32-most-asked-machine-learning-theory-questions)
+
+</details>
+
+<details>
+<summary><b>Deep Learning</b> — 20 sections in 6 parts</summary>
+
+
+**Part 1 — Basic: How Neural Networks Work**
+
+1. [How to Use These Notes (and What Deep Learning Is For)](deep-learning.md#1-how-to-use-these-notes-and-what-deep-learning-is-for)
+2. [Neurons, Layers and Activation Functions](deep-learning.md#2-neurons-layers-and-activation-functions)
+3. [How Networks Learn: Backpropagation from Scratch](deep-learning.md#3-how-networks-learn-backpropagation-from-scratch)
+4. [PyTorch Basics: Tensors, Devices and Autograd](deep-learning.md#4-pytorch-basics-tensors-devices-and-autograd)
+
+**Part 2 — Easy: Training Networks in PyTorch**
+
+5. [Your First PyTorch Model: Modules, DataLoaders and the Training Loop](deep-learning.md#5-your-first-pytorch-model-modules-dataloaders-and-the-training-loop)
+6. [Training Recipes: Optimisers, Learning-Rate Schedules, Normalisation and Regularisation](deep-learning.md#6-training-recipes-optimisers-learning-rate-schedules-normalisation-and-regularisation)
+7. [Real Data Pipelines: Custom Datasets, Augmentation, Padding and Checkpoints](deep-learning.md#7-real-data-pipelines-custom-datasets-augmentation-padding-and-checkpoints)
+
+**Part 3 — Moderate: Architectures: CNNs, RNNs and Transformers**
+
+8. [Convolutional Neural Networks (CNNs) for Images](deep-learning.md#8-convolutional-neural-networks-cnns-for-images)
+9. [Embeddings and Sequence Models (RNN, LSTM, GRU)](deep-learning.md#9-embeddings-and-sequence-models-rnn-lstm-gru)
+10. [Attention and Transformers](deep-learning.md#10-attention-and-transformers)
+11. [Build a Tiny GPT from Scratch](deep-learning.md#11-build-a-tiny-gpt-from-scratch)
+
+**Part 4 — Moderate: Hugging Face, Fine-Tuning and Generative Models**
+
+12. [Hugging Face: The Hub, Transformers, Tokenizers and Pipelines](deep-learning.md#12-hugging-face-the-hub-transformers-tokenizers-and-pipelines)
+13. [Transfer Learning and Fine-Tuning with the Trainer API](deep-learning.md#13-transfer-learning-and-fine-tuning-with-the-trainer-api)
+14. [Parameter-Efficient Fine-Tuning: LoRA and QLoRA](deep-learning.md#14-parameter-efficient-fine-tuning-lora-and-qlora)
+15. [Generative Models: Autoencoders, GANs and Diffusion](deep-learning.md#15-generative-models-autoencoders-gans-and-diffusion)
+
+**Part 5 — Advanced: Efficiency, Scale and Modern Architectures**
+
+16. [Making Models Fast and Small: Mixed Precision, Distributed Training, Quantisation and Distillation](deep-learning.md#16-making-models-fast-and-small-mixed-precision-distributed-training-quantisation-and-distillation)
+17. [Modern Architectures and Scaling: Mixture of Experts, State-Space Models and Multimodal Models](deep-learning.md#17-modern-architectures-and-scaling-mixture-of-experts-state-space-models-and-multimodal-models)
+
+**Part 6 — Interview Prep: Revision**
+
+18. [Interview Coding: Deep-Learning Building Blocks](deep-learning.md#18-interview-coding-deep-learning-building-blocks)
+19. [Deep Learning Cheat Sheet](deep-learning.md#19-deep-learning-cheat-sheet)
+20. [Most Asked Deep Learning Theory Questions](deep-learning.md#20-most-asked-deep-learning-theory-questions)
 
 </details>
 
