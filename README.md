@@ -1,4 +1,4 @@
-# Full-Stack & AI Notes — JavaScript · TypeScript · React · Node.js · Python · FastAPI · DSA · SQL · Data Science · Machine Learning · Deep Learning
+# Full-Stack & AI Notes — JavaScript · TypeScript · React · Node.js · Python · FastAPI · DSA · SQL · Data Science · ML · Deep Learning · LLMs
 
 Complete notes from absolute basics to production and interviews. Every topic has an explanation, 2–3 examples, best practices, and interview questions. Many code examples were executed/type-checked while writing; bugs those checks caught are collected in the **Gotchas Hall of Fame**.
 
@@ -17,8 +17,9 @@ Complete notes from absolute basics to production and interviews. Every topic ha
 | [Data Science](data-science.md) | The Python data toolkit from zero in five levels (Basic → Easy → Moderate → Advanced → Interview Prep): NumPy arrays and broadcasting, pandas 3 (loading, selecting, cleaning, groupby, merge, pivot, time series), Arrow, Polars and DuckDB for bigger data, Matplotlib and Seaborn charts, statistics (distributions, confidence intervals, hypothesis tests, A/B testing), a full EDA and feature preparation for ML, plus pandas interview problems. Every example run with real output and real chart images | 27 | 3,755 |
 | [Machine Learning](machine-learning.md) | Machine learning from zero to production in five levels (Basic → Easy → Moderate → Advanced → Interview Prep): the maths explained simply (vectors, gradient descent, loss functions), linear and logistic regression, honest evaluation and metrics, scikit-learn pipelines, cross-validation and tuning (Optuna), regularisation, trees, random forests, XGBoost and LightGBM, SVMs, clustering, PCA/t-SNE, anomalies, forecasting, recommenders, text classification, SHAP, leakage and fairness, serving (ONNX, FastAPI), MLflow, drift monitoring and ML system design. Every example run with real output and charts | 32 | 4,538 |
 | [Deep Learning](deep-learning.md) | Deep learning from zero in five levels (Basic → Easy → Moderate → Advanced → Interview Prep): neurons and backpropagation built from scratch in NumPy, PyTorch tensors, autograd and the training loop, training recipes (AdamW, schedules, normalisation, dropout), CNNs, embeddings and RNNs, attention and transformers, a tiny GPT built from scratch, Hugging Face, fine-tuning with Trainer, LoRA/QLoRA with PEFT, autoencoders and diffusion, mixed precision, FSDP, quantisation, distillation, mixture of experts and scaling laws. Every example run on CPU with real output | 20 | 3,009 |
+| [LLM Engineering](llm-engineering.md) | Building applications with large language models, from zero, in five levels (Basic → Easy → Moderate → Advanced → Interview Prep): how LLMs work and are trained, tokens and cost, the Claude API from Python (messages, streaming, errors, refusals), prompt engineering, structured outputs, tool use, embeddings and vector search, prompt caching and batching, images and PDFs, evaluation and LLM-as-judge, hallucinations and prompt injection, fine-tuning (SFT, DPO, LoRA), reasoning models, open-weight models and vLLM, LLMOps and LLM system design. Local examples run with real output; API code checked against the official SDK | 21 | 3,167 |
 | [Best Practices](best-practices.md) | Every good practice combined across the stack, the Gotchas Hall of Fame, and checklists | 32 | 1,733 |
-| **Total** | | **517** | **66,976** |
+| **Total** | | **538** | **70,143** |
 
 ## How every file is organized
 
@@ -55,6 +56,10 @@ Conventions: ❌ = wrong/risky, ✅ = recommended · *(caught in these notes)* =
 ### AI/ML track — 3. Deep learning (after machine learning)
 
 - **Deep Learning** (neurons → PyTorch → transformers → Hugging Face and LoRA → scale; every example runs): [Neurons, Layers and Activation Functions](deep-learning.md#2-neurons-layers-and-activation-functions) · [How Networks Learn: Backpropagation from Scratch](deep-learning.md#3-how-networks-learn-backpropagation-from-scratch) · [Your First PyTorch Model: Modules, DataLoaders and the Training Loop](deep-learning.md#5-your-first-pytorch-model-modules-dataloaders-and-the-training-loop) · [Training Recipes: Optimisers, Learning-Rate Schedules, Normalisation and Regularisation](deep-learning.md#6-training-recipes-optimisers-learning-rate-schedules-normalisation-and-regularisation) · [Convolutional Neural Networks (CNNs) for Images](deep-learning.md#8-convolutional-neural-networks-cnns-for-images) · [Attention and Transformers](deep-learning.md#10-attention-and-transformers) · [Build a Tiny GPT from Scratch](deep-learning.md#11-build-a-tiny-gpt-from-scratch) · [Hugging Face: The Hub, Transformers, Tokenizers and Pipelines](deep-learning.md#12-hugging-face-the-hub-transformers-tokenizers-and-pipelines) · [Parameter-Efficient Fine-Tuning: LoRA and QLoRA](deep-learning.md#14-parameter-efficient-fine-tuning-lora-and-qlora) · [Making Models Fast and Small: Mixed Precision, Distributed Training, Quantisation and Distillation](deep-learning.md#16-making-models-fast-and-small-mixed-precision-distributed-training-quantisation-and-distillation)
+
+### AI/ML track — 4. LLM engineering (after deep learning)
+
+- **LLM Engineering** (APIs → prompts → tools → evals → production; API code checked against the SDK): [How LLMs Work: Next-Token Prediction, Pre-Training and Post-Training](llm-engineering.md#2-how-llms-work-next-token-prediction-pre-training-and-post-training) · [Tokens, Context Windows and Cost](llm-engineering.md#3-tokens-context-windows-and-cost) · [Your First LLM API Call: Messages, System Prompts and Conversations](llm-engineering.md#4-your-first-llm-api-call-messages-system-prompts-and-conversations) · [Prompt Engineering: Clear Instructions, Examples, Structure and Chaining](llm-engineering.md#6-prompt-engineering-clear-instructions-examples-structure-and-chaining) · [Structured Outputs: Getting Reliable JSON with Schemas](llm-engineering.md#7-structured-outputs-getting-reliable-json-with-schemas) · [Tool Use (Function Calling): Letting the Model Call Your Code](llm-engineering.md#8-tool-use-function-calling-letting-the-model-call-your-code) · [Embeddings and Semantic Search](llm-engineering.md#9-embeddings-and-semantic-search) · [Evaluating LLM Applications: Test Sets, Metrics and LLM-as-Judge](llm-engineering.md#12-evaluating-llm-applications-test-sets-metrics-and-llm-as-judge) · [Hallucinations, Prompt Injection and Guardrails](llm-engineering.md#13-hallucinations-prompt-injection-and-guardrails) · [LLM System Design: A Framework and a Worked Example](llm-engineering.md#18-llm-system-design-a-framework-and-a-worked-example)
 
 ### Phase 2 — How JavaScript really works
 
@@ -132,6 +137,7 @@ Go through these in order in the last week before an interview; for each topic, 
 - **Data Science:** [Interview Problems: pandas and NumPy](data-science.md#25-interview-problems-pandas-and-numpy) · [Data Science Cheat Sheet](data-science.md#26-data-science-cheat-sheet) · [Most Asked Data Science Theory Questions](data-science.md#27-most-asked-data-science-theory-questions)
 - **Machine Learning:** [Interview Coding: ML Algorithms from Scratch in NumPy](machine-learning.md#30-interview-coding-ml-algorithms-from-scratch-in-numpy) · [Machine Learning Cheat Sheet](machine-learning.md#31-machine-learning-cheat-sheet) · [Most Asked Machine Learning Theory Questions](machine-learning.md#32-most-asked-machine-learning-theory-questions)
 - **Deep Learning:** [Interview Coding: Deep-Learning Building Blocks](deep-learning.md#18-interview-coding-deep-learning-building-blocks) · [Deep Learning Cheat Sheet](deep-learning.md#19-deep-learning-cheat-sheet) · [Most Asked Deep Learning Theory Questions](deep-learning.md#20-most-asked-deep-learning-theory-questions)
+- **LLM Engineering:** [Interview Coding: LLM Engineering Problems](llm-engineering.md#19-interview-coding-llm-engineering-problems) · [LLM Engineering Cheat Sheet](llm-engineering.md#20-llm-engineering-cheat-sheet) · [Most Asked LLM Engineering Theory Questions](llm-engineering.md#21-most-asked-llm-engineering-theory-questions)
 
 ### System design & production
 
@@ -807,6 +813,51 @@ Go through these in order in the last week before an interview; for each topic, 
 18. [Interview Coding: Deep-Learning Building Blocks](deep-learning.md#18-interview-coding-deep-learning-building-blocks)
 19. [Deep Learning Cheat Sheet](deep-learning.md#19-deep-learning-cheat-sheet)
 20. [Most Asked Deep Learning Theory Questions](deep-learning.md#20-most-asked-deep-learning-theory-questions)
+
+</details>
+
+<details>
+<summary><b>LLM Engineering</b> — 21 sections in 6 parts</summary>
+
+
+**Part 1 — Basic: How LLMs Work**
+
+1. [How to Use These Notes (and What an AI Engineer Does)](llm-engineering.md#1-how-to-use-these-notes-and-what-an-ai-engineer-does)
+2. [How LLMs Work: Next-Token Prediction, Pre-Training and Post-Training](llm-engineering.md#2-how-llms-work-next-token-prediction-pre-training-and-post-training)
+3. [Tokens, Context Windows and Cost](llm-engineering.md#3-tokens-context-windows-and-cost)
+
+**Part 2 — Easy: Calling LLMs from Python**
+
+4. [Your First LLM API Call: Messages, System Prompts and Conversations](llm-engineering.md#4-your-first-llm-api-call-messages-system-prompts-and-conversations)
+5. [Streaming, Concurrency, Errors, Retries and Refusals](llm-engineering.md#5-streaming-concurrency-errors-retries-and-refusals)
+6. [Prompt Engineering: Clear Instructions, Examples, Structure and Chaining](llm-engineering.md#6-prompt-engineering-clear-instructions-examples-structure-and-chaining)
+7. [Structured Outputs: Getting Reliable JSON with Schemas](llm-engineering.md#7-structured-outputs-getting-reliable-json-with-schemas)
+
+**Part 3 — Moderate: Building LLM Features**
+
+8. [Tool Use (Function Calling): Letting the Model Call Your Code](llm-engineering.md#8-tool-use-function-calling-letting-the-model-call-your-code)
+9. [Embeddings and Semantic Search](llm-engineering.md#9-embeddings-and-semantic-search)
+10. [Controlling Cost and Latency: Prompt Caching, Batching, Routing and Effort](llm-engineering.md#10-controlling-cost-and-latency-prompt-caching-batching-routing-and-effort)
+11. [Images, PDFs and Documents: Multimodal Inputs and Citations](llm-engineering.md#11-images-pdfs-and-documents-multimodal-inputs-and-citations)
+
+**Part 4 — Moderate: Quality, Safety and Fine-Tuning**
+
+12. [Evaluating LLM Applications: Test Sets, Metrics and LLM-as-Judge](llm-engineering.md#12-evaluating-llm-applications-test-sets-metrics-and-llm-as-judge)
+13. [Hallucinations, Prompt Injection and Guardrails](llm-engineering.md#13-hallucinations-prompt-injection-and-guardrails)
+14. [Fine-Tuning LLMs: SFT, Preference Tuning (DPO), RL and Distillation](llm-engineering.md#14-fine-tuning-llms-sft-preference-tuning-dpo-rl-and-distillation)
+
+**Part 5 — Advanced: Reasoning, Open Models, LLMOps and System Design**
+
+15. [Reasoning Models: Thinking, Effort and Test-Time Compute](llm-engineering.md#15-reasoning-models-thinking-effort-and-test-time-compute)
+16. [Open-Weight Models and Self-Hosting: Ollama, vLLM, Quantisation and GPU Sizing](llm-engineering.md#16-open-weight-models-and-self-hosting-ollama-vllm-quantisation-and-gpu-sizing)
+17. [LLMOps: Tracing, Monitoring, Caching, Budgets and Prompt Versioning](llm-engineering.md#17-llmops-tracing-monitoring-caching-budgets-and-prompt-versioning)
+18. [LLM System Design: A Framework and a Worked Example](llm-engineering.md#18-llm-system-design-a-framework-and-a-worked-example)
+
+**Part 6 — Interview Prep: Revision**
+
+19. [Interview Coding: LLM Engineering Problems](llm-engineering.md#19-interview-coding-llm-engineering-problems)
+20. [LLM Engineering Cheat Sheet](llm-engineering.md#20-llm-engineering-cheat-sheet)
+21. [Most Asked LLM Engineering Theory Questions](llm-engineering.md#21-most-asked-llm-engineering-theory-questions)
 
 </details>
 
