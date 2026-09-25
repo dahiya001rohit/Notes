@@ -10,7 +10,7 @@ Complete notes from absolute basics to production and interviews. Every topic ha
 | [TypeScript](typescript.md) | Types from basics to advanced type-level programming, TS with React/Node, end-to-end type safety | 43 | 3,779 |
 | [React](react.md) | Components & hooks → patterns & performance → state/data → Next.js → testing → production & machine coding | 56 | 7,709 |
 | [Node.js](nodejs.md) | Runtime & event loop → Express & APIs → auth & security → databases → queues, observability, system design | 65 | 8,524 |
-| [Python](python.md) | Absolute basics → OOP & functional features → stdlib, scripting, databases → concurrency → production, DSA | 47 | 5,425 |
+| [Python](python.md) | Python from absolute zero in five levels (Basic → Easy → Moderate → Advanced → Interview Prep): variables, numbers, strings, decisions and loops; lists, dicts, sets, comprehensions and functions; errors, files, modules and uv, the standard library, classes, dataclasses and type hints; decorators, generators, context managers, regex, Pythonic style, pytest and logging; internals, descriptors, threads, processes, free-threading, asyncio, performance, databases and scripting; production tooling, packaging and what's new in 3.12–3.14. Every example runs on Python 3.14 with real output | 44 | 6,977 |
 | [FastAPI](fastapi.md) | Routing & Pydantic → DI, databases, auth → queues, integrations → testing, observability, security, deployment | 43 | 3,832 |
 | [DSA in Python](dsa-python.md) | Data structures & algorithms from absolute zero in five levels (Basic → Easy → Moderate → Advanced → Interview Prep): Python basics, pattern printing and number theory first, then arrays, hashing, techniques, linked lists, trees, graphs, DP, string algorithms, segment trees, max flow, the algorithms inside real systems (Bloom filters, consistent hashing, B-trees, vector search) and recent breakthroughs, plus a checklist of what top companies ask. Every topic: simple explanation, diagram, tested Python, practice | 60 | 8,364 |
 | [SQL & PostgreSQL](sql-postgresql.md) | SQL from zero in five levels (Basic → Easy → Moderate → Advanced → Interview Prep): tables and queries, joins, CTEs, design and normalisation, window functions, transactions and MVCC, indexes and query plans, JSONB, full-text search, pgvector for AI, security, Python (psycopg, SQLAlchemy), backups, replication, scaling, PostgreSQL 17/18, and classic interview problems. Every query run on PostgreSQL with real output | 34 | 5,291 |
@@ -20,7 +20,7 @@ Complete notes from absolute basics to production and interviews. Every topic ha
 | [LLM Engineering](llm-engineering.md) | Building applications with large language models, from zero, in five levels (Basic → Easy → Moderate → Advanced → Interview Prep): how LLMs work and are trained, tokens and cost, the Claude API from Python (messages, streaming, errors, refusals), prompt engineering, structured outputs, tool use, embeddings and vector search, prompt caching and batching, images and PDFs, evaluation and LLM-as-judge, hallucinations and prompt injection, fine-tuning (SFT, DPO, LoRA), reasoning models, open-weight models and vLLM, LLMOps and LLM system design. Local examples run with real output; API code checked against the official SDK | 21 | 3,167 |
 | [RAG and AI Agents](rag-and-agents.md) | Retrieval-augmented generation and agentic AI, from zero, in five levels (Basic → Easy → Moderate → Advanced → Interview Prep): RAG from scratch, loading and chunking, BM25 and vector search, hybrid search, reranking and query rewriting, RAG evaluation, vectorless RAG (full-text, text-to-SQL, tree navigation, agentic search, long context), contextual retrieval, parent documents and GraphRAG, production RAG (freshness, permissions, injection), LangChain, LangGraph, the agent loop, tools, memory and context engineering, agents with LangGraph, multi-agent systems, MCP, agent evaluation and security, and system design. Examples run locally with real output; API code checked against the official SDKs | 21 | 3,936 |
 | [Best Practices](best-practices.md) | Every good practice combined across the stack, the Gotchas Hall of Fame, and checklists | 32 | 1,733 |
-| **Total** | | **559** | **74,079** |
+| **Total** | | **556** | **75,631** |
 
 ## How every file is organized
 
@@ -81,7 +81,7 @@ The AI/ML files form one path, from "I know some Python" to building and shippin
 ### Phase 1 — Programming basics (pick JS or Python first)
 
 - **JavaScript:** [Getting Started: What is JavaScript & Your First Program](javascript.md#1-getting-started-what-is-javascript--your-first-program) · [var, let, const](javascript.md#2-var-let-const) · [Data Types](javascript.md#3-data-types) · [Operators, Control Flow & Loops](javascript.md#4-operators-control-flow--loops) · [Functions (all types)](javascript.md#6-functions) · [Arrays & Array Methods (+ polyfills)](javascript.md#20-arrays--array-methods) · [Strings](javascript.md#21-strings) · [Objects in Depth](javascript.md#14-objects-in-depth)
-- **Python:** [Getting Started: What is Python & Your First Program](python.md#1-getting-started-what-is-python--your-first-program) · [Variables](python.md#2-variables) · [Data Types & Type Conversion](python.md#3-data-types--type-conversion) · [Control Flow & match-case](python.md#10-control-flow--match-case) · [Loops, range, enumerate, zip](python.md#11-loops-range-enumerate-zip) · [Functions & Arguments](python.md#13-functions--arguments) · [Lists](python.md#6-lists) · [Dictionaries](python.md#9-dictionaries)
+- **Python:** [Getting Started: What Python Is and Your First Program](python.md#1-getting-started-what-python-is-and-your-first-program) · [Variables: Names for Values](python.md#2-variables-names-for-values) · [Numbers, Operators and Type Conversion](python.md#3-numbers-operators-and-type-conversion) · [Making Decisions: if, elif, else and match](python.md#5-making-decisions-if-elif-else-and-match) · [Loops: while, for and range](python.md#6-loops-while-for-and-range) · [Functions: Reusable Blocks of Code](python.md#12-functions-reusable-blocks-of-code) · [Lists: Ordered, Changeable Collections](python.md#7-lists-ordered-changeable-collections) · [Dictionaries: Looking Things Up by Key](python.md#9-dictionaries-looking-things-up-by-key)
 
 ### DSA track — study alongside the other phases
 
@@ -133,7 +133,7 @@ The AI/ML files form one path, from "I know some Python" to building and shippin
 
 ### Phase 7 — Backend with Python & FastAPI
 
-- **Python:** [OOP: Classes & Objects](python.md#19-oop-classes--objects) · [Decorators](python.md#17-decorators) · [Iterators & Generators](python.md#18-iterators--generators) · [Exceptions & Error Handling](python.md#23-exceptions--error-handling) · [Type Hints & typing](python.md#31-type-hints--typing) · [asyncio](python.md#35-asyncio) · [Testing with pytest](python.md#36-testing-with-pytest)
+- **Python:** [Classes and Objects](python.md#18-classes-and-objects) · [Closures and Decorators](python.md#23-closures-and-decorators) · [Iterators and Generators: Producing Values Lazily](python.md#24-iterators-and-generators-producing-values-lazily) · [Errors and Exceptions: try, except, raise](python.md#14-errors-and-exceptions-try-except-raise) · [Type Hints and Static Type Checking](python.md#22-type-hints-and-static-type-checking) · [asyncio: async and await](python.md#33-asyncio-async-and-await) · [Testing with pytest](python.md#28-testing-with-pytest)
 - **FastAPI:** [What is FastAPI](fastapi.md#1-what-is-fastapi) · [Request Body with Pydantic](fastapi.md#6-request-body-with-pydantic) · [Dependency Injection](fastapi.md#11-dependency-injection) · [async def vs def](fastapi.md#13-async-def-vs-def) · [Databases: SQLAlchemy 2.0](fastapi.md#15-databases-sqlalchemy-20) · [Authentication: OAuth2 + JWT](fastapi.md#19-authentication-oauth2--jwt) · [Testing FastAPI](fastapi.md#32-testing-fastapi)
 
 ### Phase 8 — Production engineering
@@ -142,7 +142,7 @@ The AI/ML files form one path, from "I know some Python" to building and shippin
 - **React:** [Production React Patterns](react.md#51-production-react-patterns) · [Accessibility (a11y)](react.md#47-accessibility-a11y)
 - **Node.js:** [Security Best Practices](nodejs.md#40-security) · [OWASP API Security Top 10 (2023) with Examples](nodejs.md#41-owasp-api-security-top-10-2023-with-examples) · [Observability Hands-On: Logs, Metrics, Traces, SLOs & Alerts](nodejs.md#44-observability-hands-on-logs-metrics-traces-slos--alerts) · [BullMQ in Depth](nodejs.md#51-bullmq-in-depth) · [Graceful Shutdown](nodejs.md#54-graceful-shutdown) · [Streaming Responses & Server-Sent Events in Depth](nodejs.md#49-streaming-responses--server-sent-events-in-depth) · [Deployment: Docker, PM2, CI/CD, Nginx](nodejs.md#58-deployment)
 - **TypeScript:** [Production TypeScript Best Practices](typescript.md#40-production-typescript-best-practices)
-- **Python:** [Production-Grade Python](python.md#42-production-grade-python) · [Packaging & Publishing a Python Library](python.md#43-packaging--publishing-a-python-library)
+- **Python:** [Production-Grade Python: Project Layout, Configuration, Tooling and CI](python.md#37-production-grade-python-project-layout-configuration-tooling-and-ci) · [Packaging and Publishing a Library](python.md#38-packaging-and-publishing-a-library)
 - **FastAPI:** [Server-Sent Events & Streaming Answers in FastAPI](fastapi.md#27-server-sent-events--streaming-answers-in-fastapi) · [Production Checklist & Best Practices](fastapi.md#41-production-checklist)
 - **Best Practices:** [Git in Practice: Everyday Workflow, Fixing History & Recovery](best-practices.md#27-git-in-practice-everyday-workflow-fixing-history--recovery) · [Feature Flags & Safe Rollouts](best-practices.md#29-feature-flags--safe-rollouts) · [Incident Response, On-Call, Postmortems & Living Documentation](best-practices.md#30-incident-response-on-call-postmortems--living-documentation) · [Gotchas Hall of Fame](best-practices.md#31-gotchas-hall-of-fame) · [Checklists](best-practices.md#32-checklists)
 
@@ -151,7 +151,7 @@ The AI/ML files form one path, from "I know some Python" to building and shippin
 - **Node.js:** [System Design Basics for Backend Interviews](nodejs.md#63-system-design-basics-for-backend-interviews) · [Microservices, API Gateway, Message Brokers](nodejs.md#55-microservices) · [Resilience: Timeouts, Retries, Circuit Breakers & Load Shedding](nodejs.md#56-resilience-timeouts-retries-circuit-breakers--load-shedding) · [Building & Publishing an npm Package](nodejs.md#60-building--publishing-an-npm-package) · [Monorepos: pnpm Workspaces, Turborepo & Shared Packages](nodejs.md#61-monorepos-pnpm-workspaces-turborepo--shared-packages)
 - **React:** [How Hooks Work Under the Hood (+ Children & cloneElement APIs)](react.md#24-how-hooks-work-under-the-hood--children--cloneelement-apis) · [Next.js App Router Deep Dive (+ Animations)](react.md#44-nextjs-app-router-deep-dive--animations)
 - **TypeScript:** [Typing React Components: Advanced Patterns](typescript.md#34-typing-react-components-advanced-patterns) · [Advanced TypeScript Features](typescript.md#39-advanced-typescript-features) · [End-to-End Type Safety: Shared Schemas, tRPC & OpenAPI Codegen](typescript.md#37-end-to-end-type-safety-shared-schemas-trpc--openapi-codegen)
-- **Python:** [Advanced Python: Attribute Access, Descriptors, Metaclasses & Weak References](python.md#33-advanced-python-attribute-access-descriptors-metaclasses--weak-references)
+- **Python:** [Advanced Classes: Attribute Lookup, Descriptors, Class Hooks and Metaclasses](python.md#31-advanced-classes-attribute-lookup-descriptors-class-hooks-and-metaclasses)
 
 ## Interview revision plan
 
@@ -166,20 +166,20 @@ Go through these in order in the last week before an interview; for each topic, 
 ### Write from memory
 
 - **JavaScript:** [Polyfill Collection](javascript.md#52-polyfill-collection) · [Debounce & Throttle](javascript.md#24-debounce--throttle) · [Promises (+ polyfills)](javascript.md#27-promises)
-- **Python:** [Decorators](python.md#17-decorators) · [Iterators & Generators](python.md#18-iterators--generators)
+- **Python:** [Closures and Decorators](python.md#23-closures-and-decorators) · [Iterators and Generators: Producing Values Lazily](python.md#24-iterators-and-generators-producing-values-lazily)
 
 ### Predict the output
 
 - **JavaScript:** [Output-Based Questions](javascript.md#57-output-based-questions)
 - **React:** [Output / Behaviour Questions](react.md#55-output--behaviour-questions)
 - **Node.js:** [Output-Based Questions](nodejs.md#64-output-based-questions)
-- **Python:** [Output-Based Questions](python.md#46-output-based-questions)
+- **Python:** [Output-Based Questions (Predict the Output)](python.md#42-output-based-questions-predict-the-output)
 
 ### Coding & machine coding
 
 - **JavaScript:** [Data Structures & Algorithms in JavaScript](javascript.md#56-data-structures--algorithms-in-javascript)
 - **Node.js:** [SQL Deep Dive: Joins, Window Functions, Query Plans & Locking](nodejs.md#33-sql-deep-dive-joins-window-functions-query-plans--locking)
-- **Python:** [Data Structures & Algorithms in Python](python.md#44-data-structures--algorithms-in-python) · [Coding Questions (with solutions)](python.md#45-coding-questions)
+- **Python:** [Python's Toolbox for Data Structures and Algorithms](python.md#40-pythons-toolbox-for-data-structures-and-algorithms) · [Interview Coding: Classic Python Problems](python.md#41-interview-coding-classic-python-problems)
 - **DSA in Python:** [Interview Topic Checklist: What Top Companies Ask](dsa-python.md#58-interview-topic-checklist-what-top-companies-ask) · [Pattern Cheat Sheet: Which Technique When?](dsa-python.md#59-pattern-cheat-sheet-which-technique-when) · [Most Asked DSA Theory Questions](dsa-python.md#60-most-asked-dsa-theory-questions)
 - **React:** [Machine Coding Questions (with solutions)](react.md#53-machine-coding-questions) · [Machine Coding II (Carousel, Kanban, Data Table, Wizard, Toasts, Comments)](react.md#54-machine-coding-ii-carousel-kanban-data-table-wizard-toasts-comments)
 - **TypeScript:** [Type Challenges](typescript.md#42-type-challenges)
@@ -201,7 +201,7 @@ Go through these in order in the last week before an interview; for each topic, 
 - **TypeScript:** [Most Asked Interview Questions](typescript.md#43-most-asked-interview-questions)
 - **React:** [Most Asked Interview Questions](react.md#56-most-asked-interview-questions)
 - **Node.js:** [Most Asked Interview Questions](nodejs.md#65-most-asked-interview-questions)
-- **Python:** [Most Asked Interview Questions](python.md#47-most-asked-interview-questions)
+- **Python:** [Most Asked Python Interview Questions](python.md#44-most-asked-python-interview-questions)
 - **FastAPI:** [Most Asked Interview Questions](fastapi.md#43-most-asked-interview-questions)
 
 ## Full index
@@ -453,55 +453,73 @@ Go through these in order in the last week before an interview; for each topic, 
 </details>
 
 <details>
-<summary><b>Python</b> — 47 sections</summary>
+<summary><b>Python</b> — 44 sections in 7 parts</summary>
 
-1. [Getting Started: What is Python & Your First Program](python.md#1-getting-started-what-is-python--your-first-program)
-2. [Variables](python.md#2-variables)
-3. [Data Types & Type Conversion](python.md#3-data-types--type-conversion)
-4. [Operators](python.md#4-operators)
-5. [Strings](python.md#5-strings)
-6. [Lists](python.md#6-lists)
-7. [Tuples](python.md#7-tuples)
-8. [Sets](python.md#8-sets)
-9. [Dictionaries](python.md#9-dictionaries)
-10. [Control Flow & match-case](python.md#10-control-flow--match-case)
-11. [Loops, range, enumerate, zip](python.md#11-loops-range-enumerate-zip)
-12. [Comprehensions](python.md#12-comprehensions)
-13. [Functions & Arguments](python.md#13-functions--arguments)
-14. [Lambda, map, filter, reduce, sorted](python.md#14-lambda-map-filter-reduce-sorted)
-15. [Scope: LEGB, global, nonlocal](python.md#15-scope-legb-global-nonlocal)
-16. [Closures](python.md#16-closures)
-17. [Decorators](python.md#17-decorators)
-18. [Iterators & Generators](python.md#18-iterators--generators)
-19. [OOP: Classes & Objects](python.md#19-oop-classes--objects)
-20. [OOP: 4 Pillars, Inheritance & MRO](python.md#20-oop-4-pillars-inheritance--mro)
-21. [Dunder (Magic) Methods](python.md#21-dunder-magic-methods)
-22. [Dataclasses, Enums, NamedTuple, __slots__](python.md#22-dataclasses-enums-namedtuple-__slots__)
-23. [Exceptions & Error Handling](python.md#23-exceptions--error-handling)
-24. [Context Managers](python.md#24-context-managers)
-25. [Modules & Packages](python.md#25-modules--packages)
-26. [Installing Packages: pip, venv, uv & pyproject.toml](python.md#26-installing-packages-pip-venv-uv--pyprojecttoml)
-27. [File Handling, pathlib, JSON, CSV](python.md#27-file-handling-pathlib-json-csv)
-28. [Databases Without an ORM (sqlite3, psycopg 3)](python.md#28-databases-without-an-orm-sqlite3-psycopg-3)
-29. [Standard Library Essentials](python.md#29-standard-library-essentials)
-30. [Scripting & Automation](python.md#30-scripting--automation)
-31. [Type Hints & typing](python.md#31-type-hints--typing)
-32. [How Python Runs: Bytecode, Memory & Internals](python.md#32-how-python-runs-bytecode-memory--internals)
-33. [Advanced Python: Attribute Access, Descriptors, Metaclasses & Weak References](python.md#33-advanced-python-attribute-access-descriptors-metaclasses--weak-references)
-34. [Concurrency: GIL, Threads, Processes](python.md#34-concurrency-gil-threads-processes)
-35. [asyncio](python.md#35-asyncio)
-36. [Testing with pytest](python.md#36-testing-with-pytest)
-37. [Logging & Debugging](python.md#37-logging--debugging)
-38. [Regular Expressions](python.md#38-regular-expressions)
-39. [Code Style: PEP 8 & the Zen of Python](python.md#39-code-style-pep-8--the-zen-of-python)
-40. [Pythonic Idioms](python.md#40-pythonic-idioms)
-41. [Performance](python.md#41-performance)
-42. [Production-Grade Python](python.md#42-production-grade-python)
-43. [Packaging & Publishing a Python Library](python.md#43-packaging--publishing-a-python-library)
-44. [Data Structures & Algorithms in Python](python.md#44-data-structures--algorithms-in-python)
-45. [Coding Questions (with solutions)](python.md#45-coding-questions)
-46. [Output-Based Questions](python.md#46-output-based-questions)
-47. [Most Asked Interview Questions](python.md#47-most-asked-interview-questions)
+
+**Part 1 — Basic: First Steps**
+
+1. [Getting Started: What Python Is and Your First Program](python.md#1-getting-started-what-python-is-and-your-first-program)
+2. [Variables: Names for Values](python.md#2-variables-names-for-values)
+3. [Numbers, Operators and Type Conversion](python.md#3-numbers-operators-and-type-conversion)
+4. [Strings: Working with Text](python.md#4-strings-working-with-text)
+5. [Making Decisions: if, elif, else and match](python.md#5-making-decisions-if-elif-else-and-match)
+6. [Loops: while, for and range](python.md#6-loops-while-for-and-range)
+
+**Part 2 — Easy: Collections and Functions**
+
+7. [Lists: Ordered, Changeable Collections](python.md#7-lists-ordered-changeable-collections)
+8. [Tuples and Unpacking](python.md#8-tuples-and-unpacking)
+9. [Dictionaries: Looking Things Up by Key](python.md#9-dictionaries-looking-things-up-by-key)
+10. [Sets: Unique Items and Fast Membership](python.md#10-sets-unique-items-and-fast-membership)
+11. [Looping Helpers and Comprehensions](python.md#11-looping-helpers-and-comprehensions)
+12. [Functions: Reusable Blocks of Code](python.md#12-functions-reusable-blocks-of-code)
+13. [Scope, Lambda and Functional Tools (map, filter, sorted, reduce)](python.md#13-scope-lambda-and-functional-tools-map-filter-sorted-reduce)
+
+**Part 3 — Moderate: Writing Real Programs**
+
+14. [Errors and Exceptions: try, except, raise](python.md#14-errors-and-exceptions-try-except-raise)
+15. [Files and Data Formats: pathlib, Text Files, JSON and CSV](python.md#15-files-and-data-formats-pathlib-text-files-json-and-csv)
+16. [Modules, Packages, Virtual Environments and uv](python.md#16-modules-packages-virtual-environments-and-uv)
+17. [The Standard Library Essentials](python.md#17-the-standard-library-essentials)
+18. [Classes and Objects](python.md#18-classes-and-objects)
+19. [Inheritance, Composition, Abstract Classes and Protocols](python.md#19-inheritance-composition-abstract-classes-and-protocols)
+20. [Special (Dunder) Methods: Making Objects Feel Built-In](python.md#20-special-dunder-methods-making-objects-feel-built-in)
+21. [Dataclasses, Enums and __slots__](python.md#21-dataclasses-enums-and-__slots__)
+22. [Type Hints and Static Type Checking](python.md#22-type-hints-and-static-type-checking)
+
+**Part 4 — Moderate: Pythonic Techniques, Testing and Logging**
+
+23. [Closures and Decorators](python.md#23-closures-and-decorators)
+24. [Iterators and Generators: Producing Values Lazily](python.md#24-iterators-and-generators-producing-values-lazily)
+25. [Context Managers: with, Setup and Clean-Up](python.md#25-context-managers-with-setup-and-clean-up)
+26. [Regular Expressions](python.md#26-regular-expressions)
+27. [Pythonic Code: Idioms, PEP 8 and Linters](python.md#27-pythonic-code-idioms-pep-8-and-linters)
+28. [Testing with pytest](python.md#28-testing-with-pytest)
+29. [Logging and Debugging](python.md#29-logging-and-debugging)
+
+**Part 5 — Advanced: Internals, Concurrency, Performance and Real-World Tools**
+
+30. [How Python Runs: Bytecode, Memory and Garbage Collection](python.md#30-how-python-runs-bytecode-memory-and-garbage-collection)
+31. [Advanced Classes: Attribute Lookup, Descriptors, Class Hooks and Metaclasses](python.md#31-advanced-classes-attribute-lookup-descriptors-class-hooks-and-metaclasses)
+32. [Concurrency: Threads, Processes, the GIL and Free-Threaded Python](python.md#32-concurrency-threads-processes-the-gil-and-free-threaded-python)
+33. [asyncio: async and await](python.md#33-asyncio-async-and-await)
+34. [Performance: Measuring and Speeding Up Python](python.md#34-performance-measuring-and-speeding-up-python)
+35. [Working with Databases: sqlite3, psycopg and SQLAlchemy](python.md#35-working-with-databases-sqlite3-psycopg-and-sqlalchemy)
+36. [Scripting and Automation: CLIs, subprocess, Files and Scheduling](python.md#36-scripting-and-automation-clis-subprocess-files-and-scheduling)
+
+**Part 6 — Advanced: Production Python**
+
+37. [Production-Grade Python: Project Layout, Configuration, Tooling and CI](python.md#37-production-grade-python-project-layout-configuration-tooling-and-ci)
+38. [Packaging and Publishing a Library](python.md#38-packaging-and-publishing-a-library)
+39. [What's New in Python 3.12, 3.13 and 3.14](python.md#39-whats-new-in-python-312-313-and-314)
+
+**Part 7 — Interview Prep: Revision**
+
+40. [Python's Toolbox for Data Structures and Algorithms](python.md#40-pythons-toolbox-for-data-structures-and-algorithms)
+41. [Interview Coding: Classic Python Problems](python.md#41-interview-coding-classic-python-problems)
+42. [Output-Based Questions (Predict the Output)](python.md#42-output-based-questions-predict-the-output)
+43. [Python Cheat Sheet](python.md#43-python-cheat-sheet)
+44. [Most Asked Python Interview Questions](python.md#44-most-asked-python-interview-questions)
 
 </details>
 
