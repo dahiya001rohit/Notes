@@ -19,8 +19,8 @@ Complete notes from absolute basics to production and interviews. Every topic ha
 | [Deep Learning](deep-learning.md) | Deep learning from zero in five levels (Basic → Easy → Moderate → Advanced → Interview Prep): neurons and backpropagation built from scratch in NumPy, PyTorch tensors, autograd and the training loop, training recipes (AdamW, schedules, normalisation, dropout), CNNs, embeddings and RNNs, attention and transformers, a tiny GPT built from scratch, Hugging Face, fine-tuning with Trainer, LoRA/QLoRA with PEFT, autoencoders and diffusion, mixed precision, FSDP, quantisation, distillation, mixture of experts and scaling laws. Every example run on CPU with real output | 20 | 3,009 |
 | [LLM Engineering](llm-engineering.md) | Building applications with large language models, from zero, in five levels (Basic → Easy → Moderate → Advanced → Interview Prep): how LLMs work and are trained, tokens and cost, the Claude API from Python (messages, streaming, errors, refusals), prompt engineering, structured outputs, tool use, embeddings and vector search, prompt caching and batching, images and PDFs, evaluation and LLM-as-judge, hallucinations and prompt injection, fine-tuning (SFT, DPO, LoRA), reasoning models, open-weight models and vLLM, LLMOps and LLM system design. Local examples run with real output; API code checked against the official SDK | 21 | 3,167 |
 | [RAG and AI Agents](rag-and-agents.md) | Retrieval-augmented generation and agentic AI, from zero, in five levels (Basic → Easy → Moderate → Advanced → Interview Prep): RAG from scratch, loading and chunking, BM25 and vector search, hybrid search, reranking and query rewriting, RAG evaluation, vectorless RAG (full-text, text-to-SQL, tree navigation, agentic search, long context), contextual retrieval, parent documents and GraphRAG, production RAG (freshness, permissions, injection), LangChain, LangGraph, the agent loop, tools, memory and context engineering, agents with LangGraph, multi-agent systems, MCP, agent evaluation and security, and system design. Examples run locally with real output; API code checked against the official SDKs | 21 | 3,936 |
-| [Best Practices](best-practices.md) | Every good practice combined across the stack, the Gotchas Hall of Fame, and checklists | 32 | 1,733 |
-| **Total** | | **487** | **72,482** |
+| [Best Practices](best-practices.md) | Engineering habits across the stack in five levels (Basic → Easy → Moderate → Advanced → Interview Prep): principles, naming, functions, immutability, control flow, docs; error handling, validation, money/dates/text, async safety, project structure; SOLID and TypeScript/React/Node/Python/FastAPI practices; API design, databases, security, testing, performance, observability, config and secrets, accessibility, dependencies; Git and code review, fixing history, CI/CD, feature flags, incident response, AI coding assistants; the Gotchas Hall of Fame, checklists and interview questions. Examples run on TypeScript 7/Node 24, Python 3.14, PostgreSQL 16 and Git | 35 | 6,512 |
+| **Total** | | **490** | **77,261** |
 
 ## How every file is organized
 
@@ -144,7 +144,7 @@ The AI/ML files form one path, from "I know some Python" to building and shippin
 - **TypeScript:** [Production TypeScript: Project Setup, Linting, Testing, Migration and Publishing](typescript.md#34-production-typescript-project-setup-linting-testing-migration-and-publishing)
 - **Python:** [Production-Grade Python: Project Layout, Configuration, Tooling and CI](python.md#37-production-grade-python-project-layout-configuration-tooling-and-ci) · [Packaging and Publishing a Library](python.md#38-packaging-and-publishing-a-library)
 - **FastAPI:** [Streaming Responses and Server-Sent Events (LLM Token Streaming)](fastapi.md#23-streaming-responses-and-server-sent-events-llm-token-streaming) · [FastAPI Cheat Sheet](fastapi.md#32-fastapi-cheat-sheet)
-- **Best Practices:** [Git in Practice: Everyday Workflow, Fixing History & Recovery](best-practices.md#27-git-in-practice-everyday-workflow-fixing-history--recovery) · [Feature Flags & Safe Rollouts](best-practices.md#29-feature-flags--safe-rollouts) · [Incident Response, On-Call, Postmortems & Living Documentation](best-practices.md#30-incident-response-on-call-postmortems--living-documentation) · [Gotchas Hall of Fame](best-practices.md#31-gotchas-hall-of-fame) · [Checklists](best-practices.md#32-checklists)
+- **Best Practices:** [Git in Practice: Updating Branches, Fixing History and Recovering Work](best-practices.md#28-git-in-practice-updating-branches-fixing-history-and-recovering-work) · [Feature Flags and Safe Rollouts](best-practices.md#30-feature-flags-and-safe-rollouts) · [Incident Response, On-Call, Postmortems and Living Documentation](best-practices.md#31-incident-response-on-call-postmortems-and-living-documentation) · [The Gotchas Hall of Fame](best-practices.md#33-the-gotchas-hall-of-fame) · [Checklists](best-practices.md#34-checklists)
 
 ### Phase 9 — Senior topics
 
@@ -193,7 +193,7 @@ Go through these in order in the last week before an interview; for each topic, 
 ### System design & production
 
 - **Node.js:** [Scaling and System Design: Microservices, Events, Sharding and the Interview Approach](nodejs.md#30-scaling-and-system-design-microservices-events-sharding-and-the-interview-approach)
-- **Best Practices:** [Gotchas Hall of Fame](best-practices.md#31-gotchas-hall-of-fame)
+- **Best Practices:** [The Gotchas Hall of Fame](best-practices.md#33-the-gotchas-hall-of-fame)
 
 ### Most-asked questions (final pass)
 
@@ -1012,40 +1012,61 @@ Go through these in order in the last week before an interview; for each topic, 
 </details>
 
 <details>
-<summary><b>Best Practices</b> — 32 sections</summary>
+<summary><b>Best Practices</b> — 35 sections in 6 parts</summary>
 
-1. [Universal Principles](best-practices.md#1-universal-principles)
-2. [Naming](best-practices.md#2-naming)
-3. [Functions](best-practices.md#3-functions)
-4. [Variables, Data & Immutability](best-practices.md#4-variables-data--immutability)
-5. [Control Flow & Readability](best-practices.md#5-control-flow--readability)
-6. [Comments & Documentation](best-practices.md#6-comments--documentation)
-7. [Project Structure](best-practices.md#7-project-structure)
-8. [Error Handling](best-practices.md#8-error-handling)
-9. [Async & Concurrency](best-practices.md#9-async--concurrency)
-10. [Validation & Handling Outside Data](best-practices.md#10-validation--handling-outside-data)
-11. [Money, Dates, IDs & Text](best-practices.md#11-money-dates-ids--text)
-12. [TypeScript Practices](best-practices.md#12-typescript-practices)
-13. [React Practices](best-practices.md#13-react-practices)
-14. [Node.js & Express Practices](best-practices.md#14-nodejs--express-practices)
-15. [Python Practices](best-practices.md#15-python-practices)
-16. [FastAPI Practices](best-practices.md#16-fastapi-practices)
-17. [API Design](best-practices.md#17-api-design)
-18. [Database Practices](best-practices.md#18-database-practices)
-19. [Security](best-practices.md#19-security)
-20. [Performance](best-practices.md#20-performance)
-21. [Testing](best-practices.md#21-testing)
-22. [Logging, Monitoring & Observability](best-practices.md#22-logging-monitoring--observability)
-23. [Configuration & Secrets](best-practices.md#23-configuration--secrets)
-24. [Accessibility](best-practices.md#24-accessibility)
-25. [Dependencies](best-practices.md#25-dependencies)
-26. [Git, Pull Requests & Code Review](best-practices.md#26-git-pull-requests--code-review)
-27. [Git in Practice: Everyday Workflow, Fixing History & Recovery](best-practices.md#27-git-in-practice-everyday-workflow-fixing-history--recovery)
-28. [CI/CD & Deployment](best-practices.md#28-cicd--deployment)
-29. [Feature Flags & Safe Rollouts](best-practices.md#29-feature-flags--safe-rollouts)
-30. [Incident Response, On-Call, Postmortems & Living Documentation](best-practices.md#30-incident-response-on-call-postmortems--living-documentation)
-31. [Gotchas Hall of Fame](best-practices.md#31-gotchas-hall-of-fame)
-32. [Checklists](best-practices.md#32-checklists)
+
+**Part 1 — Basic: Clean Code Foundations**
+
+1. [What Good Code Is: The Universal Principles](best-practices.md#1-what-good-code-is-the-universal-principles)
+2. [Naming: Names That Explain Themselves](best-practices.md#2-naming-names-that-explain-themselves)
+3. [Functions: Small, Clear and Predictable](best-practices.md#3-functions-small-clear-and-predictable)
+4. [Variables, Data Structures and Immutability](best-practices.md#4-variables-data-structures-and-immutability)
+5. [Control Flow and Readability](best-practices.md#5-control-flow-and-readability)
+6. [Comments and Documentation](best-practices.md#6-comments-and-documentation)
+
+**Part 2 — Easy: Code That Survives the Real World**
+
+7. [Error Handling: Fail Loudly, Recover Deliberately](best-practices.md#7-error-handling-fail-loudly-recover-deliberately)
+8. [Validation: Never Trust Outside Data](best-practices.md#8-validation-never-trust-outside-data)
+9. [Money, Dates, IDs and Text: The Classic Traps](best-practices.md#9-money-dates-ids-and-text-the-classic-traps)
+10. [Async Code and Concurrency: Timeouts, Retries, Limits and Races](best-practices.md#10-async-code-and-concurrency-timeouts-retries-limits-and-races)
+11. [Project Structure: Features, Layers and Boundaries](best-practices.md#11-project-structure-features-layers-and-boundaries)
+
+**Part 3 — Moderate: Design and Language Practices**
+
+12. [Design Principles: SOLID, Coupling, Cohesion and Dependency Injection](best-practices.md#12-design-principles-solid-coupling-cohesion-and-dependency-injection)
+13. [TypeScript Practices](best-practices.md#13-typescript-practices)
+14. [React Practices](best-practices.md#14-react-practices)
+15. [Node.js and Express Practices](best-practices.md#15-nodejs-and-express-practices)
+16. [Python Practices](best-practices.md#16-python-practices)
+17. [FastAPI Practices](best-practices.md#17-fastapi-practices)
+
+**Part 4 — Moderate: Building Systems Well**
+
+18. [API Design: Predictable, Evolvable HTTP APIs](best-practices.md#18-api-design-predictable-evolvable-http-apis)
+19. [Database Practices](best-practices.md#19-database-practices)
+20. [Security: The Practices That Stop Real Attacks](best-practices.md#20-security-the-practices-that-stop-real-attacks)
+21. [Testing: Confidence You Can Ship](best-practices.md#21-testing-confidence-you-can-ship)
+22. [Performance: Measure, Then Fix the Biggest Thing](best-practices.md#22-performance-measure-then-fix-the-biggest-thing)
+23. [Logging, Monitoring and Observability](best-practices.md#23-logging-monitoring-and-observability)
+24. [Configuration and Secrets](best-practices.md#24-configuration-and-secrets)
+25. [Accessibility: Building for Everyone](best-practices.md#25-accessibility-building-for-everyone)
+26. [Dependencies and the Software Supply Chain](best-practices.md#26-dependencies-and-the-software-supply-chain)
+
+**Part 5 — Advanced: Team Workflow and Delivery**
+
+27. [Git Foundations, Pull Requests and Code Review](best-practices.md#27-git-foundations-pull-requests-and-code-review)
+28. [Git in Practice: Updating Branches, Fixing History and Recovering Work](best-practices.md#28-git-in-practice-updating-branches-fixing-history-and-recovering-work)
+29. [CI/CD and Deployment](best-practices.md#29-cicd-and-deployment)
+30. [Feature Flags and Safe Rollouts](best-practices.md#30-feature-flags-and-safe-rollouts)
+31. [Incident Response, On-Call, Postmortems and Living Documentation](best-practices.md#31-incident-response-on-call-postmortems-and-living-documentation)
+32. [Working with AI Coding Assistants (2026)](best-practices.md#32-working-with-ai-coding-assistants-2026)
+
+**Part 6 — Interview Prep: Revision**
+
+33. [The Gotchas Hall of Fame](best-practices.md#33-the-gotchas-hall-of-fame)
+34. [Checklists](best-practices.md#34-checklists)
+35. [Most Asked Engineering-Practices Interview Questions](best-practices.md#35-most-asked-engineering-practices-interview-questions)
 
 </details>
 
