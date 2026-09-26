@@ -3521,8 +3521,8 @@ const plan = async () => (await db.query("EXPLAIN SELECT id FROM orders WHERE us
 const before = await plan();
 await db.query("CREATE INDEX orders_user_id_id_idx ON orders (user_id, id DESC)");
 const after = await plan();
-console.log("before:", before.includes("Index Scan using orders_user_id_id_idx") ? "uses the new index" : "no user_id index");
-console.log("after: ", after.includes("Index Scan using orders_user_id_id_idx") ? "uses the new index" : after);
+console.log("before:", before.includes("orders_user_id_id_idx") ? "uses the new index" : "no user_id index");
+console.log("after: ", after.includes("orders_user_id_id_idx") ? "uses the new index" : after);
 
 db.release();
 await pool.query("DROP SCHEMA bp_db CASCADE");
@@ -3533,7 +3533,7 @@ await pool.end();
 
 ```text
 before: no user_id index
-after:  Limit  (cost=0.29..25.99 rows=20 width=8) /   ->  Index Only Scan using orders_user_id_id_idx on orders  (cost=0.29..1313.80 rows=1022 width=8) /         Index Cond: (user_id = 7)
+after:  uses the new index
 ```
 
 A composite index `(user_id, id DESC)` matches both the filter and the sort, so "a user's latest orders" reads 20 index entries instead of scanning or sorting 50,000 rows.
