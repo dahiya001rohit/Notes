@@ -14,13 +14,13 @@ Complete notes from absolute basics to production and interviews. Every topic ha
 | [FastAPI](fastapi.md) | Production APIs with FastAPI from zero in five levels (Basic → Easy → Moderate → Advanced → Interview Prep): HTTP and REST, routes, parameters and Pydantic bodies; response models, errors, forms/files and routers; dependency injection, async, settings and lifespan, SQLAlchemy 2.0, JWT auth and authorisation, CORS, testing; pagination, background jobs, WebSockets, SSE streaming for LLMs, webhooks, caching and rate limits; API design, OWASP API Top 10, observability, deployment and serving ML/LLM models. Every response shown was produced by the app (FastAPI 0.141, Python 3.14) | 33 | 4,853 |
 | [DSA in Python](dsa-python.md) | Data structures & algorithms from absolute zero in five levels (Basic → Easy → Moderate → Advanced → Interview Prep): Python basics, pattern printing and number theory first, then arrays, hashing, techniques, linked lists, trees, graphs, DP, string algorithms, segment trees, max flow, the algorithms inside real systems (Bloom filters, consistent hashing, B-trees, vector search) and recent breakthroughs, plus a checklist of what top companies ask. Every topic: simple explanation, diagram, tested Python, practice | 60 | 8,364 |
 | [SQL & PostgreSQL](sql-postgresql.md) | SQL from zero in five levels (Basic → Easy → Moderate → Advanced → Interview Prep): tables and queries, joins, CTEs, design and normalisation, window functions, transactions and MVCC, indexes and query plans, JSONB, full-text search, pgvector for AI, security, Python (psycopg, SQLAlchemy), backups, replication, scaling, PostgreSQL 17/18, and classic interview problems. Every query run on PostgreSQL with real output | 34 | 5,291 |
-| [Data Science](data-science.md) | The Python data toolkit from zero in five levels (Basic → Easy → Moderate → Advanced → Interview Prep): NumPy arrays and broadcasting, pandas 3 (loading, selecting, cleaning, groupby, merge, pivot, time series), Arrow, Polars and DuckDB for bigger data, Matplotlib and Seaborn charts, statistics (distributions, confidence intervals, hypothesis tests, A/B testing), a full EDA and feature preparation for ML, plus pandas interview problems. Every example run with real output and real chart images | 27 | 3,755 |
-| [Machine Learning](machine-learning.md) | Machine learning from zero to production in five levels (Basic → Easy → Moderate → Advanced → Interview Prep): the maths explained simply (vectors, gradient descent, loss functions), linear and logistic regression, honest evaluation and metrics, scikit-learn pipelines, cross-validation and tuning (Optuna), regularisation, trees, random forests, XGBoost and LightGBM, SVMs, clustering, PCA/t-SNE, anomalies, forecasting, recommenders, text classification, SHAP, leakage and fairness, serving (ONNX, FastAPI), MLflow, drift monitoring and ML system design. Every example run with real output and charts | 32 | 4,538 |
+| [Data Science](data-science.md) | The Python data toolkit from absolute zero in five levels (Basic → Easy → Moderate → Advanced → Interview Prep): Python for data, kinds of data and tidy tables, reading files by hand; NumPy (dtypes, indexing, masks, vectorised maths, axes, broadcasting, random simulation, linear algebra); pandas 3 (Series, DataFrames, files, SQL and APIs, selecting, filtering, ranking, new columns, method chaining and copy-on-write); cleaning (missing values, duplicates, types, regex, categories, outliers and validation with pandera); analysis (groupby, transform, merges and merge pitfalls, pivot and melt, MultiIndex, dates and time zones, time series); speed and size (profiling, memory, Arrow, Polars, DuckDB); charts (Matplotlib, Seaborn, Plotly, choosing honest charts); statistics (descriptive statistics, correlation and causation, probability and Bayes, distributions, CLT, confidence intervals and the bootstrap, hypothesis tests, A/B testing with power analysis, regression with statsmodels); a full EDA, feature engineering without leakage, data pipelines and data quality, communicating results, 2023–2026 tooling; interview problems and a 600+ term glossary. Every term explained where it first appears; every example run with real output and real charts; graded LeetCode pandas and Deep-ML problems | 70 | 12,741 |
+| [Machine Learning](machine-learning.md) | Machine learning from absolute zero to production in five levels (Basic → Easy → Moderate → Advanced → Interview Prep): what ML is, the workflow and honest splits; the maths built up gently (vectors, derivatives, gradients and gradient descent, likelihood and Bayes, sigmoid/softmax/cross-entropy, losses and optimisers, bias–variance); linear and logistic regression from scratch, regression and classification metrics, ROC/PR curves and thresholds, learning curves, k-NN, baselines; scikit-learn properly (estimator API, pipelines, ColumnTransformer, encoding and imputation, cross-validation, grid/random/halving/Bayesian tuning, regularisation, splines, feature selection); trees, random forests, gradient boosting from scratch, XGBoost/LightGBM/CatBoost, SVMs, Naive Bayes, stacking; k-means, DBSCAN/HDBSCAN, GMMs, PCA, t-SNE/UMAP, anomaly detection; imbalanced data, forecasting with conformal intervals, recommenders and matrix factorisation, TF-IDF text models, calibration and cost-based thresholds; feature importance, SHAP and ICE, error analysis and label errors, leakage, fairness and differential privacy; joblib/skops/ONNX, FastAPI and batch serving, MLflow with a registry, point-in-time features and skew, drift monitoring, ML system design; real systems (ranking, bandits) and 2022–2026 tools (TabPFN, AutoML); from-scratch interview coding and a 650+ term glossary. Every term explained where it first appears; every example run with real output and real charts; graded Deep-ML, LeetCode and Kaggle practice | 63 | 10,758 |
 | [Deep Learning](deep-learning.md) | Deep learning from zero in five levels (Basic → Easy → Moderate → Advanced → Interview Prep): neurons and backpropagation built from scratch in NumPy, PyTorch tensors, autograd and the training loop, training recipes (AdamW, schedules, normalisation, dropout), CNNs, embeddings and RNNs, attention and transformers, a tiny GPT built from scratch, Hugging Face, fine-tuning with Trainer, LoRA/QLoRA with PEFT, autoencoders and diffusion, mixed precision, FSDP, quantisation, distillation, mixture of experts and scaling laws. Every example run on CPU with real output | 20 | 3,009 |
 | [LLM Engineering](llm-engineering.md) | Building applications with large language models, from zero, in five levels (Basic → Easy → Moderate → Advanced → Interview Prep): how LLMs work and are trained, tokens and cost, the Claude API from Python (messages, streaming, errors, refusals), prompt engineering, structured outputs, tool use, embeddings and vector search, prompt caching and batching, images and PDFs, evaluation and LLM-as-judge, hallucinations and prompt injection, fine-tuning (SFT, DPO, LoRA), reasoning models, open-weight models and vLLM, LLMOps and LLM system design. Local examples run with real output; API code checked against the official SDK | 21 | 3,167 |
 | [RAG and AI Agents](rag-and-agents.md) | Retrieval-augmented generation and agentic AI, from zero, in five levels (Basic → Easy → Moderate → Advanced → Interview Prep): RAG from scratch, loading and chunking, BM25 and vector search, hybrid search, reranking and query rewriting, RAG evaluation, vectorless RAG (full-text, text-to-SQL, tree navigation, agentic search, long context), contextual retrieval, parent documents and GraphRAG, production RAG (freshness, permissions, injection), LangChain, LangGraph, the agent loop, tools, memory and context engineering, agents with LangGraph, multi-agent systems, MCP, agent evaluation and security, and system design. Examples run locally with real output; API code checked against the official SDKs | 21 | 3,936 |
 | [Best Practices](best-practices.md) | Engineering habits across the stack in five levels (Basic → Easy → Moderate → Advanced → Interview Prep): principles, naming, functions, immutability, control flow, docs; error handling, validation, money/dates/text, async safety, project structure; SOLID and TypeScript/React/Node/Python/FastAPI practices; API design, databases, security, testing, performance, observability, config and secrets, accessibility, dependencies; Git and code review, fixing history, CI/CD, feature flags, incident response, AI coding assistants; the Gotchas Hall of Fame, checklists and interview questions. Examples run on TypeScript 7/Node 24, Python 3.14, PostgreSQL 16 and Git | 35 | 6,512 |
-| **Total** | | **490** | **77,261** |
+| **Total** | | **564** | **92,467** |
 
 ## How every file is organized
 
@@ -38,27 +38,27 @@ The AI/ML files form one path, from "I know some Python" to building and shippin
 | Stage | Study | You're ready to move on when you can… | Build this (portfolio project) |
 |---|---|---|---|
 | 0. Foundations | [Python](python.md) (basics → OOP → stdlib), [SQL & PostgreSQL](sql-postgresql.md) Parts 1–2, [DSA in Python](dsa-python.md) alongside | Write scripts with functions, classes and files; query and join tables | A CLI tool that loads a CSV into PostgreSQL and answers questions with SQL |
-| 1. Data | [Data Science](data-science.md): NumPy, pandas, Matplotlib, Seaborn, statistics | Clean, reshape and chart a messy dataset; run an A/B test | A full EDA notebook on a public dataset, with a written summary |
-| 2. Machine learning | [Machine Learning](machine-learning.md) Parts 1–5: maths, scikit-learn, boosting, clustering, explainability | Build a leak-free pipeline, tune it with cross-validation, pick the right metric, explain predictions | A churn or price model with a proper validation report and SHAP explanations |
+| 1. Data | [Data Science](data-science.md): NumPy, pandas, cleaning, Matplotlib, Seaborn, statistics, A/B testing | Clean, reshape and chart a messy dataset; run and read an A/B test | A full EDA notebook on a public dataset, with a written, answer-first summary |
+| 2. Machine learning | [Machine Learning](machine-learning.md) Parts 1–8: maths, scikit-learn, trees and boosting, clustering, special problems, explainability and leakage | Build a leak-free pipeline, tune it with cross-validation, pick the right metric and threshold, explain and debug predictions | A churn or price model with a proper validation report, calibrated scores and SHAP explanations |
 | 3. Deep learning | [Deep Learning](deep-learning.md): backprop, PyTorch, CNNs, transformers, Hugging Face, LoRA | Train and debug a PyTorch model; fine-tune a pretrained transformer | Fine-tune a small transformer (LoRA) on a text-classification task |
 | 4. LLM engineering | [LLM Engineering](llm-engineering.md) Parts 1–4: APIs, prompting, structured outputs, tools, embeddings, evaluation, guardrails | Call a model reliably, get validated JSON, use tools, measure quality with an eval set | An LLM feature (e.g. ticket triage) with structured output and an evaluation harness |
 | 5. RAG and agents | [RAG and AI Agents](rag-and-agents.md) Parts 1–5: retrieval, vectorless RAG, LangChain, LangGraph, agents | Build hybrid retrieval, measure recall and faithfulness, build an agent with tools, memory and approvals | A "chat with our docs" app with citations, plus an agent that can act through two tools |
-| 6. Production | [ML](machine-learning.md#part-6--advanced-mlops-and-ml-system-design) Part 6 (serving, MLOps, monitoring), [LLM](llm-engineering.md#part-5--advanced-reasoning-open-models-llmops-and-system-design) Part 5 (open models, LLMOps), [RAG](rag-and-agents.md#part-6--advanced-mcp-agent-safety-and-system-design) Part 6 (MCP, agent security, system design), [FastAPI](fastapi.md), [SQL](sql-postgresql.md) Parts 4–6 | Serve a model behind an API, track experiments, monitor drift, trace LLM calls, secure an agent | Deploy one of the projects above with an API, tracing, evals in CI and a cost estimate |
-| 7. Interviews | The **Interview Prep** part of every file: coding problems, cheat sheets and most-asked questions, plus DSA | Explain any topic above in plain words and answer a system-design question with numbers | Mock system designs: ML ([framework](machine-learning.md#29-ml-system-design-a-framework-and-a-worked-example)), LLM ([framework](llm-engineering.md#18-llm-system-design-a-framework-and-a-worked-example)), RAG/agents ([framework](rag-and-agents.md#18-rag-and-agent-system-design-a-worked-example)) |
+| 6. Production | [ML](machine-learning.md#part-9--advanced-mlops) Part 9 (serving, MLOps, monitoring), [LLM](llm-engineering.md#part-5--advanced-reasoning-open-models-llmops-and-system-design) Part 5 (open models, LLMOps), [RAG](rag-and-agents.md#part-6--advanced-mcp-agent-safety-and-system-design) Part 6 (MCP, agent security, system design), [FastAPI](fastapi.md), [SQL](sql-postgresql.md) Parts 4–6 | Serve a model behind an API, track experiments, monitor drift, trace LLM calls, secure an agent | Deploy one of the projects above with an API, tracing, evals in CI and a cost estimate |
+| 7. Interviews | The **Interview Prep** part of every file: coding problems, cheat sheets and most-asked questions, plus DSA | Explain any topic above in plain words and answer a system-design question with numbers | Mock system designs: ML ([framework](machine-learning.md#56-ml-system-design-a-framework-and-a-worked-example)), LLM ([framework](llm-engineering.md#18-llm-system-design-a-framework-and-a-worked-example)), RAG/agents ([framework](rag-and-agents.md#18-rag-and-agent-system-design-a-worked-example)) |
 
 **Where each topic lives** (the tools and topics most asked for AI/ML engineer roles):
 
 | Topic | Start here | Then |
 |---|---|---|
-| NumPy | [NumPy arrays](data-science.md#2-numpy-arrays-creating-and-inspecting) | [broadcasting](data-science.md#4-vectorised-maths-aggregations-and-broadcasting) · [linear algebra](data-science.md#5-reshaping-stacking-and-linear-algebra-basics) |
-| pandas | [Series and DataFrames](data-science.md#6-pandas-series-and-dataframes) | [cleaning](data-science.md#9-cleaning-data-missing-values-duplicates-types-and-text) · [groupby](data-science.md#11-grouping-and-summarising-groupby-and-agg) · [merge](data-science.md#12-combining-tables-merge-join-and-concat) · [time series](data-science.md#14-dates-and-time-series-resample-rolling-and-shift) · [Arrow, Polars, DuckDB](data-science.md#15-bigger-and-faster-memory-arrow-polars-and-duckdb) |
-| Matplotlib | [first charts](data-science.md#16-your-first-charts-with-matplotlib) | [layouts and styling](data-science.md#17-matplotlib-in-depth-layouts-styling-and-annotations) · [choosing charts](data-science.md#19-choosing-the-right-chart-and-not-misleading) |
-| Seaborn | [statistical charts](data-science.md#18-statistical-charts-with-seaborn) | [EDA](data-science.md#23-a-complete-exploratory-data-analysis-eda) |
-| Statistics | [describing data](data-science.md#20-describing-data-averages-spread-outliers-and-correlation) | [distributions and CIs](data-science.md#21-probability-distributions-sampling-and-confidence-intervals) · [A/B testing](data-science.md#22-hypothesis-tests-and-ab-testing) |
-| Maths for ML | [vectors and matrices](machine-learning.md#3-maths-for-ml-1-vectors-matrices-and-the-dot-product) | [gradient descent](machine-learning.md#4-maths-for-ml-2-slopes-gradients-and-gradient-descent) · [probabilities and losses](machine-learning.md#5-maths-for-ml-3-probabilities-sigmoid-softmax-and-loss-functions) |
-| scikit-learn | [first model](machine-learning.md#6-your-first-model-linear-regression) | [pipelines](machine-learning.md#11-scikit-learn-properly-estimators-pipelines-and-columntransformer) · [cross-validation](machine-learning.md#12-cross-validation-and-hyperparameter-tuning) · [boosting](machine-learning.md#15-ensembles-random-forests-and-gradient-boosting-xgboost-lightgbm-catboost) · [clustering](machine-learning.md#17-clustering-k-means-dbscan-and-hierarchical-clustering) |
-| Model evaluation and trust | [classifier metrics](machine-learning.md#9-measuring-classifiers-confusion-matrix-precision-recall-roc-and-pr-curves) | [SHAP](machine-learning.md#23-explaining-models-feature-importance-partial-dependence-and-shap) · [debugging and leakage](machine-learning.md#24-debugging-models-learning-curves-error-analysis-and-leakage) · [fairness](machine-learning.md#25-fairness-privacy-and-responsible-ml) |
-| MLOps | [serving models](machine-learning.md#26-saving-and-serving-models-joblib-skops-onnx-and-a-fastapi-endpoint) | [experiment tracking and pipelines](machine-learning.md#27-mlops-experiment-tracking-reproducibility-and-ml-pipelines) · [monitoring and drift](machine-learning.md#28-monitoring-models-in-production-data-drift-concept-drift-and-retraining) |
+| NumPy | [why NumPy](data-science.md#6-why-numpy-arrays-vs-lists-and-how-arrays-sit-in-memory) · [creating arrays](data-science.md#7-creating-arrays-array-arange-linspace-zeros-ones-and-full) | [masks](data-science.md#10-boolean-masks-fancy-indexing-and-npwhere) · [axes](data-science.md#12-aggregations-and-the-axis-argument) · [broadcasting](data-science.md#13-broadcasting-maths-between-arrays-of-different-shapes) · [linear algebra](data-science.md#16-linear-algebra-basics-dot-products-matrix-multiplication-and-solving-equations) |
+| pandas | [Series](data-science.md#17-pandas-series-labelled-1d-data) · [DataFrames](data-science.md#18-dataframes-creating-inspecting-and-understanding-a-table) | [selecting](data-science.md#21-selecting-data-columns--loc-and-iloc) · [cleaning](data-science.md#26-missing-values-finding-dropping-and-filling) · [groupby](data-science.md#31-grouping-i-groupby-agg-and-split-apply-combine) · [merge](data-science.md#33-combining-tables-i-merge-and-join-types) · [time series](data-science.md#38-time-series-resample-rolling-shift-and-window-functions) · [Polars](data-science.md#41-polars-fast-dataframes-with-lazy-queries) · [DuckDB](data-science.md#42-duckdb-sql-on-dataframes-and-files) |
+| Matplotlib | [first charts](data-science.md#43-your-first-charts-with-matplotlib) | [layouts](data-science.md#44-matplotlib-anatomy-figures-axes-and-subplots) · [styling and annotation](data-science.md#45-styling-annotation-and-saving-charts) · [choosing charts](data-science.md#50-choosing-the-right-chart-and-not-misleading) |
+| Seaborn | [distributions](data-science.md#46-seaborn-i-distributions) | [relationships and facets](data-science.md#47-seaborn-ii-relationships-categories-and-facets) · [heatmaps and pair plots](data-science.md#48-heatmaps-pair-plots-and-correlation-charts) · [EDA](data-science.md#60-a-complete-exploratory-data-analysis-eda) |
+| Statistics | [describing data](data-science.md#51-describing-data-centre-spread-and-shape) · [probability and Bayes](data-science.md#53-probability-basics-events-conditional-probability-and-bayes-rule) | [distributions](data-science.md#54-probability-distributions-normal-binomial-poisson-and-more) · [confidence intervals](data-science.md#56-confidence-intervals-and-the-bootstrap) · [hypothesis tests](data-science.md#57-hypothesis-testing-p-values-t-tests-chi-square-and-non-parametric-tests) · [A/B testing](data-science.md#58-ab-testing-end-to-end-design-power-sample-size-and-pitfalls) · [regression](data-science.md#59-regression-for-analysis-statsmodels-coefficients-and-confidence) |
+| Maths for ML | [vectors and matrices](machine-learning.md#6-vectors-matrices-and-the-dot-product-for-ml) · [derivatives](machine-learning.md#7-functions-slopes-and-derivatives) | [gradient descent](machine-learning.md#8-gradients-and-gradient-descent) · [likelihood and Bayes](machine-learning.md#9-probability-for-ml-likelihood-maximum-likelihood-and-bayes) · [sigmoid, softmax, cross-entropy](machine-learning.md#10-sigmoid-softmax-and-cross-entropy-log-loss) · [losses and optimisers](machine-learning.md#11-loss-functions-and-optimisers-mse-mae-huber-momentum-and-adam) |
+| scikit-learn | [first model](machine-learning.md#13-linear-regression-from-scratch) · [estimator API](machine-learning.md#21-the-estimator-api-fit-predict-transform) | [pipelines](machine-learning.md#22-pipelines-and-columntransformer) · [cross-validation](machine-learning.md#24-cross-validation-k-fold-stratified-grouped-and-time-series-splits) · [tuning](machine-learning.md#25-hyperparameter-tuning-grid-random-successive-halving-and-bayesian-search) · [boosting](machine-learning.md#32-xgboost-lightgbm-and-catboost-in-practice) · [clustering](machine-learning.md#36-k-means-clustering) |
+| Model evaluation and trust | [classifier metrics](machine-learning.md#17-classification-metrics-i-confusion-matrix-accuracy-precision-recall-and-f1) · [ROC and PR curves](machine-learning.md#18-classification-metrics-ii-roc-auc-precision-recall-curves-and-thresholds) | [calibration](machine-learning.md#45-probability-calibration-and-cost-sensitive-decisions) · [SHAP](machine-learning.md#47-partial-dependence-ice-and-shap) · [debugging](machine-learning.md#48-debugging-models-learning-curves-error-analysis-and-slicing) · [leakage](machine-learning.md#49-data-leakage-finding-and-preventing-it) · [fairness](machine-learning.md#50-fairness-privacy-and-responsible-ml) |
+| MLOps | [saving models](machine-learning.md#51-saving-models-joblib-skops-and-onnx) · [serving models](machine-learning.md#52-serving-models-a-fastapi-endpoint-and-batch-scoring) | [experiment tracking](machine-learning.md#53-experiment-tracking-and-reproducibility-with-mlflow) · [pipelines and feature stores](machine-learning.md#54-ml-pipelines-feature-stores-and-training-serving-skew) · [monitoring and drift](machine-learning.md#55-monitoring-models-in-production-data-drift-concept-drift-and-retraining) · [system design](machine-learning.md#56-ml-system-design-a-framework-and-a-worked-example) |
 | Deep learning and PyTorch | [neurons](deep-learning.md#2-neurons-layers-and-activation-functions) · [backprop](deep-learning.md#3-how-networks-learn-backpropagation-from-scratch) | [PyTorch basics](deep-learning.md#4-pytorch-basics-tensors-devices-and-autograd) · [training loop](deep-learning.md#5-your-first-pytorch-model-modules-dataloaders-and-the-training-loop) · [training recipes](deep-learning.md#6-training-recipes-optimisers-learning-rate-schedules-normalisation-and-regularisation) |
 | CNNs, RNNs, transformers | [CNNs](deep-learning.md#8-convolutional-neural-networks-cnns-for-images) · [RNNs](deep-learning.md#9-embeddings-and-sequence-models-rnn-lstm-gru) | [attention and transformers](deep-learning.md#10-attention-and-transformers) · [tiny GPT](deep-learning.md#11-build-a-tiny-gpt-from-scratch) |
 | Hugging Face | [Hub, Transformers, pipelines](deep-learning.md#12-hugging-face-the-hub-transformers-tokenizers-and-pipelines) | [Trainer fine-tuning](deep-learning.md#13-transfer-learning-and-fine-tuning-with-the-trainer-api) · [LoRA and QLoRA](deep-learning.md#14-parameter-efficient-fine-tuning-lora-and-qlora) |
@@ -93,11 +93,11 @@ The AI/ML files form one path, from "I know some Python" to building and shippin
 
 ### AI/ML track — 1. Data science (start after Phase 1)
 
-- **Data Science** (NumPy → pandas → charts → statistics; every example runs): [NumPy Arrays: Creating and Inspecting](data-science.md#2-numpy-arrays-creating-and-inspecting) · [pandas Series and DataFrames](data-science.md#6-pandas-series-and-dataframes) · [Cleaning Data: Missing Values, Duplicates, Types and Text](data-science.md#9-cleaning-data-missing-values-duplicates-types-and-text) · [Grouping and Summarising: groupby and agg](data-science.md#11-grouping-and-summarising-groupby-and-agg) · [Combining Tables: merge, join and concat](data-science.md#12-combining-tables-merge-join-and-concat) · [Your First Charts with Matplotlib](data-science.md#16-your-first-charts-with-matplotlib) · [Statistical Charts with Seaborn](data-science.md#18-statistical-charts-with-seaborn) · [Describing Data: Averages, Spread, Outliers and Correlation](data-science.md#20-describing-data-averages-spread-outliers-and-correlation) · [Hypothesis Tests and A/B Testing](data-science.md#22-hypothesis-tests-and-ab-testing) · [A Complete Exploratory Data Analysis (EDA)](data-science.md#23-a-complete-exploratory-data-analysis-eda) · [Preparing Data for Machine Learning: Feature Engineering Basics](data-science.md#24-preparing-data-for-machine-learning-feature-engineering-basics)
+- **Data Science** (Python for data → NumPy → pandas → cleaning → analysis → charts → statistics → projects; every example runs): [What Data Looks Like: Types of Data, Tables and Tidy Data](data-science.md#4-what-data-looks-like-types-of-data-tables-and-tidy-data) · [Why NumPy? Arrays vs Lists, and How Arrays Sit in Memory](data-science.md#6-why-numpy-arrays-vs-lists-and-how-arrays-sit-in-memory) · [Broadcasting: Maths Between Arrays of Different Shapes](data-science.md#13-broadcasting-maths-between-arrays-of-different-shapes) · [DataFrames: Creating, Inspecting and Understanding a Table](data-science.md#18-dataframes-creating-inspecting-and-understanding-a-table) · [Filtering Rows: Conditions, isin, between and query](data-science.md#22-filtering-rows-conditions-isin-between-and-query) · [Missing Values: Finding, Dropping and Filling](data-science.md#26-missing-values-finding-dropping-and-filling) · [Grouping I: groupby, agg and Split-Apply-Combine](data-science.md#31-grouping-i-groupby-agg-and-split-apply-combine) · [Combining Tables I: merge and Join Types](data-science.md#33-combining-tables-i-merge-and-join-types) · [Time Series: resample, rolling, shift and Window Functions](data-science.md#38-time-series-resample-rolling-shift-and-window-functions) · [Your First Charts with Matplotlib](data-science.md#43-your-first-charts-with-matplotlib) · [Seaborn I: Distributions](data-science.md#46-seaborn-i-distributions) · [Describing Data: Centre, Spread and Shape](data-science.md#51-describing-data-centre-spread-and-shape) · [Probability Basics: Events, Conditional Probability and Bayes' Rule](data-science.md#53-probability-basics-events-conditional-probability-and-bayes-rule) · [Sampling, the Central Limit Theorem and Standard Error](data-science.md#55-sampling-the-central-limit-theorem-and-standard-error) · [Hypothesis Testing: p-values, t-tests, Chi-Square and Non-Parametric Tests](data-science.md#57-hypothesis-testing-p-values-t-tests-chi-square-and-non-parametric-tests) · [A/B Testing End to End: Design, Power, Sample Size and Pitfalls](data-science.md#58-ab-testing-end-to-end-design-power-sample-size-and-pitfalls) · [A Complete Exploratory Data Analysis (EDA)](data-science.md#60-a-complete-exploratory-data-analysis-eda) · [Feature Engineering: Preparing Data for Machine Learning](data-science.md#61-feature-engineering-preparing-data-for-machine-learning)
 
 ### AI/ML track — 2. Machine learning (after data science)
 
-- **Machine Learning** (maths → first models → scikit-learn → trust → MLOps; every example runs): [What Is Machine Learning?](machine-learning.md#2-what-is-machine-learning) · [Maths for ML 2: Slopes, Gradients and Gradient Descent](machine-learning.md#4-maths-for-ml-2-slopes-gradients-and-gradient-descent) · [Your First Model: Linear Regression](machine-learning.md#6-your-first-model-linear-regression) · [Train/Test Splits, Overfitting and Underfitting](machine-learning.md#7-traintest-splits-overfitting-and-underfitting) · [Measuring Classifiers: Confusion Matrix, Precision, Recall, ROC and PR Curves](machine-learning.md#9-measuring-classifiers-confusion-matrix-precision-recall-roc-and-pr-curves) · [scikit-learn Properly: Estimators, Pipelines and ColumnTransformer](machine-learning.md#11-scikit-learn-properly-estimators-pipelines-and-columntransformer) · [Cross-Validation and Hyperparameter Tuning](machine-learning.md#12-cross-validation-and-hyperparameter-tuning) · [Ensembles: Random Forests and Gradient Boosting (XGBoost, LightGBM, CatBoost)](machine-learning.md#15-ensembles-random-forests-and-gradient-boosting-xgboost-lightgbm-catboost) · [Explaining Models: Feature Importance, Partial Dependence and SHAP](machine-learning.md#23-explaining-models-feature-importance-partial-dependence-and-shap) · [Saving and Serving Models: joblib, skops, ONNX and a FastAPI Endpoint](machine-learning.md#26-saving-and-serving-models-joblib-skops-onnx-and-a-fastapi-endpoint) · [ML System Design: A Framework and a Worked Example](machine-learning.md#29-ml-system-design-a-framework-and-a-worked-example)
+- **Machine Learning** (maths → first models → scikit-learn → trees and boosting → unsupervised → special problems → trust → MLOps; every example runs): [What Is Machine Learning? Rules vs Learning from Examples](machine-learning.md#2-what-is-machine-learning-rules-vs-learning-from-examples) · [Data for ML: Features, Labels and Train/Validation/Test Splits](machine-learning.md#5-data-for-ml-features-labels-and-trainvalidationtest-splits) · [Gradients and Gradient Descent](machine-learning.md#8-gradients-and-gradient-descent) · [Sigmoid, Softmax and Cross-Entropy (Log Loss)](machine-learning.md#10-sigmoid-softmax-and-cross-entropy-log-loss) · [Linear Regression from Scratch](machine-learning.md#13-linear-regression-from-scratch) · [Logistic Regression: Classification with Probabilities](machine-learning.md#16-logistic-regression-classification-with-probabilities) · [Classification Metrics I: Confusion Matrix, Accuracy, Precision, Recall and F1](machine-learning.md#17-classification-metrics-i-confusion-matrix-accuracy-precision-recall-and-f1) · [Classification Metrics II: ROC, AUC, Precision-Recall Curves and Thresholds](machine-learning.md#18-classification-metrics-ii-roc-auc-precision-recall-curves-and-thresholds) · [Pipelines and ColumnTransformer](machine-learning.md#22-pipelines-and-columntransformer) · [Cross-Validation: k-Fold, Stratified, Grouped and Time-Series Splits](machine-learning.md#24-cross-validation-k-fold-stratified-grouped-and-time-series-splits) · [Regularisation: Ridge, Lasso and Elastic Net](machine-learning.md#26-regularisation-ridge-lasso-and-elastic-net) · [Gradient Boosting from Scratch](machine-learning.md#31-gradient-boosting-from-scratch) · [XGBoost, LightGBM and CatBoost in Practice](machine-learning.md#32-xgboost-lightgbm-and-catboost-in-practice) · [k-Means Clustering](machine-learning.md#36-k-means-clustering) · [Principal Component Analysis (PCA)](machine-learning.md#38-principal-component-analysis-pca) · [Imbalanced Classes: Resampling, Class Weights and Thresholds](machine-learning.md#41-imbalanced-classes-resampling-class-weights-and-thresholds) · [Time-Series Forecasting with Machine Learning](machine-learning.md#42-time-series-forecasting-with-machine-learning) · [Partial Dependence, ICE and SHAP](machine-learning.md#47-partial-dependence-ice-and-shap) · [Data Leakage: Finding and Preventing It](machine-learning.md#49-data-leakage-finding-and-preventing-it) · [Serving Models: a FastAPI Endpoint and Batch Scoring](machine-learning.md#52-serving-models-a-fastapi-endpoint-and-batch-scoring) · [Monitoring Models in Production: Data Drift, Concept Drift and Retraining](machine-learning.md#55-monitoring-models-in-production-data-drift-concept-drift-and-retraining) · [ML System Design: a Framework and a Worked Example](machine-learning.md#56-ml-system-design-a-framework-and-a-worked-example)
 
 ### AI/ML track — 3. Deep learning (after machine learning)
 
@@ -184,8 +184,8 @@ Go through these in order in the last week before an interview; for each topic, 
 - **React:** [Machine Coding Round: Classic Components Built and Tested](react.md#35-machine-coding-round-classic-components-built-and-tested)
 - **TypeScript:** [Type Challenges: Implement the Utility Types Yourself](typescript.md#37-type-challenges-implement-the-utility-types-yourself)
 - **SQL & PostgreSQL:** [Classic SQL Interview Problems (with Solutions)](sql-postgresql.md#32-classic-sql-interview-problems-with-solutions) · [SQL and PostgreSQL Cheat Sheet](sql-postgresql.md#33-sql-and-postgresql-cheat-sheet) · [Most Asked SQL and Database Theory Questions](sql-postgresql.md#34-most-asked-sql-and-database-theory-questions)
-- **Data Science:** [Interview Problems: pandas and NumPy](data-science.md#25-interview-problems-pandas-and-numpy) · [Data Science Cheat Sheet](data-science.md#26-data-science-cheat-sheet) · [Most Asked Data Science Theory Questions](data-science.md#27-most-asked-data-science-theory-questions)
-- **Machine Learning:** [Interview Coding: ML Algorithms from Scratch in NumPy](machine-learning.md#30-interview-coding-ml-algorithms-from-scratch-in-numpy) · [Machine Learning Cheat Sheet](machine-learning.md#31-machine-learning-cheat-sheet) · [Most Asked Machine Learning Theory Questions](machine-learning.md#32-most-asked-machine-learning-theory-questions)
+- **Data Science:** [Interview Topic Checklist: What Companies Ask](data-science.md#65-interview-topic-checklist-what-companies-ask) · [Interview Problems: pandas, NumPy and SQL-Style Questions](data-science.md#66-interview-problems-pandas-numpy-and-sql-style-questions) · [Statistics, Probability and Product Interview Problems](data-science.md#67-statistics-probability-and-product-interview-problems) · [Cheat Sheet: Which Tool or Method When?](data-science.md#68-cheat-sheet-which-tool-or-method-when) · [Most Asked Data Science Theory Questions](data-science.md#69-most-asked-data-science-theory-questions)
+- **Machine Learning:** [Interview Coding: ML Algorithms from Scratch in NumPy](machine-learning.md#59-interview-coding-ml-algorithms-from-scratch-in-numpy) · [Interview Topic Checklist: What Companies Ask (ML)](machine-learning.md#60-interview-topic-checklist-what-companies-ask-ml) · [Cheat Sheet: Which Model / Metric / Technique When?](machine-learning.md#61-cheat-sheet-which-model--metric--technique-when) · [Most Asked Machine Learning Theory Questions](machine-learning.md#62-most-asked-machine-learning-theory-questions)
 - **Deep Learning:** [Interview Coding: Deep-Learning Building Blocks](deep-learning.md#18-interview-coding-deep-learning-building-blocks) · [Deep Learning Cheat Sheet](deep-learning.md#19-deep-learning-cheat-sheet) · [Most Asked Deep Learning Theory Questions](deep-learning.md#20-most-asked-deep-learning-theory-questions)
 - **LLM Engineering:** [Interview Coding: LLM Engineering Problems](llm-engineering.md#19-interview-coding-llm-engineering-problems) · [LLM Engineering Cheat Sheet](llm-engineering.md#20-llm-engineering-cheat-sheet) · [Most Asked LLM Engineering Theory Questions](llm-engineering.md#21-most-asked-llm-engineering-theory-questions)
 - **RAG and AI Agents:** [Interview Coding: RAG and Agent Problems](rag-and-agents.md#19-interview-coding-rag-and-agent-problems) · [RAG and Agents Cheat Sheet](rag-and-agents.md#20-rag-and-agents-cheat-sheet) · [Most Asked RAG and Agent Theory Questions](rag-and-agents.md#21-most-asked-rag-and-agent-theory-questions)
@@ -765,112 +765,209 @@ Go through these in order in the last week before an interview; for each topic, 
 </details>
 
 <details>
-<summary><b>Data Science</b> — 27 sections in 6 parts</summary>
+<summary><b>Data Science</b> — 70 sections in 10 parts</summary>
 
+**Part 1 — Basic: Getting Started with Data**
 
-**Part 1 — Basic: NumPy, Fast Arrays of Numbers**
+1. [How to Use These Notes (and What Data Scientists Do)](data-science.md#1-how-to-use-these-notes-and-what-data-scientists-do)
+2. [Setting Up: Python, Virtual Environments, uv and Jupyter Notebooks](data-science.md#2-setting-up-python-virtual-environments-uv-and-jupyter-notebooks)
+3. [Python Refresher for Data Work: Lists, Dicts, Comprehensions and Functions](data-science.md#3-python-refresher-for-data-work-lists-dicts-comprehensions-and-functions)
+4. [What Data Looks Like: Types of Data, Tables and Tidy Data](data-science.md#4-what-data-looks-like-types-of-data-tables-and-tidy-data)
+5. [Reading Files with Plain Python: Text, CSV and JSON](data-science.md#5-reading-files-with-plain-python-text-csv-and-json)
 
-1. [How to Use These Notes (and Set Up Your Data Toolkit)](data-science.md#1-how-to-use-these-notes-and-set-up-your-data-toolkit)
-2. [NumPy Arrays: Creating and Inspecting](data-science.md#2-numpy-arrays-creating-and-inspecting)
-3. [NumPy Indexing, Slicing and Boolean Masks](data-science.md#3-numpy-indexing-slicing-and-boolean-masks)
-4. [Vectorised Maths, Aggregations and Broadcasting](data-science.md#4-vectorised-maths-aggregations-and-broadcasting)
-5. [Reshaping, Stacking and Linear Algebra Basics](data-science.md#5-reshaping-stacking-and-linear-algebra-basics)
+**Part 2 — Basic: NumPy, Fast Arrays of Numbers**
 
-**Part 2 — Easy: pandas, Working with Tables**
+6. [Why NumPy? Arrays vs Lists, and How Arrays Sit in Memory](data-science.md#6-why-numpy-arrays-vs-lists-and-how-arrays-sit-in-memory)
+7. [Creating Arrays: array, arange, linspace, zeros, ones and full](data-science.md#7-creating-arrays-array-arange-linspace-zeros-ones-and-full)
+8. [Shape, Dimensions and dtypes](data-science.md#8-shape-dimensions-and-dtypes)
+9. [Indexing and Slicing (1D and 2D), Views vs Copies](data-science.md#9-indexing-and-slicing-1d-and-2d-views-vs-copies)
+10. [Boolean Masks, Fancy Indexing and np.where](data-science.md#10-boolean-masks-fancy-indexing-and-npwhere)
+11. [Vectorised Maths and Universal Functions](data-science.md#11-vectorised-maths-and-universal-functions)
+12. [Aggregations and the axis Argument](data-science.md#12-aggregations-and-the-axis-argument)
+13. [Broadcasting: Maths Between Arrays of Different Shapes](data-science.md#13-broadcasting-maths-between-arrays-of-different-shapes)
+14. [Reshaping, Stacking, Splitting and Sorting](data-science.md#14-reshaping-stacking-splitting-and-sorting)
+15. [Random Numbers and Simulation](data-science.md#15-random-numbers-and-simulation)
+16. [Linear Algebra Basics: Dot Products, Matrix Multiplication and Solving Equations](data-science.md#16-linear-algebra-basics-dot-products-matrix-multiplication-and-solving-equations)
 
-6. [pandas Series and DataFrames](data-science.md#6-pandas-series-and-dataframes)
-7. [Reading and Writing Data: CSV, Excel, JSON, Parquet and SQL](data-science.md#7-reading-and-writing-data-csv-excel-json-parquet-and-sql)
-8. [Selecting and Filtering: [], loc, iloc and query](data-science.md#8-selecting-and-filtering--loc-iloc-and-query)
-9. [Cleaning Data: Missing Values, Duplicates, Types and Text](data-science.md#9-cleaning-data-missing-values-duplicates-types-and-text)
-10. [Transforming Data: New Columns, apply, map, binning and assign](data-science.md#10-transforming-data-new-columns-apply-map-binning-and-assign)
+**Part 3 — Easy: pandas Basics, Working with Tables**
 
-**Part 3 — Moderate: Analysing Data with pandas**
+17. [pandas Series: Labelled 1D Data](data-science.md#17-pandas-series-labelled-1d-data)
+18. [DataFrames: Creating, Inspecting and Understanding a Table](data-science.md#18-dataframes-creating-inspecting-and-understanding-a-table)
+19. [Reading and Writing Files: CSV, Excel, JSON and Parquet](data-science.md#19-reading-and-writing-files-csv-excel-json-and-parquet)
+20. [Reading from Databases and Web APIs](data-science.md#20-reading-from-databases-and-web-apis)
+21. [Selecting Data: Columns, [], loc and iloc](data-science.md#21-selecting-data-columns--loc-and-iloc)
+22. [Filtering Rows: Conditions, isin, between and query](data-science.md#22-filtering-rows-conditions-isin-between-and-query)
+23. [Sorting, Ranking and Top-N](data-science.md#23-sorting-ranking-and-top-n)
+24. [Adding and Changing Columns: Arithmetic, assign, map, apply and np.select](data-science.md#24-adding-and-changing-columns-arithmetic-assign-map-apply-and-npselect)
+25. [Method Chaining and Copy-on-Write (pandas 3)](data-science.md#25-method-chaining-and-copy-on-write-pandas-3)
 
-11. [Grouping and Summarising: groupby and agg](data-science.md#11-grouping-and-summarising-groupby-and-agg)
-12. [Combining Tables: merge, join and concat](data-science.md#12-combining-tables-merge-join-and-concat)
-13. [Reshaping: pivot_table, melt, crosstab and explode](data-science.md#13-reshaping-pivot_table-melt-crosstab-and-explode)
-14. [Dates and Time Series: resample, rolling and shift](data-science.md#14-dates-and-time-series-resample-rolling-and-shift)
-15. [Bigger and Faster: Memory, Arrow, Polars and DuckDB](data-science.md#15-bigger-and-faster-memory-arrow-polars-and-duckdb)
+**Part 4 — Moderate: Cleaning Data**
 
-**Part 4 — Moderate: Charts with Matplotlib and Seaborn**
+26. [Missing Values: Finding, Dropping and Filling](data-science.md#26-missing-values-finding-dropping-and-filling)
+27. [Duplicates, Data Types and Type Conversion](data-science.md#27-duplicates-data-types-and-type-conversion)
+28. [Text Data: The .str Accessor and Regular Expressions](data-science.md#28-text-data-the-str-accessor-and-regular-expressions)
+29. [Categorical Data and Binning (cut and qcut)](data-science.md#29-categorical-data-and-binning-cut-and-qcut)
+30. [Outliers and Data Validation](data-science.md#30-outliers-and-data-validation)
 
-16. [Your First Charts with Matplotlib](data-science.md#16-your-first-charts-with-matplotlib)
-17. [Matplotlib in Depth: Layouts, Styling and Annotations](data-science.md#17-matplotlib-in-depth-layouts-styling-and-annotations)
-18. [Statistical Charts with Seaborn](data-science.md#18-statistical-charts-with-seaborn)
-19. [Choosing the Right Chart (and Not Misleading)](data-science.md#19-choosing-the-right-chart-and-not-misleading)
+**Part 5 — Moderate: Analysing Data**
 
-**Part 5 — Advanced: Statistics and Getting Data Ready for ML**
+31. [Grouping I: groupby, agg and Split-Apply-Combine](data-science.md#31-grouping-i-groupby-agg-and-split-apply-combine)
+32. [Grouping II: transform, filter, apply and Group-Wise Ranking](data-science.md#32-grouping-ii-transform-filter-apply-and-group-wise-ranking)
+33. [Combining Tables I: merge and Join Types](data-science.md#33-combining-tables-i-merge-and-join-types)
+34. [Combining Tables II: concat, Validation and Merge Pitfalls](data-science.md#34-combining-tables-ii-concat-validation-and-merge-pitfalls)
+35. [Reshaping: pivot_table, melt, crosstab and explode](data-science.md#35-reshaping-pivot_table-melt-crosstab-and-explode)
+36. [MultiIndex, stack and unstack](data-science.md#36-multiindex-stack-and-unstack)
+37. [Dates and Times: Parsing, .dt, Time Zones and Periods](data-science.md#37-dates-and-times-parsing-dt-time-zones-and-periods)
+38. [Time Series: resample, rolling, shift and Window Functions](data-science.md#38-time-series-resample-rolling-shift-and-window-functions)
 
-20. [Describing Data: Averages, Spread, Outliers and Correlation](data-science.md#20-describing-data-averages-spread-outliers-and-correlation)
-21. [Probability, Distributions, Sampling and Confidence Intervals](data-science.md#21-probability-distributions-sampling-and-confidence-intervals)
-22. [Hypothesis Tests and A/B Testing](data-science.md#22-hypothesis-tests-and-ab-testing)
-23. [A Complete Exploratory Data Analysis (EDA)](data-science.md#23-a-complete-exploratory-data-analysis-eda)
-24. [Preparing Data for Machine Learning: Feature Engineering Basics](data-science.md#24-preparing-data-for-machine-learning-feature-engineering-basics)
+**Part 6 — Moderate: Bigger and Faster Data**
 
-**Part 6 — Interview Prep: Revision**
+39. [Performance: Vectorise, Avoid Loops and Measure](data-science.md#39-performance-vectorise-avoid-loops-and-measure)
+40. [Memory: dtypes, Categoricals, Chunking and Apache Arrow](data-science.md#40-memory-dtypes-categoricals-chunking-and-apache-arrow)
+41. [Polars: Fast DataFrames with Lazy Queries](data-science.md#41-polars-fast-dataframes-with-lazy-queries)
+42. [DuckDB: SQL on DataFrames and Files](data-science.md#42-duckdb-sql-on-dataframes-and-files)
 
-25. [Interview Problems: pandas and NumPy](data-science.md#25-interview-problems-pandas-and-numpy)
-26. [Data Science Cheat Sheet](data-science.md#26-data-science-cheat-sheet)
-27. [Most Asked Data Science Theory Questions](data-science.md#27-most-asked-data-science-theory-questions)
+**Part 7 — Moderate: Charts with Matplotlib, Seaborn and Plotly**
+
+43. [Your First Charts with Matplotlib](data-science.md#43-your-first-charts-with-matplotlib)
+44. [Matplotlib Anatomy: Figures, Axes and Subplots](data-science.md#44-matplotlib-anatomy-figures-axes-and-subplots)
+45. [Styling, Annotation and Saving Charts](data-science.md#45-styling-annotation-and-saving-charts)
+46. [Seaborn I: Distributions](data-science.md#46-seaborn-i-distributions)
+47. [Seaborn II: Relationships, Categories and Facets](data-science.md#47-seaborn-ii-relationships-categories-and-facets)
+48. [Heatmaps, Pair Plots and Correlation Charts](data-science.md#48-heatmaps-pair-plots-and-correlation-charts)
+49. [Interactive Charts with Plotly](data-science.md#49-interactive-charts-with-plotly)
+50. [Choosing the Right Chart (and Not Misleading)](data-science.md#50-choosing-the-right-chart-and-not-misleading)
+
+**Part 8 — Advanced: Statistics**
+
+51. [Describing Data: Centre, Spread and Shape](data-science.md#51-describing-data-centre-spread-and-shape)
+52. [Correlation, Covariance and Causation](data-science.md#52-correlation-covariance-and-causation)
+53. [Probability Basics: Events, Conditional Probability and Bayes' Rule](data-science.md#53-probability-basics-events-conditional-probability-and-bayes-rule)
+54. [Probability Distributions: Normal, Binomial, Poisson and More](data-science.md#54-probability-distributions-normal-binomial-poisson-and-more)
+55. [Sampling, the Central Limit Theorem and Standard Error](data-science.md#55-sampling-the-central-limit-theorem-and-standard-error)
+56. [Confidence Intervals and the Bootstrap](data-science.md#56-confidence-intervals-and-the-bootstrap)
+57. [Hypothesis Testing: p-values, t-tests, Chi-Square and Non-Parametric Tests](data-science.md#57-hypothesis-testing-p-values-t-tests-chi-square-and-non-parametric-tests)
+58. [A/B Testing End to End: Design, Power, Sample Size and Pitfalls](data-science.md#58-ab-testing-end-to-end-design-power-sample-size-and-pitfalls)
+59. [Regression for Analysis: statsmodels, Coefficients and Confidence](data-science.md#59-regression-for-analysis-statsmodels-coefficients-and-confidence)
+
+**Part 9 — Advanced: Data Science in Practice**
+
+60. [A Complete Exploratory Data Analysis (EDA)](data-science.md#60-a-complete-exploratory-data-analysis-eda)
+61. [Feature Engineering: Preparing Data for Machine Learning](data-science.md#61-feature-engineering-preparing-data-for-machine-learning)
+62. [Data Pipelines and Data Quality in Production](data-science.md#62-data-pipelines-and-data-quality-in-production)
+63. [Communicating Results: Reports, Dashboards and Data Storytelling](data-science.md#63-communicating-results-reports-dashboards-and-data-storytelling)
+64. [What's New: Modern Data Tooling (2023–2026)](data-science.md#64-whats-new-modern-data-tooling-20232026)
+
+**Part 10 — Interview Prep: Revision**
+
+65. [Interview Topic Checklist: What Companies Ask](data-science.md#65-interview-topic-checklist-what-companies-ask)
+66. [Interview Problems: pandas, NumPy and SQL-Style Questions](data-science.md#66-interview-problems-pandas-numpy-and-sql-style-questions)
+67. [Statistics, Probability and Product Interview Problems](data-science.md#67-statistics-probability-and-product-interview-problems)
+68. [Cheat Sheet: Which Tool or Method When?](data-science.md#68-cheat-sheet-which-tool-or-method-when)
+69. [Most Asked Data Science Theory Questions](data-science.md#69-most-asked-data-science-theory-questions)
+70. [Glossary: Every Term in These Notes](data-science.md#70-glossary-every-term-in-these-notes)
 
 </details>
 
 <details>
-<summary><b>Machine Learning</b> — 32 sections in 7 parts</summary>
+<summary><b>Machine Learning</b> — 63 sections in 11 parts</summary>
 
 
-**Part 1 — Basic: What ML Is, and the Maths It Uses**
+**Part 1 — Basic: What Machine Learning Is**
 
 1. [How to Use These Notes (and What an ML Engineer Does)](machine-learning.md#1-how-to-use-these-notes-and-what-an-ml-engineer-does)
-2. [What Is Machine Learning?](machine-learning.md#2-what-is-machine-learning)
-3. [Maths for ML 1: Vectors, Matrices and the Dot Product](machine-learning.md#3-maths-for-ml-1-vectors-matrices-and-the-dot-product)
-4. [Maths for ML 2: Slopes, Gradients and Gradient Descent](machine-learning.md#4-maths-for-ml-2-slopes-gradients-and-gradient-descent)
-5. [Maths for ML 3: Probabilities, Sigmoid, Softmax and Loss Functions](machine-learning.md#5-maths-for-ml-3-probabilities-sigmoid-softmax-and-loss-functions)
+2. [What Is Machine Learning? Rules vs Learning from Examples](machine-learning.md#2-what-is-machine-learning-rules-vs-learning-from-examples)
+3. [Types of Machine Learning: Supervised, Unsupervised, Self-Supervised and Reinforcement](machine-learning.md#3-types-of-machine-learning-supervised-unsupervised-self-supervised-and-reinforcement)
+4. [The ML Workflow End to End: Problem, Data, Model, Evaluation, Deployment](machine-learning.md#4-the-ml-workflow-end-to-end-problem-data-model-evaluation-deployment)
+5. [Data for ML: Features, Labels and Train/Validation/Test Splits](machine-learning.md#5-data-for-ml-features-labels-and-trainvalidationtest-splits)
 
-**Part 2 — Easy: Your First Models**
+**Part 2 — Basic: The Maths Machine Learning Uses**
 
-6. [Your First Model: Linear Regression](machine-learning.md#6-your-first-model-linear-regression)
-7. [Train/Test Splits, Overfitting and Underfitting](machine-learning.md#7-traintest-splits-overfitting-and-underfitting)
-8. [Classification with Logistic Regression](machine-learning.md#8-classification-with-logistic-regression)
-9. [Measuring Classifiers: Confusion Matrix, Precision, Recall, ROC and PR Curves](machine-learning.md#9-measuring-classifiers-confusion-matrix-precision-recall-roc-and-pr-curves)
-10. [k-Nearest Neighbours, Distances and Feature Scaling](machine-learning.md#10-k-nearest-neighbours-distances-and-feature-scaling)
+6. [Vectors, Matrices and the Dot Product for ML](machine-learning.md#6-vectors-matrices-and-the-dot-product-for-ml)
+7. [Functions, Slopes and Derivatives](machine-learning.md#7-functions-slopes-and-derivatives)
+8. [Gradients and Gradient Descent](machine-learning.md#8-gradients-and-gradient-descent)
+9. [Probability for ML: Likelihood, Maximum Likelihood and Bayes](machine-learning.md#9-probability-for-ml-likelihood-maximum-likelihood-and-bayes)
+10. [Sigmoid, Softmax and Cross-Entropy (Log Loss)](machine-learning.md#10-sigmoid-softmax-and-cross-entropy-log-loss)
+11. [Loss Functions and Optimisers: MSE, MAE, Huber, Momentum and Adam](machine-learning.md#11-loss-functions-and-optimisers-mse-mae-huber-momentum-and-adam)
+12. [Bias, Variance and the Bias–Variance Trade-off](machine-learning.md#12-bias-variance-and-the-biasvariance-trade-off)
 
-**Part 3 — Moderate: The scikit-learn Toolkit and Strong Models**
+**Part 3 — Easy: Your First Models**
 
-11. [scikit-learn Properly: Estimators, Pipelines and ColumnTransformer](machine-learning.md#11-scikit-learn-properly-estimators-pipelines-and-columntransformer)
-12. [Cross-Validation and Hyperparameter Tuning](machine-learning.md#12-cross-validation-and-hyperparameter-tuning)
-13. [Regularisation: Ridge, Lasso and Elastic Net](machine-learning.md#13-regularisation-ridge-lasso-and-elastic-net)
-14. [Decision Trees](machine-learning.md#14-decision-trees)
-15. [Ensembles: Random Forests and Gradient Boosting (XGBoost, LightGBM, CatBoost)](machine-learning.md#15-ensembles-random-forests-and-gradient-boosting-xgboost-lightgbm-catboost)
-16. [More Classic Models: Support Vector Machines and Naive Bayes](machine-learning.md#16-more-classic-models-support-vector-machines-and-naive-bayes)
+13. [Linear Regression from Scratch](machine-learning.md#13-linear-regression-from-scratch)
+14. [Linear Regression with scikit-learn and Regression Metrics](machine-learning.md#14-linear-regression-with-scikit-learn-and-regression-metrics)
+15. [Learning Curves and Validation Curves: How Much Data, How Much Complexity](machine-learning.md#15-learning-curves-and-validation-curves-how-much-data-how-much-complexity)
+16. [Logistic Regression: Classification with Probabilities](machine-learning.md#16-logistic-regression-classification-with-probabilities)
+17. [Classification Metrics I: Confusion Matrix, Accuracy, Precision, Recall and F1](machine-learning.md#17-classification-metrics-i-confusion-matrix-accuracy-precision-recall-and-f1)
+18. [Classification Metrics II: ROC, AUC, Precision-Recall Curves and Thresholds](machine-learning.md#18-classification-metrics-ii-roc-auc-precision-recall-curves-and-thresholds)
+19. [k-Nearest Neighbours, Distances and Feature Scaling](machine-learning.md#19-k-nearest-neighbours-distances-and-feature-scaling)
+20. [Baselines and Choosing the Right Metric](machine-learning.md#20-baselines-and-choosing-the-right-metric)
 
-**Part 4 — Moderate: Unsupervised Learning and Special Problems**
+**Part 4 — Moderate: scikit-learn Properly**
 
-17. [Clustering: k-Means, DBSCAN and Hierarchical Clustering](machine-learning.md#17-clustering-k-means-dbscan-and-hierarchical-clustering)
-18. [Dimensionality Reduction: PCA, t-SNE and UMAP](machine-learning.md#18-dimensionality-reduction-pca-t-sne-and-umap)
-19. [Rare Events: Imbalanced Classes and Anomaly Detection](machine-learning.md#19-rare-events-imbalanced-classes-and-anomaly-detection)
-20. [Time-Series Forecasting with Machine Learning](machine-learning.md#20-time-series-forecasting-with-machine-learning)
-21. [Recommender Systems](machine-learning.md#21-recommender-systems)
-22. [Classic Text Classification: Bag of Words and TF-IDF](machine-learning.md#22-classic-text-classification-bag-of-words-and-tf-idf)
+21. [The Estimator API: fit, predict, transform](machine-learning.md#21-the-estimator-api-fit-predict-transform)
+22. [Pipelines and ColumnTransformer](machine-learning.md#22-pipelines-and-columntransformer)
+23. [Missing Data, Encoding and Scaling Inside Pipelines](machine-learning.md#23-missing-data-encoding-and-scaling-inside-pipelines)
+24. [Cross-Validation: k-Fold, Stratified, Grouped and Time-Series Splits](machine-learning.md#24-cross-validation-k-fold-stratified-grouped-and-time-series-splits)
+25. [Hyperparameter Tuning: Grid, Random, Successive Halving and Bayesian Search](machine-learning.md#25-hyperparameter-tuning-grid-random-successive-halving-and-bayesian-search)
+26. [Regularisation: Ridge, Lasso and Elastic Net](machine-learning.md#26-regularisation-ridge-lasso-and-elastic-net)
+27. [Polynomial Features, Splines and Non-Linear Relationships](machine-learning.md#27-polynomial-features-splines-and-non-linear-relationships)
+28. [Feature Selection: Filter, Wrapper and Embedded Methods](machine-learning.md#28-feature-selection-filter-wrapper-and-embedded-methods)
 
-**Part 5 — Advanced: Models You Can Trust**
+**Part 5 — Moderate: Trees, Ensembles and Other Classic Models**
 
-23. [Explaining Models: Feature Importance, Partial Dependence and SHAP](machine-learning.md#23-explaining-models-feature-importance-partial-dependence-and-shap)
-24. [Debugging Models: Learning Curves, Error Analysis and Leakage](machine-learning.md#24-debugging-models-learning-curves-error-analysis-and-leakage)
-25. [Fairness, Privacy and Responsible ML](machine-learning.md#25-fairness-privacy-and-responsible-ml)
+29. [Decision Trees: Splits, Gini, Entropy and Pruning](machine-learning.md#29-decision-trees-splits-gini-entropy-and-pruning)
+30. [Bagging and Random Forests](machine-learning.md#30-bagging-and-random-forests)
+31. [Gradient Boosting from Scratch](machine-learning.md#31-gradient-boosting-from-scratch)
+32. [XGBoost, LightGBM and CatBoost in Practice](machine-learning.md#32-xgboost-lightgbm-and-catboost-in-practice)
+33. [Support Vector Machines and Kernels](machine-learning.md#33-support-vector-machines-and-kernels)
+34. [Naive Bayes](machine-learning.md#34-naive-bayes)
+35. [Choosing a Model for Tabular Data (and Stacking)](machine-learning.md#35-choosing-a-model-for-tabular-data-and-stacking)
 
-**Part 6 — Advanced: MLOps and ML System Design**
+**Part 6 — Moderate: Unsupervised Learning**
 
-26. [Saving and Serving Models: joblib, skops, ONNX and a FastAPI Endpoint](machine-learning.md#26-saving-and-serving-models-joblib-skops-onnx-and-a-fastapi-endpoint)
-27. [MLOps: Experiment Tracking, Reproducibility and ML Pipelines](machine-learning.md#27-mlops-experiment-tracking-reproducibility-and-ml-pipelines)
-28. [Monitoring Models in Production: Data Drift, Concept Drift and Retraining](machine-learning.md#28-monitoring-models-in-production-data-drift-concept-drift-and-retraining)
-29. [ML System Design: A Framework and a Worked Example](machine-learning.md#29-ml-system-design-a-framework-and-a-worked-example)
+36. [k-Means Clustering](machine-learning.md#36-k-means-clustering)
+37. [DBSCAN, Hierarchical Clustering and Gaussian Mixtures](machine-learning.md#37-dbscan-hierarchical-clustering-and-gaussian-mixtures)
+38. [Principal Component Analysis (PCA)](machine-learning.md#38-principal-component-analysis-pca)
+39. [t-SNE and UMAP for Visualisation](machine-learning.md#39-t-sne-and-umap-for-visualisation)
+40. [Anomaly Detection: Isolation Forest, Local Outlier Factor and One-Class Methods](machine-learning.md#40-anomaly-detection-isolation-forest-local-outlier-factor-and-one-class-methods)
 
-**Part 7 — Interview Prep: Revision**
+**Part 7 — Advanced: Special Problems**
 
-30. [Interview Coding: ML Algorithms from Scratch in NumPy](machine-learning.md#30-interview-coding-ml-algorithms-from-scratch-in-numpy)
-31. [Machine Learning Cheat Sheet](machine-learning.md#31-machine-learning-cheat-sheet)
-32. [Most Asked Machine Learning Theory Questions](machine-learning.md#32-most-asked-machine-learning-theory-questions)
+41. [Imbalanced Classes: Resampling, Class Weights and Thresholds](machine-learning.md#41-imbalanced-classes-resampling-class-weights-and-thresholds)
+42. [Time-Series Forecasting with Machine Learning](machine-learning.md#42-time-series-forecasting-with-machine-learning)
+43. [Recommender Systems: Collaborative Filtering and Matrix Factorisation](machine-learning.md#43-recommender-systems-collaborative-filtering-and-matrix-factorisation)
+44. [Text Classification: Bag of Words, TF-IDF and Linear Models](machine-learning.md#44-text-classification-bag-of-words-tf-idf-and-linear-models)
+45. [Probability Calibration and Cost-Sensitive Decisions](machine-learning.md#45-probability-calibration-and-cost-sensitive-decisions)
+
+**Part 8 — Advanced: Models You Can Trust**
+
+46. [Feature Importance: Impurity, Permutation and Drop-Column](machine-learning.md#46-feature-importance-impurity-permutation-and-drop-column)
+47. [Partial Dependence, ICE and SHAP](machine-learning.md#47-partial-dependence-ice-and-shap)
+48. [Debugging Models: Learning Curves, Error Analysis and Slicing](machine-learning.md#48-debugging-models-learning-curves-error-analysis-and-slicing)
+49. [Data Leakage: Finding and Preventing It](machine-learning.md#49-data-leakage-finding-and-preventing-it)
+50. [Fairness, Privacy and Responsible ML](machine-learning.md#50-fairness-privacy-and-responsible-ml)
+
+**Part 9 — Advanced: MLOps**
+
+51. [Saving Models: joblib, skops and ONNX](machine-learning.md#51-saving-models-joblib-skops-and-onnx)
+52. [Serving Models: a FastAPI Endpoint and Batch Scoring](machine-learning.md#52-serving-models-a-fastapi-endpoint-and-batch-scoring)
+53. [Experiment Tracking and Reproducibility with MLflow](machine-learning.md#53-experiment-tracking-and-reproducibility-with-mlflow)
+54. [ML Pipelines, Feature Stores and Training-Serving Skew](machine-learning.md#54-ml-pipelines-feature-stores-and-training-serving-skew)
+55. [Monitoring Models in Production: Data Drift, Concept Drift and Retraining](machine-learning.md#55-monitoring-models-in-production-data-drift-concept-drift-and-retraining)
+56. [ML System Design: a Framework and a Worked Example](machine-learning.md#56-ml-system-design-a-framework-and-a-worked-example)
+
+**Part 10 — Advanced: ML in the Real World (2026)**
+
+57. [How Real Systems Use ML: Fraud, Search Ranking, Ads, Recommendations and Forecasting](machine-learning.md#57-how-real-systems-use-ml-fraud-search-ranking-ads-recommendations-and-forecasting)
+58. [What's New (2022–2026): Tabular Foundation Models, AutoML and Modern Practice](machine-learning.md#58-whats-new-20222026-tabular-foundation-models-automl-and-modern-practice)
+
+**Part 11 — Interview Prep**
+
+59. [Interview Coding: ML Algorithms from Scratch in NumPy](machine-learning.md#59-interview-coding-ml-algorithms-from-scratch-in-numpy)
+60. [Interview Topic Checklist: What Companies Ask (ML)](machine-learning.md#60-interview-topic-checklist-what-companies-ask-ml)
+61. [Cheat Sheet: Which Model / Metric / Technique When?](machine-learning.md#61-cheat-sheet-which-model--metric--technique-when)
+62. [Most Asked Machine Learning Theory Questions](machine-learning.md#62-most-asked-machine-learning-theory-questions)
+63. [Glossary: Every Term in These Notes](machine-learning.md#63-glossary-every-term-in-these-notes)
 
 </details>
 
