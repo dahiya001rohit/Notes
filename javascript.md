@@ -1,27 +1,56 @@
-# JavaScript: From Absolute Basics to Production
+# JavaScript: A Step-by-Step Book
 
-JavaScript from zero, in **levels**: **Basic** (running code, variables, types, operators, decisions, loops, strings, arrays, objects, functions) → **Easy** (array methods, destructuring, scope, closures, `this`, coercion, errors) → **Moderate** (objects and prototypes, classes, Map/Set, generators, the event loop, promises, async/await, modules, regex, dates; then the browser: DOM and events, storage, Web APIs, files, rendering, fetch and CORS, security) → **Advanced** (functional patterns, debounce/throttle, Proxy, design patterns, memory, performance, modern ES2025 features, tooling, testing, debugging, production code) → **Interview Prep**. **Each part uses only what earlier parts taught.**
+This book teaches JavaScript from the first `console.log` to production code and interviews: the language itself, how it runs asynchronous code, the browser and its APIs, patterns and performance, and the tools professionals use to build, test and debug. Each idea starts with the problem it solves and a small example you can check by eye.
 
-Every section has the same shape: a **picture** where it helps, **theory** in plain words, **JavaScript** examples, **common mistakes**, and **practice** with hidden answers and links. Every example was run on **Node.js 24 LTS**, and browser examples in **headless Chromium** against a real local server; the text under **Output** is exactly what they printed. Blocks within one section share their variables, like cells in a notebook.
+**Three rules the book follows:**
 
-Each part ends with a ✅ **checkpoint**. After this file: `typescript.md` for types, `react.md` for user interfaces and `nodejs.md` for servers.
+1. **Nothing is used before it's taught.** No example uses a keyword, method or API that an earlier chapter hasn't explained: functions arrive in Chapter 10, `try`/`catch` in Chapter 17, classes in Chapter 20, promises in Chapter 24. Until Chapter 17, an example that crashes simply shows the error it throws.
+2. **Every output is real.** Every block was run with **Node.js 24**; browser blocks (marked "runs in a browser") ran in **headless Chrome 156** against a local server. The text under **Output** is what they printed.
+3. **Blocks in one chapter share their variables,** like cells in a notebook: a name defined in one block can be used in the next.
 
-## Table of Contents
+**What you need first:** nothing. Chapter 1 shows how to run JavaScript.
 
-**[Part 1 — Basic: First Steps](#part-1--basic-first-steps)**
+**How each chapter is laid out:**
+
+| Part of the chapter | What it gives you |
+|---|---|
+| **You need / You'll learn** | which earlier chapters it builds on, and the goal |
+| **N.1, N.2, …** | the idea in small steps: the problem, a small example, then the general rule |
+| **Summary** | the key syntax on one screen, and the new terms with one-line definitions |
+| **Exercises** | questions with hidden answers, then graded practice problems (🟢 Easy, 🟡 Medium, 🔴 Hard) from LeetCode's JavaScript problem set |
+
+Chapter [51](#51-glossary-every-term-in-these-notes) lists every term from every chapter, A to Z.
+
+**The parts:**
+
+| Part | Chapters | What you can do after it |
+|---|---|---|
+| I. First Steps | 1–10 | store values, make decisions, loop, and use strings, arrays, objects and functions |
+| II. The Core Language | 11–17 | transform data with array methods, and understand scope, closures, `this`, coercion and errors |
+| III. Objects, Async and Modules | 18–28 | use prototypes and classes, collections and generators, write asynchronous code with promises and `async`/`await`, split code into modules |
+| IV. JavaScript in the Browser | 29–35 | build pages with the DOM and events, store data, call APIs, and understand rendering, networking and security |
+| V. Patterns and Performance | 36–42 | write functional and pattern-based code, manage memory, make code fast, and use the newest features |
+| VI. Tooling, Testing and Production | 43–46 | set up a project, test it, debug it and make it reliable |
+| VII. Interview Prep | 47–51 | implement the classic utilities yourself, predict tricky outputs and answer the common questions |
+
+After this book: `typescript.md` adds types, `react.md` builds user interfaces and `nodejs.md` builds servers.
+
+## Contents
+
+**[Part I — First Steps](#part-i--first-steps)**
 
 1. [Getting Started: What JavaScript Is and Your First Program](#1-getting-started-what-javascript-is-and-your-first-program)
 2. [Variables: let, const and var](#2-variables-let-const-and-var)
 3. [Data Types: Primitives, Objects, null and undefined](#3-data-types-primitives-objects-null-and-undefined)
 4. [Operators: Arithmetic, Comparison, Logical, ?? and ?.](#4-operators-arithmetic-comparison-logical--and-)
 5. [Decisions: if, else, switch and the Ternary Operator](#5-decisions-if-else-switch-and-the-ternary-operator)
-6. [Loops: for, while, for...of and for...in](#6-loops-for-while-forof-and-forin)
+6. [Loops: for, while, do...while, break and continue](#6-loops-for-while-dowhile-break-and-continue)
 7. [Strings and Template Literals](#7-strings-and-template-literals)
 8. [Arrays: Ordered Lists](#8-arrays-ordered-lists)
 9. [Objects: Grouping Data with Keys](#9-objects-grouping-data-with-keys)
 10. [Functions: Declarations, Expressions, Arrows and Parameters](#10-functions-declarations-expressions-arrows-and-parameters)
 
-**[Part 2 — Easy: The Core Language](#part-2--easy-the-core-language)**
+**[Part II — The Core Language](#part-ii--the-core-language)**
 
 11. [Array Methods: map, filter, reduce, find and Friends](#11-array-methods-map-filter-reduce-find-and-friends)
 12. [Destructuring, Spread and Rest](#12-destructuring-spread-and-rest)
@@ -29,23 +58,23 @@ Each part ends with a ✅ **checkpoint**. After this file: `typescript.md` for t
 14. [Closures](#14-closures)
 15. [The this Keyword, call, apply and bind](#15-the-this-keyword-call-apply-and-bind)
 16. [Type Conversion, Coercion and == vs ===](#16-type-conversion-coercion-and--vs-)
-17. [Error Handling: try, catch, throw and Custom Errors](#17-error-handling-try-catch-throw-and-custom-errors)
+17. [Error Handling: try, catch, throw and finally](#17-error-handling-try-catch-throw-and-finally)
 
-**[Part 3 — Moderate: Objects, Async and Modules](#part-3--moderate-objects-async-and-modules)**
+**[Part III — Objects, Async and Modules](#part-iii--objects-async-and-modules)**
 
 18. [Objects in Depth: Copying, Property Descriptors, Getters/Setters and Immutability](#18-objects-in-depth-copying-property-descriptors-getterssetters-and-immutability)
 19. [Prototypes and Prototypal Inheritance](#19-prototypes-and-prototypal-inheritance)
 20. [Classes: Fields, Private Members, Static, Inheritance and OOP](#20-classes-fields-private-members-static-inheritance-and-oop)
 21. [Map, Set, WeakMap, WeakSet and Symbol](#21-map-set-weakmap-weakset-and-symbol)
 22. [Iterators, Generators and Iterator Helpers](#22-iterators-generators-and-iterator-helpers)
-23. [How JavaScript Runs: Call Stack, Event Loop, Tasks and Microtasks](#23-how-javascript-runs-call-stack-event-loop-tasks-and-microtasks)
-24. [Callbacks and Promises](#24-callbacks-and-promises)
+23. [How JavaScript Runs: Call Stack, Event Loop, Timers and Callbacks](#23-how-javascript-runs-call-stack-event-loop-timers-and-callbacks)
+24. [Promises and Microtasks](#24-promises-and-microtasks)
 25. [async/await: Asynchronous Code That Reads Like Normal Code](#25-asyncawait-asynchronous-code-that-reads-like-normal-code)
 26. [Modules: import, export, ESM vs CommonJS](#26-modules-import-export-esm-vs-commonjs)
 27. [Regular Expressions](#27-regular-expressions)
 28. [Dates, Time Zones, Numbers and Intl](#28-dates-time-zones-numbers-and-intl)
 
-**[Part 4 — Moderate: JavaScript in the Browser](#part-4--moderate-javascript-in-the-browser)**
+**[Part IV — JavaScript in the Browser](#part-iv--javascript-in-the-browser)**
 
 29. [The DOM and Events](#29-the-dom-and-events)
 30. [Browser Storage: localStorage, sessionStorage, Cookies and IndexedDB](#30-browser-storage-localstorage-sessionstorage-cookies-and-indexeddb)
@@ -55,7 +84,7 @@ Each part ends with a ✅ **checkpoint**. After this file: `typescript.md` for t
 34. [Networking for Frontend Developers: From URL to Page, HTTP, Caching and CORS](#34-networking-for-frontend-developers-from-url-to-page-http-caching-and-cors)
 35. [Frontend Security: XSS, CSRF, CSP, Prototype Pollution and the Supply Chain](#35-frontend-security-xss-csrf-csp-prototype-pollution-and-the-supply-chain)
 
-**[Part 5 — Advanced: Patterns and Performance](#part-5--advanced-patterns-and-performance)**
+**[Part V — Patterns and Performance](#part-v--patterns-and-performance)**
 
 36. [Functional Programming: Pure Functions, Immutability, Currying and Composition](#36-functional-programming-pure-functions-immutability-currying-and-composition)
 37. [Debounce and Throttle](#37-debounce-and-throttle)
@@ -65,79 +94,63 @@ Each part ends with a ✅ **checkpoint**. After this file: `typescript.md` for t
 41. [Performance: How V8 Runs Your Code and How to Make It Fast](#41-performance-how-v8-runs-your-code-and-how-to-make-it-fast)
 42. [Modern JavaScript: What's New in ES2020–ES2026](#42-modern-javascript-whats-new-in-es2020es2026)
 
-**[Part 6 — Advanced: Tooling, Testing and Production](#part-6--advanced-tooling-testing-and-production)**
+**[Part VI — Tooling, Testing and Production](#part-vi--tooling-testing-and-production)**
 
 43. [Tooling: npm, Package Managers, Bundlers, Linters and TypeScript](#43-tooling-npm-package-managers-bundlers-linters-and-typescript)
 44. [Testing JavaScript: Unit, Integration and End-to-End](#44-testing-javascript-unit-integration-and-end-to-end)
 45. [Debugging JavaScript](#45-debugging-javascript)
 46. [Production-Grade JavaScript: Code Quality, Refactoring and Reliability](#46-production-grade-javascript-code-quality-refactoring-and-reliability)
 
-**[Part 7 — Interview Prep: Revision](#part-7--interview-prep-revision)**
+**[Part VII — Interview Prep](#part-vii--interview-prep)**
 
 47. [Polyfills and "Implement It Yourself" Questions](#47-polyfills-and-implement-it-yourself-questions)
-48. [DSA in JavaScript: Toolbox and Classic Coding Questions](#48-dsa-in-javascript-toolbox-and-classic-coding-questions)
-49. [Output-Based Questions (Predict the Output)](#49-output-based-questions-predict-the-output)
-50. [JavaScript Cheat Sheet](#50-javascript-cheat-sheet)
-51. [Most Asked JavaScript Interview Questions](#51-most-asked-javascript-interview-questions)
+48. [Output-Based Questions (Predict the Output)](#48-output-based-questions-predict-the-output)
+49. [JavaScript Cheat Sheet](#49-javascript-cheat-sheet)
+50. [The Most Asked JavaScript Interview Questions](#50-the-most-asked-javascript-interview-questions)
+51. [Glossary: Every Term in These Notes](#51-glossary-every-term-in-these-notes)
 
 ---
 
-# Part 1 — Basic: First Steps
+# Part I — First Steps
 
-> **Goal:** Run JavaScript, store values, use operators, make decisions, repeat with loops, and work with strings, arrays, objects and functions.  
-> **You need:** Nothing: this is the very beginning.
+Ten chapters on the building blocks every program uses: values and variables, operators, decisions, loops, text, lists, records and functions.
 
 ---
 
 ## 1. Getting Started: What JavaScript Is and Your First Program
 
-![The learning path](images/javascript/00-roadmap.svg)
+**You need:** nothing. · **You'll learn:** what JavaScript is and where it runs, how to run it, how to print values, and how to read an error.
 
-### Theory
+![The learning path through this book](images/javascript/00-roadmap.svg)
 
-> **In simple words:** **JavaScript** (JS) is the programming language of the web. Every website you use runs JavaScript in your browser to make pages interactive: buttons that respond, menus that open, live chat, maps you can drag. The same language also runs on **servers** (Node.js, Deno, Bun), in **mobile and desktop apps** (React Native, Electron), and in serverless functions. If you learn one language to build products people can see and use, JavaScript (and its typed version, TypeScript) is the one.
+### 1.1 What JavaScript is
 
-**How these notes are organised:**
+**JavaScript** (JS) is the programming language of the web. Every browser runs it to make pages interactive: buttons that respond, menus that open, maps you can drag. The same language also runs outside the browser:
 
-| Part | Level | You learn |
+| Where | Engine (the program that runs JS) | Adds |
 |---|---|---|
-| 1 | Basic | Running JS, variables, types, operators, decisions, loops, strings, arrays, objects, functions |
-| 2 | Easy | Array methods, destructuring and spread, scope and hoisting, closures, `this`, type coercion, errors |
-| 3 | Moderate | Objects in depth, prototypes, classes, Map/Set/Symbol, iterators and generators, the event loop, promises, async/await, modules, regex, dates and Intl |
-| 4 | Moderate | JavaScript in the browser: the DOM and events, storage and cookies, Web APIs, files and binary data, rendering, networking, security |
-| 5 | Advanced | Functional programming, debounce/throttle, Proxy and Reflect, design patterns, memory and garbage collection, engine internals, performance, modern ES2020–ES2026 features |
-| 6 | Advanced | Tooling (npm, bundlers, linters), testing, debugging, production-grade code |
-| 7 | Interview Prep | Polyfills, DSA in JS, output questions, cheat sheet, most-asked questions |
-
-**About the examples:** every example that doesn't need a browser was run with **Node.js 24 (LTS)**, and the text under **Output** is exactly what it printed. Browser-only examples (DOM, storage, service workers) are marked and show no invented output; try them in your browser's console.
-
-**Where JavaScript runs:**
-
-| Environment | Engine | Adds |
-|---|---|---|
-| Browsers (Chrome, Edge, Firefox, Safari) | V8, SpiderMonkey, JavaScriptCore | `document` (the DOM), `window`, `fetch`, storage, events |
-| **Node.js** | V8 | Files, network servers, processes (`node:fs`, `node:http`), npm packages |
+| Browsers: Chrome, Edge, Firefox, Safari | V8, SpiderMonkey, JavaScriptCore | the page (`document`), `window`, network requests, storage |
+| **Node.js** | V8 | files, servers, processes, the npm package registry |
 | Deno, Bun | V8, JavaScriptCore | TypeScript out of the box, fast tooling |
 
-The **language** itself (variables, functions, objects, promises) is standardised as **ECMAScript**; a new edition comes out every June (ES2025, ES2026…). Environments add their own **APIs** on top.
+The language itself is standardised as **ECMAScript**; a new edition comes out every June (ES2025, ES2026, …). Each environment adds its own **APIs** (application programming interfaces: ready-made functions you can call) on top.
 
-**Running JavaScript:**
+### 1.2 Running JavaScript
 
-- **Browser console:** open DevTools (F12 or Ctrl/Cmd+Shift+I) → Console, type `console.log("hi")`.
-- **Node.js:** install the LTS version (nodejs.org, or a version manager like `fnm`/`nvm`/`volta`), save code in `hello.js`, run `node hello.js`. `node` alone opens an interactive REPL.
-- **In a web page:** `<script src="app.js" type="module"></script>` at the end of `<body>`.
+Three ways:
 
-**Building blocks you'll use from day one:** `console.log(...)` prints values; `//` starts a comment (and `/* ... */` for several lines); statements end with `;` (optional in many cases, but the notes always use them for clarity); code blocks are grouped with `{ }`; names are case-sensitive.
+- **Browser console:** open DevTools (F12, or Cmd+Option+I on a Mac), choose Console, type `console.log("hi")` and press Enter.
+- **Node.js:** install the LTS ("long-term support") version from nodejs.org, save code in `hello.js`, and run `node hello.js` in a terminal. `node` alone opens a **REPL** (read-eval-print loop), where each line runs as you type it.
+- **In a web page:** `<script type="module" src="app.js"></script>` inside the HTML.
 
-### JavaScript
+### 1.3 Your first program
+
+`console.log(…)` prints values, separated by spaces. Text goes in quotes; numbers don't:
 
 ```js
-// My first program
 console.log("Hello, world!");
-console.log("JavaScript", "is", "fun");      // several values are separated by spaces
-console.log(2 + 3, 10 / 4, 7 * 6);            // JS is also a calculator
-console.log(`Today is ${new Date(2026, 8, 25).toDateString()}`);   // a template string (explained in the strings section)
-console.log(typeof "hi", typeof 42, typeof true);
+console.log("JavaScript", "is", "fun");
+console.log(2 + 3, 10 / 4, 7 * 6);
 ```
 
 **Output:**
@@ -146,70 +159,108 @@ console.log(typeof "hi", typeof 42, typeof true);
 Hello, world!
 JavaScript is fun
 5 2.5 42
-Today is Fri Sep 25 2026
-string number boolean
 ```
 
-Errors are normal; read the **type** and **message**:
+A **statement** is one instruction; it ends with `;` (often optional, but this book always writes it). `//` starts a **comment**, which JavaScript ignores; `/* … */` spans several lines. Names are case-sensitive: `console.Log` doesn't exist.
 
 ```js
-try {
-  undefinedFunction();
-} catch (err) {
-  console.log(err.name, "-", err.message);
-}
-try {
-  null.length;
-} catch (err) {
-  console.log(err.name, "-", err.message);
-}
+// The next line prints a number
+console.log(60 * 60 * 24);   /* seconds in a day */
 ```
 
 **Output:**
 
 ```text
-ReferenceError - undefinedFunction is not defined
-TypeError - Cannot read properties of null (reading 'length')
+86400
 ```
 
-(`try`/`catch`, used here to catch errors and keep going, is explained in Section [17](#17-error-handling-try-catch-throw-and-custom-errors).)
+### 1.4 Reading errors
 
-| Error | Usually means |
+When JavaScript can't run a line, it stops and **throws an error**: an object with a **type** (`name`) and a **message**. Calling a function that doesn't exist:
+
+```js
+console.lgo("typo");
+```
+
+**Output:**
+
+```text
+TypeError: console.lgo is not a function
+```
+
+Using a name that was never created:
+
+```js
+console.log(price);
+```
+
+**Output:**
+
+```text
+ReferenceError: price is not defined
+```
+
+| Error type | Usually means |
 |---|---|
-| `SyntaxError` | The code isn't valid JavaScript (a missing bracket or quote) |
-| `ReferenceError` | A name that doesn't exist (typo, or not declared) |
-| `TypeError` | Using a value the wrong way (calling a non-function, reading a property of `null`/`undefined`) |
-| `RangeError` | A number out of range (e.g. an invalid array length, too-deep recursion) |
+| `SyntaxError` | the code isn't valid JavaScript: a missing bracket or quote |
+| `ReferenceError` | a name that doesn't exist: a typo, or never declared |
+| `TypeError` | a value used the wrong way: calling something that isn't a function, reading from nothing |
+| `RangeError` | a number out of range |
 
-**Common mistakes:**
+In Node.js, the full error also shows the file and line number. Read the type and message first: they usually name the problem.
 
-- ❌ Loading scripts in `<head>` without `defer`/`type="module"` (they run before the page exists).
-- ❌ Ignoring the console: errors are printed there, with the file and line.
-- ❌ Confusing Java and JavaScript (unrelated languages with similar names).
-- ❌ Copying code with "smart quotes" from documents.
+### 1.5 Summary
 
-### Practice
+```
+console.log(a, b, c)        print values separated by spaces
+// comment    /* comment */  ignored by JavaScript
+node file.js                 run a file with Node.js;  node alone opens the REPL
+errors: Name: message        SyntaxError, ReferenceError, TypeError, RangeError
+```
 
-1. Print your name and city on one line, the number of seconds in a day, and the type of the value `3.14`.
+**Key terms:**
+
+- **JavaScript:** the programming language of web browsers, also used on servers and in apps.
+- **ECMAScript:** the official standard that defines the JavaScript language; a new edition each year.
+- **Engine:** the program that runs JavaScript code, such as V8 (Chrome, Node.js).
+- **Node.js:** a program that runs JavaScript outside the browser, with access to files and the network.
+- **API (application programming interface):** a set of ready-made functions and objects a program can use.
+- **REPL (read-eval-print loop):** an interactive prompt that runs each line as you type it.
+- **Statement:** one complete instruction, usually ending with `;`.
+- **Comment:** text in code that JavaScript ignores, written after `//` or between `/*` and `*/`.
+- **Error:** an object that JavaScript throws when it can't run code, with a type (`name`) and a `message`.
+
+### Exercises
+
+1. Print your name and city on one line, then the number of minutes in a week.
+2. What error does `console.log("hi"` (a missing bracket) give, and which type is it?
 
 <details>
-<summary><b>Answer</b></summary>
+<summary><b>Answers</b></summary>
 
 ```js
 console.log("Asha", "Pune");
-console.log(24 * 60 * 60);
-console.log(typeof 3.14);
+console.log(60 * 24 * 7);
 ```
 
 **Output:**
 
 ```text
 Asha Pune
-86400
-number
+10080
 ```
 
+2. It's a `SyntaxError` (the exact message differs between engines, e.g. "missing ) after argument list"). Syntax errors are found before any line runs, so nothing prints.
+
 </details>
+
+**Practice:**
+
+| # | Problem (LeetCode) | Difficulty |
+|---|---|---|
+| 1 | [2667. Create Hello World Function](https://leetcode.com/problems/create-hello-world-function/) | 🟢 Easy |
+
+(LeetCode's JavaScript problems ask you to write a function; come back to this one after Chapter 10.)
 
 **Learn more:** [MDN: JavaScript guide](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide) · [javascript.info](https://javascript.info/) · [Node.js: introduction](https://nodejs.org/en/learn/getting-started/introduction-to-nodejs)
 
@@ -217,78 +268,157 @@ number
 
 ## 2. Variables: let, const and var
 
-### Theory
+**You need:** Chapter 1. · **You'll learn:** to name values with `const` and `let`, why `var` is avoided, what a block is, and how to name things.
 
-> **In simple words:** a **variable** is a **name** for a value, so you can use and change it later. Modern JavaScript gives you two keywords: **`const`** for a name that will always point to the same value, and **`let`** for a name whose value will change. The old keyword **`var`** still works but behaves in surprising ways, so modern code avoids it.
+### 2.1 Naming a value
 
-| Keyword | Can reassign? | Scope | Use |
-|---|---|---|---|
-| `const` | No | Block `{ }` | **Default choice** |
-| `let` | Yes | Block `{ }` | Counters, values that change |
-| `var` | Yes | Whole function (ignores blocks) | Old code only |
-
-**`const` doesn't mean "frozen":** `const cart = []` means `cart` always points to the same array, but the array's **contents** can change (`cart.push("pen")`). To prevent changes to the contents use `Object.freeze`.
-
-**Block scope:** `let` and `const` exist only inside the `{ }` where they're declared (an `if`, a loop, a function). `var` leaks out of blocks, which causes bugs, especially in loops with callbacks (Section [14](#14-closures)).
-
-**Naming:** letters, digits, `_` and `$`; can't start with a digit; case-sensitive; can't be a reserved word (`class`, `return`, `let`…). Style: `camelCase` for variables and functions (`totalPrice`), `PascalCase` for classes (`ShoppingCart`), `UPPER_SNAKE_CASE` for true constants (`MAX_RETRIES`).
-
-**Declaring before use:** using a `let`/`const` name before its declaration line throws a `ReferenceError` (the "temporal dead zone", Section [13](#13-scope-hoisting-and-the-temporal-dead-zone)).
-
-### JavaScript
+A **variable** is a name for a value, so you can use it later. `const` creates a name that always refers to the same value; `let` creates one you can **reassign** (point at a new value):
 
 ```js
 const shopName = "ShopKart";
 let visitors = 0;
 visitors = visitors + 1;
-visitors += 1;                          // shortcut
-visitors++;                             // add 1
+visitors += 1;          // short for visitors = visitors + 1
+visitors++;             // add 1
 console.log(shopName, visitors);
-
-try {
-  shopName = "Other";                   // const can't be reassigned
-} catch (err) {
-  console.log(err.name, "-", err.message);
-}
-
-const cart = ["pen"];
-cart.push("notebook");                  // allowed: the SAME array, new contents
-console.log(cart);
-
-if (true) {
-  let insideLet = "block only";
-  var insideVar = "leaks out";
-}
-console.log(typeof insideLet, insideVar);   // insideLet doesn't exist out here
-
-let a = 1, b = 2;
-[a, b] = [b, a];                        // swap (destructuring, Part 2)
-console.log(a, b);
 ```
 
 **Output:**
 
 ```text
 ShopKart 3
-TypeError - Assignment to constant variable.
-[ 'pen', 'notebook' ]
-undefined leaks out
-2 1
 ```
 
-**Common mistakes:**
+The `=` sign means "make the name on the left refer to the value on the right", not "is equal to". Reassigning a `const` throws an error:
 
-- ❌ Using `var` in new code.
-- ❌ Using `let` everywhere "just in case"; `const` makes intent clear and prevents accidental reassignment.
-- ❌ Thinking `const` objects/arrays can't change.
-- ❌ Forgetting `let`/`const` entirely (`total = 5` creates an accidental global in sloppy mode; an error in strict mode/modules).
+```js
+shopName = "Other";
+```
 
-### Practice
+**Output:**
 
-1. Declare the price of a pen (₹20) and a quantity that starts at 1; increase the quantity three times, then print the total. Which variables should be `const`?
+```text
+TypeError: Assignment to constant variable.
+```
+
+**Use `const` by default** and `let` only for values that change, such as counters. A reader then knows at a glance which names never change.
+
+### 2.2 Declare before use
+
+Declaring with `let` or `const` creates the name. Using a name before its declaration line throws a `ReferenceError`; Chapter 13 explains why:
+
+```js
+console.log(total);
+let total = 5;
+```
+
+**Output:**
+
+```text
+ReferenceError: Cannot access 'total' before initialization
+```
+
+A `let` declared without a value holds `undefined`, JavaScript's "no value yet" (Chapter 3). A `const` must get its value immediately.
+
+```js
+let city;
+console.log(city);
+city = "Pune";
+console.log(city);
+```
+
+**Output:**
+
+```text
+undefined
+Pune
+```
+
+### 2.3 Blocks and scope
+
+A **block** is code between `{` and `}`. A name declared with `let` or `const` inside a block exists only inside it: its **scope** is the block. `typeof` (Chapter 3) returns `"undefined"` for a name that doesn't exist here, instead of throwing:
+
+```js
+{
+  const inside = "only in the block";
+  console.log(inside);
+}
+console.log(typeof inside);
+```
+
+**Output:**
+
+```text
+only in the block
+undefined
+```
+
+### 2.4 Why not var
+
+`var` is the original keyword (from 1995). It ignores blocks, so the name leaks out:
+
+```js
+{
+  var leaky = "I escaped";
+}
+console.log(leaky);
+```
+
+**Output:**
+
+```text
+I escaped
+```
+
+`var` also allows declaring the same name twice and can be used before its declaration line (it is `undefined` there instead of an error). All three behaviours hide bugs, so modern code uses only `let` and `const`. You'll still meet `var` in older code; Chapter 13 covers it fully.
+
+### 2.5 Naming rules and style
+
+- Letters, digits, `_` and `$`; not starting with a digit; case-sensitive (`total` and `Total` are different).
+- Not a **reserved word**, a word with a fixed meaning in the language: `let`, `class`, `return`, `if`, …
+- **camelCase** for variables and functions (`totalPrice`), **PascalCase** for classes (`ShoppingCart`), **UPPER_SNAKE_CASE** for fixed settings (`MAX_RETRIES`).
+- Descriptive names: `price` beats `p`; `isLoggedIn` reads as a yes/no question.
+
+```js
+const 2fast = true;
+```
+
+**Output:**
+
+```text
+SyntaxError: Invalid or unexpected token
+```
+
+### 2.6 Summary
+
+```
+const name = value;     can't be reassigned (default choice)
+let name = value;       can be reassigned;  let x; holds undefined
+x += 1;  x++;           update shortcuts
+{ … }                   a block: let/const inside it exist only there
+var                     old: ignores blocks, allows redeclaring; avoid
+```
+
+**Key terms:**
+
+- **Variable:** a name that refers to a value.
+- **Declaration:** the statement that creates a variable, such as `let x = 1;`.
+- **Reassign:** make an existing variable refer to a new value with `=`.
+- **const:** declares a variable that can't be reassigned.
+- **let:** declares a block-scoped variable that can be reassigned.
+- **var:** the old way to declare variables; ignores blocks and allows redeclaring.
+- **Block:** a group of statements between `{` and `}`.
+- **Scope:** the part of the code where a name exists and can be used.
+- **Reserved word:** a word with a fixed meaning in JavaScript that can't be used as a name, such as `let` or `if`.
+- **camelCase:** a naming style where words are joined and each word after the first starts with a capital letter, as in `totalPrice`.
+
+### Exercises
+
+1. A pen costs ₹20 and the quantity starts at 1. Increase the quantity three times, then print the total. Which variables should be `const`?
+2. Which of these names are valid: `user_name`, `$price`, `first-name`, `class`, `_count2`?
 
 <details>
-<summary><b>Answer</b></summary>
+<summary><b>Answers</b></summary>
 
 ```js
 const PEN_PRICE = 20;
@@ -305,7 +435,8 @@ console.log(PEN_PRICE * quantity);
 80
 ```
 
-The price never changes, so it's `const`; the quantity changes, so it's `let`.
+1. The price never changes, so it's `const`; the quantity changes, so it's `let`.
+2. Valid: `user_name`, `$price`, `_count2`. Invalid: `first-name` (a minus sign isn't allowed) and `class` (a reserved word).
 
 </details>
 
@@ -315,387 +446,656 @@ The price never changes, so it's `const`; the quantity changes, so it's `let`.
 
 ## 3. Data Types: Primitives, Objects, null and undefined
 
-### Theory
+**You need:** Chapter 2. · **You'll learn:** the eight types of value, how numbers really work (and why `0.1 + 0.2` isn't `0.3`), `null` versus `undefined`, and the difference between copying a value and copying a reference.
 
-> **In simple words:** every value in JavaScript has a **type**. There are seven simple, unchangeable ones called **primitives**: numbers, strings (text), booleans (true/false), `undefined`, `null`, BigInt (huge whole numbers) and Symbol (unique ids). Everything else is an **object**: arrays, functions, dates, and your own `{ }` objects. `typeof value` tells you the type (with two famous quirks).
+### 3.1 Every value has a type
 
-| Type | Examples | Notes |
-|---|---|---|
-| `number` | `42`, `3.14`, `-7`, `NaN`, `Infinity` | One type for integers and decimals (64-bit floating point) |
-| `bigint` | `9007199254740993n` | Exact integers of any size (append `n`) |
-| `string` | `"hi"`, `'hi'`, `` `hi ${name}` `` | Immutable text |
-| `boolean` | `true`, `false` | |
-| `undefined` | `undefined` | "No value yet": unassigned variables, missing properties, functions without `return` |
-| `null` | `null` | "Deliberately empty", set by the programmer |
-| `symbol` | `Symbol("id")` | Unique, used as special object keys (Part 3) |
-| `object` | `{}`, `[]`, `new Date()`, functions | Collections and structures; passed **by reference** |
-
-**`typeof` quirks:** `typeof null` is `"object"` (a 1995 bug kept forever); `typeof function(){}` is `"function"`. To check for an array use `Array.isArray(x)`; for null, `x === null`.
-
-**Numbers you must know:**
-
-- `0.1 + 0.2` is `0.30000000000000004` (binary floating point; same as Python). Use integers of paise/cents for money, or `toFixed` for display.
-- Integers are exact only up to `Number.MAX_SAFE_INTEGER` (2⁵³ − 1 ≈ 9 × 10¹⁵); beyond that use BigInt (e.g. 64-bit ids from databases often arrive as strings for this reason).
-- `NaN` ("not a number") comes from invalid maths (`"abc" * 2`) and is **not equal to itself**; test with `Number.isNaN(x)`.
-- Division by zero gives `Infinity`, not an error.
-
-**Primitives vs objects (value vs reference):** copying a primitive copies the value; copying an object copies the **reference**, so two variables can point to the same object, and changing it through one is visible through the other.
-
-### JavaScript
+`typeof value` names a value's **type**:
 
 ```js
-console.log(typeof 42, typeof 3.14, typeof 10n, typeof "hi", typeof true);
-console.log(typeof undefined, typeof null, typeof {}, typeof [], typeof (() => 1), typeof Symbol("id"));
-console.log(Array.isArray([]), Array.isArray({}));
-
-console.log(0.1 + 0.2, (0.1 + 0.2).toFixed(2), 0.1 * 3 === 0.3);
-console.log(Number.MAX_SAFE_INTEGER, 2 ** 53 + 1, 2n ** 53n + 1n);
-console.log("abc" * 2, NaN === NaN, Number.isNaN("abc" * 2), 1 / 0, -1 / 0);
-
-let notSet;
-const person = { name: "Asha" };
-console.log(notSet, person.age, person.name);
-
-let a = 5;
-let b = a;           // copies the value
-b = 99;
-const o1 = { count: 1 };
-const o2 = o1;       // copies the reference: same object
-o2.count = 99;
-console.log(a, o1.count, o1 === o2, { count: 99 } === { count: 99 });
+console.log(typeof 42, typeof 3.14, typeof "hi", typeof true);
+console.log(typeof undefined, typeof 10n, typeof Symbol("id"));
 ```
 
 **Output:**
 
 ```text
-number number bigint string boolean
-undefined object object object function symbol
-true false
-0.30000000000000004 0.30 false
-9007199254740991 9007199254740992 9007199254740993n
-NaN false true Infinity -Infinity
-undefined undefined Asha
-5 99 true false
+number number string boolean
+undefined bigint symbol
 ```
 
-The last line shows why two objects with the same contents aren't `===`: comparison checks whether they're the **same object**, not whether they look alike.
+There are seven **primitive** types (simple values that can't be changed) and one **object** type for everything else:
 
-**Common mistakes:**
+| Type | Examples | Meaning |
+|---|---|---|
+| `number` | `42`, `3.14`, `-7`, `NaN`, `Infinity` | all numbers, whole or decimal |
+| `bigint` | `10n` | whole numbers of any size |
+| `string` | `"hi"`, `'hi'` | text (Chapter 7) |
+| `boolean` | `true`, `false` | yes or no |
+| `undefined` | `undefined` | no value yet |
+| `null` | `null` | deliberately empty |
+| `symbol` | `Symbol("id")` | a unique id (Chapter 21) |
+| `object` | `{ name: "Asha" }`, `[1, 2]` | collections: objects (Chapter 9), arrays (Chapter 8), functions, dates, … |
 
-- ❌ `typeof x === "object"` to detect objects (true for `null` and arrays too).
-- ❌ Comparing with `NaN` using `===`; use `Number.isNaN`.
-- ❌ Floats for money; unsafe integers for ids.
-- ❌ Expecting `===` to compare objects' contents.
+### 3.2 Numbers
 
-### Practice
+JavaScript has one `number` type for whole numbers and decimals, stored as a 64-bit **floating-point** number: a binary fraction times a power of two. Most decimals, like 0.1, have no exact binary form, so tiny rounding errors appear:
 
-1. Write `describe(value)` that returns `"null"`, `"array"` or the `typeof` result, and test it with `null`, `[1]`, `{}`, `"x"`, `5n` and `undefined`.
+```js
+console.log(0.1 + 0.2, 0.1 + 0.2 === 0.3);
+console.log((0.1 + 0.2).toFixed(2));
+```
+
+**Output:**
+
+```text
+0.30000000000000004 false
+0.30
+```
+
+`===` compares two values (Chapter 4). `.toFixed(2)` rounds for display and returns text; the dot calls a **method**, a function attached to a value. For money, store whole paise or cents (`1999`, not `19.99`).
+
+Whole numbers are exact only up to `Number.MAX_SAFE_INTEGER`, 2⁵³ − 1. Beyond it, neighbouring integers can't be told apart; a **BigInt** (a number followed by `n`) is exact at any size:
+
+```js
+console.log(Number.MAX_SAFE_INTEGER);
+console.log(2 ** 53, 2 ** 53 + 1);
+console.log(2n ** 53n + 1n);
+```
+
+**Output:**
+
+```text
+9007199254740991
+9007199254740992 9007199254740992
+9007199254740993n
+```
+
+`**` is "to the power of". Two special values: **`NaN`** ("not a number"), the result of invalid maths, and **`Infinity`**, from dividing by zero. `NaN` is the only value not equal to itself, so test for it with `Number.isNaN`:
+
+```js
+console.log("abc" * 2, 1 / 0, -1 / 0);
+console.log(NaN === NaN, Number.isNaN("abc" * 2));
+```
+
+**Output:**
+
+```text
+NaN Infinity -Infinity
+false true
+```
+
+### 3.3 undefined and null
+
+Both mean "no value", with different intentions:
+
+- **`undefined`:** nothing assigned yet. A declared variable without a value, a missing property, a function that returns nothing.
+- **`null`:** set on purpose by a programmer to say "empty".
+
+```js
+let notSetYet;
+const user = { name: "Asha", phone: null };
+console.log(notSetYet, user.phone, user.email);
+```
+
+**Output:**
+
+```text
+undefined null undefined
+```
+
+`user` is an **object**: a set of named values (Chapter 9). `user.phone` reads one; `user.email` doesn't exist, so it's `undefined`.
+
+One famous quirk: `typeof null` is `"object"`, a bug from 1995 that can't be fixed without breaking old websites. Check for null with `x === null`:
+
+```js
+console.log(typeof null, null === null);
+```
+
+**Output:**
+
+```text
+object true
+```
+
+### 3.4 Values and references
+
+Primitives are **immutable**: no operation changes a primitive; operations make new values. Copying a primitive copies the value, so the two names are independent:
+
+```js
+let a = 5;
+let b = a;
+b = 99;
+console.log(a, b);
+```
+
+**Output:**
+
+```text
+5 99
+```
+
+An object is different. A variable holds a **reference** to it (where it lives in memory), so copying the variable copies the reference, and both names point to the same object:
+
+```js
+const box1 = { count: 1 };
+const box2 = box1;
+box2.count = 99;
+console.log(box1.count, box1 === box2);
+console.log({ count: 99 } === { count: 99 });
+```
+
+**Output:**
+
+```text
+99 true
+false
+```
+
+`===` on objects asks "the same object?", not "the same contents?", so two separately made objects with equal contents aren't `===`.
+
+![Copying a primitive copies the value; copying an object variable copies the arrow, so both names point at one object](images/javascript/03-references.svg)
+
+### 3.5 Summary
+
+```
+typeof x        "number" "bigint" "string" "boolean" "undefined" "symbol" "object" "function";  typeof null → "object"
+0.1 + 0.2       0.30000000000000004: binary floating point; money in whole paise
+2 ** 53 + 1     unsafe; use BigInt: 2n ** 53n + 1n
+NaN             invalid maths; NaN !== NaN; test with Number.isNaN(x)
+undefined       not set yet;   null: deliberately empty
+primitives      copied by value;  objects: variables hold references, === compares identity
+```
+
+**Key terms:**
+
+- **Type:** the kind of a value, which decides what you can do with it; `typeof` names it.
+- **Primitive:** a simple, immutable value: a number, bigint, string, boolean, undefined, null or symbol.
+- **Object:** a collection of named values; arrays, functions and dates are objects too.
+- **Floating point:** the binary format for decimal numbers, which can't store most decimals exactly.
+- **Method:** a function attached to a value or object, called with a dot: `x.toFixed(2)`.
+- **BigInt:** a whole number of any size, written with an `n` suffix, such as `10n`.
+- **NaN (not a number):** the number value produced by invalid maths; not equal to anything, even itself.
+- **Infinity:** the number value for results too large to represent, such as `1 / 0`.
+- **undefined:** the value of anything not yet assigned.
+- **null:** a value that a programmer sets to mean "deliberately empty".
+- **Immutable:** can't be changed after it's created.
+- **Reference:** what an object variable holds: a pointer to the object, not the object itself.
+
+### Exercises
+
+1. Predict the output of `typeof NaN`, `typeof null`, `0.1 * 3 === 0.3` and `9007199254740993 === 9007199254740992`. Check by running them.
+2. A price is ₹19.99 and a customer buys 3. Compute the total exactly using paise.
 
 <details>
-<summary><b>Answer</b></summary>
+<summary><b>Answers</b></summary>
 
 ```js
-function describe(value) {
-  if (value === null) return "null";
-  if (Array.isArray(value)) return "array";
-  return typeof value;
-}
-console.log([null, [1], {}, "x", 5n, undefined].map(describe));
+console.log(typeof NaN, typeof null, 0.1 * 3 === 0.3, 9007199254740993 === 9007199254740992);
+const pricePaise = 1999;
+console.log((pricePaise * 3) / 100);
 ```
 
 **Output:**
 
 ```text
-[ 'null', 'array', 'object', 'string', 'bigint', 'undefined' ]
+number object false true
+59.97
 ```
 
-(`function` and `.map` are covered later in Part 1 and Part 2; here they just run `describe` on each value.)
+1. `NaN` is of type `number` (an invalid number is still a number). `0.1 * 3` is `0.30000000000000004`. The last two numbers are beyond the safe range, so they become the same floating-point number.
+2. Multiply whole paise, then divide by 100 only for display.
 
 </details>
 
-**Learn more:** [MDN: JavaScript data types](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures) · [javascript.info: data types](https://javascript.info/types)
+**Learn more:** [MDN: JavaScript data types](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Data_structures) · [javascript.info: data types](https://javascript.info/types) · [What every programmer should know about floating point](https://floating-point-gui.de/)
 
 ---
 
 ## 4. Operators: Arithmetic, Comparison, Logical, ?? and ?.
 
-### Theory
+**You need:** Chapter 3. · **You'll learn:** to calculate, compare and combine conditions; which values count as false; and the two modern safety operators: `??` for defaults and `?.` for reading from values that may be missing.
 
-> **In simple words:** operators are the symbols that combine values: `+` adds, `===` compares, `&&` means "and". JavaScript also has two modern safety operators you'll use constantly: **`??`** ("use this default if the value is missing") and **`?.`** ("read this property only if the object exists").
+### 4.1 Arithmetic
 
-**Arithmetic:** `+ - * /`, `%` (remainder), `**` (power), `++`/`--`. `+` also joins strings, and if either side is a string, it joins (`"5" + 3` is `"53"`).
-
-**Comparison:** always use **`===`** and **`!==`** (strict: same type and value). The loose `==` converts types first and has confusing rules (Section [16](#16-type-conversion-coercion-and--vs-)). `<`, `>`, `<=`, `>=` compare numbers, and strings alphabetically by character codes (`"Z" < "a"`).
-
-**Logical:** `&&` (and), `||` (or), `!` (not). They **short-circuit** and return one of the operands, not necessarily a boolean: `a || b` returns `a` if it's truthy, otherwise `b`; `a && b` returns `a` if it's falsy, otherwise `b`.
-
-**Falsy values:** `false`, `0`, `-0`, `0n`, `""`, `null`, `undefined`, `NaN`. Everything else is truthy (including `"0"`, `[]` and `{}`).
-
-**`??` (nullish coalescing):** `value ?? fallback` uses the fallback only when `value` is `null` or `undefined`. Prefer it over `||` for defaults, because `||` also replaces valid values like `0` and `""`.
-
-**`?.` (optional chaining):** `order?.customer?.city` returns `undefined` instead of throwing if `order` or `customer` is missing; `fn?.()` calls only if the function exists; `arr?.[0]` for indexes.
-
-**Assignment shortcuts:** `+=`, `-=`, `*=`, `??=` (assign only if null/undefined), `||=`, `&&=`.
-
-**Ternary:** `condition ? valueIfTrue : valueIfFalse`.
-
-### JavaScript
+An **operator** combines values into a new value. Besides `+ - * /` and `**`, `%` gives the **remainder** after division, and `Math` holds maths functions:
 
 ```js
-console.log(7 % 3, 2 ** 10, 7 / 2, Math.floor(7 / 2));
-console.log("5" + 3, "5" - 3, 5 + 3 + "px", "px" + 5 + 3);
-console.log(5 === 5, 5 === "5", 5 == "5", "apple" < "banana", "Zebra" < "apple");
-
-console.log("" || "default", 0 || 10, null || "x");       // || replaces ANY falsy value
-console.log("" ?? "default", 0 ?? 10, null ?? "x");       // ?? only replaces null/undefined
-console.log(true && "shown", 0 && "never", !"text", !!"text");
-
-const order = { id: 90312, customer: { name: "Asha" } };
-const empty = null;
-console.log(order.customer?.name, order.shipping?.city, empty?.customer?.name, order.notify?.());
-
-const settings = { theme: null, pageSize: 0 };
-settings.theme ??= "light";            // was null → set
-settings.pageSize ||= 20;              // 0 is falsy → replaced (maybe not what you wanted!)
-console.log(settings);
-
-const age = 17;
-console.log(age >= 18 ? "adult" : "minor");
+console.log(7 / 2, 7 % 2, 2 ** 10);
+console.log(Math.floor(7 / 2), Math.round(2.5), Math.max(3, 9, 4), Math.abs(-5));
 ```
 
 **Output:**
 
 ```text
-1 1024 3.5 3
-53 2 8px px53
-true false true true true
-default 10 x
- 0 x
-shown 0 false true
-Asha undefined undefined undefined
-{ theme: 'light', pageSize: 20 }
-minor
+3.5 1 1024
+3 3 9 5
 ```
 
-**Common mistakes:**
+`Math.floor` rounds down, `Math.round` to the nearest whole number. `x % 2 === 0` tests for an even number.
 
-- ❌ `==` instead of `===`.
-- ❌ `count || 10` when `count` may legitimately be `0`; use `??`.
-- ❌ `"5" + 3` when you meant arithmetic; convert with `Number("5")` first.
-- ❌ Overusing `?.` to hide bugs where a value should always exist.
-
-### Practice
-
-1. A settings object from an API may be missing fields: `const api = { volume: 0, user: { prefs: { lang: "" } } }`. Read `volume` with a default of 50, `lang` with a default of `"en"` (empty string counts as "not chosen"), and `theme` from `api.user.prefs.theme` with a default of `"dark"`.
-
-<details>
-<summary><b>Answer</b></summary>
+`+` also joins text. If either side is a string, `+` joins, while `-`, `*` and `/` always convert to numbers. It's evaluated left to right:
 
 ```js
-const api = { volume: 0, user: { prefs: { lang: "" } } };
-const volume = api.volume ?? 50;                 // 0 is a valid volume: keep it
-const lang = api.user?.prefs?.lang || "en";      // "" means not chosen: || is right here
-const theme = api.user?.prefs?.theme ?? "dark";
-console.log(volume, lang, theme);
+console.log("5" + 3, "5" - 3, 5 + 3 + "px", "px" + 5 + 3);
+console.log(Number("5") + 3);
+```
+
+**Output:**
+
+```text
+53 2 8px px53
+8
+```
+
+`Number(text)` converts text to a number; use it before arithmetic on text from a form or a file.
+
+### 4.2 Comparison
+
+`===` ("strictly equal") is true when both values have the same type and value; `!==` is its opposite. `<`, `>`, `<=`, `>=` compare numbers, or strings character by character by their codes, where all capitals come before lower case:
+
+```js
+console.log(5 === 5, 5 === "5", 5 !== "5");
+console.log(10 > 9, "apple" < "banana", "Zebra" < "apple");
+```
+
+**Output:**
+
+```text
+true false true
+true true true
+```
+
+There is also a loose `==`, which converts types before comparing, with rules that surprise everyone (`"" == 0` is true). Always use `===`; Chapter 16 explains `==`.
+
+### 4.3 Logical operators and truthiness
+
+`&&` ("and") is true when both sides are; `||` ("or") when at least one is; `!` ("not") flips true and false:
+
+```js
+const age = 25;
+const hasTicket = false;
+console.log(age >= 18 && hasTicket, age >= 18 || hasTicket, !hasTicket);
+```
+
+**Output:**
+
+```text
+false true true
+```
+
+Any value can stand where a boolean is expected. These eight values count as false and are called **falsy**:
+
+```
+false   0   -0   0n   ""   null   undefined   NaN
+```
+
+Everything else is **truthy**, including `"0"`, `"false"` and empty objects and arrays. `!!x` turns a value into its boolean:
+
+```js
+console.log(!!0, !!"", !!"0", !!"false", !!{});
+```
+
+**Output:**
+
+```text
+false false true true true
+```
+
+`&&` and `||` actually return one of their operands, not necessarily `true` or `false`. `a || b` returns `a` if it's truthy, otherwise `b`; `a && b` returns `a` if it's falsy, otherwise `b`. They also **short-circuit**: the right side isn't evaluated when the left side decides the result.
+
+```js
+console.log("Asha" || "Guest", "" || "Guest", 0 || 10);
+console.log("logged in" && "show menu", null && "never");
+```
+
+**Output:**
+
+```text
+Asha Guest 10
+show menu null
+```
+
+### 4.4 Defaults with ??
+
+`a || b` is often used for defaults, but it also replaces valid values like `0` and `""`. The **nullish coalescing** operator `a ?? b` uses `b` only when `a` is `null` or `undefined`:
+
+```js
+const savedVolume = 0;
+console.log(savedVolume || 50, savedVolume ?? 50);
+console.log(null ?? "default", undefined ?? "default", 0 ?? "default");
+```
+
+**Output:**
+
+```text
+50 0
+default default 0
+```
+
+Prefer `??` for defaults; use `||` only when every falsy value should be replaced.
+
+### 4.5 Reading safely with ?.
+
+Reading a property from `null` or `undefined` throws:
+
+```js
+const order = { id: 1, customer: null };
+console.log(order.customer.city);
+```
+
+**Output:**
+
+```text
+TypeError: Cannot read properties of null (reading 'city')
+```
+
+**Optional chaining**, `?.`, stops and returns `undefined` when the value on its left is `null` or `undefined`:
+
+```js
+const order = { id: 1, customer: null };
+const order2 = { id: 2, customer: { city: "Pune" } };
+console.log(order.customer?.city, order2.customer?.city);
+console.log(order.customer?.city ?? "unknown city");
+```
+
+**Output:**
+
+```text
+undefined Pune
+unknown city
+```
+
+`?.` and `??` together read a value that might be missing and fall back to a default. Don't scatter `?.` everywhere, though: if a value should always exist, an error tells you about a bug sooner.
+
+### 4.6 Assignment operators and precedence
+
+`x += 5` is short for `x = x + 5`; likewise `-=`, `*=`, `/=`, `**=`. Three logical versions assign only in some cases:
+
+```js
+const settings = { theme: null, pageSize: 0 };
+settings.theme ??= "light";      // assign if null or undefined
+settings.pageSize ||= 20;        // assign if falsy: replaces the valid 0!
+console.log(settings);
+```
+
+**Output:**
+
+```text
+{ theme: 'light', pageSize: 20 }
+```
+
+`&&=` assigns only if the current value is truthy.
+
+When an expression mixes operators, **precedence** decides the order: `**` first, then `*` `/` `%`, then `+` `-`, then comparisons, then `&&`, then `||` and `??`. Use brackets whenever the order isn't obvious. JavaScript even refuses to mix `??` with `||` without them:
+
+```js
+console.log(2 + 3 * 4, (2 + 3) * 4, 2 ** 3 ** 2);
+```
+
+**Output:**
+
+```text
+14 20 512
+```
+
+`**` groups from the right: `2 ** 3 ** 2` is `2 ** 9`.
+
+### 4.7 Summary
+
+```
++ - * / % **         % remainder; ** power (groups right to left);  "5" + 3 → "53", "5" - 3 → 2
+=== !==              compare type and value (never ==)
+&& || !              and, or, not; && and || return an operand and short-circuit
+falsy                false 0 -0 0n "" null undefined NaN;  everything else truthy
+a ?? b               b only if a is null/undefined
+a?.b                 undefined instead of an error when a is null/undefined
++= -= ??= ||= &&=    assignment shortcuts
+```
+
+**Key terms:**
+
+- **Operator:** a symbol that combines values into a new value, such as `+` or `===`.
+- **Remainder (%):** what's left after whole-number division: `7 % 2` is 1.
+- **Strict equality (===):** true when two values have the same type and value, without conversion.
+- **Falsy:** a value treated as false in a condition: `false`, `0`, `-0`, `0n`, `""`, `null`, `undefined`, `NaN`.
+- **Truthy:** any value that isn't falsy.
+- **Short-circuit:** skipping the right side of `&&`, `||` or `??` because the left side already decides the result.
+- **Nullish coalescing (??):** returns the right side only when the left side is `null` or `undefined`.
+- **Nullish:** either `null` or `undefined`.
+- **Optional chaining (?.):** reads a property, or calls a method, only if the value on the left isn't nullish; otherwise gives `undefined`.
+- **Precedence:** the rules that decide which operator in an expression runs first.
+
+### Exercises
+
+1. An API returns `const api = { volume: 0, prefs: { lang: "" } }`. Read the volume with a default of 50, the language with a default of `"en"` (an empty string means "not chosen"), and `api.prefs.theme` with a default of `"dark"`.
+2. Predict, then check: `"3" * "4"`, `true + 1`, `"b" + "a" + +"a" + "a"`.
+
+<details>
+<summary><b>Answers</b></summary>
+
+```js
+const api = { volume: 0, prefs: { lang: "" } };
+console.log(api.volume ?? 50, api.prefs?.lang || "en", api.prefs?.theme ?? "dark");
+console.log("3" * "4", true + 1, "b" + "a" + +"a" + "a");
 ```
 
 **Output:**
 
 ```text
 0 en dark
+12 2 baNaNa
 ```
+
+1. `0` is a valid volume, so `??` keeps it; an empty language should be replaced, so `||` is right there.
+2. `*` converts both strings to numbers; `true` becomes 1; `+"a"` is the number conversion of `"a"`, which is `NaN`, then joined as text: "baNaNa".
 
 </details>
 
-**Learn more:** [MDN: expressions and operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_operators) · [MDN: nullish coalescing](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Nullish_coalescing) · [MDN: optional chaining](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining)
+**Learn more:** [MDN: expressions and operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_operators) · [MDN: operator precedence](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_precedence)
 
 ---
 
 ## 5. Decisions: if, else, switch and the Ternary Operator
 
-### Theory
+**You need:** Chapter 4. · **You'll learn:** to run code only when a condition holds, to choose between many cases, and to pick between two values in one expression.
 
-> **In simple words:** programs make choices: *if* the cart is empty show a message, *else* show the total. `if` runs a block only when its condition is truthy; `else if` checks another condition; `else` handles everything else. `switch` compares one value against many fixed cases. For choosing between two **values**, the ternary `cond ? a : b` is shorter.
+### 5.1 if and else
 
-**Shape:**
-
-```text
-if (condition) {
-  ...runs when condition is truthy
-} else if (other) {
-  ...
-} else {
-  ...
-}
-```
-
-Only the **first** matching branch runs. Always use braces `{ }`, even for one line (avoids bugs when lines are added later).
-
-**Truthiness:** conditions don't need to be booleans; `if (items.length)`, `if (user)`, `if (name)` rely on truthy/falsy values (Section [4](#4-operators-arithmetic-comparison-logical--and-)). Be careful when `0` or `""` are valid values.
-
-**`switch`** uses `===` to compare, and **falls through** to the next case unless you `break` (or `return`). Group cases by stacking them. `default` handles the rest. For mapping values to results, an **object lookup** (`const labels = { paid: "Paid", ... }`) is often cleaner than a long switch.
-
-**Guard clauses:** in functions, handle the special cases first and `return` early; the main logic then isn't nested inside several `if`s.
-
-### JavaScript
+`if (condition) { … }` runs the block only when the condition is truthy. `else if` tests another condition; `else` catches everything left. Only the first matching branch runs:
 
 ```js
-function shippingFee(total, isMember) {
-  if (isMember) {
-    return 0;                              // guard clause: return early
-  }
-  if (total >= 499) {
-    return 0;
-  } else if (total >= 200) {
-    return 20;
-  } else {
-    return 40;
-  }
+const total = 250;
+let fee;
+if (total >= 499) {
+  fee = 0;
+} else if (total >= 200) {
+  fee = 20;
+} else {
+  fee = 40;
 }
-console.log(shippingFee(100, false), shippingFee(250, false), shippingFee(600, false), shippingFee(50, true));
-
-function statusLabel(status) {
-  switch (status) {
-    case "pending":
-    case "processing":                     // two cases share one result
-      return "On its way to being shipped";
-    case "shipped":
-      return "Shipped";
-    case "delivered":
-      return "Delivered";
-    default:
-      return "Unknown status";
-  }
-}
-console.log(statusLabel("processing"), "|", statusLabel("delivered"), "|", statusLabel("lost"));
-
-const LABELS = { pending: "Pending", shipped: "Shipped" };   // a lookup table instead of switch
-console.log(LABELS["shipped"], LABELS["lost"] ?? "Unknown");
-
-const stock = 0;
-console.log(stock > 0 ? `${stock} left` : "Out of stock");
-
-let day = 3, name;
-switch (day) {
-  case 1: name = "Mon";
-  case 2: name = "Tue";                    // no break: falls through!
-  case 3: name = "Wed";
-  case 4: name = "Thu";
-}
-console.log(name);
+console.log(fee);
 ```
 
 **Output:**
 
 ```text
-40 20 0 0
-On its way to being shipped | Delivered | Unknown status
-Shipped Unknown
-Out of stock
+20
+```
+
+Order matters: test the narrowest condition first. Always use braces, even for one line, so a line added later can't fall outside the `if` by accident.
+
+Conditions can rely on truthiness (Chapter 4.3): `if (name)` means "if name isn't empty". Be careful when `0` or `""` are valid values:
+
+```js
+const stock = 0;
+if (stock) {
+  console.log("in stock");
+} else {
+  console.log("out of stock");
+}
+```
+
+**Output:**
+
+```text
+out of stock
+```
+
+A classic typo: `if (x = 5)` *assigns* 5 (truthy), so the branch always runs. Comparisons use `===`.
+
+### 5.2 Choosing a value: the ternary operator
+
+When both branches only pick a value, the **ternary operator** `condition ? valueIfTrue : valueIfFalse` does it in one expression:
+
+```js
+const age = 17;
+const label = age >= 18 ? "adult" : "minor";
+console.log(label, stock > 0 ? "buy now" : "notify me");
+```
+
+**Output:**
+
+```text
+minor notify me
+```
+
+Avoid nesting ternaries more than one level: an `if`/`else` chain is clearer.
+
+### 5.3 switch
+
+`switch` compares one value against several fixed cases with `===`. Execution starts at the matching `case` and continues until a `break`; `default` runs when nothing matches. Stacked cases share code:
+
+```js
+const status = "processing";
+let message;
+switch (status) {
+  case "pending":
+  case "processing":
+    message = "Preparing your order";
+    break;
+  case "shipped":
+    message = "On the way";
+    break;
+  default:
+    message = "Unknown status";
+}
+console.log(message);
+```
+
+**Output:**
+
+```text
+Preparing your order
+```
+
+Forgetting `break` makes execution **fall through** into the following cases:
+
+```js
+const day = 3;
+let dayName;
+switch (day) {
+  case 1: dayName = "Mon";
+  case 2: dayName = "Tue";
+  case 3: dayName = "Wed";
+  case 4: dayName = "Thu";
+}
+console.log(dayName);
+```
+
+**Output:**
+
+```text
 Thu
 ```
 
-(`function` and `return` are covered in Section [10](#10-functions-declarations-expressions-arrows-and-parameters); here they let us try several inputs.) The last example prints "Thu": without `break`, execution falls through every case after the match.
+It matched 3, set "Wed", then fell through to `case 4`.
 
-**Common mistakes:**
+### 5.4 Lookup tables instead of long chains
 
-- ❌ Missing `break` in `switch`.
-- ❌ `if (x = 5)` (assignment) instead of `===`.
-- ❌ Deeply nested `if`/`else` instead of guard clauses or lookup tables.
-- ❌ `if (count)` when `count` can be a valid `0`.
-
-### Practice
-
-1. Write `grade(score)` returning `"A"` (≥ 90), `"B"` (≥ 75), `"C"` (≥ 50) or `"F"`, and `"invalid"` for scores below 0 or above 100 (check that first). Test with -5, 95, 75, 49 and 101.
-
-<details>
-<summary><b>Answer</b></summary>
+When each case just maps a value to a result, an object (Chapter 9) is shorter than a `switch`; `??` supplies the default:
 
 ```js
-function grade(score) {
-  if (score < 0 || score > 100) return "invalid";
-  if (score >= 90) return "A";
-  if (score >= 75) return "B";
-  if (score >= 50) return "C";
-  return "F";
-}
-console.log([-5, 95, 75, 49, 101].map(grade));
+const LABELS = { pending: "Preparing", shipped: "On the way", delivered: "Delivered" };
+console.log(LABELS["shipped"], LABELS["lost"] ?? "Unknown");
 ```
 
 **Output:**
 
 ```text
-[ 'invalid', 'A', 'B', 'F', 'invalid' ]
+On the way Unknown
 ```
+
+### 5.5 Summary
+
+```
+if (a) { … } else if (b) { … } else { … }    first truthy branch runs; always use braces
+cond ? x : y                                  pick a value
+switch (v) { case 1: … break; default: … }    === matching; without break, falls through
+TABLE[key] ?? fallback                        lookup table instead of a long switch
+```
+
+**Key terms:**
+
+- **Condition:** an expression whose truthiness decides whether code runs.
+- **Branch:** one of the alternative blocks of an `if`/`else` or `switch`.
+- **Ternary operator:** `condition ? a : b`, an expression that gives `a` if the condition is truthy and `b` otherwise.
+- **switch:** a statement that jumps to the `case` matching a value.
+- **Fall through:** in a `switch`, running into the next `case` because there was no `break`.
+- **Lookup table:** an object that maps keys to results, used instead of a chain of conditions.
+
+### Exercises
+
+1. A score of 82 should become a grade: A (≥ 90), B (≥ 75), C (≥ 50), F otherwise, and "invalid" below 0 or above 100. Write the `if` chain.
+2. Rewrite this with a ternary: `let msg; if (count === 1) { msg = "1 item"; } else { msg = count + " items"; }`.
+
+<details>
+<summary><b>Answers</b></summary>
+
+```js
+const score = 82;
+let grade;
+if (score < 0 || score > 100) {
+  grade = "invalid";
+} else if (score >= 90) {
+  grade = "A";
+} else if (score >= 75) {
+  grade = "B";
+} else if (score >= 50) {
+  grade = "C";
+} else {
+  grade = "F";
+}
+const count = 3;
+const msg = count === 1 ? "1 item" : count + " items";
+console.log(grade, msg);
+```
+
+**Output:**
+
+```text
+B 3 items
+```
+
+1. Check the invalid range first, then the grades from highest to lowest.
 
 </details>
 
-**Learn more:** [MDN: if...else](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else) · [MDN: switch](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/switch)
+**Learn more:** [MDN: if...else](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else) · [MDN: switch](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/switch) · [MDN: conditional operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_operator)
 
 ---
 
-## 6. Loops: for, while, for...of and for...in
+## 6. Loops: for, while, do...while, break and continue
 
-### Theory
+**You need:** Chapter 5. · **You'll learn:** to repeat code a set number of times or until a condition changes, and to leave or skip rounds of a loop.
 
-> **In simple words:** a **loop** repeats code: once for each item in a list, or until a condition changes. JavaScript has the classic counting `for` loop, `while` loops, and the modern **`for...of`**, which walks through the **values** of anything iterable (arrays, strings, maps, sets). Later you'll often replace loops with array methods like `map` and `filter` (Section [11](#11-array-methods-map-filter-reduce-find-and-friends)), but loops remain the most flexible tool.
+### 6.1 The for loop
 
-| Loop | Use |
-|---|---|
-| `for (let i = 0; i < n; i++) { }` | Counting, when you need the index |
-| `for (const item of items) { }` | **Values** of arrays, strings, Maps, Sets (the usual choice) |
-| `for (const key in obj) { }` | **Keys** of an object (prefer `Object.keys/entries`; never use for arrays) |
-| `while (cond) { }` | Repeat until something changes |
-| `do { } while (cond)` | Like while, but runs at least once |
-
-**Control:** `break` exits the loop; `continue` skips to the next round; **labels** (`outer:`) let `break outer` exit nested loops.
-
-**Always use `let` (or `const` in `for...of`) for loop variables**, never `var`: each round then gets its own variable, which matters for callbacks (Section [14](#14-closures)).
-
-### JavaScript
+A **loop** repeats a block. The classic `for` loop has three parts in brackets: a start (`let i = 1`), a condition checked before each round (`i <= 3`), and an update after each round (`i++`):
 
 ```js
 for (let i = 1; i <= 3; i++) {
   console.log("round", i);
-}
-
-const fruits = ["apple", "banana", "cherry"];
-for (const fruit of fruits) {
-  console.log(fruit.toUpperCase());
-}
-for (const [index, fruit] of fruits.entries()) {    // index and value together
-  console.log(index, fruit);
-}
-for (const ch of "Hi!") {
-  console.log(ch);
-}
-
-const prices = { pen: 20, bag: 899 };
-for (const key in prices) {
-  console.log(key, prices[key]);
-}
-
-let total = 0;
-for (let n = 1; n <= 100; n++) {
-  if (n % 2 === 0) continue;                         // skip even numbers
-  total += n;
-}
-console.log("sum of odd numbers 1..100:", total);
-
-let attempts = 0;
-while (attempts < 5) {
-  attempts++;
-  if (attempts === 3) break;
-}
-console.log("stopped after", attempts);
-
-outer: for (let r = 0; r < 3; r++) {
-  for (let c = 0; c < 3; c++) {
-    if (r * c === 2) {
-      console.log("found at", r, c);
-      break outer;                                   // leave BOTH loops
-    }
-  }
 }
 ```
 
@@ -705,45 +1105,194 @@ outer: for (let r = 0; r < 3; r++) {
 round 1
 round 2
 round 3
-APPLE
-BANANA
-CHERRY
-0 apple
-1 banana
-2 cherry
-H
-i
-!
-pen 20
-bag 899
-sum of odd numbers 1..100: 2500
-stopped after 3
+```
+
+Each run of the block is an **iteration**. Trace it: `i` starts at 1; 1 ≤ 3, so print and add 1; … when `i` is 4, the condition fails and the loop ends. Declare the counter with `let`, so it exists only inside the loop.
+
+A loop that adds up numbers keeps a running total in a variable declared before the loop:
+
+```js
+let sum = 0;
+for (let n = 1; n <= 100; n++) {
+  sum += n;
+}
+console.log(sum);
+```
+
+**Output:**
+
+```text
+5050
+```
+
+### 6.2 while and do...while
+
+`while (condition) { … }` repeats as long as the condition is truthy. Use it when you don't know the number of rounds in advance, such as "double until above 1000":
+
+```js
+let value = 1;
+let steps = 0;
+while (value <= 1000) {
+  value *= 2;
+  steps++;
+}
+console.log(value, steps);
+```
+
+**Output:**
+
+```text
+1024 10
+```
+
+Something inside the loop must eventually make the condition false; otherwise you have an **infinite loop** and the program hangs.
+
+`do { … } while (condition)` checks the condition after the block, so the block always runs at least once:
+
+```js
+let tries = 10;
+do {
+  console.log("try", tries);
+  tries++;
+} while (tries < 3);
+```
+
+**Output:**
+
+```text
+try 10
+```
+
+### 6.3 break and continue
+
+`break` leaves the loop immediately; `continue` skips the rest of the current round and moves to the next:
+
+```js
+let oddSum = 0;
+for (let n = 1; n <= 10; n++) {
+  if (n % 2 === 0) {
+    continue;                // skip even numbers
+  }
+  oddSum += n;
+}
+let firstBig = 0;
+for (let n = 1; n <= 100; n++) {
+  if (n * n > 50) {
+    firstBig = n;
+    break;                   // stop at the first match
+  }
+}
+console.log(oddSum, firstBig);
+```
+
+**Output:**
+
+```text
+25 8
+```
+
+### 6.4 Nested loops and labels
+
+A loop inside a loop runs the inner loop completely for each round of the outer one, so the inner block runs (outer rounds × inner rounds) times:
+
+```js
+for (let row = 1; row <= 3; row++) {
+  let line = "";
+  for (let col = 1; col <= 3; col++) {
+    line += row * col + " ";
+  }
+  console.log(line);
+}
+```
+
+**Output:**
+
+```text
+1 2 3 
+2 4 6 
+3 6 9
+```
+
+`break` only leaves the innermost loop. To leave both, put a **label** (a name and a colon) before the outer loop and `break` that label:
+
+```js
+outer: for (let r = 0; r < 3; r++) {
+  for (let c = 0; c < 3; c++) {
+    if (r * c === 2) {
+      console.log("found at", r, c);
+      break outer;
+    }
+  }
+}
+```
+
+**Output:**
+
+```text
 found at 1 2
 ```
 
-**Common mistakes:**
+Labels are rare; putting the search in a function and using `return` (Chapter 10) usually reads better.
 
-- ❌ `for...in` over arrays (gives string indexes, includes inherited keys); use `for...of`.
-- ❌ Off-by-one: `i <= arr.length` reads past the end.
-- ❌ Infinite `while` loops that never change the condition.
-- ❌ Modifying an array (adding/removing) while looping over it.
+### 6.5 Summary
 
-### Practice
+```
+for (let i = 0; i < n; i++) { … }    counting loop: start; condition; update
+while (cond) { … }                    repeat while cond is truthy (something must change it)
+do { … } while (cond)                 runs at least once
+break  continue                       leave the loop  /  skip to the next round
+label: for (…) { … break label; }     leave an outer loop
+```
 
-1. Print a right-angled triangle of `*` with 4 rows using nested loops, then find the first number above 100 divisible by both 7 and 9 using a `while` loop.
+Chapter 8 adds `for...of` for the items of an array, and Chapter 9 adds `for...in` for the keys of an object.
+
+**Key terms:**
+
+- **Loop:** code that repeats a block.
+- **Iteration:** one run of a loop's block.
+- **for loop:** a loop with a start, a condition and an update in its header.
+- **while loop:** a loop that repeats as long as its condition is truthy.
+- **do...while loop:** a loop that checks its condition after each round, so it runs at least once.
+- **Infinite loop:** a loop whose condition never becomes false.
+- **break:** a statement that leaves the current loop (or `switch`) immediately.
+- **continue:** a statement that skips to the next iteration of the loop.
+- **Label:** a name before a loop that `break` or `continue` can refer to.
+
+### Exercises
+
+1. Print a triangle of `*` with 4 rows (`*`, `**`, `***`, `****`) using nested loops.
+2. Find the first number above 100 divisible by both 7 and 9, with a `while` loop.
+3. FizzBuzz: for 1 to 15, print "Fizz" for multiples of 3, "Buzz" for multiples of 5, "FizzBuzz" for both, otherwise the number.
 
 <details>
-<summary><b>Answer</b></summary>
+<summary><b>Answers</b></summary>
 
 ```js
 for (let row = 1; row <= 4; row++) {
-  let line = "";
-  for (let i = 0; i < row; i++) line += "*";
-  console.log(line);
+  let stars = "";
+  for (let i = 0; i < row; i++) {
+    stars += "*";
+  }
+  console.log(stars);
 }
-let n = 101;
-while (n % 7 !== 0 || n % 9 !== 0) n++;
-console.log(n);
+let candidate = 101;
+while (candidate % 7 !== 0 || candidate % 9 !== 0) {
+  candidate++;
+}
+console.log(candidate);
+let fizz = "";
+for (let n = 1; n <= 15; n++) {
+  if (n % 15 === 0) {
+    fizz += "FizzBuzz ";
+  } else if (n % 3 === 0) {
+    fizz += "Fizz ";
+  } else if (n % 5 === 0) {
+    fizz += "Buzz ";
+  } else {
+    fizz += n + " ";
+  }
+}
+console.log(fizz);
 ```
 
 **Output:**
@@ -754,9 +1303,18 @@ console.log(n);
 ***
 ****
 126
+1 2 Fizz 4 Buzz Fizz 7 8 Fizz Buzz 11 Fizz 13 14 FizzBuzz
 ```
 
+3. Test 15 (both) first: otherwise the "multiple of 3" branch would catch it.
+
 </details>
+
+**Practice:**
+
+| # | Problem (LeetCode) | Difficulty |
+|---|---|---|
+| 1 | [412. Fizz Buzz](https://leetcode.com/problems/fizz-buzz/) | 🟢 Easy |
 
 **Learn more:** [MDN: loops and iteration](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration) · [javascript.info: loops](https://javascript.info/while-for)
 
@@ -764,300 +1322,761 @@ console.log(n);
 
 ## 7. Strings and Template Literals
 
-### Theory
+**You need:** Chapter 6. · **You'll learn:** to build, read, search, cut and change text; to put values into text with template literals; and why an emoji can have length 2.
 
-> **In simple words:** a **string** is text. JavaScript strings are **immutable** (methods return new strings), are indexed from 0, and come with many built-in methods for searching, slicing, changing case and trimming. **Template literals** (backticks `` ` ``) let you insert values with `${...}` and write multi-line text, and are the modern way to build strings.
+### 7.1 Creating strings
 
-**Creating:** `"double"`, `'single'` (identical), `` `template ${expr}` ``. Escapes: `\n`, `\t`, `\\`, `\"`.
+A **string** is a sequence of characters, written in double quotes, single quotes (identical) or backticks. A backslash starts an **escape sequence** for characters you can't type directly: `\n` (new line), `\t` (tab), `\"`, `\\`:
 
-**Most-used methods:**
+```js
+const single = 'It\'s here';
+const double = "Say \"hi\"";
+console.log(single, double, "line 1\nline 2");
+```
 
-| Method | Does |
-|---|---|
-| `length`, `s[i]`, `s.at(-1)` | Length; a character; negative index from the end |
-| `slice(start, end)` | Part of the string (end excluded; negatives count from the end) |
-| `includes`, `startsWith`, `endsWith`, `indexOf` | Search |
-| `toUpperCase`, `toLowerCase` | Case |
-| `trim`, `trimStart`, `trimEnd` | Remove whitespace |
-| `split(sep)`, `array.join(sep)` | Text ↔ array |
-| `replace(a, b)`, `replaceAll(a, b)` | Replace first / all (regex too, Section [27](#27-regular-expressions)) |
-| `padStart(n, ch)`, `padEnd` | Pad to a width (`"7".padStart(3, "0")` → `"007"`) |
-| `repeat(n)` | Repeat |
-| `localeCompare` | Language-aware sorting/comparison |
+**Output:**
 
-**Unicode:** strings are UTF-16 internally; most characters are one "code unit", but emoji and some scripts use two, so `"👍".length` is 2. Use `[...str]` or `Array.from(str)` to iterate by code point, and `Intl.Segmenter` for user-perceived characters.
+```text
+It's here Say "hi" line 1
+line 2
+```
 
-**Tagged templates** (`` html`<p>${x}</p>` ``) call a function with the literal parts and values separately, used for safe HTML/SQL building (similar in spirit to Python 3.14's t-strings).
+### 7.2 Template literals
 
-### JavaScript
+A **template literal** uses backticks and can contain `${expression}`, which inserts the value of any expression, and can span lines:
+
+```js
+const name = "Asha";
+const items = 3;
+const total = 1497;
+const message = `Hi ${name}, you have ${items} items.
+Total: ₹${total} (${items > 2 ? "free shipping" : "₹40 shipping"})`;
+console.log(message);
+```
+
+**Output:**
+
+```text
+Hi Asha, you have 3 items.
+Total: ₹1497 (free shipping)
+```
+
+This is called **interpolation**. It reads better than joining with `+` and avoids forgotten spaces.
+
+### 7.3 Characters and length
+
+Positions start at 0. `s[i]` reads one character, `s.at(-1)` counts from the end, and `s.length` is the number of characters:
 
 ```js
 const city = "Bengaluru";
-console.log(city.length, city[0], city.at(-1), city.slice(0, 4), city.slice(-4));
-console.log(city.toUpperCase(), city.includes("galu"), city.startsWith("Ben"), city.indexOf("u"));
-console.log("  padded  ".trim() + "|", "a,b,,c".split(","), ["x", "y", "z"].join(" + "));
-console.log("cat hat cat".replace("cat", "dog"), "|", "cat hat cat".replaceAll("cat", "dog"));
-console.log("7".padStart(3, "0"), "ab".repeat(3), "Order".padEnd(8, ".") + "90312");
-
-const name = "Asha", items = 3, total = 1497;
-const message = `Hi ${name}, you have ${items} items.
-Total: ₹${total.toLocaleString("en-IN")} (${items > 2 ? "free shipping" : "₹40 shipping"})`;
-console.log(message);
-
-console.log("👍".length, [..."👍🏽ok"].length, "é".normalize("NFD").length);
-const upper = city.toUpperCase();
-console.log(city, upper);                       // the original is unchanged (immutable)
+console.log(city.length, city[0], city[city.length - 1], city.at(-1), city[20]);
 ```
 
 **Output:**
 
 ```text
-9 B u Beng luru
-BENGALURU true true 6
-padded| [ 'a', 'b', '', 'c' ] x + y + z
-dog hat cat | dog hat dog
-007 ababab Order...90312
-Hi Asha, you have 3 items.
-Total: ₹1,497 (free shipping)
-2 4 2
-Bengaluru BENGALURU
+9 B u u undefined
 ```
 
-**Common mistakes:**
+Reading past the end gives `undefined`, not an error. Strings are immutable: `city[0] = "b"` silently does nothing, and every method below returns a **new** string.
 
-- ❌ Expecting `str.toUpperCase()` to change `str`.
-- ❌ `replace` when you meant `replaceAll` (only the first match is replaced).
-- ❌ Building HTML with templates from user input (XSS, Section [35](#35-frontend-security-xss-csrf-csp-prototype-pollution-and-the-supply-chain)).
-- ❌ Counting characters with `.length` for emoji-heavy text.
-
-### Practice
-
-1. Turn `"  asha RAO  "` into `"Asha Rao"` (trim, split on spaces, capitalise each part), and format an order id `42` as `"ORD-00042"`.
-
-<details>
-<summary><b>Answer</b></summary>
+A `for` loop can visit each character; Chapter 8 shows the shorter `for...of`:
 
 ```js
-const raw = "  asha RAO  ";
-const pretty = raw.trim().split(" ").map(w => w[0].toUpperCase() + w.slice(1).toLowerCase()).join(" ");
-console.log(pretty, `ORD-${String(42).padStart(5, "0")}`);
+let vowels = 0;
+for (let i = 0; i < city.length; i++) {
+  if ("aeiou".includes(city[i])) {
+    vowels++;
+  }
+}
+console.log(vowels);
 ```
-
-(`.map(w => ...)` applies a small function to each word; arrow functions and `map` are explained in the next few sections.)
 
 **Output:**
 
 ```text
-Asha Rao ORD-00042
+4
 ```
+
+### 7.4 Searching and cutting
+
+```js
+console.log(city.includes("galu"), city.startsWith("Ben"), city.endsWith("ru"));
+console.log(city.indexOf("u"), city.lastIndexOf("u"), city.indexOf("z"));
+console.log(city.slice(0, 4), city.slice(4), city.slice(-4));
+```
+
+**Output:**
+
+```text
+true true true
+6 8 -1
+Beng aluru luru
+```
+
+`indexOf` returns the first position of a match, or −1 if there's none. `slice(start, end)` returns the part from `start` up to but **not including** `end`; negative numbers count from the end; leaving out `end` means "to the end".
+
+### 7.5 Changing case, trimming, padding and replacing
+
+```js
+console.log(city.toUpperCase(), city.toLowerCase(), city);
+console.log("  padded  ".trim() + "|", "7".padStart(3, "0"), "ab".repeat(3));
+console.log("cat hat cat".replace("cat", "dog"), "|", "cat hat cat".replaceAll("cat", "dog"));
+```
+
+**Output:**
+
+```text
+BENGALURU bengaluru Bengaluru
+padded| 007 ababab
+dog hat cat | dog hat dog
+```
+
+`city` itself is unchanged. `replace` replaces only the first match; `replaceAll` replaces every one. (Both also accept patterns, Chapter 27.)
+
+### 7.6 Splitting and joining
+
+`split(separator)` cuts a string into an **array** of pieces (Chapter 8); `join(separator)` glues an array back into a string:
+
+```js
+const csvLine = "pen,20,blue";
+const parts = csvLine.split(",");
+console.log(parts, parts[1], parts.join(" | "));
+console.log("a,b,,c".split(","), "hi".split(""));
+```
+
+**Output:**
+
+```text
+[ 'pen', '20', 'blue' ] 20 pen | 20 | blue
+[ 'a', 'b', '', 'c' ] [ 'h', 'i' ]
+```
+
+### 7.7 Converting between strings and numbers
+
+```js
+console.log(String(42) + "!", (42).toString(2), Number("3.5"), Number("3.5kg"));
+console.log(parseInt("42px"), parseFloat("3.5kg"), parseInt("ff", 16));
+```
+
+**Output:**
+
+```text
+42! 101010 3.5 NaN
+42 3.5 255
+```
+
+`Number` rejects anything that isn't entirely a number (`NaN`); `parseInt` and `parseFloat` read as far as they can. `toString(2)` and `parseInt(text, 16)` convert to and from other bases.
+
+### 7.8 Unicode and length
+
+Text is stored as **UTF-16**: each character is one or two 16-bit **code units**. Most characters take one, but emoji and some rare characters take two, and `length` counts code units:
+
+```js
+console.log("hi".length, "👍".length, "👍🏽".length);
+```
+
+**Output:**
+
+```text
+2 2 4
+```
+
+`👍🏽` is a thumbs-up plus a skin-tone modifier, each two code units. Chapter 8 shows how to count real characters; Chapter 28's `Intl.Segmenter` counts what a reader sees as one character.
+
+### 7.9 Comparing strings
+
+`===` compares exactly; `<` compares by character codes, so capitals sort before lower case, and accented letters sort after `z`. `localeCompare` compares the way a language does: it returns a negative number, 0 or a positive number:
+
+```js
+console.log("Zebra" < "apple", "é" > "z", "é".localeCompare("z"), "a".localeCompare("B"));
+```
+
+**Output:**
+
+```text
+true true -1 -1
+```
+
+### 7.10 Summary
+
+```
+"…"  '…'  `…${expr}…`        quotes; template literals interpolate and span lines
+s.length  s[i]  s.at(-1)       length (UTF-16 code units), character, from the end
+includes startsWith endsWith indexOf     search (indexOf → -1 if absent)
+slice(start, end)              end excluded; negatives count from the end
+toUpperCase toLowerCase trim padStart repeat replace replaceAll      return new strings
+split(sep) → array;  arr.join(sep) → string
+Number("3.5")  parseInt("42px")  String(42)  n.toString(2)
+a.localeCompare(b)             language-aware comparison
+```
+
+**Key terms:**
+
+- **String:** a sequence of characters; immutable.
+- **Escape sequence:** a backslash followed by a character, standing for a special character such as `\n` (new line).
+- **Template literal:** a string in backticks that can contain `${…}` expressions and span lines.
+- **Interpolation:** inserting the value of an expression into a string.
+- **Index:** the position of an item, counting from 0.
+- **UTF-16:** the encoding JavaScript strings use: each character is one or two 16-bit code units.
+- **Code unit:** one 16-bit piece of a UTF-16 string; `length` counts these.
+
+### Exercises
+
+1. Turn `"  asha RAO  "` into `"Asha Rao"` without loops beyond what you need: trim, split on the space, and capitalise each part.
+2. Format the order number 42 as `"ORD-00042"`.
+3. Count how many times the letter "a" appears in "banana" with a loop.
+
+<details>
+<summary><b>Answers</b></summary>
+
+```js
+const raw = "  asha RAO  ".trim().split(" ");
+const first = raw[0][0].toUpperCase() + raw[0].slice(1).toLowerCase();
+const last = raw[1][0].toUpperCase() + raw[1].slice(1).toLowerCase();
+console.log(`${first} ${last}`);
+console.log(`ORD-${String(42).padStart(5, "0")}`);
+let countA = 0;
+for (let i = 0; i < "banana".length; i++) {
+  if ("banana"[i] === "a") {
+    countA++;
+  }
+}
+console.log(countA);
+```
+
+**Output:**
+
+```text
+Asha Rao
+ORD-00042
+3
+```
+
+1. Chapter 11 shows how to do this for any number of words with `map`.
 
 </details>
 
-**Learn more:** [MDN: String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) · [MDN: template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals)
+**Practice:**
+
+| # | Problem (LeetCode) | Difficulty |
+|---|---|---|
+| 1 | [344. Reverse String](https://leetcode.com/problems/reverse-string/) | 🟢 Easy |
+| 2 | [125. Valid Palindrome](https://leetcode.com/problems/valid-palindrome/) | 🟢 Easy |
+| 3 | [58. Length of Last Word](https://leetcode.com/problems/length-of-last-word/) | 🟢 Easy |
+
+**Learn more:** [MDN: String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) · [MDN: template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) · [javascript.info: strings](https://javascript.info/string)
 
 ---
 
 ## 8. Arrays: Ordered Lists
 
-### Theory
+**You need:** Chapters 6–7. · **You'll learn:** to store lists, read and change items by position, add and remove items at either end or in the middle, search, copy, and loop with `for...of`.
 
-> **In simple words:** an **array** is an ordered list of values in square brackets: `const scores = [90, 72, 85]`. Items are numbered from 0. You can add and remove items at either end, change items by position, search, sort and loop. Arrays are objects, so `const` arrays can still change, and copying a variable doesn't copy the array.
+### 8.1 Creating and reading
 
-**Basics:** `arr.length`, `arr[0]`, `arr.at(-1)` (last), `arr[i] = x`, `Array.isArray(arr)`. Reading past the end gives `undefined` (no error).
+An **array** is an ordered list of values in square brackets. Each value is an **element**, numbered from 0:
 
-**Adding/removing (these change the array):**
+```js
+const scores = [90, 72, 85];
+console.log(scores, scores.length, scores[0], scores.at(-1), scores[10]);
+console.log(typeof scores, Array.isArray(scores));
+```
 
-| Method | Does | Speed |
+**Output:**
+
+```text
+[ 90, 72, 85 ] 3 90 85 undefined
+object true
+```
+
+Arrays are objects (`typeof` says so); `Array.isArray` is the reliable test. Elements can be of any type, mixed, including other arrays:
+
+```js
+const grid = [[1, 2], [3, 4]];
+console.log(grid[1][0], [1, "two", true, null].length);
+```
+
+**Output:**
+
+```text
+3 4
+```
+
+### 8.2 Changing elements
+
+Assigning to a position replaces that element. A `const` array can still change: `const` fixes which array the name refers to, not its contents (Chapter 3.4):
+
+```js
+const colours = ["red", "green", "blue"];
+colours[1] = "lime";
+console.log(colours);
+```
+
+**Output:**
+
+```text
+[ 'red', 'lime', 'blue' ]
+```
+
+### 8.3 Adding and removing
+
+| Method | Does | Returns |
 |---|---|---|
-| `push(x)` / `pop()` | Add / remove at the end | Fast |
-| `unshift(x)` / `shift()` | Add / remove at the start | Slow for big arrays (shifts everything) |
-| `splice(start, deleteCount, ...items)` | Remove/insert anywhere | |
-| `sort()`, `reverse()`, `fill()` | In place | |
-
-**Not changing it:** `slice(start, end)` (a copy of part), `concat`, `indexOf`, `includes`, `join`, and the ES2023 copying versions **`toSorted()`, `toReversed()`, `toSpliced()`, `with(i, x)`**, which return new arrays and leave the original alone (great for React state, `react.md`).
-
-**The sort trap:** `sort()` with no argument sorts **as strings**: `[10, 9, 1].sort()` gives `[1, 10, 9]`. Always pass a compare function for numbers: `sort((a, b) => a - b)`.
-
-**Copies:** `[...arr]` or `arr.slice()` make a shallow copy (nested objects are still shared; Section [18](#18-objects-in-depth-copying-property-descriptors-getterssetters-and-immutability)).
-
-**Creating arrays:** literals, `Array.from({ length: 5 }, (_, i) => i)`, `Array.of(...)`, `"a,b".split(",")`, `new Array(3).fill(0)`.
-
-The most powerful array tools, `map`, `filter`, `reduce`, `find` and friends, get their own section (Section [11](#11-array-methods-map-filter-reduce-find-and-friends)).
-
-### JavaScript
+| `push(x, …)` / `pop()` | add / remove at the end | new length / removed element |
+| `unshift(x, …)` / `shift()` | add / remove at the start | new length / removed element |
+| `splice(start, count, …items)` | remove `count` elements at `start`, insert `items` there | array of removed elements |
 
 ```js
 const cart = ["pen", "notebook"];
 cart.push("bag");
 cart.unshift("stickers");
-console.log(cart, cart.length, cart[0], cart.at(-1), cart[10]);
-const removedLast = cart.pop();
-const removedFirst = cart.shift();
-console.log(removedLast, removedFirst, cart);
-
-const letters = ["a", "b", "c", "d", "e"];
-const removed = letters.splice(1, 2, "X");        // at index 1 remove 2 items, insert "X"
-console.log(removed, letters);
-console.log(letters.slice(1, 3), letters.includes("X"), letters.indexOf("d"), letters.join(""));
-
-const nums = [10, 9, 1, 100];
-console.log([...nums].sort(), [...nums].sort((a, b) => a - b));   // the string-sort trap vs numeric
-const sorted = nums.toSorted((a, b) => b - a);    // new array, original untouched
-console.log(sorted, nums, nums.with(0, 42), nums.toReversed());
-
-const alias = nums;
-const copy = [...nums];
-alias.push(7);
-console.log(nums.length, copy.length);
-console.log(Array.from({ length: 5 }, (_, i) => i * i), new Array(3).fill(0));
+console.log(cart);
+console.log(cart.pop(), cart.shift(), cart);
 ```
 
 **Output:**
 
 ```text
-[ 'stickers', 'pen', 'notebook', 'bag' ] 4 stickers bag undefined
+[ 'stickers', 'pen', 'notebook', 'bag' ]
 bag stickers [ 'pen', 'notebook' ]
-[ 'b', 'c' ] [ 'a', 'X', 'd', 'e' ]
-[ 'X', 'd' ] true 2 aXde
-[ 1, 10, 100, 9 ] [ 1, 9, 10, 100 ]
-[ 100, 10, 9, 1 ] [ 10, 9, 1, 100 ] [ 42, 9, 1, 100 ] [ 100, 1, 9, 10 ]
-5 4
-[ 0, 1, 4, 9, 16 ] [ 0, 0, 0 ]
 ```
 
-**Common mistakes:**
+`push` and `pop` are fast. `shift` and `unshift` must move every other element by one position, so they're slow on very large arrays.
 
-- ❌ `sort()` on numbers without a compare function.
-- ❌ Mutating arrays you received (e.g. React state, function arguments) when a copy was intended; use `toSorted`, spread, etc.
-- ❌ `arr.length = 0` or `delete arr[i]` surprises (`delete` leaves a hole).
-- ❌ `for...in` over arrays.
+```js
+const letters = ["a", "b", "c", "d", "e"];
+const removed = letters.splice(1, 2, "X");
+console.log(removed, letters);
+```
 
-### Practice
+**Output:**
 
-1. Given `const temps = [31, 35, 29, 40, 33]`, print the three highest (without changing `temps`), the array with `29` replaced by `30` (also without changing it), and `temps` itself.
+```text
+[ 'b', 'c' ] [ 'a', 'X', 'd', 'e' ]
+```
+
+`push`, `pop`, `shift`, `unshift` and `splice` all **mutate** (change) the array in place.
+
+### 8.4 Searching and slicing
+
+```js
+const nums = [10, 9, 1, 100, 9];
+console.log(nums.includes(9), nums.indexOf(9), nums.lastIndexOf(9), nums.indexOf(7));
+console.log(nums.slice(1, 3), nums.slice(-2), nums.join("-"));
+```
+
+**Output:**
+
+```text
+true 1 4 -1
+[ 9, 1 ] [ 100, 9 ] 10-9-1-100-9
+```
+
+These don't change `nums`. `slice` works as for strings: end excluded, negatives from the end.
+
+### 8.5 Sorting, and the sort trap
+
+`sort()` sorts in place, and `reverse()` reverses in place. With no arguments, `sort` compares elements **as strings**, so numbers sort by their first digit:
+
+```js
+const unsorted = [10, 9, 1, 100];
+unsorted.sort();
+console.log(unsorted, ["pear", "apple", "fig"].sort());
+```
+
+**Output:**
+
+```text
+[ 1, 10, 100, 9 ] [ 'apple', 'fig', 'pear' ]
+```
+
+For numbers, `sort` needs a compare function; Chapter 10 shows `sort((a, b) => a - b)`.
+
+The **copying** versions, added in ES2023, return a new array and leave the original alone: `toSorted()`, `toReversed()`, `toSpliced()`, and `with(index, value)` to replace one element:
+
+```js
+const base = [3, 1, 2];
+console.log(base.toSorted(), base.toReversed(), base.with(0, 99), base);
+```
+
+**Output:**
+
+```text
+[ 1, 2, 3 ] [ 2, 1, 3 ] [ 99, 1, 2 ] [ 3, 1, 2 ]
+```
+
+Prefer the copying versions when other code may hold the same array.
+
+### 8.6 Copies share references
+
+Assigning an array to another name doesn't copy it (Chapter 3.4). The **spread syntax** `[...arr]` builds a new array with the same elements; `slice()` does too. Chapter 12 covers spread fully.
+
+```js
+const original = [1, 2, 3];
+const alias = original;
+const copy = [...original];
+alias.push(4);
+console.log(original.length, copy.length);
+```
+
+**Output:**
+
+```text
+4 3
+```
+
+This is a **shallow copy**: if elements are objects, both arrays share them (Chapter 18).
+
+### 8.7 for...of
+
+`for (const x of array)` gives each element in turn, without an index. It works on strings too, one real character at a time:
+
+```js
+for (const colour of colours) {
+  console.log(colour.toUpperCase());
+}
+let chars = 0;
+for (const ch of "👍🏽ok") {
+  chars++;
+}
+console.log(chars);
+```
+
+**Output:**
+
+```text
+RED
+LIME
+BLUE
+4
+```
+
+`for...of` steps through **code points** (whole characters): the thumb, the skin tone, `o` and `k` make 4, while `"👍🏽ok".length` counts 6 code units. Use a classic `for` loop when you need the index, and `for...of` otherwise.
+
+### 8.8 Building arrays
+
+```js
+console.log(Array.from("abc"), Array.of(7), [1, 2, 3].fill(0));
+const squares = [];
+for (let i = 1; i <= 5; i++) {
+  squares.push(i * i);
+}
+console.log(squares);
+```
+
+**Output:**
+
+```text
+[ 'a', 'b', 'c' ] [ 7 ] [ 0, 0, 0 ]
+[ 1, 4, 9, 16, 25 ]
+```
+
+`Array.from` builds an array from anything that can be looped over; `Array.of` from its arguments; `fill(value)` overwrites every element. Chapter 11 shows `Array.from` with a function, the usual way to build arrays like 0, 1, 4, 9, 16.
+
+### 8.9 Summary
+
+```
+[a, b, c]  arr.length  arr[i]  arr.at(-1)  Array.isArray(x)
+push pop / unshift shift / splice(start, count, …items)    mutate in place
+includes indexOf slice join                                   don't mutate
+sort() reverse()            in place; sort() compares as strings!
+toSorted toReversed toSpliced with(i, x)                      copying versions
+[...arr]  arr.slice()       shallow copies;  const b = a is NOT a copy
+for (const x of arr)        each element (each character for strings)
+```
+
+**Key terms:**
+
+- **Array:** an ordered list of values, numbered from 0.
+- **Element:** one value in an array.
+- **Mutate:** change an object or array in place.
+- **Spread syntax:** `...` before an array (or other iterable) inside `[ ]` or a call, expanding it into separate elements.
+- **Shallow copy:** a new array or object whose elements are the same values (so shared objects stay shared).
+- **for...of:** a loop over the values of an array, string or other iterable.
+- **Code point:** a whole Unicode character, made of one or two UTF-16 code units.
+
+### Exercises
+
+1. Given `const temps = [31, 35, 29, 40, 33]`, print a copy with `29` replaced by `30`, and the copy reversed, without changing `temps`.
+2. Find the largest number in `[4, 18, 7, 21, 3]` with a `for...of` loop.
+3. Remove the duplicates from `["a", "b", "a", "c", "b"]` with a loop and `includes`.
 
 <details>
-<summary><b>Answer</b></summary>
+<summary><b>Answers</b></summary>
 
 ```js
 const temps = [31, 35, 29, 40, 33];
-console.log(temps.toSorted((a, b) => b - a).slice(0, 3));
-console.log(temps.with(temps.indexOf(29), 30));
-console.log(temps);
+const fixed = temps.with(temps.indexOf(29), 30);
+console.log(fixed, fixed.toReversed(), temps);
+let largest = -Infinity;
+for (const n of [4, 18, 7, 21, 3]) {
+  if (n > largest) {
+    largest = n;
+  }
+}
+console.log(largest);
+const unique = [];
+for (const item of ["a", "b", "a", "c", "b"]) {
+  if (!unique.includes(item)) {
+    unique.push(item);
+  }
+}
+console.log(unique);
 ```
 
 **Output:**
 
 ```text
-[ 40, 35, 33 ]
-[ 31, 35, 30, 40, 33 ]
-[ 31, 35, 29, 40, 33 ]
+[ 31, 35, 30, 40, 33 ] [ 33, 40, 30, 35, 31 ] [ 31, 35, 29, 40, 33 ]
+21
+[ 'a', 'b', 'c' ]
 ```
+
+2. Starting from `-Infinity` means any number replaces it.
+3. `includes` scans the whole array, so this takes about n² steps; Chapter 21's `Set` does it in one pass.
 
 </details>
 
-**Learn more:** [MDN: Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array) · [MDN: change array by copy (toSorted, with)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/toSorted)
+**Practice:**
+
+| # | Problem (LeetCode) | Difficulty |
+|---|---|---|
+| 1 | [2619. Array Prototype Last](https://leetcode.com/problems/array-prototype-last/) | 🟢 Easy |
+| 2 | [27. Remove Element](https://leetcode.com/problems/remove-element/) | 🟢 Easy |
+| 3 | [88. Merge Sorted Array](https://leetcode.com/problems/merge-sorted-array/) | 🟢 Easy |
+
+**Learn more:** [MDN: Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array) · [javascript.info: arrays](https://javascript.info/array)
 
 ---
 
 ## 9. Objects: Grouping Data with Keys
 
-### Theory
+**You need:** Chapter 8. · **You'll learn:** to group related values under names, read and change them, loop over them, nest objects and arrays, and convert objects to and from JSON text.
 
-> **In simple words:** an **object** groups related values under names (**keys** or **properties**): `const user = { name: "Asha", age: 29, city: "Pune" }`. It's how JavaScript represents almost everything: a user, an order, a settings file, a JSON API response. You read and change properties with a dot (`user.name`) or brackets (`user["name"]`), and add or remove properties at any time.
+### 9.1 Creating and reading
 
-**Basics:**
-
-| Operation | Syntax |
-|---|---|
-| Create | `{ key: value, other: 2 }` |
-| Read | `obj.key`, `obj["key with spaces"]`, `obj[variable]` |
-| Add / change | `obj.key = value` |
-| Delete | `delete obj.key` |
-| Check | `"key" in obj`, `Object.hasOwn(obj, "key")` |
-| Keys / values / pairs | `Object.keys(obj)`, `Object.values(obj)`, `Object.entries(obj)` |
-| Pairs → object | `Object.fromEntries(pairs)` |
-| Shorthand | `{ name, age }` means `{ name: name, age: age }` |
-| Computed key | `{ [field]: value }` |
-| Methods | `{ greet() { return "hi"; } }` |
-
-Values can be anything, including arrays, other objects (nesting) and functions (**methods**). Reading a missing property gives `undefined`; reading a property **of** `undefined` throws, which is why `?.` exists.
-
-**JSON:** the text format for sending objects over the network: `JSON.stringify(obj)` (object → text) and `JSON.parse(text)` (text → object). JSON has no functions, `undefined`, dates or BigInt: those are dropped or must be converted.
-
-**Objects are references:** `const b = a` doesn't copy. `{ ...a }` or `structuredClone(a)` do (shallow vs deep, Section [18](#18-objects-in-depth-copying-property-descriptors-getterssetters-and-immutability)).
-
-### JavaScript
+An **object** groups values under names. Each name–value pair is a **property**; the name is its **key**:
 
 ```js
-const user = { name: "Asha", age: 29, city: "Pune", tags: ["plus", "early-adopter"] };
+const user = { name: "Asha", age: 29, city: "Pune", tags: ["plus", "early"] };
 console.log(user.name, user["city"], user.tags[0], user.email);
-
-user.email = "asha@example.com";          // add
-user.age += 1;                            // change
-delete user.city;                         // remove
-console.log(user);
-console.log("email" in user, Object.hasOwn(user, "city"));
-console.log(Object.keys(user), Object.values(user).length);
-for (const [key, value] of Object.entries(user)) {
-  console.log(`${key} = ${value}`);
-}
-
-const field = "status";
-const name = "Ravi", age = 31;
-const ravi = { name, age, [field]: "active", greet() { return `Hi, I'm ${this.name}`; } };
-console.log(ravi, ravi.greet());
-
-const text = JSON.stringify({ id: 90312, items: [{ sku: "P1", qty: 2 }], paid: true, note: undefined });
-console.log(text);
-console.log(JSON.parse(text).items[0].qty, JSON.stringify({ a: 1, b: [1, 2] }, null, 2));
-
-const prices = { pen: 20, bag: 899, notebook: 60 };
-const discounted = Object.fromEntries(Object.entries(prices).map(([k, v]) => [k, v * 0.9]));
-console.log(discounted);
 ```
 
 **Output:**
 
 ```text
 Asha Pune plus undefined
+```
+
+**Dot notation** (`user.name`) is the usual way. **Bracket notation** (`user["city"]`) takes any expression, so it works for keys held in variables or keys that aren't valid names:
+
+```js
+const field = "age";
+const odd = { "first name": "Asha", 2: "two" };
+console.log(user[field], odd["first name"], odd[2]);
+```
+
+**Output:**
+
+```text
+29 Asha two
+```
+
+Keys are always strings (or symbols, Chapter 21): the key `2` is stored as `"2"`. A missing property reads as `undefined`.
+
+### 9.2 Adding, changing and deleting
+
+```js
+user.email = "asha@example.com";     // add
+user.age += 1;                       // change
+delete user.city;                    // remove
+console.log(user);
+console.log("email" in user, Object.hasOwn(user, "city"));
+```
+
+**Output:**
+
+```text
 {
   name: 'Asha',
   age: 30,
-  tags: [ 'plus', 'early-adopter' ],
+  tags: [ 'plus', 'early' ],
   email: 'asha@example.com'
 }
 true false
-[ 'name', 'age', 'tags', 'email' ] 4
-name = Asha
-age = 30
-tags = plus,early-adopter
-email = asha@example.com
-{ name: 'Ravi', age: 31, status: 'active', greet: [Function: greet] } Hi, I'm Ravi
-{"id":90312,"items":[{"sku":"P1","qty":2}],"paid":true}
-2 {
+```
+
+`"key" in obj` and `Object.hasOwn(obj, "key")` test whether a property exists, even one whose value is `undefined`. (`in` also sees inherited properties, Chapter 19.)
+
+### 9.3 Shorthand and computed keys
+
+When a variable has the same name as the key, write it once. A key in square brackets is **computed** from an expression:
+
+```js
+const name = "Ravi";
+const age = 31;
+const statusKey = "status";
+const ravi = { name, age, [statusKey]: "active", [`is${"Admin"}`]: false };
+console.log(ravi);
+```
+
+**Output:**
+
+```text
+{ name: 'Ravi', age: 31, status: 'active', isAdmin: false }
+```
+
+### 9.4 Looping over an object
+
+`Object.keys`, `Object.values` and `Object.entries` return arrays of keys, values and `[key, value]` pairs. Loop over them with `for...of`:
+
+```js
+const prices = { pen: 20, bag: 899, notebook: 60 };
+console.log(Object.keys(prices), Object.values(prices));
+for (const pair of Object.entries(prices)) {
+  console.log(pair[0], "costs", pair[1]);
+}
+```
+
+**Output:**
+
+```text
+[ 'pen', 'bag', 'notebook' ] [ 20, 899, 60 ]
+pen costs 20
+bag costs 899
+notebook costs 60
+```
+
+The older `for (const key in obj)` loops over keys too, but also over inherited ones (Chapter 19), so the `Object.*` methods are safer. Never use `for...in` on arrays.
+
+```js
+for (const key in prices) {
+  console.log(key);
+}
+```
+
+**Output:**
+
+```text
+pen
+bag
+notebook
+```
+
+`Object.fromEntries` turns pairs back into an object, which lets you transform an object through an array:
+
+```js
+const pairs = Object.entries(prices);
+const cheap = [];
+for (const pair of pairs) {
+  if (pair[1] < 100) {
+    cheap.push(pair);
+  }
+}
+console.log(Object.fromEntries(cheap));
+```
+
+**Output:**
+
+```text
+{ pen: 20, notebook: 60 }
+```
+
+Keys come out in insertion order, except that integer-like keys come first, in ascending order.
+
+### 9.5 Nesting
+
+Objects and arrays nest freely, which is how most real data looks:
+
+```js
+const order = {
+  id: 90312,
+  customer: { name: "Asha", address: { city: "Pune" } },
+  items: [{ sku: "P1", qty: 2 }, { sku: "B7", qty: 1 }],
+};
+console.log(order.customer.address.city, order.items[1].sku, order.items.length);
+console.log(order.customer?.phone?.number);
+```
+
+**Output:**
+
+```text
+Pune B7 2
+undefined
+```
+
+### 9.6 Methods
+
+A property can also hold a function; it's then called a **method** and is called with a dot, as with `console.log` or `JSON.parse` below. Chapter 10 teaches functions, and Chapter 15 how methods use `this` to reach their own object.
+
+### 9.7 JSON
+
+**JSON** (JavaScript Object Notation) is the text format for sending data between programs. `JSON.stringify` turns a value into JSON text; `JSON.parse` turns text back into a value:
+
+```js
+const text = JSON.stringify({ id: 1, items: [{ sku: "P1" }], paid: true, note: undefined });
+console.log(text, typeof text);
+const back = JSON.parse(text);
+console.log(back.items[0].sku);
+console.log(JSON.stringify({ a: 1, b: [1, 2] }, null, 2));
+```
+
+**Output:**
+
+```text
+{"id":1,"items":[{"sku":"P1"}],"paid":true} string
+P1
+{
   "a": 1,
   "b": [
     1,
     2
   ]
 }
-{ pen: 18, bag: 809.1, notebook: 54 }
 ```
 
-**Common mistakes:**
+JSON keys need double quotes. It has no `undefined` (dropped), no functions, no dates (they become strings) and no BigInt. The third argument of `stringify` indents the output. Parsing invalid text throws:
 
-- ❌ Reading nested properties without checking (`order.customer.address.city` crashes if one level is missing).
-- ❌ Using objects as dictionaries with arbitrary user keys (`"__proto__"`, prototype pollution); use `Map` (Section [21](#21-map-set-weakmap-weakset-and-symbol)).
-- ❌ Expecting `JSON.stringify` to keep dates, `undefined` or functions.
-- ❌ Thinking `const obj` can't be modified.
+```js
+JSON.parse("{name: 'Asha'}");
+```
 
-### Practice
+**Output:**
 
-1. Count how many times each word appears in `"the cat and the hat and the bat"` using an object, then print the entries sorted by count (highest first).
+```text
+SyntaxError: Expected property name or '}' in JSON at position 1 (line 1 column 2)
+```
+
+### 9.8 Summary
+
+```
+{ key: value }   obj.key   obj["key"]   obj[variable]   missing → undefined
+obj.k = v   delete obj.k   "k" in obj   Object.hasOwn(obj, "k")
+{ name, age, [expr]: v }                  shorthand and computed keys
+Object.keys / values / entries(obj)      arrays;  Object.fromEntries(pairs) → object
+for (const key in obj)                    keys, including inherited ones; never for arrays
+JSON.stringify(v, null, 2)   JSON.parse(text)
+```
+
+**Key terms:**
+
+- **Property:** a key–value pair in an object.
+- **Key:** the name of a property; always a string or a symbol.
+- **Dot notation:** reading a property with `obj.key`.
+- **Bracket notation:** reading a property with `obj[expression]`, for keys in variables or keys that aren't valid names.
+- **Computed key:** a key in an object literal written as `[expression]`, whose value becomes the key.
+- **for...in:** a loop over an object's keys, including inherited ones.
+- **JSON (JavaScript Object Notation):** a text format for data, based on JavaScript object and array literals.
+- **Serialize:** turn a value into text (or bytes) for storing or sending; `JSON.stringify` serializes.
+
+### Exercises
+
+1. Count how many times each word appears in `"the cat and the hat and the bat"`, using an object as the counter.
+2. From `const stock = { pen: 0, bag: 4, ink: 0, pad: 12 }`, print the names of the items that are out of stock.
 
 <details>
-<summary><b>Answer</b></summary>
+<summary><b>Answers</b></summary>
 
 ```js
 const counts = {};
@@ -1065,23 +2084,32 @@ for (const word of "the cat and the hat and the bat".split(" ")) {
   counts[word] = (counts[word] ?? 0) + 1;
 }
 console.log(counts);
-console.log(Object.entries(counts).sort((a, b) => b[1] - a[1]));
+const stock = { pen: 0, bag: 4, ink: 0, pad: 12 };
+const empty = [];
+for (const item of Object.keys(stock)) {
+  if (stock[item] === 0) {
+    empty.push(item);
+  }
+}
+console.log(empty);
 ```
 
 **Output:**
 
 ```text
 { the: 3, cat: 1, and: 2, hat: 1, bat: 1 }
-[
-  [ 'the', 3 ],
-  [ 'and', 2 ],
-  [ 'cat', 1 ],
-  [ 'hat', 1 ],
-  [ 'bat', 1 ]
-]
+[ 'pen', 'ink' ]
 ```
 
+1. `counts[word] ?? 0` treats a word seen for the first time as 0.
+
 </details>
+
+**Practice:**
+
+| # | Problem (LeetCode) | Difficulty |
+|---|---|---|
+| 1 | [2727. Is Object Empty](https://leetcode.com/problems/is-object-empty/) | 🟢 Easy |
 
 **Learn more:** [MDN: working with objects](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_objects) · [MDN: JSON](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON) · [javascript.info: objects](https://javascript.info/object)
 
@@ -1089,366 +2117,846 @@ console.log(Object.entries(counts).sort((a, b) => b[1] - a[1]));
 
 ## 10. Functions: Declarations, Expressions, Arrows and Parameters
 
-### Theory
+**You need:** Chapters 1–9. · **You'll learn:** to package code into reusable functions, the three ways to write them, defaults and rest parameters, passing functions to other functions, and recursion.
 
-> **In simple words:** a **function** is a reusable block of code with a name: give it inputs (**parameters**), it does something and **returns** a result. In JavaScript functions are also **values**: you can store them in variables, pass them to other functions (callbacks), and return them from functions. That makes them the most important building block in the language.
+### 10.1 Declaring and calling
 
-**Three ways to write one:**
-
-| Form | Example | Notes |
-|---|---|---|
-| Declaration | `function add(a, b) { return a + b; }` | **Hoisted**: usable before the line it's written on |
-| Expression | `const add = function (a, b) { return a + b; };` | Not hoisted |
-| **Arrow function** | `const add = (a, b) => a + b;` | Short; implicit return for one expression; **no own `this`** (Section [15](#15-the-this-keyword-call-apply-and-bind)) |
-
-Arrow details: one parameter needs no brackets (`x => x * 2`); returning an object literal needs brackets (`() => ({ id: 1 })`); a body with `{ }` needs an explicit `return`.
-
-**Parameters:**
-
-- **Default values:** `function greet(name = "friend") { }`: used when the argument is `undefined`.
-- **Rest parameters:** `function sum(...nums) { }` collects extra arguments into an array.
-- **Destructuring in parameters:** `function createUser({ name, age = 18 }) { }`: named options (Part 2).
-- Missing arguments are `undefined`; extra ones are ignored.
-- Arguments are passed by **value**, but for objects the value is a **reference**: a function can modify an object you pass it.
-
-**Return:** `return` ends the function and gives back a value; without it, the result is `undefined`.
-
-**Functions as values (first-class functions):** pass them as **callbacks** (`setTimeout(fn, 1000)`, `arr.map(fn)`), return them from other functions (factories, closures), store them in objects (methods).
-
-**Pure functions** (same input → same output, no side effects) are easy to test and reuse; aim for them where you can.
-
-**Recursion:** a function that calls itself on a smaller problem, with a base case. JavaScript engines don't generally optimise tail calls, and deep recursion throws `RangeError: Maximum call stack size exceeded`.
-
-### JavaScript
+A **function** is a named, reusable block of code. It takes inputs called **parameters**, and `return` sends a result back to the caller:
 
 ```js
-console.log(square(4));                                 // works: declarations are hoisted
+function shippingFee(total) {
+  if (total >= 499) {
+    return 0;
+  }
+  return 40;
+}
+console.log(shippingFee(250), shippingFee(600));
+```
+
+**Output:**
+
+```text
+40 0
+```
+
+`shippingFee(250)` **calls** the function: the **argument** 250 becomes the parameter `total`, the body runs, and the call is replaced by the returned value. `return` also ends the function immediately, so the first `return 0` skips the rest. A function without `return` returns `undefined`.
+
+Returning early for special cases is called a **guard clause**; it keeps the main logic unindented.
+
+### 10.2 Parameters and arguments
+
+Missing arguments are `undefined`; extra ones are ignored. A **default parameter** (`= value`) is used when the argument is missing or `undefined`:
+
+```js
+function greet(name = "friend", greeting = "Hello") {
+  return `${greeting}, ${name}!`;
+}
+console.log(greet(), greet("Ravi"), greet("Ravi", "Hi", "extra"), greet(undefined, "Hey"));
+```
+
+**Output:**
+
+```text
+Hello, friend! Hello, Ravi! Hi, Ravi! Hey, friend!
+```
+
+A **rest parameter** (`...name`, last in the list) collects all remaining arguments into an array:
+
+```js
+function sum(...nums) {
+  let total = 0;
+  for (const n of nums) {
+    total += n;
+  }
+  return total;
+}
+console.log(sum(), sum(1, 2, 3), sum(...[10, 20]));
+```
+
+**Output:**
+
+```text
+0 6 30
+```
+
+In the last call, `...[10, 20]` is spread syntax (Chapter 8.6): it passes the array's elements as separate arguments.
+
+Arguments are passed **by sharing**: the function gets the same values, so for objects it gets the same reference and can change the caller's object:
+
+```js
+function addTag(user, tag) {
+  user.tags.push(tag);
+}
+const asha = { tags: [] };
+addTag(asha, "vip");
+console.log(asha);
+```
+
+**Output:**
+
+```text
+{ tags: [ 'vip' ] }
+```
+
+Changing arguments like this is a **side effect**, an effect beyond the return value. Functions without side effects that return the same output for the same input are called **pure**; they're easy to test and reuse, so prefer them.
+
+### 10.3 Function expressions and arrow functions
+
+Functions are values: they can be stored in variables, passed around and returned. A **function expression** creates one inside an expression:
+
+```js
+const cube = function (n) {
+  return n ** 3;
+};
+console.log(cube(3), typeof cube);
+```
+
+**Output:**
+
+```text
+27 function
+```
+
+An **arrow function** is a shorter expression. With a single expression after `=>`, its value is returned automatically; with braces, you need `return`. One parameter needs no brackets; returning an object literal needs round brackets around it:
+
+```js
+const double = (n) => n * 2;
+const add = (a, b) => a + b;
+const half = n => n / 2;
+const makeUser = (name, age) => ({ name, age });
+const describe = (n) => {
+  const kind = n % 2 === 0 ? "even" : "odd";
+  return `${n} is ${kind}`;
+};
+console.log(double(21), add(2, 3), half(9), makeUser("Asha", 29), describe(7));
+```
+
+**Output:**
+
+```text
+42 5 4.5 { name: 'Asha', age: 29 } 7 is odd
+```
+
+Arrows differ from other functions in how they treat `this` (Chapter 15). Use arrows for short callbacks and declarations for named, top-level functions.
+
+### 10.4 Hoisting
+
+A function **declaration** can be called before the line where it's written, because declarations are processed before the code runs (**hoisting**, Chapter 13). Expressions and arrows assigned to `const` can't:
+
+```js
+console.log(square(4));
 function square(n) {
   return n * n;
 }
-
-const cube = function (n) { return n ** 3; };
-const double = n => n * 2;
-const makeUser = (name, age) => ({ name, age });        // object literal needs ( )
-const greet = (name = "friend") => `Hello, ${name}!`;
-console.log(cube(3), double(21), makeUser("Asha", 29), greet(), greet("Ravi"));
-
-function sum(...nums) {
-  let total = 0;
-  for (const n of nums) total += n;
-  return total;
-}
-console.log(sum(), sum(1, 2, 3), sum(...[10, 20]));    // ...[] spreads an array into arguments
-
-function describe(a, b) {
-  return `a=${a}, b=${b}`;
-}
-console.log(describe(1), describe(1, 2, 3));
-
-function addTag(user, tag) {
-  user.tags.push(tag);                                 // mutates the caller's object
-}
-const u = { tags: [] };
-addTag(u, "vip");
-console.log(u);
-
-function applyTwice(fn, value) {                       // a function taking a function
-  return fn(fn(value));
-}
-console.log(applyTwice(double, 5), applyTwice(s => s + "!", "hey"));
-
-function factorial(n) {
-  return n <= 1 ? 1 : n * factorial(n - 1);
-}
-console.log(factorial(5), typeof factorial, factorial.name, factorial.length);
 ```
 
 **Output:**
 
 ```text
 16
-27 42 { name: 'Asha', age: 29 } Hello, friend! Hello, Ravi!
-0 6 30
-a=1, b=undefined a=1, b=2
-{ tags: [ 'vip' ] }
-20 hey!!
-120 function factorial 1
 ```
 
-**Common mistakes:**
-
-- ❌ Forgetting `return` in a function with a `{ }` body (`undefined` result).
-- ❌ `() => { id: 1 }` (that's a block with a label, not an object; write `() => ({ id: 1 })`).
-- ❌ Arrow functions as object methods that use `this`.
-- ❌ Functions that silently mutate their arguments.
-- ❌ Calling a function expression before it's defined (TDZ / not hoisted).
-
-### Practice
-
-1. Write `formatPrice(amount, { currency = "INR", decimals = 2 } = {})` returning e.g. `"INR 1499.00"`, and `compose(f, g)` returning a function that computes `f(g(x))`. Use `compose` to make `formatDoubled`.
-
-<details>
-<summary><b>Answer</b></summary>
-
 ```js
-function formatPrice(amount, { currency = "INR", decimals = 2 } = {}) {
-  return `${currency} ${amount.toFixed(decimals)}`;
-}
-const compose = (f, g) => x => f(g(x));
-const formatDoubled = compose(formatPrice, double);
-console.log(formatPrice(1499), formatPrice(9.5, { currency: "USD", decimals: 1 }), formatDoubled(250));
+console.log(triple(4));
+const triple = (n) => n * 3;
 ```
 
 **Output:**
 
 ```text
-INR 1499.00 USD 9.5 INR 500.00
+ReferenceError: Cannot access 'triple' before initialization
 ```
+
+### 10.5 Functions as arguments: callbacks
+
+A function passed to another function, to be called by it, is a **callback**. Functions that take or return functions are **higher-order functions**:
+
+```js
+function applyTwice(fn, value) {
+  return fn(fn(value));
+}
+console.log(applyTwice(double, 5), applyTwice((s) => s + "!", "hey"));
+```
+
+**Output:**
+
+```text
+20 hey!!
+```
+
+The most common callback fixes Chapter 8's sort trap. `sort(compare)` calls `compare(a, b)` for pairs of elements; a negative result puts `a` first, positive puts `b` first, 0 keeps their order:
+
+```js
+const nums = [10, 9, 1, 100];
+console.log(nums.toSorted((a, b) => a - b), nums.toSorted((a, b) => b - a));
+const people = [{ name: "Ravi", age: 31 }, { name: "Asha", age: 29 }, { name: "Meera", age: 35 }];
+console.log(people.toSorted((a, b) => a.age - b.age));
+console.log(people.toSorted((a, b) => a.name.localeCompare(b.name)));
+```
+
+**Output:**
+
+```text
+[ 1, 9, 10, 100 ] [ 100, 10, 9, 1 ]
+[
+  { name: 'Asha', age: 29 },
+  { name: 'Ravi', age: 31 },
+  { name: 'Meera', age: 35 }
+]
+[
+  { name: 'Asha', age: 29 },
+  { name: 'Meera', age: 35 },
+  { name: 'Ravi', age: 31 }
+]
+```
+
+`a - b` is negative when `a` is smaller, so this sorts ascending; `b - a` sorts descending. JavaScript's sort is **stable**: equal elements keep their original order.
+
+A function can also return a function:
+
+```js
+function multiplier(factor) {
+  return (n) => n * factor;
+}
+const times3 = multiplier(3);
+console.log(times3(10), multiplier(5)(2));
+```
+
+**Output:**
+
+```text
+30 10
+```
+
+The returned function still uses `factor` after `multiplier` has finished; Chapter 14 explains how (closures).
+
+### 10.6 Recursion
+
+A **recursive** function calls itself on a smaller problem until it reaches a **base case** that it answers directly:
+
+```js
+function factorial(n) {
+  if (n <= 1) {
+    return 1;                      // base case
+  }
+  return n * factorial(n - 1);     // smaller problem
+}
+console.log(factorial(5));
+```
+
+**Output:**
+
+```text
+120
+```
+
+`factorial(5)` = 5 × `factorial(4)` = 5 × 4 × `factorial(3)` … = 5 × 4 × 3 × 2 × 1 = 120. Each pending call waits on the **call stack** (Chapter 23). Without a base case, the stack overflows:
+
+```js
+function forever(n) {
+  return forever(n + 1);
+}
+forever(0);
+```
+
+**Output:**
+
+```text
+RangeError: Maximum call stack size exceeded
+```
+
+Recursion suits nested data (trees, folders, nested arrays); for simple counting, a loop is faster and can't overflow.
+
+### 10.7 Function properties
+
+A function is an object with a `name` and a `length` (the number of parameters before any default or rest):
+
+```js
+console.log(factorial.name, factorial.length, greet.length, sum.length, typeof factorial);
+```
+
+**Output:**
+
+```text
+factorial 1 0 0 function
+```
+
+### 10.8 Summary
+
+```
+function f(a, b = 1, ...rest) { return …; }   declaration: hoisted; default; rest array
+const f = function (a) { … };                  function expression
+const f = (a, b) => a + b;                     arrow: one expression is returned
+const f = a => ({ key: a });                   object literal needs ( )
+f(...array)                                    spread an array into arguments
+arr.toSorted((a, b) => a - b)                  numeric sort with a compare callback
+recursion: base case + smaller problem         else RangeError: call stack exceeded
+```
+
+**Key terms:**
+
+- **Function:** a reusable block of code that takes parameters and can return a value.
+- **Parameter:** a name in a function's definition for an input.
+- **Argument:** the actual value passed to a parameter when calling a function.
+- **Return value:** the value a function sends back with `return`; `undefined` if there's none.
+- **Guard clause:** an early `return` that handles a special case at the top of a function.
+- **Default parameter:** a parameter's value when its argument is missing or `undefined`.
+- **Rest parameter:** a last parameter written `...name` that collects the remaining arguments into an array.
+- **Side effect:** anything a function does besides returning a value, such as changing an argument or printing.
+- **Pure function:** a function whose result depends only on its arguments and that has no side effects.
+- **Function expression:** a function created inside an expression, often assigned to a variable.
+- **Arrow function:** a short function expression written with `=>`, without its own `this`.
+- **Hoisting:** processing declarations before code runs, so function declarations can be called before their line.
+- **Callback:** a function passed to another function to be called later.
+- **Higher-order function:** a function that takes or returns a function.
+- **Compare function:** a callback for `sort` that returns a negative, zero or positive number to order two elements.
+- **Stable sort:** a sort that keeps equal elements in their original order.
+- **Recursion:** a function calling itself on a smaller version of the problem.
+- **Base case:** the input a recursive function answers directly, which stops the recursion.
+
+### Exercises
+
+1. Write `formatPrice(amount, currency = "INR")` returning e.g. `"INR 1499.00"`.
+2. Write `compose(f, g)` returning a function that computes `f(g(x))`, and use it with `double` and `(n) => n + 1`.
+3. Write a recursive `sumDigits(n)`: `sumDigits(1234)` is 10.
+
+<details>
+<summary><b>Answers</b></summary>
+
+```js
+function formatPrice(amount, currency = "INR") {
+  return `${currency} ${amount.toFixed(2)}`;
+}
+const compose = (f, g) => (x) => f(g(x));
+const doubleThenInc = compose((n) => n + 1, double);
+function sumDigits(n) {
+  if (n < 10) {
+    return n;
+  }
+  return (n % 10) + sumDigits(Math.floor(n / 10));
+}
+console.log(formatPrice(1499), doubleThenInc(5), sumDigits(1234));
+```
+
+**Output:**
+
+```text
+INR 1499.00 11 10
+```
+
+2. `compose` returns an arrow that remembers `f` and `g` (a closure, Chapter 14). `g` runs first.
+3. The last digit is `n % 10`; the rest is `Math.floor(n / 10)`.
 
 </details>
 
----
+**Practice:**
 
-### ✅ Part 1 checkpoint
-
-Without looking, can you:
-
-- [ ] Run JavaScript in the browser console and in Node, and read error names and messages?
-- [ ] Choose `const` or `let` (and explain why not `var`), and name the primitive types and the `typeof` quirks?
-- [ ] Use `===`, `&&`/`||`, `??` and `?.` correctly, including the difference between `||` and `??`?
-- [ ] Write `if`/`else`, `switch` (with `break`), `for`, `for...of` and `while` loops?
-- [ ] Work with strings, template literals, arrays (including the sort trap) and objects (keys, entries, JSON)?
-- [ ] Write functions in all three forms with defaults and rest parameters, and pass functions as values?
+| # | Problem (LeetCode) | Difficulty |
+|---|---|---|
+| 1 | [2667. Create Hello World Function](https://leetcode.com/problems/create-hello-world-function/) | 🟢 Easy |
+| 2 | [2703. Return Length of Arguments Passed](https://leetcode.com/problems/return-length-of-arguments-passed/) | 🟢 Easy |
+| 3 | [2629. Function Composition](https://leetcode.com/problems/function-composition/) | 🟢 Easy |
+| 4 | [509. Fibonacci Number](https://leetcode.com/problems/fibonacci-number/) | 🟢 Easy |
 
 **Learn more:** [MDN: functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions) · [MDN: arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions) · [javascript.info: functions](https://javascript.info/function-basics)
 
 ---
 
-# Part 2 — Easy: The Core Language
+# Part II — The Core Language
 
-> **Goal:** Transform arrays, destructure, understand scope, hoisting, closures, `this` and coercion, and handle errors.  
-> **You need:** Part 1.
+Seven chapters on the ideas that make JavaScript code short and correct: array methods, destructuring and spread, scope, closures, `this`, type conversion and errors.
 
 ---
 
 ## 11. Array Methods: map, filter, reduce, find and Friends
 
-### Theory
+**You need:** Chapters 8 and 10. · **You'll learn:** to transform, select, search and summarise arrays with callbacks instead of loops, and to chain those steps into a pipeline.
 
-> **In simple words:** instead of writing a loop every time, arrays have methods that describe **what** you want: `map` transforms every item, `filter` keeps some items, `reduce` combines all items into one value, `find` returns the first match, `some`/`every` answer yes/no questions. You pass each one a small function (usually an arrow function) that's called for every item. Chained together, they read like a sentence: "orders → paid ones → their totals → summed".
+### 11.1 From loops to methods
 
-| Method | Returns | Example |
+Most loops over arrays do one of a few jobs: transform every element, keep some elements, find one, or combine all into one value. Each job has a method that takes a callback, so the code says *what* it does:
+
+| Job | Method | Returns |
 |---|---|---|
-| `map(fn)` | New array of `fn(item)` | prices → prices with tax |
-| `filter(fn)` | New array of items where `fn` is truthy | only paid orders |
-| `reduce(fn, start)` | One value built up item by item | sum, max, grouping, counting |
-| `find(fn)` / `findLast(fn)` | First / last matching item or `undefined` | the order with id 90312 |
-| `findIndex(fn)` / `findLastIndex` | Its index or `-1` | |
-| `some(fn)` / `every(fn)` | `true`/`false` | any out of stock? all paid? |
-| `includes(x)` | `true`/`false` | |
-| `flat(depth)` / `flatMap(fn)` | Flattened arrays | tags of all orders |
-| `forEach(fn)` | `undefined` (side effects only) | logging |
-| `Object.groupBy(arr, fn)` (ES2024) | Object of groups | orders by status |
+| do something with each | `forEach(fn)` | `undefined` |
+| transform each | `map(fn)` | new array, same length |
+| keep some | `filter(fn)` | new array of the elements where `fn` is truthy |
+| find one | `find(fn)`, `findIndex(fn)`, `findLast(fn)` | first match (or `undefined` / −1) |
+| test | `some(fn)`, `every(fn)` | boolean |
+| combine all | `reduce(fn, start)` | one value |
 
-The callback receives `(item, index, array)`. None of these (except `sort`/`reverse`/`splice`) change the original array.
+Each callback receives `(element, index, array)`; most use only the element. All of these leave the original array unchanged.
 
-**Choosing:** transform → `map`; select → `filter`; one result → `reduce` (or `find`/`some`/`every`, or a simple loop if `reduce` gets unreadable); need to stop early → `find`/`some`/`every` or a `for...of` with `break` (`forEach` can't stop).
-
-**Performance:** each method loops once; chaining `filter().map()` loops twice, which is fine for normal sizes. For huge arrays in hot paths, a single loop or iterator helpers (lazy, ES2025, Section [42](#42-modern-javascript-whats-new-in-es2020es2026)) avoid intermediate arrays.
-
-### JavaScript
+The data for this chapter:
 
 ```js
-const orders = [
-  { id: 1, customer: "Asha", status: "paid", total: 998, items: ["pen", "bag"] },
-  { id: 2, customer: "Ravi", status: "pending", total: 150, items: ["notebook"] },
-  { id: 3, customer: "Asha", status: "paid", total: 60, items: ["pen"] },
-  { id: 4, customer: "Meera", status: "cancelled", total: 499, items: ["mug", "pen"] },
+const products = [
+  { name: "Pen", price: 20, category: "stationery", stock: 120 },
+  { name: "Bag", price: 899, category: "travel", stock: 0 },
+  { name: "Notebook", price: 60, category: "stationery", stock: 40 },
+  { name: "Bottle", price: 349, category: "travel", stock: 15 },
 ];
+```
 
-console.log(orders.map(o => o.total));
-console.log(orders.filter(o => o.status === "paid").map(o => o.id));
-console.log(orders.filter(o => o.status === "paid").reduce((sum, o) => sum + o.total, 0));
-console.log(orders.find(o => o.total > 400), orders.find(o => o.total > 5000));
-console.log(orders.findIndex(o => o.customer === "Ravi"), orders.findLast(o => o.customer === "Asha").id);
-console.log(orders.some(o => o.status === "cancelled"), orders.every(o => o.total > 100));
-console.log(orders.flatMap(o => o.items), [...new Set(orders.flatMap(o => o.items))]);
+### 11.2 forEach and map
 
-const byStatus = Object.groupBy(orders, o => o.status);
-console.log(Object.fromEntries(Object.entries(byStatus).map(([s, list]) => [s, list.length])));
+`forEach` calls the function for each element, for side effects such as printing:
 
-const spendByCustomer = orders.reduce((acc, o) => {
-  acc[o.customer] = (acc[o.customer] ?? 0) + o.total;
+```js
+products.forEach((p, i) => console.log(i, p.name));
+```
+
+**Output:**
+
+```text
+0 Pen
+1 Bag
+2 Notebook
+3 Bottle
+```
+
+`map` builds a new array from the callback's return values:
+
+```js
+const names = products.map((p) => p.name);
+const withTax = products.map((p) => ({ name: p.name, price: Math.round(p.price * 1.18) }));
+console.log(names, withTax[1]);
+```
+
+**Output:**
+
+```text
+[ 'Pen', 'Bag', 'Notebook', 'Bottle' ] { name: 'Bag', price: 1061 }
+```
+
+Use `map` when you want the results and `forEach` when you don't. `forEach` can't be stopped early with `break`; use `for...of` (or `some`/`find`) when you need to stop.
+
+### 11.3 filter, find and friends
+
+```js
+const inStock = products.filter((p) => p.stock > 0);
+console.log(inStock.map((p) => p.name));
+console.log(products.find((p) => p.price > 100).name, products.findIndex((p) => p.price > 1000));
+console.log(products.findLast((p) => p.category === "stationery").name);
+console.log(products.some((p) => p.stock === 0), products.every((p) => p.price < 1000));
+```
+
+**Output:**
+
+```text
+[ 'Pen', 'Notebook', 'Bottle' ]
+Bag -1
+Notebook
+true true
+```
+
+`find` stops at the first match, so it's cheaper than `filter(…)[0]`. `some` stops at the first `true` and `every` at the first `false`. On an empty array, `some` is `false` and `every` is `true` ("all of nothing" holds).
+
+### 11.4 reduce
+
+`reduce(fn, start)` combines all elements into one value. It keeps an **accumulator**: it starts as `start`, and for each element the callback receives `(accumulator, element)` and returns the next accumulator. The final accumulator is the result:
+
+```js
+const prices = [20, 899, 60, 349];
+const total = prices.reduce((acc, price) => acc + price, 0);
+console.log(total);
+```
+
+**Output:**
+
+```text
+1328
+```
+
+Trace it: acc = 0 → 0 + 20 = 20 → 20 + 899 = 919 → 919 + 60 = 979 → 979 + 349 = 1328.
+
+The accumulator can be anything, such as an object of counts:
+
+```js
+const perCategory = products.reduce((acc, p) => {
+  acc[p.category] = (acc[p.category] ?? 0) + 1;
   return acc;
 }, {});
-console.log(spendByCustomer);
-
-const top = orders.toSorted((a, b) => b.total - a.total).slice(0, 2).map(o => `${o.id}:${o.total}`);
-console.log(top, [[1, [2]], [3]].flat(), [[1, [2]], [3]].flat(Infinity));
-["a", "b"].forEach((letter, index) => console.log(index, letter));
+console.log(perCategory);
 ```
 
 **Output:**
 
 ```text
-[ 998, 150, 60, 499 ]
-[ 1, 3 ]
-1058
-{
-  id: 1,
-  customer: 'Asha',
-  status: 'paid',
-  total: 998,
-  items: [ 'pen', 'bag' ]
-} undefined
-1 3
-true false
-[ 'pen', 'bag', 'notebook', 'pen', 'mug', 'pen' ] [ 'pen', 'bag', 'notebook', 'mug' ]
-{ paid: 2, pending: 1, cancelled: 1 }
-{ Asha: 1058, Ravi: 150, Meera: 499 }
-[ '1:998', '4:499' ] [ 1, [ 2 ], 3 ] [ 1, 2, 3 ]
-0 a
-1 b
+{ stationery: 2, travel: 2 }
 ```
 
-**Common mistakes:**
-
-- ❌ `map` without `return` in a `{ }` body (an array of `undefined`).
-- ❌ Using `map` for side effects or `forEach` when you need a result.
-- ❌ `reduce` without an initial value (empty arrays throw; the first item's type sneaks in).
-- ❌ Unreadable `reduce` chains; a loop is fine.
-- ❌ Expecting `forEach` to wait for `async` callbacks (it doesn't; Section [25](#25-asyncawait-asynchronous-code-that-reads-like-normal-code)).
-
-### Practice
-
-1. From the `orders` array: list the names of customers who have at least one paid order (no duplicates), and compute the average total of non-cancelled orders rounded to 2 decimals.
-
-<details>
-<summary><b>Answer</b></summary>
+Always pass the start value: without it, `reduce` uses the first element as the start, and an empty array throws:
 
 ```js
-const paidCustomers = [...new Set(orders.filter(o => o.status === "paid").map(o => o.customer))];
-const active = orders.filter(o => o.status !== "cancelled");
-const average = active.reduce((sum, o) => sum + o.total, 0) / active.length;
-console.log(paidCustomers, Number(average.toFixed(2)));
+[].reduce((a, b) => a + b);
 ```
 
 **Output:**
 
 ```text
-[ 'Asha' ] 402.67
+TypeError: Reduce of empty array with no initial value
+```
+
+When a `reduce` gets hard to read, a `for...of` loop is a fine alternative.
+
+### 11.5 Grouping
+
+`Object.groupBy(array, fn)` (ES2024) groups elements into an object by the key the callback returns:
+
+```js
+const byCategory = Object.groupBy(products, (p) => p.category);
+console.log(Object.keys(byCategory), byCategory.travel.map((p) => p.name));
+```
+
+**Output:**
+
+```text
+[ 'stationery', 'travel' ] [ 'Bag', 'Bottle' ]
+```
+
+### 11.6 Flattening
+
+`flat(depth)` joins nested arrays into one; `flatMap(fn)` is `map` followed by `flat(1)`, handy when each element produces several results:
+
+```js
+console.log([1, [2, [3, [4]]]].flat(), [1, [2, [3, [4]]]].flat(Infinity));
+const sentences = ["hello world", "good morning"];
+console.log(sentences.flatMap((s) => s.split(" ")));
+```
+
+**Output:**
+
+```text
+[ 1, 2, [ 3, [ 4 ] ] ] [ 1, 2, 3, 4 ]
+[ 'hello', 'world', 'good', 'morning' ]
+```
+
+### 11.7 Building arrays with Array.from
+
+`Array.from(source, fn)` builds an array and maps it in one step. `{ length: 5 }` is an object with only a length, which `Array.from` treats as 5 empty slots:
+
+```js
+console.log(Array.from({ length: 5 }, (_, i) => i * i));
+console.log(Array.from("abc", (ch) => ch.toUpperCase()));
+```
+
+**Output:**
+
+```text
+[ 0, 1, 4, 9, 16 ]
+[ 'A', 'B', 'C' ]
+```
+
+`_` is a conventional name for a parameter you don't use.
+
+### 11.8 Chaining into a pipeline
+
+Each method returns an array, so calls chain: a pipeline that reads top to bottom.
+
+```js
+const report = products
+  .filter((p) => p.stock > 0)
+  .toSorted((a, b) => b.price - a.price)
+  .map((p) => `${p.name}: ₹${p.price}`)
+  .join(", ");
+console.log(report);
+```
+
+**Output:**
+
+```text
+Bottle: ₹349, Notebook: ₹60, Pen: ₹20
+```
+
+Each step makes a new array. For a few thousand elements that costs nothing noticeable; for millions in a hot loop, one `for` loop is faster (Chapter 41).
+
+### 11.9 Summary
+
+```
+arr.forEach((x, i) => …)            side effects; returns undefined; can't break
+arr.map(x => …)                      new array of results
+arr.filter(x => cond)                new array of matches
+arr.find / findIndex / findLast      first match;  some / every → boolean
+arr.reduce((acc, x) => next, start)  one value; always give start
+Object.groupBy(arr, x => key)        { key: [elements] }
+arr.flat(depth)  arr.flatMap(fn)     flatten
+Array.from({ length: n }, (_, i) => …)
+```
+
+**Key terms:**
+
+- **map:** an array method that returns a new array of the callback's results.
+- **filter:** an array method that returns a new array of the elements for which the callback is truthy.
+- **find:** an array method that returns the first element for which the callback is truthy.
+- **reduce:** an array method that combines all elements into one value with an accumulator.
+- **Accumulator:** the running value that `reduce` passes from one step to the next.
+- **Method chaining:** calling methods one after another on each result: `a.filter(…).map(…)`.
+- **Pipeline:** a sequence of steps, each transforming the previous step's result.
+- **Object.groupBy:** groups an array's elements into an object of arrays by a key function.
+- **Flatten:** turn nested arrays into one array.
+
+### Exercises
+
+1. From `products`, get the total value of the stock (price × stock, summed).
+2. Get the names of the stationery items that cost under ₹50, in upper case.
+3. Capitalise every word in `"the quick brown fox"`.
+
+<details>
+<summary><b>Answers</b></summary>
+
+```js
+console.log(products.reduce((acc, p) => acc + p.price * p.stock, 0));
+console.log(products.filter((p) => p.category === "stationery" && p.price < 50).map((p) => p.name.toUpperCase()));
+console.log("the quick brown fox".split(" ").map((w) => w[0].toUpperCase() + w.slice(1)).join(" "));
+```
+
+**Output:**
+
+```text
+10035
+[ 'PEN' ]
+The Quick Brown Fox
 ```
 
 </details>
 
-**Learn more:** [MDN: Array methods](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array#instance_methods) · [MDN: Object.groupBy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/groupBy) · [javascript.info: array methods](https://javascript.info/array-methods)
+**Practice:**
+
+| # | Problem (LeetCode) | Difficulty |
+|---|---|---|
+| 1 | [2635. Apply Transform Over Each Element in Array](https://leetcode.com/problems/apply-transform-over-each-element-in-array/) | 🟢 Easy |
+| 2 | [2634. Filter Elements from Array](https://leetcode.com/problems/filter-elements-from-array/) | 🟢 Easy |
+| 3 | [2626. Array Reduce Transformation](https://leetcode.com/problems/array-reduce-transformation/) | 🟢 Easy |
+| 4 | [2631. Group By](https://leetcode.com/problems/group-by/) | 🟡 Medium |
+| 5 | [2724. Sort By](https://leetcode.com/problems/sort-by/) | 🟢 Easy |
+| 6 | [2625. Flatten Deeply Nested Array](https://leetcode.com/problems/flatten-deeply-nested-array/) | 🟡 Medium |
+| 7 | [2677. Chunk Array](https://leetcode.com/problems/chunk-array/) | 🟢 Easy |
+
+**Learn more:** [MDN: Array methods](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array#instance_methods) · [javascript.info: array methods](https://javascript.info/array-methods)
 
 ---
 
 ## 12. Destructuring, Spread and Rest
 
-### Theory
+**You need:** Chapter 11. · **You'll learn:** to unpack arrays and objects into variables in one line, to copy and merge with spread, to collect "the rest" of the values, and to give functions named options.
 
-> **In simple words:** **destructuring** unpacks values from arrays or objects into variables in one line: `const { name, age } = user` or `const [first, second] = list`. **Spread** (`...`) does the opposite, expanding an array or object into individual items: copying, merging, passing arguments. **Rest** (also `...`) collects "the remaining items" into an array or object. These three make modern JavaScript short and readable, and are everywhere in React code.
+### 12.1 Array destructuring
 
-**Object destructuring:** `const { name, city = "Unknown", address: { pin } = {} } = user` (defaults, renaming with `name: newName`, nested). Works in function parameters: `function show({ name, age })`.
-
-**Array destructuring:** by position: `const [first, , third] = arr`, `const [head, ...tail] = arr`, swapping `[a, b] = [b, a]`, returning several values from a function as an array.
-
-**Spread:**
-
-| Use | Example |
-|---|---|
-| Copy an array/object (shallow) | `[...arr]`, `{ ...obj }` |
-| Merge | `[...a, ...b]`, `{ ...defaults, ...options }` (later wins) |
-| Update immutably | `{ ...user, city: "Delhi" }` |
-| Arguments | `Math.max(...nums)` |
-| Strings/iterables → array | `[..."hi"]`, `[...new Set(arr)]` |
-
-**Rest:** in destructuring (`const { password, ...safeUser } = user` removes a field) and in parameters (`function log(level, ...messages)`).
-
-**Shallow!** Spread copies only one level; nested objects are still shared.
-
-### JavaScript
+**Destructuring** unpacks values into variables using a pattern that looks like the literal. For arrays, values are taken by position; skip one with an empty slot, and give a default with `=`:
 
 ```js
-const user = { id: 7, name: "Asha", email: "asha@example.com", password: "hashed!", address: { city: "Pune", pin: "411001" } };
-
-const { name, email: contact, phone = "not given", address: { city } } = user;
-console.log(name, contact, phone, city);
-
-const { password, ...safeUser } = user;               // remove a field with rest
-console.log(safeUser);
-
-const [first, , third, ...others] = ["a", "b", "c", "d", "e"];
-console.log(first, third, others);
-
-function minMax(nums) {
-  return [Math.min(...nums), Math.max(...nums)];
-}
-const [low, high] = minMax([4, 8, 15, 16, 23, 42]);
-console.log(low, high);
-
-function createOrder({ sku, qty = 1, express = false } = {}) {
-  return `${qty} x ${sku}${express ? " (express)" : ""}`;
-}
-console.log(createOrder({ sku: "P1" }), createOrder({ sku: "P2", qty: 3, express: true }));
-
-const defaults = { theme: "light", pageSize: 20, lang: "en" };
-const prefs = { ...defaults, theme: "dark" };
-const updated = { ...user, address: { ...user.address, city: "Delhi" } };   // copy nested levels you change
-console.log(prefs, user.address.city, updated.address.city);
-
-const shallow = { ...user };
-shallow.address.pin = "000000";                        // shared nested object!
-console.log(user.address.pin, [..."héllo"], [...new Set([3, 1, 3, 2, 1])]);
+const rgb = [255, 128];
+const [red, green, blue = 0] = rgb;
+const [, second] = ["a", "b", "c"];
+console.log(red, green, blue, second);
 ```
 
 **Output:**
 
 ```text
-Asha asha@example.com not given Pune
-{
-  id: 7,
-  name: 'Asha',
-  email: 'asha@example.com',
-  address: { city: 'Pune', pin: '411001' }
-}
-a c [ 'd', 'e' ]
-4 42
-1 x P1 3 x P2 (express)
-{ theme: 'dark', pageSize: 20, lang: 'en' } Pune Delhi
-000000 [ 'h', 'é', 'l', 'l', 'o' ] [ 3, 1, 2 ]
+255 128 0 b
 ```
 
-**Common mistakes:**
+A default is used only when the value is `undefined`. Destructuring makes swapping two variables a one-liner:
 
-- ❌ Destructuring from `undefined` (`const { a } = undefined` throws); give defaults (`= {}`).
-- ❌ Expecting spread to deep-copy nested objects.
-- ❌ Confusing rest (collect) and spread (expand); it's the same `...`, meaning depends on position.
-- ❌ Long destructuring patterns that are harder to read than plain property access.
+```js
+let left = 1;
+let right = 2;
+[left, right] = [right, left];
+console.log(left, right);
+```
 
-### Practice
+**Output:**
 
-1. Write `updateCity(user, newCity)` that returns a new user object with `address.city` changed and everything else (including the original user) untouched. Prove the original is unchanged.
+```text
+2 1
+```
+
+### 12.2 Object destructuring
+
+For objects, values are taken by key name. `key: newName` renames; `= value` gives a default; patterns nest:
+
+```js
+const user = { id: 7, name: "Asha", address: { city: "Pune", pin: "411001" } };
+const { name, role = "member", id: userId } = user;
+const { address: { city } } = user;
+console.log(name, role, userId, city);
+```
+
+**Output:**
+
+```text
+Asha member 7 Pune
+```
+
+Destructuring a missing nested object throws, like reading through `undefined`:
+
+```js
+const { profile: { bio } } = { name: "Ravi" };
+```
+
+**Output:**
+
+```text
+TypeError: Cannot read properties of undefined (reading 'bio')
+```
+
+### 12.3 Rest in patterns
+
+`...rest` at the end of a pattern collects whatever is left: the remaining elements into an array, or the remaining properties into an object. Collecting the rest is a clean way to remove a property without mutating:
+
+```js
+const [first, ...others] = [10, 20, 30, 40];
+const { id, ...withoutId } = user;
+console.log(first, others, withoutId);
+```
+
+**Output:**
+
+```text
+10 [ 20, 30, 40 ] { name: 'Asha', address: { city: 'Pune', pin: '411001' } }
+```
+
+### 12.4 Spread
+
+**Spread** is the same `...` in the opposite role: it expands an array or object into a new literal or into function arguments.
+
+```js
+const a = [1, 2];
+const b = [3, 4];
+console.log([...a, ...b, 5], Math.max(...b), [..."hey"]);
+```
+
+**Output:**
+
+```text
+[ 1, 2, 3, 4, 5 ] 4 [ 'h', 'e', 'y' ]
+```
+
+For objects, later properties win, which makes "copy with changes" easy:
+
+```js
+const defaults = { theme: "light", pageSize: 20, lang: "en" };
+const saved = { pageSize: 50 };
+const settings = { ...defaults, ...saved, lang: "hi" };
+console.log(settings, defaults.pageSize);
+```
+
+**Output:**
+
+```text
+{ theme: 'light', pageSize: 50, lang: 'hi' } 20
+```
+
+Spread makes **shallow** copies: nested objects are shared, not copied (Chapter 18 shows deep copies):
+
+```js
+const copy = { ...user };
+copy.address.city = "Mumbai";
+console.log(user.address.city);
+```
+
+**Output:**
+
+```text
+Mumbai
+```
+
+### 12.5 Destructuring in parameters
+
+A function can destructure its arguments directly. Taking one options object with named properties beats a long list of positional arguments: call sites read clearly and the order doesn't matter. The final `= {}` makes calling with no argument work:
+
+```js
+function createUser({ name, age = 18, admin = false } = {}) {
+  return `${name} (${age})${admin ? " [admin]" : ""}`;
+}
+console.log(createUser({ name: "Asha", admin: true }), createUser({ age: 40, name: "Ravi" }), createUser());
+```
+
+**Output:**
+
+```text
+Asha (18) [admin] Ravi (40) undefined (18)
+```
+
+Destructuring also works in loops. `Object.entries` gives `[key, value]` pairs, and `array.entries()` gives `[index, element]` pairs:
+
+```js
+const stock = { pen: 120, bag: 0 };
+for (const [item, count] of Object.entries(stock)) {
+  console.log(item, count);
+}
+for (const [i, letter] of ["x", "y"].entries()) {
+  console.log(i, letter);
+}
+console.log(Object.entries(stock).map(([item, count]) => `${item}=${count}`));
+```
+
+**Output:**
+
+```text
+pen 120
+bag 0
+0 x
+1 y
+[ 'pen=120', 'bag=0' ]
+```
+
+### 12.6 Summary
+
+```
+const [a, b = 0, ...rest] = arr;          by position; default; rest array
+const { k, k2: alias, k3 = 1, ...rest } = obj;   by name; rename; default; rest object
+const { outer: { inner } } = obj;          nested (throws if outer is missing)
+[a, b] = [b, a];                           swap
+[...a, ...b]  { ...defaults, ...overrides }    spread: later keys win; shallow
+f(...args)                                 spread into arguments
+function f({ name, age = 18 } = {})        named options
+for (const [k, v] of Object.entries(obj))
+```
+
+**Key terms:**
+
+- **Destructuring:** unpacking values from an array or object into variables with a pattern.
+- **Pattern:** the left side of a destructuring assignment, shaped like the array or object it unpacks.
+- **Rest element:** `...name` at the end of a pattern, collecting the remaining values.
+- **Spread:** `...value` inside a literal or call, expanding an array or object into its elements or properties.
+- **Options object:** a single object argument whose named properties act as a function's settings.
+
+### Exercises
+
+1. `const response = { data: { items: [{ id: 1 }, { id: 2 }] }, status: 200 }`: get `status` and the first item's `id` in one destructuring.
+2. Write `updateQty(item, qty)` returning a copy of `item` with a new quantity, without changing the original.
+3. Merge `[3, 1]` and `[2]` into a sorted new array in one line.
 
 <details>
-<summary><b>Answer</b></summary>
+<summary><b>Answers</b></summary>
 
 ```js
-const updateCity = (u, newCity) => ({ ...u, address: { ...u.address, city: newCity } });
-const original = { name: "Ravi", address: { city: "Agra", pin: "282001" } };
-const moved = updateCity(original, "Jaipur");
-console.log(moved.address, original.address, moved.address === original.address);
+const response = { data: { items: [{ id: 1 }, { id: 2 }] }, status: 200 };
+const { status, data: { items: [{ id: firstId }] } } = response;
+const updateQty = (item, qty) => ({ ...item, qty });
+const pen = { sku: "P1", qty: 1 };
+console.log(status, firstId, updateQty(pen, 5), pen);
+console.log([...[3, 1], ...[2]].toSorted((x, y) => x - y));
 ```
 
 **Output:**
 
 ```text
-{ city: 'Jaipur', pin: '282001' } { city: 'Agra', pin: '282001' } false
+200 1 { sku: 'P1', qty: 5 } { sku: 'P1', qty: 1 }
+[ 1, 2, 3 ]
 ```
 
 </details>
+
+**Practice:**
+
+| # | Problem (LeetCode) | Difficulty |
+|---|---|---|
+| 1 | [2705. Compact Object](https://leetcode.com/problems/compact-object/) | 🟡 Medium |
+| 2 | [2722. Join Two Arrays by ID](https://leetcode.com/problems/join-two-arrays-by-id/) | 🟡 Medium |
 
 **Learn more:** [MDN: destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring) · [MDN: spread syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax)
 
@@ -1456,141 +2964,221 @@ console.log(moved.address, original.address, moved.address === original.address)
 
 ## 13. Scope, Hoisting and the Temporal Dead Zone
 
-### Theory
+**You need:** Chapter 10. · **You'll learn:** where a name can be used, how JavaScript looks names up, what hoisting does to `var`, functions, `let` and `const`, and why modules run in strict mode.
 
-> **In simple words:** **scope** decides where a name can be used. A variable declared inside a function or `{ }` block is invisible outside it; code inside can see names from the outside (the **scope chain**). **Hoisting** is how JavaScript prepares a scope before running it: function declarations are ready to use from the top, `var` variables exist but are `undefined` until assigned, and `let`/`const` exist but **can't be touched** until their line runs (the **temporal dead zone**, TDZ).
+### 13.1 Four kinds of scope
 
-**Kinds of scope:**
+A name's **scope** is the region of code where it exists. JavaScript has four:
 
 | Scope | Created by | Holds |
 |---|---|---|
-| Global | The script/page | `let`/`const` at the top level; `var` and function declarations also become properties of `globalThis` in classic scripts |
-| Module | Each ES module file | Top-level names are private to the module unless exported |
-| Function | Each function call | Parameters, `var`, `let`, `const`, inner functions |
-| Block | `{ }` of `if`, loops, bare blocks | `let`, `const`, `class` (not `var`) |
+| global | the environment | `globalThis` properties (`console`, `Math`, …) |
+| module | each module file | top-level names of that file (Chapter 26) |
+| function | each function call | parameters, and names declared inside |
+| block | each `{ }` | `let`, `const`, `class` declared inside |
 
-**Lexical scope:** a function sees the variables of the place where it was **written**, not where it's called. Inner scopes can read and **shadow** (redeclare) outer names. This is what makes closures possible (next section).
-
-**Hoisting, per declaration type:**
-
-| Declaration | Before its line |
-|---|---|
-| `function f() {}` | Fully usable |
-| `var x` | Exists, value `undefined` |
-| `let` / `const` / `class` | Exists but in the **TDZ**: any access throws `ReferenceError` |
-| `const f = () => {}` | Like any `const` (TDZ) |
-
-**Why the TDZ is good:** it turns "used before initialised" bugs into immediate errors instead of silent `undefined`s.
-
-**Strict mode** (`"use strict"`, automatic in modules and classes) turns more silent mistakes into errors: assigning to undeclared variables, duplicate parameter names, writing to read-only properties; and `this` is `undefined` in plain function calls instead of the global object.
-
-### JavaScript
+Scopes nest. Code can see names in its own scope and every **enclosing** (surrounding) scope, but not inside inner ones:
 
 ```js
-const brand = "ShopKart";                  // outer scope
+const app = "ShopKart";                 // module scope
+function checkout(total) {              // function scope: total, fee
+  const fee = total >= 499 ? 0 : 40;
+  if (fee > 0) {                        // block scope: note
+    const note = `${app}: add ₹${499 - total} for free delivery`;
+    console.log(note);
+  }
+  return total + fee;
+}
+console.log(checkout(300), typeof fee, typeof note);
+```
+
+**Output:**
+
+```text
+ShopKart: add ₹199 for free delivery
+340 undefined undefined
+```
+
+### 13.2 Lexical scope and the scope chain
+
+Scope is **lexical**: it's decided by where code is *written*, not where it's called. To find a name, JavaScript looks in the current scope, then the enclosing one, and so on outwards to the global scope: the **scope chain**. If the name isn't found anywhere, it's a `ReferenceError`.
+
+```js
+const level = "module";
 function outer() {
-  const section = "orders";
+  const level = "outer";
   function inner() {
-    const id = 90312;
-    return `${brand}/${section}/${id}`;     // sees all enclosing scopes (lexical scope chain)
+    return level;              // found in outer, the nearest enclosing scope
   }
   return inner();
 }
-console.log(outer());
-
-function shadow() {
-  const brand = "Local brand";              // shadows the outer name inside this function
-  return brand;
+function elsewhere() {
+  return level;                // written at module level: sees "module"
 }
-console.log(shadow(), brand);
-
-function hoistingDemo() {
-  console.log(typeof helper, legacy);       // function is ready; var exists as undefined
-  try {
-    console.log(modern);                    // let in TDZ
-  } catch (err) {
-    console.log(err.name, "-", err.message);
-  }
-  var legacy = "var value";
-  let modern = "let value";
-  function helper() {}
-  console.log(legacy, modern);
-}
-hoistingDemo();
-
-for (var i = 0; i < 2; i++) {}
-console.log("var i leaks out of the loop:", i);
-try {
-  for (let j = 0; j < 2; j++) {}
-  console.log(j);
-} catch (err) {
-  console.log("let j does not:", err.name);
-}
-
-function strictDemo() {
-  "use strict";
-  try {
-    undeclaredVariable = 5;                 // silent global in sloppy mode, error in strict mode
-  } catch (err) {
-    console.log(err.name, "-", err.message);
-  }
-}
-strictDemo();
+console.log(outer(), elsewhere());
 ```
 
 **Output:**
 
 ```text
-ShopKart/orders/90312
-Local brand ShopKart
-function undefined
-ReferenceError - Cannot access 'modern' before initialization
-var value let value
-var i leaks out of the loop: 2
-let j does not: ReferenceError
-ReferenceError - undeclaredVariable is not defined
+outer module
 ```
 
-**Common mistakes:**
+Declaring an inner name equal to an outer one **shadows** the outer: inside, the inner one hides it. Shadowing is legal but confusing; prefer distinct names.
 
-- ❌ Relying on hoisting (calling things before they're defined makes code hard to follow).
-- ❌ `var` in loops and blocks.
-- ❌ Accidental globals from missing declarations (use modules/strict mode and a linter).
-- ❌ Shadowing names by accident, making outer values unreachable.
+### 13.3 Hoisting
 
-### Practice
+Before a scope's code runs, JavaScript sets up all the names declared in it. This is **hoisting**, and each kind of declaration is set up differently:
 
-1. Predict, then run: what does this print, and why?
+| Declaration | Before its line runs |
+|---|---|
+| `function f() {}` | ready to call, body and all |
+| `var x` | exists, value `undefined` |
+| `let x`, `const x`, `class X` | exists but **uninitialised**: any access throws |
 
-   ```text
-   let x = "outer";
-   function show() { console.log(x); let x = "inner"; }
-   show();
-   ```
-
-<details>
-<summary><b>Answer</b></summary>
+The time between the start of the scope and the declaration line, when a `let`/`const` name exists but can't be touched, is the **temporal dead zone** (TDZ):
 
 ```js
-let x = "outer";
-function show() {
-  try {
-    console.log(x);
-    let x = "inner";
-  } catch (err) {
-    console.log(err.name, "-", err.message);
-  }
-}
-show();
+console.log(early);
+var early = "set";
+console.log(early);
 ```
 
 **Output:**
 
 ```text
-ReferenceError - Cannot access 'x' before initialization
+undefined
+set
 ```
 
-Inside the block, `x` refers to the **inner** `let x` (its scope starts at the top of the block), which is still in its TDZ, so it throws instead of falling back to the outer `x`.
+```js
+console.log(lateLet);
+let lateLet = "set";
+```
+
+**Output:**
+
+```text
+ReferenceError: Cannot access 'lateLet' before initialization
+```
+
+The TDZ turns "used a variable before setting it" from a silent `undefined` into a loud error, which is one reason `let` and `const` replaced `var`.
+
+### 13.4 var is function-scoped
+
+`var` ignores blocks: a `var` inside an `if` or a loop belongs to the whole function. In a loop, all rounds share one variable. Here three functions are stored during a loop and called afterwards:
+
+```js
+const withVar = [];
+for (var i = 0; i < 3; i++) {
+  withVar.push(() => i);
+}
+const withLet = [];
+for (let j = 0; j < 3; j++) {
+  withLet.push(() => j);
+}
+console.log(withVar.map((f) => f()), withLet.map((f) => f()));
+```
+
+**Output:**
+
+```text
+[ 3, 3, 3 ] [ 0, 1, 2 ]
+```
+
+With `var`, the three functions share one `i`, which is 3 after the loop ends. With `let`, each round gets a fresh `j` holding that round's value. This is the classic interview question; Chapter 14 explains why the functions keep the variables at all (closures), and Chapter 23 shows the same bug with timers.
+
+### 13.5 Strict mode
+
+**Strict mode** is a stricter version of JavaScript that turns silent mistakes into errors. ES modules (Chapter 26) and classes are always strict, as is every example in this book; old scripts opt in with `"use strict";` at the top. The main differences:
+
+- assigning to an undeclared name throws, instead of creating a global variable;
+- `this` in a plain function call is `undefined`, not the global object (Chapter 15);
+- assigning to read-only properties throws, instead of doing nothing.
+
+```js
+undeclaredTotal = 10;
+```
+
+**Output:**
+
+```text
+ReferenceError: undeclaredTotal is not defined
+```
+
+### 13.6 The global object
+
+`globalThis` is the **global object**: its properties are visible everywhere. In browsers it's `window`; in Node.js, `global`. Top-level `let`, `const` and module code don't add properties to it (old scripts' top-level `var` did):
+
+```js
+console.log(typeof globalThis, globalThis.Math === Math, globalThis.app);
+```
+
+**Output:**
+
+```text
+object true undefined
+```
+
+Avoid creating globals: they can clash with other scripts and are hard to trace.
+
+### 13.7 Summary
+
+```
+scopes: global ⊃ module ⊃ function ⊃ block;  inner code sees outer names, not the reverse
+lexical: decided by where code is written;  lookup walks the scope chain outwards
+hoisting: function → ready;  var → undefined;  let/const/class → TDZ (ReferenceError)
+var: function-scoped, one variable shared by every loop round;  let: fresh per round
+strict mode: modules and classes; undeclared assignment throws; plain-call this is undefined
+```
+
+**Key terms:**
+
+- **Global scope:** the outermost scope; its names are visible everywhere.
+- **Function scope:** the scope created by each function call.
+- **Block scope:** the scope of a `{ }` block, for `let`, `const` and `class`.
+- **Module scope:** the top-level scope of one module file.
+- **Lexical scope:** scope decided by where code is written in the source.
+- **Scope chain:** the sequence of enclosing scopes searched to find a name.
+- **Shadowing:** an inner declaration hiding an outer one with the same name.
+- **Temporal dead zone (TDZ):** the part of a scope before a `let`, `const` or `class` declaration, where using the name throws.
+- **Strict mode:** a stricter variant of JavaScript, always on in modules and classes, that turns silent mistakes into errors.
+- **globalThis:** the global object in every environment (`window` in browsers, `global` in Node.js).
+
+### Exercises
+
+1. Predict, then check: what does this print, and why?
+   ```
+   const x = "outer";
+   function show() { console.log(x); }
+   function run() { const x = "inner"; show(); }
+   run();
+   ```
+2. Which of these throw: reading a `var` before its declaration; calling a function declaration before its line; reading a `const` before its line?
+
+<details>
+<summary><b>Answers</b></summary>
+
+```js
+const x = "outer";
+function show() {
+  console.log(x);
+}
+function run() {
+  const x = "inner";
+  show();
+}
+run();
+```
+
+**Output:**
+
+```text
+outer
+```
+
+1. "outer": `show` was written at module level, so it looks up `x` there, wherever it's called from (lexical scope).
+2. Only the `const` (TDZ). The `var` gives `undefined`; the function declaration works.
 
 </details>
 
@@ -1600,908 +3188,1823 @@ Inside the block, `x` refers to the **inner** `let x` (its scope starts at the t
 
 ## 14. Closures
 
-![A closure: makeCounter returns an inner function that keeps a live link to its outer variable count, even after makeCounter has finished; each call to makeCounter creates a separate count](images/javascript/01-closure.svg)
+**You need:** Chapter 13. · **You'll learn:** what a closure is and why it exists, and how closures give private state, function factories, "run once" wrappers and caches.
 
-### Theory
+![A closure: the returned function keeps a link to the scope it was created in, so count lives on after makeCounter returns](images/javascript/01-closure.svg)
 
-> **In simple words:** a **closure** is a function that **remembers the variables around it** from where it was created, even after that outer function has finished running. When `makeCounter()` returns an inner function, that inner function carries a live link to `makeCounter`'s `count` variable; nobody else can reach it. Closures are how JavaScript does private state, factories, callbacks that remember context, memoisation, and React hooks.
+### 14.1 The problem
 
-**Key facts:**
-
-- Every function in JavaScript is a closure over its lexical scope.
-- It captures **variables, not values**: if the variable changes later, the closure sees the new value.
-- Each call of the outer function creates a **new** set of variables, so each returned function has its own private state.
-- Captured variables stay in memory as long as the closure is reachable (a source of leaks when large objects are captured by long-lived callbacks, Section [40](#40-memory-management-garbage-collection-and-leaks)).
-
-**Uses:** private state (counters, caches), function factories (`makeMultiplier(3)`), partial application and currying, event handlers and timers that remember data, the module pattern, `once`, `debounce`/`throttle` (Section [37](#37-debounce-and-throttle)), memoisation.
-
-**The classic loop bug:** with `var i` in a loop, all callbacks share **one** `i`, so they all see its final value. `let` creates a new binding per iteration, which fixes it.
-
-### JavaScript
+Normally a function's local variables disappear when it returns. But a function created inside another function can still use the outer function's variables later:
 
 ```js
-function makeCounter(start = 0) {
-  let count = start;                           // private: only the returned functions can see it
-  return {
-    increment: () => ++count,
-    decrement: () => --count,
-    value: () => count,
+function makeCounter() {
+  let count = 0;
+  return () => {
+    count++;
+    return count;
   };
 }
-const a = makeCounter();
-const b = makeCounter(100);
-a.increment(); a.increment();
-b.decrement();
-console.log(a.value(), b.value(), a.count);   // count isn't a property: it's a closed-over variable
+const counterA = makeCounter();
+const counterB = makeCounter();
+console.log(counterA(), counterA(), counterA(), counterB());
+```
 
-const makeMultiplier = factor => n => n * factor;
-const triple = makeMultiplier(3);
-console.log(triple(7), [1, 2, 3].map(makeMultiplier(10)));
+**Output:**
 
+```text
+1 2 3 1
+```
+
+`makeCounter` has returned, yet `counterA` still reads and changes `count`, and `counterB` has a separate `count`.
+
+### 14.2 What a closure is
+
+Every function keeps a reference to the scope it was created in. A function together with that remembered scope is a **closure**. Because the inner arrow references the scope that holds `count`, that scope stays alive as long as the arrow does. Each call of `makeCounter` creates a new scope, so each counter has its own `count`.
+
+Two consequences:
+
+- closures capture **variables**, not values: they see the current value at the time they run;
+- the captured variables live as long as the function that captured them, which costs memory if the function is kept forever (Chapter 40).
+
+```js
+let greeting = "Hello";
+const greet = (name) => `${greeting}, ${name}`;
+greeting = "Hi";
+console.log(greet("Asha"));
+```
+
+**Output:**
+
+```text
+Hi, Asha
+```
+
+This also explains Chapter 13.4: the `var` loop's functions all captured the same `i`, while each `let` round created a new `j` to capture.
+
+### 14.3 Private state
+
+Nothing outside `makeCounter` can reach `count` except through the functions it returns. Returning an object of functions gives a small module with **private state**:
+
+```js
+function createWallet(initial) {
+  let balance = initial;
+  return {
+    deposit(amount) {
+      if (amount <= 0) {
+        return false;
+      }
+      balance += amount;
+      return true;
+    },
+    getBalance: () => balance,
+  };
+}
+const wallet = createWallet(100);
+wallet.deposit(50);
+wallet.deposit(-999);
+console.log(wallet.getBalance(), wallet.balance);
+```
+
+**Output:**
+
+```text
+150 undefined
+```
+
+`wallet.balance` is `undefined`: the only way to change the balance is `deposit`, which validates. (Classes get true private fields with `#`, Chapter 20.)
+
+### 14.4 Function factories
+
+A function that builds customised functions is a **factory**:
+
+```js
+function makeFormatter(currency, decimals) {
+  return (amount) => `${currency} ${amount.toFixed(decimals)}`;
+}
+const inr = makeFormatter("₹", 0);
+const usd = makeFormatter("$", 2);
+console.log(inr(1499.5), usd(19.999));
+```
+
+**Output:**
+
+```text
+₹ 1500 $ 20.00
+```
+
+### 14.5 once and memoize
+
+A wrapper can add behaviour to any function. `once(fn)` lets `fn` run only the first time, remembering its result in a closure:
+
+```js
 function once(fn) {
-  let called = false, result;
+  let done = false;
+  let result;
   return (...args) => {
-    if (!called) {
-      called = true;
+    if (!done) {
+      done = true;
       result = fn(...args);
     }
     return result;
   };
 }
-const init = once(() => { console.log("initialising…"); return "ready"; });
-console.log(init(), init(), init());
+const init = once(() => {
+  console.log("initialising");
+  return 42;
+});
+console.log(init(), init());
+```
 
+**Output:**
+
+```text
+initialising
+42 42
+```
+
+**Memoization** caches results by their arguments, so a slow pure function computes each input once. The cache is an object in the closure:
+
+```js
 function memoize(fn) {
-  const cache = {};                             // private cache kept alive by the closure
-  return n => {
-    if (!(n in cache)) cache[n] = fn(n);
+  const cache = {};
+  return (n) => {
+    if (!(n in cache)) {
+      cache[n] = fn(n);
+    }
     return cache[n];
   };
 }
 let calls = 0;
-const slowSquare = n => { calls++; return n * n; };
+const slowSquare = (n) => {
+  calls++;
+  return n * n;
+};
 const fastSquare = memoize(slowSquare);
-fastSquare(9); fastSquare(9); fastSquare(9);
-console.log("computed", calls, "time(s)");
-
-const withVar = [], withLet = [];
-for (var i = 0; i < 3; i++) withVar.push(() => i);
-for (let j = 0; j < 3; j++) withLet.push(() => j);
-console.log(withVar.map(f => f()), withLet.map(f => f()));
+console.log(fastSquare(9), fastSquare(9), fastSquare(4), calls);
 ```
 
 **Output:**
 
 ```text
-2 99 undefined
-21 [ 10, 20, 30 ]
-initialising…
-ready ready ready
-computed 1 time(s)
-[ 3, 3, 3 ] [ 0, 1, 2 ]
+81 81 16 2
 ```
 
-**Common mistakes:**
-
-- ❌ `var` in loops with callbacks (all see the last value).
-- ❌ Expecting a closure to capture a value at creation time (it captures the variable).
-- ❌ Accidentally keeping huge objects alive through closures in long-lived listeners.
-- ❌ Creating new closures on every render/call where a stable function is needed (matters in React).
-
-### Practice
-
-1. Write `createBankAccount(initial)` returning `deposit`, `withdraw` (throws if not enough money) and `balance` functions, with the balance truly private. Show two independent accounts.
-
-<details>
-<summary><b>Answer</b></summary>
+Memoization helps recursion a lot. The naive Fibonacci recomputes the same values exponentially often; with a cache each value is computed once:
 
 ```js
-function createBankAccount(initial) {
-  let balance = initial;
-  return {
-    deposit(amount) { balance += amount; return balance; },
-    withdraw(amount) {
-      if (amount > balance) throw new Error(`insufficient funds: ${balance}`);
-      balance -= amount;
-      return balance;
-    },
-    balance: () => balance,
-  };
+let fibCalls = 0;
+function fib(n) {
+  fibCalls++;
+  return n < 2 ? n : fib(n - 1) + fib(n - 2);
 }
-const asha = createBankAccount(500), ravi = createBankAccount(50);
-asha.deposit(250);
-try { ravi.withdraw(100); } catch (err) { console.log(err.message); }
-console.log(asha.balance(), ravi.balance(), asha.balance === ravi.balance);
+console.log(fib(25), fibCalls);
+let memoCalls = 0;
+const fibMemo = memoize((n) => {
+  memoCalls++;
+  return n < 2 ? n : fibMemo(n - 1) + fibMemo(n - 2);
+});
+console.log(fibMemo(25), memoCalls);
 ```
 
 **Output:**
 
 ```text
-insufficient funds: 50
-750 50 false
+75025 242785
+75025 26
 ```
+
+This cache keys by one argument using an object, so keys become strings; Chapter 21's `Map` handles any key.
+
+### 14.6 Summary
+
+```
+closure = function + the scope it was created in; captured variables outlive the outer call
+captures variables (live values), not copies
+private state:  function make() { let x; return { get: () => x, … }; }
+factory:        const make = (cfg) => (input) => …cfg…input…
+once / memoize: wrapper functions that keep results in a closure
+```
+
+**Key terms:**
+
+- **Closure:** a function together with the scope it was created in, whose variables it can keep using after that scope's function has returned.
+- **Private state:** data reachable only through the functions that close over it.
+- **Factory function:** a function that creates and returns new functions or objects.
+- **Wrapper:** a function that takes a function and returns a new one that adds behaviour around it.
+- **Memoization:** caching a function's results by its arguments so repeated calls are instant.
+
+### Exercises
+
+1. Write `makeIdGenerator(prefix)` so that `const next = makeIdGenerator("ORD-")` returns `"ORD-1"`, `"ORD-2"`, … on successive calls.
+2. Write `rateLimit(fn, max)` that calls `fn` at most `max` times, returning `undefined` afterwards.
+
+<details>
+<summary><b>Answers</b></summary>
+
+```js
+function makeIdGenerator(prefix) {
+  let n = 0;
+  return () => `${prefix}${++n}`;
+}
+const nextId = makeIdGenerator("ORD-");
+console.log(nextId(), nextId(), nextId());
+function rateLimit(fn, max) {
+  let used = 0;
+  return (...args) => (used++ < max ? fn(...args) : undefined);
+}
+const shout = rateLimit((s) => s.toUpperCase(), 2);
+console.log(shout("a"), shout("b"), shout("c"));
+```
+
+**Output:**
+
+```text
+ORD-1 ORD-2 ORD-3
+A B undefined
+```
+
+1. `++n` adds 1 *before* reading, so the first id is 1.
+2. `used++ < max` compares the old value, then adds 1.
 
 </details>
 
-**Learn more:** [MDN: closures](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures) · [javascript.info: closure](https://javascript.info/closure)
+**Practice:**
+
+| # | Problem (LeetCode) | Difficulty |
+|---|---|---|
+| 1 | [2620. Counter](https://leetcode.com/problems/counter/) | 🟢 Easy |
+| 2 | [2665. Counter II](https://leetcode.com/problems/counter-ii/) | 🟢 Easy |
+| 3 | [2704. To Be Or Not To Be](https://leetcode.com/problems/to-be-or-not-to-be/) | 🟢 Easy |
+| 4 | [2666. Allow One Function Call](https://leetcode.com/problems/allow-one-function-call/) | 🟢 Easy |
+| 5 | [2623. Memoize](https://leetcode.com/problems/memoize/) | 🟡 Medium |
+
+**Learn more:** [MDN: closures](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures) · [javascript.info: closures](https://javascript.info/closure)
 
 ---
 
 ## 15. The this Keyword, call, apply and bind
 
-### Theory
+**You need:** Chapters 9, 10 and 14. · **You'll learn:** how `this` is decided by the way a function is called, why methods "lose" `this`, how arrow functions differ, and how `call`, `apply` and `bind` set `this` explicitly.
 
-> **In simple words:** inside a function, **`this`** refers to "the object the function is working on right now". Unlike most languages, JavaScript decides `this` **when the function is called**, based on **how** it's called, not where it's written. That's powerful but confusing, so learn the few rules below. **Arrow functions** are the exception: they don't have their own `this`; they use the `this` of the surrounding code.
+### 15.1 this in methods
 
-**The rules (checked in this order):**
-
-| How the function is called | `this` is |
-|---|---|
-| `new Fn()` | The new object being created |
-| `fn.call(obj, ...)`, `fn.apply(obj, [...])`, or a function made by `fn.bind(obj)` | `obj` |
-| `obj.method()` (called "on" an object) | `obj` |
-| Plain call `fn()` | `undefined` in strict mode/modules/classes; the global object in old sloppy scripts |
-| Arrow function | Whatever `this` was where the arrow was **defined** (lexical) |
-
-**`call`, `apply`, `bind`:** `fn.call(thisArg, a, b)` calls with a chosen `this` and arguments; `apply` is the same with arguments as an array; `bind` returns a **new function** permanently bound to `thisArg` (and optionally some arguments: partial application).
-
-**The classic bug: losing `this`.** Passing a method as a callback (`setTimeout(user.greet, 100)`, `button.addEventListener("click", obj.handle)`, `const f = obj.method`) detaches it from its object, so `this` is no longer `obj`. Fixes: an arrow wrapper (`() => user.greet()`), `bind`, or class fields defined as arrow functions.
-
-**Where you'll use it:** methods in objects and classes, event handlers (in DOM listeners `this` is the element, unless you use arrows), and older libraries. Modern code with classes, arrows and closures needs `this` less often, but interviews love it.
-
-### JavaScript
+Inside a function, `this` refers to the object the function was called on. That lets one method work with whichever object it belongs to:
 
 ```js
-"use strict";
-const user = {
-  name: "Asha",
-  greet() { return `Hi, I'm ${this?.name}`; },            // a regular method: this = the caller's object
-  greetLater() {
-    return [1].map(() => this.name);                       // arrow inside a method: uses the method's this
+const cart = {
+  owner: "Asha",
+  items: [20, 899],
+  total() {
+    let sum = 0;
+    for (const price of this.items) {
+      sum += price;
+    }
+    return `${this.owner}: ₹${sum}`;
   },
 };
-console.log(user.greet(), user.greetLater());
-
-const detached = user.greet;                               // lost its object
-console.log(detached());                                   // strict mode: this is undefined
-
-const ravi = { name: "Ravi" };
-console.log(user.greet.call(ravi), user.greet.apply(ravi, []));
-const boundToRavi = user.greet.bind(ravi);
-console.log(boundToRavi(), boundToRavi.call(user));        // bind wins over call
-
-function introduce(greeting, punctuation) {
-  return `${greeting}, ${this.name}${punctuation}`;
-}
-console.log(introduce.call(ravi, "Hello", "!"), introduce.apply(ravi, ["Namaste", "."]));
-const sayHiRavi = introduce.bind(ravi, "Hi");              // partially applied
-console.log(sayHiRavi("?"));
-
-function Person(name) {                                    // constructor function (classes do this for you)
-  this.name = name;
-}
-const p = new Person("Meera");
-console.log(p.name, p instanceof Person);
-
-class Timer {
-  seconds = 0;
-  tick = () => { this.seconds++; return this.seconds; };   // arrow class field: always bound
-}
-const t = new Timer();
-const tick = t.tick;                                       // detached, but still works
-tick(); tick();
-console.log(t.seconds);
+console.log(cart.total());
 ```
 
 **Output:**
 
 ```text
-Hi, I'm Asha [ 'Asha' ]
-Hi, I'm undefined
-Hi, I'm Ravi Hi, I'm Ravi
-Hi, I'm Ravi Hi, I'm Ravi
-Hello, Ravi! Namaste, Ravi.
-Hi, Ravi?
-Meera true
-2
+Asha: ₹919
 ```
 
-(The `class` syntax is covered in Part 3; the point here is that an arrow-function field keeps `this`.)
+The rule that matters: **`this` is set by how the function is called, not where it's written.** In `cart.total()`, the object before the dot is `cart`, so `this` is `cart`.
 
-**Common mistakes:**
+### 15.2 The four ways to call
 
-- ❌ Passing `obj.method` as a callback and losing `this`.
-- ❌ Arrow functions as object methods that need `this`.
-- ❌ Assuming `this` refers to the function itself or to where the function was written (except for arrows).
-- ❌ Rebinding a bound function with `call`/`bind` (the first `bind` wins).
+| Call | `this` |
+|---|---|
+| `obj.method()` | `obj` |
+| `fn()` (plain call) | `undefined` in strict mode (all modern code); the global object in old scripts |
+| `new Fn()` | the new object being built (Chapter 19) |
+| `fn.call(x)`, `fn.apply(x)`, `fn.bind(x)` | `x` |
 
-### Practice
+Arrow functions are the exception: they have no `this` of their own (15.4).
 
-1. Fix this so that it prints `"Order 90312 confirmed"` when `later` runs: `const order = { id: 90312, confirm() { return \`Order ${this.id} confirmed\`; } }; const later = order.confirm;`. Show two different fixes.
+### 15.3 Losing this
 
-<details>
-<summary><b>Answer</b></summary>
+Taking a method out of its object and calling it plainly loses `this`:
 
 ```js
-const order = { id: 90312, confirm() { return `Order ${this.id} confirmed`; } };
-const fix1 = order.confirm.bind(order);
-const fix2 = () => order.confirm();
-console.log(fix1(), "|", fix2());
+const total = cart.total;
+total();
 ```
 
 **Output:**
 
 ```text
-Order 90312 confirmed | Order 90312 confirmed
+TypeError: Cannot read properties of undefined (reading 'items')
 ```
+
+The function is the same; the call is different. `total()` has no object before the dot, so `this` is `undefined`, and reading `this.items` throws. This happens whenever a method is passed as a callback, such as to a timer or an event listener.
+
+### 15.4 Arrow functions take this from outside
+
+An arrow function has no own `this`: it uses the `this` of the scope it was written in, like any other outer variable (lexically). That makes arrows ideal for callbacks *inside* methods, and wrong *as* methods:
+
+```js
+const team = {
+  name: "Core",
+  members: ["Asha", "Ravi"],
+  list() {
+    return this.members.map((m) => `${m} (${this.name})`);
+  },
+  arrowMethod: () => typeof this,
+};
+console.log(team.list(), team.arrowMethod());
+```
+
+**Output:**
+
+```text
+[ 'Asha (Core)', 'Ravi (Core)' ] undefined
+```
+
+In `list`, the arrow callback uses `list`'s `this`, which is `team`. `arrowMethod` was written at module level, where `this` is `undefined`, so it can't see `team`. Write methods with the method shorthand, and use arrows for the callbacks inside them.
+
+### 15.5 call, apply and bind
+
+Every function has three methods to set `this` explicitly:
+
+- `fn.call(thisValue, arg1, arg2)` calls now, with arguments listed;
+- `fn.apply(thisValue, [arg1, arg2])` calls now, with arguments in an array;
+- `fn.bind(thisValue, ...args)` doesn't call: it returns a new function with `this` (and optionally the first arguments) fixed.
+
+```js
+function introduce(greeting, punctuation) {
+  return `${greeting}, I'm ${this.name}${punctuation}`;
+}
+const asha = { name: "Asha" };
+console.log(introduce.call(asha, "Hi", "!"), introduce.apply(asha, ["Hello", "."]));
+const ashaSays = introduce.bind(asha, "Hey");
+console.log(ashaSays("?"));
+```
+
+**Output:**
+
+```text
+Hi, I'm Asha! Hello, I'm Asha.
+Hey, I'm Asha?
+```
+
+`bind` fixes the lost-`this` problem from 15.3:
+
+```js
+const boundTotal = cart.total.bind(cart);
+console.log(boundTotal());
+```
+
+**Output:**
+
+```text
+Asha: ₹919
+```
+
+A function bound once stays bound: binding it again, or calling it as a method, can't change its `this`. Wrapping in an arrow, `() => cart.total()`, does the same job and is often clearer.
+
+Binding only arguments (passing `null` for `this`) is **partial application**: fixing some arguments now and supplying the rest later (Chapter 36):
+
+```js
+const add = (a, b) => a + b;
+const add10 = add.bind(null, 10);
+console.log(add10(5));
+```
+
+**Output:**
+
+```text
+15
+```
+
+### 15.6 Borrowing methods
+
+`call` lets one object use another's method, as long as it has the properties the method reads:
+
+```js
+const other = { owner: "Ravi", items: [60, 349] };
+console.log(cart.total.call(other));
+```
+
+**Output:**
+
+```text
+Ravi: ₹409
+```
+
+### 15.7 Summary
+
+```
+this = decided by the call:  obj.m() → obj;  f() → undefined (strict);  new F() → new object
+arrow functions: no own this; use the enclosing scope's (good for callbacks, bad as methods)
+f.call(t, a, b)   f.apply(t, [a, b])   f.bind(t, a) → new function with this fixed
+lost this: const m = obj.m; m()  →  fix with obj.m.bind(obj) or () => obj.m()
+```
+
+**Key terms:**
+
+- **this:** a special name inside functions that refers to the object the function was called on (or as set by `call`, `apply`, `bind` or `new`).
+- **Method call:** calling a function as a property of an object, `obj.m()`, which sets `this` to `obj`.
+- **Plain call:** calling a function on its own, `f()`, which sets `this` to `undefined` in strict mode.
+- **call:** a function method that calls the function with a given `this` and listed arguments.
+- **apply:** a function method that calls the function with a given `this` and arguments from an array.
+- **bind:** a function method that returns a new function with `this` and optionally some arguments fixed.
+- **Partial application:** fixing some of a function's arguments to make a new function that takes the rest.
+- **Method borrowing:** calling one object's method on another object with `call` or `apply`.
+
+### Exercises
+
+1. Predict, then check: what do `user.hi()` and `user.bye()` return?
+   ```
+   const user = { name: "Meera", hi() { return this.name; }, bye: () => typeof this };
+   ```
+2. Fix this so it prints "Meera": `const hi = user.hi; hi();`
+
+<details>
+<summary><b>Answers</b></summary>
+
+```js
+const user = {
+  name: "Meera",
+  hi() {
+    return this.name;
+  },
+  bye: () => typeof this,
+};
+console.log(user.hi(), user.bye());
+const hi = user.hi.bind(user);
+console.log(hi());
+```
+
+**Output:**
+
+```text
+Meera undefined
+Meera
+```
+
+1. `hi` is a method call, so `this` is `user`. `bye` is an arrow written at module level, where `this` is `undefined`.
 
 </details>
 
-**Learn more:** [MDN: this](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this) · [MDN: Function.prototype.bind](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind) · [javascript.info: object methods, this](https://javascript.info/object-methods)
+**Practice:**
+
+| # | Problem (LeetCode) | Difficulty |
+|---|---|---|
+| 1 | [2693. Call Function with Custom Context](https://leetcode.com/problems/call-function-with-custom-context/) | 🟡 Medium |
+
+**Learn more:** [MDN: this](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this) · [MDN: Function.prototype.bind](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind)
 
 ---
 
 ## 16. Type Conversion, Coercion and == vs ===
 
-### Theory
+**You need:** Chapters 3–4 and 15. · **You'll learn:** how values convert to strings, numbers and booleans, when JavaScript converts them for you, how objects become primitives, the exact rules of `==`, and `Object.is`.
 
-> **In simple words:** JavaScript often converts values from one type to another **automatically** (**coercion**): `"5" * 2` is `10`, `"5" + 2` is `"52"`, `if ("hello")` treats the string as `true`. Automatic conversion is convenient but causes famous surprises. The practical rules: **convert explicitly** (`Number(x)`, `String(x)`), use **`===`** for comparisons, and know which values are falsy.
+### 16.1 Explicit conversion
 
-**Explicit conversion:**
-
-| To | Use | Examples |
-|---|---|---|
-| Number | `Number(x)` (whole string must be numeric), `parseInt(x, 10)`, `parseFloat(x)` (read a leading number) | `Number("42")` → 42, `Number("42px")` → NaN, `parseInt("42px", 10)` → 42, `Number("")` → 0 |
-| String | `String(x)`, `` `${x}` ``, `x.toString()` | `String(null)` → "null" |
-| Boolean | `Boolean(x)`, `!!x` | `Boolean("0")` → true, `Boolean(0)` → false |
-
-**Implicit coercion rules worth knowing:**
-
-- `+` with any string → string concatenation; other arithmetic operators (`- * / %`) → numbers.
-- Objects are converted via `valueOf()`/`toString()` (e.g. arrays join with commas: `[1, 2] + ""` is `"1,2"`; `{}` becomes `"[object Object]"`).
-- In conditions, values are converted to booleans (falsy list: `false, 0, -0, 0n, "", null, undefined, NaN`).
-
-**`==` (loose) vs `===` (strict):** `===` compares type and value with no conversion. `==` converts first with complicated rules (`0 == ""`, `"0" == false`, `null == undefined` are all true, but `null == 0` is false). Use `===` always; the one common exception is `x == null`, a short way to check "null or undefined" (many teams still prefer `x === null || x === undefined` or `x ?? ...`).
-
-**`Object.is(a, b)`** is like `===` but treats `NaN` as equal to itself and `+0`/`-0` as different (used by React to compare state).
-
-### JavaScript
+Converting a value on purpose is **explicit conversion** (also called type casting). Three functions do it:
 
 ```js
-console.log(Number("42"), Number("42px"), parseInt("42px", 10), parseFloat("3.5kg"), Number(""), Number(" 7 "), Number(null), Number(undefined));
-console.log(String(99), String(null), `${[1, 2]}`, String({}), (255).toString(16));
-console.log(Boolean("0"), Boolean(""), Boolean([]), Boolean({}), !!NaN);
-
-console.log("5" + 2, "5" - 2, "5" * "2", true + 1, [] + [], [1, 2] + [3]);
-console.log(0 == "", "0" == false, null == undefined, null == 0, NaN == NaN);
-console.log(0 === "", null === undefined, 1 === 1.0);
-console.log(Object.is(NaN, NaN), Object.is(0, -0), NaN === NaN, 0 === -0);
-
-const input = "0";                                     // e.g. from a form field
-if (input) console.log("a non-empty string is truthy, even '0'");
-const qty = Number(input);
-if (!Number.isFinite(qty) || qty < 1) console.log("invalid quantity:", qty);
-
-let maybe = null;
-console.log(maybe == null, undefined == null, 0 == null, "" == null);   // the one useful == idiom
+console.log(String(42), String(null), String([1, 2]), String({}));
+console.log(Number("42"), Number(" 12 "), Number(""), Number("12px"), Number(null), Number(undefined));
+console.log(Number(true), Number([]), Number([5]), Number({}));
+console.log(Boolean(0), Boolean("0"), Boolean([]), Boolean(null));
 ```
 
 **Output:**
 
 ```text
-42 NaN 42 3.5 0 7 0 NaN
-99 null 1,2 [object Object] ff
-true false true true false
-52 3 10 2  1,23
-true true true false false
-false false true
-true false false true
-a non-empty string is truthy, even '0'
-invalid quantity: 0
-true true false false
+42 null 1,2 [object Object]
+42 12 0 NaN 0 NaN
+1 0 5 NaN
+false true true false
 ```
 
-**Common mistakes:**
+The number rules worth memorising: surrounding spaces are ignored; an empty string is 0; anything non-numeric is `NaN`; `null` is 0 but `undefined` is `NaN`; `true` is 1. Booleans follow the falsy list from Chapter 4.3.
 
-- ❌ `==` in comparisons.
-- ❌ `parseInt` without the radix, or `parseInt` when the whole string must be a number (use `Number` and check `Number.isNaN`).
-- ❌ Adding numbers read from inputs (`"5" + "3"` is `"53"`); convert first.
-- ❌ `if (value)` where `0` or `""` are valid.
+### 16.2 Implicit conversion (coercion)
 
-### Practice
+When an operator gets a type it doesn't expect, JavaScript converts the value for you: **coercion**.
 
-1. Write `toQuantity(text)` that returns an integer from 1 to 99 for inputs like `" 3 "`, and `null` for `""`, `"abc"`, `"2.5"`, `"0"` or `"150"`.
+- `+` with a string on either side converts the other side to a string and joins;
+- `- * / %` and comparisons with a number convert to numbers;
+- conditions, `!`, `&&`, `||` use truthiness;
+- template literals convert to strings.
+
+```js
+console.log("4" + 2, "4" - 2, "4" * "2", true + true, null + 1, undefined + 1);
+console.log(`${[1, 2]}`, !"", 1 < "2");
+```
+
+**Output:**
+
+```text
+42 2 8 2 1 NaN
+1,2 true true
+```
+
+### 16.3 Objects to primitives
+
+When an object meets an operator, it's first turned into a primitive: JavaScript calls its `valueOf()` method and, if that doesn't return a primitive, its `toString()` (in the other order when a string is wanted). For plain objects `toString` gives `"[object Object]"`; for arrays it joins the elements with commas. This explains the famous oddities:
+
+```js
+console.log([] + [], [] + {}, [1, 2] + [3], {} + "x");
+```
+
+**Output:**
+
+```text
+ [object Object] 1,23 [object Object]x
+```
+
+Your own objects can choose their primitive by defining `valueOf` or `toString`:
+
+```js
+const price = {
+  amount: 499,
+  valueOf() {
+    return this.amount;
+  },
+  toString() {
+    return `₹${this.amount}`;
+  },
+};
+console.log(price * 2, `${price}`, price > 100);
+```
+
+**Output:**
+
+```text
+998 ₹499 true
+```
+
+Dates use this: subtracting two dates gives milliseconds (Chapter 28).
+
+### 16.4 The rules of ==
+
+`===` never converts. `==` (loose equality) converts first, using these steps:
+
+1. same type: compare like `===`;
+2. `null == undefined` is true, and they equal nothing else;
+3. number vs string: the string becomes a number;
+4. a boolean becomes a number (true → 1, false → 0) first;
+5. an object vs a primitive: the object becomes a primitive (16.3).
+
+```js
+console.log(null == undefined, null == 0, undefined == "");
+console.log("1" == 1, "" == 0, "0" == false, " \n" == 0);
+console.log([] == false, [] == ![], [1] == 1, "true" == true);
+```
+
+**Output:**
+
+```text
+true false false
+true true true true
+true true true false
+```
+
+`[] == ![]` is true: `![]` is `false` (an array is truthy); `false` becomes 0; `[]` becomes `""` and then 0. `"true" == true` is false because `true` becomes 1, and `"true"` becomes `NaN`.
+
+The rules are consistent but impossible to apply at a glance, so **always use `===`**. The one common exception is `x == null`, which is true for exactly `null` and `undefined`.
+
+### 16.5 Relational comparisons
+
+`<`, `>`, `<=`, `>=` compare two strings alphabetically and everything else as numbers. Mixed comparisons hide surprises:
+
+```js
+console.log("10" < "9", "10" < 9, null >= 0, null > 0, null == 0, undefined >= 0);
+```
+
+**Output:**
+
+```text
+true false true false false false
+```
+
+`"10" < "9"`: two strings, compared by first character, and "1" comes before "9". `null >= 0` is true (`null` becomes 0 for `>=`) while `null == 0` is false (rule 2): convert input to numbers before comparing.
+
+### 16.6 Object.is
+
+`Object.is(a, b)` is like `===` except for two values: it treats `NaN` as equal to itself, and `0` and `-0` as different:
+
+```js
+console.log(NaN === NaN, Object.is(NaN, NaN), 0 === -0, Object.is(0, -0));
+console.log([NaN].includes(NaN), [NaN].indexOf(NaN));
+```
+
+**Output:**
+
+```text
+false true true false
+true -1
+```
+
+`includes` uses this "same value" idea (but treats 0 and −0 as equal), so it finds `NaN`; `indexOf` uses `===` and doesn't.
+
+### 16.7 Summary
+
+```
+String(x)  Number(x)  Boolean(x)        explicit conversion
+Number: " 12 "→12, ""→0, "12px"→NaN, null→0, undefined→NaN, true→1, []→0, {}→NaN
++ with a string joins;  - * / and comparisons convert to numbers
+objects → primitive via valueOf()/toString():  [] + {} → "[object Object]"
+==: null == undefined only; strings and booleans → numbers; objects → primitives
+always ===;  x == null tests null or undefined
+Object.is(NaN, NaN) → true;  Object.is(0, -0) → false
+```
+
+**Key terms:**
+
+- **Type conversion:** changing a value from one type to another.
+- **Explicit conversion:** converting on purpose with `String`, `Number` or `Boolean`; also called type casting.
+- **Coercion:** a conversion JavaScript performs automatically because an operator expects a different type.
+- **valueOf:** the method JavaScript calls to get an object's primitive value, usually for numbers.
+- **toString:** the method JavaScript calls to turn an object into a string.
+- **Loose equality (==):** equality that converts the operands' types before comparing.
+- **Object.is:** a comparison like `===` that treats `NaN` as equal to itself and `0` and `-0` as different.
+
+### Exercises
+
+1. Predict, then check: `"5" * "2"`, `"5" + 2 - 1`, `[] + 1`, `[2] * [3]`, `null + "x"`.
+2. A form gives `const qty = "3"` and `const unitPrice = "20"`. Compute the total correctly, and show what `+` would do by mistake.
 
 <details>
-<summary><b>Answer</b></summary>
+<summary><b>Answers</b></summary>
 
 ```js
-function toQuantity(text) {
-  const n = Number(String(text).trim());
-  if (text.trim() === "" || !Number.isInteger(n) || n < 1 || n > 99) return null;
-  return n;
-}
-console.log([" 3 ", "", "abc", "2.5", "0", "150", "99"].map(toQuantity));
+console.log("5" * "2", "5" + 2 - 1, [] + 1, [2] * [3], null + "x");
+const qty = "3";
+const unitPrice = "20";
+console.log(qty * unitPrice, Number(qty) * Number(unitPrice), qty + unitPrice);
 ```
 
 **Output:**
 
 ```text
-[
-  3,    null, null,
-  null, null, null,
-  99
-]
+10 51 1 6 nullx
+60 60 320
 ```
 
-(`Number("")` is `0`, so the empty check must come first; `Number.isInteger` rejects `2.5` and `NaN`.)
+1. `"5" + 2` is `"52"`, then `- 1` makes 51. `[] + 1`: `[]` becomes `""`, then joined. `[2] * [3]`: both become numbers.
+2. Multiplication happens to convert, but `+` joins (`"320"`); convert with `Number` first.
 
 </details>
 
-**Learn more:** [MDN: equality comparisons and sameness](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness) · [MDN: type coercion](https://developer.mozilla.org/en-US/docs/Glossary/Type_coercion) · [javascript.info: type conversions](https://javascript.info/type-conversions)
+**Learn more:** [MDN: equality comparisons](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Equality_comparisons_and_sameness) · [MDN: type coercion](https://developer.mozilla.org/en-US/docs/Glossary/Type_coercion) · [javascript.info: type conversions](https://javascript.info/type-conversions)
 
 ---
 
-## 17. Error Handling: try, catch, throw and Custom Errors
+## 17. Error Handling: try, catch, throw and finally
 
-### Theory
+**You need:** Chapters 10 and 16. · **You'll learn:** to catch errors so a program can recover, to throw your own, to clean up with `finally`, to wrap errors with a cause, and when *not* to catch.
 
-> **In simple words:** when something goes wrong at runtime, JavaScript **throws** an error: normal execution stops and jumps to the nearest `catch`. Wrap risky code in `try { } catch (err) { }` to handle problems (show a message, retry, use a fallback) instead of crashing. You can `throw` your own errors, and create custom error classes so callers can tell different problems apart.
+### 17.1 Catching an error
 
-**The shape:**
-
-```text
-try {
-  risky();
-} catch (err) {        ← err is usually an Error object: err.name, err.message, err.stack, err.cause
-  handle(err);
-} finally {
-  cleanUp();           ← always runs
-}
-```
-
-**Built-in errors:** `Error`, `TypeError`, `RangeError`, `ReferenceError`, `SyntaxError` (from `JSON.parse` too), `AggregateError` (several errors, e.g. `Promise.any`), plus environment-specific ones (`DOMException` for `fetch` aborts).
-
-**Throwing:** `throw new Error("message")`; always throw `Error` objects (they carry a stack trace), never plain strings. Add context with **`cause`**: `throw new Error("could not load order", { cause: err })`.
-
-**Custom errors:** `class NotFoundError extends Error { constructor(msg) { super(msg); this.name = "NotFoundError"; } }`; check with `err instanceof NotFoundError`. (Classes are in Part 3; this is the one pattern you need now.)
-
-**What `catch` can't see:** errors in callbacks that run **later** (a `setTimeout` callback, an event handler) aren't caught by a `try` around the code that scheduled them; errors in promises need `.catch` or `try`/`await` (Section [25](#25-asyncawait-asynchronous-code-that-reads-like-normal-code)). Unhandled errors go to `window.onerror`/`unhandledrejection` in browsers and crash Node processes by default.
-
-**Good practice:** catch only where you can do something useful; rethrow what you can't handle; never swallow errors silently; show users friendly messages and log details (with the stack) for developers; validate input early (fail fast).
-
-### JavaScript
+Until now, an error stopped the program. `try { … } catch (err) { … }` runs the `try` block; if anything in it throws, the rest of the block is skipped and the `catch` block runs with the error:
 
 ```js
-function parseOrder(json) {
-  try {
-    const order = JSON.parse(json);
-    if (typeof order.id !== "number") {
-      throw new TypeError("order.id must be a number");
-    }
-    return order;
-  } catch (err) {
-    throw new Error("invalid order payload", { cause: err });   // add context, keep the cause
-  } finally {
-    console.log("  parse attempted");
-  }
-}
-
-for (const input of ['{"id": 90312}', '{"id": "x"}', "{broken"]) {
-  try {
-    console.log("ok:", parseOrder(input).id);
-  } catch (err) {
-    console.log(err.message, "← caused by", err.cause.name + ":", err.cause.message);
-  }
-}
-
-class NotFoundError extends Error {
-  constructor(what) {
-    super(`${what} not found`);
-    this.name = "NotFoundError";
-  }
-}
-const STOCK = { P1: 3 };
-function reserve(sku, qty) {
-  if (!(sku in STOCK)) throw new NotFoundError(`product ${sku}`);
-  if (qty > STOCK[sku]) throw new RangeError(`only ${STOCK[sku]} left`);
-  STOCK[sku] -= qty;
-  return STOCK[sku];
-}
-for (const [sku, qty] of [["P1", 2], ["P9", 1], ["P1", 5]]) {
-  try {
-    console.log("left:", reserve(sku, qty));
-  } catch (err) {
-    if (err instanceof NotFoundError) console.log("404 →", err.message);
-    else if (err instanceof RangeError) console.log("409 →", err.message);
-    else throw err;                                   // unknown errors keep propagating
-  }
-}
-
+let data;
 try {
-  setTimeout(() => { try { null.x; } catch (e) { console.log("caught INSIDE the callback:", e.name); } }, 0);
-} catch {
-  console.log("never reached: the outer try finished long before the callback ran");
+  data = JSON.parse("{bad json");
+  console.log("never reached");
+} catch (err) {
+  console.log("Could not parse:", err.name, "-", err.message);
+  data = {};
+}
+console.log("still running", data);
+```
+
+**Output:**
+
+```text
+Could not parse: SyntaxError - Expected property name or '}' in JSON at position 1 (line 1 column 2)
+still running {}
+```
+
+The error is an object with a `name` (its type, Chapter 1.4), a `message`, and a `stack`: the chain of calls that led to it, with file names and line numbers:
+
+```js
+try {
+  null.length;
+} catch (err) {
+  console.log(err instanceof TypeError, err.stack.split("\n")[0]);
 }
 ```
 
 **Output:**
 
 ```text
-  parse attempted
-ok: 90312
-  parse attempted
-invalid order payload ← caused by TypeError: order.id must be a number
-  parse attempted
-invalid order payload ← caused by SyntaxError: Expected property name or '}' in JSON at position 1 (line 1 column 2)
-left: 1
-404 → product P9 not found
-409 → only 1 left
-caught INSIDE the callback: TypeError
+true TypeError: Cannot read properties of null (reading 'length')
 ```
 
-**Common mistakes:**
+`instanceof` checks which kind of error it is (Chapter 19 explains how).
 
-- ❌ `catch (e) {}`: silently swallowing errors.
-- ❌ `throw "message"` instead of `throw new Error("message")` (no stack trace).
-- ❌ Expecting a `try` around `setTimeout`/event registration to catch errors from the callback.
-- ❌ Catching everything at every level instead of handling where you have context.
-- ❌ Showing raw error messages/stack traces to end users.
+### 17.2 Throwing your own errors
 
-### Practice
-
-1. Write `safeJSON(text, fallback)` that returns the parsed value, or `fallback` if the text isn't valid JSON, logging a warning with `console.log`. Test with `'{"a":1}'`, `"nope"` and `""`.
-
-<details>
-<summary><b>Answer</b></summary>
+`throw` raises an error yourself. Throw an `Error` object, created with `new Error(message)`, or one of its specific types; `new` creates an object from a constructor (Chapter 19):
 
 ```js
-function safeJSON(text, fallback) {
+function withdraw(balance, amount) {
+  if (typeof amount !== "number" || Number.isNaN(amount)) {
+    throw new TypeError(`amount must be a number, got ${typeof amount}`);
+  }
+  if (amount > balance) {
+    throw new RangeError(`cannot withdraw ${amount}; balance is ${balance}`);
+  }
+  return balance - amount;
+}
+for (const amount of [30, 500, "ten"]) {
+  try {
+    console.log("left:", withdraw(100, amount));
+  } catch (err) {
+    console.log(`${err.name}: ${err.message}`);
+  }
+}
+```
+
+**Output:**
+
+```text
+left: 70
+RangeError: cannot withdraw 500; balance is 100
+TypeError: amount must be a number, got string
+```
+
+You *can* throw any value (`throw "oops"`), but then there's no `stack` and no `name`, so always throw `Error` objects.
+
+### 17.3 finally
+
+A `finally` block runs whether the `try` succeeded, threw, or returned. It's for cleanup that must always happen: closing a file, hiding a spinner, releasing a lock:
+
+```js
+function load(text) {
+  console.log("show spinner");
   try {
     return JSON.parse(text);
   } catch (err) {
-    console.log(`warning: ${err.name}, using fallback`);
-    return fallback;
+    return null;
+  } finally {
+    console.log("hide spinner");
   }
 }
-console.log(safeJSON('{"a":1}', {}), safeJSON("nope", null), safeJSON("", []));
+console.log(load('{"ok":true}'), load("oops"));
 ```
 
 **Output:**
 
 ```text
-warning: SyntaxError, using fallback
-warning: SyntaxError, using fallback
-{ a: 1 } null []
+show spinner
+hide spinner
+show spinner
+hide spinner
+{ ok: true } null
 ```
+
+`finally` runs even after `return`. Don't `return` from inside `finally` itself: that value replaces the `try`'s result, and it silently swallows any error.
+
+### 17.4 Rethrowing and the cause
+
+Catch only the errors you can handle, and **rethrow** the rest so they aren't hidden:
+
+```js
+function parseConfig(text) {
+  try {
+    return JSON.parse(text);
+  } catch (err) {
+    if (err instanceof SyntaxError) {
+      return { theme: "light" };          // expected: bad config, use defaults
+    }
+    throw err;                            // unexpected: let it surface
+  }
+}
+console.log(parseConfig("not json"));
+```
+
+**Output:**
+
+```text
+{ theme: 'light' }
+```
+
+When you catch a low-level error and throw a clearer one, pass the original as the **cause**, so the full story survives for debugging:
+
+```js
+function loadUser(text) {
+  try {
+    return JSON.parse(text);
+  } catch (err) {
+    throw new Error("Failed to load user profile", { cause: err });
+  }
+}
+try {
+  loadUser("{");
+} catch (err) {
+  console.log(err.message, "| caused by:", err.cause.name, err.cause.message);
+}
+```
+
+**Output:**
+
+```text
+Failed to load user profile | caused by: SyntaxError Expected property name or '}' in JSON at position 1 (line 1 column 2)
+```
+
+If you don't need the error object, the binding can be left out: `catch { … }`.
+
+### 17.5 Naming your own error types
+
+Code that catches errors often needs to tell your errors apart from bugs. The simplest way is a distinctive `name`; Chapter 20 shows the full approach with `class ValidationError extends Error`:
+
+```js
+function validationError(message, field) {
+  const err = new Error(message);
+  err.name = "ValidationError";
+  err.field = field;
+  return err;
+}
+try {
+  throw validationError("Email is required", "email");
+} catch (err) {
+  if (err.name === "ValidationError") {
+    console.log(`Show "${err.message}" next to the ${err.field} field`);
+  } else {
+    throw err;
+  }
+}
+```
+
+**Output:**
+
+```text
+Show "Email is required" next to the email field
+```
+
+### 17.6 When to catch, and when not to
+
+- **Catch** at a boundary where you can do something useful: show a message, use a default, retry, or log and continue with the next item.
+- **Don't catch** just to silence errors. An empty `catch {}` turns a crash you'd notice into wrong data you won't.
+- **Don't use exceptions for normal outcomes.** "Item not found" is often better as a return value (`undefined` or `null`) than as an error.
+- **Fail fast:** validate inputs at the start of a function and throw immediately, close to the cause.
+- `try`/`catch` only catches errors thrown while the `try` block runs. Errors in code scheduled for later (timers, promises) need the tools of Chapters 23–25.
+
+### 17.7 Summary
+
+```
+try { … } catch (err) { … } finally { … }    finally always runs; catch { } without a binding
+err.name  err.message  err.stack  err.cause
+throw new Error(msg)  TypeError  RangeError  SyntaxError  ReferenceError
+throw new Error("context", { cause: err })   wrap with a cause
+catch what you can handle; rethrow the rest; never swallow silently
+```
+
+**Key terms:**
+
+- **Exception:** an error thrown while code runs, which jumps to the nearest `catch`.
+- **try...catch:** a statement that runs a block and handles any error thrown inside it.
+- **throw:** a statement that raises an error (or any value) at that point.
+- **finally:** a block that runs after `try` and `catch`, whatever happened.
+- **Stack trace:** the list of function calls active when an error was created, stored in `err.stack`.
+- **Rethrow:** throw a caught error again so an outer handler deals with it.
+- **Error cause:** the original error attached to a new one with `{ cause }`.
+- **new:** an operator that creates an object from a constructor function or class, such as `new Error("…")`.
+- **Fail fast:** check inputs early and throw immediately, close to the problem.
+
+### Exercises
+
+1. Write `safeDivide(a, b)` that throws a `RangeError` when `b` is 0, and call it in a `try`/`catch` that prints the message.
+2. Write `parseAge(text)` that returns a number, throwing a `TypeError` with a helpful message when the text isn't a whole number from 0 to 150.
+
+<details>
+<summary><b>Answers</b></summary>
+
+```js
+function safeDivide(a, b) {
+  if (b === 0) {
+    throw new RangeError("division by zero");
+  }
+  return a / b;
+}
+try {
+  console.log(safeDivide(10, 2));
+  console.log(safeDivide(1, 0));
+} catch (err) {
+  console.log(err.name, err.message);
+}
+function parseAge(text) {
+  const age = Number(text);
+  if (!Number.isInteger(age) || age < 0 || age > 150) {
+    throw new TypeError(`"${text}" is not a valid age`);
+  }
+  return age;
+}
+for (const input of ["42", "abc", "-3", "4.5"]) {
+  try {
+    console.log(parseAge(input));
+  } catch (err) {
+    console.log(err.message);
+  }
+}
+```
+
+**Output:**
+
+```text
+5
+RangeError division by zero
+42
+"abc" is not a valid age
+"-3" is not a valid age
+"4.5" is not a valid age
+```
+
+2. `Number.isInteger` is false for `NaN` and decimals, so it covers both.
 
 </details>
 
----
-
-### ✅ Part 2 checkpoint
-
-Without looking, can you:
-
-- [ ] Transform data with `map`, `filter`, `reduce`, `find`, `some`/`every`, `flatMap` and `Object.groupBy`?
-- [ ] Destructure objects and arrays (with defaults and rest), and copy/merge with spread (knowing it's shallow)?
-- [ ] Explain scope, the scope chain, hoisting and the TDZ?
-- [ ] Explain closures and use them for private state, factories, `once` and memoisation, and fix the `var`-in-loop bug?
-- [ ] Predict `this` for method calls, plain calls, arrows, `new`, `call`/`apply`/`bind`, and fix lost `this`?
-- [ ] Convert types explicitly, explain coercion and `==` vs `===`, and handle errors with `try`/`catch`, `cause` and custom errors?
-
-**Learn more:** [MDN: control flow and error handling](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Control_flow_and_error_handling) · [MDN: Error cause](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error/cause)
+**Learn more:** [MDN: control flow and error handling](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Control_flow_and_error_handling) · [MDN: Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error) · [javascript.info: error handling](https://javascript.info/try-catch)
 
 ---
 
-# Part 3 — Moderate: Objects, Async and Modules
+# Part III — Objects, Async and Modules
 
-> **Goal:** Master objects, prototypes and classes, Map and Set, iterators and generators, the event loop, promises and async/await, modules, regex, dates and Intl.  
-> **You need:** Parts 1–2.
+Eleven chapters: how objects really work (copying, property settings, prototypes, classes), the built-in collections and generators, how JavaScript runs asynchronous code with the event loop, promises and `async`/`await`, modules, regular expressions, and dates and numbers.
 
 ---
 
 ## 18. Objects in Depth: Copying, Property Descriptors, Getters/Setters and Immutability
 
-### Theory
+**You need:** Chapters 9, 12, 15 and 17. · **You'll learn:** to copy objects shallowly and deeply, the hidden settings of every property, computed properties with getters and setters, and how to lock objects against changes.
 
-> **In simple words:** objects hold more than keys and values. Each property has hidden **settings** (can it be changed? listed in loops? deleted?), properties can be **computed on the fly** with getters and setters, objects can be **frozen**, and copying an object is either **shallow** (one level) or **deep** (everything). Knowing these details prevents a whole family of bugs, especially "I changed a copy and the original changed too".
+### 18.1 Shallow and deep copies
 
-**Copying:**
-
-| Method | Depth | Notes |
-|---|---|---|
-| `b = a` | None | Same object |
-| `{ ...a }`, `Object.assign({}, a)`, `[...arr]` | Shallow | Nested objects shared |
-| `structuredClone(a)` | Deep | Handles nested objects, arrays, Dates, Maps, Sets, cycles; **not** functions, DOM nodes or class prototypes |
-| `JSON.parse(JSON.stringify(a))` | Deep-ish | Loses `undefined`, functions, Dates (become strings), Maps, `Infinity`; old workaround |
-
-**Property descriptors:** each property has `value`, `writable`, `enumerable`, `configurable` (or `get`/`set` for accessors). `Object.defineProperty(obj, "key", {...})` sets them; `Object.getOwnPropertyDescriptor` reads them. Non-enumerable properties are hidden from `for...in`, `Object.keys` and `JSON.stringify`.
-
-**Getters and setters:** `get fullName() { ... }` computes a value when read; `set fullName(v) { ... }` runs code (validation) when assigned.
-
-**Locking objects:**
-
-| Function | Add props? | Delete? | Change values? |
-|---|---|---|---|
-| `Object.preventExtensions` | No | Yes | Yes |
-| `Object.seal` | No | No | Yes |
-| `Object.freeze` | No | No | No (shallow!) |
-
-In strict mode violations throw; otherwise they fail silently. Freezing is shallow: nested objects stay mutable (deep-freeze recursively if needed).
-
-**Useful `Object` functions:** `keys/values/entries/fromEntries`, `assign`, `hasOwn`, `groupBy`, `getPrototypeOf`/`create` (next section), `is`.
-
-**Property order:** integer-like keys come first in ascending order, then string keys in insertion order, then symbols.
-
-### JavaScript
+Chapter 12's spread copies only the top level. A **deep copy** copies nested objects too, so the copy shares nothing with the original. `structuredClone` makes one:
 
 ```js
-"use strict";
-const order = { id: 90312, items: [{ sku: "P1", qty: 2 }], placedAt: new Date("2026-09-25T10:00:00Z") };
-
+const order = { id: 90312, items: [{ sku: "P1", qty: 2 }], tags: ["gift"] };
 const shallow = { ...order };
 const deep = structuredClone(order);
 order.items[0].qty = 99;
-console.log(shallow.items[0].qty, deep.items[0].qty, deep.placedAt instanceof Date);
-console.log(JSON.parse(JSON.stringify(order)).placedAt, typeof JSON.parse(JSON.stringify(order)).placedAt);
-
-const product = { name: "Pen" };
-Object.defineProperty(product, "internalCode", { value: "X-17", enumerable: false, writable: false });
-console.log(Object.keys(product), product.internalCode, JSON.stringify(product));
-try {
-  product.internalCode = "hack";
-} catch (err) {
-  console.log(err.name, "-", err.message);
-}
-
-const person = {
-  first: "Asha", last: "Rao",
-  get fullName() { return `${this.first} ${this.last}`; },
-  set fullName(value) {
-    const [first, last] = value.split(" ");
-    if (!last) throw new Error("need first and last name");
-    this.first = first; this.last = last;
-  },
-};
-person.fullName = "Ravi Kumar";
-console.log(person.fullName, person.first);
-
-const config = Object.freeze({ api: "https://api.example", retry: { times: 3 } });
-try {
-  config.api = "http://evil";
-} catch (err) {
-  console.log(err.name, "-", err.message);
-}
-config.retry.times = 10;                           // freeze is shallow!
-console.log(config.retry.times, Object.isFrozen(config), Object.isFrozen(config.retry));
-console.log(Object.keys({ b: 1, 10: "x", a: 2, 2: "y" }));
+console.log(shallow.items[0].qty, deep.items[0].qty);
 ```
 
 **Output:**
 
 ```text
-99 2 true
-2026-09-25T10:00:00.000Z string
-[ 'name' ] X-17 {"name":"Pen"}
-TypeError - Cannot assign to read only property 'internalCode' of object '#<Object>'
-Ravi Kumar Ravi
-TypeError - Cannot assign to read only property 'api' of object '#<Object>'
-10 true false
-[ '2', '10', 'b', 'a' ]
+99 2
 ```
 
-**Common mistakes:**
+| Copy | Depth | Notes |
+|---|---|---|
+| `b = a` | none | the same object |
+| `{ ...a }`, `Object.assign({}, a)`, `[...arr]` | shallow | nested objects shared |
+| `structuredClone(a)` | deep | handles arrays, dates, maps, sets and cycles; not functions or class methods |
+| `JSON.parse(JSON.stringify(a))` | deep, lossy | the old trick: drops `undefined` and functions, turns dates into strings |
 
-- ❌ Spread for deep copies; `JSON` round-trips that lose dates and `undefined`.
-- ❌ Assuming `Object.freeze` is deep.
-- ❌ Relying on property order for non-trivial logic.
-- ❌ Getters with side effects or heavy work (they look like cheap property reads).
+`structuredClone` throws on values it can't copy, such as functions:
 
-### Practice
+```js
+structuredClone({ run: () => 1 });
+```
 
-1. Write `deepFreeze(obj)` that freezes an object and all nested objects/arrays, and show that changing `settings.limits.daily` then fails in strict mode.
+**Output:**
 
-<details>
-<summary><b>Answer</b></summary>
+```text
+DataCloneError: () => 1 could not be cloned.
+```
+
+`Object.assign(target, ...sources)` copies properties into an existing object (mutating it) and returns it; spread is the usual choice for new objects.
+
+### 18.2 Property descriptors
+
+Every property has hidden settings, its **property descriptor**:
+
+| Setting | Meaning | Default for normal properties |
+|---|---|---|
+| `value` | the value | |
+| `writable` | can the value change? | `true` |
+| `enumerable` | is it listed by `Object.keys`, spread, `for...in` and JSON? | `true` |
+| `configurable` | can it be deleted or its settings changed? | `true` |
+
+`Object.getOwnPropertyDescriptor` reads them; `Object.defineProperty` creates a property with chosen settings (each one left out defaults to `false`):
+
+```js
+const product = { name: "Pen" };
+console.log(Object.getOwnPropertyDescriptor(product, "name"));
+Object.defineProperty(product, "code", { value: "X-17" });
+console.log(product.code, Object.keys(product), JSON.stringify(product));
+```
+
+**Output:**
+
+```text
+{ value: 'Pen', writable: true, enumerable: true, configurable: true }
+X-17 [ 'name' ] {"name":"Pen"}
+```
+
+`code` exists but is hidden from listing and copying. Assigning to a read-only property throws in strict mode:
+
+```js
+product.code = "hack";
+```
+
+**Output:**
+
+```text
+TypeError: Cannot assign to read only property 'code' of object '#<Object>'
+```
+
+Built-in methods are non-enumerable, which is why `for...in` doesn't list things like `toString`.
+
+### 18.3 Getters and setters
+
+An **accessor property** runs a function when read (`get`) or assigned (`set`), so a property can be computed or validated:
+
+```js
+const person = {
+  first: "Asha",
+  last: "Rao",
+  get fullName() {
+    return `${this.first} ${this.last}`;
+  },
+  set fullName(value) {
+    const [first, last] = value.split(" ");
+    if (!last) {
+      throw new Error("need a first and last name");
+    }
+    this.first = first;
+    this.last = last;
+  },
+};
+console.log(person.fullName);
+person.fullName = "Ravi Kumar";
+console.log(person.first, person.fullName);
+```
+
+**Output:**
+
+```text
+Asha Rao
+Ravi Ravi Kumar
+```
+
+Callers read and assign it like a normal property, with no `()`. A getter without a setter makes a read-only computed property. Keep getters cheap and free of side effects: readers expect property access to be instant.
+
+### 18.4 Locking objects
+
+| Function | Add properties? | Delete? | Change values? |
+|---|---|---|---|
+| `Object.preventExtensions(o)` | no | yes | yes |
+| `Object.seal(o)` | no | no | yes |
+| `Object.freeze(o)` | no | no | no |
+
+```js
+const config = Object.freeze({ api: "https://api.example.com", retry: { times: 3 } });
+config.retry.times = 10;
+console.log(config.retry.times, Object.isFrozen(config), Object.isFrozen(config.retry));
+```
+
+**Output:**
+
+```text
+10 true false
+```
+
+```js
+config.api = "http://evil.example";
+```
+
+**Output:**
+
+```text
+TypeError: Cannot assign to read only property 'api' of object '#<Object>'
+```
+
+Freezing is **shallow**: `config.retry` is a separate object and still changeable. A recursive deep freeze:
 
 ```js
 function deepFreeze(obj) {
   for (const value of Object.values(obj)) {
-    if (value && typeof value === "object" && !Object.isFrozen(value)) deepFreeze(value);
+    if (typeof value === "object" && value !== null) {
+      deepFreeze(value);
+    }
   }
   return Object.freeze(obj);
 }
-const settings = deepFreeze({ limits: { daily: 5000, tags: ["a"] } });
-try {
-  settings.limits.daily = 1;
-} catch (err) {
-  console.log(err.name, "-", err.message);
-}
-console.log(Object.isFrozen(settings.limits.tags), settings.limits.daily);
+const settings = deepFreeze({ retry: { times: 3 } });
+console.log(Object.isFrozen(settings.retry));
 ```
 
 **Output:**
 
 ```text
-TypeError - Cannot assign to read only property 'daily' of object '#<Object>'
-true 5000
+true
 ```
+
+In practice, **immutability** (never changing data, making changed copies instead) is mostly a habit, not a lock: build new objects with spread, `map` and `toSorted`, and freeze only shared constants.
+
+### 18.5 Comparing objects by content
+
+`===` compares references (Chapter 3.4). Comparing contents needs a recursive function: equal primitives, or objects with the same keys whose values are deeply equal:
+
+```js
+function deepEqual(a, b) {
+  if (Object.is(a, b)) {
+    return true;
+  }
+  if (typeof a !== "object" || typeof b !== "object" || a === null || b === null) {
+    return false;
+  }
+  if (Array.isArray(a) !== Array.isArray(b)) {
+    return false;
+  }
+  const keysA = Object.keys(a);
+  const keysB = Object.keys(b);
+  return keysA.length === keysB.length && keysA.every((k) => Object.hasOwn(b, k) && deepEqual(a[k], b[k]));
+}
+console.log(deepEqual({ a: [1, { b: 2 }] }, { a: [1, { b: 2 }] }), deepEqual({ a: 1 }, { a: 1, b: undefined }));
+```
+
+**Output:**
+
+```text
+true false
+```
+
+Testing libraries provide this as `assert.deepStrictEqual` (Chapter 44).
+
+### 18.6 Summary
+
+```
+{ ...a }  Object.assign(t, a)            shallow copies
+structuredClone(a)                        deep copy (no functions)
+Object.getOwnPropertyDescriptor(o, k)     { value, writable, enumerable, configurable }
+Object.defineProperty(o, k, { value, … }) unspecified settings default to false
+get prop() { … }   set prop(v) { … }      computed and validated properties
+preventExtensions < seal < freeze         freeze is shallow; recurse for deep freeze
+```
+
+**Key terms:**
+
+- **Deep copy:** a copy that duplicates nested objects too, sharing nothing with the original.
+- **structuredClone:** a built-in function that makes a deep copy of most values.
+- **Property descriptor:** the hidden settings of a property: `value`, `writable`, `enumerable`, `configurable` (or `get` and `set`).
+- **Enumerable:** listed by `Object.keys`, spread, `for...in` and `JSON.stringify`.
+- **Accessor property:** a property defined by a getter and/or a setter function instead of a stored value.
+- **Getter:** a function that runs when a property is read.
+- **Setter:** a function that runs when a property is assigned.
+- **Object.freeze:** makes an object's properties unchangeable and stops adding or deleting them (shallowly).
+- **Immutability:** the practice of never changing data in place, creating changed copies instead.
+
+### Exercises
+
+1. Make a copy of `const state = { user: { name: "Asha" }, cart: [1, 2] }` where changing `copy.user.name` doesn't affect `state`, in two different ways.
+2. Add a read-only `total` getter to `const cartObj = { items: [20, 60] }` that sums the items.
+
+<details>
+<summary><b>Answers</b></summary>
+
+```js
+const state = { user: { name: "Asha" }, cart: [1, 2] };
+const copy1 = structuredClone(state);
+const copy2 = { ...state, user: { ...state.user }, cart: [...state.cart] };
+copy1.user.name = "X";
+copy2.user.name = "Y";
+console.log(state.user.name);
+const cartObj = {
+  items: [20, 60],
+  get total() {
+    return this.items.reduce((a, b) => a + b, 0);
+  },
+};
+cartObj.items.push(100);
+console.log(cartObj.total);
+```
+
+**Output:**
+
+```text
+Asha
+180
+```
+
+1. The second way copies each nested level by hand: precise, and the usual pattern for updating state in React.
 
 </details>
 
-**Learn more:** [MDN: structuredClone](https://developer.mozilla.org/en-US/docs/Web/API/Window/structuredClone) · [MDN: Object.defineProperty](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty) · [MDN: Object.freeze](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze)
+**Practice:**
+
+| # | Problem (LeetCode) | Difficulty |
+|---|---|---|
+| 1 | [2705. Compact Object](https://leetcode.com/problems/compact-object/) | 🟡 Medium |
+
+**Learn more:** [MDN: structuredClone](https://developer.mozilla.org/en-US/docs/Web/API/Window/structuredClone) · [MDN: Object.defineProperty](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty) · [MDN: getters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get)
 
 ---
 
 ## 19. Prototypes and Prototypal Inheritance
 
-![The prototype chain: an object asha links to User.prototype, which links to Object.prototype, which links to null; property lookups walk up the chain until found](images/javascript/02-prototype-chain.svg)
+**You need:** Chapters 15 and 18. · **You'll learn:** how objects share methods through prototypes, how property lookup walks the prototype chain, what `new` does step by step, and how `instanceof` works.
 
-### Theory
+![The prototype chain: asha → User.prototype → Object.prototype → null; a lookup walks up until it finds the property](images/javascript/02-prototype-chain.svg)
 
-> **In simple words:** every object in JavaScript has a hidden link to another object, its **prototype**. When you read a property that the object doesn't have, JavaScript looks at the prototype, then the prototype's prototype, and so on (the **prototype chain**) until it finds it or reaches `null`. That's how all arrays share `map` and `filter` without each array storing its own copy, and it's what `class` syntax is built on.
+### 19.1 Where do methods come from?
 
-**The pieces:**
-
-| Thing | Meaning |
-|---|---|
-| `Object.getPrototypeOf(obj)` | The object's prototype (the hidden `[[Prototype]]` link; `obj.__proto__` is the old way) |
-| `Object.create(proto)` | A new object whose prototype is `proto` |
-| `Fn.prototype` | For constructor functions/classes: the object that becomes the prototype of instances created with `new Fn()` |
-| `obj.hasOwnProperty(k)` / `Object.hasOwn(obj, k)` | Is the property on the object itself (not inherited)? |
-| `instanceof` | Is `Fn.prototype` somewhere in the object's chain? |
-
-**How `new Fn(args)` works:** (1) create an empty object, (2) link its prototype to `Fn.prototype`, (3) run `Fn` with `this` = the new object, (4) return it (unless `Fn` returns another object).
-
-**Methods live on the prototype, data on the instance:** so a million users share one copy of each method.
-
-**Shadowing:** assigning a property on the object creates an **own** property that hides the inherited one; it never changes the prototype.
-
-**Classes are prototype sugar:** `class User { greet() {} }` puts `greet` on `User.prototype`; `extends` links `Child.prototype` to `Parent.prototype`.
-
-**Don't modify built-in prototypes** (`Array.prototype.myThing = ...`) in application code: it can clash with future standard methods (this has broken real websites and forced standards to rename methods).
-
-### JavaScript
+An empty object has a `toString` method, and every array has `map`, yet we never defined them:
 
 ```js
-const animal = { eats: true, describe() { return `${this.name} eats: ${this.eats}`; } };
-const rabbit = Object.create(animal);                      // rabbit's prototype is animal
-rabbit.name = "Bunny";
-console.log(rabbit.eats, rabbit.describe(), Object.hasOwn(rabbit, "eats"), Object.getPrototypeOf(rabbit) === animal);
-
-rabbit.eats = false;                                       // creates an OWN property (shadows)
-console.log(rabbit.describe(), animal.eats);
-
-function User(name) {                                      // a constructor function
-  this.name = name;                                        // data: on each instance
-}
-User.prototype.greet = function () {                       // method: shared via the prototype
-  return `Hi, ${this.name}`;
-};
-const a = new User("Asha"), b = new User("Ravi");
-console.log(a.greet(), b.greet(), a.greet === b.greet, Object.keys(a));
-console.log(Object.getPrototypeOf(a) === User.prototype, Object.getPrototypeOf(User.prototype) === Object.prototype,
-            Object.getPrototypeOf(Object.prototype));
-console.log(a instanceof User, a instanceof Object, typeof a.toString);
-
-const arr = [1, 2];
-console.log(Object.getPrototypeOf(arr) === Array.prototype, Object.hasOwn(arr, "map"), "map" in arr);
-
-class Admin extends User {}                                // classes wire up the same chain
-const admin = new Admin("Meera");
-console.log(admin.greet(), Object.getPrototypeOf(Admin.prototype) === User.prototype);
+const empty = {};
+console.log(typeof empty.toString, Object.keys(empty), Object.hasOwn(empty, "toString"));
 ```
 
 **Output:**
 
 ```text
-true Bunny eats: true false true
-Bunny eats: false true
-Hi, Asha Hi, Ravi true [ 'name' ]
-true true null
-true true function
-true false true
-Hi, Meera true
+function [] false
 ```
 
-**Common mistakes:**
+`toString` isn't an **own property** of `empty`. It's **inherited**: every object has a hidden link to another object, its **prototype**, and reading a property that the object lacks continues on the prototype.
 
-- ❌ Putting methods inside the constructor (`this.greet = function…`), creating a copy per instance.
-- ❌ Modifying built-in prototypes.
-- ❌ Confusing `Fn.prototype` (for instances) with `Object.getPrototypeOf(Fn)` (the function's own prototype, `Function.prototype`).
-- ❌ Using `for...in` on objects with inherited enumerable properties without `hasOwn`.
+### 19.2 The prototype chain
 
-### Practice
+`Object.getPrototypeOf(obj)` returns the prototype. Prototypes have prototypes too, forming the **prototype chain**, which ends at `null`:
 
-1. Without `class`, create a `Shape` constructor with an `area()` method returning 0, and a `Square(side)` whose prototype chain goes through `Shape.prototype` and overrides `area`. Check `instanceof` both ways.
+```js
+const arr = [1, 2];
+const p1 = Object.getPrototypeOf(arr);
+const p2 = Object.getPrototypeOf(p1);
+console.log(p1 === Array.prototype, p2 === Object.prototype, Object.getPrototypeOf(p2));
+```
+
+**Output:**
+
+```text
+true true null
+```
+
+Looking up `arr.toString` checks `arr` (no), then `Array.prototype` (yes, it has its own `toString`). `arr.hasOwnProperty` isn't on `Array.prototype`, so the lookup goes on to `Object.prototype`. If the chain ends without finding the name, the result is `undefined`.
+
+Writing is different from reading: assigning a property always creates or changes an **own** property, which then **shadows** the inherited one.
+
+### 19.3 Object.create
+
+`Object.create(proto)` makes a new object whose prototype is `proto`. Methods put on one shared prototype are available to every object created from it, stored only once:
+
+```js
+const animal = {
+  describe() {
+    return `${this.name} says ${this.sound}`;
+  },
+};
+const dog = Object.create(animal);
+dog.name = "Rex";
+dog.sound = "woof";
+console.log(dog.describe(), Object.keys(dog), Object.getPrototypeOf(dog) === animal);
+```
+
+**Output:**
+
+```text
+Rex says woof [ 'name', 'sound' ] true
+```
+
+Inside `describe`, `this` is `dog` (the object before the dot, Chapter 15), even though the method lives on `animal`. That's what makes shared methods work.
+
+`Object.create(null)` makes an object with **no** prototype, so no inherited names like `toString` can clash with your keys; it's a safe plain dictionary (though `Map`, Chapter 21, is usually better).
+
+### 19.4 Constructor functions and new
+
+Before classes (Chapter 20), objects of one kind were made with a **constructor function** called with `new`. Every function has a `prototype` property: an object that becomes the prototype of everything it constructs.
+
+```js
+function Person(name) {
+  this.name = name;
+}
+Person.prototype.greet = function () {
+  return `Hi, I'm ${this.name}`;
+};
+const asha = new Person("Asha");
+const ravi = new Person("Ravi");
+console.log(asha.greet(), ravi.greet(), asha.greet === ravi.greet);
+```
+
+**Output:**
+
+```text
+Hi, I'm Asha Hi, I'm Ravi true
+```
+
+`new Person("Asha")` does four things:
+
+1. creates an empty object;
+2. sets its prototype to `Person.prototype`;
+3. calls `Person` with `this` set to the new object;
+4. returns the new object (unless the function returns another object).
+
+`greet` exists once, on `Person.prototype`, shared by every person. Here are the four steps by hand:
+
+```js
+function myNew(Constructor, ...args) {
+  const obj = Object.create(Constructor.prototype);
+  const result = Constructor.apply(obj, args);
+  return typeof result === "object" && result !== null ? result : obj;
+}
+const meera = myNew(Person, "Meera");
+console.log(meera.greet(), Object.getPrototypeOf(meera) === Person.prototype);
+```
+
+**Output:**
+
+```text
+Hi, I'm Meera true
+```
+
+### 19.5 instanceof
+
+`obj instanceof F` asks: does `F.prototype` appear anywhere on `obj`'s prototype chain?
+
+```js
+console.log(asha instanceof Person, asha instanceof Object, [] instanceof Array, dog instanceof Object);
+```
+
+**Output:**
+
+```text
+true true true true
+```
+
+That's why Chapter 17's `err instanceof TypeError` works: a `TypeError`'s chain contains `TypeError.prototype`, then `Error.prototype`.
+
+### 19.6 Inheriting between constructors
+
+To make one kind of object extend another, chain the prototypes: `Dog.prototype`'s own prototype becomes `Animal.prototype`, and `Dog` calls `Animal` to set up the shared fields:
+
+```js
+function Animal(name) {
+  this.name = name;
+}
+Animal.prototype.eat = function () {
+  return `${this.name} eats`;
+};
+function Dog(name) {
+  Animal.call(this, name);
+}
+Object.setPrototypeOf(Dog.prototype, Animal.prototype);
+Dog.prototype.bark = function () {
+  return `${this.name} barks`;
+};
+const rex = new Dog("Rex");
+console.log(rex.bark(), rex.eat(), rex instanceof Animal);
+```
+
+**Output:**
+
+```text
+Rex barks Rex eats true
+```
+
+This is exactly what `class Dog extends Animal` does in Chapter 20, with much less ceremony. You'll still meet this style in older code.
+
+### 19.7 Built-in prototypes
+
+`Array.prototype`, `String.prototype` and the rest are ordinary objects, so you *could* add methods to them. Don't: a future JavaScript version may add a method with the same name and different behaviour (this has broken real websites, and is why an ES2019 method is called `flat`, not `flatten`). Write a function instead.
+
+Inherited properties also explain two warnings from earlier chapters: `"key" in obj` and `for...in` see inherited **enumerable** properties, while `Object.hasOwn` and `Object.keys` see only own ones:
+
+```js
+const base = { inherited: 1 };
+const child = Object.create(base);
+child.own = 2;
+const seen = [];
+for (const key in child) {
+  seen.push(key);
+}
+console.log("inherited" in child, Object.hasOwn(child, "inherited"), Object.keys(child), seen);
+```
+
+**Output:**
+
+```text
+true false [ 'own' ] [ 'own', 'inherited' ]
+```
+
+### 19.8 Summary
+
+```
+every object → [[Prototype]] → … → Object.prototype → null
+read: own property, else walk up the chain;  write: always an own property (shadows)
+Object.getPrototypeOf(o)   Object.create(proto)   Object.create(null)   Object.setPrototypeOf(o, p)
+new F(args): create object → prototype = F.prototype → call F with this → return it
+o instanceof F: is F.prototype on o's chain?
+"k" in o, for...in: own + inherited;  Object.hasOwn, Object.keys: own only
+```
+
+**Key terms:**
+
+- **Prototype:** the object another object inherits properties from.
+- **Prototype chain:** the sequence of prototypes a property lookup walks through, ending at `null`.
+- **Own property:** a property stored on the object itself, not inherited.
+- **Inherited property:** a property found on an object's prototype chain.
+- **Object.create:** creates a new object with a given prototype.
+- **Constructor function:** a function meant to be called with `new` to create objects.
+- **F.prototype:** the object that becomes the prototype of every object created with `new F()`.
+- **instanceof:** an operator that checks whether a constructor's `prototype` is on an object's prototype chain.
+- **Prototypal inheritance:** objects reusing behaviour by linking to other objects through prototypes.
+
+### Exercises
+
+1. Make `const base = { hello() { return "hi from " + this.id; } }` and two objects with ids 1 and 2 that share `hello` through `Object.create`.
+2. Write `isOn(obj, proto)` that walks the chain with `Object.getPrototypeOf` and returns whether `proto` is on it (what `instanceof` does).
 
 <details>
-<summary><b>Answer</b></summary>
+<summary><b>Answers</b></summary>
 
 ```js
-function Shape() {}
-Shape.prototype.area = function () { return 0; };
-Shape.prototype.describe = function () { return `area ${this.area()}`; };
-
-function Square(side) {
-  Shape.call(this);                         // run the parent constructor on this object
-  this.side = side;
+const base2 = {
+  hello() {
+    return "hi from " + this.id;
+  },
+};
+const one = Object.create(base2);
+one.id = 1;
+const two = Object.create(base2);
+two.id = 2;
+console.log(one.hello(), two.hello());
+function isOn(obj, proto) {
+  let current = Object.getPrototypeOf(obj);
+  while (current !== null) {
+    if (current === proto) {
+      return true;
+    }
+    current = Object.getPrototypeOf(current);
+  }
+  return false;
 }
-Square.prototype = Object.create(Shape.prototype);
-Square.prototype.constructor = Square;
-Square.prototype.area = function () { return this.side ** 2; };
-
-const sq = new Square(4);
-console.log(sq.describe(), sq instanceof Square, sq instanceof Shape, new Shape().describe());
+console.log(isOn(rex, Animal.prototype), isOn([], Object.prototype), isOn({}, Array.prototype));
 ```
 
 **Output:**
 
 ```text
-area 16 true true area 0
+hi from 1 hi from 2
+true true false
 ```
-
-This is exactly what `class Square extends Shape` does for you.
 
 </details>
 
-**Learn more:** [MDN: inheritance and the prototype chain](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain) · [javascript.info: prototypal inheritance](https://javascript.info/prototype-inheritance)
+**Practice:**
+
+| # | Problem (LeetCode) | Difficulty |
+|---|---|---|
+| 1 | [2618. Check if Object Instance of Class](https://leetcode.com/problems/check-if-object-instance-of-class/) | 🟡 Medium |
+| 2 | [2695. Array Wrapper](https://leetcode.com/problems/array-wrapper/) | 🟢 Easy |
+
+**Learn more:** [MDN: inheritance and the prototype chain](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain) · [javascript.info: prototypes](https://javascript.info/prototypes)
 
 ---
 
 ## 20. Classes: Fields, Private Members, Static, Inheritance and OOP
 
-### Theory
+**You need:** Chapter 19. · **You'll learn:** to define classes with constructors, methods, fields, private members, getters and static members; to extend a class; to write custom error classes; and when composition beats inheritance.
 
-> **In simple words:** a **class** is a blueprint for creating objects that share structure and behaviour: `class Cart { ... }` then `new Cart()`. It bundles a **constructor** (sets up each object), **methods** (shared behaviour), **fields** (per-object data), truly **private** members (`#secret`), **static** members (belong to the class itself) and **inheritance** (`extends`). Under the hood it's the prototype system from the previous section, with cleaner syntax and stricter rules.
+### 20.1 A class is a cleaner constructor
 
-**Class anatomy:**
-
-```text
-class Cart {
-  static TAX = 0.18;          ← static field: Cart.TAX
-  #items = [];                ← private field: only code inside the class can touch it
-  owner;                      ← public field (per instance)
-  constructor(owner) { this.owner = owner; }
-  add(item) { ... }           ← method on Cart.prototype
-  get total() { ... }         ← getter
-  #log(msg) { ... }           ← private method
-  static isCart(x) {
-    return #items in x;                           // brand check: does x have our private field?
-  }
-  static fromJSON(json) { ... } ← static method (e.g. alternative constructor)
-}
-```
-
-**Inheritance:** `class Admin extends User`; the child's constructor must call `super(...)` before using `this`; methods can call `super.method()`. `instanceof` works along the chain.
-
-**Rules that differ from functions:** class bodies are always in strict mode; classes aren't hoisted like function declarations (TDZ); calling a class without `new` throws; methods are non-enumerable.
-
-**`#private` vs `_convention`:** `#field` is enforced by the language (accessing it from outside is a syntax error; `#field in obj` checks it); `_field` is only a naming convention. TypeScript's `private` keyword is compile-time only.
-
-**The four OOP pillars in JS:** encapsulation (private fields, closures), abstraction (a small public API), inheritance (`extends`), polymorphism (different classes with the same method names). **Prefer composition** (objects holding other objects) over deep inheritance trees; mixins and plain functions often fit JavaScript better.
-
-### JavaScript
+A **class** is a template for objects of one kind. The `constructor` runs on `new` and sets up the **instance** (the object being created); methods go on the shared prototype, exactly as in Chapter 19.4:
 
 ```js
-class Cart {
-  static TAX = 0.18;
+class Account {
+  constructor(owner, balance = 0) {
+    this.owner = owner;
+    this.balance = balance;
+  }
+  deposit(amount) {
+    this.balance += amount;
+    return this;
+  }
+  describe() {
+    return `${this.owner}: ₹${this.balance}`;
+  }
+}
+const acc = new Account("Asha", 100);
+console.log(acc.deposit(50).deposit(25).describe());
+console.log(typeof Account, Object.getPrototypeOf(acc) === Account.prototype, Object.keys(acc));
+```
+
+**Output:**
+
+```text
+Asha: ₹175
+function true [ 'owner', 'balance' ]
+```
+
+Returning `this` from `deposit` allows **method chaining**. A class is still a function with a prototype under the hood, but it can't be called without `new`, its body is always strict, and its declaration is in the TDZ until its line (Chapter 13.3).
+
+```js
+Account("Ravi");
+```
+
+**Output:**
+
+```text
+TypeError: Class constructor Account cannot be invoked without 'new'
+```
+
+### 20.2 Fields, private members and getters
+
+A **field** declared in the class body is set on every instance before the constructor body runs. A name starting with `#` is **private**: usable only by code inside the class body. Reading it from outside is a syntax error, so privacy is enforced by the language:
+
+```js
+class Wallet {
+  #balance = 0;
+  currency = "INR";
   static #count = 0;
-  #items = [];
-  owner;
 
   constructor(owner) {
     this.owner = owner;
-    Cart.#count++;
+    Wallet.#count++;
   }
-  add(sku, price, qty = 1) {
-    if (price <= 0) throw new RangeError("price must be positive");
-    this.#items.push({ sku, price, qty });
-    return this;                                  // allows chaining
+  deposit(amount) {
+    this.#check(amount);
+    this.#balance += amount;
   }
-  get subtotal() {
-    return this.#items.reduce((s, i) => s + i.price * i.qty, 0);
+  #check(amount) {
+    if (!(amount > 0)) {
+      throw new RangeError(`invalid amount: ${amount}`);
+    }
   }
-  get total() {
-    return Math.round(this.subtotal * (1 + Cart.TAX));
+  get balance() {
+    return this.#balance;
   }
-  static get created() {
-    return Cart.#count;
-  }
-  static isCart(x) {
-    return #items in x;                           // brand check: does x have our private field?
-  }
-  static fromJSON(json) {
-    const data = JSON.parse(json);
-    const cart = new Cart(data.owner);
-    data.items.forEach(i => cart.add(i.sku, i.price, i.qty));
-    return cart;
+  static get count() {
+    return Wallet.#count;
   }
 }
+const w = new Wallet("Asha");
+w.deposit(500);
+new Wallet("Ravi");
+console.log(w.balance, w.currency, Object.keys(w), Wallet.count);
+```
 
-const cart = new Cart("Asha").add("P1", 20, 2).add("B1", 899);
-console.log(cart.subtotal, cart.total, cart.owner, Object.keys(cart));
-const copy = Cart.fromJSON('{"owner":"Ravi","items":[{"sku":"P2","price":60,"qty":3}]}');
-console.log(copy.total, Cart.created, cart.items, Cart.isCart(cart), Cart.isCart({ items: [] }));
+**Output:**
 
-class PlusCart extends Cart {
-  constructor(owner) {
-    super(owner);                                 // must come first
-    this.member = true;
+```text
+500 INR [ 'currency', 'owner' ] 2
+```
+
+`balance` has only a getter, so outside code can read it but not change it; `#check` is a private method.
+
+```js
+w.deposit(-5);
+```
+
+**Output:**
+
+```text
+RangeError: invalid amount: -5
+```
+
+### 20.3 Static members
+
+A **static** member belongs to the class itself, not to instances: `Wallet.count` above, or helpers like `Number.isNaN`. A common use is a **factory method**, a named alternative to the constructor:
+
+```js
+class Temperature {
+  constructor(celsius) {
+    this.celsius = celsius;
   }
-  get total() {
-    return Math.round(super.total * 0.95);        // 5% member discount on top of the parent logic
+  static fromFahrenheit(f) {
+    return new Temperature(((f - 32) * 5) / 9);
   }
 }
-const plus = new PlusCart("Meera").add("B1", 899);
-console.log(plus.total, plus instanceof Cart, plus instanceof PlusCart, plus.constructor.name);
+console.log(Temperature.fromFahrenheit(212).celsius, typeof new Temperature(0).fromFahrenheit);
+```
 
-try {
-  Cart("no new");
-} catch (err) {
-  console.log(err.name, "-", err.message);
+**Output:**
+
+```text
+100 undefined
+```
+
+### 20.4 Inheritance with extends and super
+
+`class B extends A` makes `B.prototype` inherit from `A.prototype` (Chapter 19.6 in one line). In the subclass, the constructor must call `super(…)`, the parent's constructor, before using `this`; `super.method()` calls the parent's version of an **overridden** method:
+
+```js
+class SavingsAccount extends Account {
+  constructor(owner, balance, rate) {
+    super(owner, balance);
+    this.rate = rate;
+  }
+  addInterest() {
+    return this.deposit(Math.round(this.balance * this.rate));
+  }
+  describe() {
+    return `${super.describe()} (savings, ${this.rate * 100}%)`;
+  }
+}
+const savings = new SavingsAccount("Meera", 1000, 0.05);
+console.log(savings.addInterest().describe());
+console.log(savings instanceof SavingsAccount, savings instanceof Account);
+```
+
+**Output:**
+
+```text
+Meera: ₹1050 (savings, 5%)
+true true
+```
+
+Calling different classes' versions of the same method through one interface, as `describe()` does here, is **polymorphism**:
+
+```js
+for (const a of [acc, savings]) {
+  console.log(a.describe());
 }
 ```
 
 **Output:**
 
 ```text
-939 1108 Asha [ 'owner' ]
-212 2 undefined true false
-1008 true true PlusCart
-TypeError - Class constructor Cart cannot be invoked without 'new'
+Asha: ₹175
+Meera: ₹1050 (savings, 5%)
 ```
 
-Outside the class, `cart.#items` is a **syntax error** and `cart.items` is simply `undefined`: the data is truly private. `#items in x` (used in `isCart`) is the safe way to check whether an object was made by this class.
+### 20.5 Custom error classes
 
-**Common mistakes:**
+Extending `Error` is the standard way to make your own error types (completing Chapter 17.5). `instanceof` then tells them apart, and `name` shows in messages:
 
-- ❌ Forgetting `super()` in a subclass constructor (`ReferenceError`).
-- ❌ Using `this` in callbacks inside methods without arrows (lost `this`, Section [15](#15-the-this-keyword-call-apply-and-bind)).
-- ❌ Deep inheritance hierarchies instead of composition.
-- ❌ `_private` fields that other code still mutates; use `#private` for real encapsulation.
-- ❌ Classes for everything; a plain object or function is often simpler.
+```js
+class ValidationError extends Error {
+  constructor(message, field, options) {
+    super(message, options);
+    this.name = "ValidationError";
+    this.field = field;
+  }
+}
+class NotFoundError extends Error {
+  name = "NotFoundError";
+}
+function handle(err) {
+  if (err instanceof ValidationError) {
+    return `400: ${err.field} - ${err.message}`;
+  }
+  if (err instanceof NotFoundError) {
+    return `404: ${err.message}`;
+  }
+  return "500: something went wrong";
+}
+console.log(handle(new ValidationError("is required", "email")), "|", handle(new NotFoundError("no user 7")), "|", handle(new TypeError("x")));
+```
 
-### Practice
+**Output:**
 
-1. Write a `Stack` class with a private array, `push`, `pop` (throws on empty), a `size` getter and a static `from(iterable)`. Then write `MinStack extends Stack` whose `min` getter returns the smallest item.
+```text
+400: email - is required | 404: no user 7 | 500: something went wrong
+```
+
+Passing `options` through to `super` keeps `{ cause }` (Chapter 17.4) working.
+
+### 20.6 Methods as callbacks
+
+Class methods are ordinary prototype functions, so they lose `this` when passed as callbacks (Chapter 15.3). An **arrow function field** is created per instance and keeps `this`:
+
+```js
+class Clicker {
+  count = 0;
+  handleClick = () => {
+    this.count++;
+    return this.count;
+  };
+}
+const c = new Clicker();
+const callback = c.handleClick;
+callback();
+console.log(callback(), c.count);
+```
+
+**Output:**
+
+```text
+2 2
+```
+
+The cost: each instance gets its own copy of the function instead of sharing one on the prototype. Use it for methods you pass around, such as event handlers.
+
+### 20.7 Composition over inheritance
+
+Inheritance hierarchies get rigid: a `FlyingSwimmingDuck` doesn't fit a tree of `Bird` and `Fish`. **Composition** builds objects from small parts that each do one thing, and is usually more flexible. Prefer it, and keep inheritance shallow (one or two levels):
+
+```js
+const canFly = (obj) => ({ fly: () => `${obj.name} flies` });
+const canSwim = (obj) => ({ swim: () => `${obj.name} swims` });
+function makeDuck(name) {
+  const duck = { name };
+  return { ...duck, ...canFly(duck), ...canSwim(duck) };
+}
+const duck = makeDuck("Donald");
+console.log(duck.fly(), duck.swim());
+```
+
+**Output:**
+
+```text
+Donald flies Donald swims
+```
+
+### 20.8 Summary
+
+```
+class A { field = 1; #secret; static s = 0;
+  constructor(x) { this.x = x; }
+  method() { … }   get prop() { … }   set prop(v) { … }   #privateMethod() { … }   static make() { … } }
+class B extends A { constructor(x) { super(x); … }   method() { super.method(); … } }
+new A(1)              required; classes are strict and in the TDZ until declared
+class MyError extends Error { name = "MyError"; }
+handler = () => { … this … }    arrow field keeps this for callbacks
+prefer composition; keep inheritance shallow
+```
+
+**Key terms:**
+
+- **Class:** a template for creating objects of one kind, defined with `class`.
+- **Instance:** an object created from a class with `new`.
+- **Constructor:** the special method that runs when an instance is created.
+- **Field:** a property declared in a class body and set on each instance.
+- **Private member:** a field or method whose name starts with `#`, usable only inside the class body.
+- **Static member:** a property or method that belongs to the class itself, not to instances.
+- **Factory method:** a static method that creates instances, as a named alternative to the constructor.
+- **extends:** makes a class inherit from another class.
+- **super:** calls the parent class's constructor (`super(…)`) or methods (`super.m()`).
+- **Override:** define a method in a subclass with the same name as one in the parent, replacing it.
+- **Polymorphism:** different classes responding to the same method call in their own way.
+- **Composition:** building objects by combining smaller parts instead of inheriting from a parent class.
+
+### Exercises
+
+1. Write a `Stack` class with a private array and `push`, `pop`, `peek` and a `size` getter.
+2. Extend `Account` with `CheckingAccount` whose `withdraw(amount)` throws a `RangeError` if it would make the balance negative.
 
 <details>
-<summary><b>Answer</b></summary>
+<summary><b>Answers</b></summary>
 
 ```js
 class Stack {
   #items = [];
-  push(x) { this.#items.push(x); return this; }
+  push(x) {
+    this.#items.push(x);
+  }
   pop() {
-    if (this.#items.length === 0) throw new Error("stack is empty");
     return this.#items.pop();
   }
-  get size() { return this.#items.length; }
-  toArray() { return [...this.#items]; }
-  static from(iterable) {
-    const s = new this();                          // `this` is the class: works for subclasses too
-    for (const x of iterable) s.push(x);
-    return s;
+  peek() {
+    return this.#items.at(-1);
+  }
+  get size() {
+    return this.#items.length;
   }
 }
-class MinStack extends Stack {
-  get min() { return Math.min(...this.toArray()); }
+const s = new Stack();
+s.push(1);
+s.push(2);
+console.log(s.pop(), s.peek(), s.size);
+class CheckingAccount extends Account {
+  withdraw(amount) {
+    if (amount > this.balance) {
+      throw new RangeError("insufficient funds");
+    }
+    this.balance -= amount;
+    return this;
+  }
 }
-const s = MinStack.from([5, 2, 8]);
-console.log(s.size, s.min, s.pop(), s instanceof MinStack);
-try { new Stack().pop(); } catch (err) { console.log(err.message); }
+const chk = new CheckingAccount("Ravi", 100);
+try {
+  chk.withdraw(30).withdraw(100);
+} catch (err) {
+  console.log(err.message, chk.balance);
+}
 ```
 
 **Output:**
 
 ```text
-3 2 8 true
-stack is empty
+2 1 1
+insufficient funds 70
 ```
 
+2. `CheckingAccount` needs no constructor: without one, a subclass passes its arguments straight to `super`.
+
 </details>
+
+**Practice:**
+
+| # | Problem (LeetCode) | Difficulty |
+|---|---|---|
+| 1 | [2726. Calculator with Method Chaining](https://leetcode.com/problems/calculator-with-method-chaining/) | 🟢 Easy |
+| 2 | [2694. Event Emitter](https://leetcode.com/problems/event-emitter/) | 🟡 Medium |
+| 3 | [155. Min Stack](https://leetcode.com/problems/min-stack/) | 🟡 Medium |
 
 **Learn more:** [MDN: classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes) · [MDN: private properties](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Private_properties) · [javascript.info: classes](https://javascript.info/classes)
 
@@ -2509,4119 +5012,726 @@ stack is empty
 
 ## 21. Map, Set, WeakMap, WeakSet and Symbol
 
-### Theory
+**You need:** Chapters 9, 11 and 20. · **You'll learn:** when a `Map` beats a plain object, how a `Set` removes duplicates and answers "seen it?" instantly, what "weak" collections are for, and what symbols are.
 
-> **In simple words:** plain objects are fine for records with known fields, but for **collections** JavaScript has better tools. A **`Map`** is a dictionary whose keys can be **anything** (objects, numbers) and which remembers insertion order and knows its size. A **`Set`** holds **unique** values. **`WeakMap`/`WeakSet`** hold objects **without keeping them alive**, useful for caches and private data attached to objects. A **`Symbol`** is a unique, unguessable value used as a special property key.
+### 21.1 Map: a real dictionary
 
-**Map vs object:**
-
-| | `Map` | Plain object |
-|---|---|---|
-| Key types | Any value (objects, numbers keep their type) | Strings and symbols only (`1` becomes `"1"`) |
-| Size | `map.size` | `Object.keys(obj).length` |
-| Order | Insertion order | Mostly insertion (integer keys first) |
-| Iteration | Directly iterable (`for (const [k, v] of map)`) | Via `Object.entries` |
-| Safe for user-provided keys | Yes | No (`"__proto__"`, `"constructor"` cause trouble) |
-| JSON | Convert first (`Object.fromEntries(map)`) | Native |
-| Frequent add/delete | Optimised for it | Slower |
-
-**Set:** `add`, `has`, `delete`, `size`; iterable; de-duplicate with `[...new Set(arr)]`. **ES2025 set methods:** `union`, `intersection`, `difference`, `symmetricDifference`, `isSubsetOf`, `isSupersetOf`, `isDisjointFrom`.
-
-**WeakMap / WeakSet:** keys must be objects (or non-registered symbols); entries disappear when the key object is garbage-collected; not iterable, no `size`. Use for per-object metadata or caches ("the computed layout for this DOM node") without memory leaks.
-
-**Symbol:** `Symbol("desc")` is unique every time; symbol-keyed properties don't show up in `Object.keys`/`JSON.stringify`. **Well-known symbols** customise language behaviour: `Symbol.iterator` (make objects iterable, next section), `Symbol.toPrimitive`, `Symbol.asyncIterator`, `Symbol.dispose`. `Symbol.for("key")` returns a shared, registered symbol.
-
-### JavaScript
+A plain object makes an awkward dictionary: keys become strings, inherited names like `toString` can clash with your keys, and it has no size. A **Map** stores key–value pairs with keys of **any** type, remembers insertion order, and has a `size`:
 
 ```js
-const visits = new Map();
-const asha = { id: 7, name: "Asha" };
-visits.set(asha, 3);                                  // an OBJECT as a key
-visits.set(42, "number key").set("42", "string key");
-console.log(visits.get(asha), visits.get(42), visits.get("42"), visits.size, visits.has({ id: 7 }));
-for (const [key, value] of visits) console.log(typeof key, "→", value);
-console.log(Object.fromEntries(new Map([["a", 1], ["b", 2]])), new Map(Object.entries({ x: 1 })));
-
-const counts = new Map();
-for (const w of "to be or not to be".split(" ")) counts.set(w, (counts.get(w) ?? 0) + 1);
-console.log([...counts].sort((a, b) => b[1] - a[1]).slice(0, 2));
-
-const registered = new Set(["asha", "ravi", "meera", "kabir"]);
-const paid = new Set(["ravi", "kabir", "zoya"]);
-console.log(registered.has("asha"), registered.size, [...new Set([3, 1, 3, 2])]);
-console.log([...registered.intersection(paid)], [...registered.difference(paid)], [...paid.difference(registered)]);
-console.log([...registered.union(paid)].length, new Set(["ravi"]).isSubsetOf(paid), registered.isDisjointFrom(new Set(["x"])));
-
-const metadata = new WeakMap();                       // no leak: entries vanish with their keys
-let element = { tag: "button" };
-metadata.set(element, { clicks: 5 });
-console.log(metadata.get(element), metadata.has({ tag: "button" }));
-element = null;                                        // the entry can now be garbage-collected
-
-const id = Symbol("id");
-const user = { name: "Ravi", [id]: 123 };
-console.log(user[id], Object.keys(user), JSON.stringify(user), Symbol("x") === Symbol("x"), Symbol.for("app") === Symbol.for("app"));
+const stock = new Map();
+stock.set("pen", 120).set("bag", 0);
+stock.set(42, "a number key");
+console.log(stock.get("pen"), stock.get("cap"), stock.has("bag"), stock.size);
+stock.delete(42);
+console.log([...stock.keys()], [...stock.entries()]);
 ```
 
 **Output:**
 
 ```text
-3 number key string key 3 false
-object → 3
-number → number key
-string → string key
-{ a: 1, b: 2 } Map(1) { 'x' => 1 }
-[ [ 'to', 2 ], [ 'be', 2 ] ]
-true 4 [ 3, 1, 2 ]
-[ 'ravi', 'kabir' ] [ 'asha', 'meera' ] [ 'zoya' ]
-5 true true
-{ clicks: 5 } false
-123 [ 'name' ] {"name":"Ravi"} false true
+120 undefined true 3
+[ 'pen', 'bag' ] [ [ 'pen', 120 ], [ 'bag', 0 ] ]
 ```
 
-**Common mistakes:**
+`set` returns the map, so calls chain. A Map is **iterable**: loop over it directly, or convert to and from objects:
 
-- ❌ Objects as dictionaries for user-controlled keys; use `Map`.
-- ❌ `map[key] = value` on a `Map` (sets a plain property; use `set`/`get`).
-- ❌ Expecting `new Set([{a:1}, {a:1}])` to dedupe objects by content (it compares references).
-- ❌ Caching per-object data in a `Map` that keeps objects alive forever; use `WeakMap`.
+```js
+for (const [item, count] of stock) {
+  console.log(item, count);
+}
+const fromObject = new Map(Object.entries({ a: 1, b: 2 }));
+console.log(fromObject, Object.fromEntries(fromObject));
+```
 
-### Practice
+**Output:**
 
-1. Given two arrays of product SKUs viewed by a user on two days, `["P1","P2","P3","P2"]` and `["P3","P4","P1"]`, print the SKUs viewed on both days, only on day 1, and the total number of different SKUs, using `Set` methods.
+```text
+pen 120
+bag 0
+Map(2) { 'a' => 1, 'b' => 2 } { a: 1, b: 2 }
+```
+
+Object keys are compared by reference, so an object can be a key, which plain objects can't do (its key would become `"[object Object]"`):
+
+```js
+const asha = { name: "Asha" };
+const visits = new Map([[asha, 3]]);
+console.log(visits.get(asha), visits.get({ name: "Asha" }));
+```
+
+**Output:**
+
+```text
+3 undefined
+```
+
+The second lookup uses a different object, so it finds nothing.
+
+| Use a… | when |
+|---|---|
+| plain object | fixed, known keys (a record: `{ name, age }`); JSON |
+| `Map` | keys added at run time, non-string keys, frequent adds and deletes, counting |
+
+Counting with a Map, then sorting by count:
+
+```js
+const words = "the cat and the hat and the bat".split(" ");
+const counts = new Map();
+for (const w of words) {
+  counts.set(w, (counts.get(w) ?? 0) + 1);
+}
+console.log([...counts].toSorted((a, b) => b[1] - a[1]).slice(0, 2));
+```
+
+**Output:**
+
+```text
+[ [ 'the', 3 ], [ 'and', 2 ] ]
+```
+
+`Map.groupBy(array, fn)` works like `Object.groupBy` (Chapter 11.5) but returns a Map, so keys can be any value.
+
+### 21.2 Set: unique values
+
+A **Set** holds each value at most once. `has` checks membership in about the same time however big the set is, while an array's `includes` scans every element:
+
+```js
+const tags = new Set(["js", "css", "js", "html", "css"]);
+tags.add("node");
+console.log(tags.size, tags.has("css"), [...tags]);
+console.log([...new Set([3, 1, 3, 2, 1])]);
+```
+
+**Output:**
+
+```text
+4 true [ 'js', 'css', 'html', 'node' ]
+[ 3, 1, 2 ]
+```
+
+`[...new Set(arr)]` is the standard one-line de-duplication (keeping first-seen order).
+
+ES2025 added set algebra:
+
+```js
+const frontend = new Set(["js", "css", "html"]);
+const backend = new Set(["js", "sql", "node"]);
+console.log(frontend.union(backend), frontend.intersection(backend));
+console.log(frontend.difference(backend), frontend.symmetricDifference(backend));
+console.log(new Set(["js"]).isSubsetOf(frontend), frontend.isDisjointFrom(new Set(["go"])));
+```
+
+**Output:**
+
+```text
+Set(5) { 'js', 'css', 'html', 'sql', 'node' } Set(1) { 'js' }
+Set(2) { 'css', 'html' } Set(4) { 'css', 'html', 'sql', 'node' }
+true true
+```
+
+### 21.3 WeakMap and WeakSet
+
+A **WeakMap** takes only objects as keys and holds them **weakly**: if nothing else references a key object, the garbage collector (Chapter 40) may delete it along with its entry. That makes WeakMaps right for attaching extra data to objects you don't own, such as caching per object, without keeping them alive forever:
+
+```js
+const metadata = new WeakMap();
+let element = { id: "button-1" };
+metadata.set(element, { clicks: 3 });
+console.log(metadata.get(element), metadata.has(element));
+element = null;     // the entry can now be collected
+```
+
+**Output:**
+
+```text
+{ clicks: 3 } true
+```
+
+Because entries can vanish at any time, WeakMaps and WeakSets have no `size` and can't be iterated. A **WeakSet** is the same idea for "have I seen this object?" checks.
+
+### 21.4 Symbols
+
+A **symbol** is a unique primitive value, created with `Symbol(description)`. Two symbols are never equal, even with the same description, so a symbol key can't clash with any other key:
+
+```js
+const id = Symbol("id");
+const user = { name: "Asha", [id]: 123 };
+console.log(user[id], Symbol("id") === Symbol("id"), Object.keys(user), JSON.stringify(user));
+```
+
+**Output:**
+
+```text
+123 false [ 'name' ] {"name":"Asha"}
+```
+
+Symbol keys are skipped by `Object.keys`, `for...in` and JSON: they're for hidden metadata. `Symbol.for("name")` returns the same symbol for the same name everywhere (a global registry).
+
+JavaScript itself uses **well-known symbols** as hooks you can implement: `Symbol.iterator` makes an object work with `for...of` (Chapter 22), `Symbol.toPrimitive` controls conversion (Chapter 16.3), and `Symbol.dispose` supports `using` (Chapter 42).
+
+```js
+const money = {
+  amount: 499,
+  [Symbol.toPrimitive](hint) {
+    return hint === "number" ? this.amount : `₹${this.amount}`;
+  },
+};
+console.log(+money, `${money}`);
+```
+
+**Output:**
+
+```text
+499 ₹499
+```
+
+### 21.5 Summary
+
+```
+new Map([[k, v]])   .set(k, v) .get(k) .has(k) .delete(k) .size   keys of any type; ordered; iterable
+new Map(Object.entries(o))   Object.fromEntries(map)   Map.groupBy(arr, fn)
+new Set(arr)   .add .has .delete .size   [...new Set(arr)] de-duplicates
+a.union(b) .intersection .difference .symmetricDifference .isSubsetOf .isDisjointFrom
+WeakMap / WeakSet: object keys held weakly; no size, no iteration
+Symbol("d") unique;  Symbol.for("d") shared;  symbol keys hidden from keys() and JSON
+```
+
+**Key terms:**
+
+- **Map:** a collection of key–value pairs with keys of any type, kept in insertion order.
+- **Set:** a collection of unique values.
+- **Iterable:** a value that `for...of` and spread can loop over, such as an array, string, Map or Set.
+- **WeakMap:** a Map whose keys are objects held weakly, so entries disappear when the key object is no longer used elsewhere.
+- **WeakSet:** a Set of objects held weakly.
+- **Weak reference:** a reference that doesn't stop the garbage collector from removing the object.
+- **Symbol:** a unique primitive value, often used as a property key that can't clash with others.
+- **Well-known symbol:** a built-in symbol such as `Symbol.iterator` that lets objects plug into language features.
+
+### Exercises
+
+1. Given `const visits = ["home", "cart", "home", "pay", "cart", "home"]`, print the unique pages in first-visit order, and the number of visits per page as a Map.
+2. Find the values that appear in both `[1, 2, 3, 4]` and `[3, 4, 5]` using sets.
 
 <details>
-<summary><b>Answer</b></summary>
+<summary><b>Answers</b></summary>
 
 ```js
-const day1 = new Set(["P1", "P2", "P3", "P2"]), day2 = new Set(["P3", "P4", "P1"]);
-console.log([...day1.intersection(day2)], [...day1.difference(day2)], day1.union(day2).size);
+const pageVisits = ["home", "cart", "home", "pay", "cart", "home"];
+console.log([...new Set(pageVisits)]);
+const perPage = new Map();
+for (const page of pageVisits) {
+  perPage.set(page, (perPage.get(page) ?? 0) + 1);
+}
+console.log(perPage);
+console.log([...new Set([1, 2, 3, 4]).intersection(new Set([3, 4, 5]))]);
 ```
 
 **Output:**
 
 ```text
-[ 'P1', 'P3' ] [ 'P2' ] 4
+[ 'home', 'cart', 'pay' ]
+Map(3) { 'home' => 3, 'cart' => 2, 'pay' => 1 }
+[ 3, 4 ]
 ```
 
 </details>
 
-**Learn more:** [MDN: Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map) · [MDN: Set (with ES2025 methods)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set) · [MDN: WeakMap](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap) · [MDN: Symbol](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol)
+**Practice:**
+
+| # | Problem (LeetCode) | Difficulty |
+|---|---|---|
+| 1 | [217. Contains Duplicate](https://leetcode.com/problems/contains-duplicate/) | 🟢 Easy |
+| 2 | [1. Two Sum](https://leetcode.com/problems/two-sum/) | 🟢 Easy |
+| 3 | [349. Intersection of Two Arrays](https://leetcode.com/problems/intersection-of-two-arrays/) | 🟢 Easy |
+| 4 | [49. Group Anagrams](https://leetcode.com/problems/group-anagrams/) | 🟡 Medium |
+
+**Learn more:** [MDN: Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map) · [MDN: Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set) · [MDN: Symbol](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol)
 
 ---
 
 ## 22. Iterators, Generators and Iterator Helpers
 
-### Theory
+**You need:** Chapters 20–21. · **You'll learn:** the protocol behind `for...of` and spread, how to make your own objects iterable, generator functions that pause and resume, lazy sequences, and the ES2025 iterator helpers.
 
-> **In simple words:** an **iterator** hands out values one at a time, on request. Anything that can produce an iterator (arrays, strings, Maps, Sets, and your own objects) is **iterable**, and works with `for...of`, spread `[...x]` and destructuring. A **generator** (`function*` with `yield`) is the easy way to write iterators: it pauses at each `yield` and resumes when the next value is requested, which lets you produce long or even infinite sequences lazily. ES2025 **iterator helpers** (`.map`, `.filter`, `.take`, `.drop` on iterators) process such sequences lazily without building arrays.
+### 22.1 The iteration protocol
 
-**The protocols:**
-
-- **Iterable:** has a `[Symbol.iterator]()` method returning an iterator.
-- **Iterator:** has `next()` returning `{ value, done }`.
-
-**Generators:**
-
-```text
-function* countUp(limit) {
-  for (let i = 1; i <= limit; i++) yield i;   ← pauses here each time
-}
-const it = countUp(3); it.next() → { value: 1, done: false } … { value: undefined, done: true }
-```
-
-`yield*` delegates to another iterable. Calling a generator function runs nothing until the first `next()`. Generators are single-use.
-
-**Async iteration:** `async function*` and `for await (const x of stream)`: for paginated APIs, streams of chunks (e.g. `ReadableStream` and LLM token streams), and events.
-
-**Iterator helpers (ES2025, in Node 22+/modern browsers):** `iter.map(fn)`, `filter`, `take(n)`, `drop(n)`, `flatMap`, `reduce`, `some`, `every`, `find`, `toArray()`, and `Iterator.from(x)`. They're **lazy**: nothing is computed until values are pulled, so `.take(5)` on an infinite generator is fine.
-
-### JavaScript
+`for...of`, spread and destructuring all work the same way. They call the value's `[Symbol.iterator]()` method to get an **iterator**: an object whose `next()` returns `{ value, done }` each time, until `done` is `true`:
 
 ```js
-const letters = ["a", "b"];
-const it = letters[Symbol.iterator]();
+const it = ["a", "b"][Symbol.iterator]();
 console.log(it.next(), it.next(), it.next());
-
-class Range {                                      // a custom iterable
-  constructor(from, to, step = 1) { Object.assign(this, { from, to, step }); }
-  *[Symbol.iterator]() {                            // a generator method
-    for (let n = this.from; n <= this.to; n += this.step) yield n;
-  }
-}
-const r = new Range(1, 10, 3);
-console.log([...r], Math.max(...r));
-for (const n of new Range(5, 6)) console.log("n =", n);
-
-function* ids(prefix) {
-  let n = 1;
-  while (true) yield `${prefix}-${String(n++).padStart(4, "0")}`;   // infinite, but lazy
-}
-const gen = ids("ORD");
-console.log(gen.next().value, gen.next().value);
-
-const firstEvenSquares = Iterator.from(new Range(1, Infinity))       // lazy pipeline over an infinite range
-  .map(n => n * n)
-  .filter(n => n % 2 === 0)
-  .take(4)
-  .toArray();
-console.log(firstEvenSquares);
-
-function* pages() {                                  // e.g. results of a paginated API
-  yield [1, 2, 3];
-  yield [4, 5];
-}
-function* flatten(iterable) {
-  for (const page of iterable) yield* page;         // delegate
-}
-console.log([...flatten(pages())]);
-
-async function* fetchPages() {
-  for (let page = 1; page <= 3; page++) {
-    await new Promise(r => setTimeout(r, 10));        // pretend network delay
-    yield { page, items: page * 10 };
-  }
-}
-for await (const p of fetchPages()) console.log("page", p.page, "→", p.items, "items");
 ```
 
 **Output:**
 
 ```text
 { value: 'a', done: false } { value: 'b', done: false } { value: undefined, done: true }
-[ 1, 4, 7, 10 ] 10
-n = 5
-n = 6
-ORD-0001 ORD-0002
-[ 4, 16, 36, 64 ]
-[ 1, 2, 3, 4, 5 ]
-page 1 → 10 items
-page 2 → 20 items
-page 3 → 30 items
 ```
 
-**Common mistakes:**
+Any object with a `[Symbol.iterator]` method returning such an iterator is **iterable**. Here is a range object built by hand:
 
-- ❌ Iterating a generator twice (it's used up).
-- ❌ Spreading an infinite iterator (`[...ids("x")]` never finishes); use `take`.
-- ❌ Building big intermediate arrays when a lazy pipeline would do.
-- ❌ Forgetting `await` in `for await` over async iterables.
+```js
+const range = {
+  from: 1,
+  to: 4,
+  [Symbol.iterator]() {
+    let current = this.from;
+    const last = this.to;
+    return {
+      next: () => (current <= last ? { value: current++, done: false } : { value: undefined, done: true }),
+    };
+  },
+};
+console.log([...range]);
+for (const n of range) {
+  console.log(n);
+}
+```
 
-### Practice
+**Output:**
 
-1. Write a generator `fibonacci()` (infinite) and use iterator helpers to get the first 5 Fibonacci numbers greater than 100.
+```text
+[ 1, 2, 3, 4 ]
+1
+2
+3
+4
+```
+
+### 22.2 Generator functions
+
+Writing `next()` by hand is clumsy. A **generator function**, written `function*`, returns an iterator automatically. Each `yield value` hands out one value and **pauses** the function; the next `next()` call resumes it from that point:
+
+```js
+function* countdown(n) {
+  console.log("starting");
+  while (n > 0) {
+    yield n;
+    n--;
+  }
+  return "liftoff";
+}
+const gen = countdown(2);
+console.log("created");
+console.log(gen.next());
+console.log(gen.next());
+console.log(gen.next());
+console.log(gen.next());
+```
+
+**Output:**
+
+```text
+created
+starting
+{ value: 2, done: false }
+{ value: 1, done: false }
+{ value: 'liftoff', done: true }
+{ value: undefined, done: true }
+```
+
+Nothing runs until the first `next()`: "starting" prints after "created". The `return` value appears once with `done: true`, but `for...of` and spread ignore it. The range becomes three lines:
+
+```js
+function* rangeOf(from, to, step = 1) {
+  for (let i = from; i <= to; i += step) {
+    yield i;
+  }
+}
+console.log([...rangeOf(1, 10, 3)]);
+```
+
+**Output:**
+
+```text
+[ 1, 4, 7, 10 ]
+```
+
+A generator method makes a class iterable; `yield*` hands over to another iterable:
+
+```js
+class Playlist {
+  #songs = [];
+  add(...songs) {
+    this.#songs.push(...songs);
+    return this;
+  }
+  *[Symbol.iterator]() {
+    yield* this.#songs;
+  }
+}
+console.log([...new Playlist().add("Song A", "Song B")]);
+```
+
+**Output:**
+
+```text
+[ 'Song A', 'Song B' ]
+```
+
+### 22.3 Lazy and infinite sequences
+
+A generator computes each value only when asked, so a sequence can be infinite as long as the consumer stops:
+
+```js
+function* naturals() {
+  let n = 1;
+  while (true) {
+    yield n++;
+  }
+}
+const firstFive = [];
+for (const n of naturals()) {
+  if (n > 5) {
+    break;
+  }
+  firstFive.push(n);
+}
+console.log(firstFive);
+```
+
+**Output:**
+
+```text
+[ 1, 2, 3, 4, 5 ]
+```
+
+`break` stops the loop and closes the generator. Being **lazy** also saves memory: a generator reading a huge file line by line never holds the whole file.
+
+### 22.4 Iterator helpers
+
+ES2025 added methods to every iterator, like the array methods but lazy: `map`, `filter`, `take`, `drop`, `flatMap`, plus `reduce`, `toArray`, `forEach`, `some`, `every` and `find`. They work on infinite sequences because they process one value at a time:
+
+```js
+const evenSquares = naturals()
+  .filter((n) => n % 2 === 0)
+  .map((n) => n * n)
+  .take(4)
+  .toArray();
+console.log(evenSquares);
+```
+
+**Output:**
+
+```text
+[ 4, 16, 36, 64 ]
+```
+
+Arrays aren't iterators, but `array.values()` gives one, and `Iterator.from(iterable)` wraps anything iterable. With an array, `arr.filter().map()` builds two whole new arrays; the iterator version passes each element through all steps before taking the next:
+
+```js
+let steps = 0;
+const firstBig = [5, 12, 8, 130, 44].values()
+  .map((n) => {
+    steps++;
+    return n * 2;
+  })
+  .find((n) => n > 20);
+console.log(firstBig, steps);
+```
+
+**Output:**
+
+```text
+24 2
+```
+
+Only two elements were doubled, because `find` stopped at the first match.
+
+### 22.5 Sending values into a generator
+
+`next(value)` resumes the generator and makes the paused `yield` expression evaluate to `value`, so a generator can receive input as well as produce output:
+
+```js
+function* runningAverage() {
+  let total = 0;
+  let count = 0;
+  let average = 0;
+  while (true) {
+    const value = yield average;
+    total += value;
+    count++;
+    average = total / count;
+  }
+}
+const avg = runningAverage();
+avg.next();
+console.log(avg.next(10).value, avg.next(20).value, avg.next(60).value);
+```
+
+**Output:**
+
+```text
+10 15 30
+```
+
+The first `next()` runs up to the first `yield`. This two-way pausing is how libraries built `async`-like code before `async`/`await` existed (Chapter 25).
+
+### 22.6 Summary
+
+```
+iterable: has [Symbol.iterator]() → iterator;  iterator: next() → { value, done }
+function* g() { yield x; yield* other; return r; }    pauses at each yield; lazy
+*[Symbol.iterator]() { … }                             make a class iterable
+iter.map .filter .take .drop .flatMap .toArray .reduce .find   lazy helpers (ES2025)
+arr.values()   Iterator.from(iterable)                 get an iterator
+gen.next(v)                                             v becomes the value of the paused yield
+```
+
+**Key terms:**
+
+- **Iterator:** an object with a `next()` method that returns `{ value, done }` until the sequence ends.
+- **Iteration protocol:** the rule that iterables provide `[Symbol.iterator]()` returning an iterator; used by `for...of`, spread and destructuring.
+- **Generator function:** a `function*` that returns an iterator and pauses at each `yield`.
+- **yield:** hands out one value from a generator and pauses it until `next()` is called again.
+- **yield\*:** yields every value of another iterable in turn.
+- **Lazy evaluation:** computing values only when they're requested.
+- **Iterator helpers:** lazy methods such as `map`, `filter` and `take` available on every iterator (ES2025).
+
+### Exercises
+
+1. Write a generator `fibonacci()` that yields the Fibonacci numbers forever, and print the first 10 with `take`.
+2. Write `chunks(arr, size)` as a generator that yields slices of `size` elements.
 
 <details>
-<summary><b>Answer</b></summary>
+<summary><b>Answers</b></summary>
 
 ```js
 function* fibonacci() {
-  let [a, b] = [0, 1];
+  let a = 0;
+  let b = 1;
   while (true) {
     yield a;
     [a, b] = [b, a + b];
   }
 }
-console.log(fibonacci().filter(n => n > 100).take(5).toArray());
+console.log(fibonacci().take(10).toArray());
+function* chunks(arr, size) {
+  for (let i = 0; i < arr.length; i += size) {
+    yield arr.slice(i, i + size);
+  }
+}
+console.log([...chunks([1, 2, 3, 4, 5], 2)]);
 ```
 
 **Output:**
 
 ```text
-[ 144, 233, 377, 610, 987 ]
+[
+  0, 1,  1,  2,  3,
+  5, 8, 13, 21, 34
+]
+[ [ 1, 2 ], [ 3, 4 ], [ 5 ] ]
 ```
 
 </details>
 
-**Learn more:** [MDN: iterators and generators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_generators) · [MDN: Iterator helpers](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Iterator) · [MDN: for await...of](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for-await...of)
+**Practice:**
+
+| # | Problem (LeetCode) | Difficulty |
+|---|---|---|
+| 1 | [2648. Generate Fibonacci Sequence](https://leetcode.com/problems/generate-fibonacci-sequence/) | 🟢 Easy |
+| 2 | [2649. Nested Array Generator](https://leetcode.com/problems/nested-array-generator/) | 🟡 Medium |
+
+**Learn more:** [MDN: iterators and generators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_generators) · [MDN: Iterator helpers](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Iterator)
 
 ---
 
-## 23. How JavaScript Runs: Call Stack, Event Loop, Tasks and Microtasks
+## 23. How JavaScript Runs: Call Stack, Event Loop, Timers and Callbacks
 
-![The event loop: synchronous code runs on the call stack; Web APIs or Node handle timers and I/O; finished callbacks wait in the task queue, promise callbacks in the microtask queue; after each task the loop drains all microtasks, then the browser may render, then takes the next task](images/javascript/03-event-loop.svg)
+**You need:** Chapters 10, 14 and 17. · **You'll learn:** why JavaScript runs one thing at a time, what the call stack is, how timers and the event loop let it wait without blocking, and how callback-based asynchronous code is written (and why it gets messy).
 
-### Theory
+### 23.1 One thread, one call stack
 
-> **In simple words:** JavaScript runs your code on **one thread**: one thing at a time, on a **call stack**. Slow things (timers, network requests, file reads, clicks) are handed to the browser or Node, which do the waiting **outside** JavaScript. When they finish, their callbacks are put in a **queue**. The **event loop** is a simple rule: whenever the stack is empty, take the next callback from the queues and run it. That's how a single-threaded language handles thousands of concurrent operations without freezing, as long as no single piece of code runs for too long.
-
-**The pieces:**
-
-| Piece | What it is |
-|---|---|
-| **Call stack** | The functions currently running. JS runs one function to completion before anything else can run ("run-to-completion") |
-| **Web APIs / Node's libuv** | Timers, network, file system, DOM events: they wait outside JS |
-| **Task queue** (macrotasks) | Callbacks from `setTimeout`, `setInterval`, I/O, UI events, `MessageChannel` |
-| **Microtask queue** | Promise callbacks (`.then`, code after `await`), `queueMicrotask`, `MutationObserver` |
-| **Event loop** | Run one task → run **all** microtasks (including ones added meanwhile) → (browser) maybe render → next task |
-
-**Consequences you must know:**
-
-- **Synchronous code first**, then microtasks, then tasks: `Promise.resolve().then(a)` runs before `setTimeout(b, 0)`.
-- `setTimeout(fn, 0)` means "as soon as possible **after** the current task and microtasks", not "now"; browsers also clamp nested timers to ≥ 4 ms.
-- **Long-running code blocks everything:** no clicks, no rendering, no other callbacks. Split heavy work into chunks (`await scheduler.yield()` in modern browsers, or `setTimeout` chunks) or move it to a **Web Worker** / Node `worker_threads`.
-- Endless microtask chains starve rendering and timers.
-- In Node, `process.nextTick` callbacks run even before promise microtasks; `setImmediate` runs after I/O callbacks.
-
-**The call stack and recursion:** each call adds a frame; too many (deep recursion) throws `RangeError: Maximum call stack size exceeded`.
-
-### JavaScript
-
-The classic ordering puzzle, and what each step means:
+JavaScript runs your code on a single **thread**: one sequence of steps, one at a time. To know where it is, the engine keeps a **call stack**: calling a function pushes a **frame** (its arguments and local variables) on top; returning pops it. The stack trace of an error is a snapshot of this stack:
 
 ```js
-console.log("1 sync start");
-setTimeout(() => console.log("6 timeout (task)"), 0);
-Promise.resolve()
-  .then(() => console.log("3 promise then (microtask)"))
-  .then(() => console.log("5 second then (microtask added during microtasks)"));
-queueMicrotask(() => console.log("4 queueMicrotask (microtask)"));
-(async () => {
-  console.log("2 async function body runs synchronously until the first await");
-  await null;
-  console.log("4b after await (microtask)");
-})();
-console.log("2b sync end");
+function a() {
+  return b();
+}
+function b() {
+  return new Error("where am I?").stack.split("\n").slice(1, 3).map((line) => line.trim().split(" (")[0]);
+}
+console.log(a());
 ```
 
 **Output:**
 
 ```text
-1 sync start
-2 async function body runs synchronously until the first await
-2b sync end
-3 promise then (microtask)
-4 queueMicrotask (microtask)
-4b after await (microtask)
-5 second then (microtask added during microtasks)
-6 timeout (task)
+[ 'at b', 'at a' ]
 ```
 
-All synchronous lines print first, then **every** microtask (even ones queued by other microtasks), and only then the timer.
+The stack, newest first: `b`, called by `a`; below them (cut off here) is the module's top level, with file names and line numbers.
 
-**Blocking the loop:** a timer due in 10 ms can't run while synchronous code is busy:
+### 23.2 Blocking
+
+Because there's one thread, a long computation **blocks**: nothing else can happen until it finishes. In a browser that means frozen clicks and scrolling; in a server, every other request waits.
 
 ```js
 const start = Date.now();
-setTimeout(() => console.log(`timer asked for 10 ms, ran after at least 300 ms: ${Date.now() - start >= 300}`), 10);
-while (Date.now() - start < 300) {}                  // 300 ms of blocking work
-console.log("blocking work done");
-
-function countDown(n) {
-  return n === 0 ? 0 : countDown(n - 1);
+let x = 0;
+for (let i = 0; i < 2e8; i++) {
+  x += i;
 }
-try {
-  countDown(1e6);
-} catch (err) {
-  console.log(err.name, "-", err.message);
-}
+console.log(`blocked for about ${Math.round((Date.now() - start) / 100) / 10} s`);
 ```
 
 **Output:**
 
 ```text
-blocking work done
-RangeError - Maximum call stack size exceeded
-timer asked for 10 ms, ran after at least 300 ms: true
+blocked for about 0.1 s
 ```
 
-**Common mistakes:**
+`Date.now()` returns the current time in milliseconds (Chapter 28). Keep each piece of work short; Chapter 31 moves heavy work to another thread with workers.
 
-- ❌ Believing `setTimeout(fn, 0)` runs immediately, or that a timer fires exactly on time.
-- ❌ Heavy synchronous work (big loops, JSON of huge payloads, image processing) on the main thread; use chunking or workers.
-- ❌ Assuming `async` makes code run in parallel (it only lets waiting overlap; CPU work still blocks).
-- ❌ Infinite microtask loops.
+### 23.3 Waiting without blocking: timers
 
-### Practice
+Slow operations such as timers, network requests and file reads are done by the **environment** (the browser or Node.js), not by the JavaScript thread. You hand over a **callback**, the thread carries on, and the environment queues the callback when the result is ready.
 
-1. Predict the order, then run: `setTimeout(() => log("A"), 0); Promise.resolve().then(() => log("B")); log("C"); setTimeout(() => Promise.resolve().then(() => log("D")), 0); Promise.resolve().then(() => setTimeout(() => log("E"), 0));`
-
-<details>
-<summary><b>Answer</b></summary>
+`setTimeout(fn, ms)` runs `fn` once after at least `ms` milliseconds; `setInterval(fn, ms)` runs it every `ms` until `clearInterval`:
 
 ```js
-const log = x => console.log(x);
-setTimeout(() => log("A"), 0);
-Promise.resolve().then(() => log("B"));
-log("C");
-setTimeout(() => Promise.resolve().then(() => log("D")), 0);
-Promise.resolve().then(() => setTimeout(() => log("E"), 0));
+console.log("1. start");
+setTimeout(() => console.log("3. timeout fired"), 100);
+console.log("2. end of script");
 ```
 
 **Output:**
 
 ```text
-C
-B
-A
-D
-E
+1. start
+2. end of script
+3. timeout fired
 ```
-
-C is synchronous; B is a microtask; then the tasks in the order they were queued: A, then the second timer (whose microtask D runs right after it), then E, which was only queued during the microtask phase.
-
-</details>
-
-**Learn more:** [MDN: the event loop](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Event_loop) · [Jake Archibald: tasks, microtasks, queues and schedules](https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/) · [Node.js: the event loop](https://nodejs.org/en/learn/asynchronous-work/event-loop-timers-and-nexttick) · [Philip Roberts: what the heck is the event loop anyway? (talk)](https://www.youtube.com/watch?v=8aGhZQkoFbQ)
-
----
-
-## 24. Callbacks and Promises
-
-### Theory
-
-> **In simple words:** a **callback** is a function you hand to someone else to call **later** ("when the file is read, call this"). Callbacks work, but nesting them for several steps becomes "callback hell" and error handling gets messy. A **Promise** is an object representing a value that isn't ready **yet**: it will either be **fulfilled** with a value or **rejected** with an error. You attach what to do next with `.then` and `.catch`, chain steps flatly, and combine several promises (`Promise.all` and friends). `async`/`await` (next section) is built on promises.
-
-**Promise states:** `pending` → `fulfilled` (with a value) or `rejected` (with a reason). Once settled, it never changes.
-
-**Creating:** `new Promise((resolve, reject) => { ... })` to wrap callback APIs; `Promise.resolve(v)`, `Promise.reject(err)`; ES2024 `Promise.withResolvers()` returns `{ promise, resolve, reject }` for cases where resolve/reject are needed outside the executor.
-
-**Chaining:** `.then(fn)` returns a **new** promise resolved with what `fn` returns (if `fn` returns a promise, the chain waits for it). `.catch(fn)` handles any rejection earlier in the chain. `.finally(fn)` runs either way.
-
-**Combinators:**
-
-| Method | Resolves when | Rejects when | Use |
-|---|---|---|---|
-| `Promise.all([...])` | **All** fulfil (array of values, in order) | **Any** rejects (fail fast) | Parallel steps that all must succeed |
-| `Promise.allSettled([...])` | All settle | Never | Parallel steps; inspect each result |
-| `Promise.race([...])` | The **first** settles (either way) | The first rejects | Timeouts |
-| `Promise.any([...])` | The first **fulfils** | All reject (`AggregateError`) | Fastest mirror/fallback |
-
-**Error rules:** always end a chain with `.catch` (or `await` in `try`); an unhandled rejection is reported and crashes Node by default. Throwing inside `.then` rejects the next promise.
-
-### JavaScript
 
 ```js
-const delay = (ms, value, fail = false) =>
-  new Promise((resolve, reject) => setTimeout(() => (fail ? reject(new Error(value)) : resolve(value)), ms));
-
-// Callback style: nested steps ("callback hell")
-function getUserCb(id, cb) { setTimeout(() => cb(null, { id, name: "Asha" }), 10); }
-function getOrdersCb(user, cb) { setTimeout(() => cb(null, [90312, 90313]), 10); }
-getUserCb(7, (err, user) => {
-  if (err) return console.log(err);
-  getOrdersCb(user, (err2, orders) => {
-    if (err2) return console.log(err2);
-    console.log("callbacks:", user.name, orders);
-  });
-});
-
-// Promise style: flat chain, one catch
-const getUser = id => delay(10, { id, name: "Asha" });
-const getOrders = user => delay(10, [90312, 90313]);
-getUser(7)
-  .then(user => getOrders(user).then(orders => ({ user, orders })))
-  .then(({ user, orders }) => console.log("promises:", user.name, orders))
-  .catch(err => console.log("failed:", err.message))
-  .finally(() => console.log("chain finished"));
-
-const p = delay(30, "slow");
-console.log(p instanceof Promise, "promise created; value not ready yet");
-```
-
-**Output:**
-
-```text
-true promise created; value not ready yet
-callbacks: Asha [ 90312, 90313 ]
-promises: Asha [ 90312, 90313 ]
-chain finished
-```
-
-**Combinators:**
-
-```js
-const results = await Promise.all([delay(30, "profile"), delay(10, "orders"), delay(20, "cart")]);
-console.log("all:", results);                                       // input order, not finishing order
-
-try {
-  await Promise.all([delay(30, "ok"), delay(10, "payment down", true)]);
-} catch (err) {
-  console.log("all rejects fast:", err.message);
-}
-
-const settled = await Promise.allSettled([delay(10, "a"), delay(5, "b broke", true)]);
-console.log("allSettled:", settled.map(r => r.status === "fulfilled" ? r.value : `ERR ${r.reason.message}`));
-
-const winner = await Promise.race([delay(50, "slow server"), delay(20, "timeout", true)]).catch(e => e.message);
-console.log("race:", winner);
-
-console.log("any:", await Promise.any([delay(30, "mirror 2"), delay(10, "mirror 1 down", true), delay(20, "mirror 3")]));
-try {
-  await Promise.any([delay(5, "x", true), delay(5, "y", true)]);
-} catch (err) {
-  console.log(err.name, err.errors.map(e => e.message));
-}
-
-const { promise, resolve } = Promise.withResolvers();
-setTimeout(() => resolve("resolved from outside"), 10);
-console.log(await promise);
-```
-
-**Output:**
-
-```text
-all: [ 'profile', 'orders', 'cart' ]
-all rejects fast: payment down
-allSettled: [ 'a', 'ERR b broke' ]
-race: timeout
-any: mirror 3
-AggregateError [ 'x', 'y' ]
-resolved from outside
-```
-
-(`await` pauses until a promise settles and is explained properly in the next section.)
-
-**Common mistakes:**
-
-- ❌ Forgetting to `return` a promise inside `.then` (the chain doesn't wait for it).
-- ❌ No `.catch` (unhandled rejections).
-- ❌ Wrapping promises in `new Promise` unnecessarily (the "explicit construction anti-pattern").
-- ❌ `Promise.all` when partial failure is acceptable (use `allSettled`).
-- ❌ Running requests one after another when they could run in parallel.
-
-### Practice
-
-1. Write `withTimeout(promise, ms)` that rejects with `Error("timed out after <ms> ms")` if `promise` doesn't settle in time, using `Promise.race`. Test with a 50 ms task and timeouts of 100 ms and 20 ms.
-
-<details>
-<summary><b>Answer</b></summary>
-
-```js
-function withTimeout(promise, ms) {
-  let timer;
-  const timeout = new Promise((_, reject) => {
-    timer = setTimeout(() => reject(new Error(`timed out after ${ms} ms`)), ms);
-  });
-  return Promise.race([promise, timeout]).finally(() => clearTimeout(timer));   // don't leave the timer running
-}
-console.log(await withTimeout(delay(50, "done"), 100));
-console.log(await withTimeout(delay(50, "done"), 20).catch(e => e.message));
-```
-
-**Output:**
-
-```text
-done
-timed out after 20 ms
-```
-
-</details>
-
-**Learn more:** [MDN: using promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises) · [MDN: Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) · [javascript.info: promises](https://javascript.info/promise-basics)
-
----
-
-## 25. async/await: Asynchronous Code That Reads Like Normal Code
-
-### Theory
-
-> **In simple words:** `async`/`await` lets you write promise-based code as if it were step-by-step synchronous code. An **`async` function** always returns a promise. Inside it, **`await promise`** pauses **that function** (not the whole program) until the promise settles, then gives you its value, or throws its error, which you catch with ordinary `try`/`catch`. It's the standard way to write asynchronous JavaScript in 2026: API calls, database queries, file reads, LLM calls.
-
-**Rules:**
-
-- `await` works inside `async` functions and at the top level of ES modules (top-level await).
-- `await` on a non-promise just returns the value (after a microtask).
-- An error thrown in an `async` function rejects its promise.
-- `return await p` inside `try` is needed if you want the `catch` to see `p`'s rejection.
-
-**Sequential vs parallel (the most important performance point):**
-
-```text
-const a = await getA();  const b = await getB();          ← sequential: total = time(A) + time(B)
-const [a, b] = await Promise.all([getA(), getB()]);       ← parallel: total = max(A, B)
-```
-
-Only do things sequentially when one needs the other's result.
-
-**Loops:** `for...of` with `await` inside runs sequentially (sometimes what you want, e.g. rate-limited APIs); `await Promise.all(items.map(async ...))` runs them all at once; for "at most N at a time" use a small pool (practice below) or a library like `p-limit`. **`forEach` does not await** async callbacks.
-
-**Cancellation:** `AbortController` + `signal` cancels `fetch` and many APIs (Section [31](#31-web-apis-fetch-abortcontroller-url-observers-and-workers)); `AbortSignal.timeout(ms)` gives a timeout signal.
-
-**Error handling:** wrap awaits in `try`/`catch`; for fire-and-forget calls, still attach `.catch`; in Node, unhandled rejections crash the process.
-
-### JavaScript
-
-```js
-const delay = (ms, value) => new Promise(r => setTimeout(() => r(value), ms));
-const fetchUser = async id => { await delay(50); return { id, name: "Asha" }; };
-const fetchOrders = async id => { await delay(50); return [90312, 90313]; };
-const fetchPayment = async id => { await delay(50); throw new Error("payment service unavailable"); };
-
-async function loadDashboard(id) {
-  const [user, orders] = await Promise.all([fetchUser(id), fetchOrders(id)]);   // parallel
-  let payment;
-  try {
-    payment = await fetchPayment(id);
-  } catch (err) {
-    payment = `unavailable (${err.message})`;                                // degrade gracefully
-  }
-  return { name: user.name, orders: orders.length, payment };
-}
-
-console.log(await loadDashboard(7));
-
-let t = Date.now();
-const u = await fetchUser(7);
-const o = await fetchOrders(7);                   // sequential: waits for the first to finish
-const sequentialMs = Date.now() - t;
-t = Date.now();
-await Promise.all([fetchUser(7), fetchOrders(7)]);
-const parallelMs = Date.now() - t;
-console.log("sequential ≈ 100 ms, parallel ≈ 50 ms:", sequentialMs >= 95 && parallelMs < 90);   // timings vary slightly
-
-const order = [];
-[30, 10, 20].forEach(async ms => { await delay(ms); order.push(ms); });   // forEach doesn't wait!
-console.log("right after forEach:", order);
-for (const ms of [30, 10, 20]) { await delay(ms); order.push(`seq ${ms}`); }
-console.log("after for...of:", order);
-
-async function mightFail() { throw new Error("boom"); }
-const pending = mightFail();                      // an async function returns a (here rejected) promise
-console.log(pending instanceof Promise);
-await pending.catch(err => console.log("caught:", err.message));
-```
-
-**Output:**
-
-```text
-{
-  name: 'Asha',
-  orders: 2,
-  payment: 'unavailable (payment service unavailable)'
-}
-sequential ≈ 100 ms, parallel ≈ 50 ms: true
-right after forEach: []
-after for...of: [ 10, 20, 30, 'seq 30', 'seq 10', 'seq 20' ]
-true
-caught: boom
-```
-
-(The `forEach` callbacks finished during the later `for...of` loop's waits, which is why their numbers appear in the second print: `forEach` never waited for them.)
-
-**Common mistakes:**
-
-- ❌ Sequential `await`s for independent work.
-- ❌ `async` callbacks in `forEach`/`map` without `Promise.all`.
-- ❌ Missing `try`/`catch` or `.catch` (unhandled rejections).
-- ❌ `await` inside a hot loop over thousands of items without limiting concurrency (or with no concurrency at all).
-- ❌ Forgetting that `async` functions return promises (`if (isValid())` is always truthy if `isValid` is async).
-
-### Practice
-
-1. Write `mapWithLimit(items, limit, fn)` that runs async `fn` over items with at most `limit` running at once and returns results in input order. Test with delays `[40, 10, 30, 20, 10]` and limit 2, recording the maximum concurrency seen.
-
-<details>
-<summary><b>Answer</b></summary>
-
-```js
-async function mapWithLimit(items, limit, fn) {
-  const results = new Array(items.length);
-  let next = 0;
-  async function worker() {
-    while (next < items.length) {
-      const i = next++;                           // claim the next index (safe: JS is single-threaded)
-      results[i] = await fn(items[i], i);
-    }
-  }
-  await Promise.all(Array.from({ length: Math.min(limit, items.length) }, worker));
-  return results;
-}
-
-let running = 0, maxRunning = 0;
-const results = await mapWithLimit([40, 10, 30, 20, 10], 2, async ms => {
-  running++; maxRunning = Math.max(maxRunning, running);
-  await delay(ms);
-  running--;
-  return ms * 2;
-});
-console.log(results, "max concurrency:", maxRunning);
-```
-
-**Output:**
-
-```text
-[ 80, 20, 60, 40, 20 ] max concurrency: 2
-```
-
-</details>
-
-**Learn more:** [MDN: async function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function) · [javascript.info: async/await](https://javascript.info/async-await) · [p-limit](https://github.com/sindresorhus/p-limit)
-
----
-
-## 26. Modules: import, export, ESM vs CommonJS
-
-### Theory
-
-> **In simple words:** a **module** is a file whose variables are **private** by default; it **exports** what others may use and **imports** what it needs from other modules. This keeps big programs organised (one concern per file), avoids name clashes, and lets tools remove unused code. Modern JavaScript uses **ES modules (ESM)** with `import`/`export` in browsers and Node; older Node code uses **CommonJS** (`require`/`module.exports`).
-
-**ESM syntax:**
-
-| Syntax | Meaning |
-|---|---|
-| `export const TAX = 0.18;` / `export function f() {}` | Named exports |
-| `export default class Cart {}` | One default export per module |
-| `import { TAX, f } from "./pricing.js";` | Named imports (names must match; rename with `as`) |
-| `import Cart from "./cart.js";` | Default import (any name) |
-| `import * as pricing from "./pricing.js";` | Namespace object |
-| `export { f as format } from "./x.js";` | Re-export (index/"barrel" files) |
-| `const mod = await import("./heavy.js");` | **Dynamic import**: load on demand (code splitting) |
-| `import data from "./data.json" with { type: "json" };` | Import attributes (JSON modules) |
-
-**ESM facts:** modules run **once** (then cached) and are in **strict mode**; imports are **live bindings** (you see the exporter's current value) and read-only; top-level `await` works; relative paths in browsers and Node ESM need the extension (`./pricing.js`). In browsers: `<script type="module">`; in Node: `.mjs` files or `"type": "module"` in `package.json`.
-
-**CommonJS vs ESM (Node):**
-
-| | CommonJS | ESM |
-|---|---|---|
-| Syntax | `require()`, `module.exports` | `import`, `export` |
-| Loading | Synchronous, at runtime | Static structure, resolved before running (enables tree-shaking) |
-| Top-level await | No | Yes |
-| File markers | `.cjs`, or default in packages without `"type": "module"` | `.mjs`, or `"type": "module"` |
-| Interop | Node 22+ can `require()` ESM modules (without top-level await) | `import` can load CommonJS (default = `module.exports`) |
-
-New projects in 2026 should be ESM-only. Circular imports are allowed but can see uninitialised bindings; avoid them by extracting shared code.
-
-### JavaScript
-
-We write three module files and run them with Node:
-
-```js
-const fs = require("node:fs");
-const { execFileSync } = require("node:child_process");
-
-fs.writeFileSync("pricing.mjs", `
-export const TAX = 0.18;
-export let discountsApplied = 0;
-export function withTax(amount) { return Math.round(amount * (1 + TAX)); }
-export function applyDiscount(amount, pct) { discountsApplied++; return amount * (1 - pct / 100); }
-const secret = "not exported";
-`);
-fs.writeFileSync("cart.mjs", `
-import { withTax } from "./pricing.mjs";
-export default class Cart {
-  items = [];
-  add(price) { this.items.push(price); return this; }
-  total() { return withTax(this.items.reduce((a, b) => a + b, 0)); }
-}
-`);
-fs.writeFileSync("main.mjs", `
-import Cart from "./cart.mjs";
-import { TAX, applyDiscount, discountsApplied } from "./pricing.mjs";
-import * as pricing from "./pricing.mjs";
-
-console.log(new Cart().add(100).add(400).total(), TAX, Object.keys(pricing));
-console.log("before:", discountsApplied);
-applyDiscount(100, 10);
-console.log("after:", discountsApplied, "(a live binding)");
-try { discountsApplied = 5; } catch (err) { console.log(err.name, "-", err.message); }
-const { withTax } = await import("./pricing.mjs");      // dynamic import + top-level await
-console.log(withTax(1000), typeof pricing.secret);
-`);
-console.log(execFileSync(process.execPath, ["main.mjs"], { encoding: "utf8" }).trim());
-
-fs.writeFileSync("legacy.cjs", `module.exports = { add: (a, b) => a + b };`);
-fs.writeFileSync("uses-cjs.mjs", `import legacy from "./legacy.cjs"; console.log("CommonJS from ESM:", legacy.add(2, 3));`);
-console.log(execFileSync(process.execPath, ["uses-cjs.mjs"], { encoding: "utf8" }).trim());
-```
-
-**Output:**
-
-```text
-590 0.18 [ 'TAX', 'applyDiscount', 'discountsApplied', 'withTax' ]
-before: 0
-after: 1 (a live binding)
-TypeError - Assignment to constant variable.
-1180 undefined
-CommonJS from ESM: 5
-```
-
-**Common mistakes:**
-
-- ❌ Mixing `require` and `import` styles in one project without understanding the interop rules.
-- ❌ Missing file extensions in Node ESM/browser imports.
-- ❌ Giant "barrel" `index.js` files re-exporting everything (slow builds, circular imports, weak tree-shaking).
-- ❌ Side effects at module top level (network calls, heavy work on import).
-- ❌ Default exports everywhere (named exports are easier to refactor and auto-import).
-
-### Practice
-
-1. Create `math.mjs` exporting `sum(...nums)` and a default `average(...nums)` that uses `sum`, then a script that imports both and prints `sum(1,2,3)` and `average(2,4,6,8)`.
-
-<details>
-<summary><b>Answer</b></summary>
-
-```js
-fs.writeFileSync("math.mjs", `
-export const sum = (...nums) => nums.reduce((a, b) => a + b, 0);
-export default function average(...nums) { return sum(...nums) / nums.length; }
-`);
-fs.writeFileSync("use-math.mjs", `
-import average, { sum } from "./math.mjs";
-console.log(sum(1, 2, 3), average(2, 4, 6, 8));
-`);
-console.log(execFileSync(process.execPath, ["use-math.mjs"], { encoding: "utf8" }).trim());
-```
-
-**Output:**
-
-```text
-6 5
-```
-
-</details>
-
-**Learn more:** [MDN: JavaScript modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules) · [Node.js: ECMAScript modules](https://nodejs.org/api/esm.html) · [Node.js: require(esm)](https://nodejs.org/api/modules.html#loading-ecmascript-modules-using-require)
-
----
-
-## 27. Regular Expressions
-
-### Theory
-
-> **In simple words:** a **regular expression** (regex) describes a **pattern** of text: "digits", "an @ with text on both sides", "a date like 2026-09-25". JavaScript regexes are written between slashes (`/\d+/g`) or built with `new RegExp(text)`. Use them to validate formats, extract parts of text, and search-and-replace. For simple checks, string methods (`includes`, `startsWith`) are clearer.
-
-**Pattern basics** (same core syntax as Python, `python.md`): `\d \w \s` (digit, word char, whitespace; capitals are the opposites), `.` (any char), `[abc] [^abc] [a-z]`, quantifiers `* + ? {n} {n,m}` (add `?` for lazy), anchors `^ $ \b`, groups `( )`, named groups `(?<year>\d{4})`, alternation `a|b`, lookahead `(?=...)`/`(?!...)`, lookbehind `(?<=...)`/`(?<!...)`.
-
-**Flags:** `g` (all matches), `i` (ignore case), `m` (`^`/`$` per line), `s` (`.` matches newlines), `u` (Unicode), `v` (Unicode sets, ES2024), `d` (match indices), `y` (sticky).
-
-**Methods:**
-
-| Method | Returns |
-|---|---|
-| `regex.test(str)` | `true`/`false` |
-| `str.match(regex)` | First match with groups (no `g`), or all matched strings (with `g`) |
-| `str.matchAll(regex)` | Iterator of all matches **with groups** (needs `g`) |
-| `str.replace(regex, repl)` / `replaceAll` | New string; `repl` can use `$1`, `$<name>` or be a function |
-| `str.split(regex)` | Split on a pattern |
-| `regex.exec(str)` | Next match (stateful with `g`: uses `lastIndex`) |
-| `RegExp.escape(str)` (ES2025) | Escape user text for safe use inside a pattern |
-
-**Pitfalls:** a `g`/`y` regex object is **stateful** (`lastIndex`), so reusing it with `test` gives alternating results; user input inside `new RegExp(...)` must be escaped; badly nested quantifiers (`(a+)+`) can take exponential time on some inputs (ReDoS), a real denial-of-service risk on servers.
-
-### JavaScript
-
-```js
-const text = "Order 90312 shipped 2026-09-21; order 88213 delivered 2026-09-12. Mail help@shopkart.example";
-console.log(text.match(/\b\d{5}\b/g), /shipped/i.test(text));
-console.log(text.match(/[\w.+-]+@[\w-]+(\.[\w-]+)+/)[0]);
-
-const datePattern = /(?<year>\d{4})-(?<month>\d{2})-(?<day>\d{2})/g;
-for (const m of text.matchAll(datePattern)) {
-  console.log(m.groups.day, m.groups.month, m.groups.year, "at index", m.index);
-}
-console.log(text.replace(datePattern, "$<day>/$<month>/$<year>").slice(0, 40));
-console.log("2 apples and 15 pears".replace(/\d+/g, n => n * 2));
-console.log("a, b;c  d".split(/[;,\s]+/), "  too   many spaces ".trim().replace(/\s+/g, " "));
-
-console.log(/^[6-9]\d{9}$/.test("9876543210"), /^[6-9]\d{9}$/.test("12345"));
-console.log("price: ₹1,499 and ₹99".match(/(?<=₹)[\d,]+/g));          // lookbehind: numbers after ₹
-console.log(/^(?=.*\d)(?=.*[A-Z]).{8,}$/.test("Secret123"), /^(?=.*\d)(?=.*[A-Z]).{8,}$/.test("secret"));
-
-const g = /a/g;
-console.log(g.test("aaa"), g.test("aaa"), g.test("aaa"), g.test("aaa"), "(lastIndex state!)");
-
-const userInput = "C++ (beginner)";
-console.log(new RegExp(RegExp.escape(userInput)).test("Learn C++ (beginner) today"));
-```
-
-**Output:**
-
-```text
-[ '90312', '88213' ] true
-help@shopkart.example
-21 09 2026 at index 20
-12 09 2026 at index 54
-Order 90312 shipped 21/09/2026; order 88
-4 apples and 30 pears
-[ 'a', 'b', 'c', 'd' ] too many spaces
-true false
-[ '1,499', '99' ]
-true false
-true true true false (lastIndex state!)
-true
-```
-
-**Common mistakes:**
-
-- ❌ Reusing a global regex with `test`/`exec` (the `lastIndex` trap).
-- ❌ Building regexes from user input without escaping.
-- ❌ Greedy `.*` that swallows too much; use `.*?` or a precise class.
-- ❌ Parsing HTML/JSON with regex.
-- ❌ Unreadable one-liners; name your groups and split complex patterns.
-
-### Practice
-
-1. Extract all hashtags (`#` followed by letters/digits/underscore) from `"Loving the #Diwali sale! #shopkart #deals2026 #"`, lower-cased and without duplicates.
-
-<details>
-<summary><b>Answer</b></summary>
-
-```js
-const post = "Loving the #Diwali sale! #shopkart #deals2026 #shopKart #";
-console.log([...new Set([...post.matchAll(/#(\w+)/g)].map(m => m[1].toLowerCase()))]);
-```
-
-**Output:**
-
-```text
-[ 'diwali', 'shopkart', 'deals2026' ]
-```
-
-</details>
-
-**Learn more:** [MDN: regular expressions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_expressions) · [regex101 (choose ECMAScript)](https://regex101.com/) · [MDN: RegExp.escape](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/escape)
-
----
-
-## 28. Dates, Time Zones, Numbers and Intl
-
-### Theory
-
-> **In simple words:** dates are one of the most bug-prone areas in programming: time zones, daylight saving, month numbering, parsing. JavaScript's built-in **`Date`** stores one moment in time (milliseconds since 1 January 1970 UTC) and shows it in the computer's local time zone by default. For **displaying** dates, numbers and currencies correctly in any language, use **`Intl`**. The modern replacement for `Date`, **Temporal**, is arriving in browsers and runtimes in 2025–2026.
-
-**`Date` essentials and traps:**
-
-- Create: `new Date()` (now), `new Date("2026-09-25T10:00:00Z")` (ISO with `Z` = UTC, the safe format), `new Date(2026, 8, 25)` (**months are 0-based**: 8 = September, in **local** time), `Date.now()` (a number).
-- Read: `getFullYear()`, `getMonth()` (0–11), `getDate()` (day of month), `getDay()` (weekday, 0 = Sunday), plus `getUTC...` versions.
-- Output: `toISOString()` (UTC, for storage and APIs), `toLocaleString(locale, options)` for humans.
-- Dates are **mutable**: `setDate()` changes the object; copy first (`new Date(d)`).
-- Parsing non-ISO strings (`"25/09/2026"`) is unreliable; parse yourself or use a library.
-
-**Rules for real apps:** store and send **UTC ISO strings** (or epoch milliseconds); convert to the user's time zone only for display; use a real time zone (`"Asia/Kolkata"`, `"America/New_York"`), never fixed offsets; beware "date-only" values (a birthday isn't a moment in time).
-
-**Temporal** (Stage 4 track; shipping in Firefox and Chrome by 2026, polyfill `@js-temporal/polyfill` elsewhere): separate types for `Temporal.Instant` (a moment), `PlainDate` (a calendar date), `ZonedDateTime` (moment + time zone), immutable, with correct arithmetic. Until it's everywhere, **date-fns** or **Luxon/Day.js** are common.
-
-**`Intl`:** `Intl.NumberFormat` (currencies, percentages, compact numbers like "1.2K", Indian digit grouping), `Intl.DateTimeFormat`, `Intl.RelativeTimeFormat` ("3 days ago"), `Intl.PluralRules`, `Intl.ListFormat` ("A, B and C"), `Intl.Collator` (correct sorting per language), `Intl.Segmenter`.
-
-**Numbers:** `Number.isInteger`, `Number.isFinite`, `toFixed(2)` (string, for display), `Math.round/floor/ceil/trunc`, `Math.max/min`, `Math.random()` (not for security; use `crypto.getRandomValues`/`crypto.randomUUID()`). ES2025 added `Math.sumPrecise` in some engines for exact float sums.
-
-### JavaScript
-
-```js
-const shipped = new Date("2026-09-21T09:30:00Z");                  // an exact moment (UTC)
-console.log(shipped.toISOString(), shipped.getTime());
-console.log(shipped.toLocaleString("en-IN", { timeZone: "Asia/Kolkata", dateStyle: "medium", timeStyle: "short" }));
-console.log(shipped.toLocaleString("en-US", { timeZone: "America/New_York", dateStyle: "full", timeStyle: "short" }));
-
-const local = new Date(2026, 8, 25);                                // month 8 = SEPTEMBER
-console.log(local.getMonth(), local.getDate(), ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"][local.getDay()]);
-
-const due = new Date(shipped);                                       // copy before changing
-due.setUTCDate(due.getUTCDate() + 10);
-console.log(due.toISOString().slice(0, 10), shipped.toISOString().slice(0, 10));
-console.log(Math.round((due - shipped) / 86_400_000), "days between");
-
-const inr = new Intl.NumberFormat("en-IN", { style: "currency", currency: "INR" });
-const usd = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" });
-console.log(inr.format(1234567.5), usd.format(1234567.5), new Intl.NumberFormat("de-DE").format(1234567.5));
-console.log(new Intl.NumberFormat("en", { notation: "compact" }).format(1_250_000), new Intl.NumberFormat("en", { style: "percent" }).format(0.456));
-
-const rtf = new Intl.RelativeTimeFormat("en", { numeric: "auto" });
-console.log(rtf.format(-1, "day"), rtf.format(3, "week"), new Intl.RelativeTimeFormat("hi").format(-2, "hour"));
-console.log(new Intl.ListFormat("en", { type: "conjunction" }).format(["pen", "notebook", "bag"]));
-console.log(["Zoë", "zebra", "Émile", "apple"].sort(new Intl.Collator("en").compare));
-console.log((0.1 + 0.2).toFixed(2), Math.trunc(-4.7), Math.floor(-4.7), Number.isInteger(5.0), typeof crypto.randomUUID());
-```
-
-**Output:**
-
-```text
-2026-09-21T09:30:00.000Z 1789983000000
-21 Sept 2026, 3:00 pm
-Monday, September 21, 2026 at 5:30 AM
-8 25 Fri
-2026-10-01 2026-09-21
-10 days between
-₹12,34,567.50 $1,234,567.50 1.234.567,5
-1.3M 46%
-yesterday in 3 weeks 2 घंटे पहले
-pen, notebook, and bag
-[ 'apple', 'Émile', 'zebra', 'Zoë' ]
-0.30 -4 -5 true string
-```
-
-**Common mistakes:**
-
-- ❌ Months off by one (`new Date(2026, 9, 1)` is **October**).
-- ❌ Parsing `"25/09/2026"` or `"2026-09-25 10:00"` (no `T`/zone) and trusting the result.
-- ❌ Storing local times without a time zone; using fixed UTC offsets instead of zone names.
-- ❌ Mutating a shared `Date` object.
-- ❌ Formatting currency by hand (`"₹" + n.toFixed(2)`), which gets grouping wrong (Indian lakh/crore grouping differs from Western).
-
-### Practice
-
-1. Given an order placed at `"2026-09-30T20:15:00Z"`, print the local date/time in India (`Asia/Kolkata`) and the delivery date 5 days later as a `YYYY-MM-DD` date in India's calendar.
-
-<details>
-<summary><b>Answer</b></summary>
-
-```js
-const placed = new Date("2026-09-30T20:15:00Z");
-const fmt = new Intl.DateTimeFormat("en-CA", { timeZone: "Asia/Kolkata", year: "numeric", month: "2-digit", day: "2-digit" });
-console.log(placed.toLocaleString("en-IN", { timeZone: "Asia/Kolkata" }));
-const delivery = new Date(placed.getTime() + 5 * 86_400_000);
-console.log(fmt.format(delivery));                          // en-CA formats dates as YYYY-MM-DD
-```
-
-**Output:**
-
-```text
-1/10/2026, 1:45:00 am
-2026-10-06
-```
-
-In India the order was placed on **1 October** (01:45 IST), so the delivery date is 6 October; computing the date in UTC would have said 5 October. Time zones change calendar dates.
-
-</details>
-
----
-
-### ✅ Part 3 checkpoint
-
-Without looking, can you:
-
-- [ ] Deep-copy with `structuredClone`, use property descriptors, getters/setters and `Object.freeze` (knowing it's shallow)?
-- [ ] Explain the prototype chain and what `new` does, and write classes with private fields, static members and `extends`?
-- [ ] Choose `Map`/`Set`/`WeakMap` over plain objects when appropriate, and use the new Set methods?
-- [ ] Write iterables and generators, and use lazy iterator helpers?
-- [ ] Predict output order with the call stack, microtasks and tasks, and explain why blocking the loop is bad?
-- [ ] Use promises, `Promise.all/allSettled/race/any`, and `async`/`await` with parallelism, error handling and limited concurrency?
-- [ ] Write ES modules, explain ESM vs CommonJS, and handle regexes, dates, time zones and `Intl` formatting correctly?
-
-**Learn more:** [MDN: Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) · [MDN: Intl](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl) · [MDN: Temporal](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Temporal) · [date-fns](https://date-fns.org/)
-
----
-
-# Part 4 — Moderate: JavaScript in the Browser
-
-> **Goal:** Work with the DOM and events, browser storage, Web APIs, binary data and files, rendering, networking with fetch and CORS, and web security.  
-> **You need:** Parts 1–3.
-
----
-
-## 29. The DOM and Events
-
-![The DOM tree for a small page, and an event travelling down from window to the target button (capture), then back up (bubble), where a single listener on the list handles clicks for all items (delegation)](images/javascript/04-dom-events.svg)
-
-### Theory
-
-> **In simple words:** when a browser loads HTML it builds the **DOM** (Document Object Model): a tree of objects, one per element, that JavaScript can read and change. Change the DOM and the page updates. **Events** are how the page tells your code that something happened: a click, a key press, a form submit, the page finishing loading. You attach **listeners** (functions) to elements, and they run when the event occurs. Frameworks like React (`react.md`) do this for you, but they're built on exactly these APIs.
-
-**Finding elements:** `document.querySelector(css)` (first match), `querySelectorAll(css)` (a static list), `getElementById`, `element.closest(css)` (nearest ancestor matching), `element.matches(css)`.
-
-**Changing elements:**
-
-| Task | API |
-|---|---|
-| Text (safe) | `el.textContent = "..."` |
-| HTML (dangerous with user data) | `el.innerHTML = "..."` (XSS risk, Section [35](#35-frontend-security-xss-csrf-csp-prototype-pollution-and-the-supply-chain)) |
-| Attributes | `el.setAttribute`, `el.getAttribute`, `el.dataset.orderId` (for `data-order-id`) |
-| Classes | `el.classList.add/remove/toggle/contains` |
-| Styles | `el.style.color = "red"` (prefer toggling classes) |
-| Create/insert | `document.createElement`, `el.append(...)`, `el.prepend`, `el.before/after`, `el.replaceWith`, `el.remove()` |
-| Many insertions | Build in a `DocumentFragment` or a string template, then insert once |
-
-**Events:** `el.addEventListener("click", handler, options)`; the handler receives an **event object** (`event.target` = where it happened, `event.currentTarget` = the element the listener is on, `event.key`, `event.preventDefault()`, `event.stopPropagation()`). Options: `{ once: true }`, `{ passive: true }` (scroll/touch performance), `{ signal }` (remove with an `AbortController`), `capture`.
-
-**Propagation:** an event travels **down** from `window` to the target (capture phase), then **up** back to `window` (bubble phase). Listeners run in the bubble phase by default.
-
-**Event delegation:** instead of a listener on each of 1,000 list items, put **one** listener on the parent and check `event.target.closest("li")`. It's faster and works for items added later.
-
-**Common events:** `click`, `input`/`change`, `submit` (on forms; call `preventDefault()` to handle it in JS), `keydown`, `focus`/`blur`, `pointerdown`/`pointermove` (mouse, touch and pen), `scroll`, `DOMContentLoaded` (HTML parsed), `load` (everything loaded), custom events (`new CustomEvent("cart:updated", { detail })`).
-
-### JavaScript
-
-These examples run in a browser. They were executed in headless Chromium on a small ShopKart page; objects are printed as JSON.
-
-<!-- browser (run in headless Chromium) -->
-```js
-const app = document.querySelector("#app");
-app.innerHTML = `
-  <ul id="cart">
-    <li data-sku="P1">Pen <button class="remove">×</button></li>
-    <li data-sku="B1">Bag <button class="remove">×</button></li>
-  </ul>
-  <p id="count"></p>`;
-
-const cart = document.querySelector("#cart");
-const count = document.querySelector("#count");
-const render = () => { count.textContent = `${cart.children.length} item(s)`; };
-render();
-
-cart.addEventListener("click", event => {                   // ONE listener for all buttons (delegation)
-  const button = event.target.closest("button.remove");
-  if (!button) return;
-  const item = button.closest("li");
-  console.log("removing", item.dataset.sku, "| listener on:", event.currentTarget.id);
-  item.remove();
-  render();
-});
-
-const li = document.createElement("li");                    // added later: delegation still works
-li.dataset.sku = "N1";
-li.textContent = "Notebook ";
-li.append(Object.assign(document.createElement("button"), { className: "remove", textContent: "×" }));
-cart.append(li);
-render();
-console.log(count.textContent);
-
-cart.querySelector('[data-sku="P1"] button').click();
-cart.querySelector('[data-sku="N1"] button').click();
-console.log(count.textContent, [...cart.querySelectorAll("li")].map(el => el.dataset.sku));
-```
-
-**Output:**
-
-```text
-3 item(s)
-removing P1 | listener on: cart
-removing N1 | listener on: cart
-1 item(s) ["B1"]
-```
-
-**Propagation order, `preventDefault` on a form, and custom events:**
-
-<!-- browser (run in headless Chromium) -->
-```js
-app.innerHTML = `<div id="outer"><button id="inner">Go</button></div>
-  <form id="search"><input name="q" value="pens"><button>Search</button></form>`;
-const order = [];
-const outer = document.querySelector("#outer"), inner = document.querySelector("#inner");
-outer.addEventListener("click", () => order.push("outer capture"), { capture: true });
-outer.addEventListener("click", () => order.push("outer bubble"));
-inner.addEventListener("click", () => order.push("button (target)"));
-inner.click();
-console.log(order.join(" → "));
-
-document.querySelector("#search").addEventListener("submit", event => {
-  event.preventDefault();                                  // stay on the page; handle in JS
-  const data = new FormData(event.currentTarget);
-  console.log("searching for", data.get("q"));
-});
-document.querySelector("#search").requestSubmit();
-
-document.addEventListener("cart:updated", e => console.log("cart updated:", e.detail.items), { once: true });
-document.dispatchEvent(new CustomEvent("cart:updated", { detail: { items: 3 } }));
-document.dispatchEvent(new CustomEvent("cart:updated", { detail: { items: 4 } }));   // { once: true }: ignored
-```
-
-**Output:**
-
-```text
-outer capture → button (target) → outer bubble
-searching for pens
-cart updated: 3
-```
-
-**Common mistakes:**
-
-- ❌ `innerHTML` with user-provided text (XSS); use `textContent` or sanitise.
-- ❌ One listener per item in long lists instead of delegation.
-- ❌ Forgetting `preventDefault()` on form submits handled in JS (the page reloads).
-- ❌ Reading layout (`offsetHeight`) and writing styles alternately in a loop (layout thrashing, Section [33](#33-how-browsers-render-pages-critical-path-reflow-web-components-and-service-workers)).
-- ❌ Never removing listeners on elements/components that go away (leaks); use `{ signal }` or `{ once }`.
-
-### Practice
-
-1. Build a character counter: an `<input maxlength="20">` and a `<span>` that shows "N/20" and turns red (add class `over`) above 15 characters. Simulate typing by setting `value` and dispatching an `input` event.
-
-<details>
-<summary><b>Answer</b></summary>
-
-<!-- browser (run in headless Chromium) -->
-```js
-app.innerHTML = `<input id="bio" maxlength="20"><span id="left"></span>`;
-const bio = document.querySelector("#bio"), left = document.querySelector("#left");
-bio.addEventListener("input", () => {
-  left.textContent = `${bio.value.length}/20`;
-  left.classList.toggle("over", bio.value.length > 15);
-});
-for (const text of ["Hello", "Hello from ShopKart!"]) {
-  bio.value = text;
-  bio.dispatchEvent(new Event("input"));
-  console.log(left.textContent, left.classList.contains("over"));
-}
-```
-
-**Output:**
-
-```text
-5/20 false
-20/20 true
-```
-
-</details>
-
-**Learn more:** [MDN: introduction to the DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Introduction) · [MDN: event bubbling and delegation](https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Event_bubbling) · [javascript.info: document](https://javascript.info/document)
-
----
-
-## 30. Browser Storage: localStorage, sessionStorage, Cookies and IndexedDB
-
-### Theory
-
-> **In simple words:** web pages can store data **in the user's browser**: remember the theme, keep a draft, cache data for offline use, or keep a login session. Each storage option has a different size, lifetime and security profile: **localStorage** (small key-value strings, survives restarts), **sessionStorage** (per tab, cleared when it closes), **cookies** (tiny, sent to the server with every request, the usual home of session ids), and **IndexedDB** (a real database for large structured data).
-
-| Storage | Size | Lifetime | Sent to server | Access | Use for |
-|---|---|---|---|---|---|
-| `localStorage` | ~5–10 MB per origin | Until cleared | No | Sync, strings only, same origin | Preferences, small caches, drafts |
-| `sessionStorage` | ~5 MB | The tab's life | No | Sync, per tab | Wizard steps, one-tab state |
-| Cookies | ~4 KB each | Session or `Max-Age`/`Expires` | **Yes, automatically** | `document.cookie` (unless `HttpOnly`) | Session ids (set by the server as `HttpOnly`) |
-| IndexedDB | Large (a share of disk) | Until cleared/evicted | No | Async, structured data, indexes | Offline data, big caches, files |
-| Cache API | Large | Until cleared | No | Async, request→response | Service worker offline caching |
-
-**Security rules:**
-
-- **Never store auth tokens in `localStorage`**: any XSS bug lets an attacker's script read it. Prefer **`HttpOnly` + `Secure` + `SameSite` cookies** set by the server, which JavaScript can't read.
-- Everything in browser storage can be seen and edited by the user; never trust it on the server.
-- Cookies need `SameSite=Lax` or `Strict` (default Lax in modern browsers) and CSRF protection for state-changing requests (Section [35](#35-frontend-security-xss-csrf-csp-prototype-pollution-and-the-supply-chain)).
-
-**Practicalities:** storage values are strings: use `JSON.stringify`/`JSON.parse`; wrap access in `try`/`catch` (quota exceeded, private modes); the `storage` event notifies **other tabs** of changes; use a small wrapper library (`idb`, `idb-keyval`, Dexie) for IndexedDB.
-
-### JavaScript
-
-<!-- browser (run in headless Chromium) -->
-```js
-const prefs = { theme: "dark", pageSize: 20 };
-localStorage.setItem("prefs", JSON.stringify(prefs));
-const loaded = JSON.parse(localStorage.getItem("prefs") ?? "{}");
-console.log(loaded.theme, typeof localStorage.getItem("prefs"), localStorage.length);
-localStorage.setItem("visits", 1);
-console.log(typeof localStorage.getItem("visits"), localStorage.getItem("missing"));
-localStorage.removeItem("visits");
-
-sessionStorage.setItem("checkoutStep", "2");
-console.log("session step:", sessionStorage.getItem("checkoutStep"));
-
-document.cookie = "lang=hi; Max-Age=3600; Path=/; SameSite=Lax; Secure";
-document.cookie = "recent=P1%2CP2; Path=/; SameSite=Lax; Secure";
-const cookies = Object.fromEntries(document.cookie.split("; ").map(c => c.split("=")));
-console.log(cookies.lang, decodeURIComponent(cookies.recent));
-
-const db = await new Promise((resolve, reject) => {           // IndexedDB with the raw API
-  const req = indexedDB.open("shopkart", 1);
-  req.onupgradeneeded = () => req.result.createObjectStore("orders", { keyPath: "id" }).createIndex("status", "status");
-  req.onsuccess = () => resolve(req.result);
-  req.onerror = () => reject(req.error);
-});
-const tx = db.transaction("orders", "readwrite");
-tx.objectStore("orders").put({ id: 90312, status: "in transit", total: 998 });
-tx.objectStore("orders").put({ id: 88213, status: "delivered", total: 2399 });
-await new Promise(r => (tx.oncomplete = r));
-const got = await new Promise(r => {
-  const q = db.transaction("orders").objectStore("orders").index("status").getAll("delivered");
-  q.onsuccess = () => r(q.result);
-});
-console.log("delivered orders:", got.map(o => o.id));
-```
-
-**Output:**
-
-```text
-dark string 1
-string null
-session step: 2
-hi P1,P2
-delivered orders: [88213]
-```
-
-**Common mistakes:**
-
-- ❌ Tokens or personal data in `localStorage`.
-- ❌ Forgetting `JSON.stringify` (you store `"[object Object]"`).
-- ❌ Large or frequent `localStorage` writes on the main thread (it's synchronous).
-- ❌ Cookies without `Secure`/`SameSite`, or session cookies readable by JavaScript (no `HttpOnly`).
-- ❌ Trusting client-side stored values (prices, roles) on the server.
-
-### Practice
-
-1. Write `saveDraft(key, text)` and `loadDraft(key)` that store `{ text, savedAt }` in localStorage, with `loadDraft` returning `null` for drafts older than 7 days (pass the current time as a parameter to test it).
-
-<details>
-<summary><b>Answer</b></summary>
-
-<!-- browser (run in headless Chromium) -->
-```js
-const WEEK = 7 * 24 * 3600 * 1000;
-function saveDraft(key, text, now = Date.now()) {
-  localStorage.setItem(`draft:${key}`, JSON.stringify({ text, savedAt: now }));
-}
-function loadDraft(key, now = Date.now()) {
-  try {
-    const draft = JSON.parse(localStorage.getItem(`draft:${key}`));
-    if (!draft || now - draft.savedAt > WEEK) return null;
-    return draft.text;
-  } catch {
-    return null;                                            // corrupted value: ignore it
-  }
-}
-saveDraft("review-P1", "Great pen!", 1_000_000);
-console.log(loadDraft("review-P1", 1_000_000 + 1000), loadDraft("review-P1", 1_000_000 + 8 * 24 * 3600 * 1000));
-```
-
-**Output:**
-
-```text
-Great pen! null
-```
-
-</details>
-
-**Learn more:** [MDN: Web Storage API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API) · [MDN: using HTTP cookies](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies) · [MDN: IndexedDB](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API) · [idb](https://github.com/jakearchibald/idb)
-
----
-
-## 31. Web APIs: fetch, AbortController, URL, Observers and Workers
-
-### Theory
-
-> **In simple words:** browsers give JavaScript many built-in tools beyond the language itself: **`fetch`** to call servers, **`AbortController`** to cancel requests, **`URL`/`URLSearchParams`** to build links safely, **observers** that tell you when elements appear on screen or change size, and **Web Workers** that run heavy code on another thread so the page stays smooth. Most are also available in Node (fetch, AbortController, URL, workers).
-
-**`fetch` essentials:**
-
-- `const res = await fetch(url, { method, headers, body, signal, credentials })`.
-- `fetch` only rejects on **network errors**; HTTP errors (404, 500) resolve normally, so **check `res.ok`** (status 200–299).
-- Read the body once: `await res.json()`, `.text()`, `.blob()`, `.arrayBuffer()`, or stream `res.body`.
-- Send JSON: `body: JSON.stringify(data)` with `headers: { "Content-Type": "application/json" }`.
-- Cross-origin requests are subject to **CORS** (the server must allow them, Section [34](#34-networking-for-frontend-developers-from-url-to-page-http-caching-and-cors)); cookies are sent cross-origin only with `credentials: "include"`.
-
-**Cancellation and timeouts:** `const ac = new AbortController(); fetch(url, { signal: ac.signal }); ac.abort();` rejects with an `AbortError`. `AbortSignal.timeout(5000)` is a ready-made timeout signal; `AbortSignal.any([a, b])` combines signals. Cancel stale requests (search-as-you-type) so old responses don't overwrite new ones.
-
-**Other APIs you'll use:**
-
-| API | Purpose |
-|---|---|
-| `URL`, `URLSearchParams` | Build/parse URLs and query strings with correct encoding |
-| `IntersectionObserver` | Know when an element enters the viewport (lazy loading, infinite scroll, analytics) |
-| `ResizeObserver`, `MutationObserver` | React to size changes / DOM changes |
-| `requestAnimationFrame` | Run visual updates right before the next paint |
-| Web Workers | Run CPU-heavy work off the main thread; talk via `postMessage` |
-| `BroadcastChannel`, `MessageChannel` | Messages between tabs/workers |
-| Clipboard, Notifications, Geolocation, Web Share | Device features (usually need user permission and HTTPS) |
-| `crypto.randomUUID()`, `crypto.subtle` | Secure random ids, hashing and encryption |
-
-### JavaScript
-
-These run in headless Chromium against a small mock ShopKart API (`/api/orders/{id}` answers after 50 ms; `/api/slow` takes 2 s).
-
-<!-- browser (run in headless Chromium) -->
-```js
-async function getOrder(id, { signal } = {}) {
-  const res = await fetch(`/api/orders/${id}`, { signal, headers: { Accept: "application/json" } });
-  if (!res.ok) {                                             // fetch doesn't throw on 404/500
-    const problem = await res.json().catch(() => ({}));
-    throw new Error(`HTTP ${res.status}: ${problem.detail ?? res.statusText}`);
-  }
-  return res.json();
-}
-console.log(await getOrder(90312));
-try {
-  await getOrder(12345);
-} catch (err) {
-  console.log(err.message);
-}
-
-const created = await fetch("/api/echo", {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({ sku: "P1", qty: 2 }),
-}).then(r => r.json());
-console.log(created);
-
-try {
-  await fetch("/api/slow", { signal: AbortSignal.timeout(200) });
-} catch (err) {
-  console.log("slow request:", err.name);
-}
-
-const controller = new AbortController();
-const pending = getOrder(88213, { signal: controller.signal });
-controller.abort();                                          // e.g. the user typed a new search
-console.log(await pending.catch(err => err.name));
-
-const url = new URL("http://localhost:8811/search");
-url.searchParams.set("q", "gel pens & markers");
-url.searchParams.append("tag", "sale");
-url.searchParams.append("tag", "new");
-console.log(url.toString(), url.searchParams.getAll("tag"));
-```
-
-**Output:**
-
-```text
-{"id":90312,"status":"in transit","total":998}
-HTTP 404: order not found
-{"method":"POST","body":{"sku":"P1","qty":2},"contentType":"application/json"}
-slow request: TimeoutError
-AbortError
-http://localhost:8811/search?q=gel+pens+%26+markers&tag=sale&tag=new ["sale","new"]
-```
-
-**A Web Worker** keeps heavy work off the main thread, so the page stays responsive:
-
-<!-- browser (run in headless Chromium) -->
-```js
-const workerCode = `
-  onmessage = e => {
-    let count = 0;
-    for (let n = 2; n < e.data; n++) {
-      let prime = true;
-      for (let d = 2; d * d <= n; d++) if (n % d === 0) { prime = false; break; }
-      if (prime) count++;
-    }
-    postMessage(count);
-  };`;
-const worker = new Worker(URL.createObjectURL(new Blob([workerCode], { type: "text/javascript" })));
-const answer = new Promise(resolve => (worker.onmessage = e => resolve(e.data)));
-worker.postMessage(200_000);
 let ticks = 0;
-const ticker = setInterval(() => ticks++, 5);                // the main thread keeps running meanwhile
-const primes = await answer;
-clearInterval(ticker);
-console.log("primes below 200,000:", primes, "| main thread stayed responsive:", ticks > 0);
-worker.terminate();
-```
-
-**Output:**
-
-```text
-primes below 200,000: 17984 | main thread stayed responsive: true
-```
-
-**Common mistakes:**
-
-- ❌ Assuming `fetch` throws for 404/500 (check `res.ok`).
-- ❌ Reading the body twice (`res.json()` then `res.text()`).
-- ❌ No timeouts or cancellation (stale results overwrite newer ones in search UIs).
-- ❌ Building query strings by concatenation (encoding bugs); use `URLSearchParams`.
-- ❌ Heavy computation on the main thread (janky UI); use a worker.
-
-### Practice
-
-1. Write `searchProducts(term)` that cancels the previous in-flight request whenever it's called again (use a module-level `AbortController`), and show that only the last of three rapid calls completes (use `/api/orders/90312` as a stand-in endpoint).
-
-<details>
-<summary><b>Answer</b></summary>
-
-<!-- browser (run in headless Chromium) -->
-```js
-let current;
-async function searchProducts(term) {
-  current?.abort();                                          // cancel the previous request
-  current = new AbortController();
-  const res = await fetch(`/api/orders/90312?q=${encodeURIComponent(term)}`, { signal: current.signal });
-  return `${term}: ${(await res.json()).status}`;
-}
-const results = await Promise.allSettled(["p", "pe", "pen"].map(searchProducts));
-console.log(results.map(r => r.status === "fulfilled" ? r.value : r.reason.name));
-```
-
-**Output:**
-
-```text
-["AbortError","AbortError","pen: in transit"]
-```
-
-</details>
-
-**Learn more:** [MDN: using fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch) · [MDN: AbortController](https://developer.mozilla.org/en-US/docs/Web/API/AbortController) · [MDN: IntersectionObserver](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API) · [MDN: using Web Workers](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers)
-
----
-
-## 32. Files, Blobs, Binary Data and Streams
-
-### Theory
-
-> **In simple words:** not all data is text or JSON. Images, PDFs, audio and uploads are **binary**: raw bytes. JavaScript handles them with **`ArrayBuffer`** (a chunk of raw memory), **typed arrays** like `Uint8Array` (a view that reads those bytes as numbers), **`Blob`/`File`** (immutable file-like data, what `<input type="file">` gives you), and **streams** that process large data piece by piece instead of loading it all into memory.
-
-| Type | What it is | Typical use |
-|---|---|---|
-| `ArrayBuffer` | Fixed-size raw bytes | Low-level data, WebSockets, crypto |
-| `Uint8Array`, `Int16Array`, `Float32Array`, `DataView` | Views that read/write the bytes as numbers | Parsing file formats, image pixels, audio samples |
-| `Blob` | Immutable binary data with a MIME type | Generated files (CSV export), images |
-| `File` | A `Blob` with a name and date | From `<input type="file">` or drag-and-drop |
-| `FileReader` (old) / `blob.text()`, `blob.arrayBuffer()`, `blob.stream()` (modern) | Read contents | |
-| `URL.createObjectURL(blob)` | A temporary URL for a blob (revoke when done) | Previews, downloads |
-| `TextEncoder` / `TextDecoder` | String ↔ UTF-8 bytes | Hashing, protocols |
-| `ReadableStream`, `WritableStream`, `TransformStream` | Chunked processing | Large downloads/uploads, `fetch` bodies, LLM token streams |
-| `FormData` | Multipart form body | Uploading files with `fetch` |
-
-**Downloads:** create a Blob, make an object URL, click a temporary `<a download="file.csv">`. **Uploads:** `new FormData()`, `append("file", file)`, `fetch(url, { method: "POST", body: formData })` (don't set `Content-Type` yourself; the browser adds the boundary). Validate type and size on the **server** too.
-
-**Base64** (`btoa`/`atob`, or `Uint8Array.prototype.toBase64()` in 2025+ engines) encodes bytes as text; it's 33% bigger, so avoid it for large files.
-
-### JavaScript
-
-This part runs in Node too (Blob, streams and TextEncoder are shared APIs):
-
-```js
-const bytes = new TextEncoder().encode("नमस्ते ShopKart");
-console.log(bytes.length, "bytes for", "नमस्ते ShopKart".length, "UTF-16 code units");
-console.log(new TextDecoder().decode(bytes.slice(-8)));
-
-const buffer = new ArrayBuffer(8);
-const view = new DataView(buffer);
-view.setUint32(0, 0xCAFEBABE);                       // write a 32-bit number (big-endian)
-console.log([...new Uint8Array(buffer)].map(b => b.toString(16).padStart(2, "0")).join(" "));
-
-const csv = new Blob(["sku,qty\nP1,4\nP2,9\n"], { type: "text/csv" });
-console.log(csv.size, csv.type, JSON.stringify(await csv.text()));
-
-const upper = new TransformStream({
-  transform(chunk, controller) { controller.enqueue(chunk.toUpperCase()); },
-});
-const source = new ReadableStream({
-  start(controller) {
-    for (const part of ["streams ", "process ", "data ", "in chunks"]) controller.enqueue(part);
-    controller.close();
-  },
-});
-let result = "", chunks = 0;
-for await (const chunk of source.pipeThrough(upper)) { result += chunk; chunks++; }
-console.log(chunks, "chunks →", result);
-console.log(btoa("hello"), atob("aGVsbG8="));
-```
-
-**Output:**
-
-```text
-27 bytes for 15 UTF-16 code units
-ShopKart
-ca fe ba be 00 00 00 00
-18 text/csv "sku,qty\nP1,4\nP2,9\n"
-4 chunks → STREAMS PROCESS DATA IN CHUNKS
-aGVsbG8= hello
-```
-
-In the browser, reading a user's file and offering a download:
-
-<!-- browser (run in headless Chromium) -->
-```js
-const file = new File(["name,score\nAsha,91\nRavi,78\n"], "scores.csv", { type: "text/csv" });   // stands in for <input type="file">
-const rows = (await file.text()).trim().split("\n").slice(1).map(line => line.split(","));
-console.log(file.name, file.size, rows.length, "rows");
-
-const report = new Blob([rows.map(([n, s]) => `${n}: ${Number(s) >= 80 ? "A" : "B"}`).join("\n")], { type: "text/plain" });
-const link = Object.assign(document.createElement("a"), { href: URL.createObjectURL(report), download: "grades.txt" });
-console.log(link.download, link.href.startsWith("blob:"));
-URL.revokeObjectURL(link.href);                              // free the memory when done
-
-const form = new FormData();
-form.append("file", file);
-form.append("note", "weekly import");
-console.log([...form.keys()], form.get("file").name);
-```
-
-**Output:**
-
-```text
-scores.csv 27 2 rows
-grades.txt true
-["file","note"] scores.csv
-```
-
-**Common mistakes:**
-
-- ❌ Reading huge files fully into memory instead of streaming.
-- ❌ Setting `Content-Type: multipart/form-data` manually with `FormData` (breaks the boundary).
-- ❌ Forgetting `URL.revokeObjectURL` (memory leaks in long-lived pages).
-- ❌ Base64-encoding large files for upload.
-- ❌ Trusting the file's name/extension/type from the client.
-
-### Practice
-
-1. Write `hexdump(str)` that returns the UTF-8 bytes of a string as hex pairs, and compare `"A"`, `"é"` and `"₹"`.
-
-<details>
-<summary><b>Answer</b></summary>
-
-```js
-const hexdump = s => [...new TextEncoder().encode(s)].map(b => b.toString(16).padStart(2, "0")).join(" ");
-console.log(hexdump("A"), "|", hexdump("é"), "|", hexdump("₹"));
-```
-
-**Output:**
-
-```text
-41 | c3 a9 | e2 82 b9
-```
-
-ASCII characters take 1 byte, "é" takes 2 and "₹" takes 3 in UTF-8.
-
-</details>
-
-**Learn more:** [MDN: Blob](https://developer.mozilla.org/en-US/docs/Web/API/Blob) · [MDN: typed arrays](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Typed_arrays) · [MDN: Streams API](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API)
-
----
-
-## 33. How Browsers Render Pages: Critical Path, Reflow, Web Components and Service Workers
-
-![The rendering pipeline: HTML is parsed into the DOM and CSS into the CSSOM; together they form the render tree, then layout computes geometry, paint fills pixels, and composite assembles layers on the GPU; JavaScript changes can trigger any stage again](images/javascript/05-rendering.svg)
-
-### Theory
-
-> **In simple words:** to show a page, the browser **parses** HTML into the DOM and CSS into the CSSOM, combines them, works out where every box goes (**layout**), fills in pixels (**paint**) and assembles layers on the GPU (**composite**). JavaScript can change anything, which can force some or all of these steps to run again. Fast pages avoid blocking the first render, and avoid forcing expensive layout over and over.
-
-**The critical rendering path (first load):**
-
-- HTML is parsed top to bottom; a plain `<script>` **blocks parsing** until it downloads and runs. Use `<script defer>` or `type="module"` (run after parsing, in order) or `async` (run whenever ready, for independent scripts like analytics).
-- CSS **blocks rendering** (the browser won't paint unstyled content), so keep critical CSS small and load the rest later.
-- Images need `width`/`height` (or `aspect-ratio`) to avoid layout shifts; use `loading="lazy"` below the fold, modern formats (AVIF/WebP), `srcset`, and `fetchpriority="high"` for the main image.
-- Resource hints: `<link rel="preconnect">`, `preload`, `modulepreload`.
-
-**Updates after load:**
-
-| Change | Cost |
-|---|---|
-| `transform`, `opacity` | Composite only: cheapest, can run on the GPU; use for animations |
-| Colours, backgrounds, shadows | Paint + composite |
-| Size, position, fonts, adding/removing elements | **Layout** (reflow) + paint + composite: most expensive |
-
-**Layout thrashing:** reading a layout property (`offsetHeight`, `getBoundingClientRect()`) right after writing styles forces the browser to compute layout immediately. Doing read-write-read-write in a loop forces a layout **each time**. Batch all reads, then all writes (or use `requestAnimationFrame`).
-
-**Core Web Vitals** (Google's user-experience metrics): **LCP** (largest contentful paint, ≤ 2.5 s), **INP** (interaction to next paint, ≤ 200 ms; long JavaScript tasks hurt it), **CLS** (cumulative layout shift, ≤ 0.1). Measure in the field with the `web-vitals` library and in the lab with Lighthouse/DevTools Performance.
-
-**Web Components:** browser-native reusable components: **custom elements** (`customElements.define("price-tag", class extends HTMLElement {...})`), **shadow DOM** (encapsulated markup and styles), `<template>`/`<slot>`. Framework-independent; used by design systems.
-
-**Service workers:** a script that sits between the page and the network (HTTPS only): it can serve cached responses (offline support, instant repeat loads), handle push notifications and background sync. Together with a web app manifest they make a **PWA** (installable web app). Caching strategies: cache-first (static assets), network-first (API data), stale-while-revalidate.
-
-### JavaScript
-
-A custom element with shadow DOM, and the difference between thrashing and batched layout reads, measured in headless Chromium:
-
-<!-- browser (run in headless Chromium) -->
-```js
-class PriceTag extends HTMLElement {
-  static observedAttributes = ["amount"];
-  constructor() {
-    super();
-    this.attachShadow({ mode: "open" }).innerHTML = `<style>span { font-weight: bold; }</style><span></span>`;
+const id = setInterval(() => {
+  ticks++;
+  console.log("tick", ticks);
+  if (ticks === 3) {
+    clearInterval(id);
   }
-  attributeChangedCallback() {
-    const amount = Number(this.getAttribute("amount"));
-    this.shadowRoot.querySelector("span").textContent =
-      new Intl.NumberFormat("en-IN", { style: "currency", currency: "INR" }).format(amount);
-  }
+}, 50);
+```
+
+**Output:**
+
+```text
+tick 1
+tick 2
+tick 3
+```
+
+`setTimeout` also returns an id; `clearTimeout(id)` cancels it before it fires. Always clear intervals you no longer need: a forgotten interval runs forever and keeps everything it references alive.
+
+### 23.4 The event loop
+
+![The event loop: the call stack runs code; finished timers and events wait in the task queue; when the stack is empty, the loop moves the next task onto it](images/javascript/03-event-loop.svg)
+
+Finished callbacks wait in a **task queue** (also called the macrotask or callback queue). The **event loop** repeats one rule: *when the call stack is empty, take the next task from the queue and run it to completion.* So:
+
+- a callback never interrupts running code: it waits until the stack is empty;
+- the delay is a minimum: `setTimeout(fn, 0)` still waits for the current code to finish;
+- tasks run in the order they became ready.
+
+```js
+setTimeout(() => console.log("timeout 0"), 0);
+setTimeout(() => console.log("timeout 10"), 10);
+const t0 = Date.now();
+while (Date.now() - t0 < 50) {
+  // busy for 50 ms
 }
-customElements.define("price-tag", PriceTag);
-const app = document.querySelector("#app");
-app.innerHTML = `<price-tag amount="1499"></price-tag>`;
-const tag = app.querySelector("price-tag");
-console.log(tag.shadowRoot.textContent.includes("₹1,499.00"), app.textContent === "");   // hidden in shadow DOM
-tag.setAttribute("amount", "99");
-console.log(tag.shadowRoot.querySelector("span").textContent);
-
-app.innerHTML = Array.from({ length: 300 }, (_, i) => `<div class="row" style="height:${10 + (i % 5)}px">row ${i}</div>`).join("");
-const rows = [...app.querySelectorAll(".row")];
-let t = performance.now();
-for (const row of rows) row.style.height = row.offsetHeight + 1 + "px";     // read, write, read, write… (thrashing)
-const thrash = performance.now() - t;
-t = performance.now();
-const heights = rows.map(row => row.offsetHeight);                             // all reads first
-rows.forEach((row, i) => (row.style.height = heights[i] + 1 + "px"));          // then all writes
-const batched = performance.now() - t;
-console.log("batched reads/writes were faster:", batched < thrash);
+console.log("sync code done after 50 ms");
 ```
 
 **Output:**
 
 ```text
-true true
-₹99.00
-batched reads/writes were faster: true
+sync code done after 50 ms
+timeout 0
+timeout 10
 ```
 
-**Common mistakes:**
+Both timers were ready long before the loop finished, but neither could run until the stack was empty; then they ran in order. Chapter 24 adds a second, higher-priority queue for promises.
 
-- ❌ Render-blocking scripts in `<head>` without `defer`/`module`.
-- ❌ Animating `top`/`left`/`width` instead of `transform`/`opacity`.
-- ❌ Interleaving layout reads and style writes in loops.
-- ❌ Images without dimensions (layout shift); huge unoptimised images.
-- ❌ Service workers that cache HTML aggressively and serve stale apps forever (version and update them).
+### 23.5 Callbacks for asynchronous results
 
-### Practice
-
-1. Explain which of these trigger layout, paint only, or composite only: changing `transform: translateX(10px)`, `color`, `width`, `opacity`, adding a class that changes `font-size`.
-
-<details>
-<summary><b>Answer</b></summary>
-
-`transform` and `opacity`: composite only (cheapest, GPU-friendly). `color`: paint (no geometry change). `width` and a `font-size` change: layout (reflow), then paint and composite, because sizes and positions of this and possibly other elements change. That's why smooth animations use `transform`/`opacity`.
-
-</details>
-
-**Learn more:** [web.dev: critical rendering path](https://web.dev/learn/performance/understanding-the-critical-path) · [web.dev: Core Web Vitals](https://web.dev/articles/vitals) · [MDN: Web Components](https://developer.mozilla.org/en-US/docs/Web/API/Web_components) · [MDN: service worker API](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API)
-
----
-
-## 34. Networking for Frontend Developers: From URL to Page, HTTP, Caching and CORS
-
-### Theory
-
-> **In simple words:** when you type `shopkart.in` and press Enter, a lot happens in under a second: the browser finds the server's address (**DNS**), opens a connection (**TCP**/**QUIC**), sets up encryption (**TLS**), sends an **HTTP request**, receives HTML, then fetches CSS, JS, images and API data, and renders. Knowing this chain explains why sites are slow, why caching matters, and why the browser sometimes blocks your API calls (**CORS**).
-
-**URL → page, step by step:**
-
-1. **Parse the URL** and check caches (HTTP cache, service worker, HSTS list forcing HTTPS).
-2. **DNS lookup:** domain → IP address (browser/OS caches, then resolvers).
-3. **Connection:** TCP handshake + TLS 1.3 handshake (HTTP/1.1, HTTP/2), or QUIC over UDP (**HTTP/3**, fewer round trips, better on mobile networks). CDNs put servers close to users to cut this latency.
-4. **HTTP request/response:** method, headers, cookies; status, headers, body (often compressed with Brotli/gzip).
-5. **Parse and render** (Section [33](#33-how-browsers-render-pages-critical-path-reflow-web-components-and-service-workers)), fetching sub-resources in parallel (HTTP/2 multiplexes many requests on one connection).
-6. **JavaScript runs**, fetches data, hydrates the UI.
-
-**HTTP caching:** `Cache-Control: max-age=31536000, immutable` for versioned static files (`app.3f9c.js`); `no-cache` (revalidate every time) for HTML; `ETag`/`Last-Modified` let the browser ask "changed?" and get a tiny `304 Not Modified`. `private` vs `public` (can CDNs store it?). `stale-while-revalidate` serves the cached copy while refreshing in the background.
-
-**Same-origin policy and CORS:** an **origin** is scheme + host + port (`https://shopkart.in:443`). Scripts may freely **send** requests to other origins, but the browser only lets your code **read** the response if the server opts in with `Access-Control-Allow-Origin`. "Non-simple" requests (JSON bodies, custom headers, PUT/DELETE) first send a **preflight** `OPTIONS` request. CORS errors are fixed **on the server** (or with a same-origin proxy), never by the frontend.
-
-**Other things to know:** HTTPS everywhere (HSTS), cookies and `SameSite`, WebSockets/SSE for live data (`fastapi.md`), `preconnect`/`dns-prefetch` hints, and performance budgets (fewer requests, smaller JS).
-
-### JavaScript
-
-A cross-origin request from the page at `http://localhost:8811` to an API on another port, `http://localhost:8812` (a different port is a different origin), once to an endpoint that allows CORS and once to one that doesn't:
-
-<!-- browser (run in headless Chromium) -->
-```js
-async function tryFetch(url, options) {
-  try {
-    const res = await fetch(url, options);
-    return `${res.status} ${JSON.stringify(await res.json())}`;
-  } catch (err) {
-    return `${err.name}: ${err.message}`;                    // CORS failures look like network errors to JS
-  }
-}
-console.log("origin:", location.origin);
-console.log("allowed:  ", await tryFetch("http://localhost:8812/cors-ok"));
-console.log("blocked:  ", await tryFetch("http://localhost:8812/cors-missing"));
-console.log("preflight:", await tryFetch("http://localhost:8812/cors-ok", {
-  method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ amount: 10 }) }));
-console.log("same-origin needs no CORS:", await tryFetch("/api/orders/88213"));
-```
-
-**Output:**
-
-```text
-origin: http://localhost:8811
-allowed:   200 {"partner":"rates","inr_per_usd":88}
-blocked:   TypeError: Failed to fetch
-preflight: 200 {"partner":"rates","inr_per_usd":88}
-same-origin needs no CORS: 200 {"id":88213,"status":"delivered","total":2399}
-```
-
-The blocked request **did reach the server** (and could have changed data); the browser only hid the response from the page. That's why CORS is not a security boundary for your API: authentication and CSRF protection are.
-
-Timing a page load's phases with the Navigation Timing API (in the browser console on any page):
-
-<!-- no-run (timing values differ on every page load) -->
-```js
-const [nav] = performance.getEntriesByType("navigation");
-console.table({
-  dns: nav.domainLookupEnd - nav.domainLookupStart,
-  connect_tls: nav.connectEnd - nav.connectStart,
-  time_to_first_byte: nav.responseStart - nav.requestStart,
-  download: nav.responseEnd - nav.responseStart,
-  dom_content_loaded: nav.domContentLoadedEventEnd - nav.startTime,
-  protocol: nav.nextHopProtocol,                     // "h2" or "h3"
-});
-```
-
-**Common mistakes:**
-
-- ❌ Trying to "fix" CORS in frontend code (it's a server setting).
-- ❌ `Access-Control-Allow-Origin: *` together with credentials (not allowed; list exact origins).
-- ❌ Long `max-age` on unversioned files (users get stale code), or no caching on versioned assets.
-- ❌ Dozens of small API calls on page load instead of one well-shaped request.
-- ❌ Ignoring latency: every round trip on a mobile network can cost 100–300 ms.
-
-### Practice
-
-1. For each resource, choose a `Cache-Control` value: `index.html`, `app.8f3a1c.js` (hash in the name), `/api/me` (the logged-in user), `/api/products` (public, changes every few minutes).
-
-<details>
-<summary><b>Answer</b></summary>
-
-- `index.html`: `no-cache` (always revalidate, so new deployments show up immediately; ETag makes it cheap).
-- `app.8f3a1c.js`: `public, max-age=31536000, immutable` (the name changes when the content changes).
-- `/api/me`: `private, no-store` (personal data; never in shared caches).
-- `/api/products`: `public, max-age=60, stale-while-revalidate=300` (fresh enough, fast, CDN-cacheable).
-
-</details>
-
-**Learn more:** [MDN: how the web works (URL to page)](https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Web_standards/How_the_web_works) · [MDN: HTTP caching](https://developer.mozilla.org/en-US/docs/Web/HTTP/Caching) · [MDN: CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) · [web.dev: HTTP/3](https://web.dev/articles/performance-http2)
-
----
-
-## 35. Frontend Security: XSS, CSRF, CSP, Prototype Pollution and the Supply Chain
-
-### Theory
-
-> **In simple words:** the browser runs code from many sources on your page, and attackers try to get **their** code to run there (to steal sessions, make purchases, or read private data) or to trick your users' browsers into sending requests they didn't intend. Most attacks exploit a few mistakes: inserting untrusted text as HTML, trusting cookies alone for important actions, loading scripts from anywhere, and installing risky npm packages.
-
-| Attack | What happens | Main defences |
-|---|---|---|
-| **XSS** (cross-site scripting) | Attacker-controlled text is inserted as HTML/JS (`innerHTML`, `eval`, `javascript:` URLs), so their script runs on your page with the user's session | Use `textContent`/framework escaping; sanitise HTML you must render (DOMPurify); **Content Security Policy**; Trusted Types; never `eval` |
-| **CSRF** (cross-site request forgery) | Another site makes the user's browser send a request to your site, with cookies attached | `SameSite=Lax/Strict` cookies, CSRF tokens, checking `Origin`, no state changes on GET |
-| **Clickjacking** | Your page is framed invisibly and users are tricked into clicking | `Content-Security-Policy: frame-ancestors 'none'` (or `X-Frame-Options: DENY`) |
-| **Prototype pollution** | Merging untrusted JSON with keys like `__proto__` modifies `Object.prototype` for the whole app | Reject dangerous keys, use `Object.create(null)`/`Map`, validate input schemas |
-| **Open redirects** | `?next=https://evil.example` after login | Allow-list redirect targets |
-| **Supply-chain attacks** | A compromised or typo-squatted npm package runs malicious code on install or in production | Lock files, `npm ci`, review new dependencies, Dependabot/Renovate, `npm audit`, disable install scripts where possible, provenance/Sigstore, Subresource Integrity for CDN scripts |
-| **Secrets in the frontend** | API keys shipped in the JS bundle are public | Keep secrets on the server; call third-party APIs through your backend |
-
-**Content Security Policy (CSP):** a response header telling the browser which sources may provide scripts, styles, images, frames, and where the page may connect. A strict policy (`script-src 'self' 'nonce-…'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'`) makes most XSS bugs unexploitable. Start with `Content-Security-Policy-Report-Only` to find violations.
-
-**Other headers:** `Strict-Transport-Security` (HTTPS only), `X-Content-Type-Options: nosniff`, `Referrer-Policy`, `Permissions-Policy` (disable camera/geolocation you don't use), `Cross-Origin-Opener-Policy`.
-
-Remember: **frontend checks are for user experience; the server must enforce every rule** (the attacker controls their browser completely).
-
-### JavaScript
-
-**XSS in action** (in headless Chromium): the same "review" rendered unsafely and safely.
-
-<!-- browser (run in headless Chromium) -->
-```js
-window.stolen = [];
-const review = `Nice pen! <img src="x" onerror="window.stolen.push('session cookie sent to attacker')">`;
-const app = document.querySelector("#app");
-
-app.innerHTML = `<p class="review">${review}</p>`;             // ❌ untrusted text as HTML
-await new Promise(r => setTimeout(r, 100));                    // the broken image fires onerror
-console.log("unsafe render → attacker code ran:", window.stolen.length > 0);
-
-window.stolen = [];
-const p = document.createElement("p");
-p.textContent = review;                                         // ✅ text, not HTML
-app.replaceChildren(p);
-await new Promise(r => setTimeout(r, 100));
-console.log("safe render → attacker code ran:", window.stolen.length > 0, "| shown as text:", p.textContent.startsWith("Nice pen! <img"));
-
-const next = new URL("/login?next=https://evil.example/phish", location.origin).searchParams.get("next");
-const safeNext = next.startsWith("/") && !next.startsWith("//") ? next : "/";   // only same-site paths
-console.log("redirect to:", safeNext);
-```
-
-**Output:**
-
-```text
-unsafe render → attacker code ran: true
-safe render → attacker code ran: false | shown as text: true
-redirect to: /
-```
-
-**Prototype pollution** (Node): a naive deep-merge of untrusted JSON modifies every object in the program.
+Before promises, asynchronous functions took a callback to call with the result. Node.js's convention is the **error-first callback**: `callback(error, result)`, with `error` `null` on success:
 
 ```js
-function unsafeMerge(target, source) {
-  for (const key in source) {
-    if (typeof source[key] === "object" && source[key] !== null) {
-      target[key] ??= {};
-      unsafeMerge(target[key], source[key]);
+function fetchUser(id, callback) {
+  setTimeout(() => {
+    if (id <= 0) {
+      callback(new Error(`invalid id ${id}`), null);
     } else {
-      target[key] = source[key];
+      callback(null, { id, name: `user${id}` });
     }
+  }, 20);
+}
+fetchUser(7, (err, user) => console.log(err?.message, user));
+fetchUser(-1, (err, user) => console.log(err?.message, user));
+```
+
+**Output:**
+
+```text
+undefined { id: 7, name: 'user7' }
+invalid id -1 null
+```
+
+`try`/`catch` around the call can't catch errors thrown *inside* the callback: by the time the callback runs, the `try` block finished long ago, and its frame is off the stack. That's why errors are passed as arguments instead.
+
+### 23.6 Callback hell
+
+Steps that depend on each other nest one level per step, and each level needs its own error check. The result drifts right and is hard to read, change and debug: **callback hell**.
+
+```js
+function fetchOrders(user, callback) {
+  setTimeout(() => callback(null, [{ id: 1, total: 499 }]), 20);
+}
+function fetchInvoice(order, callback) {
+  setTimeout(() => callback(null, `INV-${order.id}: ₹${order.total}`), 20);
+}
+fetchUser(7, (err, user) => {
+  if (err) {
+    return console.log("failed:", err.message);
   }
-  return target;
-}
-const attackerJSON = '{"__proto__": {"isAdmin": true}}';
-unsafeMerge({}, JSON.parse(attackerJSON));
-const someUser = {};
-console.log("every object is now admin:", someUser.isAdmin);
-delete Object.prototype.isAdmin;                                // clean up the damage
-
-function safeMerge(target, source) {
-  for (const key of Object.keys(source)) {
-    if (key === "__proto__" || key === "constructor" || key === "prototype") continue;   // block dangerous keys
-    const value = source[key];
-    target[key] = value && typeof value === "object" ? safeMerge(target[key] ?? {}, value) : value;
-  }
-  return target;
-}
-safeMerge({}, JSON.parse(attackerJSON));
-console.log("after safe merge:", ({}).isAdmin);
-```
-
-**Output:**
-
-```text
-every object is now admin: true
-after safe merge: undefined
-```
-
-**Common mistakes:**
-
-- ❌ `innerHTML`, `insertAdjacentHTML`, `document.write`, `eval`, `new Function` or `setTimeout("string")` with untrusted data.
-- ❌ React's `dangerouslySetInnerHTML` or Vue's `v-html` with unsanitised content.
-- ❌ API keys or secrets in frontend code or `.env` files bundled into the client.
-- ❌ Relying on frontend validation or hidden buttons for security.
-- ❌ Adding npm packages without checking maintenance, popularity and install scripts.
-
-### Practice
-
-1. Write `escapeHTML(str)` that replaces `& < > " '` with HTML entities, and use it to render a username safely inside a template string. Test with `<b>Asha</b> & "friends"`.
-
-<details>
-<summary><b>Answer</b></summary>
-
-```js
-const ENTITIES = { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" };
-const escapeHTML = s => String(s).replace(/[&<>"']/g, ch => ENTITIES[ch]);
-const username = `<b>Asha</b> & "friends"`;
-console.log(`<p>Hello, ${escapeHTML(username)}</p>`);
-```
-
-**Output:**
-
-```text
-<p>Hello, &lt;b&gt;Asha&lt;/b&gt; &amp; &quot;friends&quot;</p>
-```
-
-(In real apps prefer `textContent` or your framework's automatic escaping; hand-written escaping is easy to get wrong in attribute and URL contexts.)
-
-</details>
-
----
-
-### ✅ Part 4 checkpoint
-
-Without looking, can you:
-
-- [ ] Select, create and change DOM elements, and handle events with delegation, `preventDefault` and custom events?
-- [ ] Choose between localStorage, sessionStorage, cookies and IndexedDB, and explain why tokens don't belong in localStorage?
-- [ ] Use `fetch` correctly (check `res.ok`, JSON bodies, timeouts, `AbortController`) and move heavy work to a Web Worker?
-- [ ] Work with Blobs, Files, typed arrays and streams?
-- [ ] Explain the rendering pipeline, layout thrashing, Core Web Vitals, Web Components and service workers?
-- [ ] Explain what happens from URL to page, HTTP caching headers and CORS, and defend against XSS, CSRF and prototype pollution?
-
-**Learn more:** [OWASP: XSS prevention cheat sheet](https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html) · [MDN: Content Security Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP) · [web.dev: strict CSP](https://web.dev/articles/strict-csp) · [DOMPurify](https://github.com/cure53/DOMPurify)
-
----
-
-# Part 5 — Advanced: Patterns and Performance
-
-> **Goal:** Write functional code, debounce and throttle, use Proxy and Reflect, apply design patterns, manage memory, measure performance and use modern ES2023–ES2025 features.  
-> **You need:** Parts 1–4.
-
----
-
-## 36. Functional Programming: Pure Functions, Immutability, Currying and Composition
-
-### Theory
-
-> **In simple words:** functional programming (FP) builds programs out of small **pure functions** (same input → same output, no side effects) and **immutable data** (you create new values instead of changing old ones), combined like Lego bricks. JavaScript isn't a purely functional language, but its first-class functions make FP techniques natural, and they're central to React, Redux, and data-processing code.
-
-**Key ideas:**
-
-| Idea | Meaning | Why it helps |
-|---|---|---|
-| **Pure function** | Output depends only on inputs; no side effects (no I/O, no mutation of outside state) | Easy to test, cache and reason about |
-| **Immutability** | Never modify; return new objects/arrays (`{ ...obj }`, `toSorted`, `with`) | No surprise changes; cheap change detection (React compares references) |
-| **Higher-order functions** | Functions that take or return functions (`map`, `filter`, decorators) | Reusable behaviour |
-| **Currying** | `f(a, b, c)` → `f(a)(b)(c)` | Pre-fill arguments to make specialised functions |
-| **Partial application** | Fix some arguments now, the rest later (`bind`, closures) | |
-| **Composition** | `compose(f, g)(x) = f(g(x))`; `pipe` runs left to right | Build pipelines from small steps |
-| **Declarative style** | Say *what* (map/filter/reduce), not *how* (index loops) | Readable data transformations |
-
-**Side effects are necessary** (network, DOM, storage), so the goal is to **push them to the edges**: a pure core that computes, and a thin shell that performs effects. **Point-free style** and heavy currying can hurt readability; use judgment.
-
-**Performance note:** immutable updates copy data; for large, frequently updated structures use structural-sharing libraries (Immer, which lets you write "mutating" code that produces immutable results).
-
-### JavaScript
-
-```js
-const pipe = (...fns) => x => fns.reduce((acc, fn) => fn(acc), x);
-const compose = (...fns) => x => fns.reduceRight((acc, fn) => fn(acc), x);
-
-const curry = fn => function curried(...args) {
-  return args.length >= fn.length ? fn(...args) : (...more) => curried(...args, ...more);
-};
-
-const addTax = curry((rate, amount) => Math.round(amount * (1 + rate)));
-const applyDiscount = curry((pct, amount) => amount * (1 - pct / 100));
-const formatINR = amount => `₹${amount.toLocaleString("en-IN")}`;
-
-const finalPrice = pipe(applyDiscount(10), addTax(0.18), formatINR);
-console.log(finalPrice(1000), finalPrice(250), compose(formatINR, addTax(0.05))(100));
-console.log(addTax(0.18, 100), addTax(0.18)(100));          // curried: both styles work
-
-const cart = Object.freeze({ items: Object.freeze([{ sku: "P1", qty: 1 }]), coupon: null });
-const addItem = (state, item) => ({ ...state, items: [...state.items, item] });              // pure + immutable
-const setQty = (state, sku, qty) => ({ ...state, items: state.items.map(i => (i.sku === sku ? { ...i, qty } : i)) });
-const next = setQty(addItem(cart, { sku: "B1", qty: 1 }), "P1", 3);
-console.log(cart.items.length, next.items, "original untouched:", cart.items[0].qty === 1);
-
-let impureTotal = 0;
-const addToTotalImpure = x => (impureTotal += x);           // depends on and changes outside state
-addToTotalImpure(5); addToTotalImpure(5);
-const add = (a, b) => a + b;                                 // pure
-console.log(impureTotal, add(5, 5), add(5, 5));
-
-const orders = [{ status: "paid", total: 998 }, { status: "pending", total: 150 }, { status: "paid", total: 60 }];
-const sumBy = key => list => list.reduce((s, x) => s + x[key], 0);
-const where = (key, value) => list => list.filter(x => x[key] === value);
-console.log(pipe(where("status", "paid"), sumBy("total"))(orders));
-```
-
-**Output:**
-
-```text
-₹1,062 ₹266 ₹105
-118 118
-1 [ { sku: 'P1', qty: 3 }, { sku: 'B1', qty: 1 } ] original untouched: true
-10 10 10
-1058
-```
-
-**Common mistakes:**
-
-- ❌ Hidden mutation inside "pure-looking" functions (`arr.sort()` in a mapper).
-- ❌ Over-abstracting: 10 tiny curried helpers where one clear function would do.
-- ❌ Deep copies everywhere "for immutability" (slow); copy only the path you change.
-- ❌ Thinking `Object.freeze` makes nested data immutable.
-
-### Practice
-
-1. Write a curried `filterBy(predicate)(list)` and `mapTo(key)(list)`, and use `pipe` to get the SKUs of items with `qty > 1` from `[{sku:"P1",qty:3},{sku:"B1",qty:1},{sku:"N1",qty:2}]`.
-
-<details>
-<summary><b>Answer</b></summary>
-
-```js
-const filterBy = predicate => list => list.filter(predicate);
-const mapTo = key => list => list.map(x => x[key]);
-const multiSkus = pipe(filterBy(i => i.qty > 1), mapTo("sku"));
-console.log(multiSkus([{ sku: "P1", qty: 3 }, { sku: "B1", qty: 1 }, { sku: "N1", qty: 2 }]));
-```
-
-**Output:**
-
-```text
-[ 'P1', 'N1' ]
-```
-
-</details>
-
-**Learn more:** [MDN: functional programming concepts](https://developer.mozilla.org/en-US/docs/Glossary/Functional_programming) · [Professor Frisby's mostly adequate guide to FP](https://mostly-adequate.gitbook.io/mostly-adequate-guide) · [Immer](https://immerjs.github.io/immer/)
-
----
-
-## 37. Debounce and Throttle
-
-![Debounce waits until events stop for a quiet period and then fires once; throttle fires at most once per interval while events keep coming](images/javascript/06-debounce-throttle.svg)
-
-### Theory
-
-> **In simple words:** some events fire **very** often: typing (every key), scrolling and resizing (dozens of times a second), mouse movement. Running expensive work (an API search, a layout calculation) on every event wastes resources and makes the page janky. **Debounce** waits until the events **stop** for a moment, then runs once ("search after the user pauses typing for 300 ms"). **Throttle** runs at most once per time window while events keep coming ("update the scroll position indicator at most every 100 ms").
-
-| | Debounce | Throttle |
-|---|---|---|
-| Fires | Once, after a quiet period | Regularly, at most once per interval |
-| Good for | Search-as-you-type, auto-save, window resize end, validation | Scroll handlers, mouse move, analytics, rate-limiting button spam |
-| Options | `leading` (fire on the first event too), `trailing` (default), `maxWait` | `leading`/`trailing` edges |
-
-Both are built with **closures** and **timers**. In React, create them once (e.g. with `useMemo`/`useRef`) or they reset every render. For scroll-linked visual updates, `requestAnimationFrame` is often better than a fixed throttle, and for visibility use `IntersectionObserver` instead of scroll events. Remember to **cancel** pending debounced calls when a component unmounts.
-
-### JavaScript
-
-We simulate a user typing, with events at known times, to see exactly when each version fires:
-
-```js
-function debounce(fn, wait) {
-  let timer;
-  const debounced = (...args) => {
-    clearTimeout(timer);                              // every new event restarts the wait
-    timer = setTimeout(() => fn(...args), wait);
-  };
-  debounced.cancel = () => clearTimeout(timer);
-  return debounced;
-}
-
-function throttle(fn, interval) {
-  let last = 0, timer = null, pendingArgs = null;
-  return (...args) => {
-    const now = Date.now();
-    const remaining = interval - (now - last);
-    if (remaining <= 0) {                              // leading edge: run now
-      last = now;
-      fn(...args);
-    } else {
-      pendingArgs = args;                              // remember the latest call for the trailing edge
-      timer ??= setTimeout(() => {
-        last = Date.now();
-        timer = null;
-        fn(...pendingArgs);
-      }, remaining);
+  fetchOrders(user, (err2, orders) => {
+    if (err2) {
+      return console.log("failed:", err2.message);
     }
-  };
-}
-
-const start = Date.now();
-const log = label => value => console.log(`${label} "${value}" at ~${Math.round((Date.now() - start) / 50) * 50} ms`);
-const search = debounce(log("debounced search"), 200);
-const track = throttle(log("throttled update"), 200);
-
-const typing = [[0, "p"], [50, "pe"], [100, "pen"], [450, "pens"], [500, "pens!"]];
-for (const [at, text] of typing) {
-  setTimeout(() => { search(text); track(text); }, at);
-}
-await new Promise(r => setTimeout(r, 900));
-```
-
-**Output:**
-
-```text
-throttled update "p" at ~0 ms
-throttled update "pen" at ~200 ms
-debounced search "pen" at ~300 ms
-throttled update "pens" at ~450 ms
-throttled update "pens!" at ~650 ms
-debounced search "pens!" at ~700 ms
-```
-
-Debounced: only two searches ran, each 200 ms after a burst of typing ended. Throttled: it ran immediately on the first key, then at most every 200 ms with the latest value.
-
-**Common mistakes:**
-
-- ❌ Creating a new debounced function on every event/render (it never fires, or fires every time).
-- ❌ Debouncing where throttling is needed (a scroll indicator that only updates after scrolling stops).
-- ❌ Losing `this`/arguments in hand-written versions.
-- ❌ Not cancelling pending calls on unmount/navigation.
-- ❌ Debouncing a request without also cancelling stale in-flight requests (Section [31](#31-web-apis-fetch-abortcontroller-url-observers-and-workers)).
-
-### Practice
-
-1. Add a `flush()` method to `debounce` that immediately runs a pending call (useful before closing a form), and show it with an auto-save that would otherwise fire after 300 ms.
-
-<details>
-<summary><b>Answer</b></summary>
-
-```js
-function debounceWithFlush(fn, wait) {
-  let timer = null, lastArgs = null;
-  const run = () => { timer = null; const args = lastArgs; lastArgs = null; fn(...args); };
-  const debounced = (...args) => { lastArgs = args; clearTimeout(timer); timer = setTimeout(run, wait); };
-  debounced.flush = () => { if (timer) { clearTimeout(timer); run(); } };
-  return debounced;
-}
-const save = debounceWithFlush(text => console.log("saved:", text), 300);
-save("draft 1");
-save("draft 2");
-save.flush();                                        // runs now with the latest value
-await new Promise(r => setTimeout(r, 400));
-console.log("no second save happened");
-```
-
-**Output:**
-
-```text
-saved: draft 2
-no second save happened
-```
-
-</details>
-
-**Learn more:** [CSS-Tricks: debouncing and throttling explained](https://css-tricks.com/debouncing-throttling-explained-examples/) · [lodash debounce](https://lodash.com/docs/#debounce)
-
----
-
-## 38. Proxy and Reflect
-
-### Theory
-
-> **In simple words:** a **`Proxy`** wraps an object and lets you **intercept** basic operations on it: reading a property, writing one, checking `in`, deleting, calling a function. You provide a **handler** with "traps" (`get`, `set`, `has`, `deleteProperty`, `apply`, …). **`Reflect`** has one method per trap that performs the default behaviour, so a trap can add logic and then call `Reflect.get(...)` to do the normal thing. Proxies power validation layers, reactive UI frameworks (Vue 3's reactivity, MobX), logging, and API clients.
-
-**Common traps:**
-
-| Trap | Intercepts |
-|---|---|
-| `get(target, prop, receiver)` | `obj.prop`, `obj[prop]` |
-| `set(target, prop, value, receiver)` | `obj.prop = value` (return `true` for success) |
-| `has(target, prop)` | `prop in obj` |
-| `deleteProperty(target, prop)` | `delete obj.prop` |
-| `ownKeys(target)` | `Object.keys`, `for...in` |
-| `apply(target, thisArg, args)` | Calling a function proxy |
-| `construct(target, args)` | `new` on a class proxy |
-
-**Uses:** validation of assignments, default values for missing properties, read-only views, change tracking/reactivity (re-render when state changes), logging and access auditing, negative array indexes, auto-generated API clients (`api.users.get(7)` → `GET /users/7`).
-
-**Cautions:** proxies add overhead to every operation (avoid in hot paths); `===` sees the proxy and the target as different objects; private class fields (`#x`) don't work through a proxy wrapping a class instance; a proxy is only as safe as its traps (not a security boundary).
-
-### JavaScript
-
-```js
-function validated(target, schema) {
-  return new Proxy(target, {
-    set(obj, prop, value) {
-      const check = schema[prop];
-      if (!check) throw new TypeError(`unknown field "${String(prop)}"`);
-      if (!check(value)) throw new RangeError(`invalid value for ${String(prop)}: ${JSON.stringify(value)}`);
-      return Reflect.set(obj, prop, value);          // do the normal assignment
-    },
-  });
-}
-const product = validated({}, { name: v => typeof v === "string" && v.length > 0, price: v => Number.isFinite(v) && v > 0 });
-product.name = "Gel pen";
-product.price = 20;
-for (const [k, v] of [["price", -5], ["colour", "blue"]]) {
-  try { product[k] = v; } catch (err) { console.log(err.name, "-", err.message); }
-}
-console.log(product);
-
-function reactive(state, onChange) {                  // the idea behind Vue's reactivity
-  return new Proxy(state, {
-    set(obj, prop, value) {
-      const old = obj[prop];
-      const ok = Reflect.set(obj, prop, value);
-      if (old !== value) onChange(prop, old, value);
-      return ok;
-    },
-  });
-}
-const cart = reactive({ count: 0 }, (prop, from, to) => console.log(`re-render: ${prop} ${from} → ${to}`));
-cart.count++;
-cart.count = 1;                                       // same value: no re-render
-cart.count += 2;
-
-const withNegatives = arr => new Proxy(arr, {
-  get(target, prop, receiver) {
-    const i = Number(prop);
-    return Number.isInteger(i) && i < 0 ? target[target.length + i] : Reflect.get(target, prop, receiver);
-  },
-});
-console.log(withNegatives(["a", "b", "c"])[-1], withNegatives([1, 2, 3]).length);
-
-const calls = [];
-const api = new Proxy({}, {                           // an auto-generated API client
-  get: (_, resource) => new Proxy({}, {
-    get: (_, method) => (...args) => { calls.push(`${method.toUpperCase()} /${resource}/${args.join("/")}`); return "ok"; },
-  }),
-});
-api.orders.get(90312);
-api.users.delete(7);
-console.log(calls);
-```
-
-**Output:**
-
-```text
-RangeError - invalid value for price: -5
-TypeError - unknown field "colour"
-{ name: 'Gel pen', price: 20 }
-re-render: count 0 → 1
-re-render: count 1 → 3
-c 3
-[ 'GET /orders/90312', 'DELETE /users/7' ]
-```
-
-**Common mistakes:**
-
-- ❌ Forgetting to `return true` from a `set` trap (throws in strict mode).
-- ❌ Not using `Reflect` (reimplementing default behaviour incorrectly, e.g. getters with the wrong `this`).
-- ❌ Proxies in performance-critical loops.
-- ❌ Expecting `proxy === target`.
-
-### Practice
-
-1. Write `withDefaults(obj, fallback)` that returns `fallback` for any property that doesn't exist (instead of `undefined`), without changing `obj`, and a read-only proxy that throws on any assignment.
-
-<details>
-<summary><b>Answer</b></summary>
-
-```js
-const withDefaults = (obj, fallback) => new Proxy(obj, {
-  get: (target, prop, receiver) => (prop in target ? Reflect.get(target, prop, receiver) : fallback),
-});
-const readOnly = obj => new Proxy(obj, {
-  set(_, prop) { throw new TypeError(`${String(prop)} is read-only`); },
-  deleteProperty(_, prop) { throw new TypeError(`${String(prop)} can't be deleted`); },
-});
-const labels = withDefaults({ paid: "Paid" }, "Unknown");
-console.log(labels.paid, labels.lost);
-const config = readOnly({ api: "https://api.example" });
-try { config.api = "x"; } catch (err) { console.log(err.message); }
-```
-
-**Output:**
-
-```text
-Paid Unknown
-api is read-only
-```
-
-</details>
-
-**Learn more:** [MDN: Proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy) · [MDN: Reflect](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect) · [javascript.info: Proxy and Reflect](https://javascript.info/proxy)
-
----
-
-## 39. Design Patterns in JavaScript
-
-### Theory
-
-> **In simple words:** a **design pattern** is a proven, named solution to a problem that keeps coming up: "notify many parts of the app when something changes" (observer), "create the right kind of object" (factory), "only ever have one" (singleton), "add behaviour without changing the original" (decorator), "swap the algorithm" (strategy). Knowing the names helps you recognise them in libraries (React, Node's EventEmitter, Express middleware) and discuss designs quickly. In JavaScript many patterns are simpler than in Java, because functions and closures do much of the work.
-
-| Pattern | Problem it solves | In JS you'll see it as |
-|---|---|---|
-| **Module** | Private state, public API | ES modules; closures |
-| **Singleton** | Exactly one shared instance | A module-level object (modules are cached) |
-| **Factory** | Create objects without the caller knowing the concrete class | `createNotifier(type)` returning different objects |
-| **Observer / pub-sub** | Many listeners react to events | `EventTarget`, Node `EventEmitter`, stores, signals |
-| **Strategy** | Swap an algorithm at runtime | An object/map of functions (`shippingStrategies[type](order)`) |
-| **Decorator / wrapper** | Add behaviour around a function/object | Higher-order functions (`withRetry(fn)`, `memoize`) |
-| **Middleware / chain of responsibility** | A request passes through a sequence of handlers | Express/Koa middleware, fetch interceptors |
-| **Adapter** | Make an incompatible API fit the one you need | Wrapping a legacy SDK behind your interface |
-| **Facade** | A simple API over a complex subsystem | `api.orders.create()` hiding HTTP details |
-| **Proxy** | Control access to an object | `Proxy`, caching/lazy-loading wrappers |
-| **Command** | Actions as objects (undo/redo, queues) | Redux actions, editor history |
-| **Dependency injection** | Pass collaborators in instead of creating them | Constructor/function parameters; makes testing easy |
-
-**Use patterns to solve real problems, not to decorate code.** The simplest code that clearly expresses the design wins.
-
-### JavaScript
-
-```js
-class Emitter {                                        // observer / pub-sub
-  #listeners = new Map();
-  on(event, fn) {
-    if (!this.#listeners.has(event)) this.#listeners.set(event, new Set());
-    this.#listeners.get(event).add(fn);
-    return () => this.#listeners.get(event).delete(fn);   // return an "unsubscribe" function
-  }
-  emit(event, data) {
-    for (const fn of this.#listeners.get(event) ?? []) fn(data);
-  }
-}
-const bus = new Emitter();
-const off = bus.on("order:paid", o => console.log("email receipt for", o.id));
-bus.on("order:paid", o => console.log("update analytics:", o.total));
-bus.emit("order:paid", { id: 90312, total: 998 });
-off();
-bus.emit("order:paid", { id: 90313, total: 150 });
-
-const shipping = {                                     // strategy: pick the algorithm by name
-  standard: order => (order.total >= 499 ? 0 : 40),
-  express: order => 99,
-  pickup: () => 0,
-};
-console.log(["standard", "express", "pickup"].map(s => `${s}: ₹${shipping[s]({ total: 300 })}`).join(", "));
-
-function createNotifier(channel) {                     // factory
-  const senders = {
-    email: { send: to => `email → ${to}` },
-    sms: { send: to => `SMS → ${to}` },
-  };
-  if (!senders[channel]) throw new Error(`unknown channel ${channel}`);
-  return senders[channel];
-}
-console.log(createNotifier("sms").send("+91-98xxxxxx"));
-
-function compose(middlewares) {                        // middleware chain (like Koa)
-  return ctx => {
-    const dispatch = i => (i < middlewares.length ? middlewares[i](ctx, () => dispatch(i + 1)) : undefined);
-    return dispatch(0);
-  };
-}
-const handle = compose([
-  (ctx, next) => { ctx.log.push("auth"); if (!ctx.user) return (ctx.status = 401); next(); },
-  (ctx, next) => { ctx.log.push("rate-limit"); next(); },
-  ctx => { ctx.log.push("handler"); ctx.status = 200; },
-]);
-for (const user of ["asha", null]) {
-  const ctx = { user, log: [] };
-  handle(ctx);
-  console.log(ctx.status, ctx.log.join(" → "));
-}
-
-const history = [];                                     // command pattern: undo
-let text = "";
-const exec = cmd => { history.push(cmd); text = cmd.do(text); };
-const undo = () => { text = history.pop().undo(text); };
-const append = s => ({ do: t => t + s, undo: t => t.slice(0, -s.length) });
-exec(append("Hello")); exec(append(", world"));
-console.log(text); undo(); console.log(text);
-```
-
-**Output:**
-
-```text
-email receipt for 90312
-update analytics: 998
-update analytics: 150
-standard: ₹40, express: ₹99, pickup: ₹0
-SMS → +91-98xxxxxx
-200 auth → rate-limit → handler
-401 auth
-Hello, world
-Hello
-```
-
-**Common mistakes:**
-
-- ❌ Singletons that hide global mutable state everywhere (hard to test); prefer passing dependencies.
-- ❌ Listeners that are never removed (memory leaks); always keep the unsubscribe function.
-- ❌ Class hierarchies copied from Java where a function or object map would do.
-- ❌ Patterns added "just in case" before there's a second use.
-
-### Practice
-
-1. Write `withRetry(fn, { times, delayMs })` (the decorator pattern) that retries an async function on failure, and test it with a function that fails twice and then succeeds.
-
-<details>
-<summary><b>Answer</b></summary>
-
-```js
-const withRetry = (fn, { times = 3, delayMs = 10 } = {}) => async (...args) => {
-  for (let attempt = 1; ; attempt++) {
-    try {
-      return await fn(...args);
-    } catch (err) {
-      if (attempt >= times) throw err;
-      console.log(`attempt ${attempt} failed (${err.message}), retrying`);
-      await new Promise(r => setTimeout(r, delayMs * 2 ** (attempt - 1)));   // exponential backoff
-    }
-  }
-};
-let n = 0;
-const flaky = async id => { if (++n < 3) throw new Error("network blip"); return `order ${id} loaded`; };
-console.log(await withRetry(flaky, { times: 5 })(90312));
-```
-
-**Output:**
-
-```text
-attempt 1 failed (network blip), retrying
-attempt 2 failed (network blip), retrying
-order 90312 loaded
-```
-
-</details>
-
-**Learn more:** [patterns.dev](https://www.patterns.dev/) · [Refactoring Guru: design patterns](https://refactoring.guru/design-patterns) · [Node.js: EventEmitter](https://nodejs.org/api/events.html)
-
----
-
-## 40. Memory Management, Garbage Collection and Leaks
-
-### Theory
-
-> **In simple words:** JavaScript manages memory for you: objects are created when you need them and a **garbage collector** (GC) frees them once nothing can **reach** them anymore. You never call `free`. But you can still leak memory: if something long-lived (a global, a cache, an event listener, a timer, a closure) keeps a reference to objects you no longer need, the GC can't free them, and a long-running tab or Node server slowly grows until it slows down or crashes.
-
-**How GC decides:** an object is kept alive if it's **reachable** from the roots (global variables, the current call stack, active closures, DOM nodes in the document, pending timers/listeners). V8 uses a **generational** collector: most objects die young, so a fast "minor GC" cleans the young generation often; surviving objects move to the old generation, collected less often by a mostly concurrent mark-and-sweep. Reference cycles are **not** a problem (unlike simple reference counting).
-
-**Common leaks:**
-
-| Leak | Why | Fix |
-|---|---|---|
-| Growing caches/maps | Entries never removed | Size limits (LRU), TTLs, `WeakMap` keyed by objects |
-| Event listeners on long-lived targets | The listener (and what it captures) stays reachable | `removeEventListener`, `{ once }`, `AbortController` signal, cleanup in React effects |
-| Timers/intervals | `setInterval` callbacks keep their closures alive | `clearInterval` on cleanup |
-| Detached DOM nodes | Removed from the page but still referenced from JS | Drop references |
-| Closures capturing big objects | A small callback keeps a large array alive | Capture only what you need |
-| Global variables | Never collected | Modules and local scope |
-| Unbounded arrays of logs/requests in servers | Grow forever | Ring buffers, streaming |
-
-**Weak references:** `WeakMap`/`WeakSet` don't keep keys alive. `WeakRef` (hold an object without keeping it alive) and `FinalizationRegistry` (callback after collection) exist for advanced caching; GC timing is unpredictable, so never rely on them for correctness.
-
-**Finding leaks:** Chrome DevTools → Memory → heap snapshots (compare two snapshots, look for growing counts and "Detached" DOM nodes) and allocation timelines; in Node, `--inspect` + DevTools, `process.memoryUsage()`, `--heapsnapshot-signal`, or clinic.js. `structuredClone` and big JSON parses cause memory spikes in hot paths.
-
-### JavaScript
-
-A cache that grows forever vs a bounded LRU cache, and a listener removed with an `AbortSignal` so nothing keeps it alive:
-
-```js
-class LRUCache {
-  #max; #map = new Map();                               // Map keeps insertion order
-  constructor(max) { this.#max = max; }
-  get(key) {
-    if (!this.#map.has(key)) return undefined;
-    const value = this.#map.get(key);
-    this.#map.delete(key); this.#map.set(key, value);   // move to "most recent"
-    return value;
-  }
-  set(key, value) {
-    this.#map.delete(key);
-    this.#map.set(key, value);
-    if (this.#map.size > this.#max) this.#map.delete(this.#map.keys().next().value);   // evict the oldest
-  }
-  get size() { return this.#map.size; }
-  keys() { return [...this.#map.keys()]; }
-}
-const unbounded = new Map();
-const lru = new LRUCache(3);
-for (let i = 1; i <= 1000; i++) {
-  unbounded.set(`user:${i}`, { profile: "x".repeat(100) });
-  lru.set(`user:${i}`, { profile: "x".repeat(100) });
-}
-lru.get("user:998");                                    // touch: becomes most recent
-lru.set("user:1001", {});
-console.log(unbounded.size, lru.size, lru.keys());
-
-const controller = new AbortController();
-const target = new EventTarget();
-let hits = 0;
-target.addEventListener("tick", () => hits++, { signal: controller.signal });
-target.dispatchEvent(new Event("tick"));
-controller.abort();                                     // removes the listener: nothing keeps it alive
-target.dispatchEvent(new Event("tick"));
-console.log("listener ran", hits, "time(s)");
-```
-
-**Output:**
-
-```text
-1000 3 [ 'user:1000', 'user:998', 'user:1001' ]
-listener ran 1 time(s)
-```
-
-**Common mistakes:**
-
-- ❌ Caches without limits in servers and long-lived pages.
-- ❌ Adding listeners/intervals in components without removing them.
-- ❌ Assuming "JS has GC, so leaks can't happen".
-- ❌ Relying on `WeakRef`/`FinalizationRegistry` timing for program logic.
-
-### Practice
-
-1. Using `LRUCache(2)`, insert `a`, `b`, read `a`, insert `c`. Which key was evicted and why?
-
-<details>
-<summary><b>Answer</b></summary>
-
-```js
-const c = new LRUCache(2);
-c.set("a", 1); c.set("b", 2);
-c.get("a");                                            // a becomes the most recently used
-c.set("c", 3);
-console.log(c.keys(), c.get("b"));
-```
-
-**Output:**
-
-```text
-[ 'a', 'c' ] undefined
-```
-
-`b` was evicted: it was the **least recently used** after `a` was read.
-
-</details>
-
-**Learn more:** [MDN: memory management](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Memory_management) · [Chrome DevTools: fix memory problems](https://developer.chrome.com/docs/devtools/memory-problems) · [V8 blog: trash talk (the Orinoco GC)](https://v8.dev/blog/trash-talk)
-
----
-
-## 41. Performance: How V8 Runs Your Code and How to Make It Fast
-
-### Theory
-
-> **In simple words:** modern JavaScript engines (V8 in Chrome and Node, SpiderMonkey, JavaScriptCore) don't just interpret your code: they watch which functions run often and **compile them to fast machine code**, making assumptions about the shapes of your objects and the types of your values. Code that keeps those assumptions true runs fast; code that breaks them gets "de-optimised". But most real-world slowness comes from **doing too much work** (bad algorithms, too many network requests, too much JavaScript shipped, too much DOM work), so **measure first**.
-
-**How V8 executes (simplified):** source → parse → bytecode run by the **Ignition** interpreter → hot functions are compiled by **Sparkplug**/**Maglev** (fast mid-tier compilers) and the **TurboFan** optimising compiler, using type feedback. If an assumption breaks (a function that always got numbers suddenly gets a string), the engine **de-optimises** back to bytecode.
-
-**Hidden classes and inline caches:** objects created with the same properties **in the same order** share a hidden "shape", so property access can be a fast fixed-offset read. Adding properties later, deleting them, or creating objects with varying shapes makes access polymorphic and slower. Practical rules: initialise all fields in constructors/literals, don't `delete` properties in hot objects (set to `undefined`/`null`), keep arrays of one element type, avoid holes in arrays.
-
-**What actually matters (in order):**
-
-1. **Algorithms and data structures:** `Set`/`Map` lookups instead of `array.includes` in loops; avoid O(n²) (`dsa-python.md` concepts apply).
-2. **Network:** fewer, smaller requests; caching; parallel instead of sequential awaits; compression; CDNs.
-3. **Ship less JavaScript:** code splitting (`import()`), tree-shaking, removing unused dependencies; every KB must be downloaded, parsed and compiled (worst on cheap phones).
-4. **Main-thread work:** break up long tasks (> 50 ms) to keep INP low; workers for heavy computation; avoid layout thrashing; virtualise long lists.
-5. **Memory:** avoid leaks and excessive allocation in hot loops (GC pauses).
-6. **Micro-optimisations** last, guided by profiling.
-
-**Measuring:** `performance.now()` for timing; `performance.mark`/`measure`; DevTools **Performance** panel (flame charts, long tasks), Lighthouse, WebPageTest, the `web-vitals` library for real users; in Node, `--cpu-prof`, `node --inspect`, clinic.js, `0x` flame graphs; benchmark libraries (tinybench, mitata) that warm up and repeat.
-
-### JavaScript
-
-```js
-function bench(label, fn, runs = 5) {
-  fn();                                                   // warm up (let the JIT optimise)
-  const times = [];
-  for (let i = 0; i < runs; i++) {
-    const t = performance.now();
-    fn();
-    times.push(performance.now() - t);
-  }
-  return Math.min(...times);                              // best of N reduces noise
-}
-
-const ids = Array.from({ length: 20_000 }, (_, i) => i);
-const lookups = Array.from({ length: 20_000 }, (_, i) => i * 3);
-const arrayTime = bench("array.includes", () => lookups.filter(x => ids.includes(x)).length);
-const idSet = new Set(ids);
-const setTime = bench("set.has", () => lookups.filter(x => idSet.has(x)).length);
-console.log("Set lookups more than 50x faster than array.includes here:", arrayTime / setTime > 50);
-
-class Point { constructor(x, y) { this.x = x; this.y = y; } }
-const sameShape = Array.from({ length: 200_000 }, (_, i) => new Point(i, i));
-const mixedShapes = Array.from({ length: 200_000 }, (_, i) => {
-  const p = i % 4 === 0 ? { y: i, x: i } : i % 4 === 1 ? { x: i, y: i, z: 0 } : i % 4 === 2 ? { x: i, y: i, w: 1 } : { x: i, y: i };
-  return p;                                               // 4 different hidden classes
-});
-const sum = pts => { let s = 0; for (const p of pts) s += p.x; return s; };
-const mono = bench("same shape", () => sum(sameShape), 10);
-const poly = bench("mixed shapes", () => sum(mixedShapes), 10);
-console.log("monomorphic property access was faster:", mono < poly);
-
-performance.mark("render-start");
-let html = "";
-for (let i = 0; i < 1000; i++) html += `<li>${i}</li>`;
-performance.mark("render-end");
-const m = performance.measure("render", "render-start", "render-end");
-console.log(m.name, typeof m.duration, m.duration < 100);
-```
-
-**Output:**
-
-```text
-Set lookups more than 50x faster than array.includes here: true
-monomorphic property access was faster: true
-render number true
-```
-
-(Absolute timings differ between machines, so the example prints comparisons. On a typical laptop the Set version is hundreds of times faster.)
-
-**Common mistakes:**
-
-- ❌ Micro-optimising before profiling, or benchmarking without warm-up and repetition.
-- ❌ Huge bundles; importing an entire library for one function.
-- ❌ Long synchronous tasks on the main thread (poor INP).
-- ❌ Sequential network requests that could be parallel.
-- ❌ Objects whose shape changes constantly in hot code (`delete`, adding properties later).
-
-### Practice
-
-1. Two ways to check whether any of 10,000 orders has a duplicate id: `orders.some((o, i) => orders.findIndex(p => p.id === o.id) !== i)` vs `new Set(orders.map(o => o.id)).size !== orders.length`. Benchmark both with `bench` and print which is faster.
-
-<details>
-<summary><b>Answer</b></summary>
-
-```js
-const orders = Array.from({ length: 10_000 }, (_, i) => ({ id: i }));
-const quadratic = bench("findIndex", () => orders.some((o, i) => orders.findIndex(p => p.id === o.id) !== i), 3);
-const linear = bench("Set", () => new Set(orders.map(o => o.id)).size !== orders.length, 3);
-console.log("the Set version is faster:", linear < quadratic, "| both find no duplicates:",
-            !orders.some((o, i) => orders.findIndex(p => p.id === o.id) !== i), new Set(orders.map(o => o.id)).size === orders.length);
-```
-
-**Output:**
-
-```text
-the Set version is faster: true | both find no duplicates: true true
-```
-
-The first is O(n²) (about 50 million comparisons); the second is O(n).
-
-</details>
-
-**Learn more:** [V8 blog](https://v8.dev/blog) · [web.dev: optimize long tasks](https://web.dev/articles/optimize-long-tasks) · [Chrome DevTools: analyze runtime performance](https://developer.chrome.com/docs/devtools/performance) · [Node.js: profiling](https://nodejs.org/en/learn/getting-started/profiling)
-
----
-
-## 42. Modern JavaScript: What's New in ES2020–ES2026
-
-### Theory
-
-> **In simple words:** JavaScript gets a new edition every June, adding features that make everyday code shorter and safer. Many of the tools in these notes (`??`, `?.`, `Object.groupBy`, `toSorted`, Set methods, iterator helpers) are recent additions. Knowing what's new helps you read modern code, drop old utility libraries, and answer "what's new in JavaScript?" in interviews. Check support on MDN/caniuse; Node 24 and current evergreen browsers support everything below except where noted.
-
-| Year | Highlights |
-|---|---|
-| **ES2020** | `??`, `?.`, `BigInt`, `Promise.allSettled`, `globalThis`, dynamic `import()`, `String.matchAll` |
-| **ES2021** | `replaceAll`, `Promise.any`, logical assignment (`??=`, `||=`, `&&=`), numeric separators (`1_000_000`), `WeakRef` |
-| **ES2022** | Class fields, `#private` members, static blocks, `.at()`, `Object.hasOwn`, top-level `await`, `Error` `cause`, RegExp `d` flag |
-| **ES2023** | `toSorted`, `toReversed`, `toSpliced`, `with`, `findLast`/`findLastIndex`, hashbang support |
-| **ES2024** | `Object.groupBy`/`Map.groupBy`, `Promise.withResolvers`, RegExp `v` flag, resizable `ArrayBuffer`, `String.isWellFormed`, `Atomics.waitAsync` |
-| **ES2025** | **Iterator helpers** (`map/filter/take/drop/toArray` on iterators), **Set methods** (`union`, `intersection`, …), `Promise.try`, `RegExp.escape`, JSON modules / import attributes, `Float16Array`, duplicate named capture groups |
-| **ES2026** (finalised mid-2026) | **Explicit resource management** (`using` / `await using` with `Symbol.dispose`), `Error.isError`, `Array.fromAsync`, `Uint8Array` base64/hex helpers, `Math.sumPrecise`; **Temporal** (the new date/time API) is shipping in browsers but not yet in Node 24 |
-
-**TC39 process:** proposals move through stages 0–4; stage 4 means "in the next edition". Stage 3 features often ship early in engines and TypeScript (e.g. decorators are stage 3 and supported by TypeScript 5+).
-
-### JavaScript
-
-```js
-console.log(Object.groupBy([1, 2, 3, 4, 5], n => (n % 2 ? "odd" : "even")));
-console.log([3, 1, 2].toSorted(), [1, 2, 3].with(1, 20), [1, 2, 3, 4].findLast(n => n % 2));
-console.log([...new Set([1, 2, 3]).union(new Set([3, 4]))], [...new Set([1, 2, 3]).intersection(new Set([2, 3, 9]))]);
-console.log(Iterator.from([1, 2, 3, 4, 5, 6]).filter(n => n % 2 === 0).map(n => n * 10).toArray());
-console.log(await Promise.try(() => JSON.parse('{"ok":true}')), RegExp.escape("1+1=2?"));
-console.log(await Array.fromAsync((async function* () { yield 1; yield 2; })()));
-console.log(Error.isError(new TypeError("x")), Error.isError({ message: "fake" }), new Float16Array([1.5, 65504]).join());
-
-class TempFile {                                           // explicit resource management (ES2026)
-  constructor(name) { this.name = name; console.log("open", name); }
-  [Symbol.dispose]() { console.log("cleanup", this.name); }
-}
-function work() {
-  using a = new TempFile("a.tmp");
-  using b = new TempFile("b.tmp");
-  console.log("working with", a.name, "and", b.name);
-}                                                           // disposed automatically, in reverse order
-work();
-
-const { promise, resolve } = Promise.withResolvers();
-setTimeout(() => resolve(1_000_000n * 3n), 10);
-console.log(await promise, 1_000_000 === 1000000, "𝒳".isWellFormed(), [10, 20, 30].at(-1));
-```
-
-**Output:**
-
-```text
-[Object: null prototype] { odd: [ 1, 3, 5 ], even: [ 2, 4 ] }
-[ 1, 2, 3 ] [ 1, 20, 3 ] 3
-[ 1, 2, 3, 4 ] [ 2, 3 ]
-[ 20, 40, 60 ]
-{ ok: true } \x31\+1\x3d2\?
-[ 1, 2 ]
-true false 1.5,65504
-open a.tmp
-open b.tmp
-working with a.tmp and b.tmp
-cleanup b.tmp
-cleanup a.tmp
-3000000n true true 30
-```
-
-**Common mistakes:**
-
-- ❌ Pulling in lodash/moment-style dependencies for things the language now does (`groupBy`, `toSorted`, `structuredClone`, `Intl`).
-- ❌ Using brand-new features in code that must run on older browsers without transpiling/polyfilling (check your browserslist).
-- ❌ Confusing stage-3 proposals with finished standards.
-
-### Practice
-
-1. Rewrite this older code with modern features: `var name = (user && user.profile && user.profile.name) || "guest"; var sorted = list.slice().sort(function (a, b) { return a - b; }); if (!obj.hasOwnProperty("id")) obj.id = 1;`
-
-<details>
-<summary><b>Answer</b></summary>
-
-```js
-const user = { profile: { name: "" } }, list = [3, 1, 2], obj = {};
-const name = user?.profile?.name || "guest";               // `||` kept on purpose: an empty name means guest
-const sorted = list.toSorted((a, b) => a - b);
-obj.id ??= 1;                                               // or: if (!Object.hasOwn(obj, "id")) obj.id = 1
-console.log(name, sorted, obj, list);
-```
-
-**Output:**
-
-```text
-guest [ 1, 2, 3 ] { id: 1 } [ 3, 1, 2 ]
-```
-
-</details>
-
----
-
-### ✅ Part 5 checkpoint
-
-Without looking, can you:
-
-- [ ] Write pure functions, update data immutably, and build pipelines with currying, `pipe` and `compose`?
-- [ ] Implement debounce and throttle and choose between them?
-- [ ] Use `Proxy` and `Reflect` for validation, reactivity and default values?
-- [ ] Recognise and implement observer, strategy, factory, middleware, decorator and command patterns?
-- [ ] Explain garbage collection and find/fix common leaks (caches, listeners, timers, closures)?
-- [ ] Explain JIT compilation and hidden classes, and prioritise real performance work (algorithms, network, bundle size, long tasks)?
-- [ ] Name the main features added in ES2020–ES2026?
-
-**Learn more:** [TC39 finished proposals](https://github.com/tc39/proposals/blob/main/finished-proposals.md) · [MDN: what's new (JavaScript)](https://developer.mozilla.org/en-US/docs/Web/JavaScript) · [2ality: ECMAScript feature overviews](https://2ality.com/)
-
----
-
-# Part 6 — Advanced: Tooling, Testing and Production
-
-> **Goal:** Set up projects with package managers, Vite, TypeScript and linters; test, debug, and write maintainable production code.  
-> **You need:** Parts 1–5.
-
----
-
-## 43. Tooling: npm, Package Managers, Bundlers, Linters and TypeScript
-
-### Theory
-
-> **In simple words:** real JavaScript projects use a **toolchain**: a **package manager** installs libraries from the npm registry, a **bundler/dev server** (Vite) turns your source files into optimised files for browsers, **TypeScript** adds types, a **linter** (ESLint or Biome) catches bugs, a **formatter** (Prettier or Biome) keeps style consistent, and a **test runner** (Vitest) checks behaviour. You'll set this up once per project, usually from a template.
-
-**`package.json` essentials:** `name`, `version`, `"type": "module"` (ESM), `scripts` (`npm run dev`, `test`, `build`, `lint`), `dependencies` (needed at runtime), `devDependencies` (tools), `engines` (Node version), `exports` (for libraries). Versions use **semver** ranges: `^1.4.2` allows 1.x ≥ 1.4.2, `~1.4.2` allows 1.4.x. The **lock file** (`package-lock.json`, `pnpm-lock.yaml`) records exact versions: commit it, and use `npm ci` in CI.
-
-**Package managers (2026):** **npm** (bundled with Node), **pnpm** (fast, disk-efficient, strict; popular for monorepos), **Yarn**, and **Bun** (an all-in-one runtime/package manager). `npx`/`pnpm dlx` run a package's CLI without installing it.
-
-**Build tools:**
-
-| Tool | Role |
-|---|---|
-| **Vite** | Dev server with instant hot reload (native ESM) + production builds (Rollup/Rolldown); default for React/Vue/Svelte SPAs |
-| Next.js/Remix/Astro/Nuxt | Full frameworks with their own build pipelines (`react.md`) |
-| esbuild, SWC, Oxc | Very fast compilers (written in Go/Rust) used inside other tools |
-| Rollup/Rolldown, webpack, Rspack, Turbopack | Bundlers (webpack for legacy projects) |
-| TypeScript (`tsc`) | Type checking (`typescript.md`); Node 22.18+/24 can run `.ts` files directly by stripping types |
-
-**What bundling does:** resolves imports into a dependency graph, transpiles (TS/JSX → JS for your browser targets), **tree-shakes** unused exports, **code-splits** (`import()` → separate chunks), minifies, hashes file names for caching, handles CSS and assets, and produces source maps for debugging.
-
-**Code quality:** ESLint (flat config `eslint.config.js`, with `typescript-eslint`, React hooks rules) or **Biome** (fast linter + formatter in one); Prettier for formatting; `husky` + `lint-staged` to run them before commits; EditorConfig. Monorepos: pnpm workspaces + Turborepo/Nx.
-
-**Supply-chain hygiene:** review new packages, keep dependencies few and updated (Renovate/Dependabot), `npm audit`, consider disabling install scripts (`ignore-scripts`), pin CI actions.
-
-### JavaScript
-
-A tiny `package.json` with scripts, run with npm, plus Node's built-in type stripping running a TypeScript file directly:
-
-```js
-const fs = require("node:fs");
-const path = require("node:path");
-const { execFileSync } = require("node:child_process");
-const npm = path.join(path.dirname(process.execPath), "npm");
-
-fs.mkdirSync("demo-app", { recursive: true });
-fs.writeFileSync("demo-app/package.json", JSON.stringify({
-  name: "demo-app", version: "1.0.0", type: "module", private: true,
-  scripts: { start: "node src/index.js", greet: "node src/greet.ts" },
-  engines: { node: ">=22.18" },
-}, null, 2));
-fs.mkdirSync("demo-app/src", { recursive: true });
-fs.writeFileSync("demo-app/src/index.js", `import { total } from "./cart.js";\nconsole.log("total:", total([499, 99]));\n`);
-fs.writeFileSync("demo-app/src/cart.js", `export const total = prices => prices.reduce((a, b) => a + b, 0);\nexport const unused = () => "tree-shaken away by bundlers";\n`);
-fs.writeFileSync("demo-app/src/greet.ts", `const greet = (name: string, times: number = 1): string => "hi ".repeat(times) + name;\nconsole.log(greet("Asha", 2));\n`);
-
-const run = args => execFileSync(npm, args, { cwd: "demo-app", encoding: "utf8", env: { ...process.env, PATH: path.dirname(process.execPath) + ":" + process.env.PATH } });
-console.log(run(["run", "--silent", "start"]).trim());
-console.log(run(["run", "--silent", "greet"]).trim(), "(TypeScript run directly: types are stripped, not checked)");
-console.log(Object.keys(JSON.parse(fs.readFileSync("demo-app/package.json", "utf8")).scripts));
-```
-
-**Output:**
-
-```text
-total: 598
-hi hi Asha (TypeScript run directly: types are stripped, not checked)
-[ 'start', 'greet' ]
-```
-
-The terminal commands you'll use daily:
-
-```text
-npm create vite@latest shop-ui -- --template react-ts    # scaffold a project
-cd shop-ui && npm install                                 # install from package.json (writes the lock file)
-npm run dev                                               # dev server with hot reload
-npm install zod                                           # add a runtime dependency
-npm install -D vitest @biomejs/biome                      # add dev tools
-npm run build && npm run preview                          # production build + local preview
-npm ci                                                    # in CI: exact install from the lock file
-npm outdated && npm audit                                 # maintenance
-```
-
-**Common mistakes:**
-
-- ❌ Not committing the lock file, or using `npm install` in CI instead of `npm ci`.
-- ❌ Tools in `dependencies` and runtime libraries in `devDependencies`.
-- ❌ Adding a package for a one-liner (left-pad) or without checking its health.
-- ❌ Assuming Node's type stripping or a bundler **checks** types (run `tsc --noEmit` in CI).
-- ❌ Huge bundles from importing whole libraries; check with a bundle analyser.
-
-### Practice
-
-1. Add a `"test"` script to `demo-app/package.json` that runs `node --test`, create `src/cart.test.js` using `node:test` and `node:assert` to test `total`, and run it with `npm test`.
-
-<details>
-<summary><b>Answer</b></summary>
-
-```js
-const pkg = JSON.parse(fs.readFileSync("demo-app/package.json", "utf8"));
-pkg.scripts.test = "node --test";
-fs.writeFileSync("demo-app/package.json", JSON.stringify(pkg, null, 2));
-fs.writeFileSync("demo-app/src/cart.test.js", `
-import { test } from "node:test";
-import assert from "node:assert/strict";
-import { total } from "./cart.js";
-test("sums prices", () => assert.equal(total([499, 99]), 598));
-test("empty cart is 0", () => assert.equal(total([]), 0));
-`);
-const out = run(["test", "--silent"]);
-console.log(out.split("\n").filter(l => /^(✔|ℹ (tests|pass|fail) )/.test(l)).map(l => l.replace(/ \([\d.]+ms\)/, "")).join("\n"));
-```
-
-**Output:**
-
-```text
-✔ sums prices
-✔ empty cart is 0
-ℹ tests 2
-ℹ pass 2
-ℹ fail 0
-```
-
-</details>
-
-**Learn more:** [npm docs: package.json](https://docs.npmjs.com/cli/configuring-npm/package-json) · [Vite guide](https://vite.dev/guide/) · [pnpm](https://pnpm.io/) · [Biome](https://biomejs.dev/) · [Node.js: running TypeScript natively](https://nodejs.org/en/learn/typescript/run-natively)
-
----
-
-## 44. Testing JavaScript: Unit, Integration and End-to-End
-
-### Theory
-
-> **In simple words:** tests are code that checks your code: "`formatPrice(1499)` returns `₹1,499.00`", "clicking Add puts the item in the cart", "checkout works in a real browser". They let you change code confidently. JavaScript projects typically use **Vitest** (or Jest) for unit and component tests, **Testing Library** to test UI the way users use it, **MSW** to mock network requests, and **Playwright** for end-to-end tests in real browsers. Node also has a capable built-in runner, **`node:test`**.
-
-**The testing pyramid (or trophy):** many fast **unit** tests (pure functions, utilities), a good number of **integration/component** tests (several units together, a component with its hooks, an API route with a test database), and a few **end-to-end** tests of critical user flows (sign up, checkout). Static checks (TypeScript, ESLint) catch a whole class of bugs for free.
-
-| Tool | Use |
-|---|---|
-| **Vitest** | Fast Jest-compatible runner (`describe`, `it`, `expect`, `vi.fn()`, `vi.useFakeTimers()`), works with Vite configs |
-| Jest | Long-time standard, still common |
-| `node:test` + `node:assert` | Built into Node: no dependencies; mocks and fake timers included |
-| **Testing Library** | Query the DOM like a user (`getByRole("button", { name: /add/i })`), not by implementation details |
-| **MSW** | Mock HTTP at the network level for tests and development |
-| **Playwright** | Real Chromium/Firefox/WebKit end-to-end tests, tracing, screenshots |
-
-**Good tests:** test behaviour (inputs/outputs, what the user sees), not internals; one reason to fail per test; deterministic (fake timers, fixed dates, seeded data, no real network); fast; descriptive names. Use mocks at boundaries (network, time, randomness), not everywhere.
-
-**Async tests:** return/await promises; with fake timers, advance time explicitly instead of waiting.
-
-### JavaScript
-
-A module and its tests with Node's built-in runner, including a **mock function** and **fake timers** (the same ideas apply to Vitest's `vi.fn()` and `vi.useFakeTimers()`):
-
-```js
-const fs = require("node:fs");
-const { execFileSync } = require("node:child_process");
-
-fs.writeFileSync("checkout.mjs", `
-export function applyCoupon(total, code) {
-  if (total < 0) throw new RangeError("total must be >= 0");
-  const rates = { DIWALI20: 0.2, WELCOME10: 0.1 };
-  const rate = rates[code?.toUpperCase()] ?? 0;
-  return Math.round(total * (1 - rate));
-}
-export async function placeOrder(cart, { payments, notify }) {
-  const charge = await payments.charge(cart.total);
-  if (charge.status !== "succeeded") return { ok: false, reason: charge.status };
-  notify("order placed");
-  return { ok: true, id: charge.id };
-}
-export function autoSave(save, delay = 1000) {
-  let timer;
-  return text => { clearTimeout(timer); timer = setTimeout(() => save(text), delay); };
-}
-`);
-
-fs.writeFileSync("checkout.test.mjs", `
-import { describe, it, mock } from "node:test";
-import assert from "node:assert/strict";
-import { applyCoupon, placeOrder, autoSave } from "./checkout.mjs";
-
-describe("applyCoupon", () => {
-  it("applies known codes case-insensitively", () => {
-    assert.equal(applyCoupon(1000, "diwali20"), 800);
-    assert.equal(applyCoupon(999, "WELCOME10"), 899);
-  });
-  it("ignores unknown or missing codes", () => {
-    assert.equal(applyCoupon(500, "FAKE"), 500);
-    assert.equal(applyCoupon(500), 500);
-  });
-  it("rejects negative totals", () => {
-    assert.throws(() => applyCoupon(-1, "X"), RangeError);
-  });
-});
-
-describe("placeOrder", () => {
-  it("charges and notifies on success", async () => {
-    const payments = { charge: mock.fn(async () => ({ status: "succeeded", id: "ch_1" })) };
-    const notify = mock.fn();
-    assert.deepEqual(await placeOrder({ total: 998 }, { payments, notify }), { ok: true, id: "ch_1" });
-    assert.equal(payments.charge.mock.calls[0].arguments[0], 998);
-    assert.equal(notify.mock.callCount(), 1);
-  });
-  it("does not notify when the card is declined", async () => {
-    const notify = mock.fn();
-    const result = await placeOrder({ total: 50 }, { payments: { charge: async () => ({ status: "declined" }) }, notify });
-    assert.deepEqual(result, { ok: false, reason: "declined" });
-    assert.equal(notify.mock.callCount(), 0);
-  });
-});
-
-describe("autoSave", () => {
-  it("saves once, 1 s after the last keystroke", (t) => {
-    t.mock.timers.enable({ apis: ["setTimeout"] });     // fake timers: no real waiting
-    const save = mock.fn();
-    const onType = autoSave(save);
-    onType("h"); onType("he"); onType("hello");
-    t.mock.timers.tick(999);
-    assert.equal(save.mock.callCount(), 0);
-    t.mock.timers.tick(1);
-    assert.deepEqual(save.mock.calls.map(c => c.arguments[0]), ["hello"]);
-  });
-});
-`);
-
-const out = execFileSync(process.execPath, ["--test", "--test-reporter=spec", "checkout.test.mjs"], { encoding: "utf8" });
-console.log(out.split("\n").filter(l => /^\s*(▶|✔|✖)|^ℹ (tests|pass|fail) /.test(l)).map(l => l.replace(/ \([\d.]+ms\)/, "")).join("\n"));
-```
-
-**Output:**
-
-```text
-▶ applyCoupon
-  ✔ applies known codes case-insensitively
-  ✔ ignores unknown or missing codes
-  ✔ rejects negative totals
-✔ applyCoupon
-▶ placeOrder
-  ✔ charges and notifies on success
-  ✔ does not notify when the card is declined
-✔ placeOrder
-▶ autoSave
-  ✔ saves once, 1 s after the last keystroke
-✔ autoSave
-ℹ tests 6
-ℹ pass 6
-ℹ fail 0
-```
-
-An end-to-end test with Playwright looks like this (it drives a real browser against a running app, so it isn't executed here):
-
-<!-- no-run (needs a running app and Playwright's test runner) -->
-```js
-import { test, expect } from "@playwright/test";
-
-test("customer can add a product to the cart and check out", async ({ page }) => {
-  await page.goto("http://localhost:5173/products/P1");
-  await page.getByRole("button", { name: "Add to cart" }).click();
-  await expect(page.getByTestId("cart-count")).toHaveText("1");
-  await page.getByRole("link", { name: "Checkout" }).click();
-  await expect(page).toHaveURL(/\/checkout/);
-});
-```
-
-**Common mistakes:**
-
-- ❌ Testing implementation details (private functions, CSS classes) so every refactor breaks tests.
-- ❌ Real network, real time or random data in unit tests (flaky tests).
-- ❌ Waiting with real `setTimeout` sleeps instead of fake timers or `await`ing the right thing.
-- ❌ Only end-to-end tests (slow, brittle) or only unit tests (miss integration bugs).
-- ❌ Snapshot tests nobody reads.
-
-### Practice
-
-1. Add a test for `applyCoupon` showing that rounding happens: `applyCoupon(333, "WELCOME10")` should be `300` (299.7 rounded). Append it to the test file and run the suite again, printing only the summary.
-
-<details>
-<summary><b>Answer</b></summary>
-
-```js
-fs.appendFileSync("checkout.test.mjs", `
-describe("rounding", () => {
-  it("rounds to whole rupees", () => assert.equal(applyCoupon(333, "WELCOME10"), 300));
-});
-`);
-const again = execFileSync(process.execPath, ["--test", "--test-reporter=spec", "checkout.test.mjs"], { encoding: "utf8" });
-console.log(again.split("\n").filter(l => /^ℹ (tests|pass|fail) /.test(l)).join("\n"));
-```
-
-**Output:**
-
-```text
-ℹ tests 7
-ℹ pass 7
-ℹ fail 0
-```
-
-</details>
-
-**Learn more:** [Vitest](https://vitest.dev/) · [Node.js test runner](https://nodejs.org/api/test.html) · [Testing Library: guiding principles](https://testing-library.com/docs/guiding-principles) · [Playwright](https://playwright.dev/) · [Kent C. Dodds: the testing trophy](https://kentcdodds.com/blog/the-testing-trophy-and-testing-classifications)
-
----
-
-## 45. Debugging JavaScript
-
-### Theory
-
-> **In simple words:** debugging is finding out **why** code does something different from what you expected. The fastest route is rarely adding more `console.log`s at random: read the error and stack trace, reproduce the problem reliably, then **pause the program** at the right place with a debugger and inspect the actual values. Browsers and Node both have excellent debuggers built in.
-
-**Tools:**
-
-| Tool | Use |
-|---|---|
-| Stack traces | The error type and message, then the chain of calls (read top-down: where it was thrown, then who called it); **source maps** map minified code back to your files |
-| `console.log/warn/error/table/dir/group/time/timeEnd/trace/assert/count` | Quick inspection; `console.table` for arrays of objects, `console.trace` for "who called this?" |
-| `debugger;` statement | Pauses execution when DevTools is open (remove before committing) |
-| DevTools **Sources** panel | Breakpoints (line, conditional, logpoints, DOM-change, XHR/fetch, event-listener), step over/into/out, watch expressions, call stack, scope variables |
-| DevTools **Network** panel | Request/response headers and bodies, status, timing, CORS errors, throttling |
-| Performance / Memory panels | Slow code and leaks (Sections [41](#41-performance-how-v8-runs-your-code-and-how-to-make-it-fast) and [40](#40-memory-management-garbage-collection-and-leaks)) |
-| Node | `node --inspect app.js` (or `--inspect-brk`) then `chrome://inspect` or VS Code's debugger |
-| Error monitoring | Sentry and similar: real users' errors with stack traces and breadcrumbs |
-
-**A method that works:** (1) reproduce reliably with the smallest input; (2) read the actual error, not your assumption; (3) form a hypothesis and test it (breakpoint, log); (4) binary-search the problem (comment out half, `git bisect` to find the commit that broke it); (5) fix the cause, not the symptom; (6) add a test so it can't return.
-
-**Classic JS bug sources:** `undefined` from a typo or a missing `return`; async code running in a different order than expected (missing `await`); mutation of shared objects; `this` lost in callbacks; `==` coercion; off-by-one; stale closures (React); floating-point comparisons; time zones.
-
-### JavaScript
-
-Useful console tools (in DevTools the output is interactive; Node prints text):
-
-```js
-const orders = [{ id: 90312, status: "paid", total: 998 }, { id: 90313, status: "pending", total: 150 }];
-console.table(orders);
-console.group("checkout");
-console.log("step 1: validate");
-console.log("step 2: charge");
-console.groupEnd();
-console.count("render"); console.count("render");
-console.assert(orders.length === 3, "expected 3 orders");          // prints only when the assertion FAILS (to stderr)
-
-function chargeCard(amount) {
-  if (amount <= 0) throw new RangeError(`invalid amount ${amount}`);
-}
-function checkout(cart) {
-  chargeCard(cart.total);
-}
-try {
-  checkout({ total: 0 });
-} catch (err) {
-  const frames = err.stack.split("\n").slice(0, 3).map(line => line.trim().replace(/\(.*\)/, "(…)"));
-  console.log(frames.join("\n"));                                     // error, then where it was thrown, then the caller
-}
-```
-
-**Output:**
-
-```text
-┌─────────┬───────┬───────────┬───────┐
-│ (index) │ id    │ status    │ total │
-├─────────┼───────┼───────────┼───────┤
-│ 0       │ 90312 │ 'paid'    │ 998   │
-│ 1       │ 90313 │ 'pending' │ 150   │
-└─────────┴───────┴───────────┴───────┘
-checkout
-  step 1: validate
-  step 2: charge
-render: 1
-render: 2
-RangeError: invalid amount 0
-at chargeCard (…)
-at checkout (…)
-```
-
-The stack reads top-down: the error, where it was **thrown** (`chargeCard`), then **who called it** (`checkout`). File paths are shortened here; in DevTools they're clickable links to the exact line.
-
-**Common mistakes:**
-
-- ❌ Guessing instead of reading the full error message and stack.
-- ❌ Leaving `debugger;` or noisy logs in committed code (use a linter rule).
-- ❌ Debugging minified production code without source maps.
-- ❌ "Fixing" a bug by adding a `try`/`catch` that hides it.
-- ❌ Not adding a regression test after fixing.
-
-### Practice
-
-1. This function should return the average order total but returns `NaN`. Find the bug with `console.table` and fix it: `const avg = list => list.reduce((s, o) => s + o.totl, 0) / list.length;`
-
-<details>
-<summary><b>Answer</b></summary>
-
-```js
-const avgBroken = list => list.reduce((s, o) => s + o.totl, 0) / list.length;
-console.log(avgBroken(orders));
-console.table(orders.map(o => ({ totl: o.totl, total: o.total })));     // the misspelled property is undefined
-const avg = list => list.reduce((s, o) => s + o.total, 0) / list.length;
-console.log(avg(orders));
-```
-
-**Output:**
-
-```text
-NaN
-┌─────────┬───────────┬───────┐
-│ (index) │ totl      │ total │
-├─────────┼───────────┼───────┤
-│ 0       │ undefined │ 998   │
-│ 1       │ undefined │ 150   │
-└─────────┴───────────┴───────┘
-574
-```
-
-`o.totl` is `undefined`, and `0 + undefined` is `NaN`. TypeScript (`typescript.md`) would have caught this typo before the code ever ran.
-
-</details>
-
-**Learn more:** [Chrome DevTools: debug JavaScript](https://developer.chrome.com/docs/devtools/javascript) · [MDN: console](https://developer.mozilla.org/en-US/docs/Web/API/console) · [Node.js: debugging guide](https://nodejs.org/en/learn/getting-started/debugging) · [VS Code: JavaScript debugging](https://code.visualstudio.com/docs/nodejs/nodejs-debugging)
-
----
-
-## 46. Production-Grade JavaScript: Code Quality, Refactoring and Reliability
-
-### Theory
-
-> **In simple words:** production code is code that other people will read and change for years, running for real users on slow phones and flaky networks. It needs clear structure, consistent style, types, tests, good error handling, logging and monitoring, and regular clean-up (**refactoring**). The "code smells" below are signals that code will be hard to change; each has a well-known fix.
-
-**Habits of production-grade JS/TS:**
-
-- **TypeScript** for anything non-trivial (`typescript.md`); strict mode on.
-- Lint + format automatically (ESLint/Biome, Prettier) in the editor, pre-commit and CI.
-- Small modules with one responsibility; explicit named exports; no circular imports.
-- Validate data at the boundaries (API responses, forms, `localStorage`) with a schema library (**Zod**, Valibot).
-- Handle errors deliberately: user-facing messages, retries with backoff for network calls, error boundaries in UI, no silent `catch`.
-- Observability: error monitoring (Sentry), performance monitoring (web-vitals, RUM), structured logs on servers.
-- Performance budgets and bundle analysis in CI; lazy-load non-critical code.
-- Security: CSP, dependency audits, no secrets in the client (Section [35](#35-frontend-security-xss-csrf-csp-prototype-pollution-and-the-supply-chain)).
-- Accessibility: semantic HTML, keyboard navigation, labels, contrast (it's also a legal requirement in many places).
-- Feature flags and gradual rollouts; the ability to roll back.
-
-**Code smells and their refactorings:**
-
-| Smell | Looks like | Refactor |
-|---|---|---|
-| Long function | 100+ lines doing several things | Extract functions with intention-revealing names |
-| Deep nesting | `if` inside `if` inside `for` | Guard clauses, early returns, extract functions |
-| Magic numbers/strings | `if (status === 3)`, `* 0.18` | Named constants/enums |
-| Duplicated code | Same logic in 3 places | Extract a shared function (when truly the same concept) |
-| Long parameter lists | `f(a, b, c, d, e, true, false)` | An options object with named properties |
-| Boolean flag parameters | `render(true)` | Separate functions or named options |
-| Primitive obsession | Money as raw numbers everywhere | Small value objects/types (`Money`) |
-| Shotgun surgery | One change touches 10 files | Co-locate related code |
-| Comments explaining confusing code | `// this adds tax and discount` | Rename and restructure so the code explains itself |
-| Mutation of shared state | Functions changing their inputs | Return new values; make ownership clear |
-
-Refactor in small steps, with tests passing after each step, separately from behaviour changes.
-
-### JavaScript
-
-A before/after refactor of a typical "does everything" function, with a test proving the behaviour is unchanged:
-
-```js
-// BEFORE: nested, magic numbers, boolean flag, mixed concerns
-function calc(o, f) {
-  let t = 0;
-  for (let i = 0; i < o.items.length; i++) {
-    if (o.items[i].q > 0) {
-      if (o.items[i].p > 0) {
-        t = t + o.items[i].p * o.items[i].q;
+    fetchInvoice(orders[0], (err3, invoice) => {
+      if (err3) {
+        return console.log("failed:", err3.message);
       }
-    }
-  }
-  if (f) { if (t > 499) { } else { t = t + 40; } }
-  t = t * 1.18;
-  return Math.round(t);
-}
-
-// AFTER: named constants, small pure functions, an options object, guard clauses
-const FREE_SHIPPING_THRESHOLD = 499;
-const SHIPPING_FEE = 40;
-const GST_RATE = 0.18;
-
-const lineTotal = ({ price, qty }) => (price > 0 && qty > 0 ? price * qty : 0);
-const subtotal = items => items.reduce((sum, item) => sum + lineTotal(item), 0);
-const shippingFor = (amount, { delivery }) =>
-  delivery === "home" && amount <= FREE_SHIPPING_THRESHOLD ? SHIPPING_FEE : 0;
-
-function orderTotal(order, { delivery = "pickup" } = {}) {
-  const base = subtotal(order.items);
-  return Math.round((base + shippingFor(base, { delivery })) * (1 + GST_RATE));
-}
-
-const legacyOrder = { items: [{ p: 120, q: 2 }, { p: 60, q: 1 }, { p: 99, q: 0 }] };
-const order = { items: legacyOrder.items.map(i => ({ price: i.p, qty: i.q })) };
-const cases = [[false, "pickup"], [true, "home"]];
-for (const [flag, delivery] of cases) {
-  console.log(calc(legacyOrder, flag), orderTotal(order, { delivery }), calc(legacyOrder, flag) === orderTotal(order, { delivery }));
-}
-```
-
-**Output:**
-
-```text
-354 354 true
-401 401 true
-```
-
-Same results, but each piece now has a name, can be tested alone, and the next change ("free shipping for Plus members") has an obvious place to go.
-
-**Common mistakes:**
-
-- ❌ Big-bang rewrites instead of small, tested refactoring steps.
-- ❌ Refactoring and changing behaviour in the same commit.
-- ❌ Clever code ("look how short it is") over clear code.
-- ❌ No monitoring, so production errors are discovered by users.
-
-### Practice
-
-1. Refactor `function fmt(n, c, d) { return (c ? c : "INR") + " " + (d ? n.toFixed(d) : n.toFixed(2)); }` to use an options object with defaults and `Intl.NumberFormat`, and show both old and new outputs for 1499.5.
-
-<details>
-<summary><b>Answer</b></summary>
-
-```js
-function fmtOld(n, c, d) { return (c ? c : "INR") + " " + (d ? n.toFixed(d) : n.toFixed(2)); }
-function formatMoney(amount, { currency = "INR", locale = "en-IN", decimals = 2 } = {}) {
-  return new Intl.NumberFormat(locale, { style: "currency", currency, minimumFractionDigits: decimals, maximumFractionDigits: decimals }).format(amount);
-}
-console.log(fmtOld(1499.5), "→", formatMoney(1499.5));
-console.log(fmtOld(1499.5, "USD", 1), "→", formatMoney(1499.5, { currency: "USD", locale: "en-US", decimals: 1 }));
-```
-
-**Output:**
-
-```text
-INR 1499.50 → ₹1,499.50
-USD 1499.5 → $1,499.5
-```
-
-The new version is self-describing at the call site and gets locale-correct grouping and symbols (note it's a deliberate behaviour change: ₹ and grouping instead of "INR 1499.50").
-
-</details>
-
----
-
-### ✅ Part 6 checkpoint
-
-Without looking, can you:
-
-- [ ] Set up a project with a package manager, lock file, scripts, Vite, TypeScript and a linter/formatter, and explain what bundlers do?
-- [ ] Write unit tests with mocks and fake timers, and explain the roles of Testing Library, MSW and Playwright?
-- [ ] Debug with stack traces, breakpoints and the Network panel, and follow a systematic debugging method?
-- [ ] Recognise common code smells and refactor safely in small tested steps?
-
-**Learn more:** [Martin Fowler: refactoring catalog](https://refactoring.com/catalog/) · [Google JavaScript style guide](https://google.github.io/styleguide/jsguide.html) · [Zod](https://zod.dev/) · [Sentry for JavaScript](https://docs.sentry.io/platforms/javascript/)
-
----
-
-# Part 7 — Interview Prep: Revision
-
-> **Goal:** Revise with polyfills, DSA in JavaScript, predict-the-output questions, a cheat sheet and the most-asked questions.  
-> **You need:** Parts 1–6.
-
----
-
-## 47. Polyfills and "Implement It Yourself" Questions
-
-### Theory
-
-> **In simple words:** a **polyfill** is code that adds a missing built-in feature to an older environment (for example, adding `Array.prototype.flat` to a browser that doesn't have it). In interviews, "write a polyfill for X" really means "**show me you understand exactly how X behaves**": its arguments, its return value, its edge cases (empty arrays, holes, `this`, errors, ordering). Writing them is the best way to deeply learn `this`, prototypes, closures and promises.
-
-| Asked often | What it tests |
-|---|---|
-| `map`, `filter`, `reduce`, `flat` | Callbacks, `this`, holes (`i in arr`), the "no initial value" rule of `reduce`, recursion |
-| `call`, `apply`, `bind` | How `this` is set ([15](#15-the-this-keyword-call-apply-and-bind)), `bind` with `new` |
-| `Promise.all`, `allSettled`, `race`, `any` | Promise states, ordering, rejection rules ([24](#24-callbacks-and-promises)) |
-| `new`, `instanceof`, `Object.create` | The prototype chain ([19](#19-prototypes-and-prototypal-inheritance)) |
-| `once`, `memoize`, `curry`, `debounce` | Closures ([14](#14-closures)) |
-| Deep clone, deep equal | Recursion, cycles, special types |
-| Event emitter, retry with backoff | Design, async control flow |
-
-**Rules for writing a good polyfill:**
-
-- **Don't overwrite a native** implementation: guard with `if (!Array.prototype.myMap)`. In real projects you don't write polyfills by hand; tools like **core-js** plus your bundler's target settings add only what your browser list needs.
-- **Use `function`, not arrow functions**, for methods on prototypes, because they need their own `this`.
-- **Skip holes** in sparse arrays (`i in arr`), like the real methods.
-- **Throw the same errors** the real thing throws (e.g. `TypeError` when the callback isn't a function; `reduce` of an empty array without an initial value).
-- In interviews, name the methods `myMap` etc. so you don't change the real behaviour for everything else. Changing built-in prototypes in production code ("prototype pollution" by your own hand) is a bad idea.
-
-### JavaScript
-
-**Array methods:**
-
-```js
-Array.prototype.myMap = function (callback, thisArg) {
-  if (typeof callback !== "function") throw new TypeError(`${callback} is not a function`);
-  const result = new Array(this.length);
-  for (let i = 0; i < this.length; i++) {
-    if (i in this) result[i] = callback.call(thisArg, this[i], i, this);   // skip holes like the real map
-  }
-  return result;
-};
-
-Array.prototype.myFilter = function (callback, thisArg) {
-  const result = [];
-  for (let i = 0; i < this.length; i++) {
-    if (i in this && callback.call(thisArg, this[i], i, this)) result.push(this[i]);
-  }
-  return result;
-};
-
-Array.prototype.myReduce = function (callback, ...initial) {
-  let i = 0;
-  let acc;
-  if (initial.length > 0) {
-    acc = initial[0];
-  } else {
-    while (i < this.length && !(i in this)) i++;                             // first real element
-    if (i >= this.length) throw new TypeError("Reduce of empty array with no initial value");
-    acc = this[i++];
-  }
-  for (; i < this.length; i++) {
-    if (i in this) acc = callback(acc, this[i], i, this);
-  }
-  return acc;
-};
-
-Array.prototype.myFlat = function (depth = 1) {
-  const result = [];
-  const walk = (arr, d) => {
-    for (let i = 0; i < arr.length; i++) {
-      if (!(i in arr)) continue;
-      if (Array.isArray(arr[i]) && d > 0) walk(arr[i], d - 1);
-      else result.push(arr[i]);
-    }
-  };
-  walk(this, depth);
-  return result;
-};
-
-const prices = [499, 1299, 89];
-console.log(prices.myMap(p => p * 2), prices.map(p => p * 2));
-console.log(prices.myFilter(p => p > 100), prices.myReduce((a, b) => a + b), prices.myReduce((a, b) => a + b, 1000));
-console.log([1, , 3].myMap(x => x * 10), [1, [2, [3, [4]]]].myFlat(), [1, [2, [3, [4]]]].myFlat(Infinity));
-try { [].myReduce((a, b) => a + b); } catch (err) { console.log(err.name, err.message); }
-```
-
-**Output:**
-
-```text
-[ 998, 2598, 178 ] [ 998, 2598, 178 ]
-[ 499, 1299 ] 1887 2887
-[ 10, <1 empty item>, 30 ] [ 1, 2, [ 3, [ 4 ] ] ] [ 1, 2, 3, 4 ]
-TypeError Reduce of empty array with no initial value
-```
-
-**`call`, `apply` and `bind`.** The trick for `call`: temporarily put the function **on the object** as a method, so calling it as `obj.fn()` sets `this` to `obj`. A `Symbol` key avoids clashing with real properties.
-
-```js
-Function.prototype.myCall = function (thisArg, ...args) {
-  const target = thisArg == null ? globalThis : Object(thisArg);   // Object() boxes primitives
-  const key = Symbol("fn");
-  target[key] = this;                                               // `this` is the function being called
-  try {
-    return target[key](...args);
-  } finally {
-    delete target[key];
-  }
-};
-
-Function.prototype.myApply = function (thisArg, args = []) {
-  return this.myCall(thisArg, ...args);
-};
-
-Function.prototype.myBind = function (thisArg, ...preset) {
-  const fn = this;
-  function bound(...later) {
-    // when used with `new`, `this` is the new object and the bound thisArg is ignored
-    return new.target ? new fn(...preset, ...later) : fn.myCall(thisArg, ...preset, ...later);
-  }
-  bound.prototype = fn.prototype;
-  return bound;
-};
-
-function greet(greeting, punctuation) {
-  return `${greeting}, ${this.name}${punctuation}`;
-}
-const asha = { name: "Asha" };
-console.log(greet.myCall(asha, "Hi", "!"), "|", greet.myApply(asha, ["Hello", "."]));
-const hiAsha = greet.myBind(asha, "Hey");
-console.log(hiAsha("?"), "| asha still clean:", Object.getOwnPropertySymbols(asha).length === 0);
-
-function Point(x, y) { this.x = x; this.y = y; }
-const AtOrigin = Point.myBind(null, 0);
-const p = new AtOrigin(5);
-console.log(p, p instanceof Point);
-```
-
-**Output:**
-
-```text
-Hi, Asha! | Hello, Asha.
-Hey, Asha? | asha still clean: true
-Point { x: 0, y: 5 } true
-```
-
-**Promise combinators.** Key rules: results keep the **input order** (not finishing order), `all` rejects on the **first** rejection, `allSettled` never rejects, `race` settles with the first to settle, `any` resolves with the first fulfilment and rejects with an `AggregateError` only if **all** reject. Non-promise values are wrapped with `Promise.resolve`.
-
-```js
-function promiseAll(items) {
-  return new Promise((resolve, reject) => {
-    const list = [...items];
-    const results = new Array(list.length);
-    let remaining = list.length;
-    if (remaining === 0) return resolve([]);
-    list.forEach((item, i) => {
-      Promise.resolve(item).then(value => {
-        results[i] = value;                          // keep input order
-        if (--remaining === 0) resolve(results);
-      }, reject);                                    // first rejection wins
+      console.log(user.name, invoice);
     });
   });
-}
-
-function promiseAllSettled(items) {
-  return promiseAll([...items].map(item =>
-    Promise.resolve(item).then(
-      value => ({ status: "fulfilled", value }),
-      reason => ({ status: "rejected", reason }),
-    )));
-}
-
-function promiseRace(items) {
-  return new Promise((resolve, reject) => {
-    for (const item of items) Promise.resolve(item).then(resolve, reject);
-  });
-}
-
-function promiseAny(items) {
-  return new Promise((resolve, reject) => {
-    const list = [...items];
-    const errors = new Array(list.length);
-    let remaining = list.length;
-    if (remaining === 0) return reject(new AggregateError([], "All promises were rejected"));
-    list.forEach((item, i) => {
-      Promise.resolve(item).then(resolve, err => {
-        errors[i] = err;
-        if (--remaining === 0) reject(new AggregateError(errors, "All promises were rejected"));
-      });
-    });
-  });
-}
-
-const after = (ms, value, fail = false) =>
-  new Promise((res, rej) => setTimeout(() => (fail ? rej(new Error(value)) : res(value)), ms));
-
-console.log(await promiseAll([after(30, "slow"), after(10, "fast"), 42]));
-console.log(await promiseAllSettled([after(10, "ok"), after(5, "boom", true)]).then(r => r.map(x => x.status)));
-console.log(await promiseRace([after(30, "slow"), after(10, "fast")]));
-console.log(await promiseAny([after(5, "down", true), after(20, "mirror-2")]));
-await promiseAll([after(10, "a"), after(5, "payment failed", true)]).catch(err => console.log("all rejected:", err.message));
-await promiseAny([after(5, "x", true), after(5, "y", true)]).catch(err => console.log(err.name, err.errors.map(e => e.message)));
+});
 ```
 
 **Output:**
 
 ```text
-[ 'slow', 'fast', 42 ]
-[ 'fulfilled', 'rejected' ]
-fast
-mirror-2
-all rejected: payment failed
-AggregateError [ 'x', 'y' ]
+user7 INV-1: ₹499
 ```
 
-**`new`, `instanceof` and `Object.create`:**
+Promises (Chapter 24) and `async`/`await` (Chapter 25) flatten this into straight-line code.
+
+### 23.7 The var loop bug, with timers
+
+Chapter 13.4's bug in its most famous form:
 
 ```js
-function myNew(Constructor, ...args) {
-  const obj = Object.create(Constructor.prototype);          // 1. new object linked to the prototype
-  const returned = Constructor.apply(obj, args);             // 2. run the constructor with this = obj
-  const isObject = returned !== null && (typeof returned === "object" || typeof returned === "function");
-  return isObject ? returned : obj;                          // 3. an explicitly returned object wins
+for (var i = 0; i < 3; i++) {
+  setTimeout(() => console.log("var", i), 0);
 }
-
-function myInstanceOf(value, Constructor) {
-  if (value === null || (typeof value !== "object" && typeof value !== "function")) return false;
-  let proto = Object.getPrototypeOf(value);
-  while (proto !== null) {                                   // walk up the prototype chain
-    if (proto === Constructor.prototype) return true;
-    proto = Object.getPrototypeOf(proto);
-  }
-  return false;
+for (let j = 0; j < 3; j++) {
+  setTimeout(() => console.log("let", j), 0);
 }
-
-function objectCreate(proto) {
-  function Temp() {}
-  Temp.prototype = proto;
-  return new Temp();
-}
-
-function User(name) { this.name = name; }
-User.prototype.hello = function () { return `I am ${this.name}`; };
-
-const u = myNew(User, "Ravi");
-console.log(u.hello(), myInstanceOf(u, User), myInstanceOf(u, Object), myInstanceOf(u, Array), myInstanceOf(5, Number));
-const child = objectCreate({ kind: "base" });
-console.log(child.kind, Object.hasOwn(child, "kind"));
 ```
-
-**Output:**
-
-```text
-I am Ravi true true false false
-base false
-```
-
-**Closure utilities: `once`, `memoize` and `curry`:**
-
-```js
-function once(fn) {
-  let done = false, result;
-  return function (...args) {
-    if (!done) { done = true; result = fn.apply(this, args); }
-    return result;
-  };
-}
-
-function memoize(fn, keyOf = (...args) => JSON.stringify(args)) {
-  const cache = new Map();
-  return function (...args) {
-    const key = keyOf(...args);
-    if (!cache.has(key)) cache.set(key, fn.apply(this, args));
-    return cache.get(key);
-  };
-}
-
-function curry(fn) {
-  return function curried(...args) {
-    return args.length >= fn.length
-      ? fn.apply(this, args)
-      : (...more) => curried.apply(this, [...args, ...more]);
-  };
-}
-
-const init = once(() => { console.log("connecting..."); return "db-connection"; });
-console.log(init(), init());
-
-let calls = 0;
-const slowSquare = memoize(n => { calls++; return n * n; });
-console.log(slowSquare(12), slowSquare(12), slowSquare(5), "computed", calls, "times");
-
-const price = curry((rate, qty, unit) => rate * qty * unit);
-console.log(price(2)(3)(10), price(2, 3)(10), price(2)(3, 10), price(2, 3, 10));
-```
-
-**Output:**
-
-```text
-connecting...
-db-connection db-connection
-144 144 25 computed 2 times
-60 60 60 60
-```
-
-**Deep clone with cycles, and a tiny event emitter:**
-
-```js
-function deepClone(value, seen = new WeakMap()) {
-  if (value === null || typeof value !== "object") return value;       // primitives and functions
-  if (seen.has(value)) return seen.get(value);                         // cycles: reuse the copy
-  if (value instanceof Date) return new Date(value);
-  if (value instanceof Map) {
-    const copy = new Map();
-    seen.set(value, copy);
-    for (const [k, v] of value) copy.set(deepClone(k, seen), deepClone(v, seen));
-    return copy;
-  }
-  if (value instanceof Set) {
-    const copy = new Set();
-    seen.set(value, copy);
-    for (const v of value) copy.add(deepClone(v, seen));
-    return copy;
-  }
-  const copy = Array.isArray(value) ? [] : Object.create(Object.getPrototypeOf(value));
-  seen.set(value, copy);
-  for (const key of Reflect.ownKeys(value)) copy[key] = deepClone(value[key], seen);
-  return copy;
-}
-
-const order = { id: 7, placed: new Date("2026-01-15"), tags: new Set(["gift"]), items: [{ sku: "A1" }] };
-order.self = order;                                                    // a cycle
-const copy = deepClone(order);
-copy.items[0].sku = "B2";
-console.log(order.items[0].sku, copy.items[0].sku, copy.self === copy, copy.placed instanceof Date, copy.tags.has("gift"));
-
-class Emitter {
-  #handlers = new Map();
-  on(event, fn) {
-    if (!this.#handlers.has(event)) this.#handlers.set(event, new Set());
-    this.#handlers.get(event).add(fn);
-    return () => this.off(event, fn);                                  // return an "unsubscribe" function
-  }
-  off(event, fn) { this.#handlers.get(event)?.delete(fn); }
-  once(event, fn) {
-    const off = this.on(event, (...args) => { off(); fn(...args); });
-    return off;
-  }
-  emit(event, ...args) {
-    for (const fn of [...(this.#handlers.get(event) ?? [])]) fn(...args);   // copy: handlers may unsubscribe
-  }
-}
-
-const bus = new Emitter();
-const stop = bus.on("order", id => console.log("email for", id));
-bus.once("order", id => console.log("first order ever:", id));
-bus.emit("order", 101);
-bus.emit("order", 102);
-stop();
-bus.emit("order", 103);
-console.log("done");
-```
-
-**Output:**
-
-```text
-A1 B2 true true true
-email for 101
-first order ever: 101
-email for 102
-done
-```
-
-In real code use the built-in `structuredClone(value)` (handles cycles, Dates, Maps, Sets; throws on functions and DOM nodes) and Node's `EventEmitter` or the browser's `EventTarget`.
-
-**Common mistakes:**
-
-- Using an arrow function for `Array.prototype.myMap = () => ...`: `this` is then the outer `this`, not the array.
-- Forgetting holes, the thisArg, or the "no initial value" rule in `reduce`.
-- In `Promise.all`: pushing results in finishing order instead of `results[i]`, or never resolving for an empty array.
-- Using `JSON.parse(JSON.stringify(x))` as deep clone: it drops `undefined`, functions and Symbols, turns Dates into strings, Maps/Sets into `{}`, and crashes on cycles.
-- `memoize` with `JSON.stringify` keys can't tell apart objects that stringify the same, and caches forever; use a `Map`/`WeakMap` keyed by the argument, or an LRU with a size limit.
-
-### Practice
-
-1. Write `promiseWithTimeout(promise, ms)` that rejects with `Error("Timed out after <ms> ms")` if the promise doesn't settle in time, and clears the timer either way. Show one success and one timeout.
-2. Write `retry(fn, { attempts, delay })` that retries an async function with exponential backoff (delay, 2×delay, 4×delay…) and rethrows the last error. Test it with a function that fails twice and then succeeds.
-
-<details>
-<summary><b>Answer</b></summary>
-
-```js
-function promiseWithTimeout(promise, ms) {
-  let timer;
-  const timeout = new Promise((_, reject) => {
-    timer = setTimeout(() => reject(new Error(`Timed out after ${ms} ms`)), ms);
-  });
-  return Promise.race([promise, timeout]).finally(() => clearTimeout(timer));
-}
-
-const wait = (ms, v) => new Promise(r => setTimeout(() => r(v), ms));
-console.log(await promiseWithTimeout(wait(10, "fast reply"), 100));
-await promiseWithTimeout(wait(200, "slow"), 20).catch(err => console.log(err.message));
-
-async function retry(fn, { attempts = 3, delay = 10 } = {}) {
-  let lastError;
-  for (let attempt = 1; attempt <= attempts; attempt++) {
-    try {
-      return await fn(attempt);
-    } catch (err) {
-      lastError = err;
-      console.log(`attempt ${attempt} failed: ${err.message}`);
-      if (attempt < attempts) await wait(delay * 2 ** (attempt - 1));
-    }
-  }
-  throw lastError;
-}
-
-let tries = 0;
-const flaky = async () => {
-  tries++;
-  if (tries < 3) throw new Error("503 Service Unavailable");
-  return "payment captured";
-};
-console.log(await retry(flaky, { attempts: 4, delay: 5 }));
-```
-
-**Output:**
-
-```text
-fast reply
-Timed out after 20 ms
-attempt 1 failed: 503 Service Unavailable
-attempt 2 failed: 503 Service Unavailable
-payment captured
-```
-
-In production add **jitter** (a random part of the delay) so many clients don't retry at the same moment, only retry errors that are safe to retry (timeouts, 429, 5xx, not 400), and accept an `AbortSignal`.
-
-</details>
-
-**Learn more:** [MDN: Array.prototype.reduce](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce) · [MDN: Promise.all](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all) · [core-js](https://github.com/zloirock/core-js) · [MDN: structuredClone](https://developer.mozilla.org/en-US/docs/Web/API/Window/structuredClone)
-
----
-
-## 48. DSA in JavaScript: Toolbox and Classic Coding Questions
-
-### Theory
-
-> **In simple words:** coding rounds test problem solving with data structures (arrays, hash maps, stacks, queues, heaps, trees, graphs) and algorithms (sorting, binary search, two pointers, sliding window, BFS/DFS, dynamic programming). The full step-by-step course is **`dsa-python.md`**; the ideas are the same in every language. This section is the **JavaScript toolbox**: which built-in plays each role, what it costs, and the JavaScript-specific traps that cost people interviews.
-
-| Classic structure | In JavaScript | Cost and notes |
-|---|---|---|
-| Dynamic array | `Array` | index O(1); `push`/`pop` O(1); `shift`/`unshift`/`splice` in the middle O(n) |
-| Hash map | `Map` (any key type, keeps insertion order) | `get`/`set`/`has`/`delete` O(1) average. Prefer it over plain objects for counting: object keys become strings and inherit `__proto__` |
-| Hash set | `Set` | `has`/`add` O(1). ES2025 added `union`, `intersection`, `difference` |
-| Stack | `Array` with `push`/`pop` | O(1) |
-| Queue | Array plus a **head index** (or a linked list) | `shift()` is O(n) on big arrays, so BFS with `shift` can become O(n²) |
-| Priority queue (heap) | **None built in**: write a small binary heap (below) | push/pop O(log n) |
-| Sorted order | `arr.sort((a, b) => a - b)` / `toSorted` | O(n log n), stable since ES2019. **Default sort compares strings**: `[10, 9, 1].sort()` gives `[1, 10, 9]` |
-| Big integers | `BigInt` (`123n`) | Numbers are exact only up to `Number.MAX_SAFE_INTEGER` (2⁵³ − 1) |
-| 2-D grid | Array of arrays: `Array.from({ length: r }, () => Array(c).fill(0))` | `Array(r).fill([])` shares **one** inner array |
-| Memoisation | `Map` keyed by a string like `` `${i},${j}` `` | turns exponential recursion into polynomial |
-
-**JavaScript-specific tips:** integer division is `Math.trunc(a / b)` (or `Math.floor` for non-negative); use `Infinity` / `-Infinity` as starting min/max; `for...of` for values and `entries()` for index + value; deep recursion can overflow the call stack (around ten thousand frames), so use an explicit stack for deep DFS; say the time and space complexity out loud; and write clean, correct code before clever code.
-
-### JavaScript
-
-**A binary min-heap** (the thing JavaScript doesn't give you). Store the tree in an array: the children of index `i` are `2i + 1` and `2i + 2`, its parent is `(i - 1) >> 1`. Push adds at the end and "bubbles up"; pop moves the last item to the top and "sinks down".
-
-```js
-class MinHeap {
-  #items = [];
-  #less;
-  constructor(less = (a, b) => a < b) { this.#less = less; }
-  get size() { return this.#items.length; }
-  peek() { return this.#items[0]; }
-  push(value) {
-    const a = this.#items;
-    a.push(value);
-    let i = a.length - 1;
-    while (i > 0) {
-      const parent = (i - 1) >> 1;
-      if (!this.#less(a[i], a[parent])) break;
-      [a[i], a[parent]] = [a[parent], a[i]];
-      i = parent;
-    }
-  }
-  pop() {
-    const a = this.#items;
-    if (a.length === 0) return undefined;
-    const top = a[0];
-    const last = a.pop();
-    if (a.length > 0) {
-      a[0] = last;
-      let i = 0;
-      while (true) {
-        const l = 2 * i + 1, r = l + 1;
-        let smallest = i;
-        if (l < a.length && this.#less(a[l], a[smallest])) smallest = l;
-        if (r < a.length && this.#less(a[r], a[smallest])) smallest = r;
-        if (smallest === i) break;
-        [a[i], a[smallest]] = [a[smallest], a[i]];
-        i = smallest;
-      }
-    }
-    return top;
-  }
-}
-
-const heap = new MinHeap();
-for (const n of [42, 7, 19, 3, 25]) heap.push(n);
-const drained = [];
-while (heap.size) drained.push(heap.pop());
-console.log(drained);
-
-// Top-K most frequent words: keep a heap of size K ordered by count (smallest on top)
-function topK(words, k) {
-  const counts = new Map();
-  for (const w of words) counts.set(w, (counts.get(w) ?? 0) + 1);
-  const h = new MinHeap((a, b) => a[1] < b[1] || (a[1] === b[1] && a[0] > b[0]));
-  for (const entry of counts) {
-    h.push(entry);
-    if (h.size > k) h.pop();                       // throw away the least frequent
-  }
-  const result = [];
-  while (h.size) result.push(h.pop());
-  return result.reverse();
-}
-console.log(topK("the cat and the dog and the bird".split(" "), 2));
-console.log([10, 9, 1, 100].sort(), [10, 9, 1, 100].sort((a, b) => a - b));
-```
-
-**Output:**
-
-```text
-[ 3, 7, 19, 25, 42 ]
-[ [ 'the', 3 ], [ 'and', 2 ] ]
-[ 1, 10, 100, 9 ] [ 1, 9, 10, 100 ]
-```
-
-**1. Two Sum** (hash map, O(n)): return the indices of two numbers that add up to a target.
-
-```js
-function twoSum(nums, target) {
-  const seen = new Map();                         // value → index
-  for (const [i, n] of nums.entries()) {
-    if (seen.has(target - n)) return [seen.get(target - n), i];
-    seen.set(n, i);
-  }
-  return null;
-}
-console.log(twoSum([2, 7, 11, 15], 9), twoSum([3, 2, 4], 6), twoSum([1, 2], 10));
-```
-
-**Output:**
-
-```text
-[ 0, 1 ] [ 1, 2 ] null
-```
-
-**2. Group anagrams** (hash map with a computed key): `sorted letters` is the same for all anagrams.
-
-```js
-function groupAnagrams(words) {
-  const groups = new Map();
-  for (const w of words) {
-    const key = [...w].sort().join("");
-    if (!groups.has(key)) groups.set(key, []);
-    groups.get(key).push(w);
-  }
-  return [...groups.values()];
-}
-console.log(groupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"]));
-```
-
-**Output:**
-
-```text
-[ [ 'eat', 'tea', 'ate' ], [ 'tan', 'nat' ], [ 'bat' ] ]
-```
-
-**3. Valid brackets** (stack):
-
-```js
-function isBalanced(s) {
-  const pairs = { ")": "(", "]": "[", "}": "{" };
-  const stack = [];
-  for (const ch of s) {
-    if ("([{".includes(ch)) stack.push(ch);
-    else if (ch in pairs && stack.pop() !== pairs[ch]) return false;
-  }
-  return stack.length === 0;
-}
-console.log(isBalanced("{[()()]}"), isBalanced("([)]"), isBalanced("(("), isBalanced("fn(a[0]) { }"));
-```
-
-**Output:**
-
-```text
-true false false true
-```
-
-**4. Longest substring without repeating characters** (sliding window, O(n)): grow the right edge; when a character repeats, jump the left edge past its previous position.
-
-```js
-function longestUnique(s) {
-  const lastSeen = new Map();
-  let left = 0, best = "";
-  for (let right = 0; right < s.length; right++) {
-    const ch = s[right];
-    if (lastSeen.has(ch) && lastSeen.get(ch) >= left) left = lastSeen.get(ch) + 1;
-    lastSeen.set(ch, right);
-    if (right - left + 1 > best.length) best = s.slice(left, right + 1);
-  }
-  return best;
-}
-console.log(longestUnique("abcabcbb"), longestUnique("pwwkew"), JSON.stringify(longestUnique("")));
-```
-
-**Output:**
-
-```text
-abc wke ""
-```
-
-**5. Binary search** (O(log n)) and "first position where it could be inserted" (lower bound), the version most problems actually need:
-
-```js
-function lowerBound(sorted, target) {
-  let lo = 0, hi = sorted.length;                 // answer is in [lo, hi]
-  while (lo < hi) {
-    const mid = (lo + hi) >>> 1;                  // unsigned shift = floor((lo+hi)/2)
-    if (sorted[mid] < target) lo = mid + 1;
-    else hi = mid;
-  }
-  return lo;
-}
-const prices = [99, 149, 149, 299, 499];
-console.log(lowerBound(prices, 149), lowerBound(prices, 300), lowerBound(prices, 1000), lowerBound(prices, 10));
-const found = i => i < prices.length && prices[i] === 299;
-console.log("299 present:", found(lowerBound(prices, 299)));
-```
-
-**Output:**
-
-```text
-1 4 5 0
-299 present: true
-```
-
-**6. Merge overlapping intervals** (sort, then sweep):
-
-```js
-function mergeIntervals(intervals) {
-  const sorted = intervals.toSorted((a, b) => a[0] - b[0]);
-  const merged = [];
-  for (const [start, end] of sorted) {
-    const last = merged.at(-1);
-    if (last && start <= last[1]) last[1] = Math.max(last[1], end);
-    else merged.push([start, end]);
-  }
-  return merged;
-}
-console.log(mergeIntervals([[8, 10], [1, 3], [2, 6], [15, 18], [17, 20]]));
-```
-
-**Output:**
-
-```text
-[ [ 1, 6 ], [ 8, 10 ], [ 15, 20 ] ]
-```
-
-**7. Shortest path in a grid** (BFS with a head-index queue): `#` is a wall; count steps from `S` to `E`.
-
-```js
-function shortestPath(grid) {
-  const rows = grid.length, cols = grid[0].length;
-  let start;
-  grid.forEach((row, r) => { const c = row.indexOf("S"); if (c !== -1) start = [r, c]; });
-  const queue = [[...start, 0]];
-  const seen = new Set([start.join(",")]);
-  for (let head = 0; head < queue.length; head++) {          // O(1) dequeue instead of shift()
-    const [r, c, dist] = queue[head];
-    if (grid[r][c] === "E") return dist;
-    for (const [dr, dc] of [[1, 0], [-1, 0], [0, 1], [0, -1]]) {
-      const nr = r + dr, nc = c + dc, key = `${nr},${nc}`;
-      if (nr < 0 || nc < 0 || nr >= rows || nc >= cols) continue;
-      if (grid[nr][nc] === "#" || seen.has(key)) continue;
-      seen.add(key);
-      queue.push([nr, nc, dist + 1]);
-    }
-  }
-  return -1;
-}
-console.log(shortestPath(["S.#.", "..#E", "...."]), shortestPath(["S#E"]));
-```
-
-**Output:**
-
-```text
-6 -1
-```
-
-**8. LRU cache** (a `Map` remembers insertion order, so "delete and re-insert" moves a key to the newest end; the first key is the least recently used):
-
-```js
-class LRUCache {
-  #map = new Map();
-  constructor(capacity) { this.capacity = capacity; }
-  get(key) {
-    if (!this.#map.has(key)) return undefined;
-    const value = this.#map.get(key);
-    this.#map.delete(key);
-    this.#map.set(key, value);                            // now most recently used
-    return value;
-  }
-  set(key, value) {
-    this.#map.delete(key);
-    this.#map.set(key, value);
-    if (this.#map.size > this.capacity) {
-      this.#map.delete(this.#map.keys().next().value);    // evict the oldest
-    }
-  }
-  keys() { return [...this.#map.keys()]; }
-}
-const cache = new LRUCache(2);
-cache.set("user:1", "Asha");
-cache.set("user:2", "Ravi");
-cache.get("user:1");
-cache.set("user:3", "Meera");                             // evicts user:2
-console.log(cache.keys(), cache.get("user:2"));
-```
-
-**Output:**
-
-```text
-[ 'user:1', 'user:3' ] undefined
-```
-
-**9. Climbing stairs / coin change** (dynamic programming, bottom-up):
-
-```js
-// fewest coins that add up to amount (−1 if impossible)
-function coinChange(coins, amount) {
-  const dp = new Array(amount + 1).fill(Infinity);
-  dp[0] = 0;
-  for (let a = 1; a <= amount; a++) {
-    for (const coin of coins) {
-      if (coin <= a) dp[a] = Math.min(dp[a], dp[a - coin] + 1);
-    }
-  }
-  return dp[amount] === Infinity ? -1 : dp[amount];
-}
-console.log(coinChange([1, 5, 10, 25], 63), coinChange([2], 3), coinChange([1, 3, 4], 6));
-```
-
-**Output:**
-
-```text
-6 -1 2
-```
-
-**Common mistakes:**
-
-- `arr.sort()` on numbers (string order). Always pass `(a, b) => a - b`.
-- Using `queue.shift()` in BFS on large inputs (O(n) each time).
-- Counting with a plain object and hitting keys like `"constructor"` or `"__proto__"`; use a `Map` or `Object.create(null)`.
-- `Array(n).fill([])` or `.fill({})`: every slot is the **same** object.
-- Comparing arrays with `===` (compares references) or using arrays as `Set`/`Map` keys; use a string key like `` `${r},${c}` ``.
-- Integer overflow of precision: `2 ** 53 + 1` can't be represented; use `BigInt` for huge exact integers.
-
-### Practice
-
-1. Write `isPalindrome(s)` that ignores case and non-letters/digits, using two pointers and O(1) extra space. Test `"A man, a plan, a canal: Panama"` and `"race a car"`.
-2. Write `productExceptSelf(nums)` without division, in O(n) (prefix and suffix products). Test `[1, 2, 3, 4]`.
-
-<details>
-<summary><b>Answer</b></summary>
-
-```js
-function isPalindrome(s) {
-  const ok = ch => /[a-z0-9]/i.test(ch);
-  let i = 0, j = s.length - 1;
-  while (i < j) {
-    if (!ok(s[i])) { i++; continue; }
-    if (!ok(s[j])) { j--; continue; }
-    if (s[i].toLowerCase() !== s[j].toLowerCase()) return false;
-    i++; j--;
-  }
-  return true;
-}
-console.log(isPalindrome("A man, a plan, a canal: Panama"), isPalindrome("race a car"));
-
-function productExceptSelf(nums) {
-  const out = new Array(nums.length).fill(1);
-  let prefix = 1;
-  for (let i = 0; i < nums.length; i++) { out[i] = prefix; prefix *= nums[i]; }
-  let suffix = 1;
-  for (let i = nums.length - 1; i >= 0; i--) { out[i] *= suffix; suffix *= nums[i]; }
-  return out;
-}
-console.log(productExceptSelf([1, 2, 3, 4]));
-```
-
-**Output:**
-
-```text
-true false
-[ 24, 12, 8, 6 ]
-```
-
-Both are O(n) time; the second uses the output array as its only extra space.
-
-</details>
-
-**Learn more:** [dsa-python.md in these notes](dsa-python.md) · [NeetCode roadmap](https://neetcode.io/roadmap) · [MDN: Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map) · [MDN: Array.prototype.sort](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort)
-
----
-
-## 49. Output-Based Questions (Predict the Output)
-
-### Theory
-
-> **In simple words:** "what does this print?" questions check whether you really know JavaScript's rules: hoisting and the temporal dead zone, closures in loops, `this`, coercion, the event loop order (sync → microtasks → macrotasks), references vs copies, and prototype lookups. For each one, **write down your prediction first**, then open the answer. Every answer below was produced by running the code in Node.js 24.
-
-**How to solve them:** go line by line, keep a small table of variable values, and for async code keep three lists: **"runs now"**, **microtask queue** (promise callbacks, `await` continuations, `queueMicrotask`) and **task queue** (`setTimeout`, I/O). After the synchronous code finishes, **all** microtasks run before the next timer.
-
-### JavaScript
-
-**1. `var` vs `let` in a loop with timers**
-
-```js
-for (var i = 0; i < 3; i++) setTimeout(() => console.log("var", i));
-for (let j = 0; j < 3; j++) setTimeout(() => console.log("let", j));
-```
-
-<details>
-<summary><b>Answer</b></summary>
 
 **Output:**
 
@@ -6634,481 +5744,8406 @@ let 1
 let 2
 ```
 
-`var` has **one** `i` for the whole function; the callbacks run after the loop, when it is 3. `let` creates a **new binding per iteration**, so each closure keeps its own `j` ([14](#14-closures)).
+The loops finish before any callback runs. All three `var` callbacks close over the same `i`, which is 3 by then; each `let` round has its own `j`.
 
-</details>
+### 23.8 Summary
 
-**2. Hoisting and the temporal dead zone**
-
-```js
-console.log(typeof hoistedFn, typeof hoistedVar, hoistedVar);
-var hoistedVar = "ready";
-function hoistedFn() {}
-try {
-  console.log(notYet);
-  let notYet = 1;
-} catch (err) {
-  console.log(err.name);
-}
 ```
+one thread; call stack of frames; long synchronous work blocks everything
+setTimeout(fn, ms) → id; clearTimeout(id);  setInterval(fn, ms); clearInterval(id)
+event loop: when the stack is empty, run the next task from the queue to completion
+delays are minimums;  setTimeout(fn, 0) waits for the current code to finish
+error-first callbacks: callback(err, result);  try/catch can't catch errors inside later callbacks
+nested callbacks → callback hell → promises (Ch 24)
+```
+
+**Key terms:**
+
+- **Thread:** a single sequence of execution; JavaScript runs your code on one.
+- **Call stack:** the stack of active function calls; each call adds a frame and each return removes it.
+- **Stack frame:** the record of one function call on the call stack: its arguments, local variables and return point.
+- **Blocking:** code that keeps the thread busy so nothing else can run.
+- **Asynchronous:** started now and finished later, without blocking the thread.
+- **setTimeout:** schedules a function to run once after a minimum delay.
+- **setInterval:** schedules a function to run repeatedly at an interval until cleared.
+- **Task queue:** the queue where callbacks wait until the event loop runs them; also called the macrotask queue.
+- **Event loop:** the mechanism that runs the next queued task whenever the call stack is empty.
+- **Error-first callback:** Node.js's callback convention, `callback(error, result)`.
+- **Callback hell:** deeply nested callbacks that make asynchronous code hard to follow.
+
+### Exercises
+
+1. Predict the order of the four lines, then check:
+   ```
+   console.log("A"); setTimeout(() => console.log("B"), 0);
+   setTimeout(() => console.log("C"), 0); console.log("D");
+   ```
+2. Write `delay(ms, value, callback)` that calls `callback(value)` after `ms`, and use it to print "one", then "two" 30 ms later.
 
 <details>
-<summary><b>Answer</b></summary>
-
-**Output:**
-
-```text
-function undefined undefined
-ReferenceError
-```
-
-Function declarations are hoisted **with their body**; `var` is hoisted and set to `undefined`; `let`/`const` are hoisted but stay in the **temporal dead zone** until their line runs ([13](#13-scope-hoisting-and-the-temporal-dead-zone)).
-
-</details>
-
-**3. Event loop order**
+<summary><b>Answers</b></summary>
 
 ```js
-console.log("1 sync");
-setTimeout(() => console.log("5 timeout"), 0);
-Promise.resolve().then(() => console.log("3 microtask"));
-queueMicrotask(() => console.log("4 microtask"));
-(async () => {
-  console.log("2 async fn starts synchronously");
-  await null;
-  console.log("4b after await");
-})();
-console.log("2b sync end");
+console.log("A");
+setTimeout(() => console.log("B"), 0);
+setTimeout(() => console.log("C"), 0);
+console.log("D");
 ```
-
-<details>
-<summary><b>Answer</b></summary>
-
-**Output:**
-
-```text
-1 sync
-2 async fn starts synchronously
-2b sync end
-3 microtask
-4 microtask
-4b after await
-5 timeout
-```
-
-An `async` function runs synchronously **until its first `await`**. Microtasks run in the order they were queued, all before the timer ([23](#23-how-javascript-runs-call-stack-event-loop-tasks-and-microtasks)).
-
-</details>
-
-**4. Promise chains and `finally`**
-
-```js
-Promise.resolve(1)
-  .then(x => x + 1)
-  .then(x => { throw new Error(`bad ${x}`); })
-  .then(() => console.log("skipped"))
-  .catch(err => { console.log("caught", err.message); return 10; })
-  .finally(() => { console.log("finally"); return 999; })
-  .then(x => console.log("value", x));
-```
-
-<details>
-<summary><b>Answer</b></summary>
-
-**Output:**
-
-```text
-caught bad 2
-finally
-value 10
-```
-
-A throw skips `then` handlers until a `catch`. The `catch` returns 10, so the chain is fulfilled again. `finally`'s return value is **ignored** (unless it throws), so 10 passes through.
-
-</details>
-
-**5. `this` in different kinds of functions** (inside a strict-mode function, like all modern module and class code)
-
-```js
-function strictDemo() {
-  "use strict";
-  const counter = {
-    count: 5,
-    regular() { return this.count; },
-    arrow: () => typeof this,
-    delayed() { return [1].map(function () { return this?.count; }); },
-    delayedArrow() { return [1].map(() => this.count); },
-  };
-  const { regular } = counter;
-  console.log(counter.regular(), counter.arrow(), counter.delayed(), counter.delayedArrow());
-  try { regular(); } catch (err) { console.log(err.constructor.name); }
-}
-strictDemo();
-```
-
-<details>
-<summary><b>Answer</b></summary>
-
-**Output:**
-
-```text
-5 undefined [ undefined ] [ 5 ]
-TypeError
-```
-
-`this` depends on **how** a function is called. An arrow has no `this` of its own: the one at object level takes it from `strictDemo`, which was called plainly, so it is `undefined` (object literals don't create a `this`). A plain `function` callback called by `map` gets `undefined` in strict mode; an arrow callback inherits the method's `this` (5). The detached `regular()` has `this === undefined`, so `this.count` throws. In old non-strict scripts `this` would be `globalThis` instead, and `regular()` would quietly return `undefined` ([15](#15-the-this-keyword-call-apply-and-bind)).
-
-</details>
-
-**6. Coercion classics**
-
-```js
-console.log(1 + "2", "3" - 1, "3" * "4", true + 1, [] + [], [] + {}, [1, 2] + [3]);
-console.log(0 == "", null == 0, null == undefined, NaN === NaN, [1] == 1, "b" + "a" + +"a" + "a");
-console.log(0.1 + 0.2 === 0.3, Object.is(-0, 0), typeof NaN, typeof null, [10, 1, 3].sort());
-```
-
-<details>
-<summary><b>Answer</b></summary>
-
-**Output:**
-
-```text
-12 2 12 2  [object Object] 1,23
-true false true false true baNaNa
-false false number object [ 1, 10, 3 ]
-```
-
-`+` with a string concatenates; other maths operators convert to numbers. Arrays become strings (`[] + []` is an empty string, so the output has **two** spaces there). `null == 0` is false because `null` only loosely equals `undefined`. `+"a"` is `NaN` ([16](#16-type-conversion-coercion-and--vs-)).
-
-</details>
-
-**7. References vs copies**
-
-```js
-const a = { tags: ["new"], price: 100 };
-const b = a;
-const c = { ...a };
-const d = structuredClone(a);
-b.price = 80;
-c.tags.push("sale");
-console.log(a.price, c.price, a.tags, d.tags, a === b, a.tags === c.tags);
-```
-
-<details>
-<summary><b>Answer</b></summary>
-
-**Output:**
-
-```text
-80 100 [ 'new', 'sale' ] [ 'new' ] true true
-```
-
-`b` is the same object. Spread makes a **shallow** copy: `c.price` is separate, but `c.tags` is the same array. `structuredClone` deep-copies ([18](#18-objects-in-depth-copying-property-descriptors-getterssetters-and-immutability)).
-
-</details>
-
-**8. Closures and counters**
-
-```js
-function makeCounter() {
-  let n = 0;
-  return { inc: () => ++n, get: () => n };
-}
-const c1 = makeCounter();
-const c2 = makeCounter();
-c1.inc(); c1.inc(); c2.inc();
-let x = 1;
-const readX = () => x;
-x = 2;
-console.log(c1.get(), c2.get(), readX());
-```
-
-<details>
-<summary><b>Answer</b></summary>
-
-**Output:**
-
-```text
-2 1 2
-```
-
-Each call to `makeCounter` gets its own `n`. Closures keep a **live link** to the variable, not a snapshot, so `readX()` sees 2.
-
-</details>
-
-**9. Prototype lookups and shadowing**
-
-```js
-function Animal() {}
-Animal.prototype.legs = 4;
-Animal.prototype.sounds = [];
-const cat = new Animal();
-const dog = new Animal();
-cat.legs = 3;                  // creates an OWN property (shadowing)
-cat.sounds.push("meow");       // mutates the SHARED array on the prototype
-console.log(dog.legs, cat.legs, dog.sounds, Object.hasOwn(cat, "sounds"));
-delete cat.legs;
-console.log(cat.legs);
-```
-
-<details>
-<summary><b>Answer</b></summary>
-
-**Output:**
-
-```text
-4 3 [ 'meow' ] false
-4
-```
-
-Assigning creates an own property; mutating a value found on the prototype changes it for **every** instance. Deleting the own property makes the prototype's value visible again ([19](#19-prototypes-and-prototypal-inheritance)).
-
-</details>
-
-**10. `async` return values and `forEach` with `await`**
-
-```js
-async function getFive() { return 5; }
-console.log(getFive() instanceof Promise);
-
-const results = [];
-[30, 10, 20].forEach(async ms => {
-  await new Promise(r => setTimeout(r, ms));
-  results.push(ms);
-});
-console.log("after forEach:", results);
-await new Promise(r => setTimeout(r, 50));
-console.log("later:", results);
-```
-
-<details>
-<summary><b>Answer</b></summary>
-
-**Output:**
-
-```text
-true
-after forEach: []
-later: [ 10, 20, 30 ]
-```
-
-An `async` function **always** returns a promise. `forEach` doesn't wait for async callbacks, so the array is empty right after it, and later fills in **finishing** order. Use `for...of` with `await` (in order) or `Promise.all(arr.map(...))` (in parallel, results in input order) ([25](#25-asyncawait-asynchronous-code-that-reads-like-normal-code)).
-
-</details>
-
-**11. Getters, `Object.freeze` and strict mode**
-
-```js
-function freezeDemo() {
-  "use strict";
-  const config = Object.freeze({ env: "prod", limits: { rps: 100 } });
-  config.limits.rps = 5;          // nested object is not frozen
-  try { config.env = "dev"; } catch (err) { console.log(err.name); }
-  const user = { first: "Asha", last: "Rao", get full() { return `${this.first} ${this.last}`; } };
-  user.first = "Meera";
-  console.log(config.env, config.limits.rps, user.full);
-}
-freezeDemo();
-```
-
-<details>
-<summary><b>Answer</b></summary>
-
-**Output:**
-
-```text
-TypeError
-prod 5 Meera Rao
-```
-
-In strict mode (every ES module and class body), writing to a frozen property **throws**; in old sloppy scripts it fails silently. `freeze` is **shallow**, so the nested `limits` object still changes. A getter is computed on every read, so it sees the new first name.
-
-</details>
-
-**12. `var` ignores blocks, and a local `var` shadows from the top**
-
-```js
-var total = 1;
-{
-  var total = 2;                         // same variable: var ignores blocks
-}
-function shadow() {
-  console.log(total);                    // the local var below is hoisted → undefined
-  var total = 3;
-  return total;
-}
-console.log(total, shadow(), total);
-```
-
-<details>
-<summary><b>Answer</b></summary>
-
-**Output:**
-
-```text
-undefined
-2 3 2
-```
-
-`var` is function-scoped, so the block re-declares the same `total`. Inside `shadow`, the local `var total` is hoisted, so the first log sees `undefined` instead of the outer 2. The arguments are evaluated left to right, so `total` (2) is read before `shadow()` runs and prints.
-
-</details>
-
-**Common mistakes when answering:**
-
-- Forgetting that the code **inside** `new Promise(executor)` and the start of an `async` function run synchronously.
-- Assuming `setTimeout(fn, 0)` runs before promise callbacks.
-- Forgetting that `console.log(obj)` in the browser shows the object **live** when expanded later (Node prints it at that moment).
-
-### Practice
-
-1. Predict the output:
-
-```js
-const p = new Promise(resolve => {
-  console.log("A");
-  resolve("B");
-  console.log("C");
-});
-setTimeout(() => console.log("D"));
-p.then(v => {
-  console.log(v);
-  Promise.resolve().then(() => console.log("E"));
-  setTimeout(() => console.log("F"));
-});
-console.log("G");
-```
-
-<details>
-<summary><b>Answer</b></summary>
 
 **Output:**
 
 ```text
 A
-C
-G
-B
-E
 D
-F
+B
+C
 ```
 
-The executor runs synchronously (A, C), then the rest of the script (G). Then microtasks: B, and the microtask queued inside it (E) also runs before any timer. Then timers in the order they were scheduled: D, F.
+```js
+function delay(ms, value, callback) {
+  setTimeout(() => callback(value), ms);
+}
+delay(30, "one", (v) => {
+  console.log(v);
+  delay(30, "two", (w) => console.log(w));
+});
+```
+
+**Output:**
+
+```text
+one
+two
+```
+
+1. The synchronous lines run first; then the queued timers in order.
 
 </details>
 
-**Learn more:** [JavaScript Visualized: event loop (Lydia Hallie)](https://www.lydiahallie.com/blog/event-loop) · [javascript-questions (Lydia Hallie)](https://github.com/lydiahallie/javascript-questions) · [MDN: Microtask guide](https://developer.mozilla.org/en-US/docs/Web/API/HTML_DOM_API/Microtask_guide)
+**Practice:**
+
+| # | Problem (LeetCode) | Difficulty |
+|---|---|---|
+| 1 | [2715. Timeout Cancellation](https://leetcode.com/problems/timeout-cancellation/) | 🟢 Easy |
+| 2 | [2725. Interval Cancellation](https://leetcode.com/problems/interval-cancellation/) | 🟢 Easy |
+
+**Learn more:** [MDN: the event loop](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Event_loop) · [Philip Roberts: What the heck is the event loop anyway? (talk)](https://www.youtube.com/watch?v=8aGhZQkoFbQ) · [Node.js: the event loop](https://nodejs.org/en/learn/asynchronous-work/event-loop-timers-and-nexttick)
 
 ---
 
-## 50. JavaScript Cheat Sheet
+## 24. Promises and Microtasks
 
-**Basics:**
+**You need:** Chapter 23. · **You'll learn:** what a promise is, how to create and chain them, how errors flow through a chain, the microtask queue that makes promise callbacks run before timers, and the combinators `all`, `allSettled`, `race` and `any`.
 
-```text
-const x = 5; let n = 0;  (never var)          typeof x, Array.isArray(a), x instanceof Date, Number.isNaN(v)
-Number("42"), String(9), Boolean(0), parseInt("08px", 10)     7 / 2 = 3.5, Math.trunc(7 / 2) = 3, 7 % 2 = 1, 2 ** 10
-`Hi ${name}`  s.at(-1)  s.slice(1, 4)  s.split(",")  s.trim()  s.includes("x")  s.padStart(3, "0")  s.replaceAll(a, b)
-if (a) {} else if (b) {} else {}      cond ? x : y      switch (v) { case 1: ...; break; default: ... }
-for (const v of arr)  for (const [k, v] of Object.entries(obj))  for (let i = 0; i < n; i++)  while (cond)
-falsy: false 0 -0 0n "" null undefined NaN     a ?? b (only null/undefined)   a || b (any falsy)   obj?.x?.y   === always
+### 24.1 A value that arrives later
+
+A **promise** is an object standing for the result of an asynchronous operation that may not have finished yet. It's in one of three **states**:
+
+- **pending:** not finished yet;
+- **fulfilled:** finished with a value;
+- **rejected:** failed with a reason (usually an `Error`).
+
+Once fulfilled or rejected (together: **settled**), it never changes again. Instead of passing a callback *into* the operation, you get a promise *back* and attach handlers to it.
+
+### 24.2 Creating a promise
+
+`new Promise(executor)` runs the **executor** function immediately, giving it two functions: call `resolve(value)` to fulfil the promise, or `reject(error)` to reject it. Wrapping Chapter 23's callback-style `fetchUser`:
+
+```js
+function fetchUser(id) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (id <= 0) {
+        reject(new Error(`invalid id ${id}`));
+      } else {
+        resolve({ id, name: `user${id}` });
+      }
+    }, 20);
+  });
+}
+const p = fetchUser(7);
+console.log(p);
+p.then((user) => console.log("got", user));
 ```
 
-**Arrays and objects:**
+**Output:**
 
 ```text
-push/pop (end)  unshift/shift (front, O(n))  slice (copy)  splice (mutates)  includes  indexOf  find/findLast  findIndex
-map  filter  reduce((acc, x) => ..., init)  some  every  flat(depth)  flatMap  sort((a, b) => a - b)  join
-non-mutating: toSorted  toReversed  toSpliced  with(i, v)       Array.from({ length: n }, (_, i) => i)   Object.groupBy(arr, fn)
-{ ...a, b: 2 }  (shallow)   structuredClone(x)  (deep)   const { a, b: renamed = 1, ...rest } = obj   const [first, , third] = arr
-Object.keys/values/entries/fromEntries   Object.hasOwn(o, k)   Object.freeze (shallow)   Map/Set (any keys, O(1) has)   WeakMap
+Promise { <pending> }
+got { id: 7, name: 'user7' }
 ```
 
-**Functions, scope, this:**
+Turning a callback API into a promise API like this is **promisifying** it (Node.js has `util.promisify` for error-first callbacks). The most useful tiny promise, a pause:
+
+```js
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+sleep(30).then(() => console.log("30 ms later"));
+```
+
+**Output:**
 
 ```text
-function f(a, b = 1, ...rest) {}   const g = (x) => x * 2   hoisting: function bodies yes; let/const TDZ; var = undefined
-closure = function + variables it remembers      this: obj.m() → obj; plain call → undefined (strict); arrow → outer this
-f.call(obj, a, b)  f.apply(obj, [a, b])  f.bind(obj)     class A extends B { #priv; static s; constructor() { super(); } get x() {} }
+30 ms later
 ```
 
-**Async:**
+### 24.3 then, catch and finally
+
+- `p.then(onFulfilled)` runs when `p` fulfils, with the value;
+- `p.catch(onRejected)` runs when it rejects, with the reason;
+- `p.finally(fn)` runs either way, for cleanup.
+
+```js
+fetchUser(-1)
+  .then((user) => console.log("never", user))
+  .catch((err) => console.log("error:", err.message))
+  .finally(() => console.log("done"));
+```
+
+**Output:**
 
 ```text
-order: sync code → ALL microtasks (then/await/queueMicrotask) → one task (setTimeout, I/O, events) → render → repeat
-async function f() { try { const r = await fetch(url, { signal }); if (!r.ok) throw new Error(r.status); return await r.json(); } catch (e) {} }
-Promise.all (fail fast)  allSettled (never rejects)  race (first to settle)  any (first success)  Promise.withResolvers()
-parallel: await Promise.all(items.map(fn))   sequential: for (const i of items) await fn(i)   AbortSignal.timeout(5000)
+error: invalid id -1
+done
 ```
 
-**Browser:**
+### 24.4 Chaining
+
+`then` returns a **new** promise, which settles with whatever its handler returns. If the handler returns a promise, the chain waits for it. So dependent steps become a flat chain instead of nested callbacks:
+
+```js
+const fetchOrders = (user) => sleep(20).then(() => [{ id: 1, total: 499 }]);
+const fetchInvoice = (order) => sleep(20).then(() => `INV-${order.id}: ₹${order.total}`);
+
+fetchUser(7)
+  .then((user) => fetchOrders(user))
+  .then((orders) => fetchInvoice(orders[0]))
+  .then((invoice) => console.log(invoice))
+  .catch((err) => console.log("failed:", err.message));
+```
+
+**Output:**
 
 ```text
-document.querySelector(".c")  el.textContent = userText  (NOT innerHTML)  el.classList.toggle("open")  el.dataset.id
-list.addEventListener("click", e => e.target.closest("li"))  (delegation)   e.preventDefault()   { once: true, signal }
-localStorage (strings, sync, ~5 MB, no secrets)   IndexedDB (big/structured)   HttpOnly cookies for sessions
-IntersectionObserver · ResizeObserver · requestAnimationFrame · Web Workers · fetch + CORS (server sends Access-Control-Allow-Origin)
+INV-1: ₹499
 ```
 
-**Complexity:** array index/push/pop O(1), shift/unshift/includes O(n) · Map/Set get/has O(1) avg · sort O(n log n) · no built-in heap.
+Compare Chapter 23.6: one level deep, and one `catch` for every step. A rejection (or an error thrown in any handler) skips the following `then`s until the next `catch`, like an exception skipping to `catch` in synchronous code:
 
-**Tooling:** pnpm/npm + lock file · Vite · TypeScript · ESLint (flat config) + Prettier or Biome · Vitest / node --test · Playwright · Sentry.
+```js
+Promise.resolve(1)
+  .then((n) => {
+    throw new Error(`bad value ${n}`);
+  })
+  .then(() => console.log("skipped"))
+  .catch((err) => {
+    console.log("caught:", err.message);
+    return 0;
+  })
+  .then((n) => console.log("recovered with", n));
+```
 
-**Gotchas:** `[10, 9, 1].sort()` sorts as strings · `0.1 + 0.2 !== 0.3` · `typeof null === "object"` · `NaN !== NaN` · `==` coercion · `forEach` ignores `await` · `var` in loops · lost `this` when passing methods · `Array(3).fill([])` shares one array · spread is shallow · `JSON.stringify` drops `undefined`/functions · `parseInt` without radix · months in `Date` start at 0 · floating-point money (use integers in paise/cents).
+**Output:**
+
+```text
+caught: bad value 1
+recovered with 0
+```
+
+`Promise.resolve(v)` and `Promise.reject(err)` make already-settled promises. A `catch` that returns a value recovers: the chain continues fulfilled.
+
+The classic chaining bug is forgetting to `return` inside a handler with braces. The next step then gets `undefined` and doesn't wait:
+
+```js
+fetchUser(1)
+  .then((user) => {
+    fetchOrders(user);          // missing return!
+  })
+  .then((orders) => console.log("orders:", orders));
+```
+
+**Output:**
+
+```text
+orders: undefined
+```
+
+### 24.5 The microtask queue
+
+Promise handlers don't go into the task queue of Chapter 23. They go into the **microtask queue**, which the event loop empties completely after the current code finishes and **before** the next task (timer, event):
+
+```js
+console.log("1. sync");
+setTimeout(() => console.log("5. timeout (task)"), 0);
+Promise.resolve().then(() => console.log("3. promise (microtask)"));
+queueMicrotask(() => console.log("4. queueMicrotask"));
+console.log("2. sync");
+```
+
+**Output:**
+
+```text
+1. sync
+2. sync
+3. promise (microtask)
+4. queueMicrotask
+5. timeout (task)
+```
+
+The full event loop, one round: run a task to completion → run **all** microtasks (including ones they add) → let the browser repaint if needed → take the next task. A microtask that keeps scheduling microtasks therefore starves timers and rendering.
+
+```js
+setTimeout(() => console.log("timeout"), 0);
+Promise.resolve()
+  .then(() => console.log("then 1"))
+  .then(() => console.log("then 2"));
+Promise.resolve().then(() => console.log("other then"));
+```
+
+**Output:**
+
+```text
+then 1
+other then
+then 2
+timeout
+```
+
+Each `then` in a chain queues the next microtask only when it runs, so two chains interleave: `then 1`, `other then`, `then 2`.
+
+### 24.6 Running promises together
+
+Independent operations should run **concurrently** (all started at once), not one after another. Four combinators take an array of promises:
+
+| Combinator | Fulfils when | Rejects when |
+|---|---|---|
+| `Promise.all(ps)` | all fulfil → array of values, in order | any rejects (the first rejection) |
+| `Promise.allSettled(ps)` | all settle → array of `{ status, value / reason }` | never |
+| `Promise.race(ps)` | the first to settle fulfils | the first to settle rejects |
+| `Promise.any(ps)` | the first to fulfil | all reject → `AggregateError` |
+
+```js
+const t0 = Date.now();
+Promise.all([fetchUser(1), fetchUser(2), fetchUser(3)]).then((users) => {
+  console.log(users.map((u) => u.name), `in about ${Math.round((Date.now() - t0) / 10) * 10} ms`);
+});
+```
+
+**Output:**
+
+```text
+[ 'user1', 'user2', 'user3' ] in about 20 ms
+```
+
+Three 20 ms requests took about 20 ms in total, not 60. One failure rejects `Promise.all`; `allSettled` reports each outcome instead:
+
+```js
+Promise.all([fetchUser(1), fetchUser(-2)]).catch((err) => console.log("all:", err.message));
+Promise.allSettled([fetchUser(1), fetchUser(-2)]).then((results) =>
+  console.log(results.map((r) => (r.status === "fulfilled" ? r.value.name : r.reason.message))),
+);
+```
+
+**Output:**
+
+```text
+all: invalid id -2
+[ 'user1', 'invalid id -2' ]
+```
+
+`race` gives a timeout: whichever finishes first wins.
+
+```js
+function withTimeout(promise, ms) {
+  const timeout = new Promise((_, reject) => setTimeout(() => reject(new Error(`timed out after ${ms} ms`)), ms));
+  return Promise.race([promise, timeout]);
+}
+withTimeout(sleep(100).then(() => "slow result"), 30).catch((err) => console.log(err.message));
+withTimeout(sleep(10).then(() => "fast result"), 30).then((v) => console.log(v));
+```
+
+**Output:**
+
+```text
+fast result
+timed out after 30 ms
+```
+
+`race` doesn't cancel the loser: the slow operation keeps running, and the timer keeps waiting. Chapter 31's `AbortController` cancels real work.
+
+```js
+Promise.any([fetchUser(-1), sleep(10).then(() => "backup server")]).then((v) => console.log("any:", v));
+Promise.any([fetchUser(-1), fetchUser(-2)]).catch((err) => console.log(err.name, err.errors.length));
+```
+
+**Output:**
+
+```text
+any: backup server
+AggregateError 2
+```
+
+### 24.7 withResolvers and try
+
+`Promise.withResolvers()` (ES2024) returns `{ promise, resolve, reject }`, for when the code that settles the promise lives outside the executor, such as in an event handler:
+
+```js
+const { promise: ready, resolve: markReady } = Promise.withResolvers();
+ready.then((v) => console.log("ready:", v));
+setTimeout(() => markReady("config loaded"), 10);
+```
+
+**Output:**
+
+```text
+ready: config loaded
+```
+
+`Promise.try(fn)` (ES2025) calls `fn` and always returns a promise, turning a synchronous throw into a rejection, so one `catch` covers both kinds of failure.
+
+### 24.8 Unhandled rejections
+
+A rejected promise with no `catch` anywhere is an **unhandled rejection**. Browsers log it to the console; Node.js prints the error and **exits the process**. End every chain with a `catch` (or `await` it inside `try`, Chapter 25), unless you're returning the promise to a caller who will handle it.
+
+### 24.9 Summary
+
+```
+new Promise((resolve, reject) => { … })     executor runs at once; settle exactly once
+p.then(v => …).catch(e => …).finally(() => …)   each returns a new promise
+return inside then → the chain waits for it;  throw → skips to the next catch
+Promise.resolve(v)  Promise.reject(e)  Promise.withResolvers()  Promise.try(fn)
+microtasks (promise handlers, queueMicrotask) run before the next task (timers, events)
+Promise.all (all or first failure)  allSettled (every outcome)  race (first settled)  any (first success)
+always handle rejections
+```
+
+**Key terms:**
+
+- **Promise:** an object representing the eventual result of an asynchronous operation.
+- **Pending:** a promise's state before it settles.
+- **Fulfilled:** a promise's state when it has succeeded with a value.
+- **Rejected:** a promise's state when it has failed with a reason.
+- **Settled:** fulfilled or rejected; a settled promise never changes again.
+- **Executor:** the function passed to `new Promise`, which receives `resolve` and `reject`.
+- **Promisify:** wrap a callback-based function so it returns a promise.
+- **Promise chaining:** linking `then` calls so each step starts after the previous one, with the previous value.
+- **Microtask queue:** the queue for promise handlers and `queueMicrotask`, emptied before the next task runs.
+- **Microtask:** a callback in the microtask queue.
+- **Concurrency:** having several operations in progress at the same time.
+- **Promise.all:** waits for all promises and gives their values, or rejects with the first failure.
+- **Promise.allSettled:** waits for all promises and reports each outcome.
+- **Promise.race:** settles like the first promise to settle.
+- **Promise.any:** fulfils with the first fulfilled promise, or rejects with an `AggregateError` if all reject.
+- **AggregateError:** an error holding several errors in its `errors` array.
+- **Unhandled rejection:** a rejected promise that no handler catches.
+
+### Exercises
+
+1. Predict the order, then check:
+   ```
+   setTimeout(() => console.log("T"), 0);
+   Promise.resolve().then(() => console.log("P"));
+   console.log("S");
+   ```
+2. Write `retry(fn, times)` that calls the promise-returning `fn` and, if it rejects, tries again up to `times` attempts in total, rejecting with the last error.
+
+<details>
+<summary><b>Answers</b></summary>
+
+```js
+setTimeout(() => console.log("T"), 0);
+Promise.resolve().then(() => console.log("P"));
+console.log("S");
+```
+
+**Output:**
+
+```text
+S
+P
+T
+```
+
+```js
+function retry(fn, times) {
+  return fn().catch((err) => (times > 1 ? retry(fn, times - 1) : Promise.reject(err)));
+}
+let attempt = 0;
+const flaky = () => {
+  attempt++;
+  return attempt < 3 ? Promise.reject(new Error(`fail ${attempt}`)) : Promise.resolve(`ok on attempt ${attempt}`);
+};
+retry(flaky, 5).then(console.log);
+retry(() => Promise.reject(new Error("always")), 2).catch((err) => console.log(err.message));
+```
+
+**Output:**
+
+```text
+ok on attempt 3
+always
+```
+
+1. Synchronous code, then microtasks, then tasks: S, P, T.
+2. Each failure returns a new attempt from inside `catch`, so the chain waits for it. Chapter 25 writes the same thing with a loop.
+
+</details>
+
+**Practice:**
+
+| # | Problem (LeetCode) | Difficulty |
+|---|---|---|
+| 1 | [2723. Add Two Promises](https://leetcode.com/problems/add-two-promises/) | 🟢 Easy |
+| 2 | [2621. Sleep](https://leetcode.com/problems/sleep/) | 🟢 Easy |
+| 3 | [2637. Promise Time Limit](https://leetcode.com/problems/promise-time-limit/) | 🟡 Medium |
+| 4 | [2721. Execute Asynchronous Functions in Parallel](https://leetcode.com/problems/execute-asynchronous-functions-in-parallel/) | 🟡 Medium |
+
+**Learn more:** [MDN: using promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises) · [MDN: Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) · [javascript.info: microtasks](https://javascript.info/microtask-queue)
 
 ---
 
-## 51. Most Asked JavaScript Interview Questions
+## 25. async/await: Asynchronous Code That Reads Like Normal Code
 
-**Basics**
+**You need:** Chapter 24. · **You'll learn:** to write promise code as straight-line code with `async` and `await`, to handle errors with `try`/`catch`, to run steps one after another or concurrently, and to loop over asynchronous data.
 
-1. **What are JavaScript's data types?** → Seven primitives (string, number, bigint, boolean, undefined, null, symbol) plus objects (including arrays, functions, dates, maps). Primitives are immutable and compared by value; objects are compared by reference.
-2. **`var` vs `let` vs `const`?** → `var` is function-scoped, hoisted as `undefined` and can be re-declared; `let`/`const` are block-scoped and in the temporal dead zone until declared; `const` can't be reassigned (but the object it points to can change).
-3. **`==` vs `===`?** → `===` compares without type conversion; `==` converts types first with surprising rules. Always use `===` (the only common exception: `x == null` to check for null or undefined).
-4. **`null` vs `undefined`?** → `undefined` means "not set yet" (missing variables, properties, arguments); `null` is an intentional "no value". `typeof null` is `"object"` (a historic bug).
-5. **What are truthy and falsy values?** → Falsy: `false`, `0`, `-0`, `0n`, `""`, `null`, `undefined`, `NaN`. Everything else, including `[]`, `{}` and `"0"`, is truthy.
-6. **`??` vs `||`?** → `||` falls back on any falsy value; `??` only on `null`/`undefined`, so `0` and `""` are kept.
-7. **What is hoisting?** → Declarations are processed before code runs: function declarations with their body, `var` as `undefined`, `let`/`const`/`class` uninitialised (TDZ).
-8. **Arrow functions vs regular functions?** → Arrows have no own `this`, `arguments` or `prototype`, can't be used with `new`, and take `this` from where they are defined; great for callbacks, not for object methods.
-9. **What are spread and rest?** → `...` spreads an iterable/object into elements/properties (copying, merging, passing arguments) or collects the rest into an array/object (parameters, destructuring).
-10. **`map` vs `forEach`?** → `map` returns a new array of results; `forEach` returns `undefined` and is for side effects. Neither waits for `async` callbacks.
+### 25.1 async functions and await
 
-**Intermediate**
+An **async function** always returns a promise. Inside it, `await promise` pauses the function until the promise settles, then gives its value (or throws its rejection reason). While the function is paused, the thread is free to run other code:
 
-11. **What is a closure?** → A function together with the variables from the scope where it was created, which it can still use after that scope has finished. Used for private state, factories, memoisation, debounce and React hooks.
-12. **How is `this` decided?** → By the call: `obj.m()` → `obj`; plain call → `undefined` (strict) or `globalThis`; `new` → the new object; `call`/`apply`/`bind` → given value; arrows → outer `this`; DOM listeners (regular function) → the element.
-13. **Explain prototypal inheritance.** → Every object has a hidden link (`[[Prototype]]`) to another object; property lookups walk up this chain. Classes are syntax on top of constructor functions and prototypes.
-14. **Explain the event loop.** → One call stack runs code; when it's empty, the loop runs **all** microtasks (promise callbacks, `await` continuations), then one macrotask (timer, I/O, event), then lets the browser render, and repeats.
-15. **What is a promise, and what states can it be in?** → An object for a future result: pending, then fulfilled with a value or rejected with a reason, exactly once. `then`/`catch`/`finally` return new promises, which is what makes chaining work.
-16. **How does `async`/`await` work?** → An `async` function always returns a promise; `await` pauses that function (not the thread) until the promise settles, letting other code run; errors are handled with `try/catch`.
-17. **`Promise.all` vs `allSettled` vs `race` vs `any`?** → All results or the first rejection; every outcome, never rejects; first to settle; first fulfilment (AggregateError if all fail).
-18. **Shallow vs deep copy?** → Spread/`Object.assign`/`slice` copy only the top level (nested objects are shared); `structuredClone` copies deeply (handles cycles, Dates, Maps; not functions or DOM nodes).
-19. **What are `Map`/`Set`/`WeakMap`?** → `Map`: any key type, ordered, O(1), has `size`; `Set`: unique values; `WeakMap`: object keys held weakly, so entries disappear when the key object is garbage-collected (private data, caches).
-20. **What is event delegation?** → One listener on a parent handles events from many children via bubbling and `event.target.closest(...)`; fewer listeners and works for elements added later.
-21. **Debounce vs throttle?** → Debounce runs once after events stop for a delay (search box); throttle runs at most once per interval while events continue (scroll).
-22. **ES modules vs CommonJS?** → ESM (`import`/`export`) is the standard: static, analysable (tree shaking), async loading, top-level `await`, strict by default; CommonJS (`require`) is Node's older synchronous system. Node 22+ can even `require()` ESM.
-23. **How do you handle errors in async code?** → `try/catch` around `await`, `.catch()` on chains, `Promise.allSettled` for partial failure, error boundaries in UI, global `unhandledrejection` handlers for logging, and custom `Error` subclasses with `cause`.
-24. **`localStorage` vs `sessionStorage` vs cookies vs IndexedDB?** → Persistent vs per-tab small string stores (readable by any script, so no tokens); cookies are sent to the server (use `HttpOnly; Secure; SameSite` for sessions); IndexedDB stores large structured data asynchronously.
+```js
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+function fetchUser(id) {
+  return sleep(20).then(() => {
+    if (id <= 0) {
+      throw new Error(`invalid id ${id}`);
+    }
+    return { id, name: `user${id}` };
+  });
+}
+const fetchOrders = (user) => sleep(20).then(() => [{ id: 1, total: 499 }]);
+const fetchInvoice = (order) => sleep(20).then(() => `INV-${order.id}: ₹${order.total}`);
 
-**Advanced**
+async function showInvoice(userId) {
+  const user = await fetchUser(userId);
+  const orders = await fetchOrders(user);
+  const invoice = await fetchInvoice(orders[0]);
+  return `${user.name} ${invoice}`;
+}
+console.log(showInvoice(7));
+showInvoice(7).then(console.log);
+```
 
-25. **How does garbage collection work, and what causes memory leaks?** → Mark-and-sweep from roots (globals, stack); anything unreachable is freed. Leaks come from forgotten listeners, timers, growing caches or global arrays, closures holding big objects, and detached DOM nodes still referenced.
-26. **What is the critical rendering path, and what are reflow and repaint?** → HTML → DOM, CSS → CSSOM, render tree, layout, paint, composite. Changing geometry causes layout (reflow), colours cause paint; `transform`/`opacity` only composite. Avoid reading layout right after writing it (layout thrashing).
-27. **How do you make a web page fast?** → Measure Core Web Vitals (LCP, INP, CLS); ship less JavaScript (code splitting, tree shaking), optimise images, cache, lazy-load, avoid long tasks (break them up, use workers), and virtualise long lists.
-28. **What are XSS and CSRF, and how do you prevent them?** → XSS: attacker's script runs in your page; prevent with `textContent`/framework escaping, sanitising any HTML (DOMPurify), a Content Security Policy and Trusted Types. CSRF: another site triggers requests with your cookies; prevent with `SameSite` cookies and CSRF tokens.
-29. **What is CORS?** → A browser rule: scripts can read cross-origin responses only if the server allows the origin with `Access-Control-Allow-Origin` (and answers preflight `OPTIONS` requests for non-simple requests). It protects users, not servers.
-30. **What are generators and iterators used for?** → Objects with `next()` that produce values lazily; `function*`/`yield` make them easy. Used for custom iteration, infinite sequences, and (async generators) streaming pages of data with `for await`.
-31. **What are `Proxy` and `Reflect`?** → `Proxy` intercepts object operations (get, set, delete, has) for validation, logging and reactivity (Vue); `Reflect` provides the default behaviour to call inside traps.
-32. **How do you cancel a `fetch`?** → Pass an `AbortController`'s `signal` (or `AbortSignal.timeout(ms)`) and call `abort()`; the promise rejects with an `AbortError`/`TimeoutError`.
-33. **What are Web Workers?** → Background threads for CPU-heavy work, communicating by messages (structured clone or transferable objects), so the main thread stays responsive. They can't touch the DOM.
-34. **What is tree shaking?** → Bundlers removing unused exports thanks to static ES module imports; side-effect-free code and `"sideEffects": false` help.
-35. **How do you implement `Promise.all` / `bind` / `debounce`?** → See [47](#47-polyfills-and-implement-it-yourself-questions) and [37](#37-debounce-and-throttle); explain order, edge cases and `this` as you go.
-36. **What's new in recent JavaScript (ES2023–ES2025)?** → Non-mutating array methods (`toSorted`, `with`), `findLast`, `Object.groupBy`, `Promise.withResolvers`, new `Set` methods, iterator helpers, `RegExp.escape`, `Promise.try`, import attributes (JSON modules), and `Float16Array`; Temporal is arriving in engines as the replacement for `Date`.
-37. **How do you structure and test a production JavaScript app?** → TypeScript, ES modules, a bundler (Vite), linting/formatting, unit tests (Vitest), component tests (Testing Library + MSW), end-to-end tests (Playwright), CI, error monitoring (Sentry) and validated config and inputs (Zod).
-38. **What is the difference between the browser and Node.js?** → Same language and engine family, different environment: the browser has the DOM, `window`, storage and a security sandbox; Node has the file system, processes, `process.env` and server APIs. Both share `fetch`, `URL`, Web Streams and `AbortController`.
-39. **How would you debug a memory leak in a single-page app?** → Reproduce the action several times, take heap snapshots in Chrome DevTools, compare them, look for growing retained objects and detached DOM nodes, follow the retainer path to the listener/timer/cache holding them, and fix by cleaning up (`removeEventListener`, `AbortController`, `clearInterval`, bounded caches).
-40. **Explain how you'd build a search box that calls an API.** → Debounce input (~300 ms), cancel the previous request with `AbortController` so old results can't overwrite new ones, show loading and error states, cache recent queries, escape displayed results, and make it keyboard-accessible.
+**Output:**
+
+```text
+Promise { <pending> }
+user7 INV-1: ₹499
+```
+
+The three dependent steps read top to bottom, like synchronous code. The function's `return` value fulfils its promise; a throw inside rejects it.
+
+`await` works inside async functions and at the top level of modules (as in all this book's examples). Arrow functions and methods can be async too: `async (x) => …`, `async load() { … }`.
+
+### 25.2 Errors with try/catch
+
+A rejected `await` throws at that line, so ordinary `try`/`catch`/`finally` handles asynchronous errors:
+
+```js
+async function safeInvoice(userId) {
+  try {
+    return await showInvoice(userId);
+  } catch (err) {
+    return `could not load: ${err.message}`;
+  } finally {
+    console.log("request finished for", userId);
+  }
+}
+console.log(await safeInvoice(-1));
+```
+
+**Output:**
+
+```text
+request finished for -1
+could not load: invalid id -1
+```
+
+`return await` inside `try` matters: a plain `return showInvoice(userId)` would hand back the promise *before* it rejects, so this `catch` would never see the error.
+
+### 25.3 Sequential versus concurrent
+
+`await` in sequence waits for each step before starting the next. That's right when steps depend on each other, and wasteful when they don't:
+
+```js
+let t0 = Date.now();
+const a = await fetchUser(1);
+const b = await fetchUser(2);
+const c = await fetchUser(3);
+console.log("sequential:", [a, b, c].map((u) => u.name), `${Math.round((Date.now() - t0) / 20) * 20} ms`);
+
+t0 = Date.now();
+const users = await Promise.all([fetchUser(1), fetchUser(2), fetchUser(3)]);
+console.log("concurrent:", users.map((u) => u.name), `${Math.round((Date.now() - t0) / 20) * 20} ms`);
+```
+
+**Output:**
+
+```text
+sequential: [ 'user1', 'user2', 'user3' ] 60 ms
+concurrent: [ 'user1', 'user2', 'user3' ] 20 ms
+```
+
+Start independent operations first, then await them together with `Promise.all` (or `allSettled`, Chapter 24.6). Accidental sequential awaits are the most common async performance bug.
+
+### 25.4 await in loops
+
+`for...of` with `await` runs one item at a time, in order. `forEach` with an async callback does **not** wait: it starts every callback and returns immediately, so code after it runs too early:
+
+```js
+const ids = [1, 2, 3];
+const names = [];
+ids.forEach(async (id) => {
+  const user = await fetchUser(id);
+  names.push(user.name);
+});
+console.log("after forEach:", names);
+for (const id of ids) {
+  const user = await fetchUser(id);
+  names.push(user.name);
+}
+console.log("after for...of:", names);
+```
+
+**Output:**
+
+```text
+after forEach: []
+after for...of: [ 'user1', 'user2', 'user3', 'user1', 'user2', 'user3' ]
+```
+
+By the time the `for...of` loop finished, the forgotten `forEach` callbacks had finished too, so their names are mixed in. For concurrency, `map` to promises and `Promise.all`:
+
+```js
+const all = await Promise.all(ids.map((id) => fetchUser(id)));
+console.log(all.map((u) => u.id));
+```
+
+**Output:**
+
+```text
+[ 1, 2, 3 ]
+```
+
+To limit how many run at once (say, at most 2 requests), process in batches or use a small pool:
+
+```js
+async function mapWithLimit(items, limit, fn) {
+  const results = new Array(items.length);
+  let next = 0;
+  async function worker() {
+    while (next < items.length) {
+      const i = next++;
+      results[i] = await fn(items[i]);
+    }
+  }
+  await Promise.all(Array.from({ length: limit }, worker));
+  return results;
+}
+let running = 0;
+let maxRunning = 0;
+const tracked = async (id) => {
+  running++;
+  maxRunning = Math.max(maxRunning, running);
+  const user = await fetchUser(id);
+  running--;
+  return user.name;
+};
+console.log(await mapWithLimit([1, 2, 3, 4, 5], 2, tracked), "max at once:", maxRunning);
+```
+
+**Output:**
+
+```text
+[ 'user1', 'user2', 'user3', 'user4', 'user5' ] max at once: 2
+```
+
+Two workers share the `next` counter; each takes the next index whenever it finishes one. JavaScript's single thread means `next++` can't be interrupted, so no two workers take the same item.
+
+### 25.5 Retrying with a loop
+
+Chapter 24's recursive `retry` becomes a plain loop, with a growing pause between attempts (**exponential backoff**):
+
+```js
+async function retry(fn, { attempts = 3, baseDelay = 10 } = {}) {
+  for (let i = 1; ; i++) {
+    try {
+      return await fn();
+    } catch (err) {
+      if (i >= attempts) {
+        throw err;
+      }
+      console.log(`attempt ${i} failed (${err.message}); waiting ${baseDelay * 2 ** (i - 1)} ms`);
+      await sleep(baseDelay * 2 ** (i - 1));
+    }
+  }
+}
+let calls = 0;
+const flaky = async () => {
+  calls++;
+  if (calls < 3) {
+    throw new Error("503");
+  }
+  return "ok";
+};
+console.log(await retry(flaky));
+```
+
+**Output:**
+
+```text
+attempt 1 failed (503); waiting 10 ms
+attempt 2 failed (503); waiting 20 ms
+ok
+```
+
+Chapter 46 adds jitter and the rules for which errors deserve a retry.
+
+### 25.6 Async iteration
+
+An **async iterable** produces values that arrive over time, such as the chunks of a network response or the lines of a file. `for await (const x of source)` awaits each value in turn. An **async generator** (`async function*`) creates one:
+
+```js
+async function* pages(total) {
+  for (let page = 1; page <= total; page++) {
+    await sleep(10);
+    yield { page, items: [`item${page * 2 - 1}`, `item${page * 2}`] };
+  }
+}
+for await (const { page, items } of pages(3)) {
+  console.log(page, items);
+}
+console.log(await Array.fromAsync(pages(2), (p) => p.page));
+```
+
+**Output:**
+
+```text
+1 [ 'item1', 'item2' ]
+2 [ 'item3', 'item4' ]
+3 [ 'item5', 'item6' ]
+[ 1, 2 ]
+```
+
+`Array.fromAsync` collects an async iterable into an array.
+
+### 25.7 Summary
+
+```
+async function f() { … }      always returns a promise; return fulfils, throw rejects
+const v = await p;            pause until p settles; rejection throws here
+try { return await p; } catch (e) { … }      return await inside try
+await a(); await b();         sequential (dependent steps)
+await Promise.all([a(), b()]) concurrent (independent steps)
+for (const x of xs) { await f(x); }     one at a time;  xs.forEach(async …) doesn't wait!
+await Promise.all(xs.map(f))  all at once;  a worker pool to limit concurrency
+async function* g() { yield … }   for await (const x of g()) { … }   Array.fromAsync(g())
+```
+
+**Key terms:**
+
+- **async function:** a function declared with `async`, which always returns a promise and may use `await`.
+- **await:** pauses an async function until a promise settles, then gives its value or throws its reason.
+- **Top-level await:** using `await` directly at the top level of a module.
+- **Sequential:** one operation after another, each waiting for the previous one.
+- **Concurrency limit:** the maximum number of operations allowed in progress at once.
+- **Exponential backoff:** waiting longer between retries each time, usually doubling the delay.
+- **Async iterable:** a source whose values arrive asynchronously, looped over with `for await...of`.
+- **Async generator:** an `async function*` that can `await` and `yield`, producing an async iterable.
+
+### Exercises
+
+1. Rewrite with `async`/`await`: `fetchUser(2).then((u) => fetchOrders(u)).then((o) => console.log(o.length)).catch((e) => console.log(e.message));`
+2. Fetch users 1 to 4 concurrently, but keep only those whose name ends in an even digit.
+
+<details>
+<summary><b>Answers</b></summary>
+
+```js
+async function countOrders() {
+  try {
+    const u = await fetchUser(2);
+    const o = await fetchOrders(u);
+    console.log(o.length);
+  } catch (e) {
+    console.log(e.message);
+  }
+}
+await countOrders();
+const fetched = await Promise.all([1, 2, 3, 4].map(fetchUser));
+console.log(fetched.filter((u) => Number(u.name.at(-1)) % 2 === 0).map((u) => u.name));
+```
+
+**Output:**
+
+```text
+1
+[ 'user2', 'user4' ]
+```
+
+</details>
+
+**Practice:**
+
+| # | Problem (LeetCode) | Difficulty |
+|---|---|---|
+| 1 | [2621. Sleep](https://leetcode.com/problems/sleep/) | 🟢 Easy |
+| 2 | [2637. Promise Time Limit](https://leetcode.com/problems/promise-time-limit/) | 🟡 Medium |
+| 3 | [2622. Cache With Time Limit](https://leetcode.com/problems/cache-with-time-limit/) | 🟡 Medium |
+| 4 | [2721. Execute Asynchronous Functions in Parallel](https://leetcode.com/problems/execute-asynchronous-functions-in-parallel/) | 🟡 Medium |
+
+**Learn more:** [MDN: async function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function) · [javascript.info: async/await](https://javascript.info/async-await) · [MDN: for await...of](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for-await...of)
+
+---
+
+## 26. Modules: import, export, ESM vs CommonJS
+
+**You need:** Chapters 10, 13 and 25. · **You'll learn:** to split code into files with `export` and `import`, the difference between named and default exports, loading modules on demand, how modules are evaluated once, and how ES modules relate to Node's older CommonJS.
+
+### 26.1 Why modules
+
+A **module** is a file with its own scope (Chapter 13.1): its top-level names are private unless it **exports** them, and other files **import** only what they need. That gives each file a clear public surface, avoids clashes between global names, and lets tools drop unused code. The standard system is **ES modules** (ESM), used by browsers, Node.js and every bundler.
+
+### 26.2 Named and default exports
+
+This book's examples so far ran as one module. Here, the blocks marked with a file name are separate files saved next to the main module. A module exports with `export` in front of a declaration, or in a list:
+
+```js
+export const TAX_RATE = 0.18;
+
+export function withTax(amount) {
+  return Math.round(amount * (1 + TAX_RATE));
+}
+
+function formatINR(amount) {
+  return `₹${amount.toLocaleString("en-IN")}`;
+}
+
+export default formatINR;
+globalThis.pricingLoads = (globalThis.pricingLoads ?? 0) + 1;   // count evaluations
+```
+
+A module can have many **named exports** and at most one **default export**. Named imports use the exact names in braces (rename with `as`); the default import takes any name; `* as` collects everything into a namespace object:
+
+```js
+import format, { withTax, TAX_RATE as GST } from "./pricing.mjs";
+import * as pricing from "./pricing.mjs";
+
+console.log(withTax(1000), GST, format(withTax(100000)));
+console.log(Object.keys(pricing), pricing.default === format);
+console.log("pricing.mjs evaluated", globalThis.pricingLoads, "time(s)");
+```
+
+**Output:**
+
+```text
+1180 0.18 ₹1,18,000
+[ 'TAX_RATE', 'default', 'withTax' ] true
+pricing.mjs evaluated 1 time(s)
+```
+
+The file was imported twice but evaluated once: a module is **evaluated once**, and every importer gets the same instance. That makes a module a natural place for shared state, such as a configuration object or a cache.
+
+Named exports are usually the better default: the name is fixed, so editors can find every use, and a typo is an error. Imports are **static**: they must be at the top level, with a literal path, and are resolved before any code runs (they're hoisted).
+
+### 26.3 Live bindings
+
+An import isn't a copy: it's a **live binding**, a read-only view of the exporting module's variable. If the exporter changes the variable, importers see the new value; importers can't assign to it themselves:
+
+```js
+export let count = 0;
+export function increment() {
+  count++;
+}
+```
+
+```js
+import { count, increment } from "./counter.mjs";
+console.log(count);
+increment();
+increment();
+console.log(count);
+```
+
+**Output:**
+
+```text
+0
+2
+```
+
+```js
+count = 99;
+```
+
+**Output:**
+
+```text
+TypeError: Assignment to constant variable.
+```
+
+### 26.4 Re-exporting
+
+An **index** (or "barrel") module gathers several modules' exports into one entry point:
+
+```js
+export { withTax, TAX_RATE } from "../pricing.mjs";
+export { default as formatPrice } from "../pricing.mjs";
+export * from "../counter.mjs";
+```
+
+```js
+import { formatPrice, increment as inc } from "./shop/index.mjs";
+console.log(formatPrice(2500), typeof inc);
+```
+
+**Output:**
+
+```text
+₹2,500 function
+```
+
+Barrels are convenient but can make bundlers include more code than needed, and they hide where things really live; use them sparingly.
+
+### 26.5 Dynamic import
+
+`import(path)` is an expression that loads a module **on demand** and returns a promise of its namespace. Use it for code that's rarely needed, such as a heavy chart library behind a button, so it isn't loaded at startup:
+
+```js
+const wantsPricing = true;
+if (wantsPricing) {
+  const { withTax: tax } = await import("./pricing.mjs");
+  console.log("loaded on demand:", tax(500));
+}
+```
+
+**Output:**
+
+```text
+loaded on demand: 590
+```
+
+The path can be computed at run time. Bundlers split dynamically imported modules into separate files (**code splitting**, Chapter 43).
+
+### 26.6 import.meta and JSON modules
+
+`import.meta` holds information about the current module: `import.meta.url` is its file URL, and in Node.js `import.meta.dirname` and `import.meta.filename` give its folder and path. **Import attributes** (ES2025) import non-JavaScript files; JSON is supported everywhere:
+
+```json
+{ "currency": "INR", "freeShippingFrom": 499 }
+```
+
+```js
+import config from "./config.json" with { type: "json" };
+console.log(config.freeShippingFrom, import.meta.url.endsWith("section.mjs"));
+```
+
+**Output:**
+
+```text
+499 true
+```
+
+### 26.7 CommonJS
+
+Node.js had modules before the standard existed. **CommonJS** (CJS) uses `require()` to load and `module.exports` to export. It's synchronous, loads at run time (not hoisted), and exports a copy of values rather than live bindings. Much existing code and many npm packages still use it:
+
+```js
+const path = require("node:path");
+function slugify(text) {
+  return text.toLowerCase().split(" ").filter(Boolean).join("-");
+}
+module.exports = { slugify, sep: path.sep };
+```
+
+```js
+const { slugify } = require("./legacy.cjs");
+console.log(slugify("  Hello Modules World "), typeof require, typeof module);
+```
+
+```bash
+node main.cjs
+```
+
+**Output:**
+
+```text
+hello-modules-world function object
+```
+
+| | ES modules | CommonJS |
+|---|---|---|
+| syntax | `import` / `export` | `require()` / `module.exports` |
+| loading | static, hoisted, asynchronous | at run time, synchronous |
+| bindings | live | copied value |
+| top-level `await` | yes | no |
+| `this` at top level | `undefined` | `module.exports` |
+| file types | `.mjs`, or `.js` with `"type": "module"` in `package.json` | `.cjs`, or `.js` by default |
+
+An ES module can import a CommonJS module (its `module.exports` becomes the default import), and recent Node.js versions can also `require()` an ES module that doesn't use top-level `await`:
+
+```js
+import legacy from "./legacy.cjs";
+console.log(legacy.slugify("Mixed Systems"));
+```
+
+**Output:**
+
+```text
+mixed-systems
+```
+
+New code should be ESM: set `"type": "module"` in `package.json` (Chapter 43).
+
+### 26.8 Modules in the browser
+
+`<script type="module" src="app.js">` loads a module in a page. Module scripts are deferred (they run after the HTML is parsed), strict, and can `import` other files by URL. Paths must be relative (`./`) or full URLs; a bare name like `"lodash"` works only through a bundler or an **import map**, a JSON block that maps names to URLs. In practice, a bundler (Chapter 43) prepares modules for the browser.
+
+### 26.9 Summary
+
+```
+export const x = 1;  export function f() {}  export default value;
+import def, { a, b as c } from "./m.mjs";   import * as ns from "./m.mjs";
+export { a } from "./m.mjs";  export * from "./m.mjs";   re-export (barrels)
+const m = await import("./m.mjs");          dynamic, on demand
+import data from "./d.json" with { type: "json" };   import.meta.url
+modules: evaluated once; imports are live, read-only bindings; static and hoisted
+CommonJS: const x = require("…"); module.exports = …;  .cjs;  synchronous, copies
+```
+
+**Key terms:**
+
+- **Module:** a file with its own scope that shares values only through exports and imports.
+- **ES modules (ESM):** JavaScript's standard module system, using `import` and `export`.
+- **Named export:** a value exported under its own name, imported with braces.
+- **Default export:** a module's single main export, imported under any name.
+- **Namespace import:** `import * as ns`, collecting all of a module's exports into one object.
+- **Live binding:** an imported name that always shows the exporting module's current value.
+- **Re-export:** exporting values from another module, as in `export { x } from "./m.mjs"`.
+- **Barrel file:** an index module that re-exports several modules' exports.
+- **Dynamic import:** `import(path)`, which loads a module at run time and returns a promise.
+- **Code splitting:** breaking an app's code into files that load only when needed.
+- **import.meta:** an object with information about the current module, such as its URL.
+- **Import attributes:** `with { type: "json" }` after an import, saying what kind of file it is.
+- **CommonJS (CJS):** Node.js's original module system, using `require` and `module.exports`.
+- **Import map:** a JSON map in a web page from module names to URLs.
+
+### Exercises
+
+1. A module `math.mjs` should export `add` and `PI` as named exports and a `Calculator` class as the default. Write the export statements and an import line that brings in all three.
+2. Why does `import { count } from "./counter.mjs"; count++;` fail, and how should the counter be changed instead?
+
+<details>
+<summary><b>Answers</b></summary>
+
+1. In `math.mjs`: `export const PI = 3.14159;`, `export function add(a, b) { return a + b; }` and `export default class Calculator { … }`. Import: `import Calculator, { add, PI } from "./math.mjs";`.
+2. Imports are read-only bindings; only the exporting module can assign to its variables. Call its exported function, `increment()`, which changes `count` inside the module.
+
+</details>
+
+**Learn more:** [MDN: JavaScript modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules) · [Node.js: ECMAScript modules](https://nodejs.org/api/esm.html) · [Node.js: CommonJS modules](https://nodejs.org/api/modules.html)
+
+---
+
+## 27. Regular Expressions
+
+**You need:** Chapters 7 and 11. · **You'll learn:** to describe text patterns with regular expressions, to test, find, extract and replace with them, and the traps: greedy matching, the `g` flag's memory, and patterns that take forever.
+
+### 27.1 What a regular expression is
+
+A **regular expression** (regex) is a pattern that matches text. It's written between slashes, with optional **flags** after: `/\d+/g`. `test` answers "does it match anywhere?":
+
+```js
+const hasDigit = /\d/;
+console.log(hasDigit.test("Order 66"), hasDigit.test("no digits"));
+```
+
+**Output:**
+
+```text
+true false
+```
+
+### 27.2 The building blocks
+
+| Pattern | Matches |
+|---|---|
+| `abc` | the exact characters "abc" |
+| `.` | any one character except a newline |
+| `\d` `\w` `\s` | a digit / a word character (letter, digit, `_`) / whitespace |
+| `\D` `\W` `\S` | anything except those |
+| `[aeiou]` `[a-z0-9]` `[^0-9]` | one character from a set / a range / not in the set |
+| `^` `$` | start / end of the text (of each line with the `m` flag) |
+| `\b` | a word boundary |
+| `a|b` | either side |
+| `( … )` | a group, also captured |
+| `\.` `\(` | a literal `.` or `(` (escape special characters) |
+
+**Quantifiers** say how many times the preceding item repeats:
+
+| Quantifier | Times |
+|---|---|
+| `*` `+` `?` | 0 or more / 1 or more / 0 or 1 |
+| `{3}` `{2,4}` `{2,}` | exactly 3 / 2 to 4 / 2 or more |
+
+```js
+const pin = /^\d{6}$/;
+const phone = /^(\+91[\s-]?)?[6-9]\d{9}$/;
+console.log(pin.test("411001"), pin.test("41100"), pin.test("4110012"));
+console.log(phone.test("9876543210"), phone.test("+91 9876543210"), phone.test("12345"));
+```
+
+**Output:**
+
+```text
+true false false
+true true false
+```
+
+`^` and `$` **anchor** the pattern to the whole text; without them, `/\d{6}/` also matches inside "4110012".
+
+### 27.3 Flags
+
+| Flag | Effect |
+|---|---|
+| `g` | global: find all matches, not just the first |
+| `i` | ignore case |
+| `m` | multiline: `^` and `$` match at each line |
+| `s` | dotAll: `.` also matches newlines |
+| `u` / `v` | Unicode-aware matching (`v` adds set operations) |
+| `y` | sticky: match only at `lastIndex` |
+
+### 27.4 Finding and extracting
+
+`str.match(re)` without `g` returns the first match with its **capture groups** (the text matched by each `( … )`); with `g` it returns all matched strings. `matchAll` gives every match with its groups. **Named groups**, `(?<name>…)`, are read from `.groups`:
+
+```js
+const text = "Orders: #1042 on 2026-03-14, #1043 on 2026-03-15";
+console.log(text.match(/#\d+/), text.match(/#\d+/g));
+const datePattern = /(?<year>\d{4})-(?<month>\d{2})-(?<day>\d{2})/g;
+for (const m of text.matchAll(datePattern)) {
+  console.log(m[0], m.groups.day, m.groups.month, m.index);
+}
+```
+
+**Output:**
+
+```text
+[
+  '#1042',
+  index: 8,
+  input: 'Orders: #1042 on 2026-03-14, #1043 on 2026-03-15',
+  groups: undefined
+] [ '#1042', '#1043' ]
+2026-03-14 14 03 17
+2026-03-15 15 03 38
+```
+
+`(?:…)` groups without capturing, for applying a quantifier to several characters: `/(?:ab)+/`.
+
+### 27.5 Replacing
+
+`replace` and `replaceAll` accept a regex (`replaceAll` requires the `g` flag). In the replacement, `$1` or `$<name>` inserts a group; a function computes each replacement:
+
+```js
+console.log("2026-03-14".replace(/(\d+)-(\d+)-(\d+)/, "$3/$2/$1"));
+console.log("  too   many    spaces ".trim().replace(/\s+/g, " "));
+console.log("price: 100, tax: 18".replace(/\d+/g, (n) => String(n * 2)));
+console.log("hello world".replace(/\b\w/g, (c) => c.toUpperCase()));
+```
+
+**Output:**
+
+```text
+14/03/2026
+too many spaces
+price: 200, tax: 36
+Hello World
+```
+
+`split` also takes a regex: `"a, b;c".split(/[,;]\s*/)`.
+
+### 27.6 Greedy and lazy
+
+Quantifiers are **greedy**: they match as much as possible, then give back only if the rest fails. Adding `?` makes them **lazy** (as little as possible):
+
+```js
+const html = "<b>bold</b> and <i>italic</i>";
+console.log(html.match(/<.+>/)[0]);
+console.log(html.match(/<.+?>/g));
+```
+
+**Output:**
+
+```text
+<b>bold</b> and <i>italic</i>
+[ '<b>', '</b>', '<i>', '</i>' ]
+```
+
+Regexes can't properly parse nested formats like HTML or JSON; use a parser (`JSON.parse`, the DOM in Chapter 29).
+
+### 27.7 Lookarounds
+
+A **lookahead** `(?=…)` or **lookbehind** `(?<=…)` checks what comes next or before without including it in the match; `(?!…)` and `(?<!…)` are the negative versions. A password rule, and thousands separators:
+
+```js
+const strong = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+console.log(strong.test("Passw0rdX"), strong.test("password1"));
+console.log("1234567".replace(/\B(?=(\d{3})+$)/g, ","));
+```
+
+**Output:**
+
+```text
+true false
+1,234,567
+```
+
+The second pattern finds every position (not at a word boundary) followed by a multiple of three digits up to the end.
+
+### 27.8 Traps
+
+**The `g` flag remembers.** A regex with `g` or `y` keeps a `lastIndex` and continues from it, so reusing one with `test` gives alternating answers:
+
+```js
+const re = /a/g;
+console.log(re.test("a"), re.test("a"), re.test("a"), re.lastIndex);
+```
+
+**Output:**
+
+```text
+true false true 1
+```
+
+Don't use `g` with `test`; or create the regex where you use it.
+
+**Building a regex from user text.** `new RegExp(string, flags)` builds one at run time; special characters in the string must be escaped, which `RegExp.escape` (ES2025) does:
+
+```js
+const search = "1.5+";
+console.log(new RegExp(search).test("115"), new RegExp(RegExp.escape(search)).test("version 1.5+"));
+```
+
+**Output:**
+
+```text
+true true
+```
+
+Unescaped, `1.5+` means "1, any character, one or more 5s", which matches "115".
+
+**Catastrophic backtracking.** Nested quantifiers like `/(a+)+$/` can try an exponential number of ways to match before failing. On input from users, that's a denial-of-service hole (**ReDoS**: one request freezes the server):
+
+```js
+for (const n of [16, 20, 24]) {
+  const input = "a".repeat(n) + "!";
+  const t0 = Date.now();
+  /^(a+)+$/.test(input);
+  console.log(n, "characters:", Date.now() - t0 >= 5 ? "slow" : "fast");
+}
+```
+
+**Output:**
+
+```text
+16 characters: fast
+20 characters: slow
+24 characters: slow
+```
+
+Each extra 4 characters multiplies the time by about 16. Avoid nested quantifiers over the same characters, keep patterns specific, and limit input length.
+
+### 27.9 Summary
+
+```
+/pattern/flags   new RegExp(str, flags)   RegExp.escape(userText)
+\d \w \s . [abc] [^abc] ^ $ \b   * + ? {n,m}   ( ) (?: ) (?<name> )   a|b
+flags: g i m s u v y
+re.test(s)   s.match(re)   s.matchAll(/…/g)   s.replace(re, "$1" | fn)   s.split(re)
+greedy .+  lazy .+?   lookarounds (?= ) (?! ) (?<= ) (?<! )
+traps: g + test keeps lastIndex; escape user input; nested quantifiers → ReDoS
+```
+
+**Key terms:**
+
+- **Regular expression (regex):** a pattern that describes a set of strings, used to test, find and replace text.
+- **Flag:** a letter after a regex that changes how it matches, such as `g` or `i`.
+- **Character class:** a set of characters matched as one, such as `[a-z]` or `\d`.
+- **Quantifier:** says how many times the preceding item may repeat, such as `+` or `{2,4}`.
+- **Anchor:** a pattern that matches a position, not a character, such as `^`, `$` or `\b`.
+- **Capture group:** a part of a regex in `( )` whose matched text is saved.
+- **Named group:** a capture group with a name, `(?<name>…)`, read from `match.groups`.
+- **Greedy:** a quantifier matching as much as possible.
+- **Lazy:** a quantifier followed by `?`, matching as little as possible.
+- **Lookahead / lookbehind:** a check of what follows or precedes a position, without consuming it.
+- **Backtracking:** the regex engine going back to try other ways to match after a failure.
+- **ReDoS (regular expression denial of service):** an attack that sends input making a slow regex run for a very long time.
+
+### Exercises
+
+1. Write a regex that checks an Indian vehicle number like `MH12AB1234`: two letters, two digits, one or two letters, four digits.
+2. Extract every hashtag from `"Loving #JavaScript and #regex! #100DaysOfCode"`.
+3. Convert `"camelCaseString"` to `"camel_case_string"`.
+
+<details>
+<summary><b>Answers</b></summary>
+
+```js
+const vehicle = /^[A-Z]{2}\d{2}[A-Z]{1,2}\d{4}$/;
+console.log(vehicle.test("MH12AB1234"), vehicle.test("MH12A1234"), vehicle.test("M12AB1234"));
+console.log("Loving #JavaScript and #regex! #100DaysOfCode".match(/#\w+/g));
+console.log("camelCaseString".replace(/[A-Z]/g, (c) => "_" + c.toLowerCase()));
+```
+
+**Output:**
+
+```text
+true true false
+[ '#JavaScript', '#regex', '#100DaysOfCode' ]
+camel_case_string
+```
+
+</details>
+
+**Practice:**
+
+| # | Problem (LeetCode) | Difficulty |
+|---|---|---|
+| 1 | [520. Detect Capital](https://leetcode.com/problems/detect-capital/) | 🟢 Easy |
+| 2 | [151. Reverse Words in a String](https://leetcode.com/problems/reverse-words-in-a-string/) | 🟡 Medium |
+
+**Learn more:** [MDN: regular expressions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_expressions) · [regex101 (test patterns online)](https://regex101.com/) · [OWASP: ReDoS](https://owasp.org/www-community/attacks/Regular_expression_Denial_of_Service_-_ReDoS)
+
+---
+
+## 28. Dates, Time Zones, Numbers and Intl
+
+**You need:** Chapters 3, 7 and 20. · **You'll learn:** to create, read, compare and calculate with `Date`, the time-zone traps, how to round and format numbers and money correctly, the `Intl` formatters for any language, and `Temporal`, the modern date API.
+
+### 28.1 What a Date is
+
+A `Date` holds one moment in time as a **timestamp**: the number of milliseconds since 1 January 1970 00:00 UTC (the **Unix epoch**). **UTC** (Coordinated Universal Time) is the world's reference clock; local times are offsets from it, such as India's UTC+5:30. The examples here run with the machine's time zone set to India:
+
+```js
+const launch = new Date("2026-03-14T10:30:00Z");
+console.log(launch.getTime(), launch.toISOString());
+console.log(launch.getHours(), launch.getUTCHours(), launch.getTimezoneOffset());
+```
+
+**Output:**
+
+```text
+1773484200000 2026-03-14T10:30:00.000Z
+16 10 -330
+```
+
+The `Z` means UTC. 10:30 UTC is 16:00 in India, so the local `getHours()` gives 16; `getTimezoneOffset()` is UTC minus local time in minutes (−330). Store and send times as UTC ISO strings (`toISOString()`); convert to local time only for display.
+
+### 28.2 Creating dates, and the parsing traps
+
+```js
+console.log(new Date(2026, 0, 31).toString());
+console.log(new Date("2026-03-14").toISOString(), new Date("2026-03-14T00:00").toISOString());
+console.log(new Date("14/03/2026").getTime(), Date.now() > 1.7e12);
+```
+
+**Output:**
+
+```text
+Sat Jan 31 2026 00:00:00 GMT+0530 (India Standard Time)
+2026-03-14T00:00:00.000Z 2026-03-13T18:30:00.000Z
+NaN true
+```
+
+Three traps in three lines:
+
+- in `new Date(year, month, day)`, **months start at 0**: 0 is January, 11 is December;
+- a date-only ISO string (`"2026-03-14"`) is read as UTC midnight, but a date-time without `Z` is read as **local** time, so the two differ by 5½ hours here;
+- non-ISO strings like `"14/03/2026"` are invalid (`NaN`) or guessed differently by different browsers: parse only ISO 8601.
+
+An invalid date doesn't throw; it holds `NaN`. Check with `Number.isNaN(date.getTime())`.
+
+### 28.3 Calculating with dates
+
+Subtracting dates gives milliseconds (Chapter 16.3: a Date's primitive value is its timestamp). Setters roll over correctly, so adding days is safe with `setDate`:
+
+```js
+const start = new Date("2026-01-30T12:00:00Z");
+const end = new Date("2026-03-02T12:00:00Z");
+const DAY = 24 * 60 * 60 * 1000;
+console.log((end - start) / DAY, end > start);
+const due = new Date(start);
+due.setUTCDate(due.getUTCDate() + 3);
+console.log(due.toISOString().slice(0, 10), start.toISOString().slice(0, 10));
+```
+
+**Output:**
+
+```text
+31 true
+2026-02-02 2026-01-30
+```
+
+`new Date(start)` copies the date first, because the setters **mutate** the Date. January 30 plus 3 days rolls over to February 2.
+
+Adding months is ambiguous (what's 31 January plus one month?), and a "day" isn't always 24 hours where clocks change for daylight saving. For serious date logic, use `Temporal` (28.7).
+
+### 28.4 Formatting dates for people
+
+`Intl.DateTimeFormat` (or `toLocaleDateString` and `toLocaleString`) formats for any **locale** (a language and region, like `"en-IN"` or `"de-DE"`) and any time zone:
+
+```js
+const opts = { dateStyle: "medium", timeStyle: "short" };
+console.log(launch.toLocaleString("en-IN", { ...opts, timeZone: "Asia/Kolkata" }));
+console.log(launch.toLocaleString("en-US", { ...opts, timeZone: "America/New_York" }));
+console.log(launch.toLocaleString("de-DE", { ...opts, timeZone: "Europe/Berlin" }));
+console.log(new Intl.DateTimeFormat("en-GB", { weekday: "long", day: "numeric", month: "long" }).format(launch));
+```
+
+**Output:**
+
+```text
+14 Mar 2026, 4:00 pm
+Mar 14, 2026, 6:30 AM
+14.03.2026, 11:30
+Saturday 14 March
+```
+
+`Intl.RelativeTimeFormat` writes "3 days ago" in any language:
+
+```js
+const rtf = new Intl.RelativeTimeFormat("en", { numeric: "auto" });
+console.log(rtf.format(-1, "day"), rtf.format(3, "week"), new Intl.RelativeTimeFormat("hi").format(-2, "hour"));
+```
+
+**Output:**
+
+```text
+yesterday in 3 weeks 2 घंटे पहले
+```
+
+### 28.5 Numbers: rounding and money
+
+`toFixed` rounds the binary value, which is often slightly below the decimal you typed (Chapter 3.2):
+
+```js
+console.log((1.005).toFixed(2), (1.005 * 100).toString(), Math.round(1.005 * 100) / 100);
+console.log(0.1 + 0.2 === 0.3, Math.abs(0.1 + 0.2 - 0.3) < Number.EPSILON);
+```
+
+**Output:**
+
+```text
+1.00 100.49999999999999 1
+false true
+```
+
+1.005 is really 1.00499999…, so it rounds down, and multiplying by 100 first doesn't help: the product is 100.4999…, which `Math.round` also rounds down. Compare floats with a tolerance (`Number.EPSILON` is the gap between 1 and the next number). For money, compute in whole paise with integers, or BigInt for huge values, and divide only for display:
+
+```js
+const items = [{ paise: 19999, qty: 3 }, { paise: 4950, qty: 2 }];
+const totalPaise = items.reduce((sum, it) => sum + it.paise * it.qty, 0);
+const gstPaise = Math.round(totalPaise * 0.18);
+console.log(totalPaise, gstPaise, (totalPaise + gstPaise) / 100);
+```
+
+**Output:**
+
+```text
+69897 12581 824.78
+```
+
+### 28.6 Formatting numbers: Intl.NumberFormat
+
+```js
+const n = 12345678.9;
+console.log(new Intl.NumberFormat("en-IN").format(n), new Intl.NumberFormat("en-US").format(n), new Intl.NumberFormat("de-DE").format(n));
+const inr = new Intl.NumberFormat("en-IN", { style: "currency", currency: "INR" });
+console.log(inr.format(1499), new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(19.5));
+console.log(new Intl.NumberFormat("en", { notation: "compact" }).format(1_250_000), new Intl.NumberFormat("en", { style: "percent", maximumFractionDigits: 1 }).format(0.1234));
+console.log(new Intl.NumberFormat("en", { style: "unit", unit: "kilometer-per-hour" }).format(80));
+```
+
+**Output:**
+
+```text
+1,23,45,678.9 12,345,678.9 12.345.678,9
+₹1,499.00 $19.50
+1.3M 12.3%
+80 km/h
+```
+
+Indian grouping (lakhs and crores) comes from the `en-IN` locale. `1_250_000` uses **numeric separators**, underscores that only make long literals readable. Create a formatter once and reuse it: creating one is much slower than calling `format`.
+
+Three more `Intl` tools for text:
+
+```js
+const plural = new Intl.PluralRules("en", { type: "ordinal" });
+const suffix = { one: "st", two: "nd", few: "rd", other: "th" };
+console.log([1, 2, 3, 4, 11, 22].map((d) => d + suffix[plural.select(d)]).join(" "));
+console.log(new Intl.ListFormat("en", { type: "conjunction" }).format(["pen", "ink", "paper"]));
+console.log(["Zoë", "zebra", "Ångström", "apple"].toSorted(new Intl.Collator("en").compare));
+console.log([...new Intl.Segmenter("en", { granularity: "grapheme" }).segment("👍🏽ok")].length);
+```
+
+**Output:**
+
+```text
+1st 2nd 3rd 4th 11th 22nd
+pen, ink, and paper
+[ 'Ångström', 'apple', 'zebra', 'Zoë' ]
+3
+```
+
+`Intl.Segmenter` splits text into **graphemes**, the characters a reader sees: the thumbs-up with its skin tone is one, so this finally gives 3 (Chapters 7.8 and 8.7 got 6 and 4).
+
+### 28.7 Temporal
+
+`Date` is mutable, mixes local and UTC methods, counts months from 0 and can't represent "a date without a time". **Temporal** is its replacement: immutable types for each job, with time-zone and calendar support. It ships in Chrome (from 144) and Firefox (from 139), but not yet in Node.js 24, so this block runs in a browser:
+
+```js
+const date = Temporal.PlainDate.from("2026-01-31");
+console.log(date.add({ months: 1 }).toString(), date.dayOfWeek, date.daysInMonth);
+const meeting = Temporal.ZonedDateTime.from("2026-03-14T16:00[Asia/Kolkata]");
+console.log(meeting.withTimeZone("America/New_York").toString());
+const until = Temporal.PlainDate.from("2026-01-01").until("2026-12-25", { largestUnit: "months" });
+console.log(until.toString(), until.months, until.days);
+```
+
+**Output:**
+
+```text
+2026-02-28 6 31
+2026-03-14T06:30:00-04:00[America/New_York]
+P11M24D 11 24
+```
+
+`PlainDate` is a calendar date with no time or zone; adding one month to 31 January gives 28 February instead of rolling into March. `ZonedDateTime` is an exact moment in a named time zone. Durations print in ISO 8601 form (`P11M24D` is 11 months and 24 days). Until Temporal is everywhere, the `@js-temporal/polyfill` package or a library like date-fns covers the gap.
+
+### 28.8 Summary
+
+```
+new Date("2026-03-14T10:30:00Z")   timestamp ms since 1970 UTC;  Date.now()
+new Date(y, m0, d)                 months from 0!   only parse ISO strings
+d.toISOString()                    store/send UTC;  format with toLocaleString(locale, { timeZone })
+b - a → ms;  setDate/setUTCDate roll over;  copy before mutating: new Date(d)
+money in integer paise;  float compare with Number.EPSILON;  1.005.toFixed(2) → "1.00"
+Intl.NumberFormat(locale, { style: "currency" | "percent" | "unit", notation: "compact" })
+Intl.DateTimeFormat  RelativeTimeFormat  PluralRules  ListFormat  Collator  Segmenter
+Temporal.PlainDate / ZonedDateTime / Duration     immutable, zone-aware (Chrome, Firefox)
+```
+
+**Key terms:**
+
+- **Timestamp:** a moment in time as a number, in JavaScript the milliseconds since the Unix epoch.
+- **Unix epoch:** 1 January 1970, 00:00:00 UTC, the zero point of timestamps.
+- **UTC (Coordinated Universal Time):** the world's reference time, with no time-zone offset.
+- **ISO 8601:** the international date format, such as `2026-03-14T10:30:00Z`.
+- **Time zone:** a region's rules for its offset from UTC, including daylight saving changes.
+- **Locale:** a language and region identifier, such as `en-IN`, that decides formatting conventions.
+- **Intl:** JavaScript's built-in internationalisation API for formatting and comparing in any locale.
+- **Number.EPSILON:** the smallest difference between 1 and the next representable number, used as a tolerance.
+- **Numeric separator:** an underscore inside a number literal for readability, as in `1_000_000`.
+- **Grapheme:** a character as a reader perceives it, which may be several code points.
+- **Temporal:** the modern, immutable date and time API replacing `Date`.
+
+### Exercises
+
+1. How many whole days are there from 1 January 2026 to 15 August 2026 (UTC)?
+2. Format 2,50,000 rupees in Indian style with the ₹ sign and no decimals.
+3. Write `ageOn(birthISO, todayISO)` returning completed years.
+
+<details>
+<summary><b>Answers</b></summary>
+
+```js
+console.log((new Date("2026-08-15") - new Date("2026-01-01")) / DAY);
+console.log(new Intl.NumberFormat("en-IN", { style: "currency", currency: "INR", maximumFractionDigits: 0 }).format(250000));
+function ageOn(birthISO, todayISO) {
+  const b = new Date(birthISO);
+  const t = new Date(todayISO);
+  const age = t.getUTCFullYear() - b.getUTCFullYear();
+  const hadBirthday = t.getUTCMonth() > b.getUTCMonth() || (t.getUTCMonth() === b.getUTCMonth() && t.getUTCDate() >= b.getUTCDate());
+  return hadBirthday ? age : age - 1;
+}
+console.log(ageOn("2000-08-20", "2026-08-19"), ageOn("2000-08-20", "2026-08-20"));
+```
+
+**Output:**
+
+```text
+226
+₹2,50,000
+25 26
+```
+
+1. Date-only ISO strings are both UTC midnights, so the difference is a whole number of days.
+3. Subtract the years, then take one off if this year's birthday hasn't happened yet.
+
+</details>
+
+**Learn more:** [MDN: Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) · [MDN: Intl](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl) · [MDN: Temporal](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Temporal)
+
+---
+
+# Part IV — JavaScript in the Browser
+
+Seven chapters on JavaScript's home: the page and its events, storage, the web APIs for network requests, files and background work, how browsers render, how the network works, and how to keep a site secure.
+
+---
+
+## 29. The DOM and Events
+
+**You need:** Parts I–III. · **You'll learn:** to find, read, change, create and remove page elements; to respond to clicks, typing and form submissions; how events travel through the page; and event delegation.
+
+The examples in this chapter run on a simulated page (the jsdom library, which implements the DOM in Node.js), so blocks share variables as usual. They work the same in a browser console.
+
+### 29.1 The DOM
+
+When a browser loads HTML, it builds the **DOM** (Document Object Model): a tree of objects, one **node** per element and per piece of text. `document` is the root. JavaScript reads and changes this tree, and the browser redraws the page to match:
+
+```js
+document.body.innerHTML = `
+  <h1 id="title">ShopKart</h1>
+  <ul id="cart" class="list">
+    <li data-sku="P1" data-price="20">Pen</li>
+    <li data-sku="B1" data-price="899">Bag</li>
+  </ul>
+  <p class="note">Free delivery over ₹499</p>`;
+const cart = document.getElementById("cart");
+console.log(cart.tagName, cart.children.length, cart.firstElementChild.textContent, cart.parentElement.tagName);
+```
+
+**Output:**
+
+```text
+UL 2 Pen BODY
+```
+
+An **element** is a node for an HTML tag. Elements have `children` (child elements), `parentElement`, `nextElementSibling` and `previousElementSibling` for walking the tree.
+
+### 29.2 Finding elements
+
+`querySelector(css)` returns the first element matching a **CSS selector** (`#id`, `.class`, `tag`, `[attribute]`, combined freely), or `null`; `querySelectorAll` returns all matches as a static list, which spreads into an array:
+
+```js
+console.log(document.querySelector("#title").textContent);
+console.log(document.querySelector("li[data-sku='B1']").textContent, document.querySelector(".missing"));
+const items = [...document.querySelectorAll("#cart li")];
+console.log(items.map((li) => li.dataset.sku));
+console.log(items[0].closest("ul").id, items[0].matches(".list li"));
+```
+
+**Output:**
+
+```text
+ShopKart
+Bag null
+[ 'P1', 'B1' ]
+cart true
+```
+
+`closest(css)` finds the nearest **ancestor** (or the element itself) matching a selector; `matches(css)` tests one element. Both can be called on any element, which searches only inside it.
+
+### 29.3 Reading and changing content
+
+| Task | API |
+|---|---|
+| text | `el.textContent` (safe: shown as text) |
+| HTML | `el.innerHTML` (parsed as HTML: dangerous with user data) |
+| attributes | `el.getAttribute(name)`, `el.setAttribute(name, v)`, `el.removeAttribute(name)` |
+| `data-*` attributes | `el.dataset.camelCaseName` |
+| classes | `el.classList.add / remove / toggle / contains` |
+| inline styles | `el.style.backgroundColor = "…"` (prefer classes) |
+| form values | `input.value`, `checkbox.checked` |
+
+```js
+const title = document.querySelector("#title");
+title.textContent = "ShopKart <Sale>";
+console.log(title.innerHTML);
+const pen = items[0];
+pen.dataset.qty = "2";
+pen.classList.add("selected", "highlight");
+pen.classList.toggle("highlight");
+console.log(pen.outerHTML, Number(pen.dataset.price) * Number(pen.dataset.qty));
+```
+
+**Output:**
+
+```text
+ShopKart &lt;Sale&gt;
+<li data-sku="P1" data-price="20" data-qty="2" class="selected">Pen</li> 40
+```
+
+`textContent` stored the angle brackets as text (`&lt;` in HTML), so they display literally. Setting `innerHTML` from user input would instead let the input inject markup and scripts: **XSS**, Chapter 35. Use `textContent` for any text you didn't write yourself.
+
+### 29.4 Creating, inserting and removing
+
+```js
+const li = document.createElement("li");
+li.textContent = "Notebook";
+li.dataset.sku = "N1";
+cart.append(li);
+cart.prepend(Object.assign(document.createElement("li"), { textContent: "Stickers" }));
+document.querySelector(".note").before(document.createElement("hr"));
+cart.querySelector("[data-sku='B1']").remove();
+console.log([...cart.children].map((el) => el.textContent), document.body.children.length);
+```
+
+**Output:**
+
+```text
+[ 'Stickers', 'Pen', 'Notebook' ] 4
+```
+
+`append`/`prepend` insert at the end/start inside an element; `before`/`after` insert next to it; `remove` deletes it; `replaceWith` swaps it. Each accepts several nodes or strings.
+
+Each change to a live page can make the browser recalculate layout (Chapter 33). To add many elements, build them in a **DocumentFragment**, a lightweight container that isn't on the page, and insert it once:
+
+```js
+const fragment = document.createDocumentFragment();
+for (const name of ["Ink", "Ruler", "Glue"]) {
+  fragment.append(Object.assign(document.createElement("li"), { textContent: name }));
+}
+cart.append(fragment);
+console.log(cart.children.length, fragment.children.length);
+```
+
+**Output:**
+
+```text
+6 0
+```
+
+The fragment empties itself into the list. (Setting `innerHTML` once with a template string is also fast, but only safe with trusted text.)
+
+### 29.5 Events and listeners
+
+An **event** is a notification that something happened: a click, a key press, a form submission, a page load. `el.addEventListener(type, handler)` registers a **listener**, a function called with an **event object** describing what happened:
+
+```js
+const button = document.createElement("button");
+button.textContent = "Add to cart";
+document.body.append(button);
+let clicks = 0;
+function onClick(event) {
+  clicks++;
+  console.log(event.type, event.target.textContent, clicks);
+}
+button.addEventListener("click", onClick);
+button.click();
+button.click();
+button.removeEventListener("click", onClick);
+button.click();
+console.log("clicks:", clicks);
+```
+
+**Output:**
+
+```text
+click Add to cart 1
+click Add to cart 2
+clicks: 2
+```
+
+`button.click()` simulates a click. `removeEventListener` needs the *same* function, so a listener you'll remove must be a named function, not an inline arrow. Options: `{ once: true }` removes the listener after one call; `{ passive: true }` promises not to call `preventDefault`, which lets the browser scroll without waiting.
+
+Common events: `click`, `input` (every change to a field), `change` (on commit), `submit`, `keydown`, `focus`/`blur`, `pointerdown`/`pointermove` (mouse, touch and pen alike), `scroll`, and `DOMContentLoaded` (the HTML has been parsed).
+
+### 29.6 Propagation: capture and bubble
+
+![An event travels down from window to the target (capture phase), then back up (bubble phase); one listener on the list handles clicks on every item (delegation)](images/javascript/04-dom-events.svg)
+
+An event doesn't only happen on its target. It travels from `window` **down** to the target (the **capture** phase), then back **up** to `window` (the **bubble** phase). Listeners run during bubbling by default; `{ capture: true }` runs one on the way down:
+
+```js
+document.body.innerHTML = `<div id="outer"><button id="inner">Go</button></div>`;
+const order = [];
+const outer = document.querySelector("#outer");
+const inner = document.querySelector("#inner");
+outer.addEventListener("click", () => order.push("outer (capture)"), { capture: true });
+outer.addEventListener("click", () => order.push("outer (bubble)"));
+inner.addEventListener("click", () => order.push("button (target)"));
+inner.click();
+console.log(order.join(" → "));
+```
+
+**Output:**
+
+```text
+outer (capture) → button (target) → outer (bubble)
+```
+
+`event.target` is where the event happened (the button); `event.currentTarget` is the element whose listener is running. `event.stopPropagation()` stops the journey, but it also hides the event from other code that relies on it (analytics, closing menus), so use it rarely.
+
+### 29.7 Event delegation
+
+Instead of a listener on every list item, put **one** listener on the parent and work out which item was clicked from `event.target`. It uses less memory and works for items added later:
+
+```js
+document.body.innerHTML = `<ul id="todo">
+  <li data-id="1">Buy milk <button class="del">×</button></li>
+  <li data-id="2">Pay bills <button class="del">×</button></li>
+</ul>`;
+const todo = document.querySelector("#todo");
+todo.addEventListener("click", (event) => {
+  const del = event.target.closest("button.del");
+  if (!del) {
+    return;
+  }
+  const item = del.closest("li");
+  console.log("deleting", item.dataset.id, "| listener on", event.currentTarget.id);
+  item.remove();
+});
+todo.insertAdjacentHTML("beforeend", `<li data-id="3">Call mum <button class="del">×</button></li>`);
+todo.querySelector("[data-id='1'] .del").click();
+todo.querySelector("[data-id='3'] .del").click();
+console.log([...todo.children].map((li) => li.dataset.id));
+```
+
+**Output:**
+
+```text
+deleting 1 | listener on todo
+deleting 3 | listener on todo
+[ '2' ]
+```
+
+Item 3 was added after the listener, and its button still works. `closest` handles clicks on any element inside the button too.
+
+### 29.8 Forms and preventDefault
+
+Many events have a **default action**: a link navigates, a form submits and reloads the page. `event.preventDefault()` cancels it so JavaScript can handle the event. `FormData` reads every named field of a form:
+
+```js
+document.body.innerHTML = `<form id="signup">
+  <input name="email" value="asha@example.com">
+  <input name="plan" value="pro">
+  <input type="checkbox" name="news" checked>
+  <button>Sign up</button>
+</form>`;
+const form = document.querySelector("#signup");
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const data = Object.fromEntries(new FormData(form));
+  console.log("submitting", data);
+});
+form.querySelector("[name=email]").addEventListener("input", (e) => console.log("typed:", e.target.value));
+const email = form.querySelector("[name=email]");
+email.value = "ravi@example.com";
+email.dispatchEvent(new Event("input", { bubbles: true }));
+form.requestSubmit();
+```
+
+**Output:**
+
+```text
+typed: ravi@example.com
+submitting { email: 'ravi@example.com', plan: 'pro', news: 'on' }
+```
+
+`requestSubmit()` submits as if the button were clicked (running validation and the `submit` event). Setting `value` from code doesn't fire `input`; `dispatchEvent` fires one by hand, here to simulate typing.
+
+### 29.9 Custom events
+
+`new CustomEvent(type, { detail })` creates your own event, carrying data in `detail`; `dispatchEvent` fires it. Parts of a page can then communicate without knowing about each other:
+
+```js
+document.addEventListener("cart:updated", (e) => console.log("badge shows", e.detail.count));
+document.dispatchEvent(new CustomEvent("cart:updated", { detail: { count: 3 } }));
+```
+
+**Output:**
+
+```text
+badge shows 3
+```
+
+### 29.10 Running scripts at the right time
+
+A plain `<script>` in `<head>` runs before the body exists, so `querySelector` finds nothing. Load scripts with `type="module"` or `defer`: both wait until the HTML is parsed and keep their order. `async` scripts run as soon as they download, in any order (fine for independent scripts like analytics).
+
+### 29.11 Summary
+
+```
+document.querySelector(css) / querySelectorAll(css) / getElementById(id)   el.closest(css)  el.matches(css)
+el.textContent (safe)  el.innerHTML (only trusted HTML)  el.dataset.x  el.classList.toggle(c)  el.setAttribute
+document.createElement(tag)  el.append / prepend / before / after / remove / replaceWith   DocumentFragment
+el.addEventListener(type, fn, { once, passive, capture })  removeEventListener(type, sameFn)
+event.target (origin)  event.currentTarget (listener's element)  preventDefault()  stopPropagation()
+capture: window → target;  bubble: target → window;  delegation: one listener on the parent + closest()
+new FormData(form)   new CustomEvent(type, { detail })   el.dispatchEvent(ev)   <script type="module">
+```
+
+**Key terms:**
+
+- **DOM (Document Object Model):** the tree of objects a browser builds from HTML, which JavaScript can read and change.
+- **Node:** any object in the DOM tree: an element, a piece of text, a comment.
+- **Element:** a DOM node that represents an HTML tag.
+- **CSS selector:** a pattern that picks elements, such as `#id`, `.class` or `ul > li`.
+- **textContent:** an element's text, set safely as plain text.
+- **innerHTML:** an element's content as HTML, parsed when assigned.
+- **dataset:** an element's `data-*` attributes as an object.
+- **DocumentFragment:** a container for building nodes off the page before inserting them at once.
+- **Event:** a notification that something happened, such as a click or a key press.
+- **Event listener:** a function registered to run when an event happens.
+- **Event object:** the object passed to a listener, describing the event.
+- **Event propagation:** an event's journey through the DOM: capture down to the target, then bubble up.
+- **Capture phase:** the part of propagation from `window` down to the target.
+- **Bubbling:** the part of propagation from the target back up to `window`.
+- **event.target:** the element where the event happened.
+- **event.currentTarget:** the element whose listener is currently running.
+- **Event delegation:** handling events for many children with one listener on their parent.
+- **Default action:** what the browser does for an event by default, such as following a link; cancelled with `preventDefault`.
+- **FormData:** an object that reads the named fields of a form.
+- **CustomEvent:** an event type you define, carrying data in `detail`.
+
+### Exercises
+
+1. Write `renderList(ul, names)` that replaces a list's contents with one `<li>` per name, safely, in one insertion.
+2. With delegation, make clicks on any `<li>` of a list toggle a `done` class on it.
+
+<details>
+<summary><b>Answers</b></summary>
+
+```js
+document.body.innerHTML = `<ul id="names"></ul>`;
+const ul = document.querySelector("#names");
+function renderList(list, names) {
+  const frag = document.createDocumentFragment();
+  for (const name of names) {
+    const item = document.createElement("li");
+    item.textContent = name;
+    frag.append(item);
+  }
+  list.replaceChildren(frag);
+}
+renderList(ul, ["Asha", "<b>Ravi</b>"]);
+ul.addEventListener("click", (event) => {
+  event.target.closest("li")?.classList.toggle("done");
+});
+ul.firstElementChild.click();
+console.log(ul.innerHTML);
+```
+
+**Output:**
+
+```text
+<li class="done">Asha</li><li>&lt;b&gt;Ravi&lt;/b&gt;</li>
+```
+
+1. `replaceChildren` removes the old children and inserts the new ones in one step; `textContent` keeps `<b>` as text.
+
+</details>
+
+**Learn more:** [MDN: introduction to the DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Introduction) · [MDN: events](https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Events) · [javascript.info: event delegation](https://javascript.info/event-delegation)
+
+---
+
+## 30. Browser Storage: localStorage, sessionStorage, Cookies and IndexedDB
+
+**You need:** Chapters 9, 25 and 29. · **You'll learn:** where a web page can keep data between visits, how much, for how long and who can read it; and when to use each of Web Storage, cookies and IndexedDB.
+
+The blocks in this chapter and the next ones marked "runs in a browser" ran in headless Chrome on a page served from `http://localhost:8765`. Each such block is its own module, so they share data only through the page, and objects print as JSON.
+
+### 30.1 The options
+
+| Storage | Holds | Size | Lifetime | Sent to the server? |
+|---|---|---|---|---|
+| `localStorage` | strings | ~5 MB per origin | until cleared | no |
+| `sessionStorage` | strings | ~5 MB | until the tab closes | no |
+| cookies | short strings | ~4 KB each | until expiry | yes, with every request |
+| IndexedDB | structured data, files | large (a share of the disk) | until cleared | no |
+
+All of them are scoped to the **origin**: the scheme, host and port together (`http://localhost:8765`). Pages from another origin can't read them.
+
+### 30.2 localStorage and sessionStorage
+
+The **Web Storage** API is a synchronous key–value store of strings. `localStorage` persists across visits; `sessionStorage` lasts for one tab:
+
+```js
+localStorage.setItem("theme", "dark");
+localStorage.setItem("visits", 3);
+console.log(localStorage.getItem("theme"), localStorage.getItem("visits"), typeof localStorage.getItem("visits"));
+console.log(localStorage.getItem("missing"), localStorage.length);
+localStorage.removeItem("visits");
+sessionStorage.setItem("draft", "Hello…");
+console.log(sessionStorage.getItem("draft"), localStorage.length);
+```
+
+**Output:**
+
+```text
+dark 3 string
+null 2
+Hello… 1
+```
+
+Values are always strings: the number 3 came back as `"3"`. Store objects as JSON, and read them defensively, since stored data may be missing or corrupted by an older version of your code:
+
+```js
+function save(key, value) {
+  localStorage.setItem(key, JSON.stringify(value));
+}
+function load(key, fallback) {
+  try {
+    return JSON.parse(localStorage.getItem(key)) ?? fallback;
+  } catch {
+    return fallback;
+  }
+}
+save("cart", [{ sku: "P1", qty: 2 }]);
+localStorage.setItem("broken", "{not json");
+console.log(load("cart", []), load("broken", []), load("nothing", { empty: true }));
+```
+
+**Output:**
+
+```text
+[{"sku":"P1","qty":2}] [] {"empty":true}
+```
+
+Web Storage is synchronous, so large reads and writes block the page; keep it to small settings. When the quota is full, `setItem` throws a `QuotaExceededError`. Changes made in one tab fire a `storage` event in the *other* tabs of the same origin, which lets tabs stay in sync.
+
+Never store secrets (passwords, access tokens) here: any script on the page, including an injected one (Chapter 35), can read it.
+
+### 30.3 Cookies
+
+A **cookie** is a small named value the browser stores for a site and sends back in the `Cookie` header of every request to it. Servers set cookies with a `Set-Cookie` response header; JavaScript can read and write the non-protected ones through `document.cookie`, a single awkward string:
+
+```js
+document.cookie = "lang=hi; Max-Age=3600; Path=/; SameSite=Lax";
+document.cookie = "consent=yes; Path=/";
+console.log(document.cookie);
+const cookies = Object.fromEntries(document.cookie.split("; ").map((c) => c.split("=")));
+console.log(cookies.lang);
+document.cookie = "lang=; Max-Age=0; Path=/";
+console.log(document.cookie);
+```
+
+**Output:**
+
+```text
+lang=hi; consent=yes
+hi
+consent=yes
+```
+
+Assigning sets *one* cookie and leaves the others; `Max-Age=0` deletes one. The **attributes** matter for security:
+
+| Attribute | Effect |
+|---|---|
+| `Max-Age` / `Expires` | lifetime; without one, a **session cookie** that ends with the browser session |
+| `Path`, `Domain` | which URLs receive it |
+| `Secure` | sent only over HTTPS |
+| `HttpOnly` | hidden from JavaScript (set by the server only): protects session ids from XSS |
+| `SameSite=Strict / Lax / None` | whether it's sent on requests from other sites: the main defence against CSRF (Chapter 35) |
+
+Use cookies for what the server must see on every request, above all the login **session**, set by the server as `HttpOnly; Secure; SameSite=Lax`. Every cookie travels with every request, so keep them few and small.
+
+### 30.4 IndexedDB
+
+**IndexedDB** is a transactional database in the browser for large or structured data: offline data, cached API responses, files. It stores objects (anything `structuredClone` can copy) in **object stores**, looked up by key or by **indexes**. Its API predates promises and uses events, so wrap each request in a promise:
+
+```js
+const request = (req) => new Promise((resolve, reject) => {
+  req.onsuccess = () => resolve(req.result);
+  req.onerror = () => reject(req.error);
+});
+const open = indexedDB.open("shop", 1);
+open.onupgradeneeded = () => {
+  const store = open.result.createObjectStore("products", { keyPath: "sku" });
+  store.createIndex("byCategory", "category");
+};
+const db = await request(open);
+
+const tx = db.transaction("products", "readwrite");
+const products = tx.objectStore("products");
+products.put({ sku: "P1", name: "Pen", category: "stationery", price: 20 });
+products.put({ sku: "B1", name: "Bag", category: "travel", price: 899 });
+products.put({ sku: "N1", name: "Notebook", category: "stationery", price: 60 });
+await new Promise((resolve) => (tx.oncomplete = resolve));
+
+const read = db.transaction("products").objectStore("products");
+console.log((await request(read.get("B1"))).name);
+const stationery = await request(read.index("byCategory").getAll("stationery"));
+console.log(stationery.map((p) => p.name), await request(read.count()));
+db.close();
+```
+
+**Output:**
+
+```text
+Bag
+["Notebook","Pen"] 3
+```
+
+`open(name, version)` fires `upgradeneeded` when the version is new; that's the only place to create stores and indexes (a schema migration). All reads and writes happen inside a **transaction**, which commits all its changes or none. Most projects use a small promise wrapper such as the `idb` package rather than raw requests.
+
+### 30.5 How much space?
+
+```js
+const { quota, usage } = await navigator.storage.estimate();
+console.log(`using ${usage} bytes of about ${Math.round(quota / 1e9)} GB`, await navigator.storage.persisted());
+```
+
+**Output:**
+
+```text
+using 73728 bytes of about 11 GB false
+```
+
+The browser may delete an origin's data when the disk runs low, unless the page asked for persistent storage (`navigator.storage.persist()`). Treat browser storage as a cache: keep the real copy on a server.
+
+### 30.6 Summary
+
+```
+localStorage / sessionStorage: setItem(k, string) getItem(k) → string|null  removeItem  clear
+store objects as JSON; parse inside try/catch; small, synchronous, never secrets
+document.cookie = "k=v; Max-Age=…; Path=/; Secure; SameSite=Lax"   sent with every request
+session cookies: set by the server, HttpOnly; Secure; SameSite
+IndexedDB: open(name, version) → upgradeneeded → stores + indexes; transactions; async
+navigator.storage.estimate() / persist()
+```
+
+**Key terms:**
+
+- **Origin:** the combination of scheme, host and port of a page, such as `https://shop.example:443`, which scopes its storage.
+- **Web Storage:** the `localStorage` and `sessionStorage` APIs, storing string key–value pairs.
+- **localStorage:** origin-wide string storage that persists until cleared.
+- **sessionStorage:** string storage for one tab, cleared when it closes.
+- **Cookie:** a small piece of data the browser stores for a site and sends with each request to it.
+- **Session cookie:** a cookie without an expiry, deleted when the browser session ends; also used for the cookie holding a login session.
+- **HttpOnly:** a cookie attribute that hides the cookie from JavaScript.
+- **SameSite:** a cookie attribute that controls whether the cookie is sent on requests started by other sites.
+- **IndexedDB:** the browser's built-in transactional database for structured data.
+- **Object store:** a collection of records in an IndexedDB database, like a table.
+- **Index:** a lookup structure on one property of stored records, for fast queries by that property.
+- **Transaction:** a group of database operations that succeed or fail together.
+- **Quota:** the maximum storage an origin may use.
+
+### Exercises
+
+1. Write `remember(key, fn)`: return the value cached in `localStorage` under `key`, or call `fn()`, store its result as JSON and return it.
+2. Where would you store each: the dark-mode setting; the login session id; 50 MB of offline product data; a half-written comment that should survive a reload of this tab only?
+
+<details>
+<summary><b>Answers</b></summary>
+
+```js
+function remember(key, fn) {
+  const cached = localStorage.getItem(key);
+  if (cached !== null) {
+    return JSON.parse(cached);
+  }
+  const value = fn();
+  localStorage.setItem(key, JSON.stringify(value));
+  return value;
+}
+let computed = 0;
+const slow = () => {
+  computed++;
+  return { answer: 42 };
+};
+console.log(remember("answer", slow), remember("answer", slow), computed);
+```
+
+**Output:**
+
+```text
+{"answer":42} {"answer":42} 1
+```
+
+2. Dark mode: `localStorage`. Session id: an `HttpOnly; Secure; SameSite` cookie set by the server. Offline data: IndexedDB. The draft: `sessionStorage`.
+
+</details>
+
+**Learn more:** [MDN: Web Storage API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API) · [MDN: HTTP cookies](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Cookies) · [MDN: IndexedDB](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API/Using_IndexedDB)
+
+---
+
+## 31. Web APIs: fetch, AbortController, URL, Observers and Workers
+
+**You need:** Chapters 25, 29 and 30. · **You'll learn:** to call HTTP APIs with `fetch` and handle every kind of failure, to cancel and time out requests, to build URLs safely, to react to elements becoming visible or resized, and to run heavy work in a background thread.
+
+### 31.1 fetch
+
+`fetch(url, options)` makes an HTTP request and returns a promise of a **Response**. The body arrives separately, so reading it (`.json()`, `.text()`, `.blob()`) is a second promise. The test server serves a `users.json` file:
+
+```json
+[{ "id": 1, "name": "Asha" }, { "id": 2, "name": "Ravi" }]
+```
+
+```js
+const res = await fetch("/users.json");
+console.log(res.status, res.ok, res.headers.get("content-type"));
+const users = await res.json();
+console.log(users.map((u) => u.name));
+```
+
+**Output:**
+
+```text
+200 true application/json
+["Asha","Ravi"]
+```
+
+### 31.2 Failures: HTTP errors don't reject
+
+`fetch` rejects only when no response arrives at all (network down, DNS failure, CORS blocked, aborted). An HTTP error status like 404 or 500 is still a *response*: the promise fulfils, with `ok` set to `false` (`ok` means status 200–299). Check it yourself:
+
+```js
+const notFound = await fetch("/status/404");
+console.log(notFound.ok, notFound.status, await notFound.json());
+try {
+  await fetch("http://localhost:1/nothing-listens-here");
+} catch (err) {
+  console.log("network failure:", err.name, err.message);
+}
+```
+
+**Output:**
+
+```text
+false 404 {"error":"status 404"}
+network failure: TypeError Failed to fetch
+```
+
+So every real app wraps `fetch` in a helper that turns bad statuses into errors and sends JSON properly:
+
+```js
+class HttpError extends Error {
+  constructor(response, body) {
+    super(`HTTP ${response.status} for ${response.url}`);
+    this.name = "HttpError";
+    this.status = response.status;
+    this.body = body;
+  }
+}
+async function api(path, { body, ...options } = {}) {
+  const res = await fetch(path, {
+    ...options,
+    headers: { Accept: "application/json", ...(body !== undefined && { "Content-Type": "application/json" }), ...options.headers },
+    body: body !== undefined ? JSON.stringify(body) : undefined,
+  });
+  const data = res.headers.get("content-type")?.includes("json") ? await res.json() : await res.text();
+  if (!res.ok) {
+    throw new HttpError(res, data);
+  }
+  return data;
+}
+console.log(await api("/echo", { method: "POST", body: { sku: "P1", qty: 2 } }));
+try {
+  await api("/status/500");
+} catch (err) {
+  console.log(err.name, err.status, err.body.error);
+}
+```
+
+**Output:**
+
+```text
+{"method":"POST","contentType":"application/json","body":"{\"sku\":\"P1\",\"qty\":2}"}
+HttpError 500 status 500
+```
+
+`...(condition && { … })` spreads the header only when the condition holds (spreading `false` adds nothing). The server received the method, the JSON content type and the body as text.
+
+### 31.3 Cancelling and timeouts: AbortController
+
+An **AbortController** cancels work in progress. Pass its `signal` to `fetch`; calling `controller.abort()` rejects the request with an `AbortError` and stops the download. `AbortSignal.timeout(ms)` makes a signal that aborts by itself:
+
+```js
+const controller = new AbortController();
+const pending = fetch("/slow?ms=1000", { signal: controller.signal });
+setTimeout(() => controller.abort(), 50);
+try {
+  await pending;
+} catch (err) {
+  console.log("cancelled:", err.name);
+}
+try {
+  await fetch("/slow?ms=1000", { signal: AbortSignal.timeout(100) });
+} catch (err) {
+  console.log("timed out:", err.name);
+}
+console.log(await (await fetch("/slow?ms=20", { signal: AbortSignal.timeout(500) })).text());
+```
+
+**Output:**
+
+```text
+cancelled: AbortError
+timed out: TimeoutError
+waited 20 ms
+```
+
+A timeout rejects with a `TimeoutError` instead, so code can tell "the user cancelled" from "too slow". Unlike `Promise.race` (Chapter 24.6), aborting really stops the work. The classic use: a search box cancels the previous request on each keystroke, so a slow old answer can't overwrite a newer one. `AbortSignal.any([a, b])` combines signals, and `addEventListener(type, fn, { signal })` removes a listener when the signal aborts.
+
+### 31.4 URL and URLSearchParams
+
+Building URLs by joining strings breaks on spaces, `&` and non-English text. `URL` parses and builds them, and `URLSearchParams` handles the query string with correct **percent-encoding** (unsafe characters written as `%` and hex codes):
+
+```js
+const url = new URL("https://shop.example/search?q=pens&page=2#results");
+console.log(url.hostname, url.pathname, url.searchParams.get("page"), url.hash);
+url.searchParams.set("q", "gel pens & ink");
+url.searchParams.append("tag", "हिंदी");
+console.log(url.href);
+console.log(new URL("../img/logo.png", "https://shop.example/a/b/page.html").href);
+console.log(Object.fromEntries(new URLSearchParams("a=1&b=two&a=3")), new URLSearchParams({ x: "1 2" }).toString());
+```
+
+**Output:**
+
+```text
+shop.example /search 2 #results
+https://shop.example/search?q=gel+pens+%26+ink&page=2&tag=%E0%A4%B9%E0%A4%BF%E0%A4%82%E0%A4%A6%E0%A5%80#results
+https://shop.example/a/img/logo.png
+{ a: '3', b: 'two' } x=1+2
+```
+
+The second argument of `new URL` is a base for relative paths. A query can repeat a key: `Object.fromEntries` keeps the last value, while `params.getAll("a")` returns all of them. `encodeURIComponent` encodes a single value by hand when needed.
+
+### 31.5 Observers
+
+**Observers** call you back when something changes, instead of you checking repeatedly (**polling**):
+
+| Observer | Reports |
+|---|---|
+| `IntersectionObserver` | an element entering or leaving the visible area (lazy-loading, infinite scroll, analytics) |
+| `ResizeObserver` | an element's size changing |
+| `MutationObserver` | changes to the DOM tree or attributes |
+
+```js
+document.body.innerHTML = `<div style="height: 2000px"></div><img id="lazy" style="height: 50px; display: block">`;
+const img = document.querySelector("#lazy");
+const seen = new Promise((resolve) => {
+  const observer = new IntersectionObserver((entries) => {
+    for (const entry of entries) {
+      console.log("visible:", entry.isIntersecting);
+      if (entry.isIntersecting) {
+        observer.disconnect();
+        resolve();
+      }
+    }
+  });
+  observer.observe(img);
+});
+await new Promise((r) => setTimeout(r, 50));
+window.scrollTo(0, 2000);
+await seen;
+
+const box = document.createElement("div");
+document.body.append(box);
+new ResizeObserver(([entry]) => console.log("width:", entry.contentRect.width)).observe(box);
+await new Promise((r) => setTimeout(r, 50));
+box.style.width = "120px";
+await new Promise((r) => setTimeout(r, 50));
+
+const list = document.createElement("ul");
+new MutationObserver((records) => console.log("mutations:", records.length, records[0].type)).observe(list, { childList: true });
+list.append(document.createElement("li"), document.createElement("li"));
+```
+
+**Output:**
+
+```text
+visible: false
+visible: true
+width: 1264
+width: 120
+mutations: 1 childList
+```
+
+The image started below the visible area, so the observer first reported `false`, then `true` after scrolling. Observers batch their reports and run after layout, so they cost far less than listening to every `scroll` event and measuring.
+
+### 31.6 Web Workers
+
+Heavy computation blocks the page (Chapter 23.2). A **Web Worker** runs a script on a separate thread with its own event loop and no DOM access. Page and worker talk by **messages**: `postMessage(data)` sends a structured-clone copy (Chapter 18.1), and the other side receives a `message` event:
+
+```js
+self.addEventListener("message", (event) => {
+  const limit = event.data;
+  let count = 0;
+  for (let n = 2; n <= limit; n++) {
+    let prime = true;
+    for (let d = 2; d * d <= n; d++) {
+      if (n % d === 0) {
+        prime = false;
+        break;
+      }
+    }
+    if (prime) {
+      count++;
+    }
+  }
+  self.postMessage({ limit, count });
+});
+```
+
+```js
+const worker = new Worker("/prime-worker.mjs", { type: "module" });
+let ticks = 0;
+const ticker = setInterval(() => ticks++, 10);
+const result = await new Promise((resolve) => {
+  worker.addEventListener("message", (e) => resolve(e.data), { once: true });
+  worker.postMessage(3_000_000);
+});
+clearInterval(ticker);
+worker.terminate();
+console.log(result, "page stayed responsive:", ticks > 5);
+```
+
+**Output:**
+
+```text
+{"limit":3000000,"count":216816} page stayed responsive: true
+```
+
+While the worker counted primes, the page's own timer kept ticking. Large binary data can be **transferred** instead of copied (`postMessage(buffer, [buffer])`), which moves ownership without copying. Node.js has the same idea in `node:worker_threads`.
+
+### 31.7 Summary
+
+```
+const res = await fetch(url, { method, headers, body, signal });   res.ok res.status res.headers
+await res.json() / text() / blob()        HTTP errors fulfil with ok === false: check it
+api() helper: JSON body + Content-Type, throw an HttpError on !ok
+new AbortController(); fetch(url, { signal: c.signal }); c.abort()   AbortSignal.timeout(ms)
+new URL(path, base)  url.searchParams.set/append/get  new URLSearchParams(obj)
+IntersectionObserver / ResizeObserver / MutationObserver: observe(el), disconnect()
+new Worker(url, { type: "module" })  worker.postMessage(data)  "message" events  terminate()
+```
+
+**Key terms:**
+
+- **fetch:** the browser and Node.js function for making HTTP requests, returning a promise of a Response.
+- **Response:** the object for an HTTP response: status, headers and a body read with `json()`, `text()` and similar.
+- **Status code:** the three-digit number in an HTTP response, such as 200 (OK) or 404 (Not Found).
+- **response.ok:** true when the status is from 200 to 299.
+- **AbortController:** an object whose `abort()` method cancels operations given its `signal`.
+- **AbortSignal:** the object passed to cancellable operations; `AbortSignal.timeout(ms)` aborts by itself.
+- **URL:** a built-in class for parsing and building web addresses.
+- **URLSearchParams:** a built-in class for reading and building query strings.
+- **Percent-encoding:** writing unsafe characters in URLs as `%` plus hexadecimal codes.
+- **Polling:** checking repeatedly whether something has changed.
+- **IntersectionObserver:** reports when elements enter or leave the visible area.
+- **ResizeObserver:** reports when elements change size.
+- **MutationObserver:** reports changes to the DOM.
+- **Web Worker:** a script running on a background thread, communicating with the page by messages.
+- **postMessage:** sends a copy of data to a worker, window or channel.
+- **Transferable:** data, such as an ArrayBuffer, that can be moved to another thread instead of copied.
+
+### Exercises
+
+1. Write `getJSON(url, ms)` that fetches JSON with a timeout of `ms` and throws a clear error for non-OK statuses.
+2. Build the URL `https://api.example/search` with `q` = "red shoes", `size` = 9 and `sort` = "price asc".
+
+<details>
+<summary><b>Answers</b></summary>
+
+```js
+async function getJSON(url, ms) {
+  const res = await fetch(url, { signal: AbortSignal.timeout(ms) });
+  if (!res.ok) {
+    throw new Error(`HTTP ${res.status}`);
+  }
+  return res.json();
+}
+console.log((await getJSON("/users.json", 500)).length);
+for (const path of ["/status/503", "/slow?ms=400"]) {
+  try {
+    await getJSON(path, 100);
+  } catch (err) {
+    console.log(err.name, err.message);
+  }
+}
+```
+
+**Output:**
+
+```text
+2
+Error HTTP 503
+TimeoutError signal timed out
+```
+
+```js
+const search = new URL("https://api.example/search");
+for (const [k, v] of Object.entries({ q: "red shoes", size: 9, sort: "price asc" })) {
+  search.searchParams.set(k, v);
+}
+console.log(search.href);
+```
+
+**Output:**
+
+```text
+https://api.example/search?q=red+shoes&size=9&sort=price+asc
+```
+
+</details>
+
+**Learn more:** [MDN: using fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch) · [MDN: AbortController](https://developer.mozilla.org/en-US/docs/Web/API/AbortController) · [MDN: Web Workers](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers) · [MDN: Intersection Observer](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API)
+
+---
+
+## 32. Files, Blobs, Binary Data and Streams
+
+**You need:** Chapters 22, 25 and 31. · **You'll learn:** how JavaScript represents raw bytes, how text becomes bytes and back, how to read and create files in the browser, and how streams process data piece by piece as it arrives.
+
+### 32.1 Bytes: ArrayBuffer and typed arrays
+
+Images, files and network packets are sequences of **bytes** (numbers from 0 to 255). An **ArrayBuffer** is a fixed-size block of raw bytes; you read and write it through a **view**. **Typed arrays** are views that treat the bytes as numbers of one type: `Uint8Array` (unsigned 8-bit), `Int16Array`, `Float32Array`, and so on:
+
+```js
+const buffer = new ArrayBuffer(8);
+const bytes = new Uint8Array(buffer);
+const words = new Uint16Array(buffer);
+bytes[0] = 255;
+bytes[1] = 1;
+console.log(buffer.byteLength, bytes, words[0]);
+bytes[2] = 300;
+console.log(bytes[2], Uint8Array.from([1, 2, 3]).map((b) => b * 2));
+```
+
+**Output:**
+
+```text
+8 Uint8Array(8) [
+  255, 1, 0, 0,
+    0, 0, 0, 0
+] 511
+44 Uint8Array(3) [ 2, 4, 6 ]
+```
+
+Both views share the same 8 bytes: bytes 255 and 1 read as one 16-bit number are 1 × 256 + 255 = 511, because this machine stores the low byte first (**little-endian**). Values wrap to fit: 300 in a byte becomes 300 − 256 = 44. Typed arrays have most array methods, and are much faster for numeric work.
+
+A **DataView** reads and writes numbers of any type at any byte offset with a chosen byte order, which binary file formats need:
+
+```js
+const view = new DataView(new ArrayBuffer(6));
+view.setUint16(0, 0x4a53);
+view.setFloat32(2, 1.5);
+console.log(view.getUint8(0).toString(16), view.getUint8(1).toString(16), view.getFloat32(2));
+```
+
+**Output:**
+
+```text
+4a 53 1.5
+```
+
+`0x` writes a number in hexadecimal. DataView defaults to **big-endian** (high byte first), the order used by network protocols.
+
+### 32.2 Text and bytes
+
+Text is turned into bytes by an **encoding**; the web's is **UTF-8**, which uses 1 byte for English letters and 2–4 for other characters. `TextEncoder` and `TextDecoder` convert:
+
+```js
+const encoded = new TextEncoder().encode("Hi ₹ 👍");
+console.log(encoded.length, encoded);
+console.log(new TextDecoder().decode(encoded), "Hi ₹ 👍".length);
+```
+
+**Output:**
+
+```text
+11 Uint8Array(11) [
+   72, 105,  32, 226,
+  130, 185,  32, 240,
+  159, 145, 141
+]
+Hi ₹ 👍 7
+```
+
+The string has 7 UTF-16 code units (the emoji takes 2) but 11 UTF-8 bytes (`₹` takes 3, the emoji 4). Byte counts matter for storage limits and network headers.
+
+**Base64** writes bytes as text using 64 safe characters, for embedding binary data in JSON or URLs; it's about 33% larger. `btoa`/`atob` handle only Latin-1 strings, so encode to bytes first. (Recent browsers also have the newer `bytes.toBase64()` and `Uint8Array.fromBase64()`; Chapter 42.)
+
+```js
+const toBase64 = (u8) => btoa(String.fromCharCode(...u8));
+const fromBase64 = (b64) => Uint8Array.from(atob(b64), (c) => c.charCodeAt(0));
+const b64 = toBase64(encoded);
+console.log(b64, new TextDecoder().decode(fromBase64(b64)));
+```
+
+**Output:**
+
+```text
+SGkg4oK5IPCfkY0= Hi ₹ 👍
+```
+
+### 32.3 Blobs and Files
+
+A **Blob** is an immutable chunk of binary data with a MIME type (such as `text/csv` or `image/png`). A **File** is a Blob with a name and a modification date: what a file input or drag-and-drop gives you. Reading is asynchronous:
+
+```js
+const csv = new Blob(["sku,qty\n", "P1,2\n", "B1,1\n"], { type: "text/csv" });
+console.log(csv.size, csv.type, await csv.text());
+const file = new File([csv], "order.csv", { type: "text/csv" });
+console.log(file.name, file.size, (await file.slice(0, 7).text()) === "sku,qty");
+console.log(new Uint8Array(await file.arrayBuffer()).slice(0, 3));
+```
+
+**Output:**
+
+```text
+18 text/csv sku,qty
+P1,2
+B1,1
+
+order.csv 18 true
+Uint8Array(3) [ 115, 107, 117 ]
+```
+
+`slice` makes a smaller Blob without copying, useful for uploading a large file in chunks.
+
+In a page, `<input type="file">` gives you its `File` objects in `input.files` (the user picks them; scripts can't read arbitrary files). To let the user **download** data you created, make an **object URL** for a Blob and click a link to it:
+
+```js
+const report = new Blob([JSON.stringify({ total: 1499 })], { type: "application/json" });
+const objectUrl = URL.createObjectURL(report);
+const link = Object.assign(document.createElement("a"), { href: objectUrl, download: "report.json" });
+console.log(objectUrl.startsWith("blob:http://localhost:8765/"), link.download);
+console.log(await (await fetch(objectUrl)).text());
+URL.revokeObjectURL(objectUrl);
+```
+
+**Output:**
+
+```text
+true report.json
+{"total":1499}
+```
+
+`link.click()` would start the download. An object URL keeps its Blob in memory until `revokeObjectURL` (or the page closes). The same trick previews an image the user picked before uploading it: set an `<img>`'s `src` to its object URL.
+
+### 32.4 Streams
+
+A **stream** delivers data in **chunks** as it becomes available, instead of all at once. That keeps memory small for huge data and lets processing start before the download finishes. The Streams API has three kinds:
+
+- `ReadableStream`: a source of chunks (a response body, a file);
+- `WritableStream`: a destination;
+- `TransformStream`: changes chunks on the way through.
+
+A readable stream is async-iterable (Chapter 25.6):
+
+```js
+const source = new ReadableStream({
+  start(controller) {
+    for (const part of ["first ", "second ", "third"]) {
+      controller.enqueue(part);
+    }
+    controller.close();
+  },
+});
+for await (const chunk of source) {
+  console.log("chunk:", JSON.stringify(chunk));
+}
+```
+
+**Output:**
+
+```text
+chunk: "first "
+chunk: "second "
+chunk: "third"
+```
+
+`pipeThrough` connects transforms into a pipeline. Here: text → bytes → gzip-compressed bytes → decompressed → text again, with built-in transform streams:
+
+```js
+const original = "JavaScript ".repeat(1000);
+const compressed = new Blob([original]).stream().pipeThrough(new CompressionStream("gzip"));
+const zipped = new Uint8Array(await new Response(compressed).arrayBuffer());
+const restored = await new Response(new Blob([zipped]).stream().pipeThrough(new DecompressionStream("gzip"))).text();
+console.log(original.length, "→", zipped.length, "bytes;", restored === original);
+```
+
+**Output:**
+
+```text
+11000 → 73 bytes; true
+```
+
+`new Response(stream)` is a handy way to collect a stream into text or bytes. Your own `TransformStream` changes each chunk:
+
+```js
+const upper = new TransformStream({
+  transform(chunk, controller) {
+    controller.enqueue(chunk.toUpperCase());
+  },
+});
+console.log(await new Response(new Blob(["stream me"]).stream().pipeThrough(new TextDecoderStream()).pipeThrough(upper).pipeThrough(new TextEncoderStream())).text());
+```
+
+**Output:**
+
+```text
+STREAM ME
+```
+
+A `fetch` response body is a ReadableStream, so a large download can be processed, or its progress shown, chunk by chunk:
+
+```js
+const response = await fetch("/echo", { method: "POST", body: "x".repeat(50_000) });
+let received = 0;
+for await (const chunk of response.body) {
+  received += chunk.length;
+}
+console.log("received", received, "bytes");   // the 50,000 characters, wrapped in /echo's JSON
+```
+
+**Output:**
+
+```text
+received 50068 bytes
+```
+
+Streams handle **backpressure**: if the consumer is slower than the producer, the stream signals the producer to pause, so chunks don't pile up in memory.
+
+### 32.5 Summary
+
+```
+new ArrayBuffer(n)  new Uint8Array(buf) / Float32Array / …  new DataView(buf).getUint16(off)
+new TextEncoder().encode(str) → Uint8Array (UTF-8);  new TextDecoder().decode(bytes)
+base64: btoa/atob on byte strings;  ~33% bigger
+new Blob(parts, { type })  new File(parts, name)  await blob.text() / arrayBuffer()  blob.slice()
+URL.createObjectURL(blob) → blob: URL; revokeObjectURL;  <a download>
+ReadableStream / WritableStream / TransformStream;  for await (const chunk of stream)
+stream.pipeThrough(transform);  CompressionStream("gzip");  new Response(stream).text()
+```
+
+**Key terms:**
+
+- **Byte:** 8 bits, a number from 0 to 255; the unit of binary data.
+- **ArrayBuffer:** a fixed-length block of raw bytes.
+- **Typed array:** an array-like view that reads an ArrayBuffer as numbers of one type, such as `Uint8Array`.
+- **DataView:** a view for reading and writing numbers of any type at any offset in an ArrayBuffer.
+- **Endianness:** the order of bytes in a multi-byte number: little-endian (low byte first) or big-endian (high byte first).
+- **Encoding:** a rule for turning text into bytes; UTF-8 is the web's.
+- **UTF-8:** the encoding that stores each character in 1 to 4 bytes, with English letters in 1.
+- **Base64:** a way to write binary data as text using 64 characters.
+- **Blob:** an immutable chunk of binary data with a MIME type.
+- **File:** a Blob with a name and a modification date.
+- **MIME type:** a label for a kind of data, such as `text/csv` or `image/png`.
+- **Object URL:** a `blob:` URL that points to a Blob in memory.
+- **Stream:** data delivered and processed in chunks over time.
+- **Chunk:** one piece of a stream's data.
+- **Backpressure:** a stream's signal to slow down the producer when the consumer can't keep up.
+
+### Exercises
+
+1. How many bytes does "नमस्ते" take in UTF-8, and how many UTF-16 code units?
+2. Write `countLines(blob)` that counts the lines in a text Blob by reading its stream chunk by chunk.
+
+<details>
+<summary><b>Answers</b></summary>
+
+```js
+console.log(new TextEncoder().encode("नमस्ते").length, "नमस्ते".length);
+async function countLines(blob) {
+  let lines = 0;
+  for await (const chunk of blob.stream().pipeThrough(new TextDecoderStream())) {
+    lines += chunk.split("\n").length - 1;
+  }
+  return lines;
+}
+console.log(await countLines(new Blob(["a\nb\n", "c\n"])));
+```
+
+**Output:**
+
+```text
+18 6
+3
+```
+
+1. Each Devanagari character takes 3 bytes in UTF-8 and one code unit in UTF-16: 18 bytes, 6 code units.
+2. Count the newlines in each chunk; a line split across two chunks is still counted once, at its newline.
+
+</details>
+
+**Learn more:** [MDN: typed arrays](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Typed_arrays) · [MDN: Blob](https://developer.mozilla.org/en-US/docs/Web/API/Blob) · [MDN: Streams API](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API/Using_readable_streams)
+
+---
+
+## 33. How Browsers Render Pages: Critical Path, Reflow, Web Components and Service Workers
+
+**You need:** Chapters 29 and 31. · **You'll learn:** the steps from HTML to pixels, which changes are cheap or expensive to redraw, how to avoid layout thrashing, how to animate smoothly, the Core Web Vitals, and two browser-native building blocks: Web Components and service workers.
+
+![The rendering pipeline: HTML → DOM and CSS → CSSOM combine into the render tree; then layout, paint and composite](images/javascript/05-rendering.svg)
+
+### 33.1 From HTML to pixels
+
+To show a page, the browser runs a pipeline:
+
+1. **Parse** HTML into the DOM, and CSS into the **CSSOM** (the CSS object model: every rule, ready to apply).
+2. **Style:** work out each element's final styles.
+3. **Layout** (also called reflow): compute every box's position and size.
+4. **Paint:** fill in the pixels of each layer: text, colours, borders, images.
+5. **Composite:** stack the layers in the right order on screen, often on the GPU.
+
+The steps needed before the first pixels appear are the **critical rendering path**. Two things block it:
+
+- **CSS is render-blocking:** the browser won't paint until all stylesheets in `<head>` have loaded (otherwise the page would flash unstyled);
+- a plain `<script>` is **parser-blocking:** HTML parsing stops while the script downloads and runs. Use `defer` or `type="module"` (Chapter 29.10).
+
+So, for a fast first load: small critical CSS, scripts deferred, images sized in advance and lazy-loaded below the fold, fonts preloaded.
+
+### 33.2 What a change costs
+
+After load, every change re-runs the pipeline from the first step it affects:
+
+| You change | Re-runs | Examples |
+|---|---|---|
+| geometry | layout → paint → composite | `width`, `height`, `margin`, `font-size`, adding elements |
+| appearance only | paint → composite | `color`, `background`, `box-shadow` |
+| compositor-only properties | composite | `transform`, `opacity` |
+
+Animate `transform` and `opacity`: they skip layout and paint, so the GPU can move layers at full speed. Animating `left` or `width` re-lays out the page on every frame.
+
+### 33.3 Layout thrashing
+
+The browser batches changes and lays out once per frame. But reading a geometry property (`offsetHeight`, `getBoundingClientRect()`, `scrollTop`) after a write forces it to lay out **immediately** to answer correctly: **forced synchronous layout**. Alternating reads and writes in a loop forces a layout per element: **layout thrashing**. `performance.now()` gives a precise timestamp in milliseconds, for measuring:
+
+```js
+document.body.innerHTML = Array.from({ length: 2000 }, (_, i) => `<div class="row" style="height:${10 + (i % 5)}px">row ${i}</div>`).join("");
+const rows = [...document.querySelectorAll(".row")];
+
+let t = performance.now();
+for (const row of rows) {
+  row.style.height = row.offsetHeight + 1 + "px";     // read, write, read, write…
+}
+const thrashing = performance.now() - t;
+
+t = performance.now();
+const heights = rows.map((row) => row.offsetHeight);  // all reads first
+rows.forEach((row, i) => (row.style.height = heights[i] + 1 + "px"));   // then all writes
+const batched = performance.now() - t;
+console.log(`batched was ${Math.round(thrashing / batched)}× faster`, batched < thrashing);
+```
+
+**Output:**
+
+```text
+batched was 495× faster true
+```
+
+The rule: **read everything first, then write.** Libraries such as React batch DOM writes for you; hand-written DOM code must do it deliberately.
+
+### 33.4 Animating with requestAnimationFrame
+
+Screens refresh about 60 times a second (some at 120), so each **frame** has about 16.7 ms for JavaScript, style, layout and paint together. `requestAnimationFrame(callback)` runs a callback just before the next frame is drawn, with a timestamp. It's the right place for JavaScript animation and for batched DOM writes; it pauses in background tabs:
+
+```js
+document.body.innerHTML = `<div id="ball" style="width:20px;height:20px;background:teal"></div>`;
+const ball = document.querySelector("#ball");
+const frames = [];
+await new Promise((resolve) => {
+  let start;
+  function step(now) {
+    start ??= now;
+    const progress = Math.min((now - start) / 200, 1);
+    ball.style.transform = `translateX(${progress * 300}px)`;
+    frames.push(now);
+    if (progress < 1) {
+      requestAnimationFrame(step);
+    } else {
+      resolve();
+    }
+  }
+  requestAnimationFrame(step);
+});
+const gaps = frames.slice(1).map((f, i) => f - frames[i]);
+console.log(`${frames.length} frames, about ${Math.round(gaps.reduce((a, b) => a + b) / gaps.length)} ms apart;`, ball.style.transform);
+```
+
+**Output:**
+
+```text
+14 frames, about 17 ms apart; translateX(300px)
+```
+
+The animation uses the elapsed time, not a frame count, so it takes 200 ms whatever the refresh rate. For most animations, CSS transitions and animations (or the Web Animations API, `el.animate()`) are simpler and run off the main thread.
+
+### 33.5 Long tasks and Core Web Vitals
+
+Any task longer than 50 ms is a **long task**: during it the page can't respond to input. Google's **Core Web Vitals** measure what users feel:
+
+| Metric | Measures | Good |
+|---|---|---|
+| **LCP** (Largest Contentful Paint) | when the main content appears | ≤ 2.5 s |
+| **INP** (Interaction to Next Paint) | how quickly the page reacts to clicks and keys | ≤ 200 ms |
+| **CLS** (Cumulative Layout Shift) | how much content jumps around while loading | ≤ 0.1 |
+
+To improve them: ship less JavaScript, split long tasks (yield to the event loop with `await scheduler.yield()` or `setTimeout`), move heavy work to workers (Chapter 31.6), give images and ads fixed dimensions, and preload the main image. Measure real users with the `web-vitals` library, and in development with the Performance panel in DevTools (Chapter 45).
+
+### 33.6 Web Components
+
+**Web Components** are the browser's own reusable components, usable in any framework or none:
+
+- **custom elements:** your own HTML tags, defined by a class that extends `HTMLElement`;
+- **shadow DOM:** a private DOM subtree whose markup and styles are isolated from the page;
+- `<template>` and `<slot>`: inert markup to clone, and placeholders for the user's content.
+
+```js
+class PriceTag extends HTMLElement {
+  static observedAttributes = ["amount"];
+  constructor() {
+    super();
+    this.attachShadow({ mode: "open" }).innerHTML = `<style>span { font-weight: bold; }</style><span></span> <slot></slot>`;
+  }
+  attributeChangedCallback(name, oldValue, newValue) {
+    const formatted = new Intl.NumberFormat("en-IN", { style: "currency", currency: "INR" }).format(Number(newValue));
+    this.shadowRoot.querySelector("span").textContent = formatted;
+  }
+  connectedCallback() {
+    console.log("added to the page");
+  }
+}
+customElements.define("price-tag", PriceTag);
+document.body.innerHTML = `<price-tag amount="1499">incl. GST</price-tag>`;
+const tag = document.querySelector("price-tag");
+console.log(tag.shadowRoot.querySelector("span").textContent, "|", tag.textContent, "|", document.querySelectorAll("span").length);
+tag.setAttribute("amount", "99");
+console.log(tag.shadowRoot.querySelector("span").textContent);
+```
+
+**Output:**
+
+```text
+added to the page
+₹1,499.00 | incl. GST | 0
+₹99.00
+```
+
+Custom element names must contain a hyphen. **Lifecycle callbacks** run when the element is added (`connectedCallback`), removed (`disconnectedCallback`) or an observed attribute changes. The page's `querySelectorAll("span")` can't see the span inside the shadow root, and page CSS can't style it: that encapsulation is the point. The slotted text "incl. GST" stays in the normal DOM.
+
+### 33.7 Service workers
+
+A **service worker** is a worker (Chapter 31.6) that sits between the page and the network for a whole origin. Once installed it can answer the page's requests itself: from a cache (offline support, instant repeat visits), or with generated responses. It also receives push messages. Service workers require HTTPS (or `localhost`) and outlive the page.
+
+```js
+self.addEventListener("install", () => self.skipWaiting());
+self.addEventListener("activate", (event) => event.waitUntil(self.clients.claim()));
+self.addEventListener("fetch", (event) => {
+  const url = new URL(event.request.url);
+  if (url.pathname === "/offline-hello") {
+    event.respondWith(new Response("answered by the service worker"));
+  }
+});
+```
+
+```js
+const before = await fetch("/offline-hello");
+console.log("before:", before.status);
+await navigator.serviceWorker.register("/sw.js");
+await navigator.serviceWorker.ready;
+if (!navigator.serviceWorker.controller) {
+  await new Promise((resolve) => navigator.serviceWorker.addEventListener("controllerchange", resolve, { once: true }));
+}
+const after = await fetch("/offline-hello");
+console.log("after:", after.status, await after.text());
+```
+
+**Output:**
+
+```text
+before: 404
+after: 200 answered by the service worker
+```
+
+Before registration the server had no such page (404); afterwards the worker answered without touching the network. `skipWaiting` and `clients.claim` make a new worker take control at once (by default it waits until every tab using the old one closes). A real offline app caches its files in `install` with the Cache API (`caches.open(name)`, `cache.addAll(urls)`) and answers `fetch` events from the cache first. Tools like Workbox generate this code; get the update flow wrong and users can be stuck on an old version.
+
+### 33.8 Summary
+
+```
+HTML → DOM, CSS → CSSOM → style → layout → paint → composite
+CSS blocks rendering; plain <script> blocks parsing → defer / type="module"
+geometry → layout+paint; colours → paint; transform/opacity → composite only
+read all layout values, then write all (avoid forced synchronous layout / thrashing)
+requestAnimationFrame(t => …) for animation; ~16.7 ms per frame;  tasks > 50 ms are long
+Core Web Vitals: LCP ≤ 2.5 s, INP ≤ 200 ms, CLS ≤ 0.1
+customElements.define("x-y", class extends HTMLElement { … });  attachShadow; <slot>
+navigator.serviceWorker.register("/sw.js");  fetch event → respondWith(cache or network)
+```
+
+**Key terms:**
+
+- **Rendering pipeline:** the browser's steps from HTML and CSS to pixels: style, layout, paint, composite.
+- **CSSOM (CSS Object Model):** the browser's parsed representation of all CSS rules.
+- **Layout (reflow):** computing the position and size of every element.
+- **Paint:** filling in the pixels of text, colours, borders and images.
+- **Compositing:** combining painted layers into the final image, often on the GPU.
+- **Critical rendering path:** the steps needed before the first content can be shown.
+- **Render-blocking:** a resource the browser must load before it can paint, such as CSS in the head.
+- **Forced synchronous layout:** an immediate layout triggered by reading geometry after a change.
+- **Layout thrashing:** repeatedly alternating DOM writes and geometry reads, forcing many layouts.
+- **performance.now():** a high-precision timestamp in milliseconds, for measuring durations.
+- **requestAnimationFrame:** schedules a callback just before the browser's next frame.
+- **Frame:** one screen update; about 16.7 ms apart at 60 Hz.
+- **Long task:** a task over 50 ms, during which the page can't respond.
+- **Core Web Vitals:** Google's user-experience metrics: LCP, INP and CLS.
+- **Web Components:** browser-native reusable components built from custom elements, shadow DOM and templates.
+- **Custom element:** an HTML tag you define with a class extending `HTMLElement`.
+- **Shadow DOM:** an encapsulated DOM subtree with isolated markup and styles.
+- **Lifecycle callback:** a method the browser calls at a stage of a custom element's life, such as `connectedCallback`.
+- **Service worker:** a background script that intercepts an origin's network requests, enabling offline use and caching.
+
+### Exercises
+
+1. Classify as layout, paint only or composite only: changing `transform`, `color`, `width`, `opacity`, `font-size`.
+2. This code shows a list of 1,000 rows' heights doubling. Why is it slow, and how do you fix it? `for (const r of rows) { r.style.height = r.offsetHeight * 2 + "px"; }`
+
+<details>
+<summary><b>Answers</b></summary>
+
+1. `transform`, `opacity`: composite only. `color`: paint. `width`, `font-size`: layout (then paint and composite).
+2. Each iteration reads `offsetHeight` right after the previous write, forcing 1,000 layouts. Read all heights into an array first, then write them all.
+
+</details>
+
+**Learn more:** [web.dev: critical rendering path](https://web.dev/learn/performance/understanding-the-critical-path) · [web.dev: Core Web Vitals](https://web.dev/articles/vitals) · [MDN: Web Components](https://developer.mozilla.org/en-US/docs/Web/API/Web_components) · [MDN: service workers](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API/Using_Service_Workers)
+
+---
+
+## 34. Networking for Frontend Developers: From URL to Page, HTTP, Caching and CORS
+
+**You need:** Chapters 30–31. · **You'll learn:** what happens between typing a URL and seeing the page, how HTTP requests and responses are built, how browser caching works, and what CORS is, why it blocks requests and how servers allow them.
+
+### 34.1 From URL to page
+
+Typing `https://shop.example/cart` and pressing Enter sets off:
+
+1. **DNS lookup:** the browser asks the Domain Name System for `shop.example`'s IP address (cached at several levels).
+2. **Connection:** a TCP connection to that address (or QUIC over UDP for HTTP/3), then a **TLS** handshake that encrypts it and checks the server's certificate: the S in HTTPS.
+3. **Request:** the browser sends an HTTP request: `GET /cart` with headers.
+4. **Response:** the server answers with a status, headers and the HTML.
+5. **Rendering:** the browser parses the HTML, discovers CSS, scripts and images, fetches them (often over the same connection), and renders (Chapter 33).
+
+Each round trip to a distant server costs tens to hundreds of milliseconds, so the speed rules are: fewer requests on the critical path, fewer bytes, and caching. A **CDN** (content delivery network) serves files from servers near the user.
+
+### 34.2 HTTP requests and responses
+
+**HTTP** is a request–response protocol. A request is a method, a path, headers and optionally a body; a response is a status, headers and a body. This is what they look like as text (HTTP/1.1; HTTP/2 and 3 send the same information in a compact binary form):
+
+```text
+POST /api/orders HTTP/1.1                    HTTP/1.1 201 Created
+Host: shop.example                           Content-Type: application/json
+Content-Type: application/json               Location: /api/orders/90312
+Cookie: session=abc123                       Cache-Control: no-store
+                                             
+{"sku":"P1","qty":2}                         {"id":90312,"status":"pending"}
+```
+
+| Method | Meaning | Safe? | Idempotent? |
+|---|---|---|---|
+| `GET` | read | yes | yes |
+| `POST` | create, or run an action | no | no |
+| `PUT` | replace | no | yes |
+| `PATCH` | partly update | no | no |
+| `DELETE` | delete | no | yes |
+
+A **safe** method doesn't change anything on the server; an **idempotent** one has the same effect whether sent once or many times, so it can be retried safely (Chapter 46).
+
+| Status | Meaning |
+|---|---|
+| 200 OK, 201 Created, 204 No Content | success |
+| 301 / 308 moved permanently, 302 / 307 temporarily; 304 Not Modified | redirects and cache |
+| 400 Bad Request, 401 Unauthorized (not logged in), 403 Forbidden (not allowed), 404 Not Found, 409 Conflict, 422 Unprocessable, 429 Too Many Requests | the client's mistake |
+| 500 Internal Server Error, 502 Bad Gateway, 503 Service Unavailable, 504 Gateway Timeout | the server's problem |
+
+Retry 429 and 5xx responses (with backoff); don't retry other 4xx ones, since the same request will fail the same way.
+
+### 34.3 Browser caching
+
+The fastest request is the one never made. The server controls caching with response headers:
+
+| Header | Effect |
+|---|---|
+| `Cache-Control: max-age=31536000, immutable` | reuse for a year without asking: for files whose name contains a content hash (`app.3f9a1c.js`) |
+| `Cache-Control: no-cache` | store, but **revalidate** with the server before each use |
+| `Cache-Control: no-store` | never store (private or always-changing data) |
+| `ETag: "v42"` / `Last-Modified` | a version tag the browser sends back in `If-None-Match`; if unchanged, the server answers **304 Not Modified** with no body |
+
+The standard recipe: HTML with `no-cache` (always checks for a new version), and every CSS, JS and image file with a hash in its name and a one-year `max-age`. A deploy changes the hashes, the new HTML points to new file names, and nobody gets a stale mix. Bundlers produce hashed names automatically (Chapter 43).
+
+### 34.4 The same-origin policy
+
+Pages from different origins (Chapter 30.1) mustn't read each other's data: otherwise any site you visit could fetch your bank's pages with your cookies and read them. The browser enforces the **same-origin policy**: a page may *send* requests anywhere, but may *read* responses only from its own origin, unless the other server allows it. The check happens in the browser; the server still receives the request.
+
+The examples below run on a page at `http://localhost:8765` and request `http://127.0.0.1:8765`: the same server, but a different host name, so a different origin. Two files are served:
+
+```json
+{ "message": "anyone may read this" }
+```
+
+```json
+{ "message": "same origin only" }
+```
+
+```js
+console.log(location.origin);
+const other = "http://127.0.0.1:8765";
+try {
+  await fetch(`${other}/closed.json`);
+} catch (err) {
+  console.log("closed:", err.name, err.message);
+}
+```
+
+**Output:**
+
+```text
+http://localhost:8765
+Access to fetch at 'http://127.0.0.1:8765/closed.json' from origin 'http://localhost:8765' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+closed: TypeError Failed to fetch
+```
+
+The browser logged why, and `fetch` rejected with a `TypeError` that hides the reason from JavaScript (another protection).
+
+### 34.5 CORS
+
+**CORS** (cross-origin resource sharing) is how a server opts in: it adds `Access-Control-Allow-*` response headers saying which origins, methods and headers it accepts. The test server adds them from a configuration file:
+
+```json
+{
+  "/open.json": { "Access-Control-Allow-Origin": "http://localhost:8765" },
+  "/echo": {
+    "Access-Control-Allow-Origin": "http://localhost:8765",
+    "Access-Control-Allow-Methods": "GET, POST",
+    "Access-Control-Allow-Headers": "Content-Type"
+  }
+}
+```
+
+```js
+const otherOrigin = "http://127.0.0.1:8765";
+const open = await fetch(`${otherOrigin}/open.json`);
+console.log("open:", (await open.json()).message);
+const posted = await fetch(`${otherOrigin}/echo`, { method: "POST", headers: { "Content-Type": "application/json" }, body: "{}" });
+console.log("JSON POST:", posted.status);
+try {
+  await fetch(`${otherOrigin}/echo`, { method: "POST", headers: { "Content-Type": "application/json", "X-Debug": "1" }, body: "{}" });
+} catch (err) {
+  console.log("with X-Debug:", err.message);
+}
+```
+
+**Output:**
+
+```text
+open: anyone may read this
+JSON POST: 200
+Access to fetch at 'http://127.0.0.1:8765/echo' from origin 'http://localhost:8765' has been blocked by CORS policy: Request header field x-debug is not allowed by Access-Control-Allow-Headers in preflight response.
+with X-Debug: Failed to fetch
+```
+
+The two POSTs needed a **preflight**: because they use a JSON content type (and a custom header), the browser first sends an `OPTIONS` request asking "may I send this?", and sends the real request only if the answer allows the method and every header. `X-Debug` wasn't in `Access-Control-Allow-Headers`, so the preflight failed and the request was never sent. **Simple requests** (GET, or POST with form-style content types and no custom headers) skip the preflight.
+
+Points that trip people up:
+
+- CORS is configured on the **server** (the API), never fixed in frontend code. During development, a dev-server proxy makes API calls same-origin.
+- `Access-Control-Allow-Origin: *` allows any origin but forbids cookies. To send cookies cross-origin, use `fetch(url, { credentials: "include" })` and the server must name the exact origin and add `Access-Control-Allow-Credentials: true`.
+- CORS doesn't protect the server. It protects *users'* data in their browsers; tools like `curl` ignore it completely.
+
+### 34.6 Other ways browsers and servers talk
+
+| Technique | Direction | Use |
+|---|---|---|
+| `fetch` | page asks, server answers | almost everything |
+| **Server-Sent Events** (`new EventSource(url)`) | server → page, over one long HTTP response | live feeds, notifications, AI token streams |
+| **WebSocket** (`new WebSocket("wss://…")`) | both ways, any time | chat, multiplayer, collaborative editing |
+| **WebTransport / WebRTC** | both ways, low latency | games, video calls |
+
+### 34.7 Summary
+
+```
+URL → DNS → TCP/QUIC + TLS → HTTP request → response → parse and render
+request: method path headers [body];  response: status headers body
+GET safe+idempotent; PUT/DELETE idempotent; POST neither;  retry 429/5xx, not other 4xx
+Cache-Control: max-age (hashed files) | no-cache (HTML, revalidate) | no-store;  ETag → 304
+same-origin policy: send anywhere, read only your origin unless the server allows
+CORS: Access-Control-Allow-Origin / -Methods / -Headers / -Credentials;  preflight = OPTIONS
+SSE (server push), WebSocket (two-way)
+```
+
+**Key terms:**
+
+- **DNS (Domain Name System):** the system that turns host names into IP addresses.
+- **TLS (Transport Layer Security):** the encryption and certificate checks behind HTTPS.
+- **CDN (content delivery network):** servers around the world that serve files from near the user.
+- **HTTP:** the request–response protocol of the web.
+- **HTTP method:** the action of a request, such as GET, POST, PUT, PATCH or DELETE.
+- **Header:** a name–value line of metadata in an HTTP request or response.
+- **Safe method:** an HTTP method that doesn't change server state, such as GET.
+- **Idempotent:** having the same effect whether done once or several times.
+- **Cache-Control:** the response header that tells browsers and CDNs whether and how long to cache.
+- **Revalidation:** asking the server whether a cached copy is still current.
+- **ETag:** a version identifier for a response, used to revalidate cached copies.
+- **304 Not Modified:** the response meaning "your cached copy is still valid".
+- **Same-origin policy:** the browser rule that a page may only read responses from its own origin.
+- **CORS (cross-origin resource sharing):** response headers with which a server allows other origins to read its responses.
+- **Preflight request:** an automatic `OPTIONS` request the browser sends to ask permission before certain cross-origin requests.
+- **Simple request:** a cross-origin request that doesn't need a preflight.
+- **Server-Sent Events (SSE):** a one-way stream of messages from server to page over HTTP.
+- **WebSocket:** a persistent two-way connection between page and server.
+
+### Exercises
+
+1. Your app at `https://app.example` calls `https://api.example/orders` with a JSON body and fails with a CORS error in the console. What must the API's response to `OPTIONS` contain?
+2. Which `Cache-Control` would you send for `index.html`, for `app.8c1f2e.js`, and for `GET /api/me`?
+
+<details>
+<summary><b>Answers</b></summary>
+
+1. `Access-Control-Allow-Origin: https://app.example`, `Access-Control-Allow-Methods` including `POST`, and `Access-Control-Allow-Headers: Content-Type` (plus `Access-Control-Allow-Credentials: true` if cookies are sent).
+2. `index.html`: `no-cache`. The hashed file: `max-age=31536000, immutable`. `/api/me` (private, per user): `no-store`, or `private, no-cache`.
+
+</details>
+
+**Learn more:** [MDN: an overview of HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Overview) · [MDN: HTTP caching](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Caching) · [MDN: CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS)
+
+---
+
+## 35. Frontend Security: XSS, CSRF, CSP, Prototype Pollution and the Supply Chain
+
+**You need:** Chapters 29–34. · **You'll learn:** the attacks that target web frontends and the defences for each: escaping and sanitising output against XSS, Content Security Policy, CSRF protection with cookies, prototype pollution, safe cross-window messaging, and protecting your dependencies.
+
+The rule underneath all of it: **any data that came from outside your code is untrusted**: form input, URL parameters, API responses, `localStorage`, messages from other windows. Untrusted data must never be treated as code.
+
+### 35.1 Cross-site scripting (XSS)
+
+**XSS** happens when untrusted text ends up in a page as HTML, so an attacker's markup runs as script *in your page*, with your user's session: it can read the page, call your APIs as the user, or show a fake login form. A comment box that renders with `innerHTML`:
+
+```js
+document.body.innerHTML = `<div id="comment"></div>`;
+const comment = `Nice pen! <img src="x" onerror="window.stolen = document.cookie || 'cookies'">`;
+document.querySelector("#comment").innerHTML = comment;
+await new Promise((r) => setTimeout(r, 100));
+console.log("attacker code ran:", window.stolen !== undefined);
+```
+
+**Output:**
+
+```text
+attacker code ran: true
+```
+
+The broken image's `onerror` handler ran the attacker's code. The defences, in order of preference:
+
+1. **Insert text as text:** `textContent`, `createElement` + `textContent`, or a framework (React, Vue, Svelte escape interpolated values by default).
+2. **Escape** when you must build HTML strings: replace `& < > " '` with HTML entities.
+3. **Sanitise** when you must accept user HTML (rich text): remove everything but a safe list of tags and attributes, with the built-in `setHTML` (the Sanitizer API, in Chrome) or the DOMPurify library.
+
+```js
+document.body.innerHTML = `<div id="a"></div><div id="b"></div>`;
+const evil = `<b>bold</b><img src="x" onerror="window.pwned = true">`;
+document.querySelector("#a").textContent = evil;
+document.querySelector("#b").setHTML(evil);
+await new Promise((r) => setTimeout(r, 100));
+console.log(document.querySelector("#a").innerHTML);
+console.log(document.querySelector("#b").innerHTML, "| pwned:", window.pwned === true);
+```
+
+**Output:**
+
+```text
+&lt;b&gt;bold&lt;/b&gt;&lt;img src="x" onerror="window.pwned = true"&gt;
+<b>bold</b> | pwned: false
+```
+
+`textContent` shows the markup as harmless text; `setHTML` kept the safe `<b>` and dropped the dangerous image.
+
+An **escaping tagged template** makes safe HTML building convenient. A **tagged template** calls a function with the literal parts and the interpolated values separately, so the function can escape only the values:
+
+```js
+const escapeHTML = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
+function html(strings, ...values) {
+  return strings.reduce((out, str, i) => out + str + (i < values.length ? escapeHTML(values[i]) : ""), "");
+}
+const name = `<script>alert("hi")</script>`;
+console.log(html`<p class="user">Hello, ${name}!</p>`);
+```
+
+**Output:**
+
+```text
+<p class="user">Hello, &lt;script&gt;alert(&quot;hi&quot;)&lt;/script&gt;!</p>
+```
+
+Other XSS sinks to avoid with untrusted data: `outerHTML`, `insertAdjacentHTML`, `document.write`, `eval`, `new Function`, `setTimeout("string")`, and URLs in `href`/`src`: a `javascript:` URL runs code when clicked, so allow only `https:` (and maybe `mailto:`) links from users.
+
+### 35.2 Content Security Policy
+
+A **Content Security Policy** (CSP) is a response header that tells the browser which sources of script, style, images and connections the page may use. Even if an attacker injects markup, a strict CSP stops it running. Here a page is served with `script-src 'self'`, allowing only script files from its own origin, and the same injection is tried inside it:
+
+```html
+<!doctype html><div id="out"></div><script type="module" src="/csp-test.js"></script>
+```
+
+```js
+document.querySelector("#out").innerHTML = `<img src="x" onerror="window.pwned = true">`;
+setTimeout(() => console.log("inside the CSP page, attacker code ran:", window.pwned === true), 100);
+```
+
+```json
+{ "/csp.html": { "Content-Security-Policy": "script-src 'self'; object-src 'none'; base-uri 'none'" } }
+```
+
+```js
+const frame = Object.assign(document.createElement("iframe"), { src: "/csp.html" });
+document.body.append(frame);
+await new Promise((r) => setTimeout(r, 400));
+```
+
+**Output:**
+
+```text
+Executing inline event handler violates the following Content Security Policy directive 'script-src 'self''. Either the 'unsafe-inline' keyword, a hash ('sha256-...'), or a nonce ('nonce-...') is required to enable inline execution. Note that hashes do not apply to event handlers, style attributes and javascript: navigations unless the 'unsafe-hashes' keyword is present. The action has been blocked.
+inside the CSP page, attacker code ran: false
+```
+
+The browser refused the inline event handler and reported the violation. A strict policy for a modern app:
+
+```text
+Content-Security-Policy: default-src 'self'; script-src 'self' 'nonce-r4nd0m'; object-src 'none';
+  base-uri 'none'; frame-ancestors 'none'; connect-src 'self' https://api.example
+```
+
+A **nonce** is a random value generated for each response; only `<script nonce="r4nd0m">` tags carrying it may run, so injected scripts can't. `frame-ancestors 'none'` stops other sites from embedding your page in an invisible frame to trick clicks (**clickjacking**). Roll out a CSP with `Content-Security-Policy-Report-Only` first, to see what would break.
+
+### 35.3 Cross-site request forgery (CSRF)
+
+Cookies are sent with every request to their site, even requests started by *another* site. **CSRF** abuses that: a malicious page submits a hidden form to `bank.example/transfer`, and the browser attaches the victim's session cookie. The attacker can't read the response, but the transfer happens.
+
+Defences:
+
+- **`SameSite` cookies** (Chapter 30.3): `Lax` (the browser default) doesn't send the cookie on cross-site POSTs; `Strict` doesn't send it on any cross-site request.
+- **Never change state with GET.** `Lax` still sends cookies on top-level GET navigations.
+- **CSRF tokens:** the server puts a random token in each form or page and rejects state-changing requests without the matching token, which another site can't know.
+- Check the `Origin` header on the server for state-changing requests.
+
+Tokens kept in `localStorage` and sent in an `Authorization` header aren't attached automatically, so they aren't open to CSRF, but any XSS can read them. An `HttpOnly; Secure; SameSite=Lax` cookie is the safer default for sessions.
+
+### 35.4 Prototype pollution
+
+If code merges untrusted JSON into an object key by key, a key named `__proto__` reaches `Object.prototype` (Chapter 19), and the attacker's property appears on **every** object in the program:
+
+```js
+function naiveMerge(target, source) {
+  for (const key in source) {
+    if (typeof source[key] === "object" && source[key] !== null) {
+      target[key] ??= {};
+      naiveMerge(target[key], source[key]);
+    } else {
+      target[key] = source[key];
+    }
+  }
+  return target;
+}
+const attackerJSON = '{ "theme": "dark", "__proto__": { "isAdmin": true } }';
+naiveMerge({}, JSON.parse(attackerJSON));
+const someUser = {};
+console.log(someUser.isAdmin);
+delete Object.prototype.isAdmin;
+```
+
+**Output:**
+
+```text
+true
+```
+
+`JSON.parse` creates `__proto__` as an ordinary key; `target["__proto__"]` then returns `Object.prototype`, and the merge writes into it. A brand-new, unrelated object now says it's an admin. (The last line cleans up.) Defences:
+
+- skip dangerous keys (`__proto__`, `constructor`, `prototype`) when copying untrusted data, or copy only known fields;
+- use `Map`, or objects from `Object.create(null)`, for dictionaries with untrusted keys;
+- validate input with a schema (Chapter 46);
+- check `Object.hasOwn` rather than `in` for permissions.
+
+```js
+const BLOCKED = new Set(["__proto__", "constructor", "prototype"]);
+function safeMerge(target, source) {
+  for (const key of Object.keys(source)) {
+    if (BLOCKED.has(key)) {
+      continue;
+    }
+    const value = source[key];
+    target[key] = typeof value === "object" && value !== null ? safeMerge(target[key] ?? {}, value) : value;
+  }
+  return target;
+}
+console.log(safeMerge({}, JSON.parse(attackerJSON)), {}.isAdmin);
+```
+
+**Output:**
+
+```text
+{ theme: 'dark' } undefined
+```
+
+### 35.5 Messages between windows
+
+`window.postMessage` lets pages from different origins talk (an embedded payment frame, a login popup). Anyone can send your window a message, so always check `event.origin` against an exact allow-list, and pass an exact target origin, never `"*"`, when sending secrets:
+
+```text
+window.addEventListener("message", (event) => {
+  if (event.origin !== "https://pay.example") return;   // ignore everyone else
+  handlePayment(event.data);
+});
+payFrame.contentWindow.postMessage(order, "https://pay.example");
+```
+
+### 35.6 The supply chain
+
+A typical frontend depends on hundreds of npm packages, each able to run code on your machine at install time and in your users' browsers. Attackers publish look-alike names (**typosquatting**), take over maintainers' accounts, or slip malware into popular packages. Protect the **software supply chain**:
+
+- commit the **lockfile** and install with `npm ci`, so every build uses the exact reviewed versions;
+- run `npm audit` (and automated tools like Dependabot) to find known vulnerabilities;
+- add dependencies sparingly, and prefer well-maintained ones; a few lines of your own code beat a tiny package;
+- consider disabling install scripts (`npm config set ignore-scripts true`) and enabling them per package;
+- load third-party scripts from your own build, or pin them with **Subresource Integrity**: an `integrity` attribute holding the file's hash, so a changed file is refused.
+
+An SRI hash is the base64 of the file's SHA-384 digest; Node's `crypto.subtle` computes it (the same API exists in browsers):
+
+```js
+const fileText = 'console.log("analytics loaded");';
+const digest = await crypto.subtle.digest("SHA-384", new TextEncoder().encode(fileText));
+const sri = "sha384-" + btoa(String.fromCharCode(...new Uint8Array(digest)));
+console.log(`<script src="https://cdn.example/a.js" integrity="${sri}" crossorigin="anonymous"></script>`);
+```
+
+**Output:**
+
+```text
+<script src="https://cdn.example/a.js" integrity="sha384-aAxJrr/1LcmM+ajEpzWt0Yw9iscqGrosBX/Up+peVQA17tr0jMYh98iitYk8n90A" crossorigin="anonymous"></script>
+```
+
+### 35.7 Secrets and trust
+
+- **Everything shipped to the browser is public.** API keys in frontend code, "hidden" admin routes and minified logic can all be read. Keep secrets on the server.
+- **The frontend can't enforce rules.** Validation in the browser is for user experience; the server must check every permission and value again, because anyone can send requests directly.
+- Serve everything over HTTPS, with `Strict-Transport-Security` so browsers never fall back to HTTP.
+
+### 35.8 Summary
+
+```
+treat all outside data as untrusted; never let it become code
+XSS: textContent / framework escaping; escape when building HTML; sanitise rich HTML (setHTML, DOMPurify)
+     avoid innerHTML, eval, new Function, javascript: URLs with untrusted data
+CSP: script-src 'self' 'nonce-…'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'
+CSRF: SameSite cookies, no state changes on GET, CSRF tokens, Origin checks
+prototype pollution: block __proto__/constructor/prototype keys; Map or Object.create(null); validate
+postMessage: check event.origin; send to an exact origin
+supply chain: lockfile + npm ci, npm audit, few dependencies, SRI for CDN scripts
+secrets stay on the server; the server re-checks everything
+```
+
+**Key terms:**
+
+- **Untrusted data:** any data that comes from outside your code, such as user input, URLs, API responses or storage.
+- **XSS (cross-site scripting):** an attack that gets attacker-controlled script to run in another site's pages.
+- **Escaping:** converting special characters into a form that's displayed literally instead of interpreted, such as `<` to `&lt;`.
+- **Sanitising:** removing dangerous parts from HTML while keeping a safe subset.
+- **Tagged template:** a template literal preceded by a function name, which calls the function with the literal parts and values separately.
+- **Content Security Policy (CSP):** a response header restricting which scripts and other resources a page may load or run.
+- **Nonce:** a random value used once; in CSP, it marks the script tags allowed to run.
+- **Clickjacking:** tricking users into clicking something on a site hidden inside an invisible frame.
+- **CSRF (cross-site request forgery):** an attack that makes a victim's browser send an authenticated request to another site.
+- **CSRF token:** a random value the server requires with state-changing requests, which other sites can't know.
+- **Prototype pollution:** an attack that adds properties to `Object.prototype` through unsafe merging of untrusted data.
+- **Typosquatting:** publishing malicious packages with names similar to popular ones.
+- **Software supply chain:** all the third-party code and tools that go into building and running your software.
+- **Lockfile:** a file recording the exact versions of every installed dependency.
+- **Subresource Integrity (SRI):** an `integrity` attribute with a file's hash, so the browser refuses a modified file.
+
+### Exercises
+
+1. A search page shows "Results for: …" using the `q` URL parameter. Write the safe version.
+2. Is a login form that sends its token in an `Authorization` header from `localStorage` safe from CSRF? From XSS?
+
+<details>
+<summary><b>Answers</b></summary>
+
+1. Read it with `new URL(location.href).searchParams.get("q")` and insert it with `heading.textContent = \`Results for: ${q}\``, never `innerHTML`.
+2. Safe from CSRF, since the header isn't attached automatically to cross-site requests. Not safe from XSS: any injected script can read `localStorage` and steal the token, which is why an `HttpOnly` cookie with `SameSite` and a CSRF defence is usually preferred.
+
+</details>
+
+**Learn more:** [OWASP: XSS prevention cheat sheet](https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html) · [MDN: Content Security Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CSP) · [OWASP: CSRF prevention cheat sheet](https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html) · [MDN: prototype pollution](https://developer.mozilla.org/en-US/docs/Web/Security/Attacks/Prototype_pollution)
+
+---
+
+# Part V — Patterns and Performance
+
+Seven chapters on writing code that stays clear as it grows and runs fast: functional programming, rate-limiting events, proxies, design patterns, memory management, engine performance and the newest language features.
+
+---
+
+## 36. Functional Programming: Pure Functions, Immutability, Currying and Composition
+
+**You need:** Chapters 11, 12, 14 and 18. · **You'll learn:** the functional style: pure functions over immutable data, functions that build functions (currying and partial application), composing small functions into pipelines, and where this style helps and where it doesn't.
+
+### 36.1 The idea
+
+**Functional programming** (FP) builds programs from **pure functions** (Chapter 10.2): same input, same output, no side effects. Data isn't changed in place; each step returns new data. The benefits: each function can be understood and tested alone, results can be cached, and there are no surprises from shared state changing under you. Side effects (network, DOM, logging) still happen, but at the edges of the program, not mixed into the logic.
+
+```js
+const cart = [{ sku: "P1", price: 20, qty: 3 }, { sku: "B1", price: 899, qty: 1 }];
+
+let total = 0;                                         // imperative: mutate a variable step by step
+for (const item of cart) {
+  total += item.price * item.qty;
+}
+const lineTotal = (item) => item.price * item.qty;     // functional: describe the result
+const sum = (nums) => nums.reduce((a, b) => a + b, 0);
+console.log(total, sum(cart.map(lineTotal)));
+```
+
+**Output:**
+
+```text
+959 959
+```
+
+### 36.2 Immutable updates
+
+Instead of changing data, return a changed copy, using spread, `map`, `filter`, `with` and `toSorted` (Chapters 8, 11, 12). Each update touches only the path it changes and shares the rest:
+
+```js
+const state = { user: { name: "Asha", prefs: { theme: "light" } }, cart };
+const next = {
+  ...state,
+  user: { ...state.user, prefs: { ...state.user.prefs, theme: "dark" } },
+  cart: state.cart.map((it) => (it.sku === "P1" ? { ...it, qty: it.qty + 1 } : it)),
+};
+console.log(state.user.prefs.theme, next.user.prefs.theme, state.cart[0].qty, next.cart[0].qty);
+console.log(next.cart[1] === state.cart[1], next.user === state.user);
+```
+
+**Output:**
+
+```text
+light dark 3 4
+true false
+```
+
+Unchanged parts are the *same* objects (`next.cart[1] === state.cart[1]`), so a quick `===` tells you what changed. React, Redux and many other libraries rely on this. Deep nesting makes these updates verbose; libraries like Immer let you write mutations on a draft and produce the copy for you.
+
+### 36.3 Currying and partial application
+
+**Partial application** (Chapter 15.5) fixes some arguments now. **Currying** turns a function of several arguments into a chain of one-argument functions: `f(a, b, c)` becomes `f(a)(b)(c)`. Both make specialised functions from general ones:
+
+```js
+const discount = (rate) => (price) => Math.round(price * (1 - rate));
+const festiveSale = discount(0.2);
+console.log(festiveSale(1000), [500, 899].map(discount(0.1)));
+```
+
+**Output:**
+
+```text
+800 [ 450, 809 ]
+```
+
+A general `curry` uses the function's `length` (Chapter 10.7) to know how many arguments to wait for:
+
+```js
+function curry(fn) {
+  return function curried(...args) {
+    return args.length >= fn.length ? fn(...args) : (...more) => curried(...args, ...more);
+  };
+}
+const volume = curry((l, w, h) => l * w * h);
+console.log(volume(2)(3)(4), volume(2, 3)(4), volume(2)(3, 4));
+```
+
+**Output:**
+
+```text
+24 24 24
+```
+
+Currying pays off when you put the **data argument last**: the configuration comes first, so partially applied functions slot straight into `map` and pipelines.
+
+### 36.4 Composition and pipelines
+
+**Composition** combines small functions into a bigger one: `compose(f, g)(x)` is `f(g(x))`. `pipe` does the same left to right, which reads in order of execution:
+
+```js
+const pipe = (...fns) => (x) => fns.reduce((acc, fn) => fn(acc), x);
+const compose = (...fns) => (x) => fns.reduceRight((acc, fn) => fn(acc), x);
+
+const trim = (s) => s.trim();
+const lower = (s) => s.toLowerCase();
+const slugWords = (s) => s.split(/\s+/).join("-");
+const slugify = pipe(trim, lower, slugWords);
+console.log(slugify("  Hello Functional World "), compose(slugWords, lower, trim)("  A B "));
+```
+
+**Output:**
+
+```text
+hello-functional-world a-b
+```
+
+Each step is tiny, pure and testable alone; the pipeline names the whole operation. A data pipeline with curried helpers:
+
+```js
+const filterBy = (pred) => (arr) => arr.filter(pred);
+const mapBy = (fn) => (arr) => arr.map(fn);
+const sortBy = (key) => (arr) => arr.toSorted((a, b) => a[key] - b[key]);
+const products = [
+  { name: "Bag", price: 899, stock: 0 },
+  { name: "Pen", price: 20, stock: 5 },
+  { name: "Ink", price: 60, stock: 2 },
+];
+const inStockByPrice = pipe(filterBy((p) => p.stock > 0), sortBy("price"), mapBy((p) => p.name));
+console.log(inStockByPrice(products));
+```
+
+**Output:**
+
+```text
+[ 'Pen', 'Ink' ]
+```
+
+### 36.5 Higher-order utilities
+
+Many everyday utilities are functions that wrap functions: `once` and `memoize` (Chapter 14.5), `debounce` and `throttle` (Chapter 37), and these:
+
+```js
+const not = (pred) => (...args) => !pred(...args);
+const tap = (fn) => (x) => {
+  fn(x);
+  return x;
+};
+const isEven = (n) => n % 2 === 0;
+const result = pipe(filterBy(not(isEven)), tap((xs) => console.log("odd:", xs)), sum)([1, 2, 3, 4, 5]);
+console.log(result);
+```
+
+**Output:**
+
+```text
+odd: [ 1, 3, 5 ]
+9
+```
+
+`tap` runs a side effect (here logging) in the middle of a pipeline without changing the value: handy for debugging.
+
+### 36.6 Where FP fits
+
+- **Good fit:** data transformation, business rules, reducers and state updates, validation: anything that maps input to output.
+- **Keep effects at the edges:** fetch the data, run pure functions over it, then write the result to the DOM or the server.
+- **Don't overdo it:** deeply curried point-free code (functions defined without naming their arguments) can be harder to read than a loop. A `for` loop with a local variable is fine inside a function that's pure from the outside.
+- **Performance:** each `map` and spread copies; that's cheap for normal sizes and costly in hot loops over huge arrays (Chapter 41).
+
+### 36.7 Summary
+
+```
+pure: same input → same output, no side effects;  effects at the edges
+immutable update: { ...obj, key: value }, arr.map(x => x.id === id ? { ...x, … } : x), toSorted, with
+partial application: fix some arguments;  currying: f(a)(b)(c); put the data argument last
+pipe(f, g, h)(x) = h(g(f(x)));  compose(f, g, h)(x) = f(g(h(x)))
+helpers: once, memoize, not, tap, debounce, throttle
+```
+
+**Key terms:**
+
+- **Functional programming:** a style that builds programs from pure functions and immutable data.
+- **Imperative style:** describing a computation as a sequence of steps that change state.
+- **Declarative style:** describing what result you want, such as with `map` and `filter`, rather than each step.
+- **Immutable update:** creating a changed copy that shares the unchanged parts with the original.
+- **Currying:** turning a function of several arguments into a chain of one-argument functions.
+- **Function composition:** combining functions so the output of one is the input of the next.
+- **pipe:** composes functions left to right: `pipe(f, g)(x)` is `g(f(x))`.
+- **compose:** composes functions right to left: `compose(f, g)(x)` is `f(g(x))`.
+- **Point-free style:** defining functions by combining others without mentioning their arguments.
+- **tap:** a helper that runs a side effect on a value and passes the value on unchanged.
+
+### Exercises
+
+1. Write `pluck(key)` returning a function that maps an array of objects to their `key` values, and use it with `pipe` to get the names of products over ₹50.
+2. Remove the item with sku `"B1"` from `state.cart` and change the user's name to upper case, immutably, in one expression.
+
+<details>
+<summary><b>Answers</b></summary>
+
+```js
+const pluck = (key) => (arr) => arr.map((o) => o[key]);
+console.log(pipe(filterBy((p) => p.price > 50), pluck("name"))(products));
+const updated = { ...state, user: { ...state.user, name: state.user.name.toUpperCase() }, cart: state.cart.filter((it) => it.sku !== "B1") };
+console.log(updated.user.name, updated.cart.length, state.cart.length);
+```
+
+**Output:**
+
+```text
+[ 'Bag', 'Ink' ]
+ASHA 1 2
+```
+
+</details>
+
+**Practice:**
+
+| # | Problem (LeetCode) | Difficulty |
+|---|---|---|
+| 1 | [2629. Function Composition](https://leetcode.com/problems/function-composition/) | 🟢 Easy |
+| 2 | [2623. Memoize](https://leetcode.com/problems/memoize/) | 🟡 Medium |
+| 3 | [2666. Allow One Function Call](https://leetcode.com/problems/allow-one-function-call/) | 🟢 Easy |
+| 4 | [2635. Apply Transform Over Each Element in Array](https://leetcode.com/problems/apply-transform-over-each-element-in-array/) | 🟢 Easy |
+
+**Learn more:** [Wikipedia: functional programming](https://en.wikipedia.org/wiki/Functional_programming) · [javascript.info: currying](https://javascript.info/currying-partials) · [Professor Frisby's Mostly Adequate Guide to FP](https://mostly-adequate.gitbook.io/mostly-adequate-guide)
+
+---
+
+## 37. Debounce and Throttle
+
+**You need:** Chapters 14, 23 and 29. · **You'll learn:** to tame events that fire many times a second by running work only after the events stop (debounce) or at most once per interval (throttle), how to build both from closures and timers, and which to use when.
+
+![Debounce waits until events stop for a quiet period and then fires once; throttle fires at most once per interval while events keep coming](images/javascript/06-debounce-throttle.svg)
+
+### 37.1 The problem
+
+Typing fires an `input` event on every key; scrolling, resizing and mouse movement fire dozens of times a second. Running an API search or a heavy layout calculation on each one wastes requests and freezes the page. Two wrappers fix it:
+
+| | Debounce | Throttle |
+|---|---|---|
+| fires | once, after the events stop for `wait` ms | at most once every `interval` ms while events continue |
+| good for | search-as-you-type, auto-save, validation, "resize finished" | scroll position, mouse tracking, progress updates, button spam |
+
+To see exactly what each does, the examples feed a simulated burst of events: a user typing "j", "ja", "jav", "java" 40 ms apart, pausing, then typing "javas" 300 ms later.
+
+```js
+let start = Date.now();
+const at = () => Math.round((Date.now() - start) / 10) * 10;
+function simulateTyping(handler) {
+  start = Date.now();
+  const keys = [[0, "j"], [40, "ja"], [80, "jav"], [120, "java"], [420, "javas"]];
+  for (const [time, text] of keys) {
+    setTimeout(() => handler(text), time);
+  }
+}
+```
+
+### 37.2 Debounce
+
+**Debounce** delays the call; every new event cancels the pending call and starts the wait again. Only when `wait` ms pass with no events does the function run, with the latest arguments:
+
+```js
+function debounce(fn, wait) {
+  let timer;
+  const debounced = (...args) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => fn(...args), wait);
+  };
+  debounced.cancel = () => clearTimeout(timer);
+  return debounced;
+}
+const search = debounce((q) => console.log(`~${at()} ms: search "${q}"`), 150);
+simulateTyping(search);
+```
+
+**Output:**
+
+```text
+~270 ms: search "java"
+~570 ms: search "javas"
+```
+
+Five keystrokes, two searches: one 150 ms after "java" (the first pause) and one after "javas". The `timer` variable lives in the closure (Chapter 14), shared by every call of `debounced`. `cancel` drops a pending call, for example when the component showing results is removed.
+
+A **leading** debounce runs on the *first* event of a burst and then ignores the rest until things go quiet; useful for a submit button that shouldn't fire twice:
+
+```js
+function debounceLeading(fn, wait) {
+  let timer = null;
+  return (...args) => {
+    if (timer === null) {
+      fn(...args);
+    }
+    clearTimeout(timer);
+    timer = setTimeout(() => (timer = null), wait);
+  };
+}
+const submit = debounceLeading((q) => console.log(`~${at()} ms: submit "${q}"`), 150);
+simulateTyping(submit);
+```
+
+**Output:**
+
+```text
+~0 ms: submit "j"
+~420 ms: submit "javas"
+```
+
+### 37.3 Throttle
+
+**Throttle** guarantees a steady rhythm: the first call runs at once, then at most one call per `interval`. A call during the cool-down is remembered and run at the end of the interval (the **trailing** call), so the final state is never lost:
+
+```js
+function throttle(fn, interval) {
+  let last = -Infinity;
+  let timer = null;
+  let pendingArgs;
+  return (...args) => {
+    const remaining = interval - (Date.now() - last);
+    if (remaining <= 0) {
+      last = Date.now();
+      fn(...args);
+    } else {
+      pendingArgs = args;
+      timer ??= setTimeout(() => {
+        last = Date.now();
+        timer = null;
+        fn(...pendingArgs);
+      }, remaining);
+    }
+  };
+}
+const track = throttle((q) => console.log(`~${at()} ms: track "${q}"`), 100);
+simulateTyping(track);
+```
+
+**Output:**
+
+```text
+~0 ms: track "j"
+~100 ms: track "jav"
+~200 ms: track "java"
+~420 ms: track "javas"
+```
+
+"j" ran at once; "ja" and "jav" arrived during the cool-down, so only the latest, "jav", ran at its end; "java" came during the next cool-down and ran at the end of that; "javas" came after a long gap and ran at once.
+
+### 37.4 In a page
+
+Connect them to real events once, not on every render:
+
+```text
+input.addEventListener("input", debounce((e) => runSearch(e.target.value), 300));
+window.addEventListener("scroll", throttle(updateProgressBar, 100), { passive: true });
+```
+
+Points to remember:
+
+- a search box usually wants debounce **and** request cancellation (Chapter 31.3), so a slow old response can't overwrite a newer one;
+- for visual updates linked to scrolling, `requestAnimationFrame` (Chapter 33.4) is the natural throttle: at most one update per frame;
+- for "is this element visible?" use `IntersectionObserver` (Chapter 31.5) instead of throttled scroll handlers;
+- in React, create the debounced function once (with `useMemo` or `useRef`), or each render makes a new one with a new timer.
+
+### 37.5 Summary
+
+```
+debounce(fn, wait): clearTimeout + setTimeout on every call → runs once after the quiet period
+leading debounce: run on the first call, ignore the rest until quiet
+throttle(fn, interval): run now if the interval has passed, else schedule one trailing call
+debounce: search, autosave, validation;  throttle: scroll, mousemove, progress;  rAF for visuals
+```
+
+**Key terms:**
+
+- **Debounce:** delay a function until calls have stopped for a set time, then run it once.
+- **Throttle:** run a function at most once per time interval, however often it's called.
+- **Leading edge:** running on the first call of a burst.
+- **Trailing edge:** running once more after a burst or interval ends, with the latest arguments.
+
+### Exercises
+
+1. Events arrive at 0, 50, 100 and 400 ms. With `debounce(fn, 200)`, when does `fn` run? With `throttle(fn, 200)` (leading and trailing)?
+2. Add a `flush()` method to `debounce` that runs a pending call immediately.
+
+<details>
+<summary><b>Answers</b></summary>
+
+1. Debounce: at 300 ms (200 after the event at 100) and at 600 ms. Throttle: at 0 (leading), at 200 (trailing, with the call from 100), and at 400 (more than 200 ms after the last run).
+
+```js
+function debounceWithFlush(fn, wait) {
+  let timer = null;
+  let pending = null;
+  const run = () => {
+    timer = null;
+    const args = pending;
+    pending = null;
+    fn(...args);
+  };
+  const debounced = (...args) => {
+    pending = args;
+    clearTimeout(timer);
+    timer = setTimeout(run, wait);
+  };
+  debounced.flush = () => {
+    if (timer !== null) {
+      clearTimeout(timer);
+      run();
+    }
+  };
+  return debounced;
+}
+const save = debounceWithFlush((text) => console.log("saved:", text), 1000);
+save("draft 1");
+save("draft 2");
+save.flush();
+save.flush();
+```
+
+**Output:**
+
+```text
+saved: draft 2
+```
+
+2. Keep the latest arguments; `flush` clears the timer and runs at once. Calling it with nothing pending does nothing. Useful for auto-save before the page closes.
+
+</details>
+
+**Practice:**
+
+| # | Problem (LeetCode) | Difficulty |
+|---|---|---|
+| 1 | [2627. Debounce](https://leetcode.com/problems/debounce/) | 🟡 Medium |
+| 2 | [2715. Timeout Cancellation](https://leetcode.com/problems/timeout-cancellation/) | 🟢 Easy |
+| 3 | [2725. Interval Cancellation](https://leetcode.com/problems/interval-cancellation/) | 🟢 Easy |
+
+**Learn more:** [CSS-Tricks: debouncing and throttling explained](https://css-tricks.com/debouncing-throttling-explained-examples/) · [MDN: debounce glossary](https://developer.mozilla.org/en-US/docs/Glossary/Debounce)
+
+---
+
+## 38. Proxy and Reflect
+
+**You need:** Chapters 18–20. · **You'll learn:** to intercept property reads, writes, deletes and calls on an object with a `Proxy`, to forward to the default behaviour with `Reflect`, and the practical uses: validation, defaults, change tracking and reactivity.
+
+### 38.1 A Proxy intercepts operations
+
+`new Proxy(target, handler)` creates an object that stands in front of `target`. Each operation on the proxy (reading a property, setting one, `in`, `delete`, calling…) first goes to the matching **trap** in the handler, if there is one; otherwise it passes straight through to the target:
+
+```js
+const user = { name: "Asha", age: 29 };
+const logged = new Proxy(user, {
+  get(target, key, receiver) {
+    console.log(`read ${String(key)}`);
+    return Reflect.get(target, key, receiver);
+  },
+});
+console.log(logged.name, logged.age);
+logged.city = "Pune";
+console.log(user.city);
+```
+
+**Output:**
+
+```text
+read name
+read age
+Asha 29
+Pune
+```
+
+The write had no trap, so it went straight to `user`.
+
+| Trap | Intercepts |
+|---|---|
+| `get(target, key, receiver)` | `p.key`, `p[key]` |
+| `set(target, key, value, receiver)` | `p.key = value` (return `true` for success) |
+| `has(target, key)` | `key in p` |
+| `deleteProperty(target, key)` | `delete p.key` |
+| `ownKeys(target)` | `Object.keys(p)`, `for...in` |
+| `apply(target, thisArg, args)` | `p(...args)` when the target is a function |
+| `construct(target, args)` | `new p(...args)` |
+
+### 38.2 Reflect
+
+**Reflect** has one function per trap, doing the default operation: `Reflect.get(target, key, receiver)` reads normally, `Reflect.set(…)` writes normally and returns `true` or `false`, and so on. Inside a trap, call the matching `Reflect` function to do "whatever would normally happen" after your extra work. Passing `receiver` keeps getters' `this` pointing at the proxy.
+
+```js
+console.log(Reflect.has(user, "age"), Reflect.ownKeys(user), Reflect.set(Object.freeze({}), "x", 1));
+```
+
+**Output:**
+
+```text
+true [ 'name', 'age', 'city' ] false
+```
+
+`Reflect.set` on a frozen object returns `false` instead of throwing, which makes it easy to report failure from a `set` trap.
+
+### 38.3 Validation
+
+A `set` trap can check every write, so invalid data never gets in:
+
+```js
+function validated(target, rules) {
+  return new Proxy(target, {
+    set(obj, key, value, receiver) {
+      const rule = rules[key];
+      if (rule && !rule(value)) {
+        throw new TypeError(`invalid ${String(key)}: ${JSON.stringify(value)}`);
+      }
+      return Reflect.set(obj, key, value, receiver);
+    },
+  });
+}
+const product = validated({}, {
+  price: (v) => Number.isFinite(v) && v >= 0,
+  name: (v) => typeof v === "string" && v.length > 0,
+});
+product.name = "Pen";
+product.price = 20;
+console.log(product);
+```
+
+**Output:**
+
+```text
+{ name: 'Pen', price: 20 }
+```
+
+```js
+product.price = -5;
+```
+
+**Output:**
+
+```text
+TypeError: invalid price: -5
+```
+
+### 38.4 Defaults and negative indexes
+
+A `get` trap can answer for missing properties:
+
+```js
+const withDefaults = (obj, fallback) => new Proxy(obj, {
+  get: (target, key, receiver) => (key in target ? Reflect.get(target, key, receiver) : fallback),
+});
+const counts = withDefaults({}, 0);
+counts.apple++;
+counts.apple++;
+console.log(counts.apple, counts.banana);
+
+const pythonic = (arr) => new Proxy(arr, {
+  get(target, key, receiver) {
+    const i = typeof key === "string" ? Number(key) : NaN;
+    return Number.isInteger(i) && i < 0 ? target[target.length + i] : Reflect.get(target, key, receiver);
+  },
+});
+const letters = pythonic(["a", "b", "c"]);
+console.log(letters[-1], letters[0], letters.length);
+```
+
+**Output:**
+
+```text
+2 0
+c a 3
+```
+
+Property keys arrive as strings (or symbols), so `-1` comes in as `"-1"`.
+
+### 38.5 Tracking changes: reactivity
+
+Frameworks like Vue and MobX use proxies to know when data changes, so they can update the page automatically. The core idea fits in a few lines: a `set` trap notifies subscribers:
+
+```js
+function reactive(target, onChange) {
+  return new Proxy(target, {
+    set(obj, key, value, receiver) {
+      const old = obj[key];
+      const ok = Reflect.set(obj, key, value, receiver);
+      if (ok && old !== value) {
+        onChange(key, old, value);
+      }
+      return ok;
+    },
+  });
+}
+const store = reactive({ count: 0 }, (key, from, to) => console.log(`${key}: ${from} → ${to} (re-render)`));
+store.count++;
+store.count++;
+store.count = 2;
+```
+
+**Output:**
+
+```text
+count: 0 → 1 (re-render)
+count: 1 → 2 (re-render)
+```
+
+The last assignment didn't change the value, so no update fired. Real implementations also track which properties each piece of UI *read* (in a `get` trap), so they re-render only what depends on the change, and wrap nested objects lazily.
+
+### 38.6 Wrapping functions
+
+The `apply` trap intercepts calls, for timing, logging or argument checks around any function:
+
+```js
+const timed = (fn) => new Proxy(fn, {
+  apply(target, thisArg, args) {
+    const result = Reflect.apply(target, thisArg, args);
+    console.log(`${target.name}(${args.join(", ")}) = ${result}`);
+    return result;
+  },
+});
+const add = timed(function add(a, b) {
+  return a + b;
+});
+add(2, 3);
+console.log(add.name, typeof add);
+```
+
+**Output:**
+
+```text
+add(2, 3) = 5
+add function
+```
+
+The proxy still looks like the function: same name, still callable.
+
+### 38.7 Limits and costs
+
+- Proxies are slower than plain objects (every operation runs a function), so avoid them in hot loops.
+- Private fields (`#x`) and some built-ins (`Map`, `Date`) check that `this` is the real object; methods called through a proxy then throw. Bind such methods to the target in the `get` trap.
+- A proxy is a different object: `proxy !== target`, and `structuredClone` can't copy it.
+- `Proxy.revocable(target, handler)` returns `{ proxy, revoke }`; after `revoke()`, every operation throws, which is useful for handing out temporary access.
+
+```js
+const m = new Proxy(new Map(), {});
+m.set("a", 1);
+```
+
+**Output:**
+
+```text
+TypeError: Method Map.prototype.set called on incompatible receiver #<Map>
+```
+
+### 38.8 Summary
+
+```
+new Proxy(target, { get, set, has, deleteProperty, ownKeys, apply, construct })
+inside traps: return Reflect.<trap>(...same args) for the default behaviour
+set traps return true/false;  keys arrive as strings or symbols
+uses: validation, defaults, logging, negative indexes, reactivity (Vue, MobX), API wrappers
+costs: slower; breaks #private and Map/Date methods unless bound; Proxy.revocable
+```
+
+**Key terms:**
+
+- **Proxy:** an object that intercepts operations on another object (its target) through handler functions.
+- **Target:** the object a proxy wraps.
+- **Handler:** the object holding a proxy's traps.
+- **Trap:** a handler method that intercepts one kind of operation, such as `get` or `set`.
+- **Reflect:** a built-in object with functions that perform each operation's default behaviour.
+- **Receiver:** the object a property access started from (usually the proxy), passed so getters get the right `this`.
+- **Reactivity:** automatically updating dependent code or UI when data changes.
+
+### Exercises
+
+1. Make `readOnly(obj)` return a proxy that throws on any write or delete.
+2. Make a proxy that counts how many times each property is read.
+
+<details>
+<summary><b>Answers</b></summary>
+
+```js
+const readOnly = (obj) => new Proxy(obj, {
+  set(target, key) {
+    throw new TypeError(`${String(key)} is read-only`);
+  },
+  deleteProperty(target, key) {
+    throw new TypeError(`cannot delete ${String(key)}`);
+  },
+});
+const config = readOnly({ api: "/v1" });
+try {
+  config.api = "/v2";
+} catch (err) {
+  console.log(err.message, config.api);
+}
+const reads = {};
+const watched = new Proxy({ a: 1, b: 2 }, {
+  get(target, key, receiver) {
+    reads[key] = (reads[key] ?? 0) + 1;
+    return Reflect.get(target, key, receiver);
+  },
+});
+watched.a;
+watched.a;
+watched.b;
+console.log(reads);
+```
+
+**Output:**
+
+```text
+api is read-only /v1
+{ a: 2, b: 1 }
+```
+
+</details>
+
+**Learn more:** [MDN: Proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy) · [MDN: Reflect](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect) · [javascript.info: Proxy and Reflect](https://javascript.info/proxy)
+
+---
+
+## 39. Design Patterns in JavaScript
+
+**You need:** Chapters 14, 20, 26 and 36. · **You'll learn:** the design patterns that show up constantly in JavaScript code and interviews: singleton, factory, observer, strategy, decorator, adapter, facade, command, middleware and dependency injection, each in its idiomatic JavaScript form.
+
+A **design pattern** is a named, reusable solution to a common design problem. Many classic patterns, first described for class-heavy languages, become a few lines in JavaScript because functions are values and modules exist. Knowing the names helps you read code and discuss designs.
+
+### 39.1 Singleton: one shared instance
+
+A **singleton** is an object with exactly one instance, shared by everyone: a configuration, a logger, a database connection. In JavaScript, a module already gives you that: it's evaluated once and every importer gets the same exports (Chapter 26.2). Without modules, a closure does it:
+
+```js
+const getConfig = (() => {
+  let instance;
+  return () => (instance ??= { apiUrl: "/api", createdAt: Date.now() });
+})();
+console.log(getConfig() === getConfig(), getConfig().apiUrl);
+```
+
+**Output:**
+
+```text
+true /api
+```
+
+The outer arrow runs once (an **IIFE**, immediately invoked function expression) and keeps `instance` private. Singletons are global state in disguise, which makes tests harder; prefer passing the object in (39.10) where you can.
+
+### 39.2 Factory: create without new
+
+A **factory** is a function that builds and returns objects, choosing what to build from its arguments. Callers don't need to know which class (if any) is behind it:
+
+```js
+function createNotifier(channel) {
+  const senders = {
+    email: (to, msg) => `email to ${to}: ${msg}`,
+    sms: (to, msg) => `SMS to ${to}: ${msg.slice(0, 20)}`,
+  };
+  const send = senders[channel];
+  if (!send) {
+    throw new Error(`unknown channel: ${channel}`);
+  }
+  return { channel, send };
+}
+console.log(createNotifier("email").send("asha@x.com", "Your order shipped"));
+console.log(createNotifier("sms").send("98765", "Your order has shipped today"));
+```
+
+**Output:**
+
+```text
+email to asha@x.com: Your order shipped
+SMS to 98765: Your order has shipp
+```
+
+### 39.3 Observer and publish/subscribe
+
+The **observer** pattern lets objects subscribe to events from another object without either knowing the other's details. DOM events (Chapter 29) and Node's `EventEmitter` are observers. An emitter in a few lines, with `on` returning an unsubscribe function:
+
+```js
+class Emitter {
+  #listeners = new Map();
+  on(event, fn) {
+    if (!this.#listeners.has(event)) {
+      this.#listeners.set(event, new Set());
+    }
+    this.#listeners.get(event).add(fn);
+    return () => this.#listeners.get(event).delete(fn);
+  }
+  once(event, fn) {
+    const off = this.on(event, (...args) => {
+      off();
+      fn(...args);
+    });
+    return off;
+  }
+  emit(event, ...args) {
+    for (const fn of [...(this.#listeners.get(event) ?? [])]) {
+      fn(...args);
+    }
+  }
+}
+const cartEvents = new Emitter();
+const off = cartEvents.on("added", (item) => console.log("badge: +1", item));
+cartEvents.once("added", (item) => console.log("first item ever:", item));
+cartEvents.emit("added", "pen");
+off();
+cartEvents.emit("added", "bag");
+```
+
+**Output:**
+
+```text
+badge: +1 pen
+first item ever: pen
+```
+
+`emit` copies the listener set before looping, so listeners that unsubscribe during the loop (like `once`) don't disturb it. **Publish/subscribe** is the same idea with a central broker between publishers and subscribers. The usual bug: forgetting to unsubscribe, which leaks memory (Chapter 40).
+
+### 39.4 Strategy: swap the algorithm
+
+A **strategy** is a family of interchangeable algorithms behind one interface. In JavaScript: an object of functions, picked by key, replacing an `if`/`switch` chain:
+
+```js
+const shippingStrategies = {
+  standard: (order) => (order.total >= 499 ? 0 : 40),
+  express: (order) => 99,
+  pickup: () => 0,
+};
+const shippingFor = (order) => (shippingStrategies[order.method] ?? shippingStrategies.standard)(order);
+console.log([{ total: 300, method: "standard" }, { total: 300, method: "express" }, { total: 300, method: "drone" }].map(shippingFor));
+```
+
+**Output:**
+
+```text
+[ 40, 99, 40 ]
+```
+
+Adding a method means adding one entry, without touching the code that uses them.
+
+### 39.5 Decorator: add behaviour around
+
+A **decorator** wraps an object or function to add behaviour while keeping the same interface. Higher-order functions like `memoize`, `once`, `debounce` and the timing proxy of Chapter 38.6 are decorators:
+
+```js
+const withLogging = (fn) => (...args) => {
+  const result = fn(...args);
+  console.log(`${fn.name}(${args.join(", ")}) → ${result}`);
+  return result;
+};
+const withRetry = (fn, attempts = 3) => async (...args) => {
+  for (let i = 1; ; i++) {
+    try {
+      return await fn(...args);
+    } catch (err) {
+      if (i === attempts) {
+        throw err;
+      }
+    }
+  }
+};
+function applyTax(amount) {
+  return Math.round(amount * 1.18);
+}
+withLogging(applyTax)(100);
+let tries = 0;
+const flaky = withRetry(async () => (++tries < 3 ? Promise.reject(new Error("fail")) : `ok after ${tries}`));
+console.log(await flaky());
+```
+
+**Output:**
+
+```text
+applyTax(100) → 118
+ok after 3
+```
+
+(TypeScript and the coming JavaScript decorators proposal add `@decorator` syntax for classes; the idea is the same.)
+
+### 39.6 Adapter and facade
+
+An **adapter** converts one interface into the one your code expects, such as a third-party API's response into your own shape. A **facade** gives a simple interface to a complicated subsystem. Both keep the messy details in one place:
+
+```js
+const fromPaymentProvider = (raw) => ({          // adapter: their shape → ours
+  id: raw.txn_ref,
+  amount: raw.amount_minor / 100,
+  paid: raw.state === "CAPTURED",
+});
+console.log(fromPaymentProvider({ txn_ref: "T-9", amount_minor: 149900, state: "CAPTURED" }));
+
+const checkout = {                                // facade: one call hides several steps
+  async placeOrder(cart) {
+    const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
+    const payment = { id: "T-10", amount: total, paid: true };
+    return { orderId: 90313, total, paymentId: payment.id };
+  },
+};
+console.log(await checkout.placeOrder([{ price: 20, qty: 2 }, { price: 899, qty: 1 }]));
+```
+
+**Output:**
+
+```text
+{ id: 'T-9', amount: 1499, paid: true }
+{ orderId: 90313, total: 939, paymentId: 'T-10' }
+```
+
+When the provider changes its API, only the adapter changes.
+
+### 39.7 Command: actions as objects, with undo
+
+The **command** pattern represents each action as an object that knows how to `do` and `undo` itself. Keep a history of commands, and undo and redo come almost for free:
+
+```js
+function createEditor() {
+  let text = "";
+  const done = [];
+  const undone = [];
+  const insert = (str) => ({
+    do: () => (text += str),
+    undo: () => (text = text.slice(0, -str.length)),
+  });
+  return {
+    type(str) {
+      const cmd = insert(str);
+      cmd.do();
+      done.push(cmd);
+      undone.length = 0;
+    },
+    undo() {
+      const cmd = done.pop();
+      cmd?.undo();
+      if (cmd) {
+        undone.push(cmd);
+      }
+    },
+    redo() {
+      const cmd = undone.pop();
+      cmd?.do();
+      if (cmd) {
+        done.push(cmd);
+      }
+    },
+    get text() {
+      return text;
+    },
+  };
+}
+const ed = createEditor();
+ed.type("Hello");
+ed.type(", world");
+ed.undo();
+console.log(ed.text);
+ed.redo();
+console.log(ed.text);
+```
+
+**Output:**
+
+```text
+Hello
+Hello, world
+```
+
+Setting `undone.length = 0` empties the redo stack: a new action makes the old redo history meaningless.
+
+### 39.8 Middleware: a chain of handlers
+
+**Middleware** (the chain of responsibility pattern) passes a request through a list of functions; each can act, then call `next()` to continue, or stop the chain. Express, Koa and Redux are built on it:
+
+```js
+function compose(middleware) {
+  return (ctx) => {
+    const dispatch = (i) => (i < middleware.length ? middleware[i](ctx, () => dispatch(i + 1)) : undefined);
+    return dispatch(0);
+  };
+}
+const handle = compose([
+  (ctx, next) => {
+    ctx.log.push("logger in");
+    next();
+    ctx.log.push("logger out");
+  },
+  (ctx, next) => {
+    if (!ctx.user) {
+      ctx.status = 401;
+      return;
+    }
+    next();
+  },
+  (ctx) => {
+    ctx.status = 200;
+    ctx.body = `hello ${ctx.user}`;
+  },
+]);
+for (const user of ["asha", null]) {
+  const ctx = { user, log: [] };
+  handle(ctx);
+  console.log(ctx.status, ctx.body, ctx.log);
+}
+```
+
+**Output:**
+
+```text
+200 hello asha [ 'logger in', 'logger out' ]
+401 undefined [ 'logger in', 'logger out' ]
+```
+
+Code after `next()` runs on the way back out, which is how loggers time requests.
+
+### 39.9 Dependency injection
+
+**Dependency injection** means passing a function or object the things it depends on (a database, a clock, an HTTP client) instead of having it import or create them. Tests can then pass fakes:
+
+```js
+function makeOrderService({ db, now = Date.now }) {
+  return {
+    async create(items) {
+      const order = { id: await db.nextId(), items, createdAt: now() };
+      await db.save(order);
+      return order;
+    },
+  };
+}
+const saved = [];
+const fakeDb = { nextId: async () => 1, save: async (o) => saved.push(o) };
+const service = makeOrderService({ db: fakeDb, now: () => 1_700_000_000_000 });
+console.log(await service.create(["pen"]), saved.length);
+```
+
+**Output:**
+
+```text
+{ id: 1, items: [ 'pen' ], createdAt: 1700000000000 } 1
+```
+
+The test controlled both the database and the clock, so the result is exactly predictable (Chapter 44).
+
+### 39.10 Summary
+
+```
+singleton: a module (or closure) evaluated once       factory: a function that builds objects
+observer / pub-sub: on(event, fn) → off; emit         strategy: an object of interchangeable functions
+decorator: wrap to add behaviour, same interface      adapter: their shape → yours;  facade: simple front
+command: { do, undo } + history stacks                middleware: (ctx, next) chain
+dependency injection: pass dependencies in, fake them in tests
+```
+
+**Key terms:**
+
+- **Design pattern:** a named, reusable solution to a common design problem.
+- **Singleton:** an object with exactly one shared instance.
+- **IIFE (immediately invoked function expression):** a function defined and called at once, often to create a private scope.
+- **Factory pattern:** creating objects through a function that decides what to build.
+- **Observer pattern:** objects subscribe to events from a subject and are notified when they happen.
+- **Publish/subscribe:** an observer variant where a broker sits between publishers and subscribers.
+- **Event emitter:** an object with `on`, `off` and `emit` methods for subscribing to and firing named events.
+- **Strategy pattern:** interchangeable algorithms chosen at run time behind one interface.
+- **Decorator pattern:** wrapping an object or function to add behaviour without changing its interface.
+- **Adapter pattern:** converting one interface into another that the code expects.
+- **Facade pattern:** a simple interface in front of a complex subsystem.
+- **Command pattern:** representing actions as objects, enabling undo, redo and queuing.
+- **Middleware:** functions in a chain, each handling a request and deciding whether to pass it on with `next()`.
+- **Dependency injection:** giving a component its dependencies from outside instead of creating them inside.
+
+### Exercises
+
+1. Add an `off(event, fn)` method to `Emitter`, and a `listenerCount(event)` method.
+2. Rewrite this with the strategy pattern: `if (role === "admin") limit = 100; else if (role === "member") limit = 20; else limit = 5;`
+
+<details>
+<summary><b>Answers</b></summary>
+
+```js
+class SimpleEmitter {
+  #listeners = new Map();
+  on(event, fn) {
+    if (!this.#listeners.has(event)) {
+      this.#listeners.set(event, new Set());
+    }
+    this.#listeners.get(event).add(fn);
+  }
+  off(event, fn) {
+    this.#listeners.get(event)?.delete(fn);
+  }
+  emit(event, ...args) {
+    for (const fn of [...(this.#listeners.get(event) ?? [])]) {
+      fn(...args);
+    }
+  }
+  listenerCount(event) {
+    return this.#listeners.get(event)?.size ?? 0;
+  }
+}
+const em = new SimpleEmitter();
+const hi = () => console.log("hi");
+em.on("greet", hi);
+console.log(em.listenerCount("greet"));
+em.off("greet", hi);
+em.emit("greet");
+console.log(em.listenerCount("greet"));
+const LIMITS = { admin: 100, member: 20 };
+const limitFor = (role) => LIMITS[role] ?? 5;
+console.log(limitFor("admin"), limitFor("guest"));
+```
+
+**Output:**
+
+```text
+1
+0
+100 5
+```
+
+1. `off` deletes the same function from the event's set; that's why listeners you plan to remove must be named functions, as with `removeEventListener`.
+
+</details>
+
+**Practice:**
+
+| # | Problem (LeetCode) | Difficulty |
+|---|---|---|
+| 1 | [2694. Event Emitter](https://leetcode.com/problems/event-emitter/) | 🟡 Medium |
+| 2 | [2726. Calculator with Method Chaining](https://leetcode.com/problems/calculator-with-method-chaining/) | 🟢 Easy |
+
+**Learn more:** [patterns.dev](https://www.patterns.dev/) · [Refactoring Guru: design patterns](https://refactoring.guru/design-patterns)
+
+---
+
+## 40. Memory Management, Garbage Collection and Leaks
+
+**You need:** Chapters 14, 21, 23 and 29. · **You'll learn:** where JavaScript keeps values, how the garbage collector decides what to free, the common ways programs leak memory, and the tools to find leaks: weak references, heap measurements and heap snapshots.
+
+### 40.1 Stack and heap
+
+The engine stores data in two places:
+
+- the **stack** holds each function call's frame (Chapter 23.1): small, fixed-size values and references, freed automatically when the function returns;
+- the **heap** holds objects, arrays, strings, closures' scopes: anything that may outlive a call or grow.
+
+Nobody frees heap memory by hand in JavaScript. A **garbage collector** (GC) finds objects the program can no longer use and reclaims their memory.
+
+### 40.2 Reachability
+
+The rule is **reachability**: an object stays alive while it can be reached by following references from a **root**. Roots are the global object, the variables of functions currently on the stack, and pending callbacks (timers, listeners, promises). Everything else is garbage, even if it still references other garbage:
+
+```js
+let user = { name: "Asha", friend: { name: "Ravi" } };
+const friend = user.friend;
+user = null;
+console.log(friend.name);
+```
+
+**Output:**
+
+```text
+Ravi
+```
+
+The outer object is now unreachable and can be collected; Ravi's object stays alive because `friend` still references it. Two objects referencing each other in a cycle, with no path from a root, are collected too.
+
+V8 uses a **mark-and-sweep** collector: starting from the roots it *marks* everything reachable, then *sweeps* away the rest. It's **generational**: most objects die young, so new objects live in a small "young generation" collected often and cheaply; survivors move to the "old generation", collected less often. Most collection work happens in the background, in small steps, to avoid long pauses.
+
+### 40.3 Watching memory
+
+Node.js reports heap usage with `process.memoryUsage()`, and `--expose-gc` adds a `gc()` function to force a collection, for experiments only. This script holds 100,000 objects, then lets go of them:
+
+```js
+const mb = () => Math.round(process.memoryUsage().heapUsed / 1e6);
+gc();
+console.log("start:", mb(), "MB");
+let big = Array.from({ length: 100_000 }, (_, i) => ({ id: i, name: `user${i}`, tags: ["a", "b"] }));
+console.log("holding 100k objects:", mb(), "MB");
+big = null;
+gc();
+console.log("after release + GC:", mb(), "MB");
+```
+
+```bash
+node --expose-gc heap.mjs
+```
+
+**Output:**
+
+```text
+start: 3 MB
+holding 100k objects: 18 MB
+after release + GC: 4 MB
+```
+
+### 40.4 The common leaks
+
+A **memory leak** is memory that's still reachable but will never be used again, so the GC can't free it. Memory grows until the tab slows down or the server crashes. The usual causes:
+
+1. **Forgotten timers:** a `setInterval` keeps its callback, and everything the callback references, alive forever.
+2. **Forgotten listeners and subscriptions:** a listener on `window` or a long-lived emitter keeps its closure alive after the component that added it is gone.
+3. **Unbounded caches and maps:** a `Map` used as a cache, keyed by request or user, that only ever grows.
+4. **Closures capturing more than they need:** a small callback that keeps a huge array alive because it was created in the same scope.
+5. **Detached DOM nodes:** elements removed from the page but still referenced from a variable or array.
+6. **Accidental globals:** in sloppy-mode scripts, assigning an undeclared name creates a permanent global (modules prevent this, Chapter 13.5).
+
+The cache leak and its fix:
+
+```js
+const mb = () => Math.round(process.memoryUsage().heapUsed / 1e6);
+function handleRequest(cache, id) {
+  if (!cache.has(id)) {
+    cache.set(id, { id, payload: "x".repeat(1_000) + id });
+  }
+  return cache.get(id);
+}
+class LRU {
+  #map = new Map();
+  constructor(limit) {
+    this.limit = limit;
+  }
+  has(key) {
+    return this.#map.has(key);
+  }
+  get(key) {
+    const value = this.#map.get(key);
+    this.#map.delete(key);
+    this.#map.set(key, value);
+    return value;
+  }
+  set(key, value) {
+    this.#map.delete(key);
+    this.#map.set(key, value);
+    if (this.#map.size > this.limit) {
+      this.#map.delete(this.#map.keys().next().value);
+    }
+  }
+}
+for (const [label, cache] of [["unbounded Map", new Map()], ["LRU(1000)", new LRU(1000)]]) {
+  gc();
+  const before = mb();
+  for (let id = 0; id < 50_000; id++) {
+    handleRequest(cache, id);
+  }
+  gc();
+  console.log(`${label}: +${mb() - before} MB after 50k distinct requests`);
+}
+```
+
+```bash
+node --expose-gc cache-leak.mjs
+```
+
+**Output:**
+
+```text
+unbounded Map: +26 MB after 50k distinct requests
+LRU(1000): +1 MB after 50k distinct requests
+```
+
+The unbounded map kept all 50,000 payloads; the **LRU** (least recently used) cache keeps only the 1,000 most recent. It uses the fact that a `Map` remembers insertion order: reading an entry moves it to the end, so the first key is always the least recently used.
+
+The listener and timer leaks have one fix: **clean up what you start**. Remove listeners, clear intervals, unsubscribe, abort fetches. An `AbortController` (Chapter 31.3) removes many listeners at once:
+
+```text
+const controller = new AbortController();
+window.addEventListener("resize", onResize, { signal: controller.signal });
+window.addEventListener("scroll", onScroll, { signal: controller.signal });
+// when the widget is destroyed:
+controller.abort();          // both listeners removed
+```
+
+### 40.5 Weak references
+
+A **WeakMap** (Chapter 21.3) attaches data to an object without keeping the object alive. Two lower-level tools exist for special cases:
+
+- `new WeakRef(obj)` holds a reference that doesn't prevent collection; `ref.deref()` returns the object, or `undefined` once it's been collected;
+- `new FinalizationRegistry(callback)` calls `callback` some time after a registered object is collected.
+
+```js
+let session = { user: "asha", data: new Array(1e6).fill(0) };
+const ref = new WeakRef(session);
+const registry = new FinalizationRegistry((label) => console.log("collected:", label));
+registry.register(session, "asha's session");
+console.log("before:", ref.deref()?.user);
+session = null;
+await new Promise((r) => setTimeout(r, 0));
+gc();
+await new Promise((r) => setTimeout(r, 50));
+console.log("after:", ref.deref()?.user);
+```
+
+```bash
+node --expose-gc weak.mjs
+```
+
+**Output:**
+
+```text
+before: asha
+collected: asha's session
+after: undefined
+```
+
+When the GC runs is up to the engine, so never rely on `WeakRef` or finalizers for program logic; they're for caches and diagnostics. (The `setTimeout` before `gc()` lets the current job finish, because a `WeakRef` keeps its target alive until then.)
+
+### 40.6 Finding leaks
+
+1. **Confirm growth:** in Chrome DevTools' Memory panel (or Node with `--inspect`), repeat the suspect action several times, force GC, and see whether memory keeps rising.
+2. **Compare heap snapshots:** take one before and one after repeating the action; sort by objects allocated in between. Detached DOM trees show up as "Detached".
+3. **Follow the retainers:** for a leaked object, the snapshot shows the chain of references keeping it alive, ending at a root: usually a listener, a timer, a cache or a global.
+
+### 40.7 Summary
+
+```
+stack: call frames;  heap: objects;  the GC frees what's unreachable from the roots
+roots: globals, active stack frames, pending timers/listeners/promises
+mark-and-sweep, generational (young objects collected often)
+leaks: timers, listeners, unbounded caches, big captured closures, detached DOM, globals
+fixes: clean up what you start (clearInterval, removeEventListener, AbortController); bounded LRU caches; WeakMap
+WeakRef / FinalizationRegistry: diagnostics and caches only;  DevTools heap snapshots → retainers
+```
+
+**Key terms:**
+
+- **Stack:** the memory region holding active function calls' frames.
+- **Heap:** the memory region where objects are allocated.
+- **Garbage collector (GC):** the engine part that automatically frees memory no longer reachable.
+- **Reachability:** whether an object can be reached from a root by following references; reachable objects stay alive.
+- **Root:** a starting point for reachability, such as the global object or a variable in an active function.
+- **Mark-and-sweep:** a GC algorithm that marks reachable objects and frees the rest.
+- **Generational GC:** collecting new objects often and long-lived ones rarely, because most objects die young.
+- **Memory leak:** memory that stays reachable but will never be used again.
+- **LRU cache (least recently used):** a cache with a size limit that evicts the entry used longest ago.
+- **Detached DOM node:** an element removed from the page but still referenced by code, so it can't be freed.
+- **WeakRef:** a reference that doesn't keep its object alive.
+- **FinalizationRegistry:** registers callbacks to run after objects are garbage-collected.
+- **Heap snapshot:** a record of every object on the heap and the references between them, for finding leaks.
+- **Retainer:** an object or reference keeping another object alive.
+
+### Exercises
+
+1. Why does this leak, and how do you fix it? `function track(el) { const data = new Array(1e6); window.addEventListener("scroll", () => console.log(el.id)); }`
+2. Use the `LRU` class idea to explain why `get` deletes and re-inserts the key.
+
+<details>
+<summary><b>Answers</b></summary>
+
+1. Each call adds a listener to `window` that's never removed; the listener keeps `el` alive (and, in some engines, the whole scope including `data`). Keep a reference to the handler and remove it (or use an `AbortController` signal) when `el` goes away, and don't create big values in the scope of long-lived closures.
+2. A `Map` iterates in insertion order. Deleting and re-inserting moves the key to the end, marking it most recently used, so the first key in the map is always the one to evict.
+
+</details>
+
+**Learn more:** [MDN: memory management](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Memory_management) · [Chrome DevTools: fix memory problems](https://developer.chrome.com/docs/devtools/memory-problems) · [V8 blog: Trash talk (the Orinoco GC)](https://v8.dev/blog/trash-talk)
+
+---
+
+## 41. Performance: How V8 Runs Your Code and How to Make It Fast
+
+**You need:** Chapters 20, 21, 33 and 40. · **You'll learn:** how a modern engine compiles JavaScript while it runs, what hidden classes and inline caches are and how to keep them fast, how to measure performance honestly, and which optimisations matter most (usually: a better algorithm).
+
+### 41.1 First: measure, and pick the right algorithm
+
+Most slow code is slow because it does too much work, not because of engine details. Doing a search inside a loop is the classic case: `array.includes` scans every element, while `Set.has` jumps straight to the answer. `performance.now()` (Chapter 33.3) measures:
+
+```js
+const ids = Array.from({ length: 20_000 }, (_, i) => i * 3);
+const wanted = Array.from({ length: 20_000 }, (_, i) => i * 2);
+
+let t = performance.now();
+let hits = wanted.filter((x) => ids.includes(x)).length;
+const arrayMs = performance.now() - t;
+
+t = performance.now();
+const idSet = new Set(ids);
+hits = wanted.filter((x) => idSet.has(x)).length;
+const setMs = performance.now() - t;
+console.log(hits, `Set was ${Math.round(arrayMs / setMs)}× faster`, setMs < arrayMs);
+```
+
+**Output:**
+
+```text
+6667 Set was 29× faster true
+```
+
+20,000 × 20,000 comparisons against 20,000 lookups: an **O(n²)** algorithm against **O(n)**. **Big-O notation** describes how work grows with input size n; going from n² to n beats any engine trick (`dsa-python.md` covers algorithms in depth). So the order of work is: measure → find the hot spot → fix the algorithm → only then tune details.
+
+### 41.2 How V8 runs JavaScript
+
+JavaScript isn't compiled ahead of time. V8 starts fast and gets faster as code runs:
+
+1. **Parse** the source into a syntax tree (lazily: function bodies only when first called).
+2. **Ignition**, the interpreter, turns it into **bytecode** and runs it immediately, collecting **type feedback**: which kinds of values each operation actually sees.
+3. Code that runs often (**hot** code) is compiled to machine code by faster tiers: **Sparkplug** (quick, simple), **Maglev** (mid-level optimising) and **TurboFan** (heavily optimising, using the feedback to assume types).
+4. If an assumption breaks (a function that always got numbers suddenly gets a string), V8 **deoptimises**: it throws away the optimised code and returns to the slower tier.
+
+This is **just-in-time (JIT) compilation**. The practical lesson: code whose types are **predictable** stays optimised.
+
+### 41.3 Hidden classes and inline caches
+
+Objects in JavaScript can gain and lose properties at any time, but V8 still makes property access as fast as a fixed struct: it gives each object a **hidden class** (also called a **shape** or map) describing its layout, shared by all objects built the same way. A property read then caches "for this shape, the property is at offset 2": an **inline cache**.
+
+Node exposes V8 internals with the `--allow-natives-syntax` flag (for experiments only): `%HaveSameMap(a, b)` tells whether two objects share a hidden class, and `%HasFastProperties(o)` whether it still has a fast layout:
+
+```js
+const a = { x: 1, y: 2 };
+const b = { x: 3, y: 4 };
+const c = { y: 4, x: 3 };
+const d = { x: 1 };
+d.y = 2;
+console.log("a, b same shape:", %HaveSameMap(a, b));
+console.log("a, c (different order):", %HaveSameMap(a, c));
+console.log("a, d (y added later):", %HaveSameMap(a, d));
+
+class Point {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+  }
+}
+console.log("two Points:", %HaveSameMap(new Point(1, 2), new Point(5, 6)));
+
+const e = { x: 1, y: 2, z: 3 };
+console.log("fast before delete:", %HasFastProperties(e));
+delete e.x;
+console.log("fast after delete:", %HasFastProperties(e));
+```
+
+```bash
+node --allow-natives-syntax shapes.mjs
+```
+
+**Output:**
+
+```text
+a, b same shape: true
+a, c (different order): false
+a, d (y added later): false
+two Points: true
+fast before delete: true
+fast after delete: false
+```
+
+Objects written the same way share a shape (`a`, `b`, and the two `Point`s). Writing the properties in a different order (`c`) gives a different shape, and so does adding `y` after creation (`d`): an object literal is laid out for all its properties at once, while `d` grew one step at a time. `delete` can switch an object to slow **dictionary mode**. Rules that follow:
+
+- create objects of one kind in one place (a class or factory), with all properties in the same order;
+- initialise every property in the constructor, even to `null`, rather than adding them later;
+- set a property to `undefined` (or use a `Map`) instead of `delete` on hot objects.
+
+A function that only ever sees one shape is **monomorphic** (fastest); a few shapes, **polymorphic**; many, **megamorphic** (the cache gives up). The same applies to arrays: an array of only small integers is stored more compactly than one mixing types, and an array with holes (`[1, , 3]`) is slower than a packed one.
+
+### 41.4 Benchmarking honestly
+
+**Microbenchmarks** (timing tiny snippets) mislead easily:
+
+- **warm-up:** early runs are interpreted; time only after the code is hot;
+- **dead-code elimination:** if the result is unused, the optimiser may skip the work entirely; always use the result;
+- **noise:** run many iterations and repeat; compare medians, not one run;
+- **realism:** test with real data sizes and shapes.
+
+```js
+function bench(label, fn, iterations = 200) {
+  for (let i = 0; i < 50; i++) {
+    fn();
+  }
+  const times = [];
+  let sink = 0;
+  for (let i = 0; i < iterations; i++) {
+    const t0 = performance.now();
+    sink += fn();
+    times.push(performance.now() - t0);
+  }
+  times.sort((x, y) => x - y);
+  return { label, medianMs: times[Math.floor(times.length / 2)], sink };
+}
+const words = Array.from({ length: 5_000 }, (_, i) => `word${i}`);
+const concat = bench("+= in a loop", () => {
+  let s = "";
+  for (const w of words) {
+    s += w + " ";
+  }
+  return s.length;
+});
+const joined = bench("join", () => words.join(" ").length);
+console.log(concat.label, "vs", joined.label, "→ both fast; ratio about", Math.round(concat.medianMs / joined.medianMs));
+```
+
+**Output:**
+
+```text
++= in a loop vs join → both fast; ratio about 1
+```
+
+Modern engines make `+=` on strings cheap (they build a rope of pieces and flatten later), so the old "always use `join`" advice matters far less than it used to. Measure before believing performance folklore. For real benchmarks use a tool like `mitata` or `tinybench`, and for real apps, profiles.
+
+### 41.5 Profiling
+
+A **profiler** records where time goes in a real run:
+
+- **browser:** DevTools → Performance → record while doing the slow action; look for long tasks, then the **flame chart** (time on the x-axis, call stack on the y-axis): wide bars are where time is spent;
+- **Node.js:** `node --cpu-prof app.js` writes a profile to open in DevTools, or `node --inspect` to attach DevTools live.
+
+Optimise what the profile shows, then measure again.
+
+### 41.6 Practical checklist
+
+- choose data structures for the operations you do (`Set`/`Map` lookups, not repeated `find`/`includes`);
+- move work out of loops (compute once, look up many);
+- avoid layout thrashing and big DOM updates (Chapter 33);
+- do less on the main thread: debounce (Chapter 37), workers (Chapter 31.6), split long tasks;
+- load less: smaller bundles, code splitting, lazy loading (Chapters 26 and 43);
+- keep types and object shapes consistent in hot code;
+- cache expensive pure results (memoization, Chapter 14.5), with bounds (Chapter 40).
+
+### 41.7 Summary
+
+```
+measure → profile → fix the algorithm (Big-O) → only then micro-tune
+V8: parse → Ignition bytecode + type feedback → Sparkplug / Maglev / TurboFan;  deopt when assumptions break
+hidden classes: same properties, same order, set in the constructor; avoid delete on hot objects
+inline caches: monomorphic > polymorphic > megamorphic
+benchmarks: warm up, use the result, many runs, medians, realistic data
+profilers: DevTools Performance (flame chart), node --cpu-prof / --inspect
+```
+
+**Key terms:**
+
+- **Big-O notation:** a description of how an algorithm's work grows with input size, such as O(n) or O(n²).
+- **Bytecode:** a compact, low-level form of a program that an interpreter runs.
+- **Type feedback:** information the engine records about the types an operation actually sees, used to optimise it.
+- **Just-in-time (JIT) compilation:** compiling code to machine code while the program runs, based on how it's used.
+- **Hot code:** code that runs often, and so gets optimised.
+- **Deoptimisation:** discarding optimised code when its assumptions turn out wrong.
+- **Hidden class (shape):** the engine's internal description of an object's layout, shared by objects built the same way.
+- **Inline cache:** a cache at a property access that remembers where the property was for the shapes seen there.
+- **Monomorphic:** an operation that has only seen one shape or type; the fastest case.
+- **Megamorphic:** an operation that has seen many shapes, too many to cache.
+- **Dictionary mode:** a slower hash-table layout an object can switch to, for example after `delete`.
+- **Microbenchmark:** timing a very small piece of code in isolation.
+- **Dead-code elimination:** the optimiser removing computations whose results are never used.
+- **Profiler:** a tool that records where a program spends its time.
+- **Flame chart:** a profile view with time along one axis and the call stack along the other.
+
+### Exercises
+
+1. Why might `function area(s) { return s.w * s.h; }` slow down if called with `{ w, h }`, `{ h, w }`, `{ w, h, color }` and class instances?
+2. Speed this up: `for (const order of orders) { const user = users.find((u) => u.id === order.userId); … }` with 10,000 orders and 10,000 users.
+
+<details>
+<summary><b>Answers</b></summary>
+
+```js
+const users = Array.from({ length: 10_000 }, (_, i) => ({ id: i, name: `u${i}` }));
+const orders = Array.from({ length: 10_000 }, (_, i) => ({ id: i, userId: (i * 7) % 10_000 }));
+const byId = new Map(users.map((u) => [u.id, u]));
+const names = orders.map((o) => byId.get(o.userId).name);
+console.log(names.length, names[1]);
+```
+
+**Output:**
+
+```text
+10000 u7
+```
+
+1. The objects have different hidden classes, so the property accesses in `area` become polymorphic or megamorphic and their inline caches stop helping.
+2. Build a `Map` from id to user once (O(n)), then each lookup is O(1): 20,000 steps instead of up to 100 million comparisons.
+
+</details>
+
+**Learn more:** [V8 blog: fast properties](https://v8.dev/blog/fast-properties) · [V8 blog: Maglev](https://v8.dev/blog/maglev) · [Chrome DevTools: analyse runtime performance](https://developer.chrome.com/docs/devtools/performance)
+
+---
+
+## 42. Modern JavaScript: What's New in ES2020–ES2026
+
+**You need:** Parts I–IV. · **You'll learn:** which features each recent edition added (most already taught in this book), the newest ones in detail, including `using` for automatic cleanup, and how features get into the language and how to use them safely in older environments.
+
+### 42.1 How features are added
+
+New features go through **TC39**, the committee that maintains ECMAScript, in stages: 0 (idea), 1 (proposal), 2 (draft), 2.7 (spec text approved, awaiting tests), 3 (implementations under way), 4 (finished). Stage 4 features join the next June edition. Browsers and Node.js often ship features at stage 3, before the edition is published.
+
+### 42.2 Edition by edition
+
+| Edition | Highlights | Chapter |
+|---|---|---|
+| ES2020 | `?.`, `??`, BigInt, `Promise.allSettled`, `globalThis`, dynamic `import()`, `matchAll` | 3, 4, 24, 26, 27 |
+| ES2021 | `replaceAll`, `Promise.any`, `??=` `\|\|=` `&&=`, numeric separators, `WeakRef` | 4, 7, 24, 40 |
+| ES2022 | class fields, `#private`, static blocks, top-level `await`, `.at()`, `Object.hasOwn`, error `cause` | 8, 9, 17, 20, 25 |
+| ES2023 | `toSorted`, `toReversed`, `toSpliced`, `with`, `findLast` | 8, 11 |
+| ES2024 | `Object.groupBy`, `Map.groupBy`, `Promise.withResolvers`, RegExp `v` flag, resizable ArrayBuffer | 11, 21, 24 |
+| ES2025 | iterator helpers, Set methods, `Promise.try`, `RegExp.escape`, import attributes and JSON modules, `Float16Array`, regex modifiers, duplicate named groups | 21, 22, 24, 26, 27 |
+| ES2026 | `using` / `await using`, `Error.isError`, `Array.fromAsync`, `Uint8Array` base64/hex, `Math.sumPrecise` | 25, 42 |
+
+### 42.3 Explicit resource management: using
+
+Resources such as file handles, database connections, locks and subscriptions must be released even when an error happens. Until now that meant `try`/`finally` everywhere. A `using` declaration does it automatically: when the block ends, by any route, it calls the value's `[Symbol.dispose]()` method:
+
+```js
+function openConnection(name) {
+  console.log(`open ${name}`);
+  return {
+    query: (sql) => `${name}: ${sql}`,
+    [Symbol.dispose]() {
+      console.log(`close ${name}`);
+    },
+  };
+}
+function report() {
+  using db = openConnection("db");
+  using cache = openConnection("cache");
+  console.log(db.query("SELECT 1"));
+  throw new Error("report failed");
+}
+try {
+  report();
+} catch (err) {
+  console.log("caught:", err.message);
+}
+```
+
+**Output:**
+
+```text
+open db
+open cache
+db: SELECT 1
+close cache
+close db
+caught: report failed
+```
+
+Both resources were closed, in reverse order of opening, before the error reached the `catch`. `await using` does the same with `[Symbol.asyncDispose]()` for asynchronous cleanup. `DisposableStack` collects several cleanups in one object:
+
+```js
+{
+  using stack = new DisposableStack();
+  const timer = setInterval(() => {}, 1000);
+  stack.defer(() => {
+    clearInterval(timer);
+    console.log("timer cleared");
+  });
+  const listener = () => {};
+  stack.defer(() => console.log("listener removed"));
+  console.log("working…");
+}
+```
+
+**Output:**
+
+```text
+working…
+listener removed
+timer cleared
+```
+
+### 42.4 Small but useful
+
+```js
+console.log(Error.isError(new TypeError("x")), Error.isError({ name: "Error", message: "fake" }));
+console.log(new Float16Array([1.5, 65504, 70000, 0.1]));
+const re = /(?<year>\d{4})-\d{2}|\d{2}\/(?<year>\d{4})/;
+console.log("2026-03".match(re).groups.year, "03/2025".match(re).groups.year);
+console.log(/^(?i:hello) World$/.test("HELLO World"), /^(?i:hello) World$/.test("HELLO world"));
+```
+
+**Output:**
+
+```text
+true false
+Float16Array(4) [ 1.5, 65504, Infinity, 0.0999755859375 ]
+2026 2025
+true false
+```
+
+- `Error.isError` recognises real errors, even from another window or worker, where `instanceof Error` fails.
+- `Float16Array` stores half-precision floats (2 bytes each, as used by GPUs and machine learning); 65504 is the largest, larger values become `Infinity`, and with only about 3 significant digits 0.1 is stored as 0.0999755859375.
+- **Duplicate named groups** may repeat a name in different alternatives.
+- **Regex modifiers** `(?i: … )` switch a flag on for part of a pattern only.
+
+The newest additions are already in browsers; this block runs in Chrome:
+
+```js
+console.log(Math.sumPrecise([0.1, 0.2, 0.3]), [0.1, 0.2, 0.3].reduce((a, b) => a + b));
+const bytes = new TextEncoder().encode("Hi ₹");
+console.log(bytes.toBase64(), bytes.toHex(), new TextDecoder().decode(Uint8Array.fromBase64("SGkg4oK5")));
+console.log([...Iterator.concat([1, 2], new Set([3]))]);
+const visits = new Map();
+visits.set("home", (visits.get("home") ?? 0) + 1);
+console.log(visits.getOrInsert("cart", 0), visits.getOrInsertComputed("pay", (key) => key.length));
+```
+
+**Output:**
+
+```text
+0.6 0.6000000000000001
+SGkg4oK5 486920e282b9 Hi ₹
+[1,2,3]
+0 3
+```
+
+`Math.sumPrecise` adds without accumulating rounding errors. `Iterator.concat` chains iterables lazily. `getOrInsert` reads a Map entry, inserting a default first if it's missing: the counting pattern without `?? 0`.
+
+### 42.5 Coming next
+
+Proposals at stage 3 or close in late 2026 include **Temporal** (Chapter 28.7; shipping in Chrome and Firefox), **decorators** (`@logged class …`, already supported by TypeScript and Babel), **import defer** and **source phase imports** for faster module loading, and **`AsyncContext`** (passing values through async calls, like request ids in logs). Check the TC39 proposals repository for the current status.
+
+### 42.6 Using new features safely
+
+Not every user runs the newest browser, and servers may run an older Node.js. Three tools close the gap:
+
+- **Feature detection:** test for the feature before using it: `if ("groupBy" in Object)` or `typeof Iterator?.from === "function"`. Never sniff the user-agent string.
+- **Transpiling:** a tool (Babel, esbuild, SWC, TypeScript) rewrites new *syntax* (like `?.` or class fields) into older syntax for a chosen **target** (Chapter 43).
+- **Polyfills:** code that adds missing *built-ins* (like `Object.groupBy`) in older environments, written in older JavaScript. `core-js` is the standard collection; Chapter 47 writes several by hand.
+
+```js
+const groupBy = Object.groupBy ?? ((items, keyFn) => {
+  const out = Object.create(null);
+  for (const item of items) {
+    (out[keyFn(item)] ??= []).push(item);
+  }
+  return out;
+});
+console.log(groupBy([1, 2, 3, 4], (n) => (n % 2 ? "odd" : "even")));
+```
+
+**Output:**
+
+```text
+[Object: null prototype] { odd: [ 1, 3 ], even: [ 2, 4 ] }
+```
+
+Check support on MDN's compatibility tables, caniuse.com and node.green. A project's **Browserslist** setting (such as `"> 0.5%, last 2 versions, not dead"`) tells build tools which environments to support.
+
+### 42.7 Summary
+
+```
+TC39 stages 0 → 1 → 2 → 2.7 → 3 → 4; stage 4 → next June edition
+using x = resource;   disposed at block end via [Symbol.dispose]();  await using / [Symbol.asyncDispose]
+DisposableStack: stack.defer(fn), stack.use(resource)
+Error.isError  Float16Array  duplicate named groups  (?i: …)  Math.sumPrecise
+u8.toBase64() / toHex()  Uint8Array.fromBase64()  Iterator.concat  map.getOrInsert(k, v)
+feature detection > UA sniffing;  transpile syntax;  polyfill built-ins;  check MDN / caniuse / node.green
+```
+
+**Key terms:**
+
+- **TC39:** the committee that evolves the ECMAScript standard.
+- **Proposal stage:** a feature's maturity level in TC39's process, from 0 (idea) to 4 (finished).
+- **Explicit resource management:** `using` declarations that automatically dispose resources at the end of a block.
+- **Symbol.dispose:** the method `using` calls to release a resource.
+- **DisposableStack:** an object that collects cleanup actions and runs them together, in reverse order.
+- **Error.isError:** checks whether a value is a genuine error object, even across windows and workers.
+- **Feature detection:** checking whether a feature exists before using it.
+- **Transpiler:** a tool that rewrites code from newer syntax into older syntax.
+- **Polyfill:** code that implements a missing built-in feature for older environments.
+- **Browserslist:** a shared configuration listing which browsers a project supports.
+
+### Exercises
+
+1. Write `acquireLock(name)` returning a disposable whose disposal prints "released NAME", and use it with `using` so it's released even when the body throws.
+2. Which of these need a polyfill and which need transpiling: `a ?? b`, `Object.groupBy`, class `#private` fields, `Promise.withResolvers`?
+
+<details>
+<summary><b>Answers</b></summary>
+
+```js
+const acquireLock = (name) => ({
+  [Symbol.dispose]: () => console.log(`released ${name}`),
+});
+try {
+  using lock = acquireLock("orders");
+  throw new Error("boom");
+} catch (err) {
+  console.log(err.message);
+}
+```
+
+**Output:**
+
+```text
+released orders
+boom
+```
+
+2. Syntax needs transpiling: `??` and `#private` fields. Built-ins need polyfills: `Object.groupBy` and `Promise.withResolvers`.
+
+</details>
+
+**Learn more:** [TC39 proposals](https://github.com/tc39/proposals) · [MDN: JavaScript resource management](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Resource_management) · [node.green (Node.js feature support)](https://node.green/)
+
+---
+
+# Part VI — Tooling, Testing and Production
+
+Four chapters on the work around the code: setting up a project with npm, bundlers, linters and TypeScript; testing it; debugging it; and making it reliable in production.
+
+---
+
+## 43. Tooling: npm, Package Managers, Bundlers, Linters and TypeScript
+
+**You need:** Chapters 26 and 42. · **You'll learn:** to set up a JavaScript project with `package.json` and npm, how version ranges and lockfiles work, what bundlers do (bundling, tree shaking, minifying, transpiling), how a linter catches bugs, and how TypeScript checks types, even in plain `.js` files.
+
+The blocks in this chapter are files of a small project and the terminal commands run on it; the output under each command is what it printed.
+
+### 43.1 package.json and npm
+
+A project is described by **`package.json`**: its name, its **dependencies** (packages it needs), and **scripts** (named commands). **npm**, installed with Node.js, downloads packages from the npm registry into `node_modules/`:
+
+```json
+{
+  "name": "shop-utils",
+  "version": "1.2.0",
+  "type": "module",
+  "scripts": {
+    "build": "esbuild src/main.js --bundle --minify --outfile=dist/app.js",
+    "lint": "eslint src",
+    "test": "node --test"
+  },
+  "dependencies": { "date-fns": "^4.1.0" },
+  "devDependencies": { "esbuild": "~0.28.2", "eslint": "^10.14.0" },
+  "engines": { "node": ">=24" }
+}
+```
+
+- `"type": "module"` makes `.js` files ES modules (Chapter 26.7).
+- **dependencies** are needed at run time; **devDependencies** only for building and testing.
+- `npm run build` runs a script; `npm test` and `npm start` are shortcuts. Scripts can use any installed package's command directly.
+- `npx tool` runs a package's command without a script (downloading it first if needed).
+
+```bash
+npm init -y                 # create package.json
+npm install date-fns        # add a dependency (npm i for short)
+npm install -D eslint       # add a dev dependency
+npm run build               # run a script
+npm ci                      # clean install exactly from the lockfile (CI and deploys)
+npm outdated; npm audit     # what's old; known vulnerabilities
+```
+
+### 43.2 Versions: semver, ranges and the lockfile
+
+Packages use **semantic versioning** (semver): `MAJOR.MINOR.PATCH`. A patch fixes bugs, a minor adds features compatibly, a major may break things. Ranges in `package.json` say which versions are acceptable:
+
+| Range | Accepts | Example `^4.1.0` / `~0.28.2` |
+|---|---|---|
+| `^4.1.0` | same major: ≥ 4.1.0 and < 5.0.0 | 4.1.3, 4.9.0, not 5.0.0 |
+| `~0.28.2` | same minor: ≥ 0.28.2 and < 0.29.0 | 0.28.9, not 0.29.0 |
+| `4.1.0` | exactly that | |
+
+(For versions below 1.0.0, `^` acts like `~`, because minor bumps there may break things.)
+
+Ranges alone would let two installs pick different versions. The **lockfile** (`package-lock.json`) records the exact version of every package in the whole dependency tree. Commit it, and use `npm ci` in builds, so everyone runs exactly the same code (and so a newly published malicious version can't slip in, Chapter 35.6).
+
+**Other package managers:** **pnpm** (fast, saves disk space by sharing one copy of each package, strict about undeclared dependencies), **Yarn**, and **Bun** (a whole runtime with a very fast installer). They all read `package.json`; pick one per project, and its lockfile.
+
+### 43.3 Bundlers
+
+Browsers can load ES modules directly, but shipping hundreds of small files, uncompressed and with modern syntax, is slow and may not run everywhere. A **bundler** prepares code for production:
+
+- **bundling:** follows imports from an entry file and combines the modules into a few files;
+- **tree shaking:** drops exports nothing imports;
+- **minifying:** removes whitespace and comments and shortens names;
+- **transpiling:** rewrites newer syntax for older targets (Chapter 42.6);
+- **code splitting:** dynamic `import()` becomes a separate file loaded on demand;
+- **hashing:** puts a content hash in file names, for long caching (Chapter 34.3).
+
+Common tools: **Vite** (dev server with instant reloads, production builds with Rollup or Rolldown), **esbuild** (very fast, written in Go), **Rollup**, **webpack** (older, very configurable), **Turbopack** (Next.js). A small project, bundled with esbuild:
+
+```js
+export const add = (a, b) => a + b;
+export const unusedHelper = () => "this export is never imported";
+export function formatPrice(paise) {
+  return `₹${(paise / 100).toFixed(2)}`;
+}
+```
+
+```js
+import { add, formatPrice } from "./math.js";
+const settings = globalThis.userSettings ?? { currency: "INR" };
+console.log(formatPrice(add(1999, 500)), settings.currency);
+```
+
+```bash
+npx esbuild src/main.js --bundle --minify --format=esm --outfile=dist/app.js --log-level=warning
+cat dist/app.js; echo; node dist/app.js
+grep -c "never imported" dist/app.js || true
+```
+
+**Output:**
+
+```text
+var r=(e,o)=>e+o;function t(e){return`\u20B9${(e/100).toFixed(2)}`}var n=globalThis.userSettings??{currency:"INR"};console.log(t(r(1999,500)),n.currency);
+
+₹24.99 INR
+0
+```
+
+One file, minified, and the unused export is gone (`grep` counted 0). The same input for an older target shows transpiling: `??` doesn't exist in ES2019, so esbuild rewrites it:
+
+```bash
+npx esbuild src/main.js --bundle --target=es2019 --format=esm 2>&1 | grep settings
+```
+
+**Output:**
+
+```text
+var settings = (_a = globalThis.userSettings) != null ? _a : { currency: "INR" };
+console.log(formatPrice(add(1999, 500)), settings.currency);
+```
+
+Add `--sourcemap` to produce a **source map**: a file mapping minified code back to the original lines, so DevTools and error reports show your real code (Chapter 45).
+
+### 43.4 Linting
+
+A **linter** analyses code without running it and reports likely bugs and style problems. **ESLint** is the standard; its rules are configured in `eslint.config.js` (the "flat config" format):
+
+```js
+import js from "@eslint/js";
+
+export default [
+  js.configs.recommended,
+  {
+    languageOptions: { globals: { console: "readonly" } },
+    rules: { "prefer-const": "error", eqeqeq: "error" },
+  },
+];
+```
+
+```js
+export function total(items) {
+  let sum = 0;
+  let count = items.length;
+  for (const item of items) {
+    if (item.qty == "0") continue;
+    sum += item.price * item.qty;
+  }
+  return sum;
+  console.log("done");
+}
+```
+
+```bash
+npx eslint src/buggy.js  # expect-fail
+```
+
+**Output:**
+
+```text
+
+src/buggy.js
+  3:7   error  'count' is assigned a value but never used        no-unused-vars
+  3:7   error  'count' is never reassigned. Use 'const' instead  prefer-const
+  5:18  error  Expected '===' and instead saw '=='               eqeqeq
+  9:3   error  Unreachable code                                  no-unreachable
+
+✖ 4 problems (4 errors, 0 warnings)
+  1 error and 0 warnings potentially fixable with the `--fix` option.
+```
+
+Four real problems found without running anything: a variable that should be `const` (and is unused), a loose `==` (Chapter 16), and code that can never run. `npx eslint --fix` fixes some automatically. A **formatter** such as **Prettier** (or Biome, which is linter and formatter in one) handles layout (indentation, quotes, line length), so teams never argue about style. Editors run both on save.
+
+### 43.5 TypeScript
+
+**TypeScript** is JavaScript plus **static types**: annotations checked before the code runs, catching wrong arguments, typos in property names and missing `null` checks. `typescript.md` covers it fully. You can get much of the benefit in plain JavaScript: JSDoc comments describe types, and `tsc --checkJs` checks them:
+
+```js
+/**
+ * @param {{ price: number, qty: number }[]} items
+ * @returns {number}
+ */
+export function cartTotal(items) {
+  return items.reduce((sum, it) => sum + it.price * it.qty, 0);
+}
+cartTotal([{ price: 20, qty: "2" }]);
+cartTotal([{ price: 20, quantity: 2 }]);
+```
+
+```bash
+npx tsc --checkJs --noEmit --target es2022 --module nodenext src/cart.js  # expect-fail
+```
+
+**Output:**
+
+```text
+src/cart.js(8,25): error TS2322: Type 'string' is not assignable to type 'number'.
+src/cart.js(9,25): error TS2353: Object literal may only specify known properties, and 'quantity' does not exist in type '{ price: number; qty: number; }'.
+```
+
+Both mistakes caught before running: a string where a number was expected, and a misspelt property. Node.js 24 can also run `.ts` files directly by stripping the types (it doesn't check them; `tsc` does):
+
+```ts
+const greet = (name: string, times: number = 1): string => `Hello, ${name}! `.repeat(times);
+console.log(greet("Asha", 2));
+```
+
+```bash
+node greet.ts 2>&1 | grep -v ExperimentalWarning
+```
+
+**Output:**
+
+```text
+Hello, Asha! Hello, Asha!
+```
+
+### 43.6 A typical setup
+
+```text
+my-app/
+  package.json          scripts, dependencies, "type": "module"
+  package-lock.json     exact versions (commit it)
+  eslint.config.js      lint rules;  .prettierrc for formatting
+  tsconfig.json         if using TypeScript or checkJs
+  src/                  your code
+  test/                 tests (Chapter 44)
+  dist/                 build output (not committed)
+  .gitignore            node_modules, dist, .env
+```
+
+New projects usually start from a template that sets all this up: `npm create vite@latest` for a frontend, a framework's starter for a full-stack app.
+
+### 43.7 Summary
+
+```
+package.json: name, "type": "module", scripts, dependencies, devDependencies, engines
+npm i pkg / npm i -D pkg / npm run x / npm ci / npx tool / npm audit
+semver MAJOR.MINOR.PATCH;  ^ same major, ~ same minor;  commit the lockfile
+bundler: bundle, tree-shake, minify, transpile (target), split, hash, source maps  (Vite, esbuild, Rollup, webpack)
+ESLint (eslint.config.js) finds bugs;  Prettier/Biome format
+TypeScript: tsc --noEmit;  JSDoc + --checkJs for plain JS;  node file.ts strips types
+```
+
+**Key terms:**
+
+- **package.json:** the file describing a JavaScript project: its name, scripts and dependencies.
+- **npm:** Node.js's package manager and the public registry of packages.
+- **Dependency:** a package a project needs; dev dependencies are needed only for development.
+- **npm script:** a named command in `package.json`, run with `npm run name`.
+- **npx:** runs a package's command-line tool.
+- **Semantic versioning (semver):** version numbers `MAJOR.MINOR.PATCH`, where a major change may break compatibility.
+- **Version range:** a pattern such as `^4.1.0` describing which versions are acceptable.
+- **Lockfile:** a file recording the exact installed version of every dependency.
+- **Bundler:** a tool that combines modules into optimised files for production.
+- **Tree shaking:** removing exports that nothing imports.
+- **Minification:** shrinking code by removing whitespace and shortening names.
+- **Source map:** a file mapping transformed code back to the original source.
+- **Linter:** a tool that analyses code for likely bugs and style problems without running it.
+- **ESLint:** the standard JavaScript linter.
+- **Formatter:** a tool that rewrites code layout consistently, such as Prettier.
+- **TypeScript:** JavaScript with static type annotations checked by a compiler.
+- **Static types:** types checked before the program runs.
+- **JSDoc:** a comment format for documenting code, including types that TypeScript can check.
+
+### Exercises
+
+1. A dependency is listed as `"^2.3.1"`. Which of these could `npm install` pick: 2.3.0, 2.3.9, 2.10.0, 3.0.0?
+2. Why should `npm ci` be used in a deployment pipeline rather than `npm install`?
+
+<details>
+<summary><b>Answers</b></summary>
+
+1. 2.3.9 and 2.10.0. Not 2.3.0 (below the minimum) or 3.0.0 (a new major).
+2. `npm ci` installs exactly what the lockfile says, fails if it doesn't match `package.json`, and starts from a clean `node_modules`, so every build is reproducible.
+
+</details>
+
+**Learn more:** [npm docs: package.json](https://docs.npmjs.com/cli/configuring-npm/package-json) · [semver.org](https://semver.org/) · [Vite: getting started](https://vite.dev/guide/) · [ESLint: getting started](https://eslint.org/docs/latest/use/getting-started) · [TypeScript: JS projects using JSDoc](https://www.typescriptlang.org/docs/handbook/intro-to-js-ts.html)
+
+---
+
+## 44. Testing JavaScript: Unit, Integration and End-to-End
+
+**You need:** Chapters 25, 29, 39 and 43. · **You'll learn:** to write automated tests with Node's built-in test runner, to read a failing test, to test asynchronous code with mocks and fake timers, to measure coverage, and how integration and end-to-end tests with a real browser fit in.
+
+### 44.1 Why and what to test
+
+A **test** is code that runs your code and checks the result automatically. Tests catch bugs before users do, and let you change code without fear: if the tests still pass, behaviour is unchanged. The **testing pyramid** suggests the mix:
+
+| Level | Tests | Speed | How many |
+|---|---|---|---|
+| **unit** | one function or class, alone | milliseconds | many |
+| **integration** | several parts together: a component with the DOM, a service with a database | slower | some |
+| **end-to-end** (E2E) | the whole app in a real browser, like a user | seconds | few, for critical flows |
+
+Test behaviour (what goes in, what comes out), not implementation details, so tests survive refactoring.
+
+### 44.2 A first unit test
+
+Node.js has a test runner built in: `node:test` provides `test` and `describe`, and `node:assert/strict` the checks. The code under test, and its tests in a separate file:
+
+```js
+export function cartTotal(items, { couponPercent = 0 } = {}) {
+  if (couponPercent < 0 || couponPercent > 100) {
+    throw new RangeError("couponPercent must be between 0 and 100");
+  }
+  const subtotal = items.reduce((sum, it) => sum + it.price * it.qty, 0);
+  return Math.round(subtotal * (1 - couponPercent / 100));
+}
+```
+
+```js
+import { describe, test } from "node:test";
+import assert from "node:assert/strict";
+import { cartTotal } from "./cart.js";
+
+describe("cartTotal", () => {
+  test("adds price × qty", () => {
+    assert.equal(cartTotal([{ price: 20, qty: 3 }, { price: 899, qty: 1 }]), 959);
+  });
+  test("an empty cart is 0", () => {
+    assert.equal(cartTotal([]), 0);
+  });
+  test("applies a coupon", () => {
+    assert.equal(cartTotal([{ price: 1000, qty: 1 }], { couponPercent: 15 }), 850);
+  });
+  test("rejects impossible coupons", () => {
+    assert.throws(() => cartTotal([], { couponPercent: 120 }), RangeError);
+  });
+});
+```
+
+```json
+{ "type": "module" }
+```
+
+```bash
+node --test cart.test.js
+```
+
+**Output:**
+
+```text
+▶ cartTotal
+  ✔ adds price × qty
+  ✔ an empty cart is 0
+  ✔ applies a coupon
+  ✔ rejects impossible coupons
+✔ cartTotal
+ℹ tests 4
+ℹ suites 1
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+```
+
+Each test follows **Arrange–Act–Assert**: set up the input, call the code, check the result. Name tests by the behaviour they check, so a failure reads like a bug report. Edge cases (empty input, zero, limits, invalid values) find the most bugs.
+
+| Assertion | Checks |
+|---|---|
+| `assert.equal(a, b)` | `a === b` (strict mode) |
+| `assert.deepEqual(a, b)` | same structure and values (Chapter 18.5) |
+| `assert.ok(x)` | truthy |
+| `assert.throws(fn, ErrorType)` | `fn` throws |
+| `await assert.rejects(promise, ErrorType)` | the promise rejects |
+| `assert.match(str, /re/)` | the string matches |
+
+### 44.3 Reading a failure
+
+A failing test shows what was expected, what actually came out, and where. Suppose someone "simplifies" the rounding:
+
+```js
+import { test } from "node:test";
+import assert from "node:assert/strict";
+
+const buggyTotal = (items) => items.reduce((sum, it) => sum + it.price * it.qty, 0) * 0.9;
+
+test("10% off 333 rounds to whole rupees", () => {
+  assert.equal(buggyTotal([{ price: 333, qty: 1 }]), 300);
+});
+```
+
+```bash
+node --test cart-bug.test.js 2>&1 | sed -n '/failing tests/,/cart-bug.test.js:7/p'  # expect-fail
+```
+
+**Output:**
+
+```text
+✖ failing tests:
+
+test at cart-bug.test.js:6:1
+✖ 10% off 333 rounds to whole rupees
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  299.7 !== 300
+  
+      at TestContext.<anonymous> (file://cart-bug.test.js:7:10)
+```
+
+The report names the test, the values (`299.7 !== 300`) and the file and line of the failing assertion. The missing rounding is found by the test, not by a customer.
+
+### 44.4 Async code, mocks and fake timers
+
+Test functions can be `async`; `await` the code and use `assert.rejects` for failures. To test code that depends on slow or unpredictable things (network, time, randomness), replace them in the test:
+
+- a **mock** (or spy) is a fake function that records its calls and returns what you choose: `mock.fn()`;
+- **fake timers** replace `setTimeout` and friends with a clock the test moves forward instantly: `mock.timers`;
+- **dependency injection** (Chapter 39.9) makes this easy: pass the fake in.
+
+```js
+export function createNotifier({ send, delayMs = 1000 }) {
+  let timer;
+  return {
+    schedule(msg) {
+      clearTimeout(timer);
+      timer = setTimeout(() => send(msg), delayMs);
+    },
+  };
+}
+export async function fetchUserName(id, { fetchJson }) {
+  const user = await fetchJson(`/users/${id}`);
+  if (!user) {
+    throw new Error(`user ${id} not found`);
+  }
+  return user.name.trim();
+}
+```
+
+```js
+import { test, mock } from "node:test";
+import assert from "node:assert/strict";
+import { createNotifier, fetchUserName } from "./notify.js";
+
+test("only the last scheduled message is sent", (t) => {
+  t.mock.timers.enable({ apis: ["setTimeout"] });
+  const send = mock.fn();
+  const notifier = createNotifier({ send, delayMs: 1000 });
+  notifier.schedule("a");
+  notifier.schedule("b");
+  t.mock.timers.tick(999);
+  assert.equal(send.mock.callCount(), 0);
+  t.mock.timers.tick(1);
+  assert.equal(send.mock.callCount(), 1);
+  assert.deepEqual(send.mock.calls[0].arguments, ["b"]);
+});
+
+test("fetchUserName trims the name", async () => {
+  const fetchJson = mock.fn(async () => ({ name: "  Asha " }));
+  assert.equal(await fetchUserName(7, { fetchJson }), "Asha");
+  assert.equal(fetchJson.mock.calls[0].arguments[0], "/users/7");
+});
+
+test("fetchUserName rejects for a missing user", async () => {
+  await assert.rejects(fetchUserName(9, { fetchJson: async () => null }), /not found/);
+});
+```
+
+```bash
+node --test notify.test.js
+```
+
+**Output:**
+
+```text
+✔ only the last scheduled message is sent
+✔ fetchUserName trims the name
+✔ fetchUserName rejects for a missing user
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+```
+
+The debounced notifier (Chapter 37) took 1,000 ms of simulated time and no real time. Don't over-mock: a test where everything is fake proves only that the fakes work. Mock the edges (network, clock, randomness) and keep the logic real.
+
+### 44.5 Coverage
+
+**Code coverage** reports which lines and branches the tests ran. Low coverage shows untested code; high coverage doesn't prove the tests check the right things:
+
+```bash
+node --test --experimental-test-coverage cart.test.js notify.test.js 2>&1 | grep -E "file|cart.js|notify.js|all files"
+```
+
+**Output:**
+
+```text
+ℹ file      | line % | branch % | funcs % | uncovered lines
+ℹ cart.js   | 100.00 |   100.00 |  100.00 | 
+ℹ notify.js | 100.00 |   100.00 |  100.00 | 
+ℹ all files | 100.00 |   100.00 |  100.00 |
+```
+
+### 44.6 Integration tests with a DOM
+
+Components that touch the DOM can be tested in Node with jsdom (Chapter 29), firing events like a user would. Libraries such as Testing Library add helpers to find elements by visible text or role, as users do. Here a counter widget is tested by clicking its button:
+
+```js
+export function mountCounter(root) {
+  root.innerHTML = `<button>Add</button> <output>0</output>`;
+  const output = root.querySelector("output");
+  root.querySelector("button").addEventListener("click", () => {
+    output.textContent = String(Number(output.textContent) + 1);
+  });
+}
+```
+
+```js
+import { test } from "node:test";
+import assert from "node:assert/strict";
+import { JSDOM } from "jsdom";
+import { mountCounter } from "./counter.js";
+
+test("clicking Add increments the count", () => {
+  const { document } = new JSDOM("<div id=root></div>").window;
+  const root = document.getElementById("root");
+  mountCounter(root);
+  const button = [...root.querySelectorAll("button")].find((b) => b.textContent === "Add");
+  button.click();
+  button.click();
+  assert.equal(root.querySelector("output").textContent, "2");
+});
+```
+
+```bash
+node --test counter.test.js
+```
+
+**Output:**
+
+```text
+✔ clicking Add increments the count
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+```
+
+**Vitest** and **Jest** are popular alternatives to `node:test` with the same ideas and slightly different names: `expect(x).toBe(y)` instead of `assert.equal(x, y)`, `vi.fn()` / `jest.fn()` for mocks, `vi.useFakeTimers()` for timers. Vitest integrates with Vite projects.
+
+### 44.7 End-to-end tests
+
+An **E2E test** drives a real browser through a real flow (open the page, type, click, check what appears). **Playwright** is the standard tool (Cypress is another). Its test runner, `@playwright/test`, looks like this:
+
+```js
+import { test, expect } from "@playwright/test";
+
+test("a shopper can add a pen to the cart", async ({ page }) => {
+  await page.goto("http://localhost:5173/");
+  await page.getByRole("button", { name: "Add pen" }).click();
+  await expect(page.getByTestId("cart-count")).toHaveText("1");
+});
+```
+
+(Not run here: it needs the app's dev server.) Locators like `getByRole` find elements the way users and screen readers do, and `expect(…).toHaveText` retries until the page settles, which avoids most timing failures. E2E tests are slow and brittle compared with unit tests, so keep them for the flows that must never break: sign-up, login, checkout.
+
+A **flaky test** passes and fails without code changes, usually because of timing, shared state between tests, or real network calls. Fix it immediately or delete it: a test nobody trusts is worse than none.
+
+### 44.8 Summary
+
+```
+pyramid: many unit, some integration, few E2E;  test behaviour, not internals
+import { describe, test, mock } from "node:test";  import assert from "node:assert/strict";
+assert.equal / deepEqual / ok / throws / rejects / match;  node --test [files]
+Arrange–Act–Assert;  test edge cases;  descriptive names
+mock.fn() → .mock.calls / callCount();  t.mock.timers.enable() + tick(ms);  inject dependencies
+node --test --experimental-test-coverage
+jsdom + events for DOM tests;  Vitest / Jest: expect(x).toBe(y), vi.fn()
+Playwright E2E: page.goto, getByRole(...).click(), expect(locator).toHaveText()
+```
+
+**Key terms:**
+
+- **Automated test:** code that runs other code and checks its results.
+- **Unit test:** a test of one function or class in isolation.
+- **Integration test:** a test of several parts working together.
+- **End-to-end (E2E) test:** a test that drives the whole application like a user, usually in a real browser.
+- **Testing pyramid:** the guideline to have many unit tests, fewer integration tests and few E2E tests.
+- **Test runner:** a program that finds, runs and reports tests, such as `node --test`.
+- **Assertion:** a check in a test that throws if a condition doesn't hold.
+- **Arrange–Act–Assert:** structuring a test as setup, the action, then checks.
+- **Mock:** a fake function or object that replaces a real dependency and records how it's used.
+- **Fake timers:** a test clock that replaces the real timer functions and can be moved forward instantly.
+- **Code coverage:** the share of code lines and branches that the tests run.
+- **Playwright:** a library and test runner for automating real browsers.
+- **Locator:** a Playwright way to find elements, such as by role or label.
+- **Flaky test:** a test that sometimes passes and sometimes fails without any code change.
+
+### Exercises
+
+1. Write tests for `slugify(text)` (lower-case words joined by hyphens): cover normal text, extra spaces, and an empty string.
+2. A function retries a request 3 times with 1-second waits. How do you test it without the test taking 3 seconds?
+
+<details>
+<summary><b>Answers</b></summary>
+
+```js
+import { test } from "node:test";
+import assert from "node:assert/strict";
+
+const slugify = (text) => text.trim().toLowerCase().split(/\s+/).filter(Boolean).join("-");
+
+test("joins words with hyphens", () => assert.equal(slugify("Hello World"), "hello-world"));
+test("ignores extra spaces", () => assert.equal(slugify("  a   b "), "a-b"));
+test("empty input gives an empty slug", () => assert.equal(slugify(""), ""));
+```
+
+```bash
+node --test slug.test.js
+```
+
+**Output:**
+
+```text
+✔ joins words with hyphens
+✔ ignores extra spaces
+✔ empty input gives an empty slug
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+```
+
+2. Inject the wait (or the clock) and use fake timers (`t.mock.timers`), advancing them with `tick`; or inject a `sleep` function that resolves immediately in tests.
+
+</details>
+
+**Learn more:** [Node.js: test runner](https://nodejs.org/api/test.html) · [Playwright: writing tests](https://playwright.dev/docs/writing-tests) · [Vitest](https://vitest.dev/guide/) · [Martin Fowler: the practical test pyramid](https://martinfowler.com/articles/practical-test-pyramid.html)
+
+---
+
+## 45. Debugging JavaScript
+
+**You need:** Chapters 17, 23–25 and 43. · **You'll learn:** a systematic way to find bugs, the console beyond `console.log`, breakpoints and the `debugger` statement, reading stack traces (including async ones and source-mapped ones), and catching errors nobody handled.
+
+### 45.1 A method, not guesswork
+
+1. **Reproduce** the bug reliably, ideally with a small input. A bug you can trigger on demand is half fixed.
+2. **Read the error:** type, message, and the top stack frame that's in *your* code (Chapter 17.1).
+3. **Form a hypothesis** about the cause, and test it: log a value, set a breakpoint, change one thing.
+4. **Narrow it down:** cut the input or the code in half until the bug lives in a few lines. For "it worked last week", `git bisect` finds the breaking commit by binary search.
+5. **Fix the cause, not the symptom,** and add a test that would have caught it (Chapter 44).
+
+Explaining the code line by line to someone (or a rubber duck) often reveals the wrong assumption.
+
+### 45.2 The console, properly
+
+```js
+const orders = [
+  { id: 1, city: "Pune", total: 1499, items: [{ sku: "P1", qty: 2 }] },
+  { id: 2, city: "Delhi", total: 899, items: [] },
+];
+console.table(orders, ["id", "city", "total"]);
+console.dir({ order: orders[0] }, { depth: 0 });
+console.log("%s has %d orders worth %o", "Asha", orders.length, { sum: 2398 });
+```
+
+**Output:**
+
+```text
+┌─────────┬────┬─────────┬───────┐
+│ (index) │ id │ city    │ total │
+├─────────┼────┼─────────┼───────┤
+│ 0       │ 1  │ 'Pune'  │ 1499  │
+│ 1       │ 2  │ 'Delhi' │ 899   │
+└─────────┴────┴─────────┴───────┘
+{ order: [Object] }
+Asha has 2 orders worth { sum: 2398 }
+```
+
+`console.table` lays out arrays of objects; `console.dir` with `depth` limits how deep objects are printed; `%s`, `%d` and `%o` substitute a string, a number and an object. More tools:
+
+```js
+console.group("checkout");
+console.log("validating cart");
+console.group("payment");
+console.log("charging card");
+console.groupEnd();
+console.groupEnd();
+for (const city of ["Pune", "Delhi", "Pune"]) {
+  console.count(city);
+}
+console.assert(orders.length === 3, "expected 3 orders, got", orders.length);
+const { id, total } = orders[1];
+console.log({ id, total });
+```
+
+**Output:**
+
+```text
+checkout
+  validating cart
+  payment
+    charging card
+Pune: 1
+Delhi: 1
+Pune: 2
+Assertion failed: expected 3 orders, got 2
+{ id: 2, total: 899 }
+```
+
+- `console.group` / `groupEnd` indent related lines;
+- `console.count(label)` counts how often a line runs;
+- `console.assert(condition, …)` prints only when the condition is false;
+- `console.log({ id, total })` (shorthand properties) labels each value with its name;
+- `console.time(label)` / `console.timeEnd(label)` print the time between them; `console.trace()` prints the current stack;
+- `console.warn` and `console.error` print to the error stream (in red in browsers, and filterable).
+
+Remove debugging logs before committing; a linter rule (`no-console`) can enforce it.
+
+### 45.3 Breakpoints and the debugger
+
+Logging means guessing in advance what to print. A **debugger** pauses the program at a **breakpoint** so you can inspect every variable, the call stack and the scope chain, then step through line by line:
+
+- **Step over** runs the current line; **step into** enters the function called on it; **step out** finishes the current function.
+- **Conditional breakpoints** pause only when an expression is true (`order.total < 0`); **logpoints** log a message without changing the code.
+- **Watch expressions** re-evaluate expressions at each pause.
+- "Pause on exceptions" stops exactly where an error is thrown, even a caught one.
+
+Ways in:
+
+- **Browser:** DevTools → Sources: click a line number to set a breakpoint.
+- **In code:** a `debugger;` statement pauses there whenever DevTools (or another debugger) is attached; it does nothing otherwise.
+- **Node.js:** `node --inspect app.js` (or `--inspect-brk` to pause on the first line), then open `chrome://inspect`; or use the VS Code debugger (Run → Start Debugging), which sets breakpoints in the editor.
+
+```js
+function applyDiscount(order) {
+  if (order.total > 1000) {
+    debugger;               // pauses here only when a debugger is attached
+  }
+  return order.total * 0.9;
+}
+```
+
+### 45.4 Reading stack traces
+
+A stack trace lists the calls active when the error was created, newest first (Chapter 23.1). Read from the top down to the first frame in *your* code; frames inside `node_modules` or `node:internal` usually just carry the error through:
+
+```js
+function parsePrice(text) {
+  const value = Number(text);
+  if (Number.isNaN(value)) {
+    throw new TypeError(`not a price: "${text}"`);
+  }
+  return value;
+}
+function importRow(row) {
+  return { sku: row[0], price: parsePrice(row[1]) };
+}
+try {
+  ["P1,20", "B1,abc"].map((line) => importRow(line.split(",")));
+} catch (err) {
+  console.log(err.stack.split("\n").slice(0, 4).map((l) => l.trim().split(" (")[0].replace(/file:\S+/, "<main module>")).join("\n"));
+}
+```
+
+**Output:**
+
+```text
+TypeError: not a price: "abc"
+at parsePrice
+at importRow
+at <main module>
+```
+
+(File names and line numbers are cut off here; a real trace ends each frame with them.) The message names the bad value, the top frame is the function that threw, and the next frames show how it was reached: a `map` callback in the main module. Good error messages include the offending value, which often makes the debugger unnecessary.
+
+**Async stack traces.** For code using `await`, V8 records the chain of awaiting functions, so the trace shows how you got there even across waits:
+
+```js
+async function loadUser(id) {
+  await null;
+  throw new Error(`no user ${id}`);
+}
+async function loadProfile(id) {
+  return await loadUser(id);
+}
+async function page() {
+  return await loadProfile(7);
+}
+try {
+  await page();
+} catch (err) {
+  console.log(err.stack.split("\n").slice(0, 4).map((l) => l.trim().split(" (")[0]).join("\n"));
+}
+```
+
+**Output:**
+
+```text
+Error: no user 7
+at loadUser
+at async loadProfile
+at async page
+```
+
+The `async` frames come from V8's zero-cost async stack traces. Older callback code (and promise chains that don't `await`) lose this history, one more reason to prefer `async`/`await`.
+
+**Minified code:** a production stack trace like `at t (app.3f9a1c.js:1:3051)` is unreadable. **Source maps** (Chapter 43.3) translate it back to file, line and name; DevTools uses them automatically, and error-tracking services use uploaded maps.
+
+### 45.5 Errors nobody caught
+
+Some errors escape every `catch`: a throw in an event listener or timer, or a rejected promise without a handler (Chapter 24.8). Global handlers are the last line of defence, for logging and reporting rather than recovery:
+
+```text
+// browser
+window.addEventListener("error", (e) => report(e.error));
+window.addEventListener("unhandledrejection", (e) => report(e.reason));
+
+// Node.js
+process.on("uncaughtException", (err) => { report(err); process.exit(1); });
+process.on("unhandledRejection", (reason) => { report(reason); process.exit(1); });
+```
+
+After an uncaught exception, a Node process may be in a broken state, so log and exit, and let a process manager restart it. Services like Sentry collect these reports from real users, with stack traces and source maps.
+
+### 45.6 Common bug patterns
+
+| Symptom | Usual cause | Chapter |
+|---|---|---|
+| `Cannot read properties of undefined` | data missing, or `this` lost | 4.5, 15.3 |
+| `[object Object]` or `"53"` in output | coercion | 16 |
+| `undefined` from an async function | missing `await` or `return` | 24.4, 25.4 |
+| code runs before data arrives | not awaiting, or `forEach` with `async` | 25.4 |
+| all callbacks see the last loop value | `var` in a loop | 13.4 |
+| changes appear in "unrelated" objects | shared references, shallow copies | 3.4, 18.1 |
+| numbers like 0.30000000000000004 | floating point | 3.2, 28.5 |
+| works on refresh, breaks over time | memory leak, stale state, timers | 40 |
+
+### 45.7 Summary
+
+```
+reproduce → read the error → hypothesis → narrow down (bisect) → fix the cause → add a test
+console.table / dir(o, { depth }) / group / count / assert / time / trace;  log { name } objects
+breakpoints, conditional breakpoints, logpoints, watch, pause on exceptions;  debugger;
+node --inspect / --inspect-brk + chrome://inspect, or the VS Code debugger
+stack traces: top frame in your code; async traces need await; source maps for minified code
+global handlers: window "error"/"unhandledrejection"; process "uncaughtException"/"unhandledRejection"
+```
+
+**Key terms:**
+
+- **Debugging:** finding and fixing the cause of incorrect behaviour.
+- **Reproduction:** a reliable way to make a bug happen, ideally minimal.
+- **git bisect:** a Git command that finds the commit that introduced a bug by binary search.
+- **console.table:** prints an array of objects as a table.
+- **Debugger:** a tool that pauses a running program to inspect its state and step through it.
+- **Breakpoint:** a marked line where the debugger pauses execution.
+- **Conditional breakpoint:** a breakpoint that pauses only when an expression is true.
+- **Logpoint:** a breakpoint that logs a message instead of pausing.
+- **Step over / into / out:** debugger commands to run the current line, enter the called function, or finish the current one.
+- **debugger statement:** a statement that pauses execution when a debugger is attached.
+- **Async stack trace:** a stack trace that includes the chain of awaiting async functions.
+- **Global error handler:** a handler for errors no other code caught.
+
+### Exercises
+
+1. `getTotal()` returns `NaN` for some carts. Describe how you'd find the bad item using a conditional breakpoint, then with one `console.log` line.
+2. A teammate's stack trace's top frames are all in `node_modules/express`. Where do you look?
+
+<details>
+<summary><b>Answers</b></summary>
+
+1. Breakpoint inside the loop with the condition `Number.isNaN(item.price * item.qty)`, then inspect `item`. Or log `console.log({ item, sub: item.price * item.qty })` and look for the `NaN` line: typically a price stored as text with a currency sign, or a missing `qty`.
+2. Further down, at the first frame from your own files: that's the call that passed the bad value into the library. If none appears, the error may have come from data your code passed earlier, so log the inputs at your boundary.
+
+</details>
+
+**Learn more:** [Chrome DevTools: debug JavaScript](https://developer.chrome.com/docs/devtools/javascript) · [Node.js: debugging guide](https://nodejs.org/en/learn/getting-started/debugging) · [MDN: console](https://developer.mozilla.org/en-US/docs/Web/API/console)
+
+---
+
+## 46. Production-Grade JavaScript: Code Quality, Refactoring and Reliability
+
+**You need:** Chapters 17, 25, 39, 44 and 45. · **You'll learn:** what separates code that works on your machine from code that keeps working in production: validating input at the boundaries, handling failure deliberately, retries with backoff and jitter, structured logging, configuration, graceful shutdown, and refactoring code so it stays easy to change.
+
+### 46.1 Validate at the boundaries
+
+Data from outside (requests, forms, files, environment variables, third-party APIs) can be anything. Check it once, where it enters, and convert it into trusted, well-typed values; the code inside can then rely on it. A **schema** describes the expected shape; a tiny validator in the style of libraries like **Zod** and **Valibot**:
+
+```js
+const str = ({ min = 0 } = {}) => (v, path) => (typeof v === "string" && v.trim().length >= min ? v.trim() : fail(path, `a string of at least ${min} characters`, v));
+const int = ({ min = -Infinity, max = Infinity } = {}) => (v, path) => (Number.isInteger(v) && v >= min && v <= max ? v : fail(path, `an integer from ${min} to ${max}`, v));
+const array = (item, { min = 0 } = {}) => (v, path) => (Array.isArray(v) && v.length >= min ? v.map((x, i) => item(x, `${path}[${i}]`)) : fail(path, `an array of at least ${min}`, v));
+const object = (shape) => (v, path = "input") => {
+  if (typeof v !== "object" || v === null) {
+    fail(path, "an object", v);
+  }
+  return Object.fromEntries(Object.entries(shape).map(([k, check]) => [k, check(v[k], `${path}.${k}`)]));
+};
+function fail(path, expected, got) {
+  throw new TypeError(`${path} must be ${expected}; got ${JSON.stringify(got)}`);
+}
+
+const OrderSchema = object({
+  customer: str({ min: 2 }),
+  items: array(object({ sku: str({ min: 1 }), qty: int({ min: 1, max: 99 }) }), { min: 1 }),
+});
+console.log(OrderSchema({ customer: "  Asha ", items: [{ sku: "P1", qty: 2 }], isAdmin: true }));
+for (const bad of [{ customer: "A", items: [] }, { customer: "Ravi", items: [{ sku: "P1", qty: 0 }] }]) {
+  try {
+    OrderSchema(bad);
+  } catch (err) {
+    console.log(err.message);
+  }
+}
+```
+
+**Output:**
+
+```text
+{ customer: 'Asha', items: [ { sku: 'P1', qty: 2 } ] }
+input.customer must be a string of at least 2 characters; got "A"
+input.items[0].qty must be an integer from 1 to 99; got 0
+```
+
+The output contains only known fields (`isAdmin` was dropped: no prototype pollution or mass assignment, Chapter 35.4), with trimmed strings, and errors name the exact path. Validate on the server even if the browser already did (Chapter 35.7).
+
+### 46.2 Two kinds of errors
+
+- **Operational errors** are expected failures of a correct program: invalid input, a timeout, a 503 from another service, a full disk. Handle them: show a message, retry, fall back, return a 4xx.
+- **Programmer errors** are bugs: reading a property of `undefined`, calling with the wrong arguments. Don't "handle" them; let them surface loudly (crash the request, report it, fix the code).
+
+Keep these apart in code: throw specific error classes (Chapter 20.5) for operational errors, so handlers catch exactly those and rethrow everything else.
+
+### 46.3 Retries with backoff and jitter
+
+Transient failures (network blips, 503, 429) often succeed on a second try. Rules for retrying safely:
+
+- retry only **transient** errors, never 4xx client errors (except 429);
+- wait longer each time (**exponential backoff**, Chapter 25.5) and add randomness (**jitter**), so a thousand clients that failed together don't retry together;
+- cap the attempts and the total time; honour a `Retry-After` header;
+- retry only **idempotent** operations (Chapter 34.2), or make them idempotent with an **idempotency key**: a unique id sent with the request so the server can recognise and ignore duplicates (essential for payments).
+
+```js
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+class HttpError extends Error {
+  constructor(status) {
+    super(`HTTP ${status}`);
+    this.name = "HttpError";
+    this.status = status;
+  }
+}
+const isTransient = (err) => err instanceof HttpError && (err.status === 429 || err.status >= 500);
+
+async function withRetry(fn, { attempts = 4, baseMs = 20, maxMs = 1000, random = Math.random } = {}) {
+  for (let attempt = 1; ; attempt++) {
+    try {
+      return await fn(attempt);
+    } catch (err) {
+      if (attempt >= attempts || !isTransient(err)) {
+        throw err;
+      }
+      const delay = Math.min(maxMs, baseMs * 2 ** (attempt - 1)) * (0.5 + random() / 2);
+      console.log(`attempt ${attempt}: ${err.message}; retrying in ${Math.round(delay)} ms`);
+      await sleep(delay);
+    }
+  }
+}
+const responses = [503, 429, 200];
+console.log(await withRetry(async (n) => {
+  const status = responses[n - 1];
+  if (status !== 200) {
+    throw new HttpError(status);
+  }
+  return `ok on attempt ${n}`;
+}, { random: () => 0.5 }));
+try {
+  await withRetry(async () => {
+    throw new HttpError(404);
+  });
+} catch (err) {
+  console.log("not retried:", err.message);
+}
+```
+
+**Output:**
+
+```text
+attempt 1: HTTP 503; retrying in 15 ms
+attempt 2: HTTP 429; retrying in 30 ms
+ok on attempt 3
+not retried: HTTP 404
+```
+
+The delay is half to all of the backoff value ("equal jitter"); the test passes a fixed `random` so the output is predictable (dependency injection again). Pair every retried call with a timeout (Chapter 31.3); a call that hangs forever never gets retried.
+
+### 46.4 Structured logging
+
+In production nobody watches the console. Logs go to a service that searches them, so write **structured logs**: one JSON object per line, with a level, a message and fields, instead of free-form text:
+
+```js
+function createLogger(base = {}, { level = "info", now = () => new Date().toISOString() } = {}) {
+  const levels = { debug: 10, info: 20, warn: 30, error: 40 };
+  const log = (lvl) => (msg, fields = {}) => {
+    if (levels[lvl] < levels[level]) {
+      return;
+    }
+    const entry = { time: now(), level: lvl, msg, ...base, ...fields };
+    if (fields.err instanceof Error) {
+      entry.err = { name: fields.err.name, message: fields.err.message };
+    }
+    console.log(JSON.stringify(entry));
+  };
+  return {
+    debug: log("debug"),
+    info: log("info"),
+    warn: log("warn"),
+    error: log("error"),
+    child: (more) => createLogger({ ...base, ...more }, { level, now }),
+  };
+}
+const logger = createLogger({ service: "orders" }, { now: () => "2026-11-02T10:00:00.000Z" });
+const reqLog = logger.child({ requestId: "req-7f3a" });
+reqLog.debug("not shown at info level");
+reqLog.info("order placed", { orderId: 90312, totalPaise: 149900 });
+reqLog.error("payment failed", { err: new Error("card declined") });
+```
+
+**Output:**
+
+```text
+{"time":"2026-11-02T10:00:00.000Z","level":"info","msg":"order placed","service":"orders","requestId":"req-7f3a","orderId":90312,"totalPaise":149900}
+{"time":"2026-11-02T10:00:00.000Z","level":"error","msg":"payment failed","service":"orders","requestId":"req-7f3a","err":{"name":"Error","message":"card declined"}}
+```
+
+- a **request id** (correlation id) on every line of one request lets you follow it through every service;
+- log levels let production keep `info` and above while development shows `debug`;
+- never log secrets or personal data (passwords, tokens, card numbers): logs are widely readable and kept for a long time;
+- real projects use a logging library (pino, winston) and add **metrics** (counts, latencies) and **tracing** (OpenTelemetry) to see the system as a whole.
+
+### 46.5 Configuration and fail-fast startup
+
+Settings that differ between environments (database URLs, API keys, feature flags) come from **environment variables**, never from code: `process.env.NAME` in Node.js (Node 24 can also load a `.env` file with `--env-file=.env`; never commit it). Validate them at startup, so a typo fails immediately with a clear message instead of an obscure error at 3 a.m.:
+
+```js
+function loadConfig(env) {
+  const errors = [];
+  const required = (name) => env[name] ?? (errors.push(`${name} is required`), undefined);
+  const port = Number(env.PORT ?? 3000);
+  if (!Number.isInteger(port) || port < 1 || port > 65535) {
+    errors.push(`PORT must be 1-65535, got "${env.PORT}"`);
+  }
+  const config = Object.freeze({
+    port,
+    databaseUrl: required("DATABASE_URL"),
+    logLevel: env.LOG_LEVEL ?? "info",
+    newCheckout: env.FEATURE_NEW_CHECKOUT === "true",
+  });
+  if (errors.length > 0) {
+    throw new Error(`invalid configuration:\n- ${errors.join("\n- ")}`);
+  }
+  return config;
+}
+console.log(loadConfig({ DATABASE_URL: "postgres://db/shop", FEATURE_NEW_CHECKOUT: "true" }));
+try {
+  loadConfig({ PORT: "80a" });
+} catch (err) {
+  console.log(err.message);
+}
+```
+
+**Output:**
+
+```text
+{
+  port: 3000,
+  databaseUrl: 'postgres://db/shop',
+  logLevel: 'info',
+  newCheckout: true
+}
+invalid configuration:
+- PORT must be 1-65535, got "80a"
+- DATABASE_URL is required
+```
+
+Report every problem at once, not one per restart. `FEATURE_NEW_CHECKOUT` is a **feature flag**: new code ships switched off and is turned on (for some users first) without a deploy, and turned off instantly if it misbehaves.
+
+### 46.6 Graceful shutdown
+
+Servers are stopped and restarted constantly (deploys, scaling). On a shutdown signal (`SIGTERM`), a **graceful shutdown** stops accepting new work, lets in-flight requests finish (with a deadline), closes connections, then exits:
+
+```js
+process.on("SIGTERM", async () => {
+  logger.info("shutting down");
+  server.close();                                  // stop accepting connections
+  const deadline = setTimeout(() => process.exit(1), 10_000);
+  await Promise.allSettled([finishInFlightRequests(), db.end()]);
+  clearTimeout(deadline);
+  process.exit(0);
+});
+```
+
+(Not run here: it needs a running server. `nodejs.md` builds one.) Without this, every deploy drops a few requests.
+
+### 46.7 Code quality and refactoring
+
+**Refactoring** changes the structure of code without changing its behaviour, with tests as the safety net (Chapter 44). The everyday moves:
+
+| Smell | Refactoring |
+|---|---|
+| a long function doing several things | **extract function**: one job per function, named after it |
+| deep nesting | guard clauses (Chapter 10.1) and early returns |
+| a long `if`/`switch` on a type | a lookup table or strategy (Chapter 39.4) |
+| magic numbers and strings | named constants |
+| a boolean argument (`render(true)`) | an options object (`render({ compact: true })`) |
+| duplicated logic | one shared function (but wait for the third copy before abstracting) |
+| comments explaining *what* | clearer names; keep comments for *why* |
+
+Before and after, same behaviour:
+
+```js
+function priceBefore(o) {
+  let p = 0;
+  if (o) {
+    if (o.items.length > 0) {
+      for (const i of o.items) {
+        p += i.price * i.qty;
+      }
+      if (o.code === "FEST20") {
+        p = p * 0.8;
+      } else if (o.code === "NEW10") {
+        p = p * 0.9;
+      }
+      if (p < 499) {
+        p += 40;
+      }
+    }
+  }
+  return Math.round(p);
+}
+
+const DISCOUNTS = { FEST20: 0.2, NEW10: 0.1 };
+const FREE_SHIPPING_FROM = 499;
+const SHIPPING_FEE = 40;
+const subtotal = (items) => items.reduce((sum, it) => sum + it.price * it.qty, 0);
+const applyDiscount = (amount, code) => amount * (1 - (DISCOUNTS[code] ?? 0));
+const addShipping = (amount) => (amount < FREE_SHIPPING_FROM ? amount + SHIPPING_FEE : amount);
+
+function priceAfter(order) {
+  if (!order?.items.length) {
+    return 0;
+  }
+  return Math.round(addShipping(applyDiscount(subtotal(order.items), order.code)));
+}
+
+const cases = [null, { items: [] }, { items: [{ price: 300, qty: 1 }], code: "NEW10" }, { items: [{ price: 899, qty: 1 }], code: "FEST20" }];
+console.log(cases.map(priceBefore), cases.map(priceAfter));
+```
+
+**Output:**
+
+```text
+[ 0, 0, 310, 719 ] [ 0, 0, 310, 719 ]
+```
+
+Each piece of the refactored version can be read, tested and changed on its own, and a new coupon is one line in a table. The identical outputs are the point: refactoring changes structure, not behaviour.
+
+### 46.8 A production checklist
+
+- [ ] input validated at every boundary; output escaped (Chapter 35)
+- [ ] every network call has a timeout; transient failures retried with backoff and jitter; non-idempotent operations protected by idempotency keys
+- [ ] errors handled deliberately: operational errors handled, bugs reported, nothing swallowed
+- [ ] structured logs with request ids and no secrets; metrics and alerts on error rates and latency
+- [ ] configuration from the environment, validated at startup; secrets never in code
+- [ ] graceful shutdown; health checks for the load balancer
+- [ ] tests in CI on every change; lint and type checks; lockfile and `npm audit`
+- [ ] feature flags for risky changes; a fast rollback path
+
+### 46.9 Summary
+
+```
+validate at boundaries: schema → trusted values (Zod/Valibot style); server re-validates
+operational errors: handle;  programmer errors: surface and fix
+retry: transient only (429/5xx), exponential backoff + jitter, capped, with timeouts; idempotency keys
+structured JSON logs: level, msg, fields, requestId; child loggers; no secrets
+config: process.env, validated at startup, all errors at once, frozen;  feature flags
+graceful shutdown on SIGTERM;  refactor with tests: extract, guard clauses, tables, constants
+```
+
+**Key terms:**
+
+- **Boundary:** a place where data enters your code from outside: a request, a file, an API, the environment.
+- **Schema:** a description of the expected shape and types of data, used to validate it.
+- **Operational error:** an expected failure of a correct program, such as a timeout or invalid input.
+- **Programmer error:** a bug in the code, such as using an undefined value.
+- **Transient error:** a temporary failure that may succeed if retried.
+- **Jitter:** randomness added to retry delays so clients don't retry in lockstep.
+- **Idempotency key:** a unique id sent with a request so the server can detect and ignore duplicates.
+- **Structured logging:** writing logs as machine-readable records (usually JSON) with named fields.
+- **Log level:** a log entry's severity, such as debug, info, warn or error.
+- **Correlation ID:** an id attached to all logs of one request, to trace it across services.
+- **Environment variable:** a named setting provided to a process by its environment.
+- **Fail fast:** stop immediately with a clear error when something is wrong, instead of continuing in a bad state.
+- **Feature flag:** a switch that turns a feature on or off at run time without a deploy.
+- **Graceful shutdown:** stopping a service by finishing in-flight work and closing connections before exiting.
+- **Refactoring:** changing code's structure without changing its behaviour.
+- **Code smell:** a surface sign in code that often points to a deeper design problem.
+- **Magic number:** an unexplained literal value in code that should be a named constant.
+
+### Exercises
+
+1. Add an `email` field to `OrderSchema` that must contain exactly one `@` with text on both sides.
+2. Which of these should be retried: `POST /payments` timing out; `GET /products` returning 503; `POST /login` returning 401; `PUT /cart/7` returning 502?
+
+<details>
+<summary><b>Answers</b></summary>
+
+```js
+const email = () => (v, path) => (typeof v === "string" && /^[^@\s]+@[^@\s]+$/.test(v) ? v.toLowerCase() : fail(path, "an email address", v));
+const OrderWithEmail = object({ customer: str({ min: 2 }), email: email() });
+console.log(OrderWithEmail({ customer: "Asha", email: "Asha@Example.com" }));
+try {
+  OrderWithEmail({ customer: "Asha", email: "asha@@x" });
+} catch (err) {
+  console.log(err.message);
+}
+```
+
+**Output:**
+
+```text
+{ customer: 'Asha', email: 'asha@example.com' }
+input.email must be an email address; got "asha@@x"
+```
+
+2. `GET /products` 503 and `PUT /cart/7` 502: transient, and both methods are idempotent. `POST /payments` timeout: only with an idempotency key, otherwise you may charge twice. `POST /login` 401: never: wrong credentials won't become right.
+
+</details>
+
+**Learn more:** [Zod](https://zod.dev/) · [AWS: exponential backoff and jitter](https://aws.amazon.com/blogs/architecture/exponential-backoff-and-jitter/) · [The Twelve-Factor App](https://12factor.net/) · [Refactoring (Martin Fowler): catalogue](https://refactoring.com/catalog/)
+
+---
+
+# Part VII — Interview Prep
+
+Five chapters for interviews: implementing built-ins and utilities yourself, predicting tricky outputs, a cheat sheet, the most-asked questions, and the glossary. (Data-structure and algorithm problems are in `dsa-python.md`.)
+
+---
+
+## 47. Polyfills and "Implement It Yourself" Questions
+
+**You need:** Parts I–V. · **You'll learn:** to implement the built-ins and utilities that interviews ask for most: array methods, `call`/`apply`/`bind`, the promise combinators, deep clone, a deep `get`, `promisify` and more, each with its edge cases.
+
+Interviewers ask these because each one tests a core idea: callbacks, `this`, closures, the prototype chain, promises. The methods are named `my…` and added to the built-in prototypes because that's how the questions are posed; in real code, don't modify built-ins (Chapter 19.7).
+
+Already built in earlier chapters, and worth revising from there:
+
+| Utility | Chapter |
+|---|---|
+| `once`, `memoize`, counters | 14.5 |
+| `new` by hand, `instanceof` by hand | 19.4, 19 exercises |
+| `curry`, `pipe`, `compose` | 36.3–36.4 |
+| `debounce`, `throttle` | 37 |
+| event emitter | 39.3 |
+| concurrency-limited `map` (promise pool) | 25.4 |
+| `deepEqual` | 18.5 |
+| `retry` with backoff | 25.5, 46.3 |
+| LRU cache | 40.4 |
+
+### 47.1 map, filter and reduce
+
+```js
+Array.prototype.myMap = function (callback, thisArg) {
+  if (typeof callback !== "function") {
+    throw new TypeError(`${callback} is not a function`);
+  }
+  const result = new Array(this.length);
+  for (let i = 0; i < this.length; i++) {
+    if (i in this) {
+      result[i] = callback.call(thisArg, this[i], i, this);
+    }
+  }
+  return result;
+};
+Array.prototype.myFilter = function (callback, thisArg) {
+  const result = [];
+  for (let i = 0; i < this.length; i++) {
+    if (i in this && callback.call(thisArg, this[i], i, this)) {
+      result.push(this[i]);
+    }
+  }
+  return result;
+};
+console.log([1, 2, 3].myMap((n, i) => n * 10 + i), [1, 2, 3, 4].myFilter((n) => n % 2 === 0));
+console.log([1, , 3].myMap((n) => n * 2), [1, , 3].map((n) => n * 2));
+```
+
+**Output:**
+
+```text
+[ 10, 21, 32 ] [ 2, 4 ]
+[ 2, <1 empty item>, 6 ] [ 2, <1 empty item>, 6 ]
+```
+
+The details interviewers look for: the callback gets `(element, index, array)`; `thisArg` sets `this` inside it; **holes** in sparse arrays are skipped (`i in this`) and stay holes, exactly like the built-in; and a non-function throws a `TypeError`.
+
+`reduce` has one tricky part: with no initial value it starts from the first element present, and an empty array then throws (Chapter 11.4). A rest parameter tells "no initial value" apart from "initial value `undefined`":
+
+```js
+Array.prototype.myReduce = function (callback, ...initial) {
+  let i = 0;
+  let acc;
+  if (initial.length > 0) {
+    acc = initial[0];
+  } else {
+    while (i < this.length && !(i in this)) {
+      i++;
+    }
+    if (i >= this.length) {
+      throw new TypeError("Reduce of empty array with no initial value");
+    }
+    acc = this[i++];
+  }
+  for (; i < this.length; i++) {
+    if (i in this) {
+      acc = callback(acc, this[i], i, this);
+    }
+  }
+  return acc;
+};
+console.log([1, 2, 3].myReduce((a, b) => a + b), [1, 2, 3].myReduce((a, b) => a + b, 10), [].myReduce((a, b) => a + b, undefined));
+```
+
+**Output:**
+
+```text
+6 16 undefined
+```
+
+### 47.2 flat
+
+Recursion over nested arrays, with a depth:
+
+```js
+Array.prototype.myFlat = function (depth = 1) {
+  const out = [];
+  const visit = (arr, d) => {
+    for (const item of arr) {
+      if (Array.isArray(item) && d > 0) {
+        visit(item, d - 1);
+      } else {
+        out.push(item);
+      }
+    }
+  };
+  visit(this, depth);
+  return out;
+};
+const nested = [1, [2, [3, [4, [5]]]]];
+console.log(nested.myFlat(), nested.myFlat(2), nested.myFlat(Infinity));
+```
+
+**Output:**
+
+```text
+[ 1, 2, [ 3, [ 4, [Array] ] ] ] [ 1, 2, 3, [ 4, [ 5 ] ] ] [ 1, 2, 3, 4, 5 ]
+```
+
+An iterative version with an explicit stack avoids stack overflow on extremely deep nesting.
+
+### 47.3 call, apply and bind
+
+`call` works by temporarily making the function a method of `thisArg`, so the normal method-call rule sets `this` (Chapter 15). A symbol key can't clash with the object's own properties:
+
+```js
+Function.prototype.myCall = function (thisArg, ...args) {
+  const ctx = thisArg ?? globalThis;
+  const key = Symbol("fn");
+  ctx[key] = this;
+  try {
+    return ctx[key](...args);
+  } finally {
+    delete ctx[key];
+  }
+};
+Function.prototype.myApply = function (thisArg, args = []) {
+  return this.myCall(thisArg, ...args);
+};
+function introduce(greeting, punct) {
+  return `${greeting}, I'm ${this.name}${punct}`;
+}
+const asha = { name: "Asha" };
+console.log(introduce.myCall(asha, "Hi", "!"), introduce.myApply(asha, ["Hello", "."]), Object.keys(asha));
+```
+
+**Output:**
+
+```text
+Hi, I'm Asha! Hello, I'm Asha. [ 'name' ]
+```
+
+(Primitive `thisArg` values like numbers would need wrapping with `Object(thisArg)`; interviews rarely ask.) `bind` returns a function that fixes `this` and leading arguments, and has one subtle rule: when the bound function is called with `new`, `this` must be the new object, not the bound value:
+
+```js
+Function.prototype.myBind = function (thisArg, ...preset) {
+  const fn = this;
+  function bound(...later) {
+    const isNew = new.target !== undefined;
+    return fn.apply(isNew ? this : thisArg, [...preset, ...later]);
+  }
+  bound.prototype = Object.create(fn.prototype);
+  return bound;
+};
+const hey = introduce.myBind(asha, "Hey");
+console.log(hey("?"));
+function Point(x, y) {
+  this.x = x;
+  this.y = y;
+}
+const OnYAxis = Point.myBind(null, 0);
+const p = new OnYAxis(5);
+console.log(p, p instanceof Point);
+```
+
+**Output:**
+
+```text
+Hey, I'm Asha?
+Point { x: 0, y: 5 } true
+```
+
+`new.target` is set only when a function is called with `new`. Linking `bound.prototype` to `fn.prototype` keeps `instanceof` working.
+
+### 47.4 The promise combinators
+
+`Promise.all` (Chapter 24.6): resolve with values *in input order*, reject on the first failure, resolve immediately for an empty input, and accept non-promise values:
+
+```js
+function promiseAll(items) {
+  return new Promise((resolve, reject) => {
+    const list = [...items];
+    const results = new Array(list.length);
+    let remaining = list.length;
+    if (remaining === 0) {
+      resolve(results);
+      return;
+    }
+    list.forEach((item, i) => {
+      Promise.resolve(item).then((value) => {
+        results[i] = value;
+        remaining--;
+        if (remaining === 0) {
+          resolve(results);
+        }
+      }, reject);
+    });
+  });
+}
+const after = (ms, value, fail = false) => new Promise((res, rej) => setTimeout(() => (fail ? rej(new Error(value)) : res(value)), ms));
+console.log(await promiseAll([after(30, "slow"), after(10, "fast"), 42]), await promiseAll([]));
+try {
+  await promiseAll([after(30, "a"), after(10, "boom", true)]);
+} catch (err) {
+  console.log("rejected:", err.message);
+}
+```
+
+**Output:**
+
+```text
+[ 'slow', 'fast', 42 ] []
+rejected: boom
+```
+
+Results are stored by index (`results[i]`), not pushed, so order follows the input, not completion time. The other three follow the same pattern:
+
+```js
+function promiseAllSettled(items) {
+  return promiseAll([...items].map((item) => Promise.resolve(item).then(
+    (value) => ({ status: "fulfilled", value }),
+    (reason) => ({ status: "rejected", reason: reason.message }),
+  )));
+}
+function promiseRace(items) {
+  return new Promise((resolve, reject) => {
+    for (const item of items) {
+      Promise.resolve(item).then(resolve, reject);
+    }
+  });
+}
+function promiseAny(items) {
+  return new Promise((resolve, reject) => {
+    const list = [...items];
+    const errors = new Array(list.length);
+    let remaining = list.length;
+    if (remaining === 0) {
+      reject(new AggregateError([], "All promises were rejected"));
+    }
+    list.forEach((item, i) => Promise.resolve(item).then(resolve, (err) => {
+      errors[i] = err;
+      if (--remaining === 0) {
+        reject(new AggregateError(errors, "All promises were rejected"));
+      }
+    }));
+  });
+}
+console.log(await promiseAllSettled([after(10, "ok"), after(5, "bad", true)]));
+console.log(await promiseRace([after(30, "slow"), after(10, "fast")]), await promiseAny([after(5, "x", true), after(20, "y")]));
+```
+
+**Output:**
+
+```text
+[
+  { status: 'fulfilled', value: 'ok' },
+  { status: 'rejected', reason: 'bad' }
+]
+fast y
+```
+
+`promiseRace` works because a promise settles only once: later `resolve` calls are ignored.
+
+### 47.5 Deep clone
+
+`structuredClone` (Chapter 18.1) is the real answer; interviews ask for one by hand. It must copy each kind of object correctly and survive **cycles** (an object that references itself), which a `WeakMap` of already-copied objects handles:
+
+```js
+function deepClone(value, seen = new WeakMap()) {
+  if (typeof value !== "object" || value === null) {
+    return value;
+  }
+  if (seen.has(value)) {
+    return seen.get(value);
+  }
+  if (value instanceof Date) {
+    return new Date(value);
+  }
+  if (value instanceof RegExp) {
+    return new RegExp(value.source, value.flags);
+  }
+  if (value instanceof Map) {
+    const copy = new Map();
+    seen.set(value, copy);
+    for (const [k, v] of value) {
+      copy.set(deepClone(k, seen), deepClone(v, seen));
+    }
+    return copy;
+  }
+  if (value instanceof Set) {
+    const copy = new Set();
+    seen.set(value, copy);
+    for (const v of value) {
+      copy.add(deepClone(v, seen));
+    }
+    return copy;
+  }
+  const copy = Array.isArray(value) ? [] : Object.create(Object.getPrototypeOf(value));
+  seen.set(value, copy);
+  for (const key of Reflect.ownKeys(value)) {
+    copy[key] = deepClone(value[key], seen);
+  }
+  return copy;
+}
+const original = { id: 7, when: new Date("2026-01-15"), tags: new Set(["gift"]), items: [{ sku: "A1" }] };
+original.self = original;
+const clone = deepClone(original);
+clone.items[0].sku = "CHANGED";
+console.log(original.items[0].sku, clone.self === clone, clone.when instanceof Date, clone.tags.has("gift"));
+```
+
+**Output:**
+
+```text
+A1 true true true
+```
+
+`Reflect.ownKeys` includes symbol keys, and copying the prototype keeps class instances' methods (which `structuredClone` doesn't).
+
+### 47.6 Deep get and set by path
+
+Read `"user.addresses[0].city"` safely, returning a default when any step is missing (like lodash's `get`):
+
+```js
+const toPath = (path) => path.replaceAll("[", ".").replaceAll("]", "").split(".").filter(Boolean);
+function get(obj, path, fallback) {
+  let current = obj;
+  for (const key of toPath(path)) {
+    if (current == null) {
+      return fallback;
+    }
+    current = current[key];
+  }
+  return current === undefined ? fallback : current;
+}
+function set(obj, path, value) {
+  const keys = toPath(path);
+  let current = obj;
+  keys.slice(0, -1).forEach((key, i) => {
+    current[key] ??= /^\d+$/.test(keys[i + 1]) ? [] : {};
+    current = current[key];
+  });
+  current[keys.at(-1)] = value;
+  return obj;
+}
+const data = { user: { addresses: [{ city: "Pune" }] } };
+console.log(get(data, "user.addresses[0].city"), get(data, "user.phone.number", "n/a"), get(null, "a.b", 0));
+console.log(JSON.stringify(set({}, "a.list[1].name", "x")));
+```
+
+**Output:**
+
+```text
+Pune n/a 0
+{"a":{"list":[null,{"name":"x"}]}}
+```
+
+`current == null` (Chapter 16.4) stops on both `null` and `undefined`. `set` creates arrays when the next key is numeric. In production code, block `__proto__` keys here too (Chapter 35.4).
+
+### 47.7 promisify, sleep and setInterval from setTimeout
+
+```js
+function promisify(fn) {
+  return (...args) => new Promise((resolve, reject) => {
+    fn(...args, (err, result) => (err ? reject(err) : resolve(result)));
+  });
+}
+const legacyRead = (name, cb) => setTimeout(() => (name ? cb(null, `contents of ${name}`) : cb(new Error("no name"))), 5);
+const read = promisify(legacyRead);
+console.log(await read("a.txt"));
+
+function mySetInterval(fn, ms) {
+  let timer;
+  let stopped = false;
+  const tick = () => {
+    timer = setTimeout(() => {
+      fn();
+      if (!stopped) {
+        tick();
+      }
+    }, ms);
+  };
+  tick();
+  return () => {
+    stopped = true;
+    clearTimeout(timer);
+  };
+}
+let n = 0;
+const stop = mySetInterval(() => {
+  n++;
+  if (n === 3) {
+    stop();
+    console.log("ticked", n, "times");
+  }
+}, 10);
+```
+
+**Output:**
+
+```text
+contents of a.txt
+ticked 3 times
+```
+
+The `setTimeout` chain waits for each run to finish before scheduling the next, so slow callbacks never pile up (one reason some code prefers it to `setInterval`). The `stopped` flag matters: when `fn` itself calls `stop()`, the timer being cleared has already fired, and without the flag `tick()` would schedule another one forever.
+
+### 47.8 Summary
+
+```
+myMap/myFilter: callback(el, i, arr), thisArg, skip holes (i in this), TypeError for non-functions
+myReduce: ...initial distinguishes "absent"; empty + no initial → TypeError
+myFlat: recursion with depth;  myCall: temp symbol method + finally delete;  myApply via myCall
+myBind: preset args; new.target → ignore bound this; link prototype
+promiseAll: results[i], counter, empty → [], first rejection;  allSettled / race / any (AggregateError)
+deepClone: primitives, Date, RegExp, Map, Set, arrays, prototype, Reflect.ownKeys, WeakMap for cycles
+get(obj, "a.b[0].c", fallback);  promisify(errorFirstFn);  setInterval via chained setTimeout
+```
+
+**Key terms:**
+
+- **Polyfill:** an implementation of a built-in feature for environments that lack it (Chapter 42.6).
+- **Sparse array:** an array with holes: indexes with no element at all.
+- **new.target:** inside a function, the constructor used with `new`, or `undefined` for a normal call.
+- **Cycle (circular reference):** an object that refers back to itself, directly or through others.
+
+### Exercises
+
+1. Implement `myEvery(callback)` and `mySome(callback)` on `Array.prototype`, with early exit.
+2. Implement `promiseTimeout(promise, ms)` that rejects with a `TimeoutError`-named error if `promise` takes longer than `ms`, and clears its timer either way.
+
+<details>
+<summary><b>Answers</b></summary>
+
+```js
+Array.prototype.myEvery = function (callback, thisArg) {
+  for (let i = 0; i < this.length; i++) {
+    if (i in this && !callback.call(thisArg, this[i], i, this)) {
+      return false;
+    }
+  }
+  return true;
+};
+Array.prototype.mySome = function (callback, thisArg) {
+  for (let i = 0; i < this.length; i++) {
+    if (i in this && callback.call(thisArg, this[i], i, this)) {
+      return true;
+    }
+  }
+  return false;
+};
+console.log([2, 4].myEvery((x) => x % 2 === 0), [].myEvery(() => false), [1, 3].mySome((x) => x > 2));
+
+function promiseTimeout(promise, ms) {
+  let timer;
+  const timeout = new Promise((_, reject) => {
+    timer = setTimeout(() => reject(Object.assign(new Error(`timed out after ${ms} ms`), { name: "TimeoutError" })), ms);
+  });
+  return Promise.race([promise, timeout]).finally(() => clearTimeout(timer));
+}
+console.log(await promiseTimeout(after(5, "quick"), 50));
+try {
+  await promiseTimeout(after(50, "slow"), 5);
+} catch (err) {
+  console.log(err.name, err.message);
+}
+```
+
+**Output:**
+
+```text
+true true true
+quick
+TimeoutError timed out after 5 ms
+```
+
+</details>
+
+**Practice:**
+
+| # | Problem (LeetCode) | Difficulty |
+|---|---|---|
+| 1 | [2619. Array Prototype Last](https://leetcode.com/problems/array-prototype-last/) | 🟢 Easy |
+| 2 | [2635. Apply Transform Over Each Element in Array](https://leetcode.com/problems/apply-transform-over-each-element-in-array/) | 🟢 Easy |
+| 3 | [2634. Filter Elements from Array](https://leetcode.com/problems/filter-elements-from-array/) | 🟢 Easy |
+| 4 | [2626. Array Reduce Transformation](https://leetcode.com/problems/array-reduce-transformation/) | 🟢 Easy |
+| 5 | [2625. Flatten Deeply Nested Array](https://leetcode.com/problems/flatten-deeply-nested-array/) | 🟡 Medium |
+| 6 | [2723. Add Two Promises](https://leetcode.com/problems/add-two-promises/) | 🟢 Easy |
+| 7 | [2637. Promise Time Limit](https://leetcode.com/problems/promise-time-limit/) | 🟡 Medium |
+| 8 | [2721. Execute Asynchronous Functions in Parallel](https://leetcode.com/problems/execute-asynchronous-functions-in-parallel/) | 🟡 Medium |
+| 9 | [2693. Call Function with Custom Context](https://leetcode.com/problems/call-function-with-custom-context/) | 🟡 Medium |
+| 10 | [2623. Memoize](https://leetcode.com/problems/memoize/) | 🟡 Medium |
+| 11 | [2627. Debounce](https://leetcode.com/problems/debounce/) | 🟡 Medium |
+
+**Learn more:** [MDN: Array.prototype.map (specification steps)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) · [javascript.info: decorators and forwarding](https://javascript.info/call-apply-decorators) · [core-js (real-world polyfills)](https://github.com/zloirock/core-js)
+
+---
+
+## 48. Output-Based Questions (Predict the Output)
+
+**You need:** Parts I–V. · **You'll learn:** to predict exactly what tricky snippets print, the favourite format of JavaScript interviews, by applying the rules from earlier chapters step by step.
+
+For each snippet, write down your prediction before opening the answer. Each one runs in its own scope, in a module (strict mode), so `this` in a plain function call is `undefined`.
+
+### 48.1 Hoisting and scope
+
+**1.**
+
+```js
+console.log(a);
+var a = 1;
+console.log(typeof b, typeof c);
+function b() {}
+var c = function () {};
+```
+
+<details>
+<summary><b>Answer</b></summary>
+
+```text
+undefined
+function undefined
+```
+
+`var a` is hoisted as `undefined`; function declarations are hoisted whole, so `b` is a function; `var c` is hoisted but its function value is assigned only on its line (Chapter 13.3).
+
+</details>
+
+**2.**
+
+```js
+let x = "outer";
+{
+  console.log(x);
+  let x = "inner";
+}
+```
+
+<details>
+<summary><b>Answer</b></summary>
+
+```text
+ReferenceError: Cannot access 'x' before initialization
+```
+
+The inner `let x` is hoisted to the top of the block in the TDZ, so it shadows the outer `x` before its line, and reading it throws (Chapter 13.3).
+
+</details>
+
+**3.**
+
+```js
+var n = 1;
+function f() {
+  console.log(n);
+  var n = 2;
+}
+f();
+```
+
+<details>
+<summary><b>Answer</b></summary>
+
+```text
+undefined
+```
+
+Inside `f`, the local `var n` is hoisted to the top of the function, shadowing the outer `n`, and is `undefined` until its line.
+
+</details>
+
+### 48.2 Closures and loops
+
+**4.**
+
+```js
+const fns = [];
+for (var i = 0; i < 3; i++) {
+  fns.push(() => i);
+}
+const gns = [];
+for (let j = 0; j < 3; j++) {
+  gns.push(() => j);
+}
+console.log(fns.map((f) => f()), gns.map((g) => g()));
+```
+
+<details>
+<summary><b>Answer</b></summary>
+
+```text
+[ 3, 3, 3 ] [ 0, 1, 2 ]
+```
+
+One shared `var i` (3 after the loop) against a fresh `let j` per iteration (Chapters 13.4 and 14.2).
+
+</details>
+
+**5.**
+
+```js
+function counter() {
+  let count = 0;
+  return { inc: () => ++count, get: () => count };
+}
+const c1 = counter();
+const c2 = counter();
+c1.inc();
+c1.inc();
+c2.inc();
+console.log(c1.get(), c2.get());
+```
+
+<details>
+<summary><b>Answer</b></summary>
+
+```text
+2 1
+```
+
+Each call of `counter` creates its own `count` (Chapter 14.1).
+
+</details>
+
+### 48.3 this
+
+**6.**
+
+```js
+const user = {
+  name: "Asha",
+  regular() {
+    return this?.name;
+  },
+  arrow: () => typeof this,
+  delayed() {
+    return [1].map(function () {
+      return typeof this;
+    })[0];
+  },
+};
+const { regular } = user;
+console.log(user.regular(), regular(), user.arrow(), user.delayed());
+```
+
+<details>
+<summary><b>Answer</b></summary>
+
+```text
+Asha undefined undefined undefined
+```
+
+`user.regular()` is a method call. The destructured `regular()` is a plain call, so `this` is `undefined` and `?.` gives `undefined`. The arrow takes the module's `this` (`undefined`). The `function` callback inside `map` is called plainly by `map`, so its `this` is `undefined` too (Chapter 15).
+
+</details>
+
+**7.**
+
+```js
+function show() {
+  return this.label;
+}
+const a = { label: "A", show };
+const b = { label: "B" };
+const bound = show.bind(a);
+console.log(a.show(), show.call(b), bound.call(b), bind2());
+function bind2() {
+  return bound.bind(b)();
+}
+```
+
+<details>
+<summary><b>Answer</b></summary>
+
+```text
+A B A A
+```
+
+`call` sets `this` for one call, but a bound function ignores later `call` or `bind`: it stays bound to `a` (Chapter 15.5).
+
+</details>
+
+### 48.4 Types and coercion
+
+**8.**
+
+```js
+console.log(typeof null, typeof [], typeof NaN, typeof function () {}, typeof undefined, typeof 10n);
+```
+
+<details>
+<summary><b>Answer</b></summary>
+
+```text
+object object number function undefined bigint
+```
+
+The `null` quirk (Chapter 3.3); arrays are objects; `NaN` is a number.
+
+</details>
+
+**9.**
+
+```js
+console.log(1 + "2", "3" - 1, "3" * "4", true + 1, [] + [], [] + {}, [1, 2] + 3);
+```
+
+<details>
+<summary><b>Answer</b></summary>
+
+```text
+12 2 12 2  [object Object] 1,23
+```
+
+`+` joins if either side is a string (after objects become primitives); other operators convert to numbers (Chapter 16).
+
+</details>
+
+**10.**
+
+```js
+console.log(0.1 + 0.2 === 0.3, null == undefined, null == 0, null >= 0, NaN === NaN, [] == false, "b" + "a" + +"a" + "a");
+```
+
+<details>
+<summary><b>Answer</b></summary>
+
+```text
+false true false true false true baNaNa
+```
+
+Floating point (Chapter 3.2); the `==` rules and `null`'s special case (Chapter 16.4–16.5); `+"a"` is `NaN`.
+
+</details>
+
+**11.**
+
+```js
+console.log([10, 9, 1, 100].sort(), [3, 2, 1].sort() === [1, 2, 3], ["a", , "c"].length, Array(3).join("-"));
+```
+
+<details>
+<summary><b>Answer</b></summary>
+
+```text
+[ 1, 10, 100, 9 ] false 3 --
+```
+
+The default sort compares strings (Chapter 8.5). `sort` returns the same array, which is a different object from the literal on the right. The hole still counts in `length`. `Array(3)` has three empty slots, joined by two dashes.
+
+</details>
+
+### 48.5 References and copies
+
+**12.**
+
+```js
+const original = { a: 1, nested: { b: 2 } };
+const shallow = { ...original };
+const deep = structuredClone(original);
+shallow.a = 10;
+shallow.nested.b = 20;
+console.log(original.a, original.nested.b, deep.nested.b);
+```
+
+<details>
+<summary><b>Answer</b></summary>
+
+```text
+1 20 2
+```
+
+Spread copies the top level; `nested` is shared, so changing it through `shallow` changes `original` too. The deep copy is independent (Chapter 18.1).
+
+</details>
+
+**13.**
+
+```js
+function change(obj, num) {
+  obj.value = "changed";
+  obj = { value: "replaced" };
+  num = 99;
+}
+const data = { value: "start" };
+let count = 1;
+change(data, count);
+console.log(data.value, count);
+```
+
+<details>
+<summary><b>Answer</b></summary>
+
+```text
+changed 1
+```
+
+The function receives the same object, so mutating it is visible outside; reassigning the parameter `obj` only changes the local name. The number was copied (Chapter 10.2).
+
+</details>
+
+### 48.6 The event loop
+
+**14.**
+
+```js
+console.log("1");
+setTimeout(() => console.log("2"), 0);
+Promise.resolve().then(() => console.log("3"));
+queueMicrotask(() => console.log("4"));
+console.log("5");
+```
+
+<details>
+<summary><b>Answer</b></summary>
+
+```text
+1
+5
+3
+4
+2
+```
+
+Synchronous code first (1, 5), then all microtasks in order (3, 4), then the timer task (2) (Chapter 24.5).
+
+</details>
+
+**15.**
+
+```js
+setTimeout(() => console.log("timeout"), 0);
+Promise.resolve()
+  .then(() => {
+    console.log("a");
+    setTimeout(() => console.log("timeout from a"), 0);
+  })
+  .then(() => console.log("b"));
+Promise.resolve().then(() => console.log("c"));
+console.log("sync");
+```
+
+<details>
+<summary><b>Answer</b></summary>
+
+```text
+sync
+a
+c
+b
+timeout
+timeout from a
+```
+
+"a" and "c" are the first round of microtasks; "b" is queued when "a"'s handler finishes, so it runs after "c". Both timers come after every microtask, in the order they were created.
+
+</details>
+
+**16.**
+
+```js
+async function first() {
+  console.log("first start");
+  await second();
+  console.log("first end");
+}
+async function second() {
+  console.log("second");
+}
+console.log("script start");
+first();
+new Promise((resolve) => {
+  console.log("executor");
+  resolve();
+}).then(() => console.log("then"));
+console.log("script end");
+```
+
+<details>
+<summary><b>Answer</b></summary>
+
+```text
+script start
+first start
+second
+executor
+script end
+first end
+then
+```
+
+An async function runs synchronously until its first `await`, and a promise executor runs immediately. The rest of `first` and the `then` handler are microtasks, queued in that order.
+
+</details>
+
+### 48.7 Promises
+
+**17.**
+
+```js
+const p = new Promise((resolve, reject) => {
+  resolve("one");
+  resolve("two");
+  reject(new Error("three"));
+});
+p.then((v) => console.log("then:", v)).catch((e) => console.log("catch:", e.message));
+```
+
+<details>
+<summary><b>Answer</b></summary>
+
+```text
+then: one
+```
+
+A promise settles once; later `resolve` and `reject` calls are ignored (Chapter 24.1).
+
+</details>
+
+**18.**
+
+```js
+Promise.resolve(1)
+  .then((x) => x + 1)
+  .then((x) => {
+    throw new Error(`bad ${x}`);
+  })
+  .then((x) => console.log("skipped", x))
+  .catch((e) => {
+    console.log("caught", e.message);
+    return 10;
+  })
+  .then((x) => console.log("after catch", x))
+  .finally(() => console.log("finally"));
+```
+
+<details>
+<summary><b>Answer</b></summary>
+
+```text
+caught bad 2
+after catch 10
+finally
+```
+
+The throw skips the next `then`; `catch` recovers with 10; `finally` runs at the end (Chapter 24.4).
+
+</details>
+
+**19.**
+
+```js
+const results = [];
+[3, 1, 2].forEach(async (n) => {
+  await new Promise((r) => setTimeout(r, n * 10));
+  results.push(n);
+});
+console.log("right after forEach:", results);
+setTimeout(() => console.log("later:", results), 50);
+```
+
+<details>
+<summary><b>Answer</b></summary>
+
+```text
+right after forEach: []
+later: [ 1, 2, 3 ]
+```
+
+`forEach` doesn't wait for async callbacks (Chapter 25.4); the callbacks finish in order of their delays, not their positions.
+
+</details>
+
+### 48.8 Objects, classes and more
+
+**20.**
+
+```js
+const key1 = { id: 1 };
+const key2 = { id: 2 };
+const obj = {};
+obj[key1] = "first";
+obj[key2] = "second";
+const map = new Map([[key1, "first"], [key2, "second"]]);
+console.log(Object.keys(obj), obj[key1], map.get(key1));
+```
+
+<details>
+<summary><b>Answer</b></summary>
+
+```text
+[ '[object Object]' ] second first
+```
+
+Object keys are strings: both objects become `"[object Object]"`, so the second assignment overwrites the first. A `Map` keeps object keys by identity (Chapter 21.1).
+
+</details>
+
+**21.**
+
+```js
+class Animal {
+  name = "animal";
+  speak() {
+    return `${this.name} makes a sound`;
+  }
+}
+class Dog extends Animal {
+  name = "dog";
+  speak() {
+    return `${super.speak()} (woof)`;
+  }
+}
+const d = new Dog();
+console.log(d.speak(), Object.getPrototypeOf(d) === Dog.prototype, d instanceof Animal, Object.hasOwn(d, "speak"));
+```
+
+<details>
+<summary><b>Answer</b></summary>
+
+```text
+dog makes a sound (woof) true true false
+```
+
+The subclass field overrides the parent's; `super.speak()` runs the parent method with the same `this`. Methods live on prototypes, not on the instance (Chapters 19–20).
+
+</details>
+
+**22.**
+
+```js
+const frozen = Object.freeze({ list: [1, 2] });
+frozen.list.push(3);
+console.log(frozen.list, Object.isFrozen(frozen.list));
+```
+
+<details>
+<summary><b>Answer</b></summary>
+
+```text
+[ 1, 2, 3 ] false
+```
+
+`Object.freeze` is shallow (Chapter 18.4).
+
+</details>
+
+**23.**
+
+```js
+function* gen() {
+  const received = yield 1;
+  console.log("received", received);
+  yield received * 2;
+  return 99;
+}
+const g = gen();
+console.log(g.next("ignored").value, g.next(5).value, g.next().done, [...gen()]);
+```
+
+<details>
+<summary><b>Answer</b></summary>
+
+```text
+received 5
+received undefined
+1 10 true [ 1, NaN ]
+```
+
+The first `next` argument has no paused `yield` to receive it; `next(5)` makes `received` 5. Spreading a fresh generator calls `next()` with no argument, so there `received` is `undefined` (it logs `received undefined`) and the second yield is `undefined * 2`, `NaN`; the return value 99 is ignored (Chapter 22).
+
+</details>
+
+**24.**
+
+```js
+const arr = [1, 2, 3];
+arr[10] = 11;
+console.log(arr.length, arr.filter(() => true).length, arr.indexOf(undefined), arr.includes(undefined));
+```
+
+<details>
+<summary><b>Answer</b></summary>
+
+```text
+11 4 -1 true
+```
+
+Assigning index 10 makes the length 11, with holes from 3 to 9. `filter` skips holes. `indexOf` skips holes too, but `includes` treats them as `undefined` (Chapter 47.1).
+
+</details>
+
+**25.**
+
+```js
+console.log([..."héllo👍"].length, "héllo👍".length, [1, 2, 3].at(-1), "abc".at(-4));
+```
+
+<details>
+<summary><b>Answer</b></summary>
+
+```text
+6 7 3 undefined
+```
+
+Spreading a string gives code points (the emoji is one), while `length` counts UTF-16 code units (the emoji is two). `at` with a negative index counts from the end, and returns `undefined` when out of range (Chapters 7.8 and 8.7).
+
+</details>
+
+### 48.9 How to approach these questions
+
+1. **Find the synchronous code first,** and run it top to bottom in your head.
+2. **Mark every asynchronous part:** promise handlers and the code after `await` are microtasks; timers and events are tasks.
+3. **For each name, ask where it's declared** (`var`, `let`, function) and in which scope.
+4. **For each `this`, look at the call,** not the definition; arrows look outwards.
+5. **For each operator, check the types:** is a string involved? Is it `==`?
+6. **For objects, ask "same object or copy?"**
+
+**Key terms:** none new: this chapter applies the terms of Parts I–V.
+
+**Practice:**
+
+| # | Problem (LeetCode) | Difficulty |
+|---|---|---|
+| 1 | [2704. To Be Or Not To Be](https://leetcode.com/problems/to-be-or-not-to-be/) | 🟢 Easy |
+| 2 | [2665. Counter II](https://leetcode.com/problems/counter-ii/) | 🟢 Easy |
+| 3 | [2727. Is Object Empty](https://leetcode.com/problems/is-object-empty/) | 🟢 Easy |
+
+**Learn more:** [javascript.info: event loop](https://javascript.info/event-loop) · [JavaScript questions (lydiahallie)](https://github.com/lydiahallie/javascript-questions)
+
+---
+
+## 49. JavaScript Cheat Sheet
+
+**You'll learn:** the book's essentials on a few pages, for quick revision, with the chapter to go back to for each.
+
+### 49.1 Values and operators
+
+```text
+const x = 5;  let n = 0;  (never var)                 typeof x   Array.isArray(a)   x instanceof C   Number.isNaN(v)
+Number("42")  String(9)  Boolean(0)  parseInt("42px")  7 / 2 = 3.5   Math.floor(7 / 2) = 3   7 % 2 = 1   2 ** 10
+falsy: false 0 -0 0n "" null undefined NaN            === always (x == null only to test null/undefined)
+a ?? b (only null/undefined)   a || b (any falsy)    obj?.a?.b   fn?.()   x ??= d   x ||= d
+money in integer paise;  0.1 + 0.2 !== 0.3;  BigInt for huge integers (10n)
+```
+
+Chapters 2–4, 16, 28.
+
+### 49.2 Strings, arrays and objects
+
+| Task | Code | Chapter |
+|---|---|---|
+| template | `` `Hi ${name}` `` | 7 |
+| search / cut | `s.includes(x)`, `s.indexOf(x)`, `s.slice(a, b)`, `s.at(-1)` | 7 |
+| clean / format | `s.trim()`, `s.padStart(3, "0")`, `s.replaceAll(a, b)`, `s.split(",")` | 7 |
+| add / remove | `push`/`pop` (end, O(1)), `unshift`/`shift` (front, O(n)), `splice` | 8 |
+| copy, not mutate | `[...a]`, `toSorted`, `toReversed`, `toSpliced`, `with(i, v)` | 8 |
+| numbers sort | `a.toSorted((x, y) => x - y)` | 10 |
+| transform | `map`, `filter`, `find`, `some`, `every`, `reduce((acc, x) => …, start)` | 11 |
+| group / flatten | `Object.groupBy(a, fn)`, `flat(depth)`, `flatMap` | 11 |
+| unpack | `const { a, b: alias = 1, ...rest } = obj`, `const [x, , z] = arr` | 12 |
+| merge / copy | `{ ...defaults, ...overrides }` (shallow), `structuredClone(x)` (deep) | 12, 18 |
+| loop an object | `for (const [k, v] of Object.entries(obj))` | 9, 12 |
+| dictionary / unique | `new Map()`, `new Set(arr)`, `[...new Set(arr)]` | 21 |
+| JSON | `JSON.stringify(v, null, 2)`, `JSON.parse(text)` | 9 |
+
+### 49.3 Functions, scope and this
+
+```text
+function f(a, b = 1, ...rest) { return …; }   const g = (x) => x * 2;   const h = (x) => ({ key: x });
+hoisting: function declarations whole; var → undefined; let/const/class → TDZ
+closure = function + the scope it was created in (private state, factories, once, memoize)
+this: obj.m() → obj;  f() → undefined (strict);  new F() → new object;  arrow → outer this
+f.call(t, a, b)   f.apply(t, [a, b])   f.bind(t, a)        lost this: pass () => obj.m() or obj.m.bind(obj)
+```
+
+Chapters 10, 13–15.
+
+### 49.4 Objects, classes and errors
+
+```text
+class A extends B { #secret = 1; static count = 0;
+  constructor(x) { super(x); }  get v() { … }  method() { super.method(); }  handler = () => { … } }
+prototype chain: own → Proto → Object.prototype → null;  new: create, link, call with this, return
+Object.freeze (shallow)  Object.defineProperty(o, k, { value, writable, enumerable })  get / set accessors
+try { … } catch (err) { … } finally { … }    throw new Error("msg", { cause: err })
+class AppError extends Error { name = "AppError"; }   catch what you can handle; rethrow the rest
+```
+
+Chapters 17–20.
+
+### 49.5 Async
+
+```text
+order: sync code → ALL microtasks (then, await continuations, queueMicrotask) → one task (timer, event) → render → repeat
+new Promise((resolve, reject) => …)   p.then(v => …).catch(e => …).finally(() => …)   return inside then to chain
+async function f() { try { return await work(); } catch (e) { … } }
+await Promise.all(items.map(fn))  (concurrent)     for (const i of items) await fn(i)  (sequential)
+Promise.all (fail fast)  allSettled (every outcome)  race (first settled)  any (first success)
+fetch(url, { signal: AbortSignal.timeout(5000) }) → check res.ok → await res.json()
+forEach never awaits;  every chain needs a catch;  retry transient errors with backoff + jitter
+```
+
+Chapters 23–25, 31, 46.
+
+### 49.6 Modules and tools
+
+```text
+export const x = 1;  export default f;   import f, { x as y } from "./m.js";   await import("./m.js")
+package.json "type": "module";  npm i / npm i -D / npm ci;  ^ same major, ~ same minor;  commit the lockfile
+bundler (Vite, esbuild): bundle, tree-shake, minify, transpile, split;  ESLint + Prettier/Biome;  TypeScript / JSDoc + checkJs
+node --test + node:assert/strict;  mock.fn(), mock.timers;  Playwright for E2E
+```
+
+Chapters 26, 43–44.
+
+### 49.7 Browser
+
+```text
+document.querySelector(".c")   el.textContent = userText (never innerHTML)   el.classList.toggle("open")   el.dataset.id
+list.addEventListener("click", (e) => e.target.closest("li"))  (delegation)   e.preventDefault()   { once, passive, signal }
+localStorage (small strings, no secrets)   IndexedDB (large, structured)   HttpOnly; Secure; SameSite cookies for sessions
+IntersectionObserver · ResizeObserver · requestAnimationFrame · Web Workers · service workers
+read layout, then write (no thrashing);  animate transform/opacity;  LCP ≤ 2.5 s, INP ≤ 200 ms, CLS ≤ 0.1
+CORS is set by the server (Access-Control-Allow-Origin);  CSP script-src 'self';  CSRF: SameSite + tokens
+```
+
+Chapters 29–35.
+
+### 49.8 Gotchas
+
+| Gotcha | Fix | Chapter |
+|---|---|---|
+| `[10, 9, 1].sort()` sorts as text | compare function | 8.5 |
+| `0.1 + 0.2 !== 0.3` | integers (paise), tolerance | 3.2 |
+| `typeof null === "object"` | `x === null` | 3.3 |
+| `NaN !== NaN` | `Number.isNaN` | 3.2 |
+| `"5" + 3 === "53"` | `Number()` first | 4.1 |
+| `count \|\| 10` replaces 0 | `??` | 4.4 |
+| `var` in loops with callbacks | `let` | 13.4 |
+| lost `this` in callbacks | arrow or `bind` | 15.3 |
+| shallow copies share nested objects | `structuredClone` | 18.1 |
+| `forEach` with `async` | `for...of` or `Promise.all(map)` | 25.4 |
+| `fetch` doesn't reject on 404/500 | check `res.ok` | 31.2 |
+| `innerHTML` with user text | `textContent` | 35.1 |
+| `new Date(2026, 1, 1)` is February | months from 0 | 28.2 |
+| regex with `g` reused in `test` | no `g`, or a new regex | 27.8 |
+
+---
+
+## 50. The Most Asked JavaScript Interview Questions
+
+**You'll learn:** short, correct answers to the questions that come up most, each pointing back to the chapter that explains it. Cover the answers and answer out loud first.
+
+### 50.1 Basics
+
+1. **What are JavaScript's data types?** Seven primitives (number, bigint, string, boolean, undefined, null, symbol), immutable and compared by value, plus objects (including arrays, functions, dates, maps), compared by reference. (Ch 3)
+2. **`var` vs `let` vs `const`?** `var` is function-scoped, hoisted as `undefined` and can be redeclared; `let` and `const` are block-scoped and in the TDZ until declared; `const` can't be reassigned, though the object it refers to can change. (Ch 2, 13)
+3. **`==` vs `===`?** `===` compares without conversion; `==` converts types first, with surprising rules. Use `===`; `x == null` is the one common exception. (Ch 16)
+4. **`null` vs `undefined`?** `undefined` is "not set yet"; `null` is "deliberately empty". `typeof null` is `"object"`, a historic bug. (Ch 3)
+5. **Truthy and falsy?** Falsy: `false`, `0`, `-0`, `0n`, `""`, `null`, `undefined`, `NaN`. Everything else is truthy, including `"0"`, `[]` and `{}`. (Ch 4)
+6. **`??` vs `||`?** `||` falls back on any falsy value; `??` only on `null` or `undefined`, so `0` and `""` are kept. (Ch 4)
+7. **Why is `0.1 + 0.2 !== 0.3`?** Numbers are binary floating point, which can't store most decimals exactly. Use integers for money. (Ch 3, 28)
+8. **What is hoisting?** Declarations are set up before code runs: function declarations completely, `var` as `undefined`, `let`/`const`/`class` uninitialised (TDZ). (Ch 13)
+9. **Arrow functions vs regular functions?** Arrows have no own `this`, `arguments` or `prototype`, can't be used with `new`, and take `this` from where they're written: good for callbacks, wrong for methods. (Ch 10, 15)
+10. **Spread vs rest?** The same `...`: spread expands an iterable or object into elements or properties; rest collects the remaining ones into an array or object. (Ch 12)
+11. **`map` vs `forEach`?** `map` returns a new array of results; `forEach` returns `undefined` and is for side effects. Neither waits for `async` callbacks. (Ch 11, 25)
+
+### 50.2 Core concepts
+
+12. **What is a closure?** A function together with the scope it was created in, whose variables it keeps using after that scope's function returned. Used for private state, factories, memoisation, debounce, React hooks. (Ch 14)
+13. **How is `this` determined?** By the call: `obj.m()` → `obj`; a plain call → `undefined` in strict mode; `new` → the new object; `call`/`apply`/`bind` → the given value; arrows → the outer `this`. (Ch 15)
+14. **`call` vs `apply` vs `bind`?** `call` and `apply` call now with a given `this` (arguments listed or in an array); `bind` returns a new function with `this` fixed. (Ch 15)
+15. **Explain prototypal inheritance.** Every object links to a prototype; property lookups walk up this chain. Classes are syntax over constructor functions and prototypes. (Ch 19, 20)
+16. **What does `new` do?** Creates an object, links its prototype to `F.prototype`, calls `F` with `this` set to it, and returns it (unless `F` returns another object). (Ch 19)
+17. **Shallow vs deep copy?** A shallow copy (spread, `Object.assign`) duplicates the top level only; a deep copy (`structuredClone`) duplicates nested objects too. (Ch 18)
+18. **What are private fields?** `#name` members of a class, accessible only inside its body; enforced by the language. (Ch 20)
+19. **`Map` vs object? `Set`?** A `Map` takes keys of any type, keeps insertion order, has `size` and is built for frequent changes; a `Set` holds unique values with O(1) `has`. (Ch 21)
+20. **What are `WeakMap` and `WeakRef` for?** Holding objects without keeping them alive: attaching data to objects you don't own, caches. (Ch 21, 40)
+21. **What are generators?** `function*` functions that pause at each `yield` and resume on `next()`; they produce lazy, possibly infinite sequences. (Ch 22)
+
+### 50.3 Asynchronous JavaScript
+
+22. **Explain the event loop.** One thread runs code from the call stack. When it's empty, all microtasks run (promise handlers, `await` continuations), then the next task (timer, event), then rendering, and repeat. (Ch 23, 24)
+23. **Microtask vs macrotask?** Microtasks (promises, `queueMicrotask`) all run before the next task (`setTimeout`, I/O, events). (Ch 24)
+24. **What is a promise? Its states?** An object for a future result: pending, then fulfilled with a value or rejected with a reason, once. (Ch 24)
+25. **`Promise.all` vs `allSettled` vs `race` vs `any`?** All values or the first failure / every outcome / the first to settle / the first success. (Ch 24)
+26. **How does `async`/`await` work?** An async function returns a promise; `await` pauses it until a promise settles, letting other code run; errors are caught with `try`/`catch`. (Ch 25)
+27. **How do you run async work concurrently, or with a limit?** Start them all and `await Promise.all(items.map(fn))`; for a limit, a small worker pool. (Ch 25)
+28. **How do you cancel a fetch or add a timeout?** `AbortController` and its `signal`; `AbortSignal.timeout(ms)`. (Ch 31)
+29. **Debounce vs throttle?** Debounce runs once after events stop; throttle runs at most once per interval. (Ch 37)
+
+### 50.4 The browser
+
+30. **What is the DOM?** The tree of objects a browser builds from HTML, which JavaScript reads and changes. (Ch 29)
+31. **Explain event bubbling, capturing and delegation.** Events travel down to the target (capture) and back up (bubble); delegation handles many children's events with one listener on their parent. (Ch 29)
+32. **localStorage vs sessionStorage vs cookies vs IndexedDB?** Small persistent strings / per tab / sent with every request, for sessions / large structured data. (Ch 30)
+33. **What is CORS?** Response headers by which a server allows pages from other origins to read its responses; enforced by browsers, configured on the server. (Ch 34)
+34. **How do browsers render a page? What is reflow?** Parse HTML and CSS → style → layout → paint → composite. Reflow is recomputing layout; avoid alternating reads and writes (thrashing) and animate `transform`/`opacity`. (Ch 33)
+35. **How do you prevent XSS? CSRF?** XSS: insert text with `textContent`, escape or sanitise HTML, add a CSP. CSRF: `SameSite` cookies, no state changes on GET, CSRF tokens. (Ch 35)
+36. **What is a service worker?** A background script that intercepts an origin's requests: offline support, caching, push. (Ch 33)
+
+### 50.5 Engineering
+
+37. **What causes memory leaks in JavaScript?** References kept by forgotten timers and listeners, unbounded caches, closures holding big data, detached DOM nodes. (Ch 40)
+38. **How does V8 make JavaScript fast?** It interprets bytecode, then JIT-compiles hot code using type feedback; hidden classes and inline caches make property access fast when objects have consistent shapes. (Ch 41)
+39. **ES modules vs CommonJS?** `import`/`export`, static, live bindings, top-level `await` vs `require`/`module.exports`, run-time, copied values. (Ch 26)
+40. **What does a bundler do?** Bundles modules, tree-shakes unused code, minifies, transpiles for older targets, splits code and hashes file names. (Ch 43)
+41. **How do you test JavaScript?** Many unit tests, some integration tests, few E2E tests; mock the network and the clock, not the logic. (Ch 44)
+42. **What makes JavaScript code production-ready?** Validation at boundaries, timeouts and retries, deliberate error handling, structured logs, validated config, tests in CI. (Ch 46)
+
+### 50.6 Implement it
+
+43. **Implement `debounce`, `throttle`, `Promise.all`, `bind`, `deepClone`, `curry`, `memoize`, an event emitter.** Chapters 37, 47, 36, 14 and 39 build each one, with the edge cases interviewers check.
+
+**Learn more:** [javascript.info](https://javascript.info/) · [MDN: JavaScript reference](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference)
+
+---
+
+## 51. Glossary: Every Term in These Notes
+
+Every term from the chapters’ **Key terms** lists, A to Z, with a plain definition and a link to the chapter that teaches it (the first link is where it's introduced). Terms are listed by their main word; symbols and code names (like `this` or `??`) are sorted by their first letter.
+
+
+### #
+
+- **304 Not Modified:** the response meaning "your cached copy is still valid". *(Chapter [34](#34-networking-for-frontend-developers-from-url-to-page-http-caching-and-cors))*
+
+### A
+
+- **AbortController:** an object whose `abort()` method cancels operations given its `signal`. *(Chapter [31](#31-web-apis-fetch-abortcontroller-url-observers-and-workers))*
+- **AbortSignal:** the object passed to cancellable operations; `AbortSignal.timeout(ms)` aborts by itself. *(Chapter [31](#31-web-apis-fetch-abortcontroller-url-observers-and-workers))*
+- **Accessor property:** a property defined by a getter and/or a setter function instead of a stored value. *(Chapter [18](#18-objects-in-depth-copying-property-descriptors-getterssetters-and-immutability))*
+- **Accumulator:** the running value that `reduce` passes from one step to the next. *(Chapter [11](#11-array-methods-map-filter-reduce-find-and-friends))*
+- **Adapter pattern:** converting one interface into another that the code expects. *(Chapter [39](#39-design-patterns-in-javascript))*
+- **AggregateError:** an error holding several errors in its `errors` array. *(Chapter [24](#24-promises-and-microtasks))*
+- **Anchor:** a pattern that matches a position, not a character, such as `^`, `$` or `\b`. *(Chapter [27](#27-regular-expressions))*
+- **API (application programming interface):** a set of ready-made functions and objects a program can use. *(Chapter [1](#1-getting-started-what-javascript-is-and-your-first-program))*
+- **apply:** a function method that calls the function with a given `this` and arguments from an array. *(Chapter [15](#15-the-this-keyword-call-apply-and-bind))*
+- **Argument:** the actual value passed to a parameter when calling a function. *(Chapter [10](#10-functions-declarations-expressions-arrows-and-parameters))*
+- **Arrange–Act–Assert:** structuring a test as setup, the action, then checks. *(Chapter [44](#44-testing-javascript-unit-integration-and-end-to-end))*
+- **Array:** an ordered list of values, numbered from 0. *(Chapter [8](#8-arrays-ordered-lists))*
+- **ArrayBuffer:** a fixed-length block of raw bytes. *(Chapter [32](#32-files-blobs-binary-data-and-streams))*
+- **Arrow function:** a short function expression written with `=>`, without its own `this`. *(Chapter [10](#10-functions-declarations-expressions-arrows-and-parameters))*
+- **Assertion:** a check in a test that throws if a condition doesn't hold. *(Chapter [44](#44-testing-javascript-unit-integration-and-end-to-end))*
+- **async function:** a function declared with `async`, which always returns a promise and may use `await`. *(Chapter [25](#25-asyncawait-asynchronous-code-that-reads-like-normal-code))*
+- **Async generator:** an `async function*` that can `await` and `yield`, producing an async iterable. *(Chapter [25](#25-asyncawait-asynchronous-code-that-reads-like-normal-code))*
+- **Async iterable:** a source whose values arrive asynchronously, looped over with `for await...of`. *(Chapter [25](#25-asyncawait-asynchronous-code-that-reads-like-normal-code))*
+- **Async stack trace:** a stack trace that includes the chain of awaiting async functions. *(Chapter [45](#45-debugging-javascript))*
+- **Asynchronous:** started now and finished later, without blocking the thread. *(Chapter [23](#23-how-javascript-runs-call-stack-event-loop-timers-and-callbacks))*
+- **Automated test:** code that runs other code and checks its results. *(Chapter [44](#44-testing-javascript-unit-integration-and-end-to-end))*
+- **await:** pauses an async function until a promise settles, then gives its value or throws its reason. *(Chapter [25](#25-asyncawait-asynchronous-code-that-reads-like-normal-code))*
+
+### B
+
+- **Backpressure:** a stream's signal to slow down the producer when the consumer can't keep up. *(Chapter [32](#32-files-blobs-binary-data-and-streams))*
+- **Backtracking:** the regex engine going back to try other ways to match after a failure. *(Chapter [27](#27-regular-expressions))*
+- **Barrel file:** an index module that re-exports several modules' exports. *(Chapter [26](#26-modules-import-export-esm-vs-commonjs))*
+- **Base case:** the input a recursive function answers directly, which stops the recursion. *(Chapter [10](#10-functions-declarations-expressions-arrows-and-parameters))*
+- **Base64:** a way to write binary data as text using 64 characters. *(Chapter [32](#32-files-blobs-binary-data-and-streams))*
+- **Big-O notation:** a description of how an algorithm's work grows with input size, such as O(n) or O(n²). *(Chapter [41](#41-performance-how-v8-runs-your-code-and-how-to-make-it-fast))*
+- **BigInt:** a whole number of any size, written with an `n` suffix, such as `10n`. *(Chapter [3](#3-data-types-primitives-objects-null-and-undefined))*
+- **bind:** a function method that returns a new function with `this` and optionally some arguments fixed. *(Chapter [15](#15-the-this-keyword-call-apply-and-bind))*
+- **Blob:** an immutable chunk of binary data with a MIME type. *(Chapter [32](#32-files-blobs-binary-data-and-streams))*
+- **Block:** a group of statements between `{` and `}`. *(Chapter [2](#2-variables-let-const-and-var))*
+- **Block scope:** the scope of a `{ }` block, for `let`, `const` and `class`. *(Chapter [13](#13-scope-hoisting-and-the-temporal-dead-zone))*
+- **Blocking:** code that keeps the thread busy so nothing else can run. *(Chapter [23](#23-how-javascript-runs-call-stack-event-loop-timers-and-callbacks))*
+- **Boundary:** a place where data enters your code from outside: a request, a file, an API, the environment. *(Chapter [46](#46-production-grade-javascript-code-quality-refactoring-and-reliability))*
+- **Bracket notation:** reading a property with `obj[expression]`, for keys in variables or keys that aren't valid names. *(Chapter [9](#9-objects-grouping-data-with-keys))*
+- **Branch:** one of the alternative blocks of an `if`/`else` or `switch`. *(Chapter [5](#5-decisions-if-else-switch-and-the-ternary-operator))*
+- **break:** a statement that leaves the current loop (or `switch`) immediately. *(Chapter [6](#6-loops-for-while-dowhile-break-and-continue))*
+- **Breakpoint:** a marked line where the debugger pauses execution. *(Chapter [45](#45-debugging-javascript))*
+- **Browserslist:** a shared configuration listing which browsers a project supports. *(Chapter [42](#42-modern-javascript-whats-new-in-es2020es2026))*
+- **Bubbling:** the part of propagation from the target back up to `window`. *(Chapter [29](#29-the-dom-and-events))*
+- **Bundler:** a tool that combines modules into optimised files for production. *(Chapter [43](#43-tooling-npm-package-managers-bundlers-linters-and-typescript))*
+- **Byte:** 8 bits, a number from 0 to 255; the unit of binary data. *(Chapter [32](#32-files-blobs-binary-data-and-streams))*
+- **Bytecode:** a compact, low-level form of a program that an interpreter runs. *(Chapter [41](#41-performance-how-v8-runs-your-code-and-how-to-make-it-fast))*
+
+### C
+
+- **Cache-Control:** the response header that tells browsers and CDNs whether and how long to cache. *(Chapter [34](#34-networking-for-frontend-developers-from-url-to-page-http-caching-and-cors))*
+- **call:** a function method that calls the function with a given `this` and listed arguments. *(Chapter [15](#15-the-this-keyword-call-apply-and-bind))*
+- **Call stack:** the stack of active function calls; each call adds a frame and each return removes it. *(Chapter [23](#23-how-javascript-runs-call-stack-event-loop-timers-and-callbacks))*
+- **Callback:** a function passed to another function to be called later. *(Chapter [10](#10-functions-declarations-expressions-arrows-and-parameters))*
+- **Callback hell:** deeply nested callbacks that make asynchronous code hard to follow. *(Chapter [23](#23-how-javascript-runs-call-stack-event-loop-timers-and-callbacks))*
+- **camelCase:** a naming style where words are joined and each word after the first starts with a capital letter, as in `totalPrice`. *(Chapter [2](#2-variables-let-const-and-var))*
+- **Capture group:** a part of a regex in `( )` whose matched text is saved. *(Chapter [27](#27-regular-expressions))*
+- **Capture phase:** the part of propagation from `window` down to the target. *(Chapter [29](#29-the-dom-and-events))*
+- **CDN (content delivery network):** servers around the world that serve files from near the user. *(Chapter [34](#34-networking-for-frontend-developers-from-url-to-page-http-caching-and-cors))*
+- **Character class:** a set of characters matched as one, such as `[a-z]` or `\d`. *(Chapter [27](#27-regular-expressions))*
+- **Chunk:** one piece of a stream's data. *(Chapter [32](#32-files-blobs-binary-data-and-streams))*
+- **Class:** a template for creating objects of one kind, defined with `class`. *(Chapter [20](#20-classes-fields-private-members-static-inheritance-and-oop))*
+- **Clickjacking:** tricking users into clicking something on a site hidden inside an invisible frame. *(Chapter [35](#35-frontend-security-xss-csrf-csp-prototype-pollution-and-the-supply-chain))*
+- **Closure:** a function together with the scope it was created in, whose variables it can keep using after that scope's function has returned. *(Chapter [14](#14-closures))*
+- **Code coverage:** the share of code lines and branches that the tests run. *(Chapter [44](#44-testing-javascript-unit-integration-and-end-to-end))*
+- **Code point:** a whole Unicode character, made of one or two UTF-16 code units. *(Chapter [8](#8-arrays-ordered-lists))*
+- **Code smell:** a surface sign in code that often points to a deeper design problem. *(Chapter [46](#46-production-grade-javascript-code-quality-refactoring-and-reliability))*
+- **Code splitting:** breaking an app's code into files that load only when needed. *(Chapter [26](#26-modules-import-export-esm-vs-commonjs))*
+- **Code unit:** one 16-bit piece of a UTF-16 string; `length` counts these. *(Chapter [7](#7-strings-and-template-literals))*
+- **Coercion:** a conversion JavaScript performs automatically because an operator expects a different type. *(Chapter [16](#16-type-conversion-coercion-and--vs-))*
+- **Command pattern:** representing actions as objects, enabling undo, redo and queuing. *(Chapter [39](#39-design-patterns-in-javascript))*
+- **Comment:** text in code that JavaScript ignores, written after `//` or between `/*` and `*/`. *(Chapter [1](#1-getting-started-what-javascript-is-and-your-first-program))*
+- **CommonJS (CJS):** Node.js's original module system, using `require` and `module.exports`. *(Chapter [26](#26-modules-import-export-esm-vs-commonjs))*
+- **Compare function:** a callback for `sort` that returns a negative, zero or positive number to order two elements. *(Chapter [10](#10-functions-declarations-expressions-arrows-and-parameters))*
+- **compose:** composes functions right to left: `compose(f, g)(x)` is `f(g(x))`. *(Chapter [36](#36-functional-programming-pure-functions-immutability-currying-and-composition))*
+- **Compositing:** combining painted layers into the final image, often on the GPU. *(Chapter [33](#33-how-browsers-render-pages-critical-path-reflow-web-components-and-service-workers))*
+- **Composition:** building objects by combining smaller parts instead of inheriting from a parent class. *(Chapter [20](#20-classes-fields-private-members-static-inheritance-and-oop))*
+- **Computed key:** a key in an object literal written as `[expression]`, whose value becomes the key. *(Chapter [9](#9-objects-grouping-data-with-keys))*
+- **Concurrency:** having several operations in progress at the same time. *(Chapter [24](#24-promises-and-microtasks))*
+- **Concurrency limit:** the maximum number of operations allowed in progress at once. *(Chapter [25](#25-asyncawait-asynchronous-code-that-reads-like-normal-code))*
+- **Condition:** an expression whose truthiness decides whether code runs. *(Chapter [5](#5-decisions-if-else-switch-and-the-ternary-operator))*
+- **Conditional breakpoint:** a breakpoint that pauses only when an expression is true. *(Chapter [45](#45-debugging-javascript))*
+- **console.table:** prints an array of objects as a table. *(Chapter [45](#45-debugging-javascript))*
+- **const:** declares a variable that can't be reassigned. *(Chapter [2](#2-variables-let-const-and-var))*
+- **Constructor:** the special method that runs when an instance is created. *(Chapter [20](#20-classes-fields-private-members-static-inheritance-and-oop))*
+- **Constructor function:** a function meant to be called with `new` to create objects. *(Chapter [19](#19-prototypes-and-prototypal-inheritance))*
+- **Content Security Policy (CSP):** a response header restricting which scripts and other resources a page may load or run. *(Chapter [35](#35-frontend-security-xss-csrf-csp-prototype-pollution-and-the-supply-chain))*
+- **continue:** a statement that skips to the next iteration of the loop. *(Chapter [6](#6-loops-for-while-dowhile-break-and-continue))*
+- **Cookie:** a small piece of data the browser stores for a site and sends with each request to it. *(Chapter [30](#30-browser-storage-localstorage-sessionstorage-cookies-and-indexeddb))*
+- **Core Web Vitals:** Google's user-experience metrics: LCP, INP and CLS. *(Chapter [33](#33-how-browsers-render-pages-critical-path-reflow-web-components-and-service-workers))*
+- **Correlation ID:** an id attached to all logs of one request, to trace it across services. *(Chapter [46](#46-production-grade-javascript-code-quality-refactoring-and-reliability))*
+- **CORS (cross-origin resource sharing):** response headers with which a server allows other origins to read its responses. *(Chapter [34](#34-networking-for-frontend-developers-from-url-to-page-http-caching-and-cors))*
+- **Critical rendering path:** the steps needed before the first content can be shown. *(Chapter [33](#33-how-browsers-render-pages-critical-path-reflow-web-components-and-service-workers))*
+- **CSRF (cross-site request forgery):** an attack that makes a victim's browser send an authenticated request to another site. *(Chapter [35](#35-frontend-security-xss-csrf-csp-prototype-pollution-and-the-supply-chain))*
+- **CSRF token:** a random value the server requires with state-changing requests, which other sites can't know. *(Chapter [35](#35-frontend-security-xss-csrf-csp-prototype-pollution-and-the-supply-chain))*
+- **CSS selector:** a pattern that picks elements, such as `#id`, `.class` or `ul > li`. *(Chapter [29](#29-the-dom-and-events))*
+- **CSSOM (CSS Object Model):** the browser's parsed representation of all CSS rules. *(Chapter [33](#33-how-browsers-render-pages-critical-path-reflow-web-components-and-service-workers))*
+- **Currying:** turning a function of several arguments into a chain of one-argument functions. *(Chapter [36](#36-functional-programming-pure-functions-immutability-currying-and-composition))*
+- **Custom element:** an HTML tag you define with a class extending `HTMLElement`. *(Chapter [33](#33-how-browsers-render-pages-critical-path-reflow-web-components-and-service-workers))*
+- **CustomEvent:** an event type you define, carrying data in `detail`. *(Chapter [29](#29-the-dom-and-events))*
+- **Cycle (circular reference):** an object that refers back to itself, directly or through others. *(Chapter [47](#47-polyfills-and-implement-it-yourself-questions))*
+
+### D
+
+- **dataset:** an element's `data-*` attributes as an object. *(Chapter [29](#29-the-dom-and-events))*
+- **DataView:** a view for reading and writing numbers of any type at any offset in an ArrayBuffer. *(Chapter [32](#32-files-blobs-binary-data-and-streams))*
+- **Dead-code elimination:** the optimiser removing computations whose results are never used. *(Chapter [41](#41-performance-how-v8-runs-your-code-and-how-to-make-it-fast))*
+- **Debounce:** delay a function until calls have stopped for a set time, then run it once. *(Chapter [37](#37-debounce-and-throttle))*
+- **Debugger:** a tool that pauses a running program to inspect its state and step through it. *(Chapter [45](#45-debugging-javascript))*
+- **debugger statement:** a statement that pauses execution when a debugger is attached. *(Chapter [45](#45-debugging-javascript))*
+- **Debugging:** finding and fixing the cause of incorrect behaviour. *(Chapter [45](#45-debugging-javascript))*
+- **Declaration:** the statement that creates a variable, such as `let x = 1;`. *(Chapter [2](#2-variables-let-const-and-var))*
+- **Declarative style:** describing what result you want, such as with `map` and `filter`, rather than each step. *(Chapter [36](#36-functional-programming-pure-functions-immutability-currying-and-composition))*
+- **Decorator pattern:** wrapping an object or function to add behaviour without changing its interface. *(Chapter [39](#39-design-patterns-in-javascript))*
+- **Deep copy:** a copy that duplicates nested objects too, sharing nothing with the original. *(Chapter [18](#18-objects-in-depth-copying-property-descriptors-getterssetters-and-immutability))*
+- **Default action:** what the browser does for an event by default, such as following a link; cancelled with `preventDefault`. *(Chapter [29](#29-the-dom-and-events))*
+- **Default export:** a module's single main export, imported under any name. *(Chapter [26](#26-modules-import-export-esm-vs-commonjs))*
+- **Default parameter:** a parameter's value when its argument is missing or `undefined`. *(Chapter [10](#10-functions-declarations-expressions-arrows-and-parameters))*
+- **Deoptimisation:** discarding optimised code when its assumptions turn out wrong. *(Chapter [41](#41-performance-how-v8-runs-your-code-and-how-to-make-it-fast))*
+- **Dependency:** a package a project needs; dev dependencies are needed only for development. *(Chapter [43](#43-tooling-npm-package-managers-bundlers-linters-and-typescript))*
+- **Dependency injection:** giving a component its dependencies from outside instead of creating them inside. *(Chapter [39](#39-design-patterns-in-javascript))*
+- **Design pattern:** a named, reusable solution to a common design problem. *(Chapter [39](#39-design-patterns-in-javascript))*
+- **Destructuring:** unpacking values from an array or object into variables with a pattern. *(Chapter [12](#12-destructuring-spread-and-rest))*
+- **Detached DOM node:** an element removed from the page but still referenced by code, so it can't be freed. *(Chapter [40](#40-memory-management-garbage-collection-and-leaks))*
+- **Dictionary mode:** a slower hash-table layout an object can switch to, for example after `delete`. *(Chapter [41](#41-performance-how-v8-runs-your-code-and-how-to-make-it-fast))*
+- **DisposableStack:** an object that collects cleanup actions and runs them together, in reverse order. *(Chapter [42](#42-modern-javascript-whats-new-in-es2020es2026))*
+- **DNS (Domain Name System):** the system that turns host names into IP addresses. *(Chapter [34](#34-networking-for-frontend-developers-from-url-to-page-http-caching-and-cors))*
+- **do...while loop:** a loop that checks its condition after each round, so it runs at least once. *(Chapter [6](#6-loops-for-while-dowhile-break-and-continue))*
+- **DocumentFragment:** a container for building nodes off the page before inserting them at once. *(Chapter [29](#29-the-dom-and-events))*
+- **DOM (Document Object Model):** the tree of objects a browser builds from HTML, which JavaScript can read and change. *(Chapter [29](#29-the-dom-and-events))*
+- **Dot notation:** reading a property with `obj.key`. *(Chapter [9](#9-objects-grouping-data-with-keys))*
+- **Dynamic import:** `import(path)`, which loads a module at run time and returns a promise. *(Chapter [26](#26-modules-import-export-esm-vs-commonjs))*
+
+### E
+
+- **ECMAScript:** the official standard that defines the JavaScript language; a new edition each year. *(Chapter [1](#1-getting-started-what-javascript-is-and-your-first-program))*
+- **Element:** one value in an array. *(Chapter [8](#8-arrays-ordered-lists), [29](#29-the-dom-and-events))*
+- **Encoding:** a rule for turning text into bytes; UTF-8 is the web's. *(Chapter [32](#32-files-blobs-binary-data-and-streams))*
+- **End-to-end (E2E) test:** a test that drives the whole application like a user, usually in a real browser. *(Chapter [44](#44-testing-javascript-unit-integration-and-end-to-end))*
+- **Endianness:** the order of bytes in a multi-byte number: little-endian (low byte first) or big-endian (high byte first). *(Chapter [32](#32-files-blobs-binary-data-and-streams))*
+- **Engine:** the program that runs JavaScript code, such as V8 (Chrome, Node.js). *(Chapter [1](#1-getting-started-what-javascript-is-and-your-first-program))*
+- **Enumerable:** listed by `Object.keys`, spread, `for...in` and `JSON.stringify`. *(Chapter [18](#18-objects-in-depth-copying-property-descriptors-getterssetters-and-immutability))*
+- **Environment variable:** a named setting provided to a process by its environment. *(Chapter [46](#46-production-grade-javascript-code-quality-refactoring-and-reliability))*
+- **Error:** an object that JavaScript throws when it can't run code, with a type (`name`) and a `message`. *(Chapter [1](#1-getting-started-what-javascript-is-and-your-first-program))*
+- **Error cause:** the original error attached to a new one with `{ cause }`. *(Chapter [17](#17-error-handling-try-catch-throw-and-finally))*
+- **Error-first callback:** Node.js's callback convention, `callback(error, result)`. *(Chapter [23](#23-how-javascript-runs-call-stack-event-loop-timers-and-callbacks))*
+- **Error.isError:** checks whether a value is a genuine error object, even across windows and workers. *(Chapter [42](#42-modern-javascript-whats-new-in-es2020es2026))*
+- **ES modules (ESM):** JavaScript's standard module system, using `import` and `export`. *(Chapter [26](#26-modules-import-export-esm-vs-commonjs))*
+- **Escape sequence:** a backslash followed by a character, standing for a special character such as `\n` (new line). *(Chapter [7](#7-strings-and-template-literals))*
+- **Escaping:** converting special characters into a form that's displayed literally instead of interpreted, such as `<` to `&lt;`. *(Chapter [35](#35-frontend-security-xss-csrf-csp-prototype-pollution-and-the-supply-chain))*
+- **ESLint:** the standard JavaScript linter. *(Chapter [43](#43-tooling-npm-package-managers-bundlers-linters-and-typescript))*
+- **ETag:** a version identifier for a response, used to revalidate cached copies. *(Chapter [34](#34-networking-for-frontend-developers-from-url-to-page-http-caching-and-cors))*
+- **Event:** a notification that something happened, such as a click or a key press. *(Chapter [29](#29-the-dom-and-events))*
+- **Event delegation:** handling events for many children with one listener on their parent. *(Chapter [29](#29-the-dom-and-events))*
+- **Event emitter:** an object with `on`, `off` and `emit` methods for subscribing to and firing named events. *(Chapter [39](#39-design-patterns-in-javascript))*
+- **Event listener:** a function registered to run when an event happens. *(Chapter [29](#29-the-dom-and-events))*
+- **Event loop:** the mechanism that runs the next queued task whenever the call stack is empty. *(Chapter [23](#23-how-javascript-runs-call-stack-event-loop-timers-and-callbacks))*
+- **Event object:** the object passed to a listener, describing the event. *(Chapter [29](#29-the-dom-and-events))*
+- **Event propagation:** an event's journey through the DOM: capture down to the target, then bubble up. *(Chapter [29](#29-the-dom-and-events))*
+- **event.currentTarget:** the element whose listener is currently running. *(Chapter [29](#29-the-dom-and-events))*
+- **event.target:** the element where the event happened. *(Chapter [29](#29-the-dom-and-events))*
+- **Exception:** an error thrown while code runs, which jumps to the nearest `catch`. *(Chapter [17](#17-error-handling-try-catch-throw-and-finally))*
+- **Executor:** the function passed to `new Promise`, which receives `resolve` and `reject`. *(Chapter [24](#24-promises-and-microtasks))*
+- **Explicit conversion:** converting on purpose with `String`, `Number` or `Boolean`; also called type casting. *(Chapter [16](#16-type-conversion-coercion-and--vs-))*
+- **Explicit resource management:** `using` declarations that automatically dispose resources at the end of a block. *(Chapter [42](#42-modern-javascript-whats-new-in-es2020es2026))*
+- **Exponential backoff:** waiting longer between retries each time, usually doubling the delay. *(Chapter [25](#25-asyncawait-asynchronous-code-that-reads-like-normal-code))*
+- **extends:** makes a class inherit from another class. *(Chapter [20](#20-classes-fields-private-members-static-inheritance-and-oop))*
+
+### F
+
+- **F.prototype:** the object that becomes the prototype of every object created with `new F()`. *(Chapter [19](#19-prototypes-and-prototypal-inheritance))*
+- **Facade pattern:** a simple interface in front of a complex subsystem. *(Chapter [39](#39-design-patterns-in-javascript))*
+- **Factory function:** a function that creates and returns new functions or objects. *(Chapter [14](#14-closures))*
+- **Factory method:** a static method that creates instances, as a named alternative to the constructor. *(Chapter [20](#20-classes-fields-private-members-static-inheritance-and-oop))*
+- **Factory pattern:** creating objects through a function that decides what to build. *(Chapter [39](#39-design-patterns-in-javascript))*
+- **Fail fast:** check inputs early and throw immediately, close to the problem. *(Chapter [17](#17-error-handling-try-catch-throw-and-finally), [46](#46-production-grade-javascript-code-quality-refactoring-and-reliability))*
+- **Fake timers:** a test clock that replaces the real timer functions and can be moved forward instantly. *(Chapter [44](#44-testing-javascript-unit-integration-and-end-to-end))*
+- **Fall through:** in a `switch`, running into the next `case` because there was no `break`. *(Chapter [5](#5-decisions-if-else-switch-and-the-ternary-operator))*
+- **Falsy:** a value treated as false in a condition: `false`, `0`, `-0`, `0n`, `""`, `null`, `undefined`, `NaN`. *(Chapter [4](#4-operators-arithmetic-comparison-logical--and-))*
+- **Feature detection:** checking whether a feature exists before using it. *(Chapter [42](#42-modern-javascript-whats-new-in-es2020es2026))*
+- **Feature flag:** a switch that turns a feature on or off at run time without a deploy. *(Chapter [46](#46-production-grade-javascript-code-quality-refactoring-and-reliability))*
+- **fetch:** the browser and Node.js function for making HTTP requests, returning a promise of a Response. *(Chapter [31](#31-web-apis-fetch-abortcontroller-url-observers-and-workers))*
+- **Field:** a property declared in a class body and set on each instance. *(Chapter [20](#20-classes-fields-private-members-static-inheritance-and-oop))*
+- **File:** a Blob with a name and a modification date. *(Chapter [32](#32-files-blobs-binary-data-and-streams))*
+- **filter:** an array method that returns a new array of the elements for which the callback is truthy. *(Chapter [11](#11-array-methods-map-filter-reduce-find-and-friends))*
+- **FinalizationRegistry:** registers callbacks to run after objects are garbage-collected. *(Chapter [40](#40-memory-management-garbage-collection-and-leaks))*
+- **finally:** a block that runs after `try` and `catch`, whatever happened. *(Chapter [17](#17-error-handling-try-catch-throw-and-finally))*
+- **find:** an array method that returns the first element for which the callback is truthy. *(Chapter [11](#11-array-methods-map-filter-reduce-find-and-friends))*
+- **Flag:** a letter after a regex that changes how it matches, such as `g` or `i`. *(Chapter [27](#27-regular-expressions))*
+- **Flaky test:** a test that sometimes passes and sometimes fails without any code change. *(Chapter [44](#44-testing-javascript-unit-integration-and-end-to-end))*
+- **Flame chart:** a profile view with time along one axis and the call stack along the other. *(Chapter [41](#41-performance-how-v8-runs-your-code-and-how-to-make-it-fast))*
+- **Flatten:** turn nested arrays into one array. *(Chapter [11](#11-array-methods-map-filter-reduce-find-and-friends))*
+- **Floating point:** the binary format for decimal numbers, which can't store most decimals exactly. *(Chapter [3](#3-data-types-primitives-objects-null-and-undefined))*
+- **for loop:** a loop with a start, a condition and an update in its header. *(Chapter [6](#6-loops-for-while-dowhile-break-and-continue))*
+- **for...in:** a loop over an object's keys, including inherited ones. *(Chapter [9](#9-objects-grouping-data-with-keys))*
+- **for...of:** a loop over the values of an array, string or other iterable. *(Chapter [8](#8-arrays-ordered-lists))*
+- **Forced synchronous layout:** an immediate layout triggered by reading geometry after a change. *(Chapter [33](#33-how-browsers-render-pages-critical-path-reflow-web-components-and-service-workers))*
+- **Formatter:** a tool that rewrites code layout consistently, such as Prettier. *(Chapter [43](#43-tooling-npm-package-managers-bundlers-linters-and-typescript))*
+- **FormData:** an object that reads the named fields of a form. *(Chapter [29](#29-the-dom-and-events))*
+- **Frame:** one screen update; about 16.7 ms apart at 60 Hz. *(Chapter [33](#33-how-browsers-render-pages-critical-path-reflow-web-components-and-service-workers))*
+- **Fulfilled:** a promise's state when it has succeeded with a value. *(Chapter [24](#24-promises-and-microtasks))*
+- **Function:** a reusable block of code that takes parameters and can return a value. *(Chapter [10](#10-functions-declarations-expressions-arrows-and-parameters))*
+- **Function composition:** combining functions so the output of one is the input of the next. *(Chapter [36](#36-functional-programming-pure-functions-immutability-currying-and-composition))*
+- **Function expression:** a function created inside an expression, often assigned to a variable. *(Chapter [10](#10-functions-declarations-expressions-arrows-and-parameters))*
+- **Function scope:** the scope created by each function call. *(Chapter [13](#13-scope-hoisting-and-the-temporal-dead-zone))*
+- **Functional programming:** a style that builds programs from pure functions and immutable data. *(Chapter [36](#36-functional-programming-pure-functions-immutability-currying-and-composition))*
+
+### G
+
+- **Garbage collector (GC):** the engine part that automatically frees memory no longer reachable. *(Chapter [40](#40-memory-management-garbage-collection-and-leaks))*
+- **Generational GC:** collecting new objects often and long-lived ones rarely, because most objects die young. *(Chapter [40](#40-memory-management-garbage-collection-and-leaks))*
+- **Generator function:** a `function*` that returns an iterator and pauses at each `yield`. *(Chapter [22](#22-iterators-generators-and-iterator-helpers))*
+- **Getter:** a function that runs when a property is read. *(Chapter [18](#18-objects-in-depth-copying-property-descriptors-getterssetters-and-immutability))*
+- **git bisect:** a Git command that finds the commit that introduced a bug by binary search. *(Chapter [45](#45-debugging-javascript))*
+- **Global error handler:** a handler for errors no other code caught. *(Chapter [45](#45-debugging-javascript))*
+- **Global scope:** the outermost scope; its names are visible everywhere. *(Chapter [13](#13-scope-hoisting-and-the-temporal-dead-zone))*
+- **globalThis:** the global object in every environment (`window` in browsers, `global` in Node.js). *(Chapter [13](#13-scope-hoisting-and-the-temporal-dead-zone))*
+- **Graceful shutdown:** stopping a service by finishing in-flight work and closing connections before exiting. *(Chapter [46](#46-production-grade-javascript-code-quality-refactoring-and-reliability))*
+- **Grapheme:** a character as a reader perceives it, which may be several code points. *(Chapter [28](#28-dates-time-zones-numbers-and-intl))*
+- **Greedy:** a quantifier matching as much as possible. *(Chapter [27](#27-regular-expressions))*
+- **Guard clause:** an early `return` that handles a special case at the top of a function. *(Chapter [10](#10-functions-declarations-expressions-arrows-and-parameters))*
+
+### H
+
+- **Handler:** the object holding a proxy's traps. *(Chapter [38](#38-proxy-and-reflect))*
+- **Header:** a name–value line of metadata in an HTTP request or response. *(Chapter [34](#34-networking-for-frontend-developers-from-url-to-page-http-caching-and-cors))*
+- **Heap:** the memory region where objects are allocated. *(Chapter [40](#40-memory-management-garbage-collection-and-leaks))*
+- **Heap snapshot:** a record of every object on the heap and the references between them, for finding leaks. *(Chapter [40](#40-memory-management-garbage-collection-and-leaks))*
+- **Hidden class (shape):** the engine's internal description of an object's layout, shared by objects built the same way. *(Chapter [41](#41-performance-how-v8-runs-your-code-and-how-to-make-it-fast))*
+- **Higher-order function:** a function that takes or returns a function. *(Chapter [10](#10-functions-declarations-expressions-arrows-and-parameters))*
+- **Hoisting:** processing declarations before code runs, so function declarations can be called before their line. *(Chapter [10](#10-functions-declarations-expressions-arrows-and-parameters))*
+- **Hot code:** code that runs often, and so gets optimised. *(Chapter [41](#41-performance-how-v8-runs-your-code-and-how-to-make-it-fast))*
+- **HTTP:** the request–response protocol of the web. *(Chapter [34](#34-networking-for-frontend-developers-from-url-to-page-http-caching-and-cors))*
+- **HTTP method:** the action of a request, such as GET, POST, PUT, PATCH or DELETE. *(Chapter [34](#34-networking-for-frontend-developers-from-url-to-page-http-caching-and-cors))*
+- **HttpOnly:** a cookie attribute that hides the cookie from JavaScript. *(Chapter [30](#30-browser-storage-localstorage-sessionstorage-cookies-and-indexeddb))*
+
+### I
+
+- **Idempotency key:** a unique id sent with a request so the server can detect and ignore duplicates. *(Chapter [46](#46-production-grade-javascript-code-quality-refactoring-and-reliability))*
+- **Idempotent:** having the same effect whether done once or several times. *(Chapter [34](#34-networking-for-frontend-developers-from-url-to-page-http-caching-and-cors))*
+- **IIFE (immediately invoked function expression):** a function defined and called at once, often to create a private scope. *(Chapter [39](#39-design-patterns-in-javascript))*
+- **Immutability:** the practice of never changing data in place, creating changed copies instead. *(Chapter [18](#18-objects-in-depth-copying-property-descriptors-getterssetters-and-immutability))*
+- **Immutable:** can't be changed after it's created. *(Chapter [3](#3-data-types-primitives-objects-null-and-undefined))*
+- **Immutable update:** creating a changed copy that shares the unchanged parts with the original. *(Chapter [36](#36-functional-programming-pure-functions-immutability-currying-and-composition))*
+- **Imperative style:** describing a computation as a sequence of steps that change state. *(Chapter [36](#36-functional-programming-pure-functions-immutability-currying-and-composition))*
+- **Import attributes:** `with { type: "json" }` after an import, saying what kind of file it is. *(Chapter [26](#26-modules-import-export-esm-vs-commonjs))*
+- **Import map:** a JSON map in a web page from module names to URLs. *(Chapter [26](#26-modules-import-export-esm-vs-commonjs))*
+- **import.meta:** an object with information about the current module, such as its URL. *(Chapter [26](#26-modules-import-export-esm-vs-commonjs))*
+- **Index:** the position of an item, counting from 0. *(Chapter [7](#7-strings-and-template-literals), [30](#30-browser-storage-localstorage-sessionstorage-cookies-and-indexeddb))*
+- **IndexedDB:** the browser's built-in transactional database for structured data. *(Chapter [30](#30-browser-storage-localstorage-sessionstorage-cookies-and-indexeddb))*
+- **Infinite loop:** a loop whose condition never becomes false. *(Chapter [6](#6-loops-for-while-dowhile-break-and-continue))*
+- **Infinity:** the number value for results too large to represent, such as `1 / 0`. *(Chapter [3](#3-data-types-primitives-objects-null-and-undefined))*
+- **Inherited property:** a property found on an object's prototype chain. *(Chapter [19](#19-prototypes-and-prototypal-inheritance))*
+- **Inline cache:** a cache at a property access that remembers where the property was for the shapes seen there. *(Chapter [41](#41-performance-how-v8-runs-your-code-and-how-to-make-it-fast))*
+- **innerHTML:** an element's content as HTML, parsed when assigned. *(Chapter [29](#29-the-dom-and-events))*
+- **Instance:** an object created from a class with `new`. *(Chapter [20](#20-classes-fields-private-members-static-inheritance-and-oop))*
+- **instanceof:** an operator that checks whether a constructor's `prototype` is on an object's prototype chain. *(Chapter [19](#19-prototypes-and-prototypal-inheritance))*
+- **Integration test:** a test of several parts working together. *(Chapter [44](#44-testing-javascript-unit-integration-and-end-to-end))*
+- **Interpolation:** inserting the value of an expression into a string. *(Chapter [7](#7-strings-and-template-literals))*
+- **IntersectionObserver:** reports when elements enter or leave the visible area. *(Chapter [31](#31-web-apis-fetch-abortcontroller-url-observers-and-workers))*
+- **Intl:** JavaScript's built-in internationalisation API for formatting and comparing in any locale. *(Chapter [28](#28-dates-time-zones-numbers-and-intl))*
+- **ISO 8601:** the international date format, such as `2026-03-14T10:30:00Z`. *(Chapter [28](#28-dates-time-zones-numbers-and-intl))*
+- **Iterable:** a value that `for...of` and spread can loop over, such as an array, string, Map or Set. *(Chapter [21](#21-map-set-weakmap-weakset-and-symbol))*
+- **Iteration:** one run of a loop's block. *(Chapter [6](#6-loops-for-while-dowhile-break-and-continue))*
+- **Iteration protocol:** the rule that iterables provide `[Symbol.iterator]()` returning an iterator; used by `for...of`, spread and destructuring. *(Chapter [22](#22-iterators-generators-and-iterator-helpers))*
+- **Iterator:** an object with a `next()` method that returns `{ value, done }` until the sequence ends. *(Chapter [22](#22-iterators-generators-and-iterator-helpers))*
+- **Iterator helpers:** lazy methods such as `map`, `filter` and `take` available on every iterator (ES2025). *(Chapter [22](#22-iterators-generators-and-iterator-helpers))*
+
+### J
+
+- **JavaScript:** the programming language of web browsers, also used on servers and in apps. *(Chapter [1](#1-getting-started-what-javascript-is-and-your-first-program))*
+- **Jitter:** randomness added to retry delays so clients don't retry in lockstep. *(Chapter [46](#46-production-grade-javascript-code-quality-refactoring-and-reliability))*
+- **JSDoc:** a comment format for documenting code, including types that TypeScript can check. *(Chapter [43](#43-tooling-npm-package-managers-bundlers-linters-and-typescript))*
+- **JSON (JavaScript Object Notation):** a text format for data, based on JavaScript object and array literals. *(Chapter [9](#9-objects-grouping-data-with-keys))*
+- **Just-in-time (JIT) compilation:** compiling code to machine code while the program runs, based on how it's used. *(Chapter [41](#41-performance-how-v8-runs-your-code-and-how-to-make-it-fast))*
+
+### K
+
+- **Key:** the name of a property; always a string or a symbol. *(Chapter [9](#9-objects-grouping-data-with-keys))*
+
+### L
+
+- **Label:** a name before a loop that `break` or `continue` can refer to. *(Chapter [6](#6-loops-for-while-dowhile-break-and-continue))*
+- **Layout (reflow):** computing the position and size of every element. *(Chapter [33](#33-how-browsers-render-pages-critical-path-reflow-web-components-and-service-workers))*
+- **Layout thrashing:** repeatedly alternating DOM writes and geometry reads, forcing many layouts. *(Chapter [33](#33-how-browsers-render-pages-critical-path-reflow-web-components-and-service-workers))*
+- **Lazy:** a quantifier followed by `?`, matching as little as possible. *(Chapter [27](#27-regular-expressions))*
+- **Lazy evaluation:** computing values only when they're requested. *(Chapter [22](#22-iterators-generators-and-iterator-helpers))*
+- **Leading edge:** running on the first call of a burst. *(Chapter [37](#37-debounce-and-throttle))*
+- **let:** declares a block-scoped variable that can be reassigned. *(Chapter [2](#2-variables-let-const-and-var))*
+- **Lexical scope:** scope decided by where code is written in the source. *(Chapter [13](#13-scope-hoisting-and-the-temporal-dead-zone))*
+- **Lifecycle callback:** a method the browser calls at a stage of a custom element's life, such as `connectedCallback`. *(Chapter [33](#33-how-browsers-render-pages-critical-path-reflow-web-components-and-service-workers))*
+- **Linter:** a tool that analyses code for likely bugs and style problems without running it. *(Chapter [43](#43-tooling-npm-package-managers-bundlers-linters-and-typescript))*
+- **Live binding:** an imported name that always shows the exporting module's current value. *(Chapter [26](#26-modules-import-export-esm-vs-commonjs))*
+- **Locale:** a language and region identifier, such as `en-IN`, that decides formatting conventions. *(Chapter [28](#28-dates-time-zones-numbers-and-intl))*
+- **localStorage:** origin-wide string storage that persists until cleared. *(Chapter [30](#30-browser-storage-localstorage-sessionstorage-cookies-and-indexeddb))*
+- **Locator:** a Playwright way to find elements, such as by role or label. *(Chapter [44](#44-testing-javascript-unit-integration-and-end-to-end))*
+- **Lockfile:** a file recording the exact versions of every installed dependency. *(Chapter [35](#35-frontend-security-xss-csrf-csp-prototype-pollution-and-the-supply-chain), [43](#43-tooling-npm-package-managers-bundlers-linters-and-typescript))*
+- **Log level:** a log entry's severity, such as debug, info, warn or error. *(Chapter [46](#46-production-grade-javascript-code-quality-refactoring-and-reliability))*
+- **Logpoint:** a breakpoint that logs a message instead of pausing. *(Chapter [45](#45-debugging-javascript))*
+- **Long task:** a task over 50 ms, during which the page can't respond. *(Chapter [33](#33-how-browsers-render-pages-critical-path-reflow-web-components-and-service-workers))*
+- **Lookahead / lookbehind:** a check of what follows or precedes a position, without consuming it. *(Chapter [27](#27-regular-expressions))*
+- **Lookup table:** an object that maps keys to results, used instead of a chain of conditions. *(Chapter [5](#5-decisions-if-else-switch-and-the-ternary-operator))*
+- **Loop:** code that repeats a block. *(Chapter [6](#6-loops-for-while-dowhile-break-and-continue))*
+- **Loose equality (==):** equality that converts the operands' types before comparing. *(Chapter [16](#16-type-conversion-coercion-and--vs-))*
+- **LRU cache (least recently used):** a cache with a size limit that evicts the entry used longest ago. *(Chapter [40](#40-memory-management-garbage-collection-and-leaks))*
+
+### M
+
+- **Magic number:** an unexplained literal value in code that should be a named constant. *(Chapter [46](#46-production-grade-javascript-code-quality-refactoring-and-reliability))*
+- **map:** an array method that returns a new array of the callback's results. *(Chapter [11](#11-array-methods-map-filter-reduce-find-and-friends), [21](#21-map-set-weakmap-weakset-and-symbol))*
+- **Mark-and-sweep:** a GC algorithm that marks reachable objects and frees the rest. *(Chapter [40](#40-memory-management-garbage-collection-and-leaks))*
+- **Megamorphic:** an operation that has seen many shapes, too many to cache. *(Chapter [41](#41-performance-how-v8-runs-your-code-and-how-to-make-it-fast))*
+- **Memoization:** caching a function's results by its arguments so repeated calls are instant. *(Chapter [14](#14-closures))*
+- **Memory leak:** memory that stays reachable but will never be used again. *(Chapter [40](#40-memory-management-garbage-collection-and-leaks))*
+- **Method:** a function attached to a value or object, called with a dot: `x.toFixed(2)`. *(Chapter [3](#3-data-types-primitives-objects-null-and-undefined))*
+- **Method borrowing:** calling one object's method on another object with `call` or `apply`. *(Chapter [15](#15-the-this-keyword-call-apply-and-bind))*
+- **Method call:** calling a function as a property of an object, `obj.m()`, which sets `this` to `obj`. *(Chapter [15](#15-the-this-keyword-call-apply-and-bind))*
+- **Method chaining:** calling methods one after another on each result: `a.filter(…).map(…)`. *(Chapter [11](#11-array-methods-map-filter-reduce-find-and-friends))*
+- **Microbenchmark:** timing a very small piece of code in isolation. *(Chapter [41](#41-performance-how-v8-runs-your-code-and-how-to-make-it-fast))*
+- **Microtask:** a callback in the microtask queue. *(Chapter [24](#24-promises-and-microtasks))*
+- **Microtask queue:** the queue for promise handlers and `queueMicrotask`, emptied before the next task runs. *(Chapter [24](#24-promises-and-microtasks))*
+- **Middleware:** functions in a chain, each handling a request and deciding whether to pass it on with `next()`. *(Chapter [39](#39-design-patterns-in-javascript))*
+- **MIME type:** a label for a kind of data, such as `text/csv` or `image/png`. *(Chapter [32](#32-files-blobs-binary-data-and-streams))*
+- **Minification:** shrinking code by removing whitespace and shortening names. *(Chapter [43](#43-tooling-npm-package-managers-bundlers-linters-and-typescript))*
+- **Mock:** a fake function or object that replaces a real dependency and records how it's used. *(Chapter [44](#44-testing-javascript-unit-integration-and-end-to-end))*
+- **Module:** a file with its own scope that shares values only through exports and imports. *(Chapter [26](#26-modules-import-export-esm-vs-commonjs))*
+- **Module scope:** the top-level scope of one module file. *(Chapter [13](#13-scope-hoisting-and-the-temporal-dead-zone))*
+- **Monomorphic:** an operation that has only seen one shape or type; the fastest case. *(Chapter [41](#41-performance-how-v8-runs-your-code-and-how-to-make-it-fast))*
+- **Mutate:** change an object or array in place. *(Chapter [8](#8-arrays-ordered-lists))*
+- **MutationObserver:** reports changes to the DOM. *(Chapter [31](#31-web-apis-fetch-abortcontroller-url-observers-and-workers))*
+
+### N
+
+- **Named export:** a value exported under its own name, imported with braces. *(Chapter [26](#26-modules-import-export-esm-vs-commonjs))*
+- **Named group:** a capture group with a name, `(?<name>…)`, read from `match.groups`. *(Chapter [27](#27-regular-expressions))*
+- **Namespace import:** `import * as ns`, collecting all of a module's exports into one object. *(Chapter [26](#26-modules-import-export-esm-vs-commonjs))*
+- **NaN (not a number):** the number value produced by invalid maths; not equal to anything, even itself. *(Chapter [3](#3-data-types-primitives-objects-null-and-undefined))*
+- **new:** an operator that creates an object from a constructor function or class, such as `new Error("…")`. *(Chapter [17](#17-error-handling-try-catch-throw-and-finally))*
+- **new.target:** inside a function, the constructor used with `new`, or `undefined` for a normal call. *(Chapter [47](#47-polyfills-and-implement-it-yourself-questions))*
+- **Node:** any object in the DOM tree: an element, a piece of text, a comment. *(Chapter [29](#29-the-dom-and-events))*
+- **Node.js:** a program that runs JavaScript outside the browser, with access to files and the network. *(Chapter [1](#1-getting-started-what-javascript-is-and-your-first-program))*
+- **Nonce:** a random value used once; in CSP, it marks the script tags allowed to run. *(Chapter [35](#35-frontend-security-xss-csrf-csp-prototype-pollution-and-the-supply-chain))*
+- **npm:** Node.js's package manager and the public registry of packages. *(Chapter [43](#43-tooling-npm-package-managers-bundlers-linters-and-typescript))*
+- **npm script:** a named command in `package.json`, run with `npm run name`. *(Chapter [43](#43-tooling-npm-package-managers-bundlers-linters-and-typescript))*
+- **npx:** runs a package's command-line tool. *(Chapter [43](#43-tooling-npm-package-managers-bundlers-linters-and-typescript))*
+- **null:** a value that a programmer sets to mean "deliberately empty". *(Chapter [3](#3-data-types-primitives-objects-null-and-undefined))*
+- **Nullish:** either `null` or `undefined`. *(Chapter [4](#4-operators-arithmetic-comparison-logical--and-))*
+- **Nullish coalescing (??):** returns the right side only when the left side is `null` or `undefined`. *(Chapter [4](#4-operators-arithmetic-comparison-logical--and-))*
+- **Number.EPSILON:** the smallest difference between 1 and the next representable number, used as a tolerance. *(Chapter [28](#28-dates-time-zones-numbers-and-intl))*
+- **Numeric separator:** an underscore inside a number literal for readability, as in `1_000_000`. *(Chapter [28](#28-dates-time-zones-numbers-and-intl))*
+
+### O
+
+- **Object:** a collection of named values; arrays, functions and dates are objects too. *(Chapter [3](#3-data-types-primitives-objects-null-and-undefined))*
+- **Object store:** a collection of records in an IndexedDB database, like a table. *(Chapter [30](#30-browser-storage-localstorage-sessionstorage-cookies-and-indexeddb))*
+- **Object URL:** a `blob:` URL that points to a Blob in memory. *(Chapter [32](#32-files-blobs-binary-data-and-streams))*
+- **Object.create:** creates a new object with a given prototype. *(Chapter [19](#19-prototypes-and-prototypal-inheritance))*
+- **Object.freeze:** makes an object's properties unchangeable and stops adding or deleting them (shallowly). *(Chapter [18](#18-objects-in-depth-copying-property-descriptors-getterssetters-and-immutability))*
+- **Object.groupBy:** groups an array's elements into an object of arrays by a key function. *(Chapter [11](#11-array-methods-map-filter-reduce-find-and-friends))*
+- **Object.is:** a comparison like `===` that treats `NaN` as equal to itself and `0` and `-0` as different. *(Chapter [16](#16-type-conversion-coercion-and--vs-))*
+- **Observer pattern:** objects subscribe to events from a subject and are notified when they happen. *(Chapter [39](#39-design-patterns-in-javascript))*
+- **Operational error:** an expected failure of a correct program, such as a timeout or invalid input. *(Chapter [46](#46-production-grade-javascript-code-quality-refactoring-and-reliability))*
+- **Operator:** a symbol that combines values into a new value, such as `+` or `===`. *(Chapter [4](#4-operators-arithmetic-comparison-logical--and-))*
+- **Optional chaining (?.):** reads a property, or calls a method, only if the value on the left isn't nullish; otherwise gives `undefined`. *(Chapter [4](#4-operators-arithmetic-comparison-logical--and-))*
+- **Options object:** a single object argument whose named properties act as a function's settings. *(Chapter [12](#12-destructuring-spread-and-rest))*
+- **Origin:** the combination of scheme, host and port of a page, such as `https://shop.example:443`, which scopes its storage. *(Chapter [30](#30-browser-storage-localstorage-sessionstorage-cookies-and-indexeddb))*
+- **Override:** define a method in a subclass with the same name as one in the parent, replacing it. *(Chapter [20](#20-classes-fields-private-members-static-inheritance-and-oop))*
+- **Own property:** a property stored on the object itself, not inherited. *(Chapter [19](#19-prototypes-and-prototypal-inheritance))*
+
+### P
+
+- **package.json:** the file describing a JavaScript project: its name, scripts and dependencies. *(Chapter [43](#43-tooling-npm-package-managers-bundlers-linters-and-typescript))*
+- **Paint:** filling in the pixels of text, colours, borders and images. *(Chapter [33](#33-how-browsers-render-pages-critical-path-reflow-web-components-and-service-workers))*
+- **Parameter:** a name in a function's definition for an input. *(Chapter [10](#10-functions-declarations-expressions-arrows-and-parameters))*
+- **Partial application:** fixing some of a function's arguments to make a new function that takes the rest. *(Chapter [15](#15-the-this-keyword-call-apply-and-bind))*
+- **Pattern:** the left side of a destructuring assignment, shaped like the array or object it unpacks. *(Chapter [12](#12-destructuring-spread-and-rest))*
+- **Pending:** a promise's state before it settles. *(Chapter [24](#24-promises-and-microtasks))*
+- **Percent-encoding:** writing unsafe characters in URLs as `%` plus hexadecimal codes. *(Chapter [31](#31-web-apis-fetch-abortcontroller-url-observers-and-workers))*
+- **performance.now():** a high-precision timestamp in milliseconds, for measuring durations. *(Chapter [33](#33-how-browsers-render-pages-critical-path-reflow-web-components-and-service-workers))*
+- **pipe:** composes functions left to right: `pipe(f, g)(x)` is `g(f(x))`. *(Chapter [36](#36-functional-programming-pure-functions-immutability-currying-and-composition))*
+- **Pipeline:** a sequence of steps, each transforming the previous step's result. *(Chapter [11](#11-array-methods-map-filter-reduce-find-and-friends))*
+- **Plain call:** calling a function on its own, `f()`, which sets `this` to `undefined` in strict mode. *(Chapter [15](#15-the-this-keyword-call-apply-and-bind))*
+- **Playwright:** a library and test runner for automating real browsers. *(Chapter [44](#44-testing-javascript-unit-integration-and-end-to-end))*
+- **Point-free style:** defining functions by combining others without mentioning their arguments. *(Chapter [36](#36-functional-programming-pure-functions-immutability-currying-and-composition))*
+- **Polling:** checking repeatedly whether something has changed. *(Chapter [31](#31-web-apis-fetch-abortcontroller-url-observers-and-workers))*
+- **Polyfill:** code that implements a missing built-in feature for older environments. *(Chapter [42](#42-modern-javascript-whats-new-in-es2020es2026), [47](#47-polyfills-and-implement-it-yourself-questions))*
+- **Polymorphism:** different classes responding to the same method call in their own way. *(Chapter [20](#20-classes-fields-private-members-static-inheritance-and-oop))*
+- **postMessage:** sends a copy of data to a worker, window or channel. *(Chapter [31](#31-web-apis-fetch-abortcontroller-url-observers-and-workers))*
+- **Precedence:** the rules that decide which operator in an expression runs first. *(Chapter [4](#4-operators-arithmetic-comparison-logical--and-))*
+- **Preflight request:** an automatic `OPTIONS` request the browser sends to ask permission before certain cross-origin requests. *(Chapter [34](#34-networking-for-frontend-developers-from-url-to-page-http-caching-and-cors))*
+- **Primitive:** a simple, immutable value: a number, bigint, string, boolean, undefined, null or symbol. *(Chapter [3](#3-data-types-primitives-objects-null-and-undefined))*
+- **Private member:** a field or method whose name starts with `#`, usable only inside the class body. *(Chapter [20](#20-classes-fields-private-members-static-inheritance-and-oop))*
+- **Private state:** data reachable only through the functions that close over it. *(Chapter [14](#14-closures))*
+- **Profiler:** a tool that records where a program spends its time. *(Chapter [41](#41-performance-how-v8-runs-your-code-and-how-to-make-it-fast))*
+- **Programmer error:** a bug in the code, such as using an undefined value. *(Chapter [46](#46-production-grade-javascript-code-quality-refactoring-and-reliability))*
+- **Promise:** an object representing the eventual result of an asynchronous operation. *(Chapter [24](#24-promises-and-microtasks))*
+- **Promise chaining:** linking `then` calls so each step starts after the previous one, with the previous value. *(Chapter [24](#24-promises-and-microtasks))*
+- **Promise.all:** waits for all promises and gives their values, or rejects with the first failure. *(Chapter [24](#24-promises-and-microtasks))*
+- **Promise.allSettled:** waits for all promises and reports each outcome. *(Chapter [24](#24-promises-and-microtasks))*
+- **Promise.any:** fulfils with the first fulfilled promise, or rejects with an `AggregateError` if all reject. *(Chapter [24](#24-promises-and-microtasks))*
+- **Promise.race:** settles like the first promise to settle. *(Chapter [24](#24-promises-and-microtasks))*
+- **Promisify:** wrap a callback-based function so it returns a promise. *(Chapter [24](#24-promises-and-microtasks))*
+- **Property:** a key–value pair in an object. *(Chapter [9](#9-objects-grouping-data-with-keys))*
+- **Property descriptor:** the hidden settings of a property: `value`, `writable`, `enumerable`, `configurable` (or `get` and `set`). *(Chapter [18](#18-objects-in-depth-copying-property-descriptors-getterssetters-and-immutability))*
+- **Proposal stage:** a feature's maturity level in TC39's process, from 0 (idea) to 4 (finished). *(Chapter [42](#42-modern-javascript-whats-new-in-es2020es2026))*
+- **Prototypal inheritance:** objects reusing behaviour by linking to other objects through prototypes. *(Chapter [19](#19-prototypes-and-prototypal-inheritance))*
+- **Prototype:** the object another object inherits properties from. *(Chapter [19](#19-prototypes-and-prototypal-inheritance))*
+- **Prototype chain:** the sequence of prototypes a property lookup walks through, ending at `null`. *(Chapter [19](#19-prototypes-and-prototypal-inheritance))*
+- **Prototype pollution:** an attack that adds properties to `Object.prototype` through unsafe merging of untrusted data. *(Chapter [35](#35-frontend-security-xss-csrf-csp-prototype-pollution-and-the-supply-chain))*
+- **Proxy:** an object that intercepts operations on another object (its target) through handler functions. *(Chapter [38](#38-proxy-and-reflect))*
+- **Publish/subscribe:** an observer variant where a broker sits between publishers and subscribers. *(Chapter [39](#39-design-patterns-in-javascript))*
+- **Pure function:** a function whose result depends only on its arguments and that has no side effects. *(Chapter [10](#10-functions-declarations-expressions-arrows-and-parameters))*
+
+### Q
+
+- **Quantifier:** says how many times the preceding item may repeat, such as `+` or `{2,4}`. *(Chapter [27](#27-regular-expressions))*
+- **Quota:** the maximum storage an origin may use. *(Chapter [30](#30-browser-storage-localstorage-sessionstorage-cookies-and-indexeddb))*
+
+### R
+
+- **Re-export:** exporting values from another module, as in `export { x } from "./m.mjs"`. *(Chapter [26](#26-modules-import-export-esm-vs-commonjs))*
+- **Reachability:** whether an object can be reached from a root by following references; reachable objects stay alive. *(Chapter [40](#40-memory-management-garbage-collection-and-leaks))*
+- **Reactivity:** automatically updating dependent code or UI when data changes. *(Chapter [38](#38-proxy-and-reflect))*
+- **Reassign:** make an existing variable refer to a new value with `=`. *(Chapter [2](#2-variables-let-const-and-var))*
+- **Receiver:** the object a property access started from (usually the proxy), passed so getters get the right `this`. *(Chapter [38](#38-proxy-and-reflect))*
+- **Recursion:** a function calling itself on a smaller version of the problem. *(Chapter [10](#10-functions-declarations-expressions-arrows-and-parameters))*
+- **ReDoS (regular expression denial of service):** an attack that sends input making a slow regex run for a very long time. *(Chapter [27](#27-regular-expressions))*
+- **reduce:** an array method that combines all elements into one value with an accumulator. *(Chapter [11](#11-array-methods-map-filter-reduce-find-and-friends))*
+- **Refactoring:** changing code's structure without changing its behaviour. *(Chapter [46](#46-production-grade-javascript-code-quality-refactoring-and-reliability))*
+- **Reference:** what an object variable holds: a pointer to the object, not the object itself. *(Chapter [3](#3-data-types-primitives-objects-null-and-undefined))*
+- **Reflect:** a built-in object with functions that perform each operation's default behaviour. *(Chapter [38](#38-proxy-and-reflect))*
+- **Regular expression (regex):** a pattern that describes a set of strings, used to test, find and replace text. *(Chapter [27](#27-regular-expressions))*
+- **Rejected:** a promise's state when it has failed with a reason. *(Chapter [24](#24-promises-and-microtasks))*
+- **Remainder (%):** what's left after whole-number division: `7 % 2` is 1. *(Chapter [4](#4-operators-arithmetic-comparison-logical--and-))*
+- **Render-blocking:** a resource the browser must load before it can paint, such as CSS in the head. *(Chapter [33](#33-how-browsers-render-pages-critical-path-reflow-web-components-and-service-workers))*
+- **Rendering pipeline:** the browser's steps from HTML and CSS to pixels: style, layout, paint, composite. *(Chapter [33](#33-how-browsers-render-pages-critical-path-reflow-web-components-and-service-workers))*
+- **REPL (read-eval-print loop):** an interactive prompt that runs each line as you type it. *(Chapter [1](#1-getting-started-what-javascript-is-and-your-first-program))*
+- **Reproduction:** a reliable way to make a bug happen, ideally minimal. *(Chapter [45](#45-debugging-javascript))*
+- **requestAnimationFrame:** schedules a callback just before the browser's next frame. *(Chapter [33](#33-how-browsers-render-pages-critical-path-reflow-web-components-and-service-workers))*
+- **Reserved word:** a word with a fixed meaning in JavaScript that can't be used as a name, such as `let` or `if`. *(Chapter [2](#2-variables-let-const-and-var))*
+- **ResizeObserver:** reports when elements change size. *(Chapter [31](#31-web-apis-fetch-abortcontroller-url-observers-and-workers))*
+- **Response:** the object for an HTTP response: status, headers and a body read with `json()`, `text()` and similar. *(Chapter [31](#31-web-apis-fetch-abortcontroller-url-observers-and-workers))*
+- **response.ok:** true when the status is from 200 to 299. *(Chapter [31](#31-web-apis-fetch-abortcontroller-url-observers-and-workers))*
+- **Rest element:** `...name` at the end of a pattern, collecting the remaining values. *(Chapter [12](#12-destructuring-spread-and-rest))*
+- **Rest parameter:** a last parameter written `...name` that collects the remaining arguments into an array. *(Chapter [10](#10-functions-declarations-expressions-arrows-and-parameters))*
+- **Retainer:** an object or reference keeping another object alive. *(Chapter [40](#40-memory-management-garbage-collection-and-leaks))*
+- **Rethrow:** throw a caught error again so an outer handler deals with it. *(Chapter [17](#17-error-handling-try-catch-throw-and-finally))*
+- **Return value:** the value a function sends back with `return`; `undefined` if there's none. *(Chapter [10](#10-functions-declarations-expressions-arrows-and-parameters))*
+- **Revalidation:** asking the server whether a cached copy is still current. *(Chapter [34](#34-networking-for-frontend-developers-from-url-to-page-http-caching-and-cors))*
+- **Root:** a starting point for reachability, such as the global object or a variable in an active function. *(Chapter [40](#40-memory-management-garbage-collection-and-leaks))*
+
+### S
+
+- **Safe method:** an HTTP method that doesn't change server state, such as GET. *(Chapter [34](#34-networking-for-frontend-developers-from-url-to-page-http-caching-and-cors))*
+- **Same-origin policy:** the browser rule that a page may only read responses from its own origin. *(Chapter [34](#34-networking-for-frontend-developers-from-url-to-page-http-caching-and-cors))*
+- **SameSite:** a cookie attribute that controls whether the cookie is sent on requests started by other sites. *(Chapter [30](#30-browser-storage-localstorage-sessionstorage-cookies-and-indexeddb))*
+- **Sanitising:** removing dangerous parts from HTML while keeping a safe subset. *(Chapter [35](#35-frontend-security-xss-csrf-csp-prototype-pollution-and-the-supply-chain))*
+- **Schema:** a description of the expected shape and types of data, used to validate it. *(Chapter [46](#46-production-grade-javascript-code-quality-refactoring-and-reliability))*
+- **Scope:** the part of the code where a name exists and can be used. *(Chapter [2](#2-variables-let-const-and-var))*
+- **Scope chain:** the sequence of enclosing scopes searched to find a name. *(Chapter [13](#13-scope-hoisting-and-the-temporal-dead-zone))*
+- **Semantic versioning (semver):** version numbers `MAJOR.MINOR.PATCH`, where a major change may break compatibility. *(Chapter [43](#43-tooling-npm-package-managers-bundlers-linters-and-typescript))*
+- **Sequential:** one operation after another, each waiting for the previous one. *(Chapter [25](#25-asyncawait-asynchronous-code-that-reads-like-normal-code))*
+- **Serialize:** turn a value into text (or bytes) for storing or sending; `JSON.stringify` serializes. *(Chapter [9](#9-objects-grouping-data-with-keys))*
+- **Server-Sent Events (SSE):** a one-way stream of messages from server to page over HTTP. *(Chapter [34](#34-networking-for-frontend-developers-from-url-to-page-http-caching-and-cors))*
+- **Service worker:** a background script that intercepts an origin's network requests, enabling offline use and caching. *(Chapter [33](#33-how-browsers-render-pages-critical-path-reflow-web-components-and-service-workers))*
+- **Session cookie:** a cookie without an expiry, deleted when the browser session ends; also used for the cookie holding a login session. *(Chapter [30](#30-browser-storage-localstorage-sessionstorage-cookies-and-indexeddb))*
+- **sessionStorage:** string storage for one tab, cleared when it closes. *(Chapter [30](#30-browser-storage-localstorage-sessionstorage-cookies-and-indexeddb))*
+- **Set:** a collection of unique values. *(Chapter [21](#21-map-set-weakmap-weakset-and-symbol))*
+- **setInterval:** schedules a function to run repeatedly at an interval until cleared. *(Chapter [23](#23-how-javascript-runs-call-stack-event-loop-timers-and-callbacks))*
+- **Setter:** a function that runs when a property is assigned. *(Chapter [18](#18-objects-in-depth-copying-property-descriptors-getterssetters-and-immutability))*
+- **setTimeout:** schedules a function to run once after a minimum delay. *(Chapter [23](#23-how-javascript-runs-call-stack-event-loop-timers-and-callbacks))*
+- **Settled:** fulfilled or rejected; a settled promise never changes again. *(Chapter [24](#24-promises-and-microtasks))*
+- **Shadow DOM:** an encapsulated DOM subtree with isolated markup and styles. *(Chapter [33](#33-how-browsers-render-pages-critical-path-reflow-web-components-and-service-workers))*
+- **Shadowing:** an inner declaration hiding an outer one with the same name. *(Chapter [13](#13-scope-hoisting-and-the-temporal-dead-zone))*
+- **Shallow copy:** a new array or object whose elements are the same values (so shared objects stay shared). *(Chapter [8](#8-arrays-ordered-lists))*
+- **Short-circuit:** skipping the right side of `&&`, `||` or `??` because the left side already decides the result. *(Chapter [4](#4-operators-arithmetic-comparison-logical--and-))*
+- **Side effect:** anything a function does besides returning a value, such as changing an argument or printing. *(Chapter [10](#10-functions-declarations-expressions-arrows-and-parameters))*
+- **Simple request:** a cross-origin request that doesn't need a preflight. *(Chapter [34](#34-networking-for-frontend-developers-from-url-to-page-http-caching-and-cors))*
+- **Singleton:** an object with exactly one shared instance. *(Chapter [39](#39-design-patterns-in-javascript))*
+- **Software supply chain:** all the third-party code and tools that go into building and running your software. *(Chapter [35](#35-frontend-security-xss-csrf-csp-prototype-pollution-and-the-supply-chain))*
+- **Source map:** a file mapping transformed code back to the original source. *(Chapter [43](#43-tooling-npm-package-managers-bundlers-linters-and-typescript))*
+- **Sparse array:** an array with holes: indexes with no element at all. *(Chapter [47](#47-polyfills-and-implement-it-yourself-questions))*
+- **Spread:** `...value` inside a literal or call, expanding an array or object into its elements or properties. *(Chapter [12](#12-destructuring-spread-and-rest))*
+- **Spread syntax:** `...` before an array (or other iterable) inside `[ ]` or a call, expanding it into separate elements. *(Chapter [8](#8-arrays-ordered-lists))*
+- **Stable sort:** a sort that keeps equal elements in their original order. *(Chapter [10](#10-functions-declarations-expressions-arrows-and-parameters))*
+- **Stack:** the memory region holding active function calls' frames. *(Chapter [40](#40-memory-management-garbage-collection-and-leaks))*
+- **Stack frame:** the record of one function call on the call stack: its arguments, local variables and return point. *(Chapter [23](#23-how-javascript-runs-call-stack-event-loop-timers-and-callbacks))*
+- **Stack trace:** the list of function calls active when an error was created, stored in `err.stack`. *(Chapter [17](#17-error-handling-try-catch-throw-and-finally))*
+- **Statement:** one complete instruction, usually ending with `;`. *(Chapter [1](#1-getting-started-what-javascript-is-and-your-first-program))*
+- **Static member:** a property or method that belongs to the class itself, not to instances. *(Chapter [20](#20-classes-fields-private-members-static-inheritance-and-oop))*
+- **Static types:** types checked before the program runs. *(Chapter [43](#43-tooling-npm-package-managers-bundlers-linters-and-typescript))*
+- **Status code:** the three-digit number in an HTTP response, such as 200 (OK) or 404 (Not Found). *(Chapter [31](#31-web-apis-fetch-abortcontroller-url-observers-and-workers))*
+- **Step over / into / out:** debugger commands to run the current line, enter the called function, or finish the current one. *(Chapter [45](#45-debugging-javascript))*
+- **Strategy pattern:** interchangeable algorithms chosen at run time behind one interface. *(Chapter [39](#39-design-patterns-in-javascript))*
+- **Stream:** data delivered and processed in chunks over time. *(Chapter [32](#32-files-blobs-binary-data-and-streams))*
+- **Strict equality (===):** true when two values have the same type and value, without conversion. *(Chapter [4](#4-operators-arithmetic-comparison-logical--and-))*
+- **Strict mode:** a stricter variant of JavaScript, always on in modules and classes, that turns silent mistakes into errors. *(Chapter [13](#13-scope-hoisting-and-the-temporal-dead-zone))*
+- **String:** a sequence of characters; immutable. *(Chapter [7](#7-strings-and-template-literals))*
+- **Structured logging:** writing logs as machine-readable records (usually JSON) with named fields. *(Chapter [46](#46-production-grade-javascript-code-quality-refactoring-and-reliability))*
+- **structuredClone:** a built-in function that makes a deep copy of most values. *(Chapter [18](#18-objects-in-depth-copying-property-descriptors-getterssetters-and-immutability))*
+- **Subresource Integrity (SRI):** an `integrity` attribute with a file's hash, so the browser refuses a modified file. *(Chapter [35](#35-frontend-security-xss-csrf-csp-prototype-pollution-and-the-supply-chain))*
+- **super:** calls the parent class's constructor (`super(…)`) or methods (`super.m()`). *(Chapter [20](#20-classes-fields-private-members-static-inheritance-and-oop))*
+- **switch:** a statement that jumps to the `case` matching a value. *(Chapter [5](#5-decisions-if-else-switch-and-the-ternary-operator))*
+- **Symbol:** a unique primitive value, often used as a property key that can't clash with others. *(Chapter [21](#21-map-set-weakmap-weakset-and-symbol))*
+- **Symbol.dispose:** the method `using` calls to release a resource. *(Chapter [42](#42-modern-javascript-whats-new-in-es2020es2026))*
+
+### T
+
+- **Tagged template:** a template literal preceded by a function name, which calls the function with the literal parts and values separately. *(Chapter [35](#35-frontend-security-xss-csrf-csp-prototype-pollution-and-the-supply-chain))*
+- **tap:** a helper that runs a side effect on a value and passes the value on unchanged. *(Chapter [36](#36-functional-programming-pure-functions-immutability-currying-and-composition))*
+- **Target:** the object a proxy wraps. *(Chapter [38](#38-proxy-and-reflect))*
+- **Task queue:** the queue where callbacks wait until the event loop runs them; also called the macrotask queue. *(Chapter [23](#23-how-javascript-runs-call-stack-event-loop-timers-and-callbacks))*
+- **TC39:** the committee that evolves the ECMAScript standard. *(Chapter [42](#42-modern-javascript-whats-new-in-es2020es2026))*
+- **Template literal:** a string in backticks that can contain `${…}` expressions and span lines. *(Chapter [7](#7-strings-and-template-literals))*
+- **Temporal:** the modern, immutable date and time API replacing `Date`. *(Chapter [28](#28-dates-time-zones-numbers-and-intl))*
+- **Temporal dead zone (TDZ):** the part of a scope before a `let`, `const` or `class` declaration, where using the name throws. *(Chapter [13](#13-scope-hoisting-and-the-temporal-dead-zone))*
+- **Ternary operator:** `condition ? a : b`, an expression that gives `a` if the condition is truthy and `b` otherwise. *(Chapter [5](#5-decisions-if-else-switch-and-the-ternary-operator))*
+- **Test runner:** a program that finds, runs and reports tests, such as `node --test`. *(Chapter [44](#44-testing-javascript-unit-integration-and-end-to-end))*
+- **Testing pyramid:** the guideline to have many unit tests, fewer integration tests and few E2E tests. *(Chapter [44](#44-testing-javascript-unit-integration-and-end-to-end))*
+- **textContent:** an element's text, set safely as plain text. *(Chapter [29](#29-the-dom-and-events))*
+- **this:** a special name inside functions that refers to the object the function was called on (or as set by `call`, `apply`, `bind` or `new`). *(Chapter [15](#15-the-this-keyword-call-apply-and-bind))*
+- **Thread:** a single sequence of execution; JavaScript runs your code on one. *(Chapter [23](#23-how-javascript-runs-call-stack-event-loop-timers-and-callbacks))*
+- **Throttle:** run a function at most once per time interval, however often it's called. *(Chapter [37](#37-debounce-and-throttle))*
+- **throw:** a statement that raises an error (or any value) at that point. *(Chapter [17](#17-error-handling-try-catch-throw-and-finally))*
+- **Time zone:** a region's rules for its offset from UTC, including daylight saving changes. *(Chapter [28](#28-dates-time-zones-numbers-and-intl))*
+- **Timestamp:** a moment in time as a number, in JavaScript the milliseconds since the Unix epoch. *(Chapter [28](#28-dates-time-zones-numbers-and-intl))*
+- **TLS (Transport Layer Security):** the encryption and certificate checks behind HTTPS. *(Chapter [34](#34-networking-for-frontend-developers-from-url-to-page-http-caching-and-cors))*
+- **Top-level await:** using `await` directly at the top level of a module. *(Chapter [25](#25-asyncawait-asynchronous-code-that-reads-like-normal-code))*
+- **toString:** the method JavaScript calls to turn an object into a string. *(Chapter [16](#16-type-conversion-coercion-and--vs-))*
+- **Trailing edge:** running once more after a burst or interval ends, with the latest arguments. *(Chapter [37](#37-debounce-and-throttle))*
+- **Transaction:** a group of database operations that succeed or fail together. *(Chapter [30](#30-browser-storage-localstorage-sessionstorage-cookies-and-indexeddb))*
+- **Transferable:** data, such as an ArrayBuffer, that can be moved to another thread instead of copied. *(Chapter [31](#31-web-apis-fetch-abortcontroller-url-observers-and-workers))*
+- **Transient error:** a temporary failure that may succeed if retried. *(Chapter [46](#46-production-grade-javascript-code-quality-refactoring-and-reliability))*
+- **Transpiler:** a tool that rewrites code from newer syntax into older syntax. *(Chapter [42](#42-modern-javascript-whats-new-in-es2020es2026))*
+- **Trap:** a handler method that intercepts one kind of operation, such as `get` or `set`. *(Chapter [38](#38-proxy-and-reflect))*
+- **Tree shaking:** removing exports that nothing imports. *(Chapter [43](#43-tooling-npm-package-managers-bundlers-linters-and-typescript))*
+- **Truthy:** any value that isn't falsy. *(Chapter [4](#4-operators-arithmetic-comparison-logical--and-))*
+- **try...catch:** a statement that runs a block and handles any error thrown inside it. *(Chapter [17](#17-error-handling-try-catch-throw-and-finally))*
+- **Type:** the kind of a value, which decides what you can do with it; `typeof` names it. *(Chapter [3](#3-data-types-primitives-objects-null-and-undefined))*
+- **Type conversion:** changing a value from one type to another. *(Chapter [16](#16-type-conversion-coercion-and--vs-))*
+- **Type feedback:** information the engine records about the types an operation actually sees, used to optimise it. *(Chapter [41](#41-performance-how-v8-runs-your-code-and-how-to-make-it-fast))*
+- **Typed array:** an array-like view that reads an ArrayBuffer as numbers of one type, such as `Uint8Array`. *(Chapter [32](#32-files-blobs-binary-data-and-streams))*
+- **TypeScript:** JavaScript with static type annotations checked by a compiler. *(Chapter [43](#43-tooling-npm-package-managers-bundlers-linters-and-typescript))*
+- **Typosquatting:** publishing malicious packages with names similar to popular ones. *(Chapter [35](#35-frontend-security-xss-csrf-csp-prototype-pollution-and-the-supply-chain))*
+
+### U
+
+- **undefined:** the value of anything not yet assigned. *(Chapter [3](#3-data-types-primitives-objects-null-and-undefined))*
+- **Unhandled rejection:** a rejected promise that no handler catches. *(Chapter [24](#24-promises-and-microtasks))*
+- **Unit test:** a test of one function or class in isolation. *(Chapter [44](#44-testing-javascript-unit-integration-and-end-to-end))*
+- **Unix epoch:** 1 January 1970, 00:00:00 UTC, the zero point of timestamps. *(Chapter [28](#28-dates-time-zones-numbers-and-intl))*
+- **Untrusted data:** any data that comes from outside your code, such as user input, URLs, API responses or storage. *(Chapter [35](#35-frontend-security-xss-csrf-csp-prototype-pollution-and-the-supply-chain))*
+- **URL:** a built-in class for parsing and building web addresses. *(Chapter [31](#31-web-apis-fetch-abortcontroller-url-observers-and-workers))*
+- **URLSearchParams:** a built-in class for reading and building query strings. *(Chapter [31](#31-web-apis-fetch-abortcontroller-url-observers-and-workers))*
+- **UTC (Coordinated Universal Time):** the world's reference time, with no time-zone offset. *(Chapter [28](#28-dates-time-zones-numbers-and-intl))*
+- **UTF-16:** the encoding JavaScript strings use: each character is one or two 16-bit code units. *(Chapter [7](#7-strings-and-template-literals))*
+- **UTF-8:** the encoding that stores each character in 1 to 4 bytes, with English letters in 1. *(Chapter [32](#32-files-blobs-binary-data-and-streams))*
+
+### V
+
+- **valueOf:** the method JavaScript calls to get an object's primitive value, usually for numbers. *(Chapter [16](#16-type-conversion-coercion-and--vs-))*
+- **var:** the old way to declare variables; ignores blocks and allows redeclaring. *(Chapter [2](#2-variables-let-const-and-var))*
+- **Variable:** a name that refers to a value. *(Chapter [2](#2-variables-let-const-and-var))*
+- **Version range:** a pattern such as `^4.1.0` describing which versions are acceptable. *(Chapter [43](#43-tooling-npm-package-managers-bundlers-linters-and-typescript))*
+
+### W
+
+- **Weak reference:** a reference that doesn't stop the garbage collector from removing the object. *(Chapter [21](#21-map-set-weakmap-weakset-and-symbol))*
+- **WeakMap:** a Map whose keys are objects held weakly, so entries disappear when the key object is no longer used elsewhere. *(Chapter [21](#21-map-set-weakmap-weakset-and-symbol))*
+- **WeakRef:** a reference that doesn't keep its object alive. *(Chapter [40](#40-memory-management-garbage-collection-and-leaks))*
+- **WeakSet:** a Set of objects held weakly. *(Chapter [21](#21-map-set-weakmap-weakset-and-symbol))*
+- **Web Components:** browser-native reusable components built from custom elements, shadow DOM and templates. *(Chapter [33](#33-how-browsers-render-pages-critical-path-reflow-web-components-and-service-workers))*
+- **Web Storage:** the `localStorage` and `sessionStorage` APIs, storing string key–value pairs. *(Chapter [30](#30-browser-storage-localstorage-sessionstorage-cookies-and-indexeddb))*
+- **Web Worker:** a script running on a background thread, communicating with the page by messages. *(Chapter [31](#31-web-apis-fetch-abortcontroller-url-observers-and-workers))*
+- **WebSocket:** a persistent two-way connection between page and server. *(Chapter [34](#34-networking-for-frontend-developers-from-url-to-page-http-caching-and-cors))*
+- **Well-known symbol:** a built-in symbol such as `Symbol.iterator` that lets objects plug into language features. *(Chapter [21](#21-map-set-weakmap-weakset-and-symbol))*
+- **while loop:** a loop that repeats as long as its condition is truthy. *(Chapter [6](#6-loops-for-while-dowhile-break-and-continue))*
+- **Wrapper:** a function that takes a function and returns a new one that adds behaviour around it. *(Chapter [14](#14-closures))*
+
+### X
+
+- **XSS (cross-site scripting):** an attack that gets attacker-controlled script to run in another site's pages. *(Chapter [35](#35-frontend-security-xss-csrf-csp-prototype-pollution-and-the-supply-chain))*
+
+### Y
+
+- **yield:** hands out one value from a generator and pauses it until `next()` is called again. *(Chapter [22](#22-iterators-generators-and-iterator-helpers))*
 
 ---
