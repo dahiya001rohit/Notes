@@ -12,7 +12,7 @@ Complete notes from absolute basics to production and interviews. Every topic ha
 | [Node.js](nodejs.md) | Node.js backends from zero in five levels (Basic → Easy → Moderate → Advanced → Interview Prep): modules, npm, env config, files, HTTP; the event loop, async patterns, streams; Express 5, REST design, Zod validation and OpenAPI, authentication (sessions, JWT, password hashing), authorisation and OWASP API security, Fastify/Hono/NestJS; PostgreSQL, MongoDB, Redis caching, file uploads, BullMQ queues, WebSockets and SSE, webhooks and payments; worker threads, resilience, observability, testing, LLM-powered streaming endpoints, graceful shutdown and Docker, architecture, system design, profiling and modern Node. Every example runs on Node.js 24 against real PostgreSQL and Redis | 35 | 5,848 |
 | [Python](python.md) | Python from absolute zero in five levels (Basic → Easy → Moderate → Advanced → Interview Prep): variables, numbers, strings, decisions and loops; lists, dicts, sets, comprehensions and functions; errors, files, modules and uv, the standard library, classes, dataclasses and type hints; decorators, generators, context managers, regex, Pythonic style, pytest and logging; internals, descriptors, threads, processes, free-threading, asyncio, performance, databases and scripting; production tooling, packaging and what's new in 3.12–3.14. Every example runs on Python 3.14 with real output | 44 | 6,977 |
 | [FastAPI](fastapi.md) | Production APIs with FastAPI from zero in five levels (Basic → Easy → Moderate → Advanced → Interview Prep): HTTP and REST, routes, parameters and Pydantic bodies; response models, errors, forms/files and routers; dependency injection, async, settings and lifespan, SQLAlchemy 2.0, JWT auth and authorisation, CORS, testing; pagination, background jobs, WebSockets, SSE streaming for LLMs, webhooks, caching and rate limits; API design, OWASP API Top 10, observability, deployment and serving ML/LLM models. Every response shown was produced by the app (FastAPI 0.141, Python 3.14) | 33 | 4,853 |
-| [DSA in Python](dsa-python.md) | Data structures & algorithms from absolute zero in five levels (Basic → Easy → Moderate → Advanced → Interview Prep): Python basics, pattern printing and number theory first, then arrays, hashing, techniques, linked lists, trees, graphs, DP, string algorithms, segment trees, max flow, the algorithms inside real systems (Bloom filters, consistent hashing, B-trees, vector search) and recent breakthroughs, plus a checklist of what top companies ask. Every topic: simple explanation, diagram, tested Python, practice | 60 | 8,364 |
+| [DSA in Python](dsa-python.md) | Data structures and algorithms in Python as a step-by-step book, from the first loop to interviews, in 61 chapters and 11 parts: Python basics, loops, dry runs and pattern printing; maths for programmers (digits, divisors and primes, GCD, the sieve, series, fast power, modulo, binary); Big-O with its definition, recursion, lists, strings, the basic sorts, binary search, hashing (with a hash table built by hand) and Python's cost model; problem-solving techniques (two pointers, sliding window, prefix sums, Kadane, matrices, intervals, binary search on the answer, merge sort, quick sort and quickselect); classes and nodes, linked lists, stacks, queues and design problems (LRU cache); binary trees, BSTs, heaps and tries; graphs (BFS, DFS, cycles, bipartite, Dijkstra and A*, topological sort, union-find, MST, Bellman-Ford, Floyd-Warshall); backtracking, greedy, dynamic programming and bits; KMP and rolling hashes, segment and Fenwick trees, bridges, SCCs and max flow; randomised algorithms, Bloom filters and sketches, consistent hashing, B+ and LSM trees, vector search and 2022–2026 breakthroughs; an interview checklist, a pattern cheat sheet, theory questions and a generated glossary. Every cost is derived (proofs in fold-outs), nothing is used before it's taught, every output is real; graded LeetCode practice | 61 | 13,625 |
 | [SQL & PostgreSQL](sql-postgresql.md) | SQL from zero in five levels (Basic → Easy → Moderate → Advanced → Interview Prep): tables and queries, joins, CTEs, design and normalisation, window functions, transactions and MVCC, indexes and query plans, JSONB, full-text search, pgvector for AI, security, Python (psycopg, SQLAlchemy), backups, replication, scaling, PostgreSQL 17/18, and classic interview problems. Every query run on PostgreSQL with real output | 34 | 5,291 |
 | [Data Science](data-science.md) | The Python data toolkit as a step-by-step book, from absolute zero to interviews, in 70 chapters and 10 parts: Python for data, tidy tables and reading files by hand; NumPy (arrays in memory, dtypes, indexing, masks, ufuncs, axes, broadcasting, simulation, linear algebra); pandas 3 (Series, DataFrames, files, SQL and APIs, loc/iloc, filtering, ranking, new columns, method chaining and copy-on-write); cleaning (missing values, duplicates and types, regex, categories, outliers, pandera validation); analysis (groupby, transform, merges and their pitfalls, pivot and melt, MultiIndex, dates and time zones, time series); speed and size (profiling, memory, Arrow, Polars, DuckDB); charts (Matplotlib, seaborn, Plotly, honest charts); statistics with the maths derived (descriptive statistics, correlation and causation, Bayes, distributions, the CLT, confidence intervals and the bootstrap, hypothesis tests, A/B testing with power, regression with statsmodels); a full EDA, feature engineering without leakage, pipelines, communicating results; interview problems, a cheat sheet and a generated glossary. Nothing is used before the chapter that teaches it; every output and chart is real; graded LeetCode pandas and Deep-ML practice | 70 | 11,788 |
 | [Machine Learning](machine-learning.md) | Machine learning as a step-by-step book in 10 parts, where **nothing is used before the chapter that teaches it** and every model is built by hand first: the maths derived line by line on small numbers, then plain NumPy, then the scikit-learn version as a check. Foundations (vectors, derivatives and the chain rule, gradient descent, likelihood and Bayes) → first models (linear, logistic and softmax regression, metrics, ROC/PR and thresholds, k-NN and scaling, bias–variance, ridge/lasso derived, momentum and Adam, baselines; scikit-learn introduced in its own chapter) → working properly (pipelines, missing values and encoding, cross-validation, tuning, learning curves, feature selection, leakage, a complete project) → trees (Gini by hand), forests, gradient boosting from scratch, XGBoost's leaf maths, SVM margin and kernels derived, Naive Bayes, stacking → k-means, DBSCAN, GMMs with EM, PCA from eigenvectors, t-SNE/UMAP, anomaly detection → imbalance, calibration and cost thresholds, forecasting, text, matrix factorisation → importance, SHAP from Shapley values, debugging, fairness → joblib/skops/ONNX, FastAPI, MLflow, feature stores and skew, drift (PSI), system design → ranking and bandits, 2022–2026 tools, conformal intervals → interview coding, cheat sheet, questions and a generated glossary. Every example run with real output | 60 | 13,759 |
@@ -20,7 +20,7 @@ Complete notes from absolute basics to production and interviews. Every topic ha
 | [LLM Engineering](llm-engineering.md) | Building applications with large language models, from zero, in five levels (Basic → Easy → Moderate → Advanced → Interview Prep): how LLMs work and are trained, tokens and cost, the Claude API from Python (messages, streaming, errors, refusals), prompt engineering, structured outputs, tool use, embeddings and vector search, prompt caching and batching, images and PDFs, evaluation and LLM-as-judge, hallucinations and prompt injection, fine-tuning (SFT, DPO, LoRA), reasoning models, open-weight models and vLLM, LLMOps and LLM system design. Local examples run with real output; API code checked against the official SDK | 21 | 3,167 |
 | [RAG and AI Agents](rag-and-agents.md) | Retrieval-augmented generation and agentic AI, from zero, in five levels (Basic → Easy → Moderate → Advanced → Interview Prep): RAG from scratch, loading and chunking, BM25 and vector search, hybrid search, reranking and query rewriting, RAG evaluation, vectorless RAG (full-text, text-to-SQL, tree navigation, agentic search, long context), contextual retrieval, parent documents and GraphRAG, production RAG (freshness, permissions, injection), LangChain, LangGraph, the agent loop, tools, memory and context engineering, agents with LangGraph, multi-agent systems, MCP, agent evaluation and security, and system design. Examples run locally with real output; API code checked against the official SDKs | 21 | 3,936 |
 | [Best Practices](best-practices.md) | Engineering habits across the stack in five levels (Basic → Easy → Moderate → Advanced → Interview Prep): principles, naming, functions, immutability, control flow, docs; error handling, validation, money/dates/text, async safety, project structure; SOLID and TypeScript/React/Node/Python/FastAPI practices; API design, databases, security, testing, performance, observability, config and secrets, accessibility, dependencies; Git and code review, fixing history, CI/CD, feature flags, incident response, AI coding assistants; the Gotchas Hall of Fame, checklists and interview questions. Examples run on TypeScript 7/Node 24, Python 3.14, PostgreSQL 16 and Git | 35 | 6,512 |
-| **Total** | | **641** | **122,065** |
+| **Total** | | **642** | **127,326** |
 
 ## How every file is organized
 
@@ -180,7 +180,7 @@ Go through these in order in the last week before an interview; for each topic, 
 - **JavaScript:** [Polyfills and "Implement It Yourself" Questions](javascript.md#47-polyfills-and-implement-it-yourself-questions)
 - **Node.js:** [Databases from Node: PostgreSQL, Pools, Transactions, SQL Injection and ORMs](nodejs.md#16-databases-from-node-postgresql-pools-transactions-sql-injection-and-orms)
 - **Python:** [Python's Toolbox for Data Structures and Algorithms](python.md#40-pythons-toolbox-for-data-structures-and-algorithms) · [Interview Coding: Classic Python Problems](python.md#41-interview-coding-classic-python-problems)
-- **DSA in Python:** [Interview Topic Checklist: What Top Companies Ask](dsa-python.md#58-interview-topic-checklist-what-top-companies-ask) · [Pattern Cheat Sheet: Which Technique When?](dsa-python.md#59-pattern-cheat-sheet-which-technique-when) · [Most Asked DSA Theory Questions](dsa-python.md#60-most-asked-dsa-theory-questions)
+- **DSA in Python:** [Interview Topic Checklist: What Top Companies Ask](dsa-python.md#58-interview-topic-checklist-what-top-companies-ask) · [Pattern Cheat Sheet: Which Technique When?](dsa-python.md#59-pattern-cheat-sheet-which-technique-when) · [The Most Asked DSA Theory Questions](dsa-python.md#60-the-most-asked-dsa-theory-questions)
 - **React:** [Interview Coding: Hooks and Utilities from Scratch](react.md#70-interview-coding-hooks-and-utilities-from-scratch) · [Machine Coding Round: Classic Components, Built and Tested](react.md#71-machine-coding-round-classic-components-built-and-tested) · [Interview Topic Checklist: What Companies Ask (React)](react.md#73-interview-topic-checklist-what-companies-ask-react) · [React Cheat Sheet](react.md#74-react-cheat-sheet)
 - **TypeScript:** [Type Challenges: Implement the Utility Types Yourself](typescript.md#37-type-challenges-implement-the-utility-types-yourself)
 - **SQL & PostgreSQL:** [Classic SQL Interview Problems (with Solutions)](sql-postgresql.md#32-classic-sql-interview-problems-with-solutions) · [SQL and PostgreSQL Cheat Sheet](sql-postgresql.md#33-sql-and-postgresql-cheat-sheet) · [Most Asked SQL and Database Theory Questions](sql-postgresql.md#34-most-asked-sql-and-database-theory-questions)
@@ -657,9 +657,10 @@ Go through these in order in the last week before an interview; for each topic, 
 </details>
 
 <details>
-<summary><b>DSA in Python</b> — 60 sections in 11 parts</summary>
+<summary><b>DSA in Python</b> — 61 chapters in 11 parts</summary>
 
-**Part 1 — Basic: Programming Fundamentals**
+
+**Part I — Programming Fundamentals**
 
 1. [How to Use These Notes](dsa-python.md#1-how-to-use-these-notes)
 2. [Python Basics: Values, Variables, Decisions and Functions](dsa-python.md#2-python-basics-values-variables-decisions-and-functions)
@@ -668,7 +669,7 @@ Go through these in order in the last week before an interview; for each topic, 
 5. [Pattern Printing II: Pyramids, Diamonds and Hollow Shapes](dsa-python.md#5-pattern-printing-ii-pyramids-diamonds-and-hollow-shapes)
 6. [Pattern Printing III: Number and Letter Patterns](dsa-python.md#6-pattern-printing-iii-number-and-letter-patterns)
 
-**Part 2 — Basic: Maths for Programmers**
+**Part II — Maths for Programmers**
 
 7. [Working with Digits](dsa-python.md#7-working-with-digits)
 8. [Divisors and Prime Numbers](dsa-python.md#8-divisors-and-prime-numbers)
@@ -677,7 +678,7 @@ Go through these in order in the last week before an interview; for each topic, 
 11. [Maths Toolbox: Series, Factorials, Fibonacci, Powers and Modulo](dsa-python.md#11-maths-toolbox-series-factorials-fibonacci-powers-and-modulo)
 12. [Number Systems: Decimal and Binary](dsa-python.md#12-number-systems-decimal-and-binary)
 
-**Part 3 — Easy: Core Data Structures and Algorithms**
+**Part III — Core Data Structures and Algorithms**
 
 13. [Big-O: How Fast Is My Code?](dsa-python.md#13-big-o-how-fast-is-my-code)
 14. [Recursion Basics](dsa-python.md#14-recursion-basics)
@@ -688,7 +689,7 @@ Go through these in order in the last week before an interview; for each topic, 
 19. [Hashing: Dictionaries and Sets](dsa-python.md#19-hashing-dictionaries-and-sets)
 20. [Python's Cost Model: What Each Operation Costs](dsa-python.md#20-pythons-cost-model-what-each-operation-costs)
 
-**Part 4 — Moderate: Problem-Solving Techniques**
+**Part IV — Problem-Solving Techniques**
 
 21. [How to Attack a New Problem](dsa-python.md#21-how-to-attack-a-new-problem)
 22. [Two Pointers](dsa-python.md#22-two-pointers)
@@ -700,7 +701,7 @@ Go through these in order in the last week before an interview; for each topic, 
 28. [Binary Search on the Answer](dsa-python.md#28-binary-search-on-the-answer)
 29. [Merge Sort and Quick Sort](dsa-python.md#29-merge-sort-and-quick-sort)
 
-**Part 5 — Moderate: Linked Lists, Stacks, Queues and Design**
+**Part V — Linked Lists, Stacks, Queues and Design**
 
 30. [Classes, Objects and Nodes](dsa-python.md#30-classes-objects-and-nodes)
 31. [Linked Lists](dsa-python.md#31-linked-lists)
@@ -709,7 +710,7 @@ Go through these in order in the last week before an interview; for each topic, 
 34. [Queues and Deques](dsa-python.md#34-queues-and-deques)
 35. [Design Problems: Min Stack, Queue from Stacks, LRU Cache](dsa-python.md#35-design-problems-min-stack-queue-from-stacks-lru-cache)
 
-**Part 6 — Moderate: Trees and Heaps**
+**Part VI — Trees and Heaps**
 
 36. [Binary Trees and Traversals](dsa-python.md#36-binary-trees-and-traversals)
 37. [Binary Tree Interview Problems](dsa-python.md#37-binary-tree-interview-problems)
@@ -717,7 +718,7 @@ Go through these in order in the last week before an interview; for each topic, 
 39. [Heaps and Priority Queues](dsa-python.md#39-heaps-and-priority-queues)
 40. [Tries (Prefix Trees)](dsa-python.md#40-tries-prefix-trees)
 
-**Part 7 — Advanced: Graphs**
+**Part VII — Graphs**
 
 41. [Graphs: Representation, BFS and DFS](dsa-python.md#41-graphs-representation-bfs-and-dfs)
 42. [Graph Problems: Cycles, Bipartite Graphs and Multi-Source BFS](dsa-python.md#42-graph-problems-cycles-bipartite-graphs-and-multi-source-bfs)
@@ -726,7 +727,7 @@ Go through these in order in the last week before an interview; for each topic, 
 45. [Union-Find (Disjoint Set Union)](dsa-python.md#45-union-find-disjoint-set-union)
 46. [Minimum Spanning Trees, Bellman-Ford and Floyd-Warshall](dsa-python.md#46-minimum-spanning-trees-bellman-ford-and-floyd-warshall)
 
-**Part 8 — Advanced: Algorithm Design**
+**Part VIII — Algorithm Design**
 
 47. [Backtracking](dsa-python.md#47-backtracking)
 48. [Greedy Algorithms](dsa-python.md#48-greedy-algorithms)
@@ -734,23 +735,24 @@ Go through these in order in the last week before an interview; for each topic, 
 50. [Dynamic Programming II: Knapsack, Subsequences, Strings and Intervals](dsa-python.md#50-dynamic-programming-ii-knapsack-subsequences-strings-and-intervals)
 51. [Bit Manipulation](dsa-python.md#51-bit-manipulation)
 
-**Part 9 — Advanced: Specialised Topics**
+**Part IX — Specialised Topics**
 
 52. [String Algorithms: Palindromes, KMP and Rabin-Karp](dsa-python.md#52-string-algorithms-palindromes-kmp-and-rabin-karp)
 53. [Range Queries with Updates: Fenwick Trees and Segment Trees](dsa-python.md#53-range-queries-with-updates-fenwick-trees-and-segment-trees)
 54. [Advanced Graphs: Bridges, Strongly Connected Components and Max Flow](dsa-python.md#54-advanced-graphs-bridges-strongly-connected-components-and-max-flow)
 
-**Part 10 — Advanced: Algorithms in the Real World (2026)**
+**Part X — Algorithms in the Real World**
 
 55. [Randomised and Streaming Algorithms: Shuffling, Sampling, Bloom Filters and Sketches](dsa-python.md#55-randomised-and-streaming-algorithms-shuffling-sampling-bloom-filters-and-sketches)
 56. [Algorithms Behind Real Systems: Consistent Hashing, Rate Limiters, B-Trees, LSM Trees and Vector Search](dsa-python.md#56-algorithms-behind-real-systems-consistent-hashing-rate-limiters-b-trees-lsm-trees-and-vector-search)
 57. [What's New: Recent Breakthroughs and Modern Practice (2022–2026)](dsa-python.md#57-whats-new-recent-breakthroughs-and-modern-practice-20222026)
 
-**Part 11 — Interview Prep: Revision**
+**Part XI — Interview Prep**
 
 58. [Interview Topic Checklist: What Top Companies Ask](dsa-python.md#58-interview-topic-checklist-what-top-companies-ask)
 59. [Pattern Cheat Sheet: Which Technique When?](dsa-python.md#59-pattern-cheat-sheet-which-technique-when)
-60. [Most Asked DSA Theory Questions](dsa-python.md#60-most-asked-dsa-theory-questions)
+60. [The Most Asked DSA Theory Questions](dsa-python.md#60-the-most-asked-dsa-theory-questions)
+61. [Glossary: Every Term in These Notes](dsa-python.md#61-glossary-every-term-in-these-notes)
 
 </details>
 
