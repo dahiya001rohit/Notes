@@ -184,7 +184,7 @@ study loop: read → type and run → trace by hand → exercises → LeetCode (
 - **Data structure:** a way of organising data so the operations you need are fast.
 - **Algorithm:** a precise, finite sequence of steps that solves a problem.
 
-### Exercises
+**Exercises**
 
 1. Name a data structure from everyday life not mentioned above, and the operation it makes fast.
 
@@ -386,7 +386,7 @@ list: xs[0], xs[-1], len(xs), xs.append(v);  f"{value}";  int(input())
 - **Index:** the position of an item in a list or string, starting at 0.
 - **f-string:** a string starting with `f` whose `{…}` parts are replaced by values.
 
-### Exercises
+**Exercises**
 
 1. Write `max_of_three(a, b, c)` using only `if`/`else` (no `max`).
 2. Write `last_digit(n)` and `without_last_digit(n)` for a positive `n`.
@@ -601,7 +601,7 @@ dry run: a trace table of every variable after every step
 - **Trace table:** a table of each variable's value after each step of a dry run.
 - **Off-by-one error:** a bug where a loop runs one time too many or too few.
 
-### Exercises
+**Exercises**
 
 1. Print the multiplication table of 7 (7 x 1 = 7 … 7 x 10 = 70).
 2. Write `count_multiples(n, k)`: how many numbers in 1 … n are divisible by k?
@@ -815,7 +815,7 @@ square: n × n;  triangle: i per row;  inverted: count i down;  "* " * i repeats
 - **Row table:** a table of what each row prints, used to find the rule for the inner loop.
 - **String repetition:** `s * k`, which joins k copies of the string s.
 
-### Exercises
+**Exercises**
 
 1. A rectangle of `#` with `rows` rows and `cols` columns.
 2. Each row counts down from `i` to 1 (`3 2 1` in row 3).
@@ -1016,7 +1016,7 @@ hollow: inside the inner loop, if on the border → "*", else " "
 - **Helper function:** a small function that names one step of a bigger task, so it can be reused.
 - **Hollow shape:** a pattern that prints only the border, using a condition inside the inner loop.
 
-### Exercises
+**Exercises**
 
 1. An upside-down right-aligned triangle (stars lined up on the right edge).
 2. A hollow right triangle.
@@ -1209,7 +1209,7 @@ Pascal: next = [1] + [row[j-1] + row[j] for neighbours] + [1];  row n = C(n, k)
 - **Character code:** the number that represents a character; `ord` gets it and `chr` turns it back.
 - **Pascal's triangle:** a triangle where each number is the sum of the two above it; row n holds the binomial coefficients C(n, k).
 
-### Exercises
+**Exercises**
 
 1. A "reverse Floyd" triangle counting down from n(n + 1)/2 to 1.
 2. Row `i` has the letters from the i-th letter back to A (`C B A` in row 3).
@@ -1442,7 +1442,7 @@ palindrome: n == reverse(n);  Armstrong: Σ digitᵏ == n;  digital root = 1 + (
 - **Check digit:** an extra digit computed from the others so that typing mistakes can be detected.
 - **Luhn algorithm:** the check-digit method used for credit-card numbers.
 
-### Exercises
+**Exercises**
 
 1. Write `product_of_digits(n)` (234 → 24) and `largest_digit(n)`.
 2. Check `digital_root(n) == 1 + (n - 1) % 9` for every n from 1 to 10,000.
@@ -1641,7 +1641,7 @@ perfect: sum of proper divisors == n (6, 28, 496, 8128)
 - **Proper divisor:** any divisor of n other than n itself.
 - **Perfect number:** a number equal to the sum of its proper divisors.
 
-### Exercises
+**Exercises**
 
 1. Write `count_divisors(n)` with the √n idea (12 has 6 divisors, 36 has 9).
 2. Write `next_prime(n)`, the smallest prime bigger than n, and list the twin primes (p, p + 2) below 50.
@@ -1806,7 +1806,7 @@ import math: math.gcd, math.lcm, math.isqrt
 - **Coprime:** two numbers whose GCD is 1.
 - **Module:** a file of Python code, such as `math`, loaded with `import`.
 
-### Exercises
+**Exercises**
 
 1. Two buses leave together; one returns every 12 minutes, the other every 18. When do they next leave together?
 2. Write `lcm_of_list(nums)` and `are_coprime(a, b)`.
@@ -1976,7 +1976,7 @@ n = p^a q^b … → (a+1)(b+1)… divisors;  the factorisation is unique
 - **Fundamental theorem of arithmetic:** every integer above 1 has exactly one prime factorisation.
 - **Exponent:** how many times a prime appears in a factorisation, as in the 3 of 2³.
 
-### Exercises
+**Exercises**
 
 1. Count the primes between 100 and 200 with the sieve.
 2. Write `distinct_prime_factors(n)` (360 → [2, 3, 5]) and `largest_prime_factor(n)` (13195 → 29).
@@ -2240,7 +2240,7 @@ zeros of n! = Σ n // 5^k;   C(n, r) = n! / (r!(n−r)!) = math.comb(n, r)
 - **Combination (n choose r):** the number of ways to choose r items from n when order doesn't matter.
 - **Default parameter:** a parameter value used when the caller doesn't pass one.
 
-### Exercises
+**Exercises**
 
 1. Write `sum_of_squares(n)` with the formula and check it against a loop for n = 10.
 2. How many numbers from a to b are divisible by k, in one step?
@@ -2392,7 +2392,7 @@ k bits → 2^k values;  n has ⌊log₂ n⌋ + 1 bits (n.bit_length());  halving
 - **Hexadecimal:** base 16, using 0–9 and A–F; one hex digit is 4 bits.
 - **Logarithm (log₂ n):** the power to which 2 must be raised to give n; about how many times n can be halved before reaching 1.
 
-### Exercises
+**Exercises**
 
 1. Convert 45 to binary by hand (show the remainders), then check with `bin`.
 2. Write `count_ones(n)`, the number of 1 bits in n, using `% 2` and `// 2`.
@@ -2597,7 +2597,7 @@ space complexity: extra memory;  best / worst / average / amortised cases
 - **Average case:** the expected work over typical or random inputs of a given size.
 - **Amortised cost:** the average cost per operation over a long sequence of operations.
 
-### Exercises
+**Exercises**
 
 What is the Big-O of each snippet?
 
@@ -2808,7 +2808,7 @@ correctness by induction: base case right + step right ⇒ right for all n
 - **Memoisation:** storing the results of function calls so repeated calls are answered instantly.
 - **Mathematical induction:** proving a statement for all n by proving the smallest case and that each case implies the next.
 
-### Exercises
+**Exercises**
 
 1. Write `count_digits(n)` recursively.
 2. Write `list_sum(nums, i)`, the sum of the items from index i to the end, recursively.
@@ -3065,7 +3065,7 @@ techniques: best so far · two ends inwards · read/write indices · reverse par
 - **Transpose:** a matrix with its rows and columns swapped.
 - **In-place algorithm:** an algorithm that changes its input directly, using O(1) extra memory.
 
-### Exercises
+**Exercises**
 
 1. Write `is_sorted(nums)` in one pass.
 2. Given a list of daily temperatures, return the indices of days hotter than both neighbours.
@@ -3285,7 +3285,7 @@ two ends inwards · counting · scanning runs (each index moves forward once) ·
 - **Anagram:** a word formed by rearranging the letters of another.
 - **Caesar cipher:** shifting each letter a fixed number of places in the alphabet, wrapping around.
 
-### Exercises
+**Exercises**
 
 1. Write `count_vowels(s)`.
 2. Write `longest_common_prefix(words)`.
@@ -3507,7 +3507,7 @@ sorted(a) new list;  a.sort() in place;  key=lambda x: …;  reverse=True;  tupl
 - **Key function:** a function whose result decides the sort order of each item.
 - **lambda:** an expression that creates a small anonymous function.
 
-### Exercises
+**Exercises**
 
 1. Count the inversions of `[3, 1, 2, 5, 4]` with two nested loops; check that insertion sort shifts items exactly that many times.
 2. Sort these words by length, longest first, breaking ties alphabetically: "pear", "fig", "apple", "kiwi", "plum".
@@ -3727,7 +3727,7 @@ bugs: lo = mid (no progress), wrong bounds, unsorted input
 - **Half-open interval [lo, hi):** a range that includes lo but not hi.
 - **bisect:** Python's module for binary search on sorted lists.
 
-### Exercises
+**Exercises**
 
 1. Find the first and last positions of 8 in `[5, 7, 7, 8, 8, 10]` with `bisect`.
 2. Write `search_insert(a, x)`: the index of x, or where it would be inserted.
@@ -4034,7 +4034,7 @@ patterns: count · seen-set · complement lookup (two sum) · group by key (anag
 - **defaultdict:** a dict from `collections` that creates missing keys with a default value.
 - **Class:** a definition of a new type of object with its own data and methods (Chapter 30).
 
-### Exercises
+**Exercises**
 
 1. Return the index of the first non-repeating character of a string, or −1.
 2. Is `ransom` buildable from the letters of `magazine` (each used once)?
@@ -4240,7 +4240,7 @@ built-ins (C) beat Python loops by large constant factors
 - **perf_counter:** a high-resolution clock in Python's `time` module, for measuring elapsed time.
 - **Benchmark:** a measurement of how long code takes to run.
 
-### Exercises
+**Exercises**
 
 For each line, give its cost when `a` is a list of n items, `s` a set of n items and `d` a dict of n items:
 
@@ -4371,7 +4371,7 @@ stress test: compare with the brute force on random small inputs
 - **Optimisation:** making a correct solution faster or smaller without changing its results.
 - **Stress test:** checking a fast solution against a simple correct one on many random inputs.
 
-### Exercises
+**Exercises**
 
 1. Apply the method to "contains duplicate": give an O(n²), an O(n log n) and an O(n) solution.
 
@@ -4574,7 +4574,7 @@ same direction: read/write (compact, partition);  two sequences: one pointer eac
 - **Partition:** rearranging items so those satisfying a condition come before the rest.
 - **Subsequence:** items taken from a sequence in order, not necessarily next to each other.
 
-### Exercises
+**Exercises**
 
 1. Given a sorted list, return the squares of the numbers, sorted, in O(n) (`[-4, -1, 0, 3, 10]` → `[0, 1, 9, 16, 100]`).
 2. Remove all copies of `val` from a list in place and return the new length.
@@ -4770,7 +4770,7 @@ fails with negatives for sum rules → prefix sums + dict, or Kadane
 - **Window state:** the summary a sliding window keeps, such as a sum or counts.
 - **Amortised analysis:** bounding total work over a whole run, such as counting all pointer moves, instead of per iteration.
 
-### Exercises
+**Exercises**
 
 1. The maximum average of any k consecutive items.
 2. Do any two equal values appear within distance k of each other?
@@ -4967,7 +4967,7 @@ difference array: diff[l] += x; diff[r+1] −= x; prefix-sum once
 - **Inclusion–exclusion:** adding and subtracting overlapping parts so each is counted exactly once.
 - **Difference array:** an array of changes whose prefix sums give the final values, for fast range updates.
 
-### Exercises
+**Exercises**
 
 1. Find the pivot index: where the sum of the items to the left equals the sum to the right (`[1, 7, 3, 6, 5, 6]` → 3).
 2. Return the product of all other items for each position, without division, in O(n).
@@ -5227,7 +5227,7 @@ missing number: n(n+1)/2 − sum
 - **Permutation:** one ordering of a set of items.
 - **Lexicographic order:** dictionary order, comparing sequences item by item from the left.
 
-### Exercises
+**Exercises**
 
 1. Maximum product subarray: like Kadane, but track both the largest and smallest product ending here (a negative times the smallest can become the largest).
 2. Return all elements appearing more than n/3 times (at most two; generalise Boyer–Moore to two candidates).
@@ -5472,7 +5472,7 @@ search: flat binary search O(log rc);  staircase from top-right O(r + c)
 - **Transpose:** swapping a matrix's rows and columns.
 - **Spiral order:** visiting a matrix's elements border by border, clockwise, moving inwards.
 
-### Exercises
+**Exercises**
 
 1. Return the sum of both diagonals of a square matrix, counting the centre once.
 2. Generate an n × n matrix filled with 1 … n² in spiral order.
@@ -5671,7 +5671,7 @@ intersection: [max starts, min ends]; advance the one ending first   O(n + m)
 - **Overlap:** two intervals sharing at least one point.
 - **Sweep line:** processing events (starts and ends) in sorted order while tracking a running state.
 
-### Exercises
+**Exercises**
 
 1. Can one person attend all these meetings: `[[0, 30], [5, 10], [15, 20]]`? `[[7, 10], [2, 4]]`?
 2. Return the free time slots between merged busy intervals `[[1, 3], [6, 7], [2, 4], [9, 12]]`.
@@ -5847,7 +5847,7 @@ clues: "minimum speed/capacity/time such that", "minimise the maximum", "maximis
 - **Feasibility check:** a function that tests whether a candidate answer is achievable.
 - **Ceiling division:** division rounded up to the next integer.
 
-### Exercises
+**Exercises**
 
 1. Place c cows in stalls at given positions to maximise the minimum distance between any two: `positions = [1, 2, 8, 4, 9]`, c = 3.
 2. The smallest divisor d such that the sum of `ceil(x / d)` over `[1, 2, 5, 9]` is at most 6.
@@ -6133,7 +6133,7 @@ comparison sorts need Ω(log₂ n!) = Ω(n log n);  counting sort O(n + k) for s
 - **Counting sort:** sorting integers from a small range by counting each value.
 - **Radix sort:** sorting numbers digit by digit with a stable sort per digit.
 
-### Exercises
+**Exercises**
 
 1. Count inversions (Chapter 17.4) in O(n log n) by counting, during each merge, how many left items a right item jumps over.
 2. Sort the colours `[2, 0, 2, 1, 1, 0]` with counting sort.
@@ -6330,7 +6330,7 @@ node: value + references;  walk: while node is not None: …; node = node.next
 - **Identity (`is`):** whether two references point to the same object.
 - **Node:** an object that holds a value and references to other nodes.
 
-### Exercises
+**Exercises**
 
 1. Write a class `Rectangle` with `area()` and `perimeter()`.
 2. Build the chain 1 → 2 → 3 → 4 with a loop, and write `count_nodes(head)`.
@@ -6581,7 +6581,7 @@ merge sorted: take the smaller head; tail.next = a or b
 - **Floyd's cycle detection (tortoise and hare):** detecting a cycle with a slow and a fast pointer.
 - **Fast and slow pointers:** two pointers moving at different speeds through a sequence.
 
-### Exercises
+**Exercises**
 
 1. Remove all nodes with value `val` from a list.
 2. Remove duplicates from a sorted linked list.
@@ -6855,7 +6855,7 @@ random copy: old → new dict, two passes
 - **Carry:** the amount passed to the next digit position when a digit sum exceeds 9.
 - **Deep copy:** a copy that duplicates every node, sharing nothing with the original.
 
-### Exercises
+**Exercises**
 
 1. Reorder `L0 → L1 → … → Ln` to `L0 → Ln → L1 → Ln−1 → …` in place.
 2. Sort a linked list in O(n log n) with merge sort (find the middle, split, merge).
@@ -7111,7 +7111,7 @@ any recursion → explicit stack
 - **Postfix notation (reverse Polish notation):** writing operators after their operands, as in `3 4 +`.
 - **Monotonic stack:** a stack kept in increasing or decreasing order, used for next-greater/next-smaller questions.
 
-### Exercises
+**Exercises**
 
 1. Simplify a Unix path: `"/a/./b/../../c/"` → `"/c"`.
 2. The largest rectangle in a histogram `[2, 1, 5, 6, 2, 3]`, using a monotonic stack of increasing heights.
@@ -7302,7 +7302,7 @@ deque(maxlen=k): keeps the last k;  BFS uses a queue
 - **Monotonic deque:** a deque kept in increasing or decreasing order, used for sliding-window maximums and minimums.
 - **Buffer:** a queue that holds data between a producer and a consumer working at different speeds.
 
-### Exercises
+**Exercises**
 
 1. Simulate a round-robin scheduler: tasks `[("a", 3), ("b", 1), ("c", 2)]` each run 1 unit per turn; print the order of finishing.
 2. Implement a stack using only a deque's `append` and `popleft` (one queue).
@@ -7603,7 +7603,7 @@ random set: list + dict index; delete by swapping the last value in
 - **Doubly linked list:** a linked list whose nodes reference both the next and the previous node.
 - **OrderedDict:** a dict from `collections` with O(1) reordering of keys.
 
-### Exercises
+**Exercises**
 
 1. Design a hit counter: `hit(t)` and `count(t)` = hits in the last 300 seconds, with times arriving in order.
 2. Add `size()` and `peek()` to `QueueFromStacks`.
@@ -7858,7 +7858,7 @@ pattern: f(node) = combine(f(left), f(right)); f(None) = base value
 - **Depth-first search (DFS):** exploring as deep as possible along each branch before backtracking.
 - **Breadth-first search (BFS):** exploring all nodes at one distance before the next, using a queue.
 
-### Exercises
+**Exercises**
 
 1. Count the leaves of `root`.
 2. Return the average of each level.
@@ -8179,7 +8179,7 @@ pre + in → tree (dict of positions, O(n));  serialise: pre-order with # for No
 - **Iterator:** an object that produces values one at a time with `next()`.
 - **Dict comprehension:** an expression that builds a dict from a loop, such as `{k: v for …}`.
 
-### Exercises
+**Exercises**
 
 1. Count the "good" nodes: nodes with no larger value on the path from the root to them (`[3, 1, 4, 3, None, 1, 5]` → 4).
 2. Return the zigzag level order (left-to-right, then right-to-left, alternating).
@@ -8445,7 +8445,7 @@ Python: set · SortedList · sorted list + bisect
 - **Rotation:** a local restructuring of a BST that preserves order and changes heights.
 - **Degenerate tree:** a tree shaped like a linked list, with height n.
 
-### Exercises
+**Exercises**
 
 1. Convert a sorted list into a height-balanced BST (pick the middle as the root, recursively).
 2. Find the lowest common ancestor of two values in a BST in O(h), using the ordering.
@@ -8710,7 +8710,7 @@ top k: size-k heap O(n log k);  merge k lists O(N log k);  median: two heaps;  h
 - **heapq:** Python's module of min-heap functions on lists.
 - **Heap sort:** sorting by building a heap and repeatedly removing its top.
 
-### Exercises
+**Exercises**
 
 1. Return the k closest points to the origin from `[(1, 3), (-2, 2), (5, 8), (0, 1)]`, k = 2.
 2. Sort a list with heap sort using `sift_down` in place.
@@ -8909,7 +8909,7 @@ trie for prefix questions; set for exact membership
 - **Autocomplete:** suggesting stored words that begin with typed text.
 - **Radix tree:** a compressed trie whose edges can hold several characters.
 
-### Exercises
+**Exercises**
 
 1. Find the longest common prefix of `["flower", "flow", "flight"]` with a trie: walk down while there's exactly one child and no word ends.
 2. Replace each word in a sentence with its shortest root from a dictionary: roots `["cat", "bat", "rat"]`, sentence "the cattle was rattled by the battery".
@@ -9187,7 +9187,7 @@ grid: cells = vertices, 4 neighbours = edges;  flood fill counts islands
 - **Flood fill:** marking every cell reachable from a starting cell, as in a paint bucket tool.
 - **Shortest path:** a path between two vertices with the fewest edges (or least total weight).
 
-### Exercises
+**Exercises**
 
 1. Count the connected components of the graph with 5 vertices and edges (0, 1), (1, 2), (3, 4).
 2. Find the size of the largest island in `["11000", "11010", "00011"]`.
@@ -9437,7 +9437,7 @@ components: count fresh BFS/DFS starts
 - **Two-colouring:** assigning one of two colours to each vertex so that neighbours differ.
 - **Multi-source BFS:** BFS starting from several sources at once.
 
-### Exercises
+**Exercises**
 
 1. Given n people and "dislike" pairs, can they be split into two groups with no disliking pair together? n = 4, dislikes (1, 2), (1, 3), (2, 4).
 2. Count the provinces (connected components) in an adjacency matrix `[[1, 1, 0], [1, 1, 0], [0, 0, 1]]`.
@@ -9663,7 +9663,7 @@ no negative edges with Dijkstra → Bellman-Ford
 - **Admissible heuristic:** a heuristic that never overestimates the true remaining cost.
 - **Manhattan distance:** |Δrow| + |Δcol|, the grid distance with 4-direction moves.
 
-### Exercises
+**Exercises**
 
 1. Network delay: signals start at node 1 and travel along `times = [(2, 1, 1), (2, 3, 1), (3, 4, 1)]` (u, v, w), starting from node 2 instead. How long until all 4 nodes have it?
 2. The cheapest path in a grid of costs, moving right or down or anywhere 4-way: `[[1, 3, 1], [1, 5, 1], [4, 2, 1]]` from top-left to bottom-right (count every cell entered, including the first).
@@ -9853,7 +9853,7 @@ graphlib.TopologicalSorter(needs).static_order();  try: … except CycleError: �
 - **Post-order (DFS finish order):** the order in which DFS finishes vertices.
 - **Exception:** an error raised while a program runs, which can be caught with `try`/`except`.
 
-### Exercises
+**Exercises**
 
 1. Given 4 courses and prerequisites `[(1, 0), (2, 1), (3, 2)]`, can all be finished? In what order?
 2. Find the order of letters in an alien alphabet from sorted words `["wrt", "wrf", "er", "ett", "rftt"]` (compare neighbouring words: the first differing letters give an edge).
@@ -10056,7 +10056,7 @@ uses: dynamic connectivity, cycles in undirected graphs, components, grouping by
 - **Union by size (or rank):** attaching the smaller tree under the larger to keep trees shallow.
 - **Inverse Ackermann function (α):** an extremely slowly growing function, at most 4 for all practical sizes.
 
-### Exercises
+**Exercises**
 
 1. Count islands with union-find: union each land cell with its land neighbours to the right and below.
 2. Given equations like `"a==b"`, `"b!=a"`, decide whether they can all hold.
@@ -10275,7 +10275,7 @@ Floyd-Warshall: for k: for i: for j: dist[i][j] = min(…, dist[i][k] + dist[k][
 - **Negative cycle:** a cycle whose total weight is negative, making shortest paths undefined.
 - **Floyd-Warshall algorithm:** all-pairs shortest paths by allowing each vertex in turn as an intermediate.
 
-### Exercises
+**Exercises**
 
 1. Connect all points `[(0, 0), (2, 2), (3, 10), (5, 2), (7, 0)]` with the minimum total Manhattan distance (Prim on the complete graph).
 2. Which city has the fewest other cities within distance 4? Edges `[(0, 1, 3), (1, 2, 1), (1, 3, 4), (2, 3, 1)]`, 4 cities (ties: the larger number).
@@ -10531,7 +10531,7 @@ grids: mark the cell, recurse into neighbours, restore;  N-Queens: sets of colum
 - **Combination:** a selection of items where order doesn't matter.
 - **N-Queens problem:** placing n chess queens on an n × n board so that none attack each other.
 
-### Exercises
+**Exercises**
 
 1. Generate all valid strings of n pairs of brackets (n = 3 gives 5).
 2. Generate all combinations of k numbers from 1 … n (n = 4, k = 2).
@@ -10772,7 +10772,7 @@ jump game: farthest reach;  gas station: restart after a negative tank;  Huffman
 - **Counterexample:** a specific input on which a proposed rule gives a wrong answer.
 - **Huffman coding:** an optimal prefix code built by repeatedly merging the two least frequent symbols.
 
-### Exercises
+**Exercises**
 
 1. The minimum number of arrows to burst balloons given as intervals `[[10, 16], [2, 8], [1, 6], [7, 12]]` (an arrow at x bursts every balloon covering x).
 2. Partition labels: split "ababcbacadefegdehijhklij" into as many parts as possible so each letter appears in only one part.
@@ -11043,7 +11043,7 @@ cost = states × work per state;  reconstruct by walking back through the table
 - **Transition:** the formula computing a state from smaller states.
 - **Longest common subsequence (LCS):** the longest sequence appearing in order in both of two sequences.
 
-### Exercises
+**Exercises**
 
 1. Minimum cost climbing stairs: `cost[i]` to step on stair i, start at 0 or 1, climb 1 or 2: `[10, 15, 20]` → 15.
 2. The length of the longest increasing subsequence of `[10, 9, 2, 5, 3, 7, 101, 18]` in O(n²).
@@ -11326,7 +11326,7 @@ interval DP by increasing length; split at the LAST action;  state machine: one 
 - **Interval DP:** dynamic programming over ranges [i, j], filled by increasing length.
 - **State machine DP:** dynamic programming that tracks one value for each of a few states at every step.
 
-### Exercises
+**Exercises**
 
 1. Target sum: assign + or − to each of `[1, 1, 1, 1, 1]` to reach 3. How many ways? (Hint: the plus-set must sum to (total + target)/2.)
 2. The longest palindromic subsequence of "bbbab" (interval DP on the string).
@@ -11584,7 +11584,7 @@ Python ints: unlimited, negatives have infinite 1s on the left; mask with 0xFFFF
 - **Bitmask DP:** dynamic programming whose state includes a set encoded as a bitmask.
 - **Travelling salesman problem (TSP):** finding the shortest round trip that visits every city exactly once.
 
-### Exercises
+**Exercises**
 
 1. Count the bits of every number from 0 to n in O(n): `bits[i] = bits[i >> 1] + (i & 1)`.
 2. Reverse the 8 bits of 13 (`00001101` → `10110000`).
@@ -11796,7 +11796,7 @@ repeated block ⇔ lps[−1] > 0 and n % (n − lps[−1]) == 0
 - **Rolling hash:** a hash of a sliding window that updates in O(1) per step.
 - **Hash collision:** two different inputs with the same hash value.
 
-### Exercises
+**Exercises**
 
 1. Is "abcabcabc" a repetition of a smaller block? Is "abcab"? Use the failure table.
 2. Find the shortest palindrome by adding characters in front of "aacecaaa" (hint: the longest palindromic prefix, from the lps of s + "#" + reversed s).
@@ -12002,7 +12002,7 @@ Fenwick: tree[i] covers (i − (i & −i), i];  prefix: i −= i & −i;  add: i
 - **Coordinate compression:** replacing values by their ranks so they fit in a small index range.
 - **Associative operation:** an operation where grouping doesn't matter: (a ∘ b) ∘ c = a ∘ (b ∘ c).
 
-### Exercises
+**Exercises**
 
 1. Turn the segment tree into a range-minimum structure and query the minimum of `[5, 8, 6, 3, 2, 7, 2, 6][1:5]`.
 2. Maintain a running count of inversions while appending `[3, 1, 2, 5, 4]` one at a time from the left.
@@ -12259,7 +12259,7 @@ max flow = min cut;  bipartite matching = unit-capacity flow
 - **Max-flow min-cut theorem:** the maximum flow equals the minimum total capacity of a cut separating source and sink.
 - **Bipartite matching:** pairing vertices across the two sides of a bipartite graph, each used at most once.
 
-### Exercises
+**Exercises**
 
 1. Which edges of a 4-cycle with a tail, `[(0, 1), (1, 2), (2, 3), (3, 0), (3, 4)]`, are bridges?
 2. The minimum number of vertices from which every vertex of a DAG is reachable: `edges = [(0, 1), (0, 2), (2, 5), (3, 4), (4, 2)]`, 6 vertices.
@@ -12542,7 +12542,7 @@ Count-Min: min over d counters, never underestimates;  HyperLogLog: distinct cou
 - **HyperLogLog:** a structure that estimates the number of distinct items in very little memory.
 - **Generator:** a function using `yield` that produces values one at a time.
 
-### Exercises
+**Exercises**
 
 1. Pick a uniformly random node from a linked list in one pass, without knowing its length (reservoir sampling with k = 1).
 2. How many bits does a Bloom filter need for 1 million items at a 1% false-positive rate?
@@ -12791,7 +12791,7 @@ Merkle tree: hash pairs up to a root; compare roots, descend where they differ
 - **HNSW (hierarchical navigable small world):** a layered graph index for approximate nearest-neighbour search.
 - **Merkle tree:** a tree of hashes whose root summarises all data blocks.
 
-### Exercises
+**Exercises**
 
 1. Design a rate limiter allowing 100 requests per minute per user; compare token bucket, fixed window and sliding log in one sentence each.
 2. Sort 10 GB of numbers with 1 GB of memory.
@@ -12889,7 +12889,7 @@ NIST post-quantum standards (2024): ML-KEM, ML-DSA, SLH-DSA
 - **Free-threaded Python:** a CPython build without the global interpreter lock, allowing threads to run Python code in parallel.
 - **Post-quantum cryptography:** cryptography designed to stay secure against quantum computers.
 
-### Exercises
+**Exercises**
 
 1. Why was Dijkstra's O(m + n log n) considered a "sorting barrier", and what does beating it mean?
 2. Why must an AI-discovered algorithm still be verified before it's trusted?
@@ -13151,7 +13151,7 @@ Every term from the chapters’ **Key terms** lists, A to Z, with a plain defini
 - **0/1 knapsack:** choosing items, each at most once, to maximise value within a weight limit. *(Chapter [50](#50-dynamic-programming-ii-knapsack-subsequences-strings-and-intervals))*
 - **2D list (matrix):** a list of lists, indexed as `grid[row][col]`. *(Chapter [15](#15-arrays-and-python-lists))*
 
-### A
+**A**
 
 - **Accumulator:** a variable that collects a running total over a loop. *(Chapter [3](#3-loops-and-dry-runs))*
 - **Adjacency list:** a representation storing each vertex's list of neighbours. *(Chapter [41](#41-graphs-representation-bfs-and-dfs))*
@@ -13174,7 +13174,7 @@ Every term from the chapters’ **Key terms** lists, A to Z, with a plain defini
 - **Autocomplete:** suggesting stored words that begin with typed text. *(Chapter [40](#40-tries-prefix-trees))*
 - **Average case:** the expected work over typical or random inputs of a given size. *(Chapter [13](#13-big-o-how-fast-is-my-code))*
 
-### B
+**B**
 
 - **B-tree / B+ tree:** a balanced search tree with wide nodes, used for disk-based indexes; a B+ tree keeps values in linked leaves. *(Chapter [56](#56-algorithms-behind-real-systems-consistent-hashing-rate-limiters-b-trees-lsm-trees-and-vector-search))*
 - **Back edge:** in DFS, an edge to a vertex still on the current path; it means a cycle. *(Chapter [42](#42-graph-problems-cycles-bipartite-graphs-and-multi-source-bfs))*
@@ -13212,7 +13212,7 @@ Every term from the chapters’ **Key terms** lists, A to Z, with a plain defini
 - **Bubble sort:** repeatedly swapping adjacent out-of-order items until none remain. *(Chapter [17](#17-basic-sorting-selection-bubble-and-insertion-sort))*
 - **Buffer:** a queue that holds data between a producer and a consumer working at different speeds. *(Chapter [34](#34-queues-and-deques))*
 
-### C
+**C**
 
 - **Caesar cipher:** shifting each letter a fixed number of places in the alphabet, wrapping around. *(Chapter [16](#16-strings))*
 - **Call stack:** the stack of function calls that have started but not finished. *(Chapter [14](#14-recursion-basics))*
@@ -13248,7 +13248,7 @@ Every term from the chapters’ **Key terms** lists, A to Z, with a plain defini
 - **Cut property:** the cheapest edge crossing any cut belongs to some minimum spanning tree. *(Chapter [46](#46-minimum-spanning-trees-bellman-ford-and-floyd-warshall))*
 - **Cycle:** a chain of `next` references that loops back to an earlier node. *(Chapter [31](#31-linked-lists), [42](#42-graph-problems-cycles-bipartite-graphs-and-multi-source-bfs))*
 
-### D
+**D**
 
 - **DAG (directed acyclic graph):** a directed graph with no cycles. *(Chapter [41](#41-graphs-representation-bfs-and-dfs))*
 - **Data structure:** a way of organising data so the operations you need are fast. *(Chapter [1](#1-how-to-use-these-notes))*
@@ -13284,7 +13284,7 @@ Every term from the chapters’ **Key terms** lists, A to Z, with a plain defini
 - **Dynamic array:** an array that grows by reallocating to a bigger block when full; Python's list. *(Chapter [15](#15-arrays-and-python-lists))*
 - **Dynamic programming (DP):** solving a problem by combining stored solutions of overlapping subproblems. *(Chapter [49](#49-dynamic-programming))*
 
-### E
+**E**
 
 - **Edge:** a connection between two vertices. *(Chapter [41](#41-graphs-representation-bfs-and-dfs))*
 - **Edge case:** an unusual input at the limits, such as an empty list or a single item. *(Chapter [21](#21-how-to-attack-a-new-problem))*
@@ -13301,7 +13301,7 @@ Every term from the chapters’ **Key terms** lists, A to Z, with a plain defini
 - **Exponential time, O(2ⁿ):** work that doubles with each extra input item. *(Chapter [13](#13-big-o-how-fast-is-my-code))*
 - **Exponentiation by squaring (fast power):** computing xⁿ in O(log n) multiplications using the binary digits of n. *(Chapter [11](#11-maths-toolbox-series-factorials-fibonacci-powers-and-modulo))*
 
-### F
+**F**
 
 - **f-string:** a string starting with `f` whose `{…}` parts are replaced by values. *(Chapter [2](#2-python-basics-values-variables-decisions-and-functions))*
 - **Factorial (n!):** the product 1 × 2 × … × n; the number of orderings of n items. *(Chapter [11](#11-maths-toolbox-series-factorials-fibonacci-powers-and-modulo))*
@@ -13327,7 +13327,7 @@ Every term from the chapters’ **Key terms** lists, A to Z, with a plain defini
 - **Function:** a named, reusable block of code with parameters and a return value. *(Chapter [2](#2-python-basics-values-variables-decisions-and-functions))*
 - **Fundamental theorem of arithmetic:** every integer above 1 has exactly one prime factorisation. *(Chapter [10](#10-sieve-of-eratosthenes-and-prime-factorisation))*
 
-### G
+**G**
 
 - **GCD (greatest common divisor):** the largest number that divides two given numbers. *(Chapter [9](#9-gcd-lcm-and-euclids-algorithm))*
 - **Generator:** a function using `yield` that produces values one at a time. *(Chapter [55](#55-randomised-and-streaming-algorithms-shuffling-sampling-bloom-filters-and-sketches))*
@@ -13336,7 +13336,7 @@ Every term from the chapters’ **Key terms** lists, A to Z, with a plain defini
 - **Graph:** a set of vertices connected by edges. *(Chapter [41](#41-graphs-representation-bfs-and-dfs))*
 - **Greedy algorithm:** an algorithm that repeatedly makes the locally best choice without reconsidering. *(Chapter [48](#48-greedy-algorithms))*
 
-### H
+**H**
 
 - **Half-open interval [lo, hi):** a range that includes lo but not hi. *(Chapter [18](#18-searching-linear-search-and-binary-search))*
 - **Hash collision:** two different inputs with the same hash value. *(Chapter [52](#52-string-algorithms-palindromes-kmp-and-rabin-karp))*
@@ -13356,7 +13356,7 @@ Every term from the chapters’ **Key terms** lists, A to Z, with a plain defini
 - **Huffman coding:** an optimal prefix code built by repeatedly merging the two least frequent symbols. *(Chapter [48](#48-greedy-algorithms))*
 - **HyperLogLog:** a structure that estimates the number of distinct items in very little memory. *(Chapter [55](#55-randomised-and-streaming-algorithms-shuffling-sampling-bloom-filters-and-sketches))*
 
-### I
+**I**
 
 - **Identity (`is`):** whether two references point to the same object. *(Chapter [30](#30-classes-objects-and-nodes))*
 - **Immutable:** impossible to change after creation; changes produce new objects. *(Chapter [16](#16-strings))*
@@ -13376,11 +13376,11 @@ Every term from the chapters’ **Key terms** lists, A to Z, with a plain defini
 - **Inversion:** a pair of positions i < j with a[i] > a[j]. *(Chapter [17](#17-basic-sorting-selection-bubble-and-insertion-sort))*
 - **Iterator:** an object that produces values one at a time with `next()`. *(Chapter [37](#37-binary-tree-interview-problems))*
 
-### J
+**J**
 
 - **join:** a string method that concatenates a list of strings with a separator, in linear time. *(Chapter [16](#16-strings))*
 
-### K
+**K**
 
 - **Kadane's algorithm:** finding the maximum-sum subarray in one pass by tracking the best sum ending at each position. *(Chapter [25](#25-classic-array-algorithms-kadane-majority-vote-dutch-flag-and-more))*
 - **Kahn's algorithm:** topological sorting by repeatedly removing vertices with in-degree 0. *(Chapter [44](#44-topological-sort))*
@@ -13389,7 +13389,7 @@ Every term from the chapters’ **Key terms** lists, A to Z, with a plain defini
 - **Kosaraju's algorithm:** finding SCCs with two DFS passes, the second on the reversed graph. *(Chapter [54](#54-advanced-graphs-bridges-strongly-connected-components-and-max-flow))*
 - **Kruskal's algorithm:** building an MST by adding the cheapest edges that don't form cycles. *(Chapter [46](#46-minimum-spanning-trees-bellman-ford-and-floyd-warshall))*
 
-### L
+**L**
 
 - **lambda:** an expression that creates a small anonymous function. *(Chapter [17](#17-basic-sorting-selection-bubble-and-insertion-sort))*
 - **Las Vegas algorithm:** a randomised algorithm that is always correct, with random running time. *(Chapter [55](#55-randomised-and-streaming-algorithms-shuffling-sampling-bloom-filters-and-sketches))*
@@ -13419,7 +13419,7 @@ Every term from the chapters’ **Key terms** lists, A to Z, with a plain defini
 - **LSM tree (log-structured merge tree):** a storage structure that buffers writes in memory and merges sorted files in the background. *(Chapter [56](#56-algorithms-behind-real-systems-consistent-hashing-rate-limiters-b-trees-lsm-trees-and-vector-search))*
 - **Luhn algorithm:** the check-digit method used for credit-card numbers. *(Chapter [7](#7-working-with-digits))*
 
-### M
+**M**
 
 - **Main diagonal:** the cells with equal row and column index. *(Chapter [26](#26-matrices-2d-array-problems))*
 - **Majority element:** a value occurring more than n/2 times. *(Chapter [25](#25-classic-array-algorithms-kadane-majority-vote-dutch-flag-and-more))*
@@ -13446,7 +13446,7 @@ Every term from the chapters’ **Key terms** lists, A to Z, with a plain defini
 - **Monte Carlo algorithm:** a randomised algorithm with bounded running time that may be wrong with small probability. *(Chapter [55](#55-randomised-and-streaming-algorithms-shuffling-sampling-bloom-filters-and-sketches))*
 - **Multi-source BFS:** BFS starting from several sources at once. *(Chapter [42](#42-graph-problems-cycles-bipartite-graphs-and-multi-source-bfs))*
 
-### N
+**N**
 
 - **N-Queens problem:** placing n chess queens on an n × n board so that none attack each other. *(Chapter [47](#47-backtracking))*
 - **Negative cycle:** a cycle whose total weight is negative, making shortest paths undefined. *(Chapter [46](#46-minimum-spanning-trees-bellman-ford-and-floyd-warshall))*
@@ -13454,7 +13454,7 @@ Every term from the chapters’ **Key terms** lists, A to Z, with a plain defini
 - **Node:** an object that holds a value and references to other nodes. *(Chapter [30](#30-classes-objects-and-nodes))*
 - **nonlocal:** a declaration that lets an inner function assign to a variable of the enclosing function. *(Chapter [37](#37-binary-tree-interview-problems))*
 
-### O
+**O**
 
 - **Object (instance):** one value built from a class, with its own attributes. *(Chapter [30](#30-classes-objects-and-nodes))*
 - **Off-by-one error:** a bug where a loop runs one time too many or too few. *(Chapter [3](#3-loops-and-dry-runs))*
@@ -13466,7 +13466,7 @@ Every term from the chapters’ **Key terms** lists, A to Z, with a plain defini
 - **Overlap:** two intervals sharing at least one point. *(Chapter [27](#27-intervals-merge-insert-and-overlap))*
 - **Overlapping subproblems:** the same smaller problems recurring many times in a naive recursion. *(Chapter [49](#49-dynamic-programming))*
 
-### P
+**P**
 
 - **Palindrome number:** a number that reads the same forwards and backwards. *(Chapter [7](#7-working-with-digits))*
 - **Parameter:** a name for one of a function's inputs. *(Chapter [2](#2-python-basics-values-variables-decisions-and-functions))*
@@ -13496,14 +13496,14 @@ Every term from the chapters’ **Key terms** lists, A to Z, with a plain defini
 - **Pseudo-polynomial time:** polynomial in the numeric value of an input (such as a capacity), not in its length. *(Chapter [50](#50-dynamic-programming-ii-knapsack-subsequences-strings-and-intervals))*
 - **Push / pop / peek:** add to the top / remove from the top / look at the top. *(Chapter [33](#33-stacks))*
 
-### Q
+**Q**
 
 - **Quadratic time, O(n²):** work proportional to the square of the input size. *(Chapter [13](#13-big-o-how-fast-is-my-code))*
 - **Queue:** a collection where items join at the back and leave from the front: first in, first out. *(Chapter [34](#34-queues-and-deques))*
 - **Quick sort:** sorting by partitioning around a pivot and sorting the two sides recursively. *(Chapter [29](#29-merge-sort-and-quick-sort))*
 - **Quickselect:** finding the k-th smallest item by partitioning and recursing into one side. *(Chapter [29](#29-merge-sort-and-quick-sort))*
 
-### R
+**R**
 
 - **Rabin-Karp:** pattern matching by comparing rolling hashes of text windows. *(Chapter [52](#52-string-algorithms-palindromes-kmp-and-rabin-karp))*
 - **Radix sort:** sorting numbers digit by digit with a stable sort per digit. *(Chapter [29](#29-merge-sort-and-quick-sort))*
@@ -13531,7 +13531,7 @@ Every term from the chapters’ **Key terms** lists, A to Z, with a plain defini
 - **Rotation:** a local restructuring of a BST that preserves order and changes heights. *(Chapter [38](#38-binary-search-trees))*
 - **Row table:** a table of what each row prints, used to find the rule for the inner loop. *(Chapter [4](#4-pattern-printing-i-squares-and-triangles))*
 
-### S
+**S**
 
 - **Search range:** the part of the data where the target could still be. *(Chapter [18](#18-searching-linear-search-and-binary-search))*
 - **Segment tree:** a binary tree over an array whose nodes store aggregates of ranges, for O(log n) queries and updates. *(Chapter [53](#53-range-queries-with-updates-fenwick-trees-and-segment-trees))*
@@ -13569,7 +13569,7 @@ Every term from the chapters’ **Key terms** lists, A to Z, with a plain defini
 - **Subtree:** a node and all its descendants. *(Chapter [36](#36-binary-trees-and-traversals))*
 - **Sweep line:** processing events (starts and ends) in sorted order while tracking a running state. *(Chapter [27](#27-intervals-merge-insert-and-overlap))*
 
-### T
+**T**
 
 - **Tabulation (bottom-up DP):** filling a table from the base cases upwards. *(Chapter [49](#49-dynamic-programming))*
 - **Tail:** the last node of a linked list. *(Chapter [31](#31-linked-lists))*
@@ -13593,7 +13593,7 @@ Every term from the chapters’ **Key terms** lists, A to Z, with a plain defini
 - **Two-colouring:** assigning one of two colours to each vertex so that neighbours differ. *(Chapter [42](#42-graph-problems-cycles-bipartite-graphs-and-multi-source-bfs))*
 - **Type:** the kind of a value: `int`, `float`, `str`, `bool`, … *(Chapter [2](#2-python-basics-values-variables-decisions-and-functions))*
 
-### U
+**U**
 
 - **Unbounded knapsack:** the knapsack problem where each item can be used any number of times. *(Chapter [50](#50-dynamic-programming-ii-knapsack-subsequences-strings-and-intervals))*
 - **Unicode:** the standard that gives a code to every character in every writing system. *(Chapter [16](#16-strings))*
@@ -13603,14 +13603,14 @@ Every term from the chapters’ **Key terms** lists, A to Z, with a plain defini
 - **Universally optimal:** an algorithm that is within a constant factor of the best possible on every input structure, not just the worst case. *(Chapter [57](#57-whats-new-recent-breakthroughs-and-modern-practice-20222026))*
 - **Upper bound:** the first index whose value is > the target. *(Chapter [18](#18-searching-linear-search-and-binary-search))*
 
-### V
+**V**
 
 - **Value:** a piece of data, such as `7` or `"hi"`. *(Chapter [2](#2-python-basics-values-variables-decisions-and-functions))*
 - **Variable:** a name that refers to a value. *(Chapter [2](#2-python-basics-values-variables-decisions-and-functions))*
 - **Vertex (node):** a point in a graph. *(Chapter [41](#41-graphs-representation-bfs-and-dfs))*
 - **Virtual node:** one of many ring positions given to the same server to balance load. *(Chapter [56](#56-algorithms-behind-real-systems-consistent-hashing-rate-limiters-b-trees-lsm-trees-and-vector-search))*
 
-### W
+**W**
 
 - **Weighted graph:** a graph whose edges carry numbers such as distances. *(Chapter [41](#41-graphs-representation-bfs-and-dfs))*
 - **Weighted shortest path:** a path minimising the total weight of its edges. *(Chapter [43](#43-shortest-paths-dijkstra))*
@@ -13618,7 +13618,7 @@ Every term from the chapters’ **Key terms** lists, A to Z, with a plain defini
 - **Window state:** the summary a sliding window keeps, such as a sum or counts. *(Chapter [23](#23-sliding-window))*
 - **Worst case:** the largest amount of work over all inputs of a given size. *(Chapter [13](#13-big-o-how-fast-is-my-code))*
 
-### X
+**X**
 
 - **XOR (exclusive or):** gives 1 where two bits differ; any value XOR itself is 0. *(Chapter [51](#51-bit-manipulation))*
 

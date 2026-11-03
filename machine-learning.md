@@ -302,7 +302,7 @@ prediction = apply the trained rule to new examples
 - **Classification:** predicting a category.
 - **Unsupervised learning:** finding structure in examples without labels.
 
-### Exercises
+**Exercises**
 
 1. Learn a threshold on the "contains free" feature instead (t can only be 0 or 1). What accuracy does the best one get?
 2. Which are good ML problems? (a) tomorrow's electricity demand; (b) converting kilometres to miles; (c) flagging fraudulent card payments from millions of past payments.
@@ -515,7 +515,7 @@ split: shuffle indices → first 80% train, last 20% test
 - **Group split:** keeping all rows of one group (a user, a patient) in the same set.
 - **Leakage:** training on information that won't be available at prediction time, which makes test scores look better than real use will be.
 
-### Exercises
+**Exercises**
 
 1. You have 1,000 rows. How many go to train, validation and test with a 70/15/15 split? Write the index slicing with `order = rng.permutation(1000)`.
 2. A shop predicts next week's sales. Should it split randomly or by time? Why?
@@ -734,7 +734,7 @@ cosine        a · b / (‖a‖ ‖b‖)
 - **Broadcasting:** NumPy's automatic repeating of a smaller array so it can be combined with a bigger one.
 - **axis=0:** "along the rows", which gives one result per column.
 
-### Exercises
+**Exercises**
 
 1. By hand: w = [2, −1], x = [3, 5]. What is w · x?
 2. X has shape (100, 4). What shape must w have for `X @ w` to work, and what shape is the result?
@@ -921,7 +921,7 @@ gradient       ∇f = [∂f/∂w₁, ∂f/∂w₂, …]  points uphill; −∇f 
 - **Partial derivative (∂f/∂w):** the derivative with respect to one input, holding the others fixed.
 - **Gradient (∇f):** the vector of all partial derivatives; it points in the direction of steepest increase.
 
-### Exercises
+**Exercises**
 
 1. Differentiate f(w) = 4w³ − 2w + 5, and evaluate it at w = 1.
 2. Use the chain rule on f(w) = ln(1 + w²).
@@ -1131,7 +1131,7 @@ convex   one valley, so gradient descent finds the best answer
 - **Convex function:** a bowl-shaped function with a single minimum.
 - **Local minimum:** a dip that's lower than its surroundings but not the lowest point overall.
 
-### Exercises
+**Exercises**
 
 1. By hand: f(w) = w², lr = 0.25, start at w = 4. Do three steps.
 2. For f(w) = w², which learning rates converge? (Use the argument in the fold-out box.)
@@ -1407,7 +1407,7 @@ MLE            choose θ to maximise L, i.e. to minimise −ln L
 - **Standard deviation (σ):** the square root of the variance; the typical distance from the mean.
 - **Normal distribution:** the bell-shaped curve described by a mean and a standard deviation.
 
-### Exercises
+**Exercises**
 
 1. From the email table: what are P(free | not spam) and P(not spam | free)?
 2. The disease test again, but now 10% of people are sick. What is P(sick | positive)?
@@ -1727,7 +1727,7 @@ one feature    w = Σ(x − x̄)(y − ȳ) / Σ(x − x̄)²,   b = ȳ − w x̄
 - **Closed-form solution:** an answer given directly by a formula, without iterating.
 - **Standardise:** rescale a feature to mean 0 and standard deviation 1.
 
-### Exercises
+**Exercises**
 
 1. By hand: x = [0, 1, 2], y = [1, 3, 5]. Find w and b.
 2. For the 5-point data, what MSE does the line ŷ = 4 (w = 0, b = ȳ) get? Why is that a useful number to compare against?
@@ -1917,7 +1917,7 @@ The test RMSE is close to the noise level we built in (a standard deviation of 8
 - **MAPE (mean absolute percentage error):** the average error as a percentage of the true value.
 - **Outlier:** a value far from the rest.
 
-### Exercises
+**Exercises**
 
 1. True values [10, 20, 30], predictions [12, 18, 33]. Compute MAE, RMSE and R² by hand.
 2. A model has a test R² of −0.2. What does that mean, and what's the simplest model that beats it?
@@ -2199,7 +2199,7 @@ metrics: mean_squared_error(y_true, y_pred), mean_absolute_error, r2_score
 - **`get_params()`:** returns a model's hyperparameters.
 - **Toy dataset:** a small, well-known dataset bundled with a library for practice.
 
-### Exercises
+**Exercises**
 
 1. Fit `LinearRegression` on the diabetes data using **only** the body-mass index column (`X[:, [2]]`; the double brackets keep it 2D). What is the test R²?
 2. What happens if you call `model.predict` before `model.fit`? Try it.
@@ -2613,7 +2613,7 @@ update      w ← w − lr · ∂/∂w
 - **`predict_proba`:** scikit-learn's method returning a probability for each class.
 - **`max_iter`:** the maximum number of optimiser steps scikit-learn may take.
 
-### Exercises
+**Exercises**
 
 1. With w = 1.45 and b = −5.43: what is P(pass) at 6 hours? How many hours give 90%? (Hint: p = 0.9 means z = ln(0.9 / 0.1) = ln 9.)
 2. A student failed (y = 0) after 3 hours, and the model said p = 0.8. Find the loss and (p − y)·x. Does w go up or down?
@@ -2846,7 +2846,7 @@ predict        argmax of the probabilities
 - **argmax:** the position of the largest value; the predicted class.
 - **One-vs-rest (OvR):** solving a multi-class problem with one yes/no model per class.
 
-### Exercises
+**Exercises**
 
 1. By hand: softmax of z = [0, 0, 0]. Then of z = [10, 10, 10]. What do you notice?
 2. For z = [1, 3] (two classes), compute softmax and compare with σ(3 − 1).
@@ -3071,7 +3071,7 @@ sklearn confusion_matrix → [[TN, FP], [FN, TP]]
 - **Macro average:** the unweighted average of a metric over classes.
 - **Imbalanced classes:** one class is much rarer than the other (Chapter 39).
 
-### Exercises
+**Exercises**
 
 1. A fraud model flags 50 payments; 40 of them are fraud. There were 80 frauds in total. What are its precision and recall?
 2. For the "always say not fraud" model in 12.1, what are recall and precision?
@@ -3323,7 +3323,7 @@ threshold: choose on validation data, from the costs of FN and FP
 - **Average precision (AP):** a summary of the PR curve; the average precision at each rise in recall.
 - **Cost-sensitive threshold:** a threshold chosen to minimise the total cost of mistakes.
 
-### Exercises
+**Exercises**
 
 1. A model gives every case the same probability, 0.5. What are its AUC and its ROC curve?
 2. In 13.5, the costs change so that a false alarm costs ₹3,000 and a miss ₹5,000. Which threshold is now cheapest?
@@ -3571,7 +3571,7 @@ transformer   fit (learn mean_, scale_) on train → transform any data
 - **`StandardScaler` / `MinMaxScaler`:** scikit-learn's transformers for standardisation and min–max scaling.
 - **Curse of dimensionality:** in many dimensions, distances become similar and data becomes sparse, so distance-based methods weaken.
 
-### Exercises
+**Exercises**
 
 1. In 14.2, what does k = 5 predict? Which two points tie for 4th and 5th place?
 2. Why is calling `scaler.fit_transform(X_test)` a mistake?
@@ -3838,7 +3838,7 @@ expected error        bias² + variance + noise
 - **Irreducible error (noise):** randomness in the data that no model can predict.
 - **Bias–variance trade-off:** making a model more complex lowers bias but raises variance; the best test error lies between.
 
-### Exercises
+**Exercises**
 
 1. A model has training accuracy 99% and test accuracy 70%. Underfitting or overfitting? Name two fixes.
 2. How many features does `PolynomialFeatures(degree=2)` produce from 3 input features (including the constant 1)?
@@ -4109,7 +4109,7 @@ always         standardise features first; don't penalise the intercept; choose 
 - **Feature selection:** keeping only the useful features.
 - **`C`:** the inverse regularisation strength in `LogisticRegression` and SVMs; smaller C means a stronger penalty.
 
-### Exercises
+**Exercises**
 
 1. For the one-weight example in 16.3, what λ halves the weight to 1.0? What λ gives 0.5?
 2. With lasso on one weight and λ = 2, what are the solutions for z = 5, z = 1.5 and z = −3?
@@ -4388,7 +4388,7 @@ MSE → mean (outlier-sensitive)   MAE → median (robust)   Huber: MSE near 0, 
 - **Robust loss:** a loss that limits the influence of outliers.
 - **Median:** the middle value when sorted; the constant that minimises absolute error.
 
-### Exercises
+**Exercises**
 
 1. Show by hand that Adam's very first step has size lr whatever the gradient (take ε = 0).
 2. Huber with δ = 1: what are the loss and gradient for an error of 0.5? For an error of 4?
@@ -4546,7 +4546,7 @@ metric            chosen from the cost of each kind of mistake, before modelling
 - **Offline evaluation:** scoring a model on held-out historical data.
 - **Online evaluation (A/B test):** comparing models on live users by splitting traffic between them.
 
-### Exercises
+**Exercises**
 
 1. A churn dataset has 8% churners. What accuracy does `DummyClassifier(strategy="most_frequent")` get? What is its recall?
 2. You predict delivery times, and customers complain mostly about very late deliveries. MAE or RMSE?
@@ -4719,7 +4719,7 @@ pipe.set_params(name__param=value)          change a step's hyperparameter
 - **`named_steps`:** a dictionary of a pipeline's steps by name.
 - **`step__param` (double underscore):** the way to name one step's hyperparameter from outside the pipeline.
 
-### Exercises
+**Exercises**
 
 1. Build a pipeline of `PolynomialFeatures(degree=2)`, `StandardScaler()` and `LogisticRegression(max_iter=1000)` on the wine data. What test accuracy does it get?
 2. What's wrong with `make_pipeline(StandardScaler(), KNeighborsClassifier()).fit(X, y)` followed by scoring on X_test, where X contains all the rows?
@@ -4979,7 +4979,7 @@ ColumnTransformer([(name, transformer, columns), …])  → inside a Pipeline wi
 - **ColumnTransformer:** applies different transformers to different columns and joins the outputs.
 - **High cardinality:** a categorical feature with very many distinct values.
 
-### Exercises
+**Exercises**
 
 1. A column `size` has values S, M, L, XL. Which encoder, and what `categories=` argument?
 2. Why must `SimpleImputer` be inside the pipeline rather than run once on the whole DataFrame before splitting?
@@ -5200,7 +5200,7 @@ cross_val_score(model, X, y, cv=…, scoring=…)    cross_validate(… several 
 - **Splitter:** an object (KFold, StratifiedKFold, …) that produces train/validation index pairs.
 - **Scoring string:** a metric name accepted by scikit-learn's CV tools, such as `"roc_auc"`; error metrics are negated (`neg_…`).
 
-### Exercises
+**Exercises**
 
 1. With 1,000 rows and 5-fold CV, how many rows does each model train on, and how many times is each row used for validation?
 2. A store-sales model uses rows from 50 stores over 3 years and will forecast next month for the same stores. Which splitter?
@@ -5380,7 +5380,7 @@ report the test score once, after tuning
 - **Refit:** retraining the best settings on all the training data after the search.
 - **Nested cross-validation:** cross-validating the whole tuning procedure, with an outer loop around the search.
 
-### Exercises
+**Exercises**
 
 1. A grid has 4 values of C, 3 kernels and 5 values of gamma, with 5-fold CV. How many fits does `GridSearchCV` run (including the final refit)?
 2. Why sample `alpha` from `loguniform(1e-4, 10)` rather than from a uniform range of 0 to 10?
@@ -5561,7 +5561,7 @@ validation_curve(model, X, y, param_name="step__param", param_range=[…], cv=�
 - **Generalisation gap:** the difference between training and validation performance.
 - **Plateau:** where a curve flattens out, so more data or a bigger setting stops helping.
 
-### Exercises
+**Exercises**
 
 1. A learning curve shows training accuracy 0.71 and validation accuracy 0.70, both flat from 5,000 rows on. Your manager offers to label 50,000 more rows. What do you say?
 2. In 23.2, why does degree 9's **training** error go **up** as n grows?
@@ -5759,7 +5759,7 @@ Out of 5,000 noise columns, some match the random labels by chance, and selectin
 - **Embedded method:** selection that happens as part of training, such as L1 regularisation.
 - **`SelectKBest` / `SelectFromModel`:** scikit-learn transformers that keep the top k features, or those a model marks as important.
 
-### Exercises
+**Exercises**
 
 1. Compute F by hand for one feature with class 0 = [2, 4] and class 1 = [6, 8].
 2. A colleague reports 95% CV accuracy after picking 10 of 20,000 gene features with `SelectKBest` on the full dataset. What do you ask?
@@ -5903,7 +5903,7 @@ The duplicates inflate the score of a model that copies its nearest neighbour. *
 - **Point-in-time correctness:** computing each feature only from what was known at the prediction moment.
 - **Prediction time:** the moment the model is asked for its answer in real use.
 
-### Exercises
+**Exercises**
 
 1. A loan-default model includes `number_of_collection_calls`. Leak or not?
 2. Your CV score with oversampling (copying minority rows) done before CV is 0.95; inside the pipeline it's 0.81. Which is real, and why?
@@ -6165,7 +6165,7 @@ Only load joblib files you trust: loading one can run code. Chapter 48 covers sa
 - **joblib:** a library for saving Python objects, such as fitted pipelines, to files and loading them back.
 - **Model artifact:** the saved file (model plus settings) that production loads.
 
-### Exercises
+**Exercises**
 
 1. The team's capacity doubles to 40%. What changes in the code, and what happens to recall and precision?
 2. Why is the threshold chosen with `cross_val_predict` rather than on the test set?
@@ -6478,7 +6478,7 @@ stop / prune  max_depth, min_samples_leaf, ccp_alpha  (tune with CV)
 - **Pruning:** removing branches to reduce overfitting.
 - **Cost-complexity pruning (`ccp_alpha`):** pruning that trades total leaf impurity against α times the number of leaves.
 
-### Exercises
+**Exercises**
 
 1. A node has 6 rows: 2 of class A, 2 of B and 2 of C. What are its Gini and entropy?
 2. In 27.3, what is the weighted Gini of the split income ≤ 55?
@@ -6743,7 +6743,7 @@ variance       ρσ² + (1 − ρ)σ²/n → decorrelate the trees (ρ↓) and u
 - **Majority vote:** predicting the class that most models chose.
 - **`n_jobs=-1`:** use all CPU cores.
 
-### Exercises
+**Exercises**
 
 1. With σ² = 1 and ρ = 0.3, what is the variance of an average of 10 trees? Of infinitely many?
 2. Why doesn't adding more trees to a random forest cause overfitting, when making one tree deeper does?
@@ -7013,7 +7013,7 @@ tune:    lr ↓ with rounds ↑, depth 2–8, early stopping on validation data
 - **Newton step:** a step size set using the second derivative (curvature) of the loss.
 - **`n_estimators_`:** the number of trees actually trained when early stopping is on.
 
-### Exercises
+**Exercises**
 
 1. Continue the hand trace in 29.2 for round 3. Given the round-2 residuals, which split does the stump choose?
 2. For log loss, a row has y = 0 and current log-odds F = 2. What is its pseudo-residual, and which way will the next tree push F?
@@ -7251,7 +7251,7 @@ tune         lr 0.05–0.1 + early stopping → tree size → leaf size → subs
 - **Monotonic constraint:** a rule forcing predictions to only rise (or only fall) as a feature rises.
 - **Early stopping rounds:** how many rounds without validation improvement to allow before stopping.
 
-### Exercises
+**Exercises**
 
 1. In the trace of 30.2, what are the leaf values for the split {1, 2, 3} | {10} with λ = 0, and with λ = 5?
 2. Log loss: a leaf holds 3 rows with p = 0.8, 0.8, 0.8 and y = 1, 1, 0. Compute G, H and the leaf value with λ = 0.
@@ -7544,7 +7544,7 @@ tune C and γ together, log scale; scale features first
 - **Dual problem:** the rewritten SVM problem that depends on the data only through dot products.
 - **SVR:** support vector regression; ignores errors smaller than ε.
 
-### Exercises
+**Exercises**
 
 1. w = (3, 4), b = −5. What is the margin width? How far is the point (3, 1) from the boundary?
 2. With labels ±1 and f(x) = 0.3 for a point with y = −1, what is its hinge loss? Is it a support vector?
@@ -7780,7 +7780,7 @@ compute in logs: ln P(c) + Σ ln P(xⱼ | c)
 - **Discriminative model:** a model of the class given the features, P(class | x), directly.
 - **∝ (proportional to):** equal up to a constant factor that doesn't affect comparisons.
 
-### Exercises
+**Exercises**
 
 1. In 32.3, compute P(prize | ham) and P(offer | spam) with α = 1.
 2. With α = 0, what happens when the email "lunch prize" is scored?
@@ -7970,7 +7970,7 @@ choose        the simplest model within noise of the best
 - **Base model (level-0 model):** one of the models whose predictions are combined.
 - **Meta-model (level-1 model):** the model that learns how to combine the base models.
 
-### Exercises
+**Exercises**
 
 1. Why must the meta-model in stacking be trained on out-of-fold predictions rather than on the base models' predictions for their own training rows?
 2. Two models score AUC 0.991 ± 0.006 and 0.993 ± 0.005. One is logistic regression and the other a 1,000-tree forest. Which do you deploy, and why?
@@ -8220,7 +8220,7 @@ scale features first; clusters are assumed round
 - **Silhouette score:** (b − a)/max(a, b), comparing a point's distance to its own cluster with its distance to the nearest other cluster.
 - **Segment:** a group of customers (or other items) treated alike.
 
-### Exercises
+**Exercises**
 
 1. Run k-means by hand on [0, 2, 4, 20] with k = 2, starting from centres 0 and 4. What are the final centres?
 2. Point p has a = 4 and b = 3. What is its silhouette, and what does that suggest?
@@ -8495,7 +8495,7 @@ ARI           agreement with known groups: 1 = perfect, 0 = random
 - **BIC (Bayesian information criterion):** a score that balances fit against the number of parameters; lower is better.
 - **Adjusted Rand index (ARI):** a measure of agreement between two groupings, adjusted for chance.
 
-### Exercises
+**Exercises**
 
 1. DBSCAN with eps = 1 and min_samples = 3 on [1, 1.5, 2, 8, 8.5, 9, 20]. What are the labels?
 2. Complete linkage on [1, 2, 6, 7, 15]: at what distance do {1, 2} and {6, 7} merge?
@@ -8737,7 +8737,7 @@ explained variance ratio = λᵢ / Σλ;  keep enough components for 90–95%
 - **Singular value decomposition (SVD):** a matrix factorisation used to compute PCA efficiently.
 - **Lagrange multiplier:** a method for maximising a function under a constraint.
 
-### Exercises
+**Exercises**
 
 1. Standardised features with correlation 0.5: what are the eigenvalues, and what share does PC1 keep?
 2. Why can PCA on unscaled data (income in rupees, age in years) give a useless first component?
@@ -8902,7 +8902,7 @@ read          islands = maybe groups; island sizes and gaps = don't trust
 - **Local vs global structure:** who is near whom, versus how far apart whole groups are.
 - **Trustworthiness:** the share of each point's low-dimensional neighbours that were true neighbours in the original space.
 
-### Exercises
+**Exercises**
 
 1. Compute KL(P‖Q) for P = [0.8, 0.2] and Q = [0.5, 0.5]. Is KL(Q‖P) the same?
 2. A t-SNE plot shows two clusters far apart and a third close to one of them. Can you conclude the third is "more similar" to its neighbour?
@@ -9083,7 +9083,7 @@ Here the simplest method, distance to the 5th neighbour, ranks best. No anomaly 
 - **Contamination:** the assumed share of anomalies, used to set a threshold.
 - **One-class SVM:** an SVM that learns a boundary around normal data.
 
-### Exercises
+**Exercises**
 
 1. For [3, 4, 4, 5, 5, 5, 6, 6, 7, 30], compute the IQR fences (numpy's percentile gives Q1 = 4.25 and Q3 = 6). Is 30 flagged? Is 3?
 2. Why does an Isolation Forest need no distance calculations, and why does that help with mixed-unit features?
@@ -9327,7 +9327,7 @@ weights/resampling mostly shift the threshold and distort probabilities; a bette
 - **Operating point:** the chosen threshold, and the precision and recall it gives.
 - **`make_classification`:** scikit-learn's generator of synthetic classification datasets.
 
-### Exercises
+**Exercises**
 
 1. 10,000 rows, 100 positive. What does `class_weight="balanced"` give each class?
 2. SMOTE with x = (2, 2), x_nn = (4, 0) and u = 0.5. What's the new point?
@@ -9587,7 +9587,7 @@ decide          flag if p > C_FP / (C_FP + C_FN)       (needs calibrated p)
 - **Expected cost:** probability-weighted cost of a decision.
 - **Cost-sensitive threshold:** C_FP / (C_FP + C_FN), the threshold that minimises expected cost.
 
-### Exercises
+**Exercises**
 
 1. A miss costs 10 times a false alarm. What threshold minimises the expected cost?
 2. Brier score for predictions [0.9, 0.2, 0.6] with outcomes [1, 0, 0]?
@@ -9831,7 +9831,7 @@ validate    rolling origin (TimeSeriesSplit); report MAE vs the seasonal naive
 - **ARIMA:** a classical statistical forecasting model built from past values and past errors.
 - **Prediction interval:** a range expected to contain the future value with a given probability.
 
-### Exercises
+**Exercises**
 
 1. For a 3-day-ahead forecast, is `lag_1` allowed? Is `lag_3`?
 2. Why do we use sin and cos of the day of the year, instead of the day number 1–365 itself?
@@ -10049,7 +10049,7 @@ explain        the largest weights per class = the most telling words
 - **L2 normalisation:** scaling a vector to length 1.
 - **Corpus:** a collection of documents.
 
-### Exercises
+**Exercises**
 
 1. A 1,000-document corpus; "rocket" appears in 9 documents. What is its idf (with scikit-learn's formula)?
 2. Why add `ngram_range=(1, 2)` for sentiment analysis?
@@ -10269,7 +10269,7 @@ production   implicit feedback, ranking metrics, cold start, retrieval → ranki
 - **Content-based filtering:** recommending from item and user attributes.
 - **Retrieval and ranking:** a cheap first stage that picks candidates, and a richer second stage that orders them.
 
-### Exercises
+**Exercises**
 
 1. μ = 3.5, b_u = +0.4, b_i = −0.2, p_u = (1, 0.5), q_i = (0.6, −0.4). What is the predicted rating?
 2. In that example the true rating is 4. With lr = 0.1 and λ = 0, what is the new p_u after one update?
@@ -10518,7 +10518,7 @@ correlated    permute or drop groups together; importance ≠ causation
 - **Shuffle (permute):** randomly reorder values, breaking their link to everything else in the row.
 - **Proxy feature:** a feature that stands in for another (often sensitive or leaky) variable.
 
-### Exercises
+**Exercises**
 
 1. A permutation importance is 0.002 ± 0.004. What do you conclude?
 2. Why must permutation importance use held-out data rather than training data?
@@ -10751,7 +10751,7 @@ SHAP                 TreeExplainer (exact, fast for trees); mean |SHAP| = global
 - **`TreeExplainer`:** SHAP's exact, fast method for tree models.
 - **Reason codes:** the top features behind an individual decision, given to the person affected.
 
-### Exercises
+**Exercises**
 
 1. For the toy model f = 10x₁ + 5x₂ + 4x₁x₂, compute the Shapley values at x = (2, 1), with baseline (0, 0).
 2. All the ICE curves for a feature are parallel. What does that tell you?
@@ -10979,7 +10979,7 @@ error analysis sort by error, read rows, look for the shared pattern
 - **Label noise:** wrong target values in the training or test data.
 - **Sanity check:** a quick test that should obviously pass if the code is right.
 
-### Exercises
+**Exercises**
 
 1. A model's overall accuracy is 94%. In one region with 2% of users it's 61%. Why might the overall metric never reveal this?
 2. A slice's error interval is [3.1, 9.8] and the overall MAE is 5.0. Is the slice clearly worse?
@@ -11162,7 +11162,7 @@ privacy          minimise data; names off ≠ anonymous; DP: add noise scaled to
 - **Privacy budget (ε):** how much privacy loss is allowed; smaller means more noise and more privacy.
 - **Model card:** a document describing a model's purpose, data, performance (overall and per group) and limits.
 
-### Exercises
+**Exercises**
 
 1. Group C: 200 applicants, 120 repay; the model approves 90, of whom 80 repay. Compute the selection rate, TPR, FPR and precision.
 2. Why doesn't removing the gender column guarantee a gender-fair model?
@@ -11351,7 +11351,7 @@ ONNX            to_onnx(pipeline, example_X) → onnxruntime.InferenceSession(..
 - **Model metadata:** information stored with a model (versions, data fingerprint, metrics, settings).
 - **Artifact versioning:** giving each saved model a unique, permanent version.
 
-### Exercises
+**Exercises**
 
 1. A colleague emails you a `.joblib` model from an unknown website. What do you do?
 2. Why save the training data's hash in the metadata?
@@ -11556,7 +11556,7 @@ rollout  offline → shadow → canary → A/B → 100%, with rollback ready
 - **Canary release:** sending a small share of real traffic to a new version first.
 - **Rollback:** switching back to the previous version quickly.
 
-### Exercises
+**Exercises**
 
 1. Which serving style for: (a) weekly product recommendations by email; (b) approving a card payment; (c) next-day demand for each store?
 2. Why return `model_version` in every response?
@@ -11694,7 +11694,7 @@ reproducible = code commit + data hash + locked versions + seeds + logged params
 - **Lock file:** a file pinning the exact versions of every installed library.
 - **Commit hash:** git's identifier for an exact version of the code.
 
-### Exercises
+**Exercises**
 
 1. The production model misbehaves after Tuesday's release. With a registry and aliases, what's the fastest fix?
 2. Two teammates get CV AUC 0.9951 and 0.9952 from "the same" code. Name three things to compare.
@@ -11899,7 +11899,7 @@ gates      only promote a model that beats the champion overall and on slices
 - **Point-in-time join:** attaching to each example only the feature values known at that example's time.
 - **Gate:** a check that must pass before a pipeline continues or a model is promoted.
 
-### Exercises
+**Exercises**
 
 1. Training used `account_age_days` computed from the sign-up date; the live app sends `account_age_months`. What happens, and how would monitoring catch it?
 2. In 51.4, which spend value would an event for c1 on 2026-03-14 get?
@@ -12137,7 +12137,7 @@ retrain         schedule, trigger, or recent window; always through the promotio
 - **Retraining trigger:** a monitored condition that starts a retrain.
 - **Training window:** the time range of data used to train.
 
-### Exercises
+**Exercises**
 
 1. Compute the PSI for e = [0.5, 0.5] and a = [0.6, 0.4].
 2. A fraud model's input PSIs all stay below 0.05, but confirmed fraud losses double. What kind of drift is this, and what do you do?
@@ -12263,7 +12263,7 @@ fraud exposure per day ≈ ₹20 crore
 - **Exploration sample:** a small share of decisions made without the model's filtering, so unbiased labels keep arriving.
 - **Event stream:** a continuous feed of events (payments, clicks), used to keep features fresh.
 
-### Exercises
+**Exercises**
 
 1. Apply step 3 (framing) to "recommend articles on a news site's home page".
 2. Why is a random split a mistake for evaluating the fraud model?
@@ -12453,7 +12453,7 @@ bandits     ε-greedy (simple); Thompson: sample from Beta(1+clicks, 1+misses), 
 - **Thompson sampling:** choose by sampling each option's success rate from its posterior distribution.
 - **Beta distribution:** a distribution over values between 0 and 1, often used for unknown rates.
 
-### Exercises
+**Exercises**
 
 1. Compute NDCG@3 for relevances shown in the order [0, 2, 3].
 2. Why might a forecasting model trained on raw sales under-forecast your best-selling products?
@@ -12644,7 +12644,7 @@ stack                       pandas 3 / Polars / DuckDB, uv lock files, embedding
 - **Pretrained forecaster:** a time-series model pretrained on many series that forecasts new ones without training.
 - **Uplift (causal) modelling:** estimating how much an action changes the outcome for each individual.
 
-### Exercises
+**Exercises**
 
 1. With 99 calibration errors and α = 0.05, which ranked error is q?
 2. A team needs 2 ms predictions on 50 million transactions a day, on CPUs. TabPFN, an LLM, or gradient boosting?
@@ -13149,7 +13149,7 @@ conformal            q = ⌈(n+1)(1−α)⌉-th smallest calibration error;  ŷ 
 Every term from the chapters’ **Key terms** lists, A to Z, with a plain definition and a link to the chapter that teaches it (the first link is where it's introduced). Terms are listed by their main word; symbols and code names (like `C` or `n_estimators`) are sorted by their first letter.
 
 
-### A
+**A**
 
 - **Accuracy:** the fraction of examples a model gets right. *(Chapter [1](#1-what-machine-learning-is))*
 - **Adam:** an optimiser that scales each parameter's step by running averages of its gradient and squared gradient. *(Chapter [17](#17-better-training-mini-batches-momentum-adam-and-robust-losses))*
@@ -13171,7 +13171,7 @@ Every term from the chapters’ **Key terms** lists, A to Z, with a plain defini
 - **Average precision (AP):** a summary of the PR curve; the average precision at each rise in recall. *(Chapter [13](#13-thresholds-roc-and-precisionrecall-curves))*
 - **axis=0:** "along the rows", which gives one result per column. *(Chapter [3](#3-vectors-matrices-and-the-dot-product))*
 
-### B
+**B**
 
 - **Back-of-the-envelope estimate:** a quick calculation of volume, latency or cost to guide the design. *(Chapter [53](#53-ml-system-design-a-framework-and-a-worked-example))*
 - **Bag of words:** representing a document by its word counts, ignoring order. *(Chapter [42](#42-text-classification-bag-of-words-tf-idf-and-linear-models))*
@@ -13197,7 +13197,7 @@ Every term from the chapters’ **Key terms** lists, A to Z, with a plain defini
 - **Broadcasting:** NumPy's automatic repeating of a smaller array so it can be combined with a bigger one. *(Chapter [3](#3-vectors-matrices-and-the-dot-product))*
 - **Business metric:** the real-world outcome a model should improve, such as revenue or fraud losses. *(Chapter [18](#18-baselines-and-choosing-the-right-metric))*
 
-### C
+**C**
 
 - **`C`:** the inverse regularisation strength in `LogisticRegression` and SVMs; smaller C means a stronger penalty. *(Chapter [16](#16-regularisation-ridge-lasso-and-elastic-net), [31](#31-support-vector-machines-and-kernels))*
 - **`CalibratedClassifierCV`:** scikit-learn's wrapper that calibrates a model with cross-validation. *(Chapter [40](#40-probability-calibration-and-cost-based-decisions))*
@@ -13251,7 +13251,7 @@ Every term from the chapters’ **Key terms** lists, A to Z, with a plain defini
 - **Curse of dimensionality:** in many dimensions, distances become similar and data becomes sparse, so distance-based methods weaken. *(Chapter [14](#14-k-nearest-neighbours-and-feature-scaling))*
 - **Cyclical encoding:** representing a repeating variable (day of the year) with sine and cosine so its end and start are close. *(Chapter [41](#41-time-series-forecasting-with-machine-learning))*
 
-### D
+**D**
 
 - **DAG (directed acyclic graph):** steps with "runs before" arrows and no cycles. *(Chapter [51](#51-ml-pipelines-feature-stores-and-trainingserving-skew))*
 - **Data drift (covariate shift):** a change in the distribution of the inputs. *(Chapter [52](#52-monitoring-models-in-production-data-drift-concept-drift-and-retraining))*
@@ -13279,7 +13279,7 @@ Every term from the chapters’ **Key terms** lists, A to Z, with a plain defini
 - **Dual problem:** the rewritten SVM problem that depends on the data only through dot products. *(Chapter [31](#31-support-vector-machines-and-kernels))*
 - **`DummyRegressor` / `DummyClassifier`:** scikit-learn estimators that ignore the features and predict a constant (mean, median, most frequent class). *(Chapter [18](#18-baselines-and-choosing-the-right-metric))*
 
-### E
+**E**
 
 - **Early stopping:** ending training when the validation score stops improving. *(Chapter [29](#29-gradient-boosting-from-scratch))*
 - **Early stopping rounds:** how many rounds without validation improvement to allow before stopping. *(Chapter [30](#30-xgboost-lightgbm-catboost-and-histgradientboosting))*
@@ -13310,7 +13310,7 @@ Every term from the chapters’ **Key terms** lists, A to Z, with a plain defini
 - **Exploration sample:** a small share of decisions made without the model's filtering, so unbiased labels keep arriving. *(Chapter [53](#53-ml-system-design-a-framework-and-a-worked-example))*
 - **Exploration vs exploitation:** trying options to learn about them vs using the best-known one. *(Chapter [54](#54-how-real-systems-use-ml-fraud-search-ads-recommendations-and-forecasting))*
 
-### F
+**F**
 
 - **F1 score:** the harmonic mean of precision and recall. *(Chapter [12](#12-classification-metrics-confusion-matrix-precision-recall-and-f1))*
 - **Fallback:** a simpler path used when the main model or its inputs fail. *(Chapter [53](#53-ml-system-design-a-framework-and-a-worked-example))*
@@ -13333,7 +13333,7 @@ Every term from the chapters’ **Key terms** lists, A to Z, with a plain defini
 - **Forward selection:** adding the best remaining feature one round at a time. *(Chapter [24](#24-feature-selection))*
 - **Foundation model:** a large pretrained model applied to many tasks with little extra training. *(Chapter [55](#55-whats-new-20222026-foundation-models-for-tables-automl-and-modern-practice))*
 
-### G
+**G**
 
 - **gamma (γ):** how quickly RBF similarity fades; a large γ gives wiggly boundaries. *(Chapter [31](#31-support-vector-machines-and-kernels))*
 - **γ (`gamma`, `min_split_loss`):** the minimum gain a split must achieve. *(Chapter [30](#30-xgboost-lightgbm-catboost-and-histgradientboosting))*
@@ -13354,7 +13354,7 @@ Every term from the chapters’ **Key terms** lists, A to Z, with a plain defini
 - **Group k-fold:** folds that keep all rows of one group together. *(Chapter [21](#21-cross-validation))*
 - **Group split:** keeping all rows of one group (a user, a patient) in the same set. *(Chapter [2](#2-data-features-labels-and-traintest-splits))*
 
-### H
+**H**
 
 - **Hard margin / soft margin:** no violations allowed, versus violations allowed at a cost. *(Chapter [31](#31-support-vector-machines-and-kernels))*
 - **Hard voting:** taking the majority of several models' predicted classes. *(Chapter [33](#33-choosing-a-model-and-combining-models-stacking))*
@@ -13372,7 +13372,7 @@ Every term from the chapters’ **Key terms** lists, A to Z, with a plain defini
 - **Hyperparameter tuning:** choosing settings by comparing their cross-validated scores. *(Chapter [22](#22-hyperparameter-tuning-grid-random-and-bayesian-search))*
 - **Hyperplane:** a flat boundary: a line in 2D, a plane in 3D, and so on. *(Chapter [31](#31-support-vector-machines-and-kernels))*
 
-### I
+**I**
 
 - **ICE curve:** one row's prediction as a feature varies; the per-row version of partial dependence. *(Chapter [45](#45-partial-dependence-ice-and-shap))*
 - **Imbalanced classes:** one class is much rarer than the other (Chapter 39). *(Chapter [12](#12-classification-metrics-confusion-matrix-precision-recall-and-f1))*
@@ -13395,11 +13395,11 @@ Every term from the chapters’ **Key terms** lists, A to Z, with a plain defini
 - **Isotonic regression:** fitting the best non-decreasing step function. *(Chapter [40](#40-probability-calibration-and-cost-based-decisions))*
 - **Item-to-item similarity:** how alike two items' rating patterns are, often measured by cosine similarity. *(Chapter [43](#43-recommender-systems-collaborative-filtering-and-matrix-factorisation))*
 
-### J
+**J**
 
 - **joblib:** a library for saving Python objects, such as fitted pipelines, to files and loading them back. *(Chapter [26](#26-a-complete-project-end-to-end), [48](#48-saving-models-joblib-skops-and-onnx))*
 
-### K
+**K**
 
 - **k:** the number of neighbours consulted; a hyperparameter. *(Chapter [14](#14-k-nearest-neighbours-and-feature-scaling))*
 - **k-anonymity:** every combination of quasi-identifiers is shared by at least k records. *(Chapter [47](#47-fairness-privacy-and-responsible-ml))*
@@ -13412,7 +13412,7 @@ Every term from the chapters’ **Key terms** lists, A to Z, with a plain defini
 - **KL divergence:** Σ p ln(p/q), a measure of how different distribution Q is from P; 0 when they're equal. *(Chapter [37](#37-t-sne-and-umap-for-visualisation))*
 - **Kolmogorov–Smirnov (KS) test:** a test comparing two samples by the largest gap between their cumulative distributions. *(Chapter [52](#52-monitoring-models-in-production-data-drift-concept-drift-and-retraining))*
 
-### L
+**L**
 
 - **L2 normalisation:** scaling a vector to length 1. *(Chapter [42](#42-text-classification-bag-of-words-tf-idf-and-linear-models))*
 - **Label (target):** the correct answer for an example, the thing we want to predict. *(Chapter [1](#1-what-machine-learning-is))*
@@ -13449,7 +13449,7 @@ Every term from the chapters’ **Key terms** lists, A to Z, with a plain defini
 - **Logistic regression:** a classifier that turns a weighted sum into a probability with the sigmoid, trained by minimising log loss. *(Chapter [10](#10-logistic-regression))*
 - **Loss:** one number measuring how wrong a model's predictions are; training makes it small. *(Chapter [4](#4-derivatives-and-the-chain-rule))*
 
-### M
+**M**
 
 - **Machine learning (ML):** getting a computer to find a rule from examples instead of writing the rule by hand. *(Chapter [1](#1-what-machine-learning-is))*
 - **Macro average:** the unweighted average of a metric over classes. *(Chapter [12](#12-classification-metrics-confusion-matrix-precision-recall-and-f1))*
@@ -13495,7 +13495,7 @@ Every term from the chapters’ **Key terms** lists, A to Z, with a plain defini
 - **Multinomial Naive Bayes:** Naive Bayes for count features such as word counts. *(Chapter [32](#32-naive-bayes))*
 - **Mutual information:** a measure of how much knowing a feature reduces uncertainty about the target; it catches non-linear links. *(Chapter [24](#24-feature-selection))*
 
-### N
+**N**
 
 - **n-gram:** a sequence of n consecutive tokens; a bigram is two. *(Chapter [42](#42-text-classification-bag-of-words-tf-idf-and-linear-models))*
 - **`n_estimators_`:** the number of trees actually trained when early stopping is on. *(Chapter [29](#29-gradient-boosting-from-scratch))*
@@ -13514,7 +13514,7 @@ Every term from the chapters’ **Key terms** lists, A to Z, with a plain defini
 - **Normal equation:** w = (XᵀX)⁻¹Xᵀy, the exact least-squares solution. *(Chapter [7](#7-linear-regression-from-scratch))*
 - **Numerical derivative:** an estimate of the slope from (f(w + h) − f(w)) / h with a tiny h; used to check formulas. *(Chapter [4](#4-derivatives-and-the-chain-rule))*
 
-### O
+**O**
 
 - **Odds:** p / (1 − p), how many times more likely yes is than no. *(Chapter [10](#10-logistic-regression))*
 - **Odds ratio:** e^w, how many times the odds multiply when a feature rises by 1. *(Chapter [10](#10-logistic-regression))*
@@ -13537,7 +13537,7 @@ Every term from the chapters’ **Key terms** lists, A to Z, with a plain defini
 - **Outlier:** a value far from the rest. *(Chapter [8](#8-measuring-regression-error-mse-rmse-mae-and-r²))*
 - **Overfitting:** learning the training data so closely, noise included, that the model does worse on new data. *(Chapter [2](#2-data-features-labels-and-traintest-splits), [15](#15-overfitting-underfitting-and-the-biasvariance-trade-off))*
 
-### P
+**P**
 
 - **Parameter:** a number inside the model that training chooses, such as the threshold t. *(Chapter [1](#1-what-machine-learning-is))*
 - **Partial dependence (PD):** the average prediction as one feature is set to each value of a grid. *(Chapter [45](#45-partial-dependence-ice-and-shap))*
@@ -13582,13 +13582,13 @@ Every term from the chapters’ **Key terms** lists, A to Z, with a plain defini
 - **Pseudo-residual:** −∂L/∂F for a row; the target each new tree fits. *(Chapter [29](#29-gradient-boosting-from-scratch))*
 - **Pydantic:** a library for declaring and validating data with Python type hints. *(Chapter [49](#49-serving-models-an-api-endpoint-and-batch-scoring))*
 
-### Q
+**Q**
 
 - **QPS (queries per second):** how many requests a system handles each second. *(Chapter [53](#53-ml-system-design-a-framework-and-a-worked-example))*
 - **Quantile:** the value below which a given fraction of the data falls. *(Chapter [26](#26-a-complete-project-end-to-end))*
 - **Quasi-identifier:** a field that identifies people in combination with others (pincode, birth date). *(Chapter [47](#47-fairness-privacy-and-responsible-ml))*
 
-### R
+**R**
 
 - **Random forest:** bagged decision trees that consider only a random subset of the features at each split. *(Chapter [28](#28-bagging-and-random-forests))*
 - **Random search:** trying a fixed number of randomly sampled combinations. *(Chapter [22](#22-hyperparameter-tuning-grid-random-and-bayesian-search))*
@@ -13625,7 +13625,7 @@ Every term from the chapters’ **Key terms** lists, A to Z, with a plain defini
 - **Run:** one training attempt, with its parameters, metrics and artifacts. *(Chapter [50](#50-experiment-tracking-and-reproducibility-with-mlflow))*
 - **R² (coefficient of determination):** 1 minus the model's squared error divided by the squared error of always predicting the mean. *(Chapter [8](#8-measuring-regression-error-mse-rmse-mae-and-r²))*
 
-### S
+**S**
 
 - **Sanity check:** a quick test that should obviously pass if the code is right. *(Chapter [46](#46-debugging-models-sanity-checks-error-analysis-and-slicing))*
 - **scikit-learn (sklearn):** Python's standard library for classic machine learning: models, data tools and scoring. *(Chapter [9](#9-meet-scikit-learn-estimators-fit-and-predict))*
@@ -13682,7 +13682,7 @@ Every term from the chapters’ **Key terms** lists, A to Z, with a plain defini
 - **SVR:** support vector regression; ignores errors smaller than ε. *(Chapter [31](#31-support-vector-machines-and-kernels))*
 - **Symmetric (oblivious) tree:** a tree that asks the same question across a whole level (CatBoost). *(Chapter [30](#30-xgboost-lightgbm-catboost-and-histgradientboosting))*
 
-### T
+**T**
 
 - **t-SNE:** a 2D/3D embedding that preserves neighbourhoods by matching similarity distributions. *(Chapter [37](#37-t-sne-and-umap-for-visualisation))*
 - **Tabular foundation model (TabPFN, TabICL):** a model pretrained on many synthetic tables that predicts on new tables in context. *(Chapter [55](#55-whats-new-20222026-foundation-models-for-tables-automl-and-modern-practice))*
@@ -13714,7 +13714,7 @@ Every term from the chapters’ **Key terms** lists, A to Z, with a plain defini
 - **True positive rate (TPR):** the same as recall, TP / (TP + FN). *(Chapter [13](#13-thresholds-roc-and-precisionrecall-curves))*
 - **Trustworthiness:** the share of each point's low-dimensional neighbours that were true neighbours in the original space. *(Chapter [37](#37-t-sne-and-umap-for-visualisation))*
 
-### U
+**U**
 
 - **UMAP:** a faster neighbourhood-preserving embedding based on a nearest-neighbour graph. *(Chapter [37](#37-t-sne-and-umap-for-visualisation))*
 - **Underfitting:** a model too simple to capture the pattern; high error on training and test data. *(Chapter [15](#15-overfitting-underfitting-and-the-biasvariance-trade-off))*
@@ -13726,7 +13726,7 @@ Every term from the chapters’ **Key terms** lists, A to Z, with a plain defini
 - **User / item bias:** how much a user's ratings, or an item's, sit above or below the overall average. *(Chapter [43](#43-recommender-systems-collaborative-filtering-and-matrix-factorisation))*
 - **uvicorn:** a server program that runs FastAPI apps. *(Chapter [49](#49-serving-models-an-api-endpoint-and-batch-scoring))*
 
-### V
+**V**
 
 - **Validation curve:** training and validation scores plotted against one hyperparameter. *(Chapter [23](#23-learning-curves-and-validation-curves))*
 - **Validation set:** rows used to compare choices (models, settings) while building. *(Chapter [2](#2-data-features-labels-and-traintest-splits))*
@@ -13735,24 +13735,24 @@ Every term from the chapters’ **Key terms** lists, A to Z, with a plain defini
 - **Vector:** a list of numbers, such as one example's features. *(Chapter [3](#3-vectors-matrices-and-the-dot-product))*
 - **Vocabulary (V):** the set of distinct words the model knows. *(Chapter [32](#32-naive-bayes))*
 
-### W
+**W**
 
 - **Weak learner:** a model only a little better than guessing, such as a stump. *(Chapter [29](#29-gradient-boosting-from-scratch))*
 - **Weight decay:** the L2 penalty seen as a pull on every weight towards 0 at each update. *(Chapter [16](#16-regularisation-ridge-lasso-and-elastic-net))*
 - **Weight vector (w):** the numbers a model multiplies the features by. *(Chapter [3](#3-vectors-matrices-and-the-dot-product))*
 - **Wrapper method:** choosing features by training and scoring a model on candidate subsets. *(Chapter [24](#24-feature-selection))*
 
-### X
+**X**
 
 - **X (feature matrix):** the 2D array of inputs, one row per example and one column per feature. *(Chapter [2](#2-data-features-labels-and-traintest-splits))*
 - **XGBoost / LightGBM / CatBoost:** popular gradient-boosting libraries; all use second-order leaf values and histogram split finding. *(Chapter [30](#30-xgboost-lightgbm-catboost-and-histgradientboosting))*
 
-### Y
+**Y**
 
 - **y (target vector):** the 1D array of labels, one per example. *(Chapter [2](#2-data-features-labels-and-traintest-splits))*
 - **ŷ (y-hat):** the model's prediction. *(Chapter [7](#7-linear-regression-from-scratch))*
 
-### Z
+**Z**
 
 - **z-score:** (x − mean) / standard deviation. *(Chapter [38](#38-anomaly-detection))*
 

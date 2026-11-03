@@ -258,7 +258,7 @@ deep learning:  raw input  →  layer → layer → … (learned features)  → 
 - **Pretrained model:** a network already trained on a large dataset, which you download and adapt.
 - **PyTorch:** the most widely used deep-learning library, and the one this book uses.
 
-### Exercises
+**Exercises**
 
 1. Make the rings harder to separate by raising the noise from 0.08 to 0.25. What happens to the accuracy of logistic regression with the radius feature? Why can't any feature fix it fully?
 2. For each problem, would you start with gradient-boosted trees or deep learning? (a) predicting a customer's chance of cancelling from 20 account columns; (b) reading handwritten postcodes from scans; (c) transcribing phone calls.
@@ -461,7 +461,7 @@ reshape keeps memory order;  transpose reorders axes;  reducing over axis k remo
 - **Transpose:** reordering the axes of a tensor.
 - **Broadcasting:** stretching size-1 or missing axes so that arrays of different shapes can be combined.
 
-### Exercises
+**Exercises**
 
 1. How many numbers are in a batch of 64 colour images of 128×128 pixels? How many megabytes is that in `float32`, at 4 bytes per number?
 2. A layer turns (32, 784) into (32, 256). What shape must its weight matrix and its bias have?
@@ -637,7 +637,7 @@ perceptron rule: w ← w + lr (y − ŷ) x,  b ← b + lr (y − ŷ)
 - **Perceptron:** a step-activation neuron trained by nudging its weights after each mistake.
 - **Epoch:** one full pass through the training examples.
 
-### Exercises
+**Exercises**
 
 1. Find weights and a bias by hand for NAND ("not AND": 0 only when both inputs are 1). Check them with `neuron`.
 2. XOR(a, b) = AND(OR(a, b), NAND(a, b)). Build XOR from three neurons whose weights you choose by hand.
@@ -856,7 +856,7 @@ softmax(z)ᵢ = e^{zᵢ − max z} / Σⱼ e^{zⱼ − max z}
 - **Logits:** the raw scores a network outputs before sigmoid or softmax.
 - **Softmax:** turns a vector of logits into probabilities that sum to 1.
 
-### Exercises
+**Exercises**
 
 1. Leaky ReLU is max(0.01z, z). What is its slope for negative z, and which problem of ReLU does it fix?
 2. Show by hand that softmax(z) for two classes, z = (z₁, z₂), equals (σ(z₁ − z₂), σ(z₂ − z₁)).
@@ -1069,7 +1069,7 @@ params:    D_in · D_out + D_out per dense layer
 - **Parameter:** a number learned in training, a weight or a bias.
 - **Universal approximation theorem:** one hidden layer with enough neurons can approximate any continuous function.
 
-### Exercises
+**Exercises**
 
 1. How many parameters does an MLP 3072 → 512 → 512 → 10 have (32×32 colour images to 10 classes)?
 2. Change the XOR network's output layer so that it computes AND instead, without changing the hidden layer.
@@ -1262,7 +1262,7 @@ CE = −z_y + logsumexp(z),   logsumexp(z) = m + log Σ e^{z − m},  m = max z
 - **One-hot vector:** a vector of zeros with a single 1 at the position of the true class.
 - **Numerical gradient:** a slope estimated by nudging the input slightly: (f(x + h) − f(x − h)) / 2h.
 
-### Exercises
+**Exercises**
 
 1. A model always predicts 1/K for each of K = 10 classes. What is its cross-entropy? Why is this a useful number to know when training starts?
 2. Write the stable binary cross-entropy from a logit z, and check it equals −log σ(z) for y = 1 when z = 3.
@@ -1458,7 +1458,7 @@ mini-batch SGD:       each epoch: shuffle → split into batches of B → one st
 - **Step (iteration):** one parameter update.
 - **Batch size (B):** the number of examples in a mini-batch.
 
-### Exercises
+**Exercises**
 
 1. Train with batch size 32 and lr = 5. What happens, and why?
 2. With N = 50,000 examples, batch size 128 and 10 epochs, how many gradient steps are taken?
@@ -1658,7 +1658,7 @@ check: (f(θ + h) − f(θ − h)) / 2h
 - **Reverse-mode automatic differentiation:** computing all gradients of one output with one backward pass over the graph.
 - **Central difference:** the numerical slope (f(θ + h) − f(θ − h)) / 2h.
 
-### Exercises
+**Exercises**
 
 1. For f = (a + b) · c with a = 1, b = 2, c = 3, compute ∂f/∂a, ∂f/∂b and ∂f/∂c with a backward pass by hand.
 2. For f = x² written as x · x, use rule 8.4 to get ∂f/∂x, and check numerically at x = 3.
@@ -1899,7 +1899,7 @@ check:  relative error |a − n| / (|a| + |n|) ≈ 1e-7 or less
 - **Gradient check:** comparing analytic gradients with numerical ones to test a backward pass.
 - **Relative error:** |a − n| / (|a| + |n|), a scale-free measure of how much two numbers differ.
 
-### Exercises
+**Exercises**
 
 1. Train the same network with a single hidden layer of 2 units ([2, 2, 1]). What test accuracy does it reach, and why?
 2. In `backward`, what goes wrong if you forget `.T` in `G @ W.T`? Try it on the gradient check.
@@ -2167,7 +2167,7 @@ training:  zero the grads → loss.backward() → p.data -= lr · p.grad
 - **Operator overloading:** defining methods such as `__add__` so that `+` and `*` work on your own objects.
 - **Gradient accumulation:** gradients being added into `grad` rather than replacing it, which is why they're reset before each backward pass.
 
-### Exercises
+**Exercises**
 
 1. Add a `relu` method to `Value` (output max(0, x); local derivative 1 if x > 0, else 0) and check it on x = −2 and x = 3.
 2. Remove the line that resets the gradients and train again. What happens to the loss?
@@ -2361,7 +2361,7 @@ t.to(device),  device = "cuda" / "mps" / "cpu"
 - **MPS (Metal Performance Shaders):** Apple's platform for running computations on Apple Silicon GPUs.
 - **Shared memory:** two objects reading and writing the same numbers in memory, so a change to one shows in the other.
 
-### Exercises
+**Exercises**
 
 1. Create a (3, 4) tensor of the numbers 0 to 11, then compute the sum of each row and the mean of each column.
 2. `torch.tensor(arr)` copies, while `torch.from_numpy(arr)` doesn't. Show the difference.
@@ -2564,7 +2564,7 @@ with torch.no_grad():   updates and predictions;   t.detach()   cut from the gra
 - **detach:** returning a tensor's values without its link to the computational graph.
 - **In-place operation:** an operation that changes a tensor's own memory instead of creating a new tensor; PyTorch marks these with a trailing underscore, as in `zero_()`.
 
-### Exercises
+**Exercises**
 
 1. Use autograd to find the slope of f(x) = x³ − 2x at x = 2, and check it against the derivative 3x² − 2.
 2. What does `(w * 2).backward()` print when `w` was created without `requires_grad=True`? Why?
@@ -2776,7 +2776,7 @@ class Net(nn.Module):
 - **`nn.ModuleList`:** a list of modules that registers each one.
 - **`nn.Sequential`:** a module that runs its sub-modules one after another.
 
-### Exercises
+**Exercises**
 
 1. Write a module `TwoLayer(d_in, d_hidden, d_out)` that takes the sizes as arguments. How many parameters does `TwoLayer(2, 16, 1)` have?
 2. Rewrite the network of Chapter 9.5 (2 → 16 → 16 → 1) with `nn.Sequential` and count its parameters.
@@ -2965,7 +2965,7 @@ each batch:  optimizer.zero_grad() → loss = loss_fn(model(x), y) → loss.back
 - **`optimizer.zero_grad()`:** resets the gradients of every parameter the optimiser holds.
 - **`torch.nn.functional` (F):** the same operations as the modules, as plain functions.
 
-### Exercises
+**Exercises**
 
 1. Leave out `optimizer.zero_grad()` and train the rings again. What happens?
 2. Check that `F.cross_entropy` gives the same number as `nn.CrossEntropyLoss` on the logits of 14.1.
@@ -3158,7 +3158,7 @@ random_split(ds, [n_train, n_val], generator=torch.Generator().manual_seed(0))
 - **torchvision:** PyTorch's companion library of image datasets, models and transforms.
 - **Validation set:** data held out from training to choose settings and detect overfitting; the test set stays untouched until the end.
 
-### Exercises
+**Exercises**
 
 1. Write a `Dataset` that returns each Fashion-MNIST image **flattened** to 784 numbers, with its label. Check the shapes of one batch of 64.
 2. How many batches per epoch does a loader over 50,000 examples have with `batch_size=128`, and how big is the last one?
@@ -3389,7 +3389,7 @@ predicted class = logits.argmax(dim=1);   probabilities = torch.softmax(logits, 
 - **argmax:** the index of the largest value; applied to logits it gives the predicted class.
 - **Overfitting:** the model fitting details of the training data that don't generalise, seen as training loss falling while validation loss doesn't.
 
-### Exercises
+**Exercises**
 
 1. Train with `lr=0.01` instead of 0.1 for 10 epochs. How does the final validation accuracy compare, and why?
 2. Count how many of the 10,000 test images the model gets wrong, and find the pair of classes it confuses most often.
@@ -3621,7 +3621,7 @@ checkpoint = {"model": …, "optimizer": optimizer.state_dict(), "epoch": …, "
 - **Checkpoint:** a saved snapshot of everything needed to resume training: weights, optimiser state, epoch and random state.
 - **Optimiser state:** values an optimiser keeps between steps, such as running averages of gradients.
 
-### Exercises
+**Exercises**
 
 1. Repeat the resume test without restoring the random state. Is the result still identical?
 2. Why does a checkpoint store `optimizer.state_dict()` and not the optimiser object itself?
@@ -3807,7 +3807,7 @@ clip by norm:          if ‖g‖ > c:  g ← g · c/‖g‖       clip_grad_nor
 - **Gradient clipping:** shrinking the gradient when its norm exceeds a limit, keeping its direction.
 - **Norm (‖g‖):** the length of a vector, √(Σ gᵢ²).
 
-### Exercises
+**Exercises**
 
 1. Set every weight and bias of a 4 → 3 → 1 network to 0.5 and train it for 20 steps. Print the first layer's weights. What do you notice?
 2. What standard deviation does He initialisation give a layer with 512 inputs? With 4,096?
@@ -4106,7 +4106,7 @@ AdamW:     Adam step, plus θ ← θ − lr λ θ                 (decoupled wei
 - **Weight decay:** shrinking every weight towards 0 by a small fraction each step.
 - **AdamW:** Adam with weight decay applied directly to the weights, separate from the adaptive scaling.
 
-### Exercises
+**Exercises**
 
 1. What is Adam's first step, at t = 1, for any non-zero gradient g? (Ignore ε.)
 2. Run Adam on the valley with lr = 0.01. How far does x get in 100 steps, and why?
@@ -4311,7 +4311,7 @@ default recipe:  AdamW, warm-up for 1–5% of steps, cosine decay to ~0 (or 10% 
 - **One-cycle schedule:** a warm-up to a high peak followed by a long decay to nearly 0.
 - **Peak learning rate:** the highest rate a schedule reaches.
 
-### Exercises
+**Exercises**
 
 1. With T = 10,000 steps and a 500-step warm-up to 3e-4, what is the learning rate at steps 0, 250, 500 and 5,250?
 2. You resume training from a checkpoint but forget to restore the scheduler's state. What learning rate does training continue with?
@@ -4569,7 +4569,7 @@ x̂ = (x − μ)/√(σ² + ε),   y = γ x̂ + β          RMSNorm: y = γ x / 
 - **RMSNorm:** dividing each example by the root mean square of its features, without subtracting the mean.
 - **γ and β (scale and shift):** the learned parameters a normalisation layer applies after normalising.
 
-### Exercises
+**Exercises**
 
 1. Show that LayerNorm's output for an example doesn't change if you multiply that example by 10, but BatchNorm's output for it can change when you multiply **another** example in the batch.
 2. What happens if you call a BatchNorm layer in training mode on a batch of one example?
@@ -4878,7 +4878,7 @@ label smoothing:  target 1 − ε + ε/K for the true class, ε/K otherwise    C
 - **`torchvision.transforms.v2`:** torchvision's library of image transforms, such as flips and crops.
 - **Label smoothing:** training against slightly softened targets instead of one-hot ones, to prevent overconfidence.
 
-### Exercises
+**Exercises**
 
 1. Dropout with p = 0.2 on an input of all 5s: what values can each output take, and what's their average?
 2. Which augmentations are safe for handwritten digit recognition: horizontal flip, rotation by up to 10°, colour inversion, a shift of 2 pixels?
@@ -5142,7 +5142,7 @@ Plot training and validation loss, per step or per epoch (the picture at the top
 - **Gradient norm:** the length of the gradient vector, a quick measure of how big the updates are.
 - **Underfitting:** a model too weak, or trained too little, to fit even the training data well.
 
-### Exercises
+**Exercises**
 
 1. Plant another bug: in `overfit_one_batch`, shuffle the labels with `y = y[torch.randperm(64)]` before training. Can the model still overfit the batch? What does that tell you about this check?
 2. Your training loss is 0.05 and validation loss 2.1, and both are still moving apart. What's happening, and what are three things to try?
@@ -5362,7 +5362,7 @@ nn.Conv2d(C_in, C_out, kernel_size=k, stride=s, padding=p)
 - **Receptive field:** the region of the input that can influence one output value.
 - **`nn.Conv2d`:** PyTorch's 2-D convolution layer.
 
-### Exercises
+**Exercises**
 
 1. What output shape does `nn.Conv2d(3, 16, kernel_size=5, stride=1, padding=0)` give for a (8, 3, 32, 32) input? How many parameters does it have?
 2. Show the two edge maps of the ankle boot from 24.3 as pictures.
@@ -5588,7 +5588,7 @@ channels grow, height and width shrink;  backbone = features, head = decision
 - **Backbone:** the part of a network that computes features from the input.
 - **Head:** the final layers that turn the backbone's features into the prediction.
 
-### Exercises
+**Exercises**
 
 1. Draw eight of the first-layer feature maps for the test image.
 2. Remove both pooling layers (and change the head's input size to match). How many parameters does the model have now, and why?
@@ -5818,7 +5818,7 @@ network:         stem → stages (×2 size down, ×2 channels) → global averag
 - **Global average pooling:** averaging each channel over all positions, giving one number per channel.
 - **Stem:** the first layers of a CNN, which turn the raw image into the first feature maps.
 
-### Exercises
+**Exercises**
 
 1. Count the parameters of `ResidualBlock(64, 64)` and of `ResidualBlock(64, 128, stride=2)`. Where do the extra ones in the second come from?
 2. Why does global average pooling let the same network classify a 28×28 image and a 56×56 one? Check it.
@@ -6059,7 +6059,7 @@ fine-tuning:      train everything from the pretrained weights with a small lr (
 - **Linear probe:** a frozen pretrained backbone with only a new linear head trained on top.
 - **Parquet:** a compact, column-oriented file format for tables.
 
-### Exercises
+**Exercises**
 
 1. To freeze a backbone but still train the model end to end (without precomputing features), you set `p.requires_grad = False` for every parameter and then replace `model.fc`. Why must it be in that order?
 2. Why does fine-tuning use a learning rate 10 times smaller than training from scratch?
@@ -6297,7 +6297,7 @@ segmentation: logits (N, K, H, W) + CrossEntropyLoss vs targets (N, H, W); score
 - **Fully convolutional network:** a network with only convolution-type layers, so its output keeps a spatial layout.
 - **U-Net:** a segmentation network with a shrinking encoder, a growing decoder, and skip connections between them.
 
-### Exercises
+**Exercises**
 
 1. Two 10×10 boxes overlap in a 5×10 strip. What is their IoU?
 2. Run NMS on the five boxes with a threshold of 0.95. Why are more boxes kept?
@@ -6526,7 +6526,7 @@ batches: pad to the longest sequence; attention mask = 1 for real tokens, 0 for 
 - **Padding:** filling shorter sequences with a pad token so a batch has equal lengths.
 - **Attention mask:** a tensor of 1s and 0s marking which positions hold real tokens.
 
-### Exercises
+**Exercises**
 
 1. Train BPE for 6 merges on {"new": 4, "newer": 2, "wider": 3}. What do "renew" and "newest" encode to?
 2. A text is 2,600 English words. Roughly how many tokens is that?
@@ -6754,7 +6754,7 @@ cos(a, b) = a·b / (‖a‖‖b‖)
 - **word2vec (skip-gram):** a 2013 method that learns word vectors by predicting each word's neighbours.
 - **Cosine similarity:** the cosine of the angle between two vectors, a·b/(‖a‖‖b‖).
 
-### Exercises
+**Exercises**
 
 1. How many parameters does the embedding layer of a model with a 128,000-token vocabulary and width 4,096 have?
 2. Find the three nearest words to "dog" and to "soup".
@@ -7012,7 +7012,7 @@ GRU:   h_t = (1 − z) ⊙ h_{t−1} + z ⊙ h̃_t
 - **GRU (gated recurrent unit):** a simpler gated RNN with two gates and no separate cell state.
 - **Bidirectional RNN:** two RNNs, one reading forwards and one backwards, whose outputs are combined.
 
-### Exercises
+**Exercises**
 
 1. In the hand example of 31.2, with w_h = 0.8 and no further input, roughly how small will h be after 20 steps? Why is that a bound on how long this RNN can remember?
 2. Why can't a bidirectional LSTM be used to generate text one word at a time?
@@ -7257,7 +7257,7 @@ attention:  e_j = s_j · h;   α = softmax(e);   context c = Σ α_j s_j;   pred
 - **Context vector:** the attention-weighted average of the encoder states.
 - **`nn.GRUCell`:** a single step of a GRU, for writing step-by-step loops by hand.
 
-### Exercises
+**Exercises**
 
 1. In the hand example, what weights does attention give if h = (0, 10)? Which state gets ignored?
 2. Find the input position that gets the most attention at each output step, for one test sequence.
@@ -7499,7 +7499,7 @@ order-blind · fully parallel · T × T scores
 - **Contextual representation:** a token's vector after attention, describing the token in its context.
 - **Permutation equivariance:** shuffling the inputs shuffles the outputs the same way and changes nothing else.
 
-### Exercises
+**Exercises**
 
 1. In the hand example, compute token 1's weights and output.
 2. What does self-attention output if all the keys are identical? Why?
@@ -7727,7 +7727,7 @@ positions:   learned nn.Embedding(max_len, d) · sinusoidal sin/cos waves · RoP
 - **Sinusoidal positional encoding:** fixed sine and cosine waves of many frequencies, one pattern per position.
 - **Rotary position embedding (RoPE):** rotating queries and keys by position-dependent angles, so scores depend on relative position.
 
-### Exercises
+**Exercises**
 
 1. A model has d_model = 768 and 12 heads. What's d_head? How many parameters do the four projection matrices have?
 2. Use the mask to show that, with the causal mask, the output at position 2 doesn't change when you change the token at position 5.
@@ -7961,7 +7961,7 @@ modern: RMSNorm, RoPE, SwiGLU FFN, no biases
 - **Weight tying:** using the same matrix for the token embedding and the output layer.
 - **SwiGLU:** a gated feed-forward layer, W₂(SiLU(W₁x) ⊙ W₃x), used in Llama-style models.
 
-### Exercises
+**Exercises**
 
 1. Roughly how many parameters do the blocks of a model with 32 layers and d = 4,096 have? (This is the shape of Llama 2 7B.)
 2. Remove the residual connections from `Block` and stack 24 of them. What happens to the gradient reaching the input embeddings, compared with the residual version?
@@ -8282,7 +8282,7 @@ generate:  logits at the last position → softmax(logits / temperature) → sam
 - **Sampling:** choosing the next token at random according to the model's probabilities.
 - **Autoregressive generation:** producing a sequence one token at a time, each conditioned on everything before it.
 
-### Exercises
+**Exercises**
 
 1. How many next-character predictions does one training batch contain?
 2. Generate from the prompt "JULIET:" with temperature 0.3 and 1.5. Describe the difference.
@@ -8669,7 +8669,7 @@ KV cache:      store each layer's k, v; each step processes only the new token
 - **Beam search:** keeping the B most probable partial sequences at each step and extending them all.
 - **KV cache:** stored keys and values of earlier positions, reused so each generation step only processes the newest token.
 
-### Exercises
+**Exercises**
 
 1. Generate 200 characters with top-k = 1. Which strategy is that the same as?
 2. How many numbers does the KV cache hold for a model with 32 layers, d_model = 4,096, and a 100,000-token context? How many gigabytes at 2 bytes per number?
@@ -8913,7 +8913,7 @@ inductive bias: CNNs assume locality and translation; ViTs must learn them, so t
 - **`nn.Parameter`:** a tensor registered as a learnable parameter of a module.
 - **Inductive bias:** assumptions built into a model's design, such as locality in a CNN.
 
-### Exercises
+**Exercises**
 
 1. How many tokens does a ViT with 16×16 patches see for a 224×224 image? With 14×14 patches? How much more does attention cost with the smaller patches?
 2. Check that `patchify` puts pixel (row 5, column 9) of a 28×28 image, with 4×4 patches, into the right patch and position.
@@ -9165,7 +9165,7 @@ pipeline("task", model="org/name")(texts)              check the model card and 
 - **Task head:** the final layers that adapt a pretrained transformer to a task, such as classification.
 - **Pipeline:** a single call that tokenises, runs a model and post-processes its output.
 
-### Exercises
+**Exercises**
 
 1. How many GPT-2 tokens are "hello", " hello", "Hello" and "HELLO"? Why do they differ?
 2. Use `gpt2.generate` with `num_beams=4` on "The capital of France is" and compare with the greedy output.
@@ -9347,7 +9347,7 @@ AutoModelForMaskedLM · AutoModel (.last_hidden_state) · AutoModelForCausalLM �
 - **Span corruption:** T5's pretraining task: reconstruct spans of the input replaced by placeholders.
 - **In-context learning:** a model performing a new task from examples given in its prompt, without any weight updates.
 
-### Exercises
+**Exercises**
 
 1. Try "The [MASK] barked all night long." and "The [MASK] purred all night long." Does the small model get both right?
 2. Which family would you choose for (a) routing support tickets into 12 categories, (b) a chatbot, (c) turning meeting audio into text?
@@ -9585,7 +9585,7 @@ always:   a classic baseline first, and a search of the Hub for a model tuned on
 - **Dynamic padding:** padding each batch only to its own longest sequence.
 - **SST-2:** the Stanford Sentiment Treebank's two-class sentiment dataset of movie-review sentences.
 
-### Exercises
+**Exercises**
 
 1. Why is the learning rate for fine-tuning (3e-5) so much smaller than the 1e-3 used to train our tiny GPT from scratch?
 2. How many optimiser steps did the fine-tuning run take?
@@ -9830,7 +9830,7 @@ QLoRA:  frozen base in 4-bit NF4 + 16-bit LoRA matrices
 - **QLoRA:** LoRA on top of a base model stored in 4-bit precision.
 - **NF4 (4-bit NormalFloat):** a 4-bit number format whose levels suit normally distributed weights.
 
-### Exercises
+**Exercises**
 
 1. How many LoRA parameters does the PEFT model above train in its attention layers? DistilBERT has 6 layers, d_model = 768, and r = 8 on two projections per layer.
 2. Why must B (or A) start at zero, rather than both random?
@@ -10088,7 +10088,7 @@ RLVR / GRPO:    checkable rewards;  advantage = (r − mean)/std within a group 
 - **GRPO:** an RL algorithm that scores each sampled answer against the others in its group.
 - **Advantage:** how much better an action (here, an answer) did than the expected baseline.
 
-### Exercises
+**Exercises**
 
 1. A reward model scores the chosen answer 2.5 and the rejected one 1.0. What's its loss? And if the scores were swapped?
 2. Why does DPO's loss at the very first step always equal log 2?
@@ -10306,7 +10306,7 @@ zero-shot:           compare an image embedding with "a photo of a {class}" text
 - **Zero-shot classification:** classifying into classes with no training examples, here by comparing with text descriptions.
 - **Retrieval-augmented generation (RAG):** answering questions by first retrieving relevant documents, often with embeddings, and giving them to a language model.
 
-### Exercises
+**Exercises**
 
 1. Add the document "Forgot your password? Use the reset link." and search again for "I can't remember my sign-in credentials". Where does it rank?
 2. In InfoNCE, what happens to the loss if τ is very large, say 100?
@@ -10548,7 +10548,7 @@ generate:     z ~ N(0, 1) → dec(z)
 - **Prior:** the distribution the latent codes are pushed towards, here N(0, 1).
 - **Reparameterisation trick:** writing a random sample as z = μ + σε so gradients can flow through μ and σ.
 
-### Exercises
+**Exercises**
 
 1. Compute the KL term for μ = 0, log σ² = 0, and for μ = 2, log σ² = 0. Which code is penalised, and why?
 2. Generate 8 new images by sampling z ~ N(0, 1) and decoding. Are they sharp?
@@ -10743,7 +10743,7 @@ problems: no meaningful loss curve, mode collapse, instability
 - **FID (Fréchet inception distance):** a score comparing the feature statistics of real and generated images; lower is better.
 - **LeakyReLU:** max(az, z) with a small slope a for negative inputs.
 
-### Exercises
+**Exercises**
 
 1. Early in training D(G(z)) ≈ 0.01. Compare the slope of the textbook generator loss log(1 − D) with that of −log D, with respect to D, at that point.
 2. Why is the fake batch detached in the discriminator step but not in the generator step?
@@ -11005,7 +11005,7 @@ sample:    x_T ~ N(0, I);   x_{t−1} = (x_t − β_t/√(1 − ᾱ_t) · ε_θ)
 - **Diffusion transformer (DiT):** a transformer used as the denoiser of a diffusion model.
 - **Flow matching:** training a model to move noise to data along a learned velocity field, a close relative of diffusion.
 
-### Exercises
+**Exercises**
 
 1. Show numerically that x_t made by 50 single steps has the same spread as the one-jump formula of 47.2.
 2. Sample with only every 10th step (20 steps, using the same update). How good are the samples now?
@@ -11253,7 +11253,7 @@ modern:                 latent + diffusion transformer + flow matching + text en
 - **Text-to-image model:** a model that generates images from a text prompt.
 - **Spacetime patch:** a patch of a video latent spanning several frames, used as a token by video diffusion transformers.
 
-### Exercises
+**Exercises**
 
 1. What does the guidance formula give when w = 1? When w = 0?
 2. Ask for moon 0 with w = 4. Does guidance work for the other class too?
@@ -11483,7 +11483,7 @@ with torch.autocast(device_type, dtype=torch.bfloat16): forward + loss       (FP
 - **Loss scaling:** multiplying the loss before the backward pass, and dividing the gradients after, so small FP16 gradients don't underflow.
 - **`GradScaler`:** PyTorch's automatic, adaptive loss scaling.
 
-### Exercises
+**Exercises**
 
 1. A gradient of 2 × 10⁻⁹ is computed in FP16. What happens with no loss scaling, and with S = 65,536?
 2. Why is BF16, not FP16, the default for training large language models?
@@ -11685,7 +11685,7 @@ tensor parallel: split weight matrices;   pipeline parallel: split layers, strea
 - **Pipeline parallelism:** placing different layers on different GPUs and streaming micro-batches through them.
 - **Pipeline bubble:** the idle time of pipeline stages at the start and end of each batch.
 
-### Exercises
+**Exercises**
 
 1. You want an effective batch of 256 sequences but only 8 fit on each of your 4 GPUs. How many accumulation steps do you need?
 2. Which technique would you reach for first if (a) a 1-billion-parameter model fits but your batch doesn't; (b) a 70-billion-parameter model doesn't fit on one GPU?
@@ -11888,7 +11888,7 @@ methods:     round-to-nearest · GPTQ / AWQ (calibrated) · quantisation-aware t
 - **Quantisation-aware training (QAT):** training with simulated quantisation so the model adapts to it.
 - **GGUF:** the file format used by llama.cpp and Ollama for quantised models.
 
-### Exercises
+**Exercises**
 
 1. Quantise (0.9, −0.3, 0.05, −0.9) to 4 bits with absmax. What comes back?
 2. How many bits per weight does 4-bit quantisation with groups of 64 take, counting a 16-bit scale per group?
@@ -12121,7 +12121,7 @@ speed:          unstructured zeros save storage; structured (neurons, heads, lay
 - **Unstructured / structured pruning:** removing individual weights anywhere / removing whole neurons, channels, heads or layers.
 - **2:4 sparsity:** a pattern with 2 zeros in every 4 consecutive weights, which some GPUs can accelerate.
 
-### Exercises
+**Exercises**
 
 1. Prune 95% of the weights, then fine-tune for one epoch on the 5,000 images, re-applying the mask after every step. How much accuracy comes back?
 2. Why does 90% unstructured sparsity rarely make a model 10 times faster on a GPU?
@@ -12411,7 +12411,7 @@ speculative decoding: draft guesses k tokens; target verifies them all in one pa
 - **Multi-query / grouped-query attention (MQA / GQA):** sharing key and value heads across all, or groups of, query heads to shrink the KV cache.
 - **Speculative decoding:** a small draft model proposes several tokens that the large model verifies in a single pass.
 
-### Exercises
+**Exercises**
 
 1. With k = 4, what is the most tokens one target pass can produce? How many passes would 40 tokens need with a perfect draft, and with a useless one?
 2. A model has 32 layers, 32 query heads, 8 key/value heads and head size 128. How big is its KV cache for 100,000 tokens in BF16?
@@ -12617,7 +12617,7 @@ hybrids:          mostly SSM / linear attention + a few full attention layers
 - **State-space model (SSM):** a sequence layer with a linear recurrence that can be computed as a convolution.
 - **Mamba:** an SSM whose recurrence parameters depend on the input, letting it select what to remember.
 
-### Exercises
+**Exercises**
 
 1. An MoE layer has 64 experts, each a 2-matrix FFN of 7,168 × 2,048, plus 1 always-on shared expert, and routes each token to 8. How many expert parameters are active per token, out of how many?
 2. In the online softmax, why must the old sum ℓ be multiplied by e^(m − m') when the maximum rises?
@@ -12758,7 +12758,7 @@ pipeline:         data → tokenizer → pretraining → mid-training → post-t
 - **Mid-training:** a phase between pretraining and post-training on selected high-quality or long-context data.
 - **Benchmark contamination:** test data leaking into training data, which inflates scores.
 
-### Exercises
+**Exercises**
 
 1. Using C ≈ 6ND, how many tokens can a budget of 10²³ FLOPs train a 7-billion-parameter model on? How many tokens per parameter is that?
 2. By the Chinchilla fit, what loss would a 70B model reach with unlimited data, and with unlimited parameters but 1.4 trillion tokens?
@@ -12903,7 +12903,7 @@ unchanged: gradient descent, backprop, attention, residuals, normalisation, held
 - **Natively multimodal model:** one model that takes in and produces several kinds of data, such as text, images and audio.
 - **Mechanistic interpretability:** research into the internal computations of trained networks.
 
-### Exercises
+**Exercises**
 
 1. List at least six ideas from this book that a 2026 reasoning model uses, with their chapters.
 2. Pick a recent open model's technical report and find its total and active parameters, training tokens, context length and post-training methods.
@@ -13131,7 +13131,7 @@ top-p 0.85 draws only tokens [0, 1] with frequencies [0.739, 0.261, 0.0, 0.0]
 - **im2col:** rearranging image patches into columns so a convolution becomes one matrix multiplication.
 - **Shape contract:** the input and output shapes of a function, written down before its body.
 
-### Exercises
+**Exercises**
 
 1. Implement multi-head attention by reshaping (N, T, D) to (N, h, T, D/h), calling `attention`, and reshaping back. Check it against `F.scaled_dot_product_attention` on the reshaped tensors.
 2. Write the backward pass of ReLU and check it against autograd.
@@ -13403,7 +13403,7 @@ Every term from the chapters’ **Key terms** lists, A to Z, with a plain defini
 - **1×1 convolution:** a convolution with a 1×1 filter, which mixes channels at each position; used to change the channel count. *(Chapter [26](#26-residual-networks-resnet))*
 - **2:4 sparsity:** a pattern with 2 zeros in every 4 consecutive weights, which some GPUs can accelerate. *(Chapter [52](#52-knowledge-distillation-and-pruning))*
 
-### A
+**A**
 
 - **Absmax quantisation:** scaling by the largest absolute value so that it maps to the largest integer. *(Chapter [51](#51-quantisation-int8-int4-and-running-models-locally))*
 - **Activation:** a neuron's output, f(z); also used for the activation function f itself. *(Chapter [3](#3-the-artificial-neuron))*
@@ -13432,7 +13432,7 @@ Every term from the chapters’ **Key terms** lists, A to Z, with a plain defini
 - **Average pooling:** keeping the mean of each window. *(Chapter [25](#25-pooling-and-your-first-cnn))*
 - **Axis (dimension):** one direction of a tensor; axis 0 is usually the batch. *(Chapter [2](#2-tensors-and-shapes))*
 
-### B
+**B**
 
 - **Backbone:** the part of a network that computes features from the input. *(Chapter [25](#25-pooling-and-your-first-cnn))*
 - **Backpropagation:** computing the gradients of the loss with respect to every parameter by applying the chain rule backwards through the layers. *(Chapter [9](#9-backpropagation-from-scratch))*
@@ -13457,7 +13457,7 @@ Every term from the chapters’ **Key terms** lists, A to Z, with a plain defini
 - **Byte-level BPE:** BPE that starts from the 256 UTF-8 byte values, so any text can be encoded. *(Chapter [29](#29-tokenisation-characters-words-and-subwords))*
 - **Byte-pair encoding (BPE):** learning subword tokens by repeatedly merging the most frequent adjacent pair. *(Chapter [29](#29-tokenisation-characters-words-and-subwords))*
 
-### C
+**C**
 
 - **Causal mask:** a mask that stops each position from attending to later positions. *(Chapter [34](#34-multi-head-attention-causal-masks-and-positions))*
 - **Cell state:** the LSTM's additive memory, passed from step to step mainly through the forget gate. *(Chapter [31](#31-recurrent-neural-networks-rnn-lstm-and-gru))*
@@ -13490,7 +13490,7 @@ Every term from the chapters’ **Key terms** lists, A to Z, with a plain defini
 - **Cross-entropy:** −log of the probability given to the correct class, out of K. *(Chapter [6](#6-loss-functions-for-networks))*
 - **CUDA:** NVIDIA's platform for running computations on its GPUs. *(Chapter [11](#11-pytorch-tensors))*
 
-### D
+**D**
 
 - **Data augmentation:** creating extra training examples by random label-preserving changes to existing ones. *(Chapter [22](#22-regularisation-weight-decay-dropout-early-stopping-and-augmentation))*
 - **Data collator:** a function that combines examples into a batch; `DataCollatorWithPadding` pads each batch to its longest example. *(Chapter [41](#41-fine-tuning-a-pretrained-transformer))*
@@ -13519,7 +13519,7 @@ Every term from the chapters’ **Key terms** lists, A to Z, with a plain defini
 - **dtype:** the number type of a tensor, such as `float32` or `int64`. *(Chapter [2](#2-tensors-and-shapes))*
 - **Dynamic padding:** padding each batch only to its own longest sequence. *(Chapter [41](#41-fine-tuning-a-pretrained-transformer))*
 
-### E
+**E**
 
 - **Eager execution:** running each operation immediately, one at a time, as Python reaches it. *(Chapter [53](#53-fast-inference-compilation-batching-smaller-kv-caches-and-speculative-decoding))*
 - **Early stopping:** keeping the model from the epoch with the best validation score, and stopping once it stops improving. *(Chapter [22](#22-regularisation-weight-decay-dropout-early-stopping-and-augmentation))*
@@ -13535,7 +13535,7 @@ Every term from the chapters’ **Key terms** lists, A to Z, with a plain defini
 - **Exploding gradients:** gradients growing layer after layer until updates become huge and training diverges. *(Chapter [18](#18-initialisation-and-vanishing-and-exploding-gradients))*
 - **Exponent:** the bits that set a float's power of 2, and so its range. *(Chapter [49](#49-number-formats-and-mixed-precision))*
 
-### F
+**F**
 
 - **Fake quantisation:** quantising and immediately dequantising, to simulate the effect in floating point. *(Chapter [51](#51-quantisation-int8-int4-and-running-models-locally))*
 - **Fan-in:** the number of inputs to a unit. *(Chapter [18](#18-initialisation-and-vanishing-and-exploding-gradients))*
@@ -13562,7 +13562,7 @@ Every term from the chapters’ **Key terms** lists, A to Z, with a plain defini
 - **Full-batch gradient descent:** each step uses the gradient over all the training examples. *(Chapter [7](#7-gradient-descent-mini-batches-and-epochs))*
 - **Fully convolutional network:** a network with only convolution-type layers, so its output keeps a spatial layout. *(Chapter [28](#28-object-detection-and-segmentation))*
 
-### G
+**G**
 
 - **Gate:** a sigmoid layer whose 0-to-1 outputs scale a signal element by element. *(Chapter [31](#31-recurrent-neural-networks-rnn-lstm-and-gru))*
 - **GELU:** z · Φ(z), a smooth ReLU used in transformers. *(Chapter [4](#4-activation-functions))*
@@ -13587,7 +13587,7 @@ Every term from the chapters’ **Key terms** lists, A to Z, with a plain defini
 - **GRU (gated recurrent unit):** a simpler gated RNN with two gates and no separate cell state. *(Chapter [31](#31-recurrent-neural-networks-rnn-lstm-and-gru))*
 - **Guidance scale (w):** how strongly guidance pushes towards the condition. *(Chapter [48](#48-conditioning-guidance-and-latent-diffusion))*
 
-### H
+**H**
 
 - **He (Kaiming) initialisation:** weights with variance 2/fan-in, for ReLU layers. *(Chapter [18](#18-initialisation-and-vanishing-and-exploding-gradients))*
 - **Head:** the final layers that turn the backbone's features into the prediction. *(Chapter [25](#25-pooling-and-your-first-cnn))*
@@ -13595,7 +13595,7 @@ Every term from the chapters’ **Key terms** lists, A to Z, with a plain defini
 - **Hidden state:** the vector an RNN carries from step to step, summarising what it has read. *(Chapter [31](#31-recurrent-neural-networks-rnn-lstm-and-gru))*
 - **Hugging Face Hub:** the main online repository of pretrained models and datasets. *(Chapter [39](#39-hugging-face-the-hub-tokenizers-models-and-pipelines))*
 
-### I
+**I**
 
 - **im2col:** rearranging image patches into columns so a convolution becomes one matrix multiplication. *(Chapter [57](#57-interview-coding-building-blocks-from-scratch))*
 - **ImageNet:** a dataset of 1.28 million labelled photos in 1,000 classes, the standard source of pretrained vision models. *(Chapter [27](#27-transfer-learning-with-pretrained-vision-models))*
@@ -13610,7 +13610,7 @@ Every term from the chapters’ **Key terms** lists, A to Z, with a plain defini
 - **Inverted dropout:** dropout that scales the surviving units by 1/(1 − p) during training, so nothing changes at evaluation. *(Chapter [22](#22-regularisation-weight-decay-dropout-early-stopping-and-augmentation))*
 - **Irreducible loss (E):** the part of the loss no model can remove, set by the randomness of the text itself. *(Chapter [55](#55-scaling-laws-and-how-frontier-models-are-trained))*
 
-### K
+**K**
 
 - **Kernel fusion:** combining several operations into one, so intermediate results needn't be written to memory. *(Chapter [53](#53-fast-inference-compilation-batching-smaller-kv-caches-and-speculative-decoding))*
 - **Key:** a token's projected vector that queries are compared against. *(Chapter [33](#33-self-attention-from-scratch))*
@@ -13618,7 +13618,7 @@ Every term from the chapters’ **Key terms** lists, A to Z, with a plain defini
 - **Knowledge distillation:** training a small student model to imitate a larger teacher model's outputs. *(Chapter [52](#52-knowledge-distillation-and-pruning))*
 - **KV cache:** stored keys and values of earlier positions, reused so each generation step only processes the newest token. *(Chapter [37](#37-generating-text-decoding-strategies-and-the-kv-cache))*
 
-### L
+**L**
 
 - **Label smoothing:** training against slightly softened targets instead of one-hot ones, to prevent overconfidence. *(Chapter [22](#22-regularisation-weight-decay-dropout-early-stopping-and-augmentation))*
 - **Language model:** a model that assigns probabilities to the next token given the previous ones. *(Chapter [36](#36-build-a-tiny-gpt))*
@@ -13645,7 +13645,7 @@ Every term from the chapters’ **Key terms** lists, A to Z, with a plain defini
 - **Loss scaling:** multiplying the loss before the backward pass, and dividing the gradients after, so small FP16 gradients don't underflow. *(Chapter [49](#49-number-formats-and-mixed-precision))*
 - **LSTM (long short-term memory):** an RNN with a cell state and forget, input and output gates, which can keep information over long sequences. *(Chapter [31](#31-recurrent-neural-networks-rnn-lstm-and-gru))*
 
-### M
+**M**
 
 - **Machine epsilon (eps):** the gap between 1.0 and the next representable number. *(Chapter [49](#49-number-formats-and-mixed-precision))*
 - **Magnitude pruning:** pruning the weights with the smallest absolute values. *(Chapter [52](#52-knowledge-distillation-and-pruning))*
@@ -13673,7 +13673,7 @@ Every term from the chapters’ **Key terms** lists, A to Z, with a plain defini
 - **Multi-query / grouped-query attention (MQA / GQA):** sharing key and value heads across all, or groups of, query heads to shrink the KV cache. *(Chapter [53](#53-fast-inference-compilation-batching-smaller-kv-caches-and-speculative-decoding))*
 - **Multilayer perceptron (MLP):** a chain of dense layers with activations between them. *(Chapter [5](#5-layers-and-the-forward-pass))*
 
-### N
+**N**
 
 - **Named-entity recognition (NER):** tagging the names of people, places, organisations and so on in text. *(Chapter [40](#40-encoders-decoders-and-encoderdecoders-bert-gpt-and-t5))*
 - **`nan` (not a number):** the result of an invalid operation such as 0/0 or ∞ − ∞; once in the loss, it spreads to every weight. *(Chapter [23](#23-debugging-training))*
@@ -13702,7 +13702,7 @@ Every term from the chapters’ **Key terms** lists, A to Z, with a plain defini
 - **`num_workers`:** the number of background processes a DataLoader uses to load batches. *(Chapter [15](#15-datasets-and-dataloaders))*
 - **Numerical gradient:** a slope estimated by nudging the input slightly: (f(x + h) − f(x − h)) / 2h. *(Chapter [6](#6-loss-functions-for-networks))*
 
-### O
+**O**
 
 - **Object detection:** finding each object in an image as a box with a label and a score. *(Chapter [28](#28-object-detection-and-segmentation))*
 - **One-cycle schedule:** a warm-up to a high peak followed by a long decay to nearly 0. *(Chapter [20](#20-learning-rate-schedules))*
@@ -13722,7 +13722,7 @@ Every term from the chapters’ **Key terms** lists, A to Z, with a plain defini
 - **Overfitting one batch:** training repeatedly on a single small batch to check that the model and loop can reach near-zero loss. *(Chapter [23](#23-debugging-training))*
 - **Overflow / underflow:** a value too large (becomes infinity) or too small (becomes 0) for a format. *(Chapter [49](#49-number-formats-and-mixed-precision))*
 
-### P
+**P**
 
 - **Padding:** adding a border of zeros around the input, usually to keep the output the same size. *(Chapter [24](#24-convolutions-from-scratch), [29](#29-tokenisation-characters-words-and-subwords))*
 - **PagedAttention:** storing the KV cache in fixed-size pages to avoid wasted memory. *(Chapter [53](#53-fast-inference-compilation-batching-smaller-kv-caches-and-speculative-decoding))*
@@ -13760,14 +13760,14 @@ Every term from the chapters’ **Key terms** lists, A to Z, with a plain defini
 - **PyTorch:** the most widely used deep-learning library, and the one this book uses. *(Chapter [1](#1-what-deep-learning-is))*
 - **PyTorch tensor (`torch.Tensor`):** PyTorch's n-dimensional array; it can live on a GPU and record operations for gradients. *(Chapter [11](#11-pytorch-tensors))*
 
-### Q
+**Q**
 
 - **QLoRA:** LoRA on top of a base model stored in 4-bit precision. *(Chapter [42](#42-parameter-efficient-fine-tuning-lora-and-qlora))*
 - **Quantisation:** storing numbers in fewer bits, as integers with a scale, to save memory and time. *(Chapter [51](#51-quantisation-int8-int4-and-running-models-locally))*
 - **Quantisation-aware training (QAT):** training with simulated quantisation so the model adapts to it. *(Chapter [51](#51-quantisation-int8-int4-and-running-models-locally))*
 - **Query:** a token's projected vector describing what it looks for. *(Chapter [33](#33-self-attention-from-scratch))*
 
-### R
+**R**
 
 - **Rank:** the number of independent directions a matrix's outputs span; B·A has rank at most r. *(Chapter [42](#42-parameter-efficient-fine-tuning-lora-and-qlora))*
 - **Reasoning model:** a model trained to produce a long chain of thought before answering. *(Chapter [56](#56-whats-new-in-deep-learning-20232026))*
@@ -13798,7 +13798,7 @@ Every term from the chapters’ **Key terms** lists, A to Z, with a plain defini
 - **Router (gating network):** the small network that chooses which experts process each token. *(Chapter [54](#54-modern-architectures-mixture-of-experts-efficient-attention-and-state-space-models))*
 - **Running averages (running mean and variance):** the statistics BatchNorm accumulates during training and uses in eval mode. *(Chapter [21](#21-normalisation-layers-batchnorm-layernorm-and-rmsnorm))*
 
-### S
+**S**
 
 - **safetensors:** a file format that stores only tensors, so loading it is safe and fast. *(Chapter [17](#17-saving-loading-and-checkpointing))*
 - **Sampling:** choosing the next token at random according to the model's probabilities. *(Chapter [36](#36-build-a-tiny-gpt))*
@@ -13842,7 +13842,7 @@ Every term from the chapters’ **Key terms** lists, A to Z, with a plain defini
 - **Symmetry breaking:** using random starting weights so that units in a layer learn different features. *(Chapter [18](#18-initialisation-and-vanishing-and-exploding-gradients))*
 - **Synthetic data:** training data generated by other models. *(Chapter [55](#55-scaling-laws-and-how-frontier-models-are-trained))*
 
-### T
+**T**
 
 - **ᾱ_t (alpha-bar):** the product of (1 − β) up to step t: the fraction of the original signal's variance left. *(Chapter [47](#47-diffusion-models-from-scratch))*
 - **T5:** an encoder–decoder transformer that treats every task as text-to-text. *(Chapter [40](#40-encoders-decoders-and-encoderdecoders-bert-gpt-and-t5))*
@@ -13877,7 +13877,7 @@ Every term from the chapters’ **Key terms** lists, A to Z, with a plain defini
 - **transformers (library):** Hugging Face's Python library for loading and running pretrained models. *(Chapter [39](#39-hugging-face-the-hub-tokenizers-models-and-pipelines))*
 - **Transpose:** reordering the axes of a tensor. *(Chapter [2](#2-tensors-and-shapes))*
 
-### U
+**U**
 
 - **U-Net:** a segmentation network with a shrinking encoder, a growing decoder, and skip connections between them. *(Chapter [28](#28-object-detection-and-segmentation), [47](#47-diffusion-models-from-scratch))*
 - **Underfitting:** a model too weak, or trained too little, to fit even the training data well. *(Chapter [23](#23-debugging-training))*
@@ -13887,7 +13887,7 @@ Every term from the chapters’ **Key terms** lists, A to Z, with a plain defini
 - **Upstream gradient (G):** the gradient arriving at a layer from the layers above it. *(Chapter [9](#9-backpropagation-from-scratch))*
 - **UTF-8:** the standard way to store text as bytes, using 1 to 4 bytes per character. *(Chapter [29](#29-tokenisation-characters-words-and-subwords))*
 
-### V
+**V**
 
 - **Validation set:** data held out from training to choose settings and detect overfitting; the test set stays untouched until the end. *(Chapter [15](#15-datasets-and-dataloaders))*
 - **Value:** a token's projected vector that is mixed into the output when it receives attention. *(Chapter [33](#33-self-attention-from-scratch))*
@@ -13897,7 +13897,7 @@ Every term from the chapters’ **Key terms** lists, A to Z, with a plain defini
 - **Vision Transformer (ViT):** a transformer encoder that treats image patches as tokens. *(Chapter [38](#38-vision-transformers))*
 - **Vocabulary:** the fixed list of all tokens a tokenizer knows, each with an integer id. *(Chapter [29](#29-tokenisation-characters-words-and-subwords))*
 
-### W
+**W**
 
 - **Warm-up:** raising the learning rate from near 0 to its peak over the first steps of training. *(Chapter [20](#20-learning-rate-schedules))*
 - **Weight:** a learned number saying how much one input matters, and in which direction. *(Chapter [3](#3-the-artificial-neuron))*
@@ -13907,12 +13907,12 @@ Every term from the chapters’ **Key terms** lists, A to Z, with a plain defini
 - **Width:** the number of neurons in a layer. *(Chapter [5](#5-layers-and-the-forward-pass))*
 - **word2vec (skip-gram):** a 2013 method that learns word vectors by predicting each word's neighbours. *(Chapter [30](#30-embeddings-turning-tokens-into-vectors))*
 
-### X
+**X**
 
 - **Xavier (Glorot) initialisation:** weights with variance 1/fan-in (or 2/(fan-in + fan-out)), for tanh or linear layers. *(Chapter [18](#18-initialisation-and-vanishing-and-exploding-gradients))*
 - **XOR:** "exclusive or", which is 1 when exactly one of two inputs is 1; it isn't linearly separable. *(Chapter [3](#3-the-artificial-neuron))*
 
-### Z
+**Z**
 
 - **Zero-shot classification:** classifying into classes with no training examples, here by comparing with text descriptions. *(Chapter [44](#44-contrastive-learning-sentence-embeddings-and-clip))*
 

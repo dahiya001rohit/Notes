@@ -224,7 +224,7 @@ ask → get data → clean → explore and analyse → check → communicate
 - **Data scientist:** someone who also tests whether patterns are real and predicts what will happen.
 - **Revenue:** money from sales: quantity × price, summed.
 
-### Exercises
+**Exercises**
 
 1. Using the same loop pattern, find how many items (total quantity) each customer bought.
 2. Rewrite "How is the business doing?" as two precise questions that data could answer.
@@ -330,7 +330,7 @@ notebook = cells sent to one kernel that remembers everything → restart and ru
 - **Kernel:** the running Python process behind a notebook, which remembers every variable created so far.
 - **Import / alias:** loading a library into Python / the short name it's loaded under, such as `pd`.
 
-### Exercises
+**Exercises**
 
 1. In a notebook, run `x = 5` in one cell, delete that cell, then run `print(x)` in a new cell. What happens? Then restart the kernel and run `print(x)` again.
 2. Why record exact library versions in a lock file?
@@ -476,7 +476,7 @@ Counter(values)                    defaultdict(int)  d.get(key, default)        
 - **`Counter` / `defaultdict`:** dict variants that count values / supply a default for missing keys.
 - **f-string:** a string with `f` in front that fills in `{values}`, with optional formatting.
 
-### Exercises
+**Exercises**
 
 1. Make a dict mapping each customer to the total quantity they bought.
 2. List the (customer, revenue) pairs of the Mumbai orders, smallest revenue first.
@@ -636,7 +636,7 @@ tidy: one variable per column, one observation per row, one value per cell (usua
 - **Wide / long format:** repeated measurements as columns / as rows.
 - **Schema:** a table's column names and types.
 
-### Exercises
+**Exercises**
 
 1. Classify: a customer's age in years; a postcode; star rating 1–5; whether a coupon was used; delivery time in minutes.
 2. A sheet has columns `name, maths_2024, maths_2025, english_2024, english_2025`. What would the tidy version's columns be?
@@ -766,7 +766,7 @@ json.loads(text) / json.load(f) → dicts and lists;  json.dump(obj, f, indent=2
 - **JSON:** a text format of nested objects and arrays, used by web APIs.
 - **Parsing:** turning text into structured data, such as dicts and numbers.
 
-### Exercises
+**Exercises**
 
 1. A file `scores.csv` holds `name,score` with rows `Asha,82`, `Ravi,` (empty) and `Zoya,91`. Compute the average of the known scores.
 2. From the JSON text `[{"city": "Pune", "temp": 31.5}, {"city": "Delhi", "temp": 38.0}]`, find the hottest city.
@@ -899,7 +899,7 @@ lists: + joins, * repeats;  arrays: several times smaller, and many times faster
 - **dtype:** an array's element type, such as `int64` or `float64`.
 - **`nbytes` / `itemsize`:** an array's total data size / the size of one element, in bytes.
 
-### Exercises
+**Exercises**
 
 1. Make the array 0, 10, 20, …, 90 by multiplying.
 2. What does `np.array([1, "two", 3.0])` produce? Why is that a problem?
@@ -1033,7 +1033,7 @@ np.zeros(shape), np.ones(shape), np.full(shape, v), np.eye(n)                 fl
 - **Identity matrix:** a square matrix with 1s on the diagonal and 0s elsewhere.
 - **Floating-point error:** the tiny rounding error of storing decimals in binary.
 
-### Exercises
+**Exercises**
 
 1. Make the even numbers from 10 to 30 inclusive.
 2. Make 7 evenly spaced points from −3 to 3, and a 3 × 3 array of −1s.
@@ -1163,7 +1163,7 @@ a.astype(t): float → int truncates (round first);  small ints overflow silentl
 - **Truncation:** dropping the decimal part when converting to integer.
 - **Overflow:** a value exceeding its type's range; fixed-size integers wrap around.
 
-### Exercises
+**Exercises**
 
 1. What are the shape, size and memory (in bytes) of `np.ones((4, 5))`? How much would it take as `float32`?
 2. What are the dtypes of `np.array([1, 2]) / 2` and `np.array([1, 2]) // 2`?
@@ -1288,7 +1288,7 @@ integer index drops an axis, slice keeps it;  slices are views (shared memory) �
 - **View:** an array that shares memory with another, so changes show in both.
 - **Copy:** an independent array with its own memory.
 
-### Exercises
+**Exercises**
 
 1. From `m`, take the last column, the bottom-right 2 × 2 block, and row 1 reversed.
 2. Crop rows 1–3 and columns 2–4 from a 6 × 6 array `np.arange(36).reshape(6, 6)`.
@@ -1435,7 +1435,7 @@ a[mask] = v (in place)
 - **`np.where`:** element-wise choice between two values by a condition.
 - **`np.select`:** element-wise choice among several values by several conditions, first match wins.
 
-### Exercises
+**Exercises**
 
 1. From `np.arange(1, 21)`, keep the numbers that are even **and** greater than 10.
 2. Cap every value of `np.array([5, 120, 47, 3, 99])` to the range 10–90 using two masked assignments, and check against `np.clip(x, 10, 90)`.
@@ -1565,7 +1565,7 @@ x/0 → inf, 0/0 → nan (spreads; nan != nan);  np.isfinite, np.isnan
 - **inf:** the floating-point value for infinity.
 - **nan (not a number):** the floating-point value for an undefined result; it spreads through calculations.
 
-### Exercises
+**Exercises**
 
 1. Convert the Celsius temperatures 0, 25, 37 and 100 to Fahrenheit (F = C × 9/5 + 32).
 2. For a = [3, 8, 1] and b = [5, 2, 9], find the element-wise maximum and the percentage change from a to b, to one decimal.
@@ -1740,7 +1740,7 @@ variance = Σ(x − x̄)²/n (or n − 1 for a sample);  std = √variance
 - **Variance / standard deviation:** the average squared distance from the mean / its square root.
 - **`ddof`:** the number subtracted from n in the variance's denominator; 1 for the sample formula.
 
-### Exercises
+**Exercises**
 
 1. Which month had the highest total sales across all stores?
 2. For `np.array([[70, 95, 60], [88, 72, 91]])` (rows = students, columns = tests), find each student's average and each test's best score.
@@ -1882,7 +1882,7 @@ z = (x − x.mean(axis=0)) / x.std(axis=0)
 - **Standardisation:** subtracting the mean and dividing by the standard deviation.
 - **z-score:** a value's distance from the mean, in standard deviations.
 
-### Exercises
+**Exercises**
 
 1. Without running it, give the result shape of (5, 1) + (1, 6), of (4, 3) × (3,), and of (2, 1, 3) + (4, 1).
 2. Subtract each student's own average from their marks (centre the rows), and check that each row now averages 0.
@@ -2027,7 +2027,7 @@ np.sort(a, axis=…);  np.argsort(a) → positions;  names[np.argsort(scores)]; 
 - **Stacking:** joining arrays along an existing or new axis.
 - **`argsort`:** the positions that would sort an array.
 
-### Exercises
+**Exercises**
 
 1. Sort the names A, B, C by their heights 165, 180, 158, tallest first.
 2. A tensor has shape (2, 3, 4). What shapes do `reshape(6, 4)` and `ravel()` give?
@@ -2185,7 +2185,7 @@ simulation: repeat the random process many times, count;  error ≈ 1/√n
 - **Law of large numbers:** frequencies approach true probabilities as the number of trials grows.
 - **Monte Carlo method:** estimating a quantity by random sampling.
 
-### Exercises
+**Exercises**
 
 1. Estimate the probability that a family of 3 children has exactly 2 girls (assume each child is a girl with probability ½), and compare with the exact 3/8.
 2. Draw 5 different numbers from 1 to 20 (a lottery).
@@ -2368,7 +2368,7 @@ least squares: X = [x, 1];  np.linalg.lstsq(X, y) → (slope, intercept)
 - **Determinant:** a number computed from a square matrix; 0 means the equations have no unique solution.
 - **Least squares:** choosing a line's parameters to minimise the sum of squared errors.
 
-### Exercises
+**Exercises**
 
 1. Compute the cosine similarity of (1, 0, 1) and (0, 1, 1) by hand, then check it.
 2. Solve x + y + z = 6, 2y + 5z = −4, 2x + 5y − z = 27.
@@ -2522,7 +2522,7 @@ s.idxmax(), s.sort_values(), s.value_counts(), s.unique(), s.nunique()
 - **NaN:** pandas' usual marker for a missing number.
 - **`value_counts`:** counts of each distinct value, most common first.
 
-### Exercises
+**Exercises**
 
 1. Marks are Asha 72, Ravi 88, Zoya 95, Kabir 60, Meera 81. Who scored highest, what's the average, and who scored above it?
 2. Add `{"pen": 10, "ink": 5}` and `{"ink": 3, "pad": 7}` as Series, treating missing items as 0.
@@ -2740,7 +2740,7 @@ df.set_index(col), df.reset_index(), df.rename(columns={old: new})
 - **`describe()`:** summary statistics of the numeric columns.
 - **Quartiles:** the values at 25%, 50% (the median) and 75% of the sorted data.
 
-### Exercises
+**Exercises**
 
 1. Build a DataFrame of 4 students with columns name, maths and science, and print its shape and the mean of each subject.
 2. How many distinct customers placed orders, and which product appears most often?
@@ -2904,7 +2904,7 @@ pd.read_json(path, lines=True);  df.to_json(path, orient="records", lines=True)
 - **Columnar storage:** storing each column's values together, which compresses well and allows reading only some columns.
 - **JSON Lines:** a text format with one JSON record per line.
 
-### Exercises
+**Exercises**
 
 1. Read only the `customer` and `qty` columns of `data/orders.csv`, and total the quantity.
 2. Why might a column of product codes like "007" break when saved to CSV and opened again?
@@ -3052,7 +3052,7 @@ paged APIs: loop until next_page is None;  timeout, raise_for_status, keys from 
 - **`json_normalize`:** flattens nested JSON records into a table.
 - **Pagination:** splitting a large API result into pages fetched one at a time.
 
-### Exercises
+**Exercises**
 
 1. Write a SQL query that lists customers with at least 2 orders, with their order count and total quantity.
 2. Flatten `[{"user": {"id": 7, "plan": "pro"}, "spend": 120}, {"user": {"id": 9, "plan": "free"}, "spend": 0}]`.
@@ -3222,7 +3222,7 @@ df.loc[mask, "col"] = value
 - **`iloc`:** selection by integer position; slices exclude the end.
 - **`at` / `iat`:** fast access to a single cell, by label / by position.
 
-### Exercises
+**Exercises**
 
 1. Select the `city` and `price` of the rows at positions 1–3 with `iloc`, then the same rows with `loc`.
 2. With `order_id` as the index, who placed order 5?
@@ -3374,7 +3374,7 @@ df.query("a > @var and b != 'x'");  mask.mean() = fraction matching
 - **`between`:** tests whether each value lies in a range, ends included.
 - **`query`:** filters rows with a condition written as a string.
 
-### Exercises
+**Exercises**
 
 1. Find single-item electronics orders, showing customer and price.
 2. Which customers placed an order of 2,000 or more?
@@ -3528,7 +3528,7 @@ df.nlargest(n, col, keep="all"), df.nsmallest(…);  "n-th highest distinct" = d
 - **Dense rank:** a ranking where ties share a rank and the next rank follows without a gap.
 - **Top-n:** the n rows with the largest (or smallest) values of a column.
 
-### Exercises
+**Exercises**
 
 1. Write `nth_highest(s, n)`, returning the n-th highest distinct value or None, and test it with n = 3 and n = 9.
 2. Sort `["banana", "Cherry", "apple"]` alphabetically ignoring case.
@@ -3681,7 +3681,7 @@ df.apply(f, axis=1): a Python loop per row, hundreds to thousands of times slowe
 - **`map`:** replaces each value using a dict or function.
 - **`apply`:** calls a Python function on each row or column; flexible but slow.
 
-### Exercises
+**Exercises**
 
 1. Add a column `discounted`: price × 0.9 for electronics, the price otherwise.
 2. Add `price_band`: "low" below 100, "medium" below 1,000, otherwise "high".
@@ -3811,7 +3811,7 @@ copy-on-write: subsets never change the original;  df.loc[mask, "col"] = v, neve
 - **Copy-on-write:** pandas 3's rule that subsets behave as copies, with copying done only when data is modified.
 - **Chained assignment:** assigning through two selections in a row, `df[a][b] = v`; it never modifies `df` in pandas 3.
 
-### Exercises
+**Exercises**
 
 1. Write one chain: electronics orders only, add revenue, keep customer, product and revenue, highest revenue first.
 2. Why does `orders[orders["city"] == "Delhi"]["price"] = 0` leave `orders` unchanged?
@@ -4036,7 +4036,7 @@ ordered data: s.ffill(), s.bfill(), s.interpolate()
 - **Nullable integer (`Int64`):** a pandas integer type that can hold missing values.
 - **Forward fill / interpolation:** filling a gap with the last known value / with a straight line between the neighbours.
 
-### Exercises
+**Exercises**
 
 1. Which ids are missing both income and rating? Which column has the highest share missing?
 2. Fill the missing ages with the median age, adding an `age_missing` flag.
@@ -4211,7 +4211,7 @@ after coercing, list what became missing;  s.map({"yes": True, "no": False})
 - **Coercion (`errors="coerce"`):** turning values that can't be converted into missing values instead of raising an error.
 - **Date format string:** a pattern such as `%d/%m/%Y` saying which part of a date string is the day, month and year.
 
-### Exercises
+**Exercises**
 
 1. Convert `["12", "7.5", "eight", "", "1e3"]` to numbers and list the values that failed.
 2. A login table has several rows per user. Keep each user's latest login.
@@ -4373,7 +4373,7 @@ regex: \d \w \s  [set]  + * ? {n} {n,}  .  ^ $  ( )  (?P<name>…)   — write a
 - **`fullmatch`:** tests whether a whole value matches a pattern, not just part of it.
 - **Raw string:** a Python string `r"…"` in which backslashes are kept as they are.
 
-### Exercises
+**Exercises**
 
 1. Extract the weights (as integers) from `["Weight: 72 kg", "weight 65kg", "n/a", "80 KG"]`.
 2. Which of these emails look valid: `asha@shop.in`, `ravi@@shop.in`, `zoya.k@mail.co.uk`, `kabir@shop`?
@@ -4531,7 +4531,7 @@ rare → "Other": s.where(s.map(s.value_counts()) >= k, "Other")
 - **`cut` / `qcut`:** binning by chosen edges / into groups with equal counts.
 - **Quantile:** a value dividing sorted data into equal-sized parts, such as quartiles (4) and deciles (10).
 
-### Exercises
+**Exercises**
 
 1. Bin the ages 5, 17, 18, 34, 35, 64, 65, 90 into child (up to 17), adult (18–64) and senior (65+).
 2. What does `pd.cut(prices, bins=3)` do?
@@ -4737,7 +4737,7 @@ rules: a DataFrame of boolean checks → .all() per rule, .all(axis=1) per row; 
 - **Schema:** a formal description of a table's columns, types and rules, checked automatically.
 - **pandera:** a library for defining and checking DataFrame schemas.
 
-### Exercises
+**Exercises**
 
 1. Apply the IQR rule to 10, 12, 12, 13, 12, 11, 14, 13, 15, 102, 12, 14, 13.
 2. Which rule would catch an order shipped to "Mumbia", and how would you fix such values?
@@ -4931,7 +4931,7 @@ filter groups: s = …sum(); s[s > x];   mean of means ≠ overall mean;  dropna
 - **Aggregation function:** a function that reduces a group to one value, such as sum, mean or count.
 - **Named aggregation:** `agg(name=(column, function))`, computing several named summaries at once.
 
-### Exercises
+**Exercises**
 
 1. Make a per-customer table with the number of orders, total revenue and highest price, sorted by revenue.
 2. Which category has the highest average quantity per order?
@@ -5123,7 +5123,7 @@ top n per group: sort, groupby(key).head(n);  best row: df.loc[g[col].idxmax()];
 - **`shift`:** moves values down (or up) by a number of rows, giving each row its neighbour's value.
 - **`filter` (groupby):** keeps only the groups for which a function returns True.
 
-### Exercises
+**Exercises**
 
 1. Add each order's share of its customer's total spend.
 2. Flag orders whose revenue is more than 1.25 times their category's average.
@@ -5292,7 +5292,7 @@ anti-join: a[~a["key"].isin(b["key"])]
 - **Self-join:** joining a table to itself.
 - **Cross join:** pairing every row of one table with every row of another.
 
-### Exercises
+**Exercises**
 
 1. Add each order's city with a left join. How many orders end up with no city?
 2. Total the amount per customer name, keeping the unknown customer as its own group.
@@ -5441,7 +5441,7 @@ pd.merge_asof(left.sort_values(t), right.sort_values(t), on=t, by=key)   (latest
 - **As-of join (`merge_asof`):** matching each row with the most recent row of another table at or before its time.
 - **Leakage:** using information that wouldn't be available at the time a prediction is made.
 
-### Exercises
+**Exercises**
 
 1. A customer table should have one row per `customer_id`. Write one line that shows the offending rows if it doesn't.
 2. Why does a many-to-many merge give 6 rows for 3 orders and 2 prices of the same product?
@@ -5612,7 +5612,7 @@ pd.crosstab(a, b, normalize="index");  df.assign(x=s.str.split(",")).explode("x"
 - **Cross-tabulation (`crosstab`):** a table of counts for each combination of two categorical variables.
 - **`explode`:** gives each element of a list-valued cell its own row.
 
-### Exercises
+**Exercises**
 
 1. Make a table of total quantity per category (rows) and month (columns).
 2. Melt `{"student": ["A", "B"], "maths": [80, 70], "art": [90, 60]}` to long form and compute each subject's average.
@@ -5781,7 +5781,7 @@ flatten columns: df.columns = ["_".join(c) for c in df.columns]
 - **`unstack` / `stack`:** move an index level into the columns / a column level into the index.
 - **`xs` (cross-section):** selects rows by the value of one index level.
 
-### Exercises
+**Exercises**
 
 1. From `s`, get Mumbai's revenue per category, and the total revenue per category across all cities.
 2. Make a customer × category table of total quantity.
@@ -5956,7 +5956,7 @@ store UTC: dt.tz_localize(zone) for naive times, dt.tz_convert(zone) to display
 - **UTC:** Coordinated Universal Time, the standard reference time.
 - **Naive / aware timestamp:** without / with a time zone attached.
 
-### Exercises
+**Exercises**
 
 1. For 5 January, 10 February and 15 March 2025, give the day of the week and the number of days left in the month.
 2. A click at 08:00 on 1 July 2025 in London: what time was it in UTC and in India?
@@ -6131,7 +6131,7 @@ s.shift(k), s.diff(), s.pct_change(), s.cumsum();  week-over-week: s.shift(7)
 - **Lag:** a value from an earlier time step, made with `shift`.
 - **Percentage change:** (new − old)/old × 100.
 
-### Exercises
+**Exercises**
 
 1. Which week had the highest total sales, and which the lowest?
 2. Flag days whose sales are more than 20% above their 7-day rolling average. How many are there?
@@ -6333,7 +6333,7 @@ x in list → set or isin;  build tables once from a list of rows;  running max/
 - **Maximum drawdown:** the largest fall from a running peak, as a fraction of the peak.
 - **Numba:** a library that compiles Python loops over NumPy arrays to fast machine code.
 
-### Exercises
+**Exercises**
 
 1. Label each row "big" if qty × price exceeds 5,000 and "small" otherwise, without a loop.
 2. Why is `pd.concat` inside a loop quadratic?
@@ -6495,7 +6495,7 @@ pd.read_csv(…, dtype_backend="pyarrow", engine="pyarrow");  pd.read_parquet(pa
 - **Predicate pushdown:** applying a filter while reading a file, so unneeded data is never loaded.
 - **Row group:** a block of rows in a Parquet file, stored with summary statistics used to skip it.
 
-### Exercises
+**Exercises**
 
 1. Using chunks of 250,000 rows, find the maximum price per city without loading the whole file.
 2. Why combine sums and counts rather than averaging per-chunk means?
@@ -6703,7 +6703,7 @@ pl.col("a") * pl.col("b");  pl.len();  expr.over("group") (like transform);  .ex
 - **Query optimiser:** rewrites a plan to do less work, for example by filtering while reading.
 - **Projection pushdown:** reading only the columns a query needs.
 
-### Exercises
+**Exercises**
 
 1. Lazily count the orders with qty ≥ 5 per category, with their average price, most orders first.
 2. Add each order's price difference from its category's average price.
@@ -6896,7 +6896,7 @@ con.execute("… WHERE c = ?", [value])
 - **Window function:** a SQL function computed over a group of rows related to each row, such as a rank within a partition.
 - **Common table expression (CTE):** a named subquery defined with `WITH`.
 
-### Exercises
+**Exercises**
 
 1. Find the customers who spent over 150,000 in total, returned as a Polars DataFrame.
 2. Average order value per city and month, keeping only rows above 7,550.
@@ -7041,7 +7041,7 @@ fig.savefig("name.png", dpi=100, bbox_inches="tight");  plt.close(fig)
 - **Histogram:** a bar chart of how many values fall into each of a set of ranges (bins).
 - **Bin:** one range of a histogram.
 
-### Exercises
+**Exercises**
 
 1. Draw a horizontal bar chart of the four cities' revenue, largest at the top, with each value written next to its bar.
 2. Draw the order values as histograms with 10 and with 100 bins side by side. What changes?
@@ -7198,7 +7198,7 @@ ax.set_yscale("log");  plt.subplots(1, n, sharey=True) for small multiples;  ax.
 - **Small multiples:** a series of small charts with the same axes, one per group.
 - **Spines:** the lines bordering the plot area.
 
-### Exercises
+**Exercises**
 
 1. Make a 2 × 3 grid of histograms of normal samples with means 0 to 5, sharing the x-axis.
 2. Why must small multiples share their y-scale?
@@ -7357,7 +7357,7 @@ fig.savefig("x.png", dpi=200) or "x.svg" / "x.pdf"
 - **Sequential / diverging / qualitative colour map:** for ordered values / values around a middle / unordered categories.
 - **Vector graphics (SVG, PDF):** images stored as shapes, sharp at any size; **raster** (PNG) images are grids of pixels.
 
-### Exercises
+**Exercises**
 
 1. Shade every weekend on the revenue chart (take days 6, 7, 13, 14, … as weekends).
 2. Which colour map suits (a) temperature anomalies above and below normal; (b) population density; (c) product categories?
@@ -7513,7 +7513,7 @@ sns.kdeplot(x=…, bw_adjust=…);  check for several peaks before trusting a me
 - **ECDF:** the fraction of values at or below each value.
 - **Bimodal:** having two peaks.
 
-### Exercises
+**Exercises**
 
 1. Draw box plots of the rating per city, ordered by median rating.
 2. Using the ECDF idea, what fraction of all deliveries take at most 2 days?
@@ -7650,7 +7650,7 @@ facets: sns.relplot / catplot / displot / lmplot(…, col=…, row=…, hue=…)
 - **Figure-level function:** a seaborn function that creates its own figure, possibly with several facets.
 - **`FacetGrid`:** the object returned by figure-level functions, holding the figure and its panels.
 
-### Exercises
+**Exercises**
 
 1. Plot the mean rating per city as points, faceted by channel.
 2. Fit the rating–delivery line separately for each city. Are the slopes similar?
@@ -7796,7 +7796,7 @@ r measures straight-line relationships only → always look at the scatter
 - **Heatmap:** a table drawn as coloured cells.
 - **Pair plot:** a grid of scatter plots of every pair of columns, with distributions on the diagonal.
 
-### Exercises
+**Exercises**
 
 1. Which pair of different columns has the most negative correlation?
 2. Draw a heatmap of the mean rating for each number of items and channel.
@@ -7909,7 +7909,7 @@ fig.update_layout(…);  fig.write_html(path, include_plotlyjs="cdn");  fig.writ
 - **Trace:** one plotted series in a Plotly figure.
 - **Hover:** showing details when the mouse points at a mark.
 
-### Exercises
+**Exercises**
 
 1. Make a Plotly histogram of 1,000 values from a normal distribution with mean 50 and standard deviation 10.
 2. When would you choose a static chart over an interactive one?
@@ -8019,7 +8019,7 @@ bars start at 0;  avoid dual axes, 3-D, rainbow maps;  show rates and uncertaint
 - **Dot plot:** a chart of one dot per category on a common scale, an alternative to bars.
 - **Rate:** a quantity per unit, such as orders per 1,000 people, used to compare groups of different sizes.
 
-### Exercises
+**Exercises**
 
 1. City A had 500 complaints and city B 100. A has 2 million customers and B 200,000. Which has the bigger problem?
 2. Which chart would you use to show how delivery times are spread in four cities?
@@ -8177,7 +8177,7 @@ skew > 0: long right tail, mode < median < mean → report median and percentile
 - **Skewness:** a measure of asymmetry; positive for a long right tail.
 - **Percentile (p10, p90):** the value below which 10% (90%) of the data lies.
 
-### Exercises
+**Exercises**
 
 1. For 2, 3, 3, 4, 5, 6 and 30, give the mean, median and mode, and the sign of the skewness.
 2. Why does the mean of the order values sit above the median?
@@ -8364,7 +8364,7 @@ always plot (Anscombe);  confounders create correlation and can reverse comparis
 - **Residual:** what's left of a value after subtracting a fitted prediction.
 - **Simpson's paradox:** a trend in every subgroup that reverses when the groups are combined.
 
-### Exercises
+**Exercises**
 
 1. Two series that both trend upwards over 10 days correlate strongly. Correlate their day-to-day **changes** instead. What happens, and why?
 2. In the kidney-stone data, which treatment would you recommend, and why?
@@ -8540,7 +8540,7 @@ rare condition + imperfect test → most positives are false (base rate);  E[X] 
 - **Base-rate fallacy:** judging the evidence while ignoring how rare the condition is.
 - **Expected value:** the probability-weighted average of a random quantity's values.
 
-### Exercises
+**Exercises**
 
 1. A fraud alert catches 90% of frauds and flags 3% of genuine payments. 2% of payments are fraud. What fraction of flagged payments are fraud?
 2. Simulate the two-dice question of 53.2 and compare with 1/6.
@@ -8722,7 +8722,7 @@ The binomial's mean is np = 6 and its variance np(1 − p) = 4.2 (std 2.05); the
 - **Binomial / Poisson / exponential / normal / log-normal / uniform distribution:** see the table above.
 - **68–95–99.7 rule:** the shares of a normal distribution within 1, 2 and 3 standard deviations of the mean.
 
-### Exercises
+**Exercises**
 
 1. 4% of visitors buy. Out of 500 visitors, how likely are 30 or more buyers? Check by simulation.
 2. Exam scores are normal with mean 65 and standard deviation 12. What score marks the top 10%, and what fraction score below 40?
@@ -8902,7 +8902,7 @@ simple random sample: df.sample(n=…);  stratified: df.groupby(g).sample(frac=�
 - **Simple random sample / stratified sample:** every member equally likely / each subgroup sampled separately.
 - **Sampling bias:** a sample systematically unlike the population.
 
-### Exercises
+**Exercises**
 
 1. Simulate the standard error of the mean of 50 values from a uniform distribution on (0, 10), and compare with σ/√n, where σ = 10/√12.
 2. How many times more data do you need to make a standard error 3 times smaller?
@@ -9090,7 +9090,7 @@ anything:    bootstrap: resample with replacement many times, take the 2.5% and 
 - **Bootstrap:** estimating a statistic's uncertainty by recomputing it on many resamples drawn with replacement.
 - **Resampling with replacement:** drawing items so that each can be picked more than once.
 
-### Exercises
+**Exercises**
 
 1. Compute the 90% and 99% confidence intervals for the mean of `orders`. Which is wider, and why?
 2. Bootstrap a 95% interval for the ratio of two groups' mean order values.
@@ -9347,7 +9347,7 @@ report effect size + CI, not only p
 - **ANOVA:** tests whether several group means are all equal.
 - **Multiple testing / false discovery rate:** the inflation of false positives when running many tests / the expected share of false positives among the significant results.
 
-### Exercises
+**Exercises**
 
 1. Twelve people type before and after a training course (words per minute below). Did they improve?
 2. Ten variants of a web page are each tested against the original, with no real difference anywhere. Roughly how likely is at least one "significant" result at α = 0.05?
@@ -9539,7 +9539,7 @@ analyse once: SRM check (chisquare) → proportions_ztest → CI for the lift;  
 - **Peeking:** checking results repeatedly and stopping early, which inflates false positives.
 - **Sequential testing:** methods that allow repeated looks while controlling false positives.
 
-### Exercises
+**Exercises**
 
 1. Average order value is about ₹600 with a standard deviation of ₹600. How many users per group detect a ₹15 change with 80% power?
 2. A test planned as 50/50 has 50,912 and 49,088 users. Is that a problem?
@@ -9756,7 +9756,7 @@ smf.logit("y01 ~ …"): exp(coef) = odds ratio;  omitted variables bias coeffici
 - **Logistic regression:** regression for a yes/no outcome, modelling the log-odds.
 - **Odds ratio:** the factor by which the odds multiply per unit increase of a predictor.
 
-### Exercises
+**Exercises**
 
 1. Fit `units ~ ads_k * weekend + price + C(city)`. The `*` adds an **interaction**, `ads_k:weekend`, letting the ad effect differ at weekends. Is the interaction significant?
 2. A coefficient of −1.2 on price: what does it mean in words?
@@ -9995,7 +9995,7 @@ saved pair plot
 - **ANOVA F statistic:** the ratio of variation between group means to variation within groups.
 - **Finding:** a short, quantified statement of something learned from the data.
 
-### Exercises
+**Exercises**
 
 1. Which species has the largest difference in body mass between males and females?
 2. Which single measurement best separates Adelie from Chinstrap? Compare their means.
@@ -10192,7 +10192,7 @@ dates: days since, weekday flags;  history: aggregate only events before the pre
 - **One-hot encoding:** one 0/1 column per category value.
 - **Cutoff date:** the moment at which a prediction is made; features may only use earlier data.
 
-### Exercises
+**Exercises**
 
 1. Why must `city_columns` come from the training rows, and what does `reindex` do for the test rows?
 2. Add an `avg_order` feature (total spend ÷ number of orders) to the history table.
@@ -10352,7 +10352,7 @@ orchestrators schedule and retry;  dbt for SQL transformations with tests
 - **Orchestrator:** a system that schedules, runs and retries pipeline steps.
 - **Data quality monitoring:** automated checks for unusual changes in data volume, values and completeness.
 
-### Exercises
+**Exercises**
 
 1. Why is "append the day's rows to one big file" not idempotent?
 2. Add a check that stops the run if the day has fewer than 100 raw orders.
@@ -10502,7 +10502,7 @@ dashboards for recurring questions: few KPIs, defined, with a "last updated" tim
 - **Streamlit:** a Python library that turns scripts into simple interactive web apps.
 - **Caveat:** a limitation of the analysis that could change the conclusion.
 
-### Exercises
+**Exercises**
 
 1. Rewrite as an answer-first sentence: "We analysed 8 weeks of data across 4 cities using several methods and found various trends, including that conversion went from 18.8% to 20.9%."
 2. Add a line to the summary giving the average weekly growth of orders over the 8 weeks.
@@ -10618,7 +10618,7 @@ AI assistants: give context, run and verify, protect data
 - **marimo:** a reactive notebook in which changing a cell re-runs the cells that depend on it.
 - **AI coding assistant:** an LLM-based tool that writes, explains and debugs code.
 
-### Exercises
+**Exercises**
 
 1. Print the versions of your installed data libraries (Chapter 2.3) and compare them with the table.
 2. Which tool would you reach for to compute monthly revenue from 300 GB of Parquet files on a laptop?
@@ -11010,7 +11010,7 @@ anti-join: isin / set difference;  best per group: loc[groupby().idxmax()]
 streaks: new = diff().ne(1); id = new.cumsum();  cohorts: first period via transform("min");  funnels: pivot, .gt(0), sum
 ```
 
-### Exercises
+**Exercises**
 
 1. Which users' monthly spend rose in every month they bought?
 2. What share of users bought again within 30 days of their first order?
@@ -11351,7 +11351,7 @@ Every term from the chapters’ **Key terms** lists, A to Z, with a plain defini
 
 - **68–95–99.7 rule:** the shares of a normal distribution within 1, 2 and 3 standard deviations of the mean. *(Chapter [54](#54-probability-distributions))*
 
-### A
+**A**
 
 - **A/B test:** a randomised experiment comparing a control version with a treatment version. *(Chapter [58](#58-ab-testing-end-to-end))*
 - **Accessor:** a group of methods for one kind of data, such as `.dt` for dates and `.str` for text. *(Chapter [24](#24-adding-and-changing-columns))*
@@ -11378,7 +11378,7 @@ Every term from the chapters’ **Key terms** lists, A to Z, with a plain defini
 - **Axes:** one chart inside a figure, with its own coordinate system. *(Chapter [43](#43-your-first-charts-with-matplotlib))*
 - **Axis:** one direction of an array; axis 0 is rows, axis 1 columns. *(Chapter [8](#8-shape-dimensions-and-dtypes), [12](#12-aggregations-and-the-axis-argument))*
 
-### B
+**B**
 
 - **Bandwidth:** the width of each KDE bump; it sets how smooth the curve is. *(Chapter [46](#46-seaborn-i-distributions))*
 - **Base-rate fallacy:** judging the evidence while ignoring how rare the condition is. *(Chapter [53](#53-probability-basics-and-bayes-rule))*
@@ -11394,7 +11394,7 @@ Every term from the chapters’ **Key terms** lists, A to Z, with a plain defini
 - **Box plot:** a summary of quartiles, whiskers and outliers. *(Chapter [46](#46-seaborn-i-distributions))*
 - **Broadcasting:** combining arrays of different shapes by stretching size-1 axes, without copying. *(Chapter [13](#13-broadcasting-maths-between-arrays-of-different-shapes))*
 
-### C
+**C**
 
 - **Capping (winsorising):** limiting values to a range, such as the 1st to 99th percentiles. *(Chapter [30](#30-outliers-and-data-validation))*
 - **Capture group:** a part of a regex in parentheses whose matched text is extracted. *(Chapter [28](#28-text-data-the-str-accessor-and-regular-expressions))*
@@ -11436,7 +11436,7 @@ Every term from the chapters’ **Key terms** lists, A to Z, with a plain defini
 - **`cut` / `qcut`:** binning by chosen edges / into groups with equal counts. *(Chapter [29](#29-categorical-data-and-binning))*
 - **Cutoff date:** the moment at which a prediction is made; features may only use earlier data. *(Chapter [61](#61-feature-engineering-preparing-data-for-machine-learning))*
 
-### D
+**D**
 
 - **Dashboard:** a live page of charts and KPIs that updates as new data arrives. *(Chapter [63](#63-communicating-results))*
 - **Data analyst:** someone who describes what happened in the data and explains why. *(Chapter [1](#1-what-data-science-is))*
@@ -11461,7 +11461,7 @@ Every term from the chapters’ **Key terms** lists, A to Z, with a plain defini
 - **DuckDB:** an in-process analytical SQL database that queries DataFrames and files directly. *(Chapter [42](#42-duckdb-sql-on-dataframes-and-files))*
 - **Duplicate key:** two rows sharing an identifier that should be unique. *(Chapter [27](#27-duplicates-data-types-and-type-conversion))*
 
-### E
+**E**
 
 - **ECDF:** the fraction of values at or below each value. *(Chapter [46](#46-seaborn-i-distributions))*
 - **Effect size (Cohen's d):** the size of an effect, here the difference in standard-deviation units. *(Chapter [57](#57-hypothesis-testing))*
@@ -11476,7 +11476,7 @@ Every term from the chapters’ **Key terms** lists, A to Z, with a plain defini
 - **Exploratory data analysis (EDA):** a structured first investigation of a dataset's contents, quality and patterns. *(Chapter [60](#60-a-complete-exploratory-data-analysis))*
 - **Expression:** a description of a column computation, such as `pl.col("qty") * pl.col("price")`, evaluated by Polars. *(Chapter [41](#41-polars-fast-dataframes-with-lazy-queries))*
 
-### F
+**F**
 
 - **f-string:** a string with `f` in front that fills in `{values}`, with optional formatting. *(Chapter [3](#3-python-for-data-work-lists-dicts-comprehensions-and-functions))*
 - **Facet:** one panel of a chart split by a category. *(Chapter [47](#47-seaborn-ii-relationships-categories-and-facets))*
@@ -11496,13 +11496,13 @@ Every term from the chapters’ **Key terms** lists, A to Z, with a plain defini
 - **Free-threaded Python:** a Python build without the global interpreter lock, letting threads run in parallel. *(Chapter [64](#64-whats-new-modern-data-tooling-20232026))*
 - **`fullmatch`:** tests whether a whole value matches a pattern, not just part of it. *(Chapter [28](#28-text-data-the-str-accessor-and-regular-expressions))*
 
-### G
+**G**
 
 - **GIL (global interpreter lock):** the lock that let only one thread execute Python code at a time. *(Chapter [64](#64-whats-new-modern-data-tooling-20232026))*
 - **`groupby`:** pandas' split-apply-combine. *(Chapter [31](#31-grouping-i-groupby-and-agg))*
 - **Guardrail metric:** a metric that must not get worse in an experiment, even if the primary metric improves. *(Chapter [67](#67-statistics-probability-and-product-interview-problems))*
 
-### H
+**H**
 
 - **Hashing (sets):** storing values so that membership is checked in constant time. *(Chapter [39](#39-performance-vectorise-avoid-loops-and-measure))*
 - **Header:** the first line of a CSV, holding the column names. *(Chapter [5](#5-reading-files-with-plain-python-text-csv-and-json))*
@@ -11511,7 +11511,7 @@ Every term from the chapters’ **Key terms** lists, A to Z, with a plain defini
 - **Hover:** showing details when the mouse points at a mark. *(Chapter [49](#49-interactive-charts-with-plotly))*
 - **`hue`:** a seaborn argument that colours the data by a category. *(Chapter [46](#46-seaborn-i-distributions))*
 
-### I
+**I**
 
 - **Idempotent:** giving the same result however many times it runs. *(Chapter [62](#62-data-pipelines-and-data-quality-in-production))*
 - **Identifier:** a code that names something; numeric-looking but not a quantity. *(Chapter [4](#4-what-data-looks-like-types-of-data-and-tidy-tables))*
@@ -11530,20 +11530,20 @@ Every term from the chapters’ **Key terms** lists, A to Z, with a plain defini
 - **`isin`:** tests whether each value is in a list. *(Chapter [22](#22-filtering-rows))*
 - **`itertuples`:** loops over a DataFrame's rows as named tuples; the fastest explicit row loop. *(Chapter [39](#39-performance-vectorise-avoid-loops-and-measure))*
 
-### J
+**J**
 
 - **JSON:** a text format of nested objects and arrays, used by web APIs. *(Chapter [5](#5-reading-files-with-plain-python-text-csv-and-json))*
 - **JSON Lines:** a text format with one JSON record per line. *(Chapter [19](#19-reading-and-writing-files-csv-json-and-parquet))*
 - **`json_normalize`:** flattens nested JSON records into a table. *(Chapter [20](#20-reading-from-databases-and-web-apis))*
 
-### K
+**K**
 
 - **Kernel:** the running Python process behind a notebook, which remembers every variable created so far. *(Chapter [2](#2-setting-up-uv-virtual-environments-and-notebooks))*
 - **Kernel density estimate (KDE):** a smooth estimate of a distribution, made by adding a small bump at each data point. *(Chapter [46](#46-seaborn-i-distributions))*
 - **Key:** a column whose values link rows of two tables. *(Chapter [33](#33-combining-tables-i-merge-and-join-types))*
 - **KPI (key performance indicator):** one of the few numbers used to track how a business is doing. *(Chapter [63](#63-communicating-results))*
 
-### L
+**L**
 
 - **Lag:** a value from an earlier time step, made with `shift`. *(Chapter [38](#38-time-series-resample-rolling-and-window-functions))*
 - **Lambda:** a small unnamed function written in one expression. *(Chapter [3](#3-python-for-data-work-lists-dicts-comprehensions-and-functions))*
@@ -11563,7 +11563,7 @@ Every term from the chapters’ **Key terms** lists, A to Z, with a plain defini
 - **Logging:** recording a program's events with timestamps and severity levels. *(Chapter [62](#62-data-pipelines-and-data-quality-in-production))*
 - **Logistic regression:** regression for a yes/no outcome, modelling the log-odds. *(Chapter [59](#59-regression-for-analysis))*
 
-### M
+**M**
 
 - **Mann–Whitney U test:** a rank-based test of whether one group tends to have larger values. *(Chapter [57](#57-hypothesis-testing))*
 - **Many-to-many join:** a merge where the key repeats on both sides, multiplying rows. *(Chapter [34](#34-combining-tables-ii-concat-and-merge-pitfalls))*
@@ -11586,7 +11586,7 @@ Every term from the chapters’ **Key terms** lists, A to Z, with a plain defini
 - **MultiIndex:** an index with several levels, labelling each row by a tuple. *(Chapter [36](#36-multiindex-stack-and-unstack))*
 - **Multiple testing / false discovery rate:** the inflation of false positives when running many tests / the expected share of false positives among the significant results. *(Chapter [57](#57-hypothesis-testing))*
 
-### N
+**N**
 
 - **Naive / aware timestamp:** without / with a time zone attached. *(Chapter [37](#37-dates-and-times))*
 - **Named aggregation:** `agg(name=(column, function))`, computing several named summaries at once. *(Chapter [31](#31-grouping-i-groupby-and-agg))*
@@ -11605,7 +11605,7 @@ Every term from the chapters’ **Key terms** lists, A to Z, with a plain defini
 - **Numba:** a library that compiles Python loops over NumPy arrays to fast machine code. *(Chapter [39](#39-performance-vectorise-avoid-loops-and-measure))*
 - **NumPy:** Python's library for fast arrays of numbers. *(Chapter [6](#6-why-numpy-arrays-vs-lists))*
 
-### O
+**O**
 
 - **Observation:** one thing measured, stored as one row. *(Chapter [4](#4-what-data-looks-like-types-of-data-and-tidy-tables))*
 - **Odds ratio:** the factor by which the odds multiply per unit increase of a predictor. *(Chapter [59](#59-regression-for-analysis))*
@@ -11616,7 +11616,7 @@ Every term from the chapters’ **Key terms** lists, A to Z, with a plain defini
 - **Outlier:** a value far from the others. *(Chapter [30](#30-outliers-and-data-validation))*
 - **Overflow:** a value exceeding its type's range; fixed-size integers wrap around. *(Chapter [8](#8-shape-dimensions-and-dtypes))*
 
-### P
+**P**
 
 - **p-value:** the probability, if H₀ were true, of a result at least as extreme as the observed one. *(Chapter [57](#57-hypothesis-testing))*
 - **Package manager:** a tool that installs libraries, such as `uv` or `pip`. *(Chapter [2](#2-setting-up-uv-virtual-environments-and-notebooks))*
@@ -11654,7 +11654,7 @@ Every term from the chapters’ **Key terms** lists, A to Z, with a plain defini
 - **Projection pushdown:** reading only the columns a query needs. *(Chapter [41](#41-polars-fast-dataframes-with-lazy-queries))*
 - **Pseudo-random:** generated by a deterministic algorithm, but statistically like random numbers. *(Chapter [15](#15-random-numbers-and-simulation))*
 
-### Q
+**Q**
 
 - **Quadratic time:** work that grows with the square of the input size, as when copying a growing table on every step. *(Chapter [39](#39-performance-vectorise-avoid-loops-and-measure))*
 - **Quantile:** a value dividing sorted data into equal-sized parts, such as quartiles (4) and deciles (10). *(Chapter [29](#29-categorical-data-and-binning))*
@@ -11663,7 +11663,7 @@ Every term from the chapters’ **Key terms** lists, A to Z, with a plain defini
 - **Query optimiser:** rewrites a plan to do less work, for example by filtering while reading. *(Chapter [41](#41-polars-fast-dataframes-with-lazy-queries))*
 - **Query parameter:** a value passed separately from the SQL text, so it can't change the query. *(Chapter [20](#20-reading-from-databases-and-web-apis))*
 
-### R
+**R**
 
 - **Random number generator:** an object that produces random numbers; NumPy's is `np.random.default_rng`. *(Chapter [15](#15-random-numbers-and-simulation))*
 - **Rank:** a value's position in sorted order. *(Chapter [23](#23-sorting-ranking-and-top-n))*
@@ -11684,7 +11684,7 @@ Every term from the chapters’ **Key terms** lists, A to Z, with a plain defini
 - **Row group:** a block of rows in a Parquet file, stored with summary statistics used to skip it. *(Chapter [40](#40-memory-dtypes-categories-chunking-and-arrow))*
 - **R²:** the share of the outcome's variance explained by the model. *(Chapter [59](#59-regression-for-analysis))*
 
-### S
+**S**
 
 - **Sample ratio mismatch (SRM):** group sizes that differ from the planned split more than chance allows, signalling a broken setup. *(Chapter [58](#58-ab-testing-end-to-end))*
 - **Sampling bias:** a sample systematically unlike the population. *(Chapter [55](#55-sampling-the-central-limit-theorem-and-standard-error))*
@@ -11724,7 +11724,7 @@ Every term from the chapters’ **Key terms** lists, A to Z, with a plain defini
 - **Subplot:** one axes in a grid of axes. *(Chapter [44](#44-matplotlib-anatomy-figures-axes-and-layouts))*
 - **Survival function:** the probability that the quantity exceeds x, 1 − CDF. *(Chapter [54](#54-probability-distributions))*
 
-### T
+**T**
 
 - **t distribution:** a bell-shaped distribution with heavier tails than the normal, used when σ is estimated from the sample. *(Chapter [56](#56-confidence-intervals-and-the-bootstrap))*
 - **t-test (Welch's):** compares two means using t = difference / standard error. *(Chapter [57](#57-hypothesis-testing))*
@@ -11749,7 +11749,7 @@ Every term from the chapters’ **Key terms** lists, A to Z, with a plain defini
 - **Two-sided test:** a test counting extreme results in both directions. *(Chapter [57](#57-hypothesis-testing))*
 - **Type I / type II error:** rejecting a true H₀ (false alarm) / failing to reject a false one (missed effect). *(Chapter [57](#57-hypothesis-testing))*
 
-### U
+**U**
 
 - **Unbiased estimator:** a formula whose average over many samples equals the true value. *(Chapter [51](#51-describing-data-centre-spread-and-shape))*
 - **Universal function (ufunc):** a NumPy function that applies element by element. *(Chapter [11](#11-vectorised-maths-and-universal-functions))*
@@ -11758,7 +11758,7 @@ Every term from the chapters’ **Key terms** lists, A to Z, with a plain defini
 - **UTC:** Coordinated Universal Time, the standard reference time. *(Chapter [37](#37-dates-and-times))*
 - **uv:** a fast Python package and project manager that creates venvs and lock files. *(Chapter [2](#2-setting-up-uv-virtual-environments-and-notebooks))*
 
-### V
+**V**
 
 - **`validate`:** a merge option that checks the expected relationship (one-to-one, many-to-one…). *(Chapter [34](#34-combining-tables-ii-concat-and-merge-pitfalls))*
 - **Validation rule:** a condition every row must meet, such as "price is positive". *(Chapter [30](#30-outliers-and-data-validation))*
@@ -11771,17 +11771,17 @@ Every term from the chapters’ **Key terms** lists, A to Z, with a plain defini
 - **Violin plot:** a box-plot-style comparison showing the full KDE shape. *(Chapter [46](#46-seaborn-i-distributions))*
 - **Virtual environment (venv):** a private set of installed libraries for one project. *(Chapter [2](#2-setting-up-uv-virtual-environments-and-notebooks))*
 
-### W
+**W**
 
 - **Wide / long format:** repeated measurements as columns / as rows. *(Chapter [4](#4-what-data-looks-like-types-of-data-and-tidy-tables))*
 - **Wilson interval:** a confidence interval for a proportion that behaves well with small counts. *(Chapter [56](#56-confidence-intervals-and-the-bootstrap))*
 - **Window function:** a SQL function computed over a group of rows related to each row, such as a rank within a partition. *(Chapter [42](#42-duckdb-sql-on-dataframes-and-files))*
 
-### X
+**X**
 
 - **`xs` (cross-section):** selects rows by the value of one index level. *(Chapter [36](#36-multiindex-stack-and-unstack))*
 
-### Z
+**Z**
 
 - **z-score:** a value's distance from the mean, in standard deviations. *(Chapter [13](#13-broadcasting-maths-between-arrays-of-different-shapes))*
 
